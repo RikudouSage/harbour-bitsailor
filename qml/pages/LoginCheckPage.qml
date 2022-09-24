@@ -10,11 +10,26 @@ Page {
     BitwardenCli {
         id: cli
 
+        function displayLoginPage(error) {
+            if (!error) {
+                error = false;
+            }
+
+            const dialog = pageStack.push("LoginPage.qml", {error: error});
+            dialog.accepted.connect(function() {
+                if (dialog.clientIdText.length && dialog.clientSecretText.length) {
+                    cli.loginApiKey(dialog.clientIdText, dialog.clientSecretText);
+                } else {
+                    cli.loginEmailPassword(dialog.emailText, dialog.passwordText);
+                }
+            });
+        }
+
         onLoginStatusResolved: {
             if (loggedIn) {
                 cli.checkVaultUnlocked();
             } else {
-                pageStack.replace("LoginPage.qml"); // todo make dialog?
+                displayLoginPage();
             }
         }
 
@@ -22,7 +37,15 @@ Page {
             if (unlocked) {
                 pageStack.replace("MainPage.qml");
             } else {
-                pageStack.replace("UnlockVaultPage.qml"); // todo make dialog?
+                const dialog = pageStack.push("UnlockVaultPage.qml");
+            }
+        }
+
+        onLogInFinished: {
+            if (success) {
+                cli.checkVaultUnlocked();
+            } else {
+                displayLoginPage(true);
             }
         }
     }

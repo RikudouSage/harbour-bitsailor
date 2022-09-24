@@ -20,10 +20,12 @@ public:
     QString getSessionId();
     QString getUsername();
     QString getPassword();
+    QString getClientId();
 
     void setSessionId(const QString &sessionId);
     void setUsername(const QString &username);
     void setPassword(const QString &password);
+    void setClientId(const QString &clientId);
 
 private:
     static const QString collectionName;

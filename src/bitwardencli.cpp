@@ -22,11 +22,50 @@ void BitwardenCli::checkVaultUnlocked()
     startProcess({"unlock", "--check", "--session", sessionId}, VaultUnlocked);
 }
 
+void BitwardenCli::loginEmailPassword(const QString &email, const QString &password)
+{
+    secretsHandler->setUsername(email);
+
+    startProcess({"login", email, password, "--raw"}, LoginEmailPassword);
+}
+
+void BitwardenCli::loginApiKey(const QString &clientId, const QString &clientSecret)
+{
+    secretsHandler->setClientId(clientId);
+
+    auto env = QProcessEnvironment::systemEnvironment();
+    env.insert("BW_CLIENTID", clientId);
+    env.insert("BW_CLIENTSECRET", clientSecret);
+
+    startProcess({"login", "--apikey"}, env, LoginApiKey);
+}
+
+void BitwardenCli::logout()
+{
+    startProcess({"logout"}, Logout);
+}
+
 void BitwardenCli::onFinished(int exitCode, Method method)
 {
     auto process = processes.take(method);
 
     switch (method) {
+    case BitwardenCli::Logout:
+        emit logoutFinished();
+        break;
+    case BitwardenCli::LoginEmailPassword:
+    {
+        auto success = exitCode == 0;
+        if (success) {
+            auto sessionKey = QString::fromUtf8(process->readAll()).trimmed();
+            secretsHandler->setSessionId(sessionKey);
+        }
+        emit logInFinished(success);
+        break;
+    }
+    case BitwardenCli::LoginApiKey:
+        emit logInFinished(exitCode == 0);
+        break;
     case LoginCheck:
         emit loginStatusResolved(exitCode == 0);
         break;
@@ -40,8 +79,14 @@ void BitwardenCli::onFinished(int exitCode, Method method)
 
 void BitwardenCli::startProcess(const QStringList &arguments, Method method)
 {
+    startProcess(arguments, QProcessEnvironment::systemEnvironment(), method);
+}
+
+void BitwardenCli::startProcess(const QStringList &arguments, const QProcessEnvironment &environment, Method method)
+{
     QProcess* process = new QProcess(this);
     process->setWorkingDirectory(getDataPath());
+    process->setProcessEnvironment(environment);
 
     if (processes.contains(method)) {
         auto oldProcess = processes.take(method);

@@ -30,7 +30,7 @@
 <context>
     <name>LoginCheckPage</name>
     <message>
-        <location filename="../qml/pages/LoginCheckPage.qml" line="40"/>
+        <location filename="../qml/pages/LoginCheckPage.qml" line="63"/>
         <source>Authenticating...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -38,8 +38,53 @@
 <context>
     <name>LoginPage</name>
     <message>
-        <location filename="../qml/pages/LoginPage.qml" line="18"/>
+        <location filename="../qml/pages/LoginPage.qml" line="29"/>
         <source>Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LoginPage.qml" line="33"/>
+        <source>The credentials you provided are incorrect. Please try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LoginPage.qml" line="45"/>
+        <source>Email &amp; password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LoginPage.qml" line="49"/>
+        <source>If you have 2FA activated, please login using api key and not email and password. See &lt;a href=&apos;%1&apos;&gt;Bitwarden help&lt;/a&gt; for more information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LoginPage.qml" line="62"/>
+        <source>Email</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LoginPage.qml" line="78"/>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LoginPage.qml" line="102"/>
+        <source>API key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LoginPage.qml" line="106"/>
+        <source>See &lt;a href=&apos;%1&apos;&gt;Bitwarden help&lt;/a&gt; for information on how to create an api key.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LoginPage.qml" line="119"/>
+        <source>Client ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/LoginPage.qml" line="136"/>
+        <source>Client Secret</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -109,15 +154,40 @@
     </message>
     <message>
         <location filename="../qml/pages/UnknownErrorOccuredPage.qml" line="22"/>
-        <source>There was an unknown error and app cannot proceed. Please contact the developer on &lt;a href=&apos;https://openrepos.net/users/rikudousennin&apos;&gt;OpenRepos&lt;/a&gt;.</source>
+        <source>There was an unknown error and app cannot proceed. Please contact the developer on &lt;a href=&apos;%1&apos;&gt;OpenRepos&lt;/a&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>UnlockVaultPage</name>
     <message>
-        <location filename="../qml/pages/UnlockVaultPage.qml" line="18"/>
+        <location filename="../qml/pages/UnlockVaultPage.qml" line="30"/>
+        <source>Logout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/UnlockVaultPage.qml" line="50"/>
         <source>Unlock Vault</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/UnlockVaultPage.qml" line="57"/>
+        <source>Your vault is locked and must be unlocked before continuing.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/UnlockVaultPage.qml" line="68"/>
+        <source>Logging out, please wait...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/UnlockVaultPage.qml" line="78"/>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/UnlockVaultPage.qml" line="100"/>
+        <source>PIN</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

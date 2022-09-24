@@ -19,7 +19,7 @@ Page {
             }
             Label {
                 x: Theme.horizontalPageMargin
-                text: qsTr("There was an unknown error and app cannot proceed. Please contact the developer on <a href='https://openrepos.net/users/rikudousennin'>OpenRepos</a>.");
+                text: qsTr("There was an unknown error and app cannot proceed. Please contact the developer on <a href='%1'>OpenRepos</a>.").arg("https://openrepos.net/users/rikudousennin")
                 color: Theme.secondaryHighlightColor
                 wrapMode: Label.WordWrap
                 width: parent.width - Theme.horizontalPageMargin * 2

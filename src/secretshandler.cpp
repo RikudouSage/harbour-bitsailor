@@ -23,6 +23,7 @@ const QString SecretsHandler::collectionName(QStringLiteral("bitsailor"));
 static const QString sessionIdName = "sessionId";
 static const QString usernameName = "username";
 static const QString passwordName = "password";
+static const QString clientIdName = "clientId";
 
 SecretsHandler::SecretsHandler(QObject *parent) : QObject(parent)
 {
@@ -52,6 +53,11 @@ QString SecretsHandler::getPassword()
     return getData(passwordName);
 }
 
+QString SecretsHandler::getClientId()
+{
+    return getData(clientIdName);
+}
+
 void SecretsHandler::setSessionId(const QString &sessionId)
 {
     storeData(sessionIdName, sessionId);
@@ -65,6 +71,11 @@ void SecretsHandler::setUsername(const QString &username)
 void SecretsHandler::setPassword(const QString &password)
 {
     storeData(passwordName, password);
+}
+
+void SecretsHandler::setClientId(const QString &clientId)
+{
+    storeData(clientIdName, clientId);
 }
 
 bool SecretsHandler::isResultValid(const Request &request)
