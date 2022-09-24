@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+X-Nemo-Application-Type=silica-qt5
+Icon=harbour-bitsailor
+Exec=harbour-bitsailor
+Name=BitSailor
+
+[X-Sailjail]
+Sandboxing=Disabled
+# Replace with your organization as a reverse domain name
+OrganizationName=cz.chrastecky
+# ApplicationName does not have to be identical to Name
+ApplicationName=bitsailor
+# Add the required permissions here
+Permissions=
