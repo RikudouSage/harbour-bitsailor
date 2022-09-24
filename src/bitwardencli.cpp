@@ -46,7 +46,7 @@ void BitwardenCli::startProcess(const QStringList &arguments, Method method)
     if (processes.contains(method)) {
         auto oldProcess = processes.take(method);
         oldProcess->terminate();
-        delete oldProcess;
+        oldProcess->deleteLater();
     }
 
     connect(process, static_cast<void (QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), [=](int exitCode, QProcess::ExitStatus exitStatus) {
