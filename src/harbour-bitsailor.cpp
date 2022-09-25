@@ -2,6 +2,12 @@
 #include <QtQuick>
 #endif
 
+#include <QQuickView>
+#include <QScopedPointer>
+#include <QGuiApplication>
+#include <QtQml>
+#include <QQmlEngine>
+
 #include <sailfishapp.h>
 
 #include "systemchecker.h"
