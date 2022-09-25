@@ -303,15 +303,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Logins</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>An error occured while loading items. Please try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Add login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logins</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

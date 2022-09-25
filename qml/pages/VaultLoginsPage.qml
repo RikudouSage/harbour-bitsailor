@@ -4,9 +4,12 @@ import Sailfish.Silica 1.0
 import cz.chrastecky.bitsailor 1.0
 
 Page {
+    property var allLogins: []
     property var logins: []
     property bool loaded: false
     property string errorText
+
+    property bool searchActive: false
 
     id: page
     allowedOrientations: Orientation.All
@@ -24,6 +27,7 @@ Page {
         }
 
         onItemsResolved: {
+            allLogins = items;
             logins = items;
             loaded = true;
         }
@@ -33,9 +37,21 @@ Page {
         anchors.fill: parent
         contentHeight: column.height
 
+        VerticalScrollDecorator {}
+
         PullDownMenu {
             MenuItem {
-                text: qsTr("Search")
+                text: qsTr("Add login")
+            }
+
+            MenuItem {
+                text: searchActive ? qsTr("Hide search") : qsTr("Search")
+                onClicked: {
+                    searchActive = !searchActive;
+                    if (searchActive) {
+                        search.focus = true;
+                    }
+                }
             }
         }
 
@@ -57,6 +73,48 @@ Page {
                 width: parent.width - Theme.horizontalPageMargin * 2
             }
 
+            SearchField {
+                id: search
+
+                width: parent.width - Theme.horizontalPageMargin * 2
+                placeholderText: qsTr("Search")
+                active: searchActive
+
+                onTextChanged: {
+                    if (!text) {
+                        cli.getLogins();
+                    } else {
+                        logins = allLogins.filter(function(item) {
+                            const searchable = [item.name, item.login.username];
+                            var index;
+                            for (index in item.fields || []) {
+                                if (!item.fields.hasOwnProperty(index)) {
+                                    continue;
+                                }
+                                searchable.push(item.fields[index].name, item.fields[index].value)
+                            }
+                            for (index in item.login.uris || []) {
+                                if (!item.login.uris.hasOwnProperty(index)) {
+                                    continue;
+                                }
+                                searchable.push(item.login.uris[index].uri);
+                            }
+
+                            for (index in searchable) {
+                                if (!searchable.hasOwnProperty(index)) {
+                                    continue;
+                                }
+                                if (String(searchable[index]).toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) > -1) {
+                                    return true;
+                                }
+                            }
+
+                            return false;
+                        });
+                    }
+                }
+            }
+
             Repeater {
                 model: logins
                 width: parent.width
@@ -66,9 +124,7 @@ Page {
 
                     function remove() {
                         remorseDelete(function() {
-                            logins = logins.filter(function(itemToFilter) {
-                                return item.id !== itemToFilter.id;
-                            });
+                            visible = false;
                         });
                     }
 

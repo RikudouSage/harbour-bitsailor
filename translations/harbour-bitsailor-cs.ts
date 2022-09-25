@@ -363,22 +363,33 @@
 <context>
     <name>VaultLoginsPage</name>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="15"/>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="18"/>
         <source>Loading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="23"/>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="26"/>
         <source>An error occured while loading items. Please try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="38"/>
-        <source>Search</source>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="44"/>
+        <source>Add login</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/VaultLoginsPage.qml" line="48"/>
+        <source>Hide search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="48"/>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="80"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="64"/>
         <source>Logins</source>
         <translation type="unfinished"></translation>
     </message>
