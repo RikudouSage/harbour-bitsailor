@@ -4,15 +4,15 @@ Version: 0.1.0
 Release: 1
 # The contents of the Group field should be one of the groups listed here:
 # https://github.com/mer-tools/spectacle/blob/master/data/GROUPS
-Group: Qt/Qt
+Group: Applications/Productivity
 URL: http://example.org/
-License: LICENSE
+License: MIT
 # This must be generated before uploading a package to a remote build service.
 # Usually this line does not need to be modified.
 Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: |
-  Short description of my Sailfish OS Application
+  A Sailfish OS Bitwarden client using the official Bitwarden CLI
 Builder: qmake5
 
 # This section specifies build dependencies that are resolved using pkgconfig.

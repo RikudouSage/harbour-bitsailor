@@ -11,8 +11,8 @@ Name:       harbour-bitsailor
 Summary:    BitSailor
 Version:    0.1.0
 Release:    1
-Group:      Qt/Qt
-License:    LICENSE
+Group:      Applications/Productivity
+License:    MIT
 URL:        http://example.org/
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-bitsailor.yaml
@@ -26,7 +26,7 @@ BuildRequires:  pkgconfig(sailfishsecrets)
 BuildRequires:  desktop-file-utils
 
 %description
-Short description of my Sailfish OS Application
+A Sailfish OS Bitwarden client using the official Bitwarden CLI
 
 
 %prep

@@ -52,7 +52,7 @@
     <message>
         <location filename="../qml/pages/LoginCheckPage.qml" line="86"/>
         <source>Authenticating...</source>
-        <translation type="unfinished"></translation>
+        <translation>Autentizace...</translation>
     </message>
 </context>
 <context>
