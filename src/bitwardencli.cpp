@@ -42,6 +42,7 @@ void BitwardenCli::loginApiKey(const QString &clientId, const QString &clientSec
 
 void BitwardenCli::logout()
 {
+    secretsHandler->clearAllSecrets();
     startProcess({"logout"}, Logout);
 }
 

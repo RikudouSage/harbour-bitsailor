@@ -7,6 +7,7 @@
 #include <Sailfish/Secrets/storesecretrequest.h>
 #include <Sailfish/Secrets/storedsecretrequest.h>
 #include <Sailfish/Secrets/deletesecretrequest.h>
+#include <Sailfish/Secrets/deletecollectionrequest.h>
 
 #include <QDebug>
 
@@ -19,6 +20,7 @@ using Sailfish::Secrets::Secret;
 using Sailfish::Secrets::StoreSecretRequest;
 using Sailfish::Secrets::StoredSecretRequest;
 using Sailfish::Secrets::DeleteSecretRequest;
+using Sailfish::Secrets::DeleteCollectionRequest;
 
 const QString SecretsHandler::collectionName(QStringLiteral("bitsailor"));
 
@@ -74,6 +76,22 @@ void SecretsHandler::removePinAndPassword()
 {
     deleteSecret(pinName);
     deleteSecret(passwordName);
+}
+
+bool SecretsHandler::clearAllSecrets()
+{
+    DeleteCollectionRequest dcr;
+    dcr.setCollectionName(collectionName);
+    dcr.setStoragePluginName(SecretManager::DefaultEncryptedStoragePluginName);
+    dcr.setUserInteractionMode(SecretManager::SystemInteraction);
+    dcr.setManager(secretManager);
+    dcr.startRequest();
+    dcr.waitForFinished();
+
+    auto success = isResultValid(dcr);
+
+    hasBitsailorCollection = !success;
+    return success;
 }
 
 void SecretsHandler::setSessionId(const QString &sessionId)
@@ -199,7 +217,10 @@ bool SecretsHandler::createCollection()
     ccr.startRequest();
     ccr.waitForFinished();
 
-    return isResultValid(ccr);
+    auto success = isResultValid(ccr);
+    hasBitsailorCollection = success;
+
+    return success;
 }
 
 Secret::Identifier SecretsHandler::toIdentifier(const QString &name)
