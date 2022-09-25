@@ -61,7 +61,7 @@ Dialog {
 
                     content.sourceComponent: Column {
                         Label {
-                            text: qsTr("See <a href='%1'>Bitwarden help</a> for information on how to create an api key.").arg("https://bitwarden.com/help/personal-api-key/");
+                            text: qsTr("See <a href='%1'>Bitwarden help</a> for information on how to create an API key.").arg("https://bitwarden.com/help/personal-api-key/");
                             color: Theme.highlightColor
                             width: parent.width - Theme.horizontalPageMargin * 2
                             wrapMode: Label.WordWrap

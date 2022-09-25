@@ -64,10 +64,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>See &lt;a href=&apos;%1&apos;&gt;Bitwarden help&lt;/a&gt; for information on how to create an api key.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Login</source>
         <translation type="unfinished"></translation>
     </message>
@@ -93,6 +89,10 @@
     </message>
     <message>
         <source>You must log in before continuing.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>See &lt;a href=&apos;%1&apos;&gt;Bitwarden help&lt;/a&gt; for information on how to create an API key.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
