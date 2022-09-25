@@ -91,6 +91,11 @@ Page {
 
         onVaultSynced: {
             hideMessage();
+            loginsCount = null;
+            cardsCount = null;
+            notesCount = null;
+            identitiesCount = null;
+
             if (settings.eagerLoading) {
                 cli.getItems();
                 displayLoadingVaultItems();
