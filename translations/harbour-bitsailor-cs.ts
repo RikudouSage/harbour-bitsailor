@@ -373,7 +373,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="42"/>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="38"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="48"/>
         <source>Logins</source>
         <translation type="unfinished"></translation>
     </message>

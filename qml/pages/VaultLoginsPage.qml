@@ -33,6 +33,12 @@ Page {
         anchors.fill: parent
         contentHeight: column.height
 
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("Search")
+            }
+        }
+
         Column {
             id: column
 
@@ -49,6 +55,56 @@ Page {
                 color: Theme.errorColor
                 wrapMode: Label.WordWrap
                 width: parent.width - Theme.horizontalPageMargin * 2
+            }
+
+            Repeater {
+                model: logins
+                width: parent.width
+
+                delegate: ListItem {
+                    property var item: logins[index];
+
+                    function remove() {
+                        remorseDelete(function() {
+                            logins = logins.filter(function(itemToFilter) {
+                                return item.id !== itemToFilter.id;
+                            });
+                        });
+                    }
+
+                    id: listItem
+                    menu: contextMenu
+                    width: parent.width - Theme.horizontalPageMargin * 2
+                    x: Theme.horizontalPageMargin
+
+                    contentHeight: Theme.itemSizeMedium
+
+                    Label {
+                        id: itemTitle
+                        text: item.name
+                    }
+
+                    Label {
+                        anchors.top: itemTitle.bottom
+                        text: item.login.username || ''
+                        font.pixelSize: Theme.fontSizeSmall
+                        color: Theme.secondaryHighlightColor
+                    }
+
+                    Component {
+                         id: contextMenu
+                         ContextMenu {
+                             IconMenuItem {
+                                 text: "Remove"
+                                 icon.source: "image://theme/icon-m-remove"
+
+                                 onClicked: {
+                                     remove();
+                                 }
+                             }
+                         }
+                     }
+                }
             }
         }
     }
