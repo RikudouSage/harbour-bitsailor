@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="cs" sourcelanguage="en">
 <context>
     <name>CoverPage</name>
     <message>
@@ -14,17 +14,17 @@
     <message>
         <location filename="../qml/pages/InstallBitwardenCliPage.qml" line="33"/>
         <source>Installing Bitwarden CLI</source>
-        <translation type="unfinished"></translation>
+        <translation>Instaluje se Bitwarden CLI</translation>
     </message>
     <message>
         <location filename="../qml/pages/InstallBitwardenCliPage.qml" line="39"/>
         <source>Installing... Please don&apos;t close the app.</source>
-        <translation type="unfinished"></translation>
+        <translation>Probíhá instalace... Prosím nezavírejte aplikaci.</translation>
     </message>
     <message>
         <location filename="../qml/pages/InstallBitwardenCliPage.qml" line="50"/>
         <source>There was an error installing the Bitwarden CLI.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastala chyba při instalaci Bitwarden CLI.</translation>
     </message>
 </context>
 <context>
@@ -32,7 +32,7 @@
     <message>
         <location filename="../qml/pages/LoginCheckPage.qml" line="63"/>
         <source>The credentials you provided are incorrect. Please try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Přihlašovací údaje, které jste zadali, nejsou platné. Zkuste to prosím znovu.</translation>
     </message>
     <message>
         <location filename="../qml/pages/LoginCheckPage.qml" line="68"/>
