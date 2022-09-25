@@ -81,19 +81,9 @@ Page {
         }
     }
 
-    SilicaFlickable {
-        anchors.fill: parent
-        contentHeight: column.height
-
-        Column {
-            id: column
-
-            width: page.width
-            spacing: Theme.paddingLarge
-            PageHeader {
-                title: qsTr("Authenticating...")
-            }
-        }
+    BusyLabel {
+        running: true
+        text: qsTr("Authenticating...")
     }
 
     Component.onCompleted: {

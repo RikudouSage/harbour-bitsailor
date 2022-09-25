@@ -50,7 +50,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/LoginCheckPage.qml" line="94"/>
+        <location filename="../qml/pages/LoginCheckPage.qml" line="86"/>
         <source>Authenticating...</source>
         <translation type="unfinished"></translation>
     </message>
