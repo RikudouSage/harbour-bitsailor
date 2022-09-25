@@ -1,6 +1,11 @@
 #include "bitwardencli.h"
 
 #include <QDebug>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QList>
+
+static const QString cacheKeyItems = "items";
 
 BitwardenCli::BitwardenCli(QObject *parent) : QObject(parent)
 {
@@ -80,11 +85,69 @@ void BitwardenCli::lockVaultInBackground()
     process->deleteLater();
 }
 
+void BitwardenCli::getItems()
+{
+    getItems(GetItems);
+}
+
+void BitwardenCli::getItems(Method method)
+{
+    if (runtimeCache->has(cacheKeyItems)) {
+        handleGetItems(runtimeCache->get(cacheKeyItems), method);
+    } else {
+        startProcess({"list", "items", "--session", secretsHandler->getSessionId()}, GetLogins);
+    }
+}
+
+void BitwardenCli::getLogins()
+{
+    getItems(GetLogins);
+}
+
+void BitwardenCli::getCards()
+{
+    getItems(GetCards);
+}
+
+void BitwardenCli::getNotes()
+{
+    getItems(GetNotes);
+}
+
+void BitwardenCli::getIdentities()
+{
+    getItems(GetIdentities);
+}
+
+void BitwardenCli::syncVault()
+{
+    startProcess({"sync", "--session", secretsHandler->getSessionId()}, SyncVault);
+}
+
 void BitwardenCli::onFinished(int exitCode, Method method)
 {
     auto process = processes.take(method);
 
     switch (method) {
+    case BitwardenCli::SyncVault:
+        if (exitCode != 0) {
+            emit vaultSyncFailed();
+        } else {
+            runtimeCache->remove(cacheKeyItems);
+            emit vaultSynced();
+        }
+        break;
+    case BitwardenCli::GetItems:
+    case BitwardenCli::GetLogins:
+    case BitwardenCli::GetCards:
+    case BitwardenCli::GetNotes:
+    case BitwardenCli::GetIdentities:
+        if (exitCode != 0) {
+            emit failedGettingItems();
+        } else {
+            handleGetItems(process->readAllStandardOutput(), method);
+        }
+        break;
     case BitwardenCli::LockVault:
         emit vaultLocked();
         break;
@@ -165,4 +228,74 @@ void BitwardenCli::startProcess(const QStringList &arguments, const QProcessEnvi
 
     processes.insert(method, process);
     process->start(bw, arguments);
+}
+
+void BitwardenCli::handleGetItems(const QString &rawJson, Method method)
+{
+    runtimeCache->set(cacheKeyItems, rawJson);
+    auto document = QJsonDocument::fromJson(rawJson.toUtf8()).array();
+
+    switch (method) {
+    case GetItems:
+        emit itemsResolved(document);
+        break;
+    case GetLogins:
+    {
+        QJsonArray result;
+
+        for (const auto &item : document) {
+            auto object = item.toObject();
+            if (object.value("type").toInt() == Login) {
+                result.append(object);
+            }
+        }
+
+        emit itemsResolved(result);
+        break;
+    }
+    case GetCards:
+    {
+        QJsonArray result;
+
+        for (const auto &item : document) {
+            auto object = item.toObject();
+            if (object.value("type").toInt() == Card) {
+                result.append(object);
+            }
+        }
+
+        emit itemsResolved(result);
+        break;
+    }
+    case GetNotes:
+    {
+        QJsonArray result;
+
+        for (const auto &item : document) {
+            auto object = item.toObject();
+            if (object.value("type").toInt() == SecureNote) {
+                result.append(object);
+            }
+        }
+
+        emit itemsResolved(result);
+        break;
+    }
+    case GetIdentities:
+    {
+        QJsonArray result;
+
+        for (const auto &item : document) {
+            auto object = item.toObject();
+            if (object.value("type").toInt() == Identity) {
+                result.append(object);
+            }
+        }
+
+        emit itemsResolved(result);
+        break;
+    }
+    default:
+        break;
+    }
 }

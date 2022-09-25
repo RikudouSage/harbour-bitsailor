@@ -111,28 +111,83 @@
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="22"/>
+        <location filename="../qml/pages/MainPage.qml" line="38"/>
         <source>Please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="45"/>
+        <location filename="../qml/pages/MainPage.qml" line="110"/>
         <source>Logout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="53"/>
+        <location filename="../qml/pages/MainPage.qml" line="118"/>
         <source>Lock</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="67"/>
-        <source>Main Page</source>
+        <location filename="../qml/pages/MainPage.qml" line="126"/>
+        <source>Sync Vault</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="72"/>
-        <source>Yay, logged in.</source>
+        <location filename="../qml/pages/MainPage.qml" line="128"/>
+        <source>Syncing vault</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="134"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="144"/>
+        <source>Bitsailor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="148"/>
+        <source>Logins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="148"/>
+        <source>Logins (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="155"/>
+        <source>Cards</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="155"/>
+        <source>Cards (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="159"/>
+        <source>Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="159"/>
+        <source>Notes (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="163"/>
+        <source>Identities</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="163"/>
+        <source>Identities (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="42"/>
+        <source>Loading vault items</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -203,7 +258,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="81"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="78"/>
+        <source>Load vault items eagerly in main view</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="89"/>
         <source>Use PIN to unlock vault</source>
         <translation type="unfinished"></translation>
     </message>
@@ -297,6 +357,24 @@
     <message>
         <location filename="../qml/pages/UnlockVaultPage.qml" line="146"/>
         <source>Reset PIN</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VaultLoginsPage</name>
+    <message>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="15"/>
+        <source>Loading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="23"/>
+        <source>An error occured while loading items. Please try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="42"/>
+        <source>Logins</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

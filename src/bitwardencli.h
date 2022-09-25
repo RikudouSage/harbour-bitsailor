@@ -5,15 +5,35 @@
 #include <QProcess>
 #include <QMap>
 #include <QMetaEnum>
+#include <QJsonArray>
+#include <QList>
+#include <QJsonObject>
 
 #include "pathhelper.h"
 #include "secretshandler.h"
+#include "runtimecache.h"
 
 class BitwardenCli : public QObject
 {
     Q_OBJECT
 public:
     explicit BitwardenCli(QObject *parent = nullptr);
+
+    enum Method {
+        LoginCheck,
+        VaultUnlocked,
+        LoginEmailPassword,
+        LoginApiKey,
+        Logout,
+        UnlockVault,
+        LockVault,
+        GetItems,
+        GetLogins,
+        GetCards,
+        GetNotes,
+        GetIdentities,
+        SyncVault,
+    };
 
     Q_INVOKABLE void checkLoginStatus();
     Q_INVOKABLE void checkVaultUnlocked();
@@ -24,16 +44,13 @@ public:
     Q_INVOKABLE void unlockVault(int pin);
     Q_INVOKABLE void lockVault();
     Q_INVOKABLE void lockVaultInBackground();
-
-    enum Method {
-        LoginCheck,
-        VaultUnlocked,
-        LoginEmailPassword,
-        LoginApiKey,
-        Logout,
-        UnlockVault,
-        LockVault,
-    };
+    Q_INVOKABLE void getItems();
+    void getItems(Method method);
+    Q_INVOKABLE void getLogins();
+    Q_INVOKABLE void getCards();
+    Q_INVOKABLE void getNotes();
+    Q_INVOKABLE void getIdentities();
+    Q_INVOKABLE void syncVault();
 
 signals:
     void loginStatusResolved(bool loggedIn);
@@ -44,17 +61,30 @@ signals:
     void wrongPinProvided();
     void authenticatorRequired();
     void vaultLocked();
+    void failedGettingItems();
+    void itemsResolved(QJsonArray items);
+    void vaultSynced();
+    void vaultSyncFailed();
 
 private slots:
     void onFinished(int exitCode, Method method);
 
 private:
+    enum ObjectType {
+        Login = 1,
+        SecureNote = 2,
+        Card = 3,
+        Identity = 4,
+    };
+
     const QString bw = getPrivateBinDirPath() + "/bw";
     QMap<Method, QProcess*> processes;
+    SecretsHandler* secretsHandler = new SecretsHandler(this);
+    RuntimeCache* runtimeCache = RuntimeCache::getInstance(this);
 
     void startProcess(const QStringList &arguments, Method method);
     void startProcess(const QStringList &arguments, const QProcessEnvironment &environment, Method method);
-    SecretsHandler* secretsHandler = new SecretsHandler(this);
+    void handleGetItems(const QString &rawJson, Method method = GetItems);
 };
 
 #endif // BITWARDENCLI_H

@@ -20,10 +20,12 @@ SOURCES += src/harbour-bitsailor.cpp \
     src/bitwardencli.cpp \
     src/bitwardencliinstaller.cpp \
     src/pathhelper.cpp \
+    src/runtimecache.cpp \
     src/secretshandler.cpp \
     src/systemchecker.cpp
 
 DISTFILES += qml/harbour-bitsailor.qml \
+    qml/components/MainPageItem.qml \
     qml/cover/CoverPage.qml \
     qml/helpers.js \
     qml/pages/InstallBitwardenCliPage.qml \
@@ -38,6 +40,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/pages/SystemCheckerPage.qml \
     qml/pages/UnknownErrorOccuredPage.qml \
     qml/pages/UnlockVaultPage.qml \
+    qml/pages/VaultLoginsPage.qml \
     rpm/harbour-bitsailor.changes.in \
     rpm/harbour-bitsailor.changes.run.in \
     rpm/harbour-bitsailor.spec \
@@ -62,5 +65,6 @@ HEADERS += \
     src/bitwardencli.h \
     src/bitwardencliinstaller.h \
     src/pathhelper.h \
+    src/runtimecache.h \
     src/secretshandler.h \
     src/systemchecker.h

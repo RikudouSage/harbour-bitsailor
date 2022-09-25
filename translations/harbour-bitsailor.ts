@@ -92,14 +92,6 @@
 <context>
     <name>MainPage</name>
     <message>
-        <source>Main Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Yay, logged in.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Logout</source>
         <translation type="unfinished"></translation>
     </message>
@@ -109,6 +101,58 @@
     </message>
     <message>
         <source>Please wait...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cards</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Identities</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bitsailor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading vault items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sync Vault</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Syncing vault</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logins (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cards (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Identities (%1)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -169,6 +213,10 @@
     </message>
     <message>
         <source>The password you provided is invalid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load vault items eagerly in main view</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -245,6 +293,21 @@
     </message>
     <message>
         <source>Reset PIN</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VaultLoginsPage</name>
+    <message>
+        <source>Loading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An error occured while loading items. Please try again.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

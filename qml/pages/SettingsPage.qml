@@ -74,6 +74,14 @@ Page {
             }
 
             TextSwitch {
+                checked: settings.eagerLoading
+                text: qsTr("Load vault items eagerly in main view")
+                onCheckedChanged: {
+                    settings.eagerLoading = checked;
+                }
+            }
+
+            TextSwitch {
                 id: pinSetting
 
                 checked: secrets.hasPin()

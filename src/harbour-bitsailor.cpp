@@ -15,6 +15,7 @@
 #include "bitwardencli.h"
 #include "secretshandler.h"
 #include "appsettings.h"
+#include "runtimecache.h"
 
 int main(int argc, char *argv[])
 {
@@ -25,6 +26,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<BitwardenCli>("cz.chrastecky.bitsailor", 1, 0, "BitwardenCli");
     qmlRegisterType<SecretsHandler>("cz.chrastecky.bitsailor", 1, 0, "SecretsHandler");
     v->rootContext()->setContextProperty("settings", new AppSettings(app.data()));
+    v->rootContext()->setContextProperty("runtimeCache", RuntimeCache::getInstance(app.data()));
     v->setSource(SailfishApp::pathToMainQml());
     v->show();
 

@@ -3,8 +3,17 @@ import Sailfish.Silica 1.0
 
 import cz.chrastecky.bitsailor 1.0
 
+import "../components" as Components
+
 Page {
     property string loadingMessage
+
+    property string currentCount
+
+    property var loginsCount: null
+    property var cardsCount: null
+    property var notesCount: null
+    property var identitiesCount: null
 
     id: page
     allowedOrientations: Orientation.All
@@ -16,10 +25,21 @@ Page {
     function displayMessage(message) {
         pullDownMenu.enabled = false;
         loadingMessage = message;
+        flickable.visible = false;
+    }
+
+    function hideMessage() {
+        pullDownMenu.enabled = true;
+        loadingMessage = "";
+        flickable.visible = true;
     }
 
     function displayPleaseWait() {
         displayMessage(qsTr("Please wait..."));
+    }
+
+    function displayLoadingVaultItems() {
+        displayMessage(qsTr("Loading vault items"));
     }
 
     BitwardenCli {
@@ -32,9 +52,54 @@ Page {
         onVaultLocked: {
             redoLogin();
         }
+
+        onItemsResolved: {
+            if (!currentCount) {
+                hideMessage();
+
+                currentCount = "logins";
+                getLogins();
+            } else {
+                switch (currentCount) {
+                case "logins":
+                    loginsCount = items.length;
+                    currentCount = "cards";
+                    getCards();
+                    break;
+                case "cards":
+                    cardsCount = items.length;
+                    currentCount = "notes";
+                    getNotes();
+                    break;
+                case "notes":
+                    notesCount = items.length;
+                    currentCount = "identities";
+                    getIdentities();
+                    break;
+                case "identities":
+                    identitiesCount = items.length;
+                    currentCount = "";
+                    break;
+                }
+            }
+        }
+
+        onVaultSyncFailed: {
+            // todo
+            hideMessage();
+        }
+
+        onVaultSynced: {
+            hideMessage();
+            if (settings.eagerLoading) {
+                cli.getItems();
+                displayLoadingVaultItems();
+            }
+        }
     }
 
     SilicaFlickable {
+        id: flickable
         anchors.fill: parent
         contentHeight: column.height
 
@@ -56,6 +121,18 @@ Page {
                     cli.lockVault();
                 }
             }
+
+            MenuItem {
+                text: qsTr("Sync Vault")
+                onClicked: {
+                    displayMessage(qsTr("Syncing vault"));
+                    cli.syncVault();
+                }
+            }
+
+            MenuItem {
+                text: qsTr("Search")
+            }
         }
 
         Column {
@@ -64,15 +141,26 @@ Page {
             width: page.width
             spacing: Theme.paddingLarge
             PageHeader {
-                title: qsTr("Main Page")
+                title: qsTr("Bitsailor")
             }
 
-            Label {
-                x: Theme.horizontalPageMargin
-                text: qsTr("Yay, logged in.");
-                color: Theme.secondaryHighlightColor
-                wrapMode: Label.WordWrap
-                width: parent.width - Theme.horizontalPageMargin * 2
+            Components.MainPageItem {
+                text: loginsCount !== null ? qsTr("Logins (%1)").arg(loginsCount) : qsTr("Logins");
+                onClicked: {
+                    pageStack.push("VaultLoginsPage.qml");
+                }
+            }
+
+            Components.MainPageItem {
+                text: cardsCount !== null ? qsTr("Cards (%1)").arg(cardsCount) : qsTr("Cards")
+            }
+
+            Components.MainPageItem {
+                text: notesCount !== null ? qsTr("Notes (%1)").arg(notesCount) : qsTr("Notes")
+            }
+
+            Components.MainPageItem {
+                text: identitiesCount !== null ? qsTr("Identities (%1)").arg(identitiesCount) : qsTr("Identities")
             }
         }
     }
@@ -80,6 +168,13 @@ Page {
     BusyLabel {
         running: loadingMessage.length;
         text: loadingMessage
+    }
+
+    Component.onCompleted: {
+        if (settings.eagerLoading) {
+            cli.getItems();
+            displayLoadingVaultItems();
+        }
     }
 
     onStatusChanged: {
