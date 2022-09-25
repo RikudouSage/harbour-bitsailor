@@ -15,6 +15,7 @@ Page {
     property var notesCount: null
     property var identitiesCount: null
 
+    property bool loaded: false
     property var doAfterLoad: []
 
     id: page
@@ -42,6 +43,10 @@ Page {
 
     function displayLoadingVaultItems() {
         displayMessage(qsTr("Loading vault items"));
+    }
+
+    SecretsHandler {
+        id: secrets
     }
 
     BitwardenCli {
@@ -101,6 +106,20 @@ Page {
             if (settings.eagerLoading) {
                 cli.getItems();
                 displayLoadingVaultItems();
+            }
+        }
+
+        onVaultLockStatusResolved: {
+            if (!unlocked) {
+                // todo cache key
+                runtimeCache.remove('items');
+                runtimeCache.removePersistent('items');
+                secrets.removeSessionId();
+
+                var handle = function() {
+                    pageStack.replace("LoginCheckPage.qml");
+                };
+                loaded ? handle() : doAfterLoad.push(handle);
             }
         }
     }
@@ -182,10 +201,15 @@ Page {
             cli.getItems();
             displayLoadingVaultItems();
         }
+
+        if (settings.fastAuth) {
+            cli.checkVaultUnlocked();
+        }
     }
 
     onStatusChanged: {
         if (status == PageStatus.Active) {
+            loaded = true;
             pageStack.pushAttached("SettingsPage.qml");
 
             while (doAfterLoad.length) {

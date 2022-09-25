@@ -4,8 +4,14 @@ import Sailfish.Silica 1.0
 import cz.chrastecky.bitsailor 1.0
 
 Page {
+    property var doAfterLoad: []
+
     id: page
     allowedOrientations: Orientation.All
+
+    SecretsHandler {
+        id: secrets
+    }
 
     BitwardenCli {
         id: cli
@@ -52,6 +58,10 @@ Page {
             if (unlocked) {
                 pageStack.replace("MainPage.qml");
             } else {
+                runtimeCache.remove('items');
+                runtimeCache.removePersistent('items');
+                secrets.removeSessionId();
+
                 displayUnlockPage();
             }
         }
@@ -87,6 +97,21 @@ Page {
     }
 
     Component.onCompleted: {
-        cli.checkLoginStatus();
+        if (settings.fastAuth && secrets.hasSessionId()) {
+            doAfterLoad.push(function() {
+                pageStack.replace("MainPage.qml");
+            });
+        } else {
+            cli.checkLoginStatus();
+        }
+    }
+
+    onStatusChanged: {
+        if (status === PageStatus.Active) {
+            while (doAfterLoad.length) {
+                const callable = doAfterLoad.shift();
+                callable();
+            }
+        }
     }
 }

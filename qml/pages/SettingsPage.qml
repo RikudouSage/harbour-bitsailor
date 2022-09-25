@@ -74,6 +74,8 @@ Page {
             }
 
             TextSwitch {
+                id: eagerLoadingSetting
+
                 checked: settings.eagerLoading
                 text: qsTr("Load vault items eagerly in main view")
                 automaticCheck: false
@@ -114,6 +116,27 @@ Page {
                         });
                     } else {
                         settings.persistentItemCache = false;
+                    }
+                }
+            }
+
+            TextSwitch {
+                checked: settings.fastAuth
+                text: qsTr("Fast authentication")
+                automaticCheck: false
+
+                onClicked: {
+                    const description = qsTr("When this option is enabled, authentication is skipped and you are assumed to be logged in regardless of the actual status. What this means in practice is that logged in check is postponed until you're on the main page and is done in the background, this gives anyone opening this app a few seconds to look around before transfering you to the login/unlock screen. This should be ok because all vault operations fail when you're not logged in. <strong>Warning</strong>: if used in combination with the setting <strong>'%1'</strong> some data may be leaked to whoever opens this app. Use at your own risk.").arg(eagerLoadingSetting.text);
+
+                    if (!checked) {
+                        const dialog = pageStack.push("ConfirmSettingPage.qml", {
+                            description: description,
+                        });
+                        dialog.accepted.connect(function() {
+                            settings.fastAuth = true;
+                        });
+                    } else {
+                        settings.fastAuth = false;
                     }
                 }
             }

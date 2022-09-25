@@ -27,6 +27,7 @@ ApplicationWindow {
         }
 
         if (settings.persistentItemCache) {
+            // todo encrypt
             runtimeCache.setPersistent('items', Helpers.filterOutSensitiveItems(runtimeCache.get('items'))); // todo cache item name
         }
     }

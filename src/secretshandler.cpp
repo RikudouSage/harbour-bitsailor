@@ -78,6 +78,17 @@ void SecretsHandler::removePinAndPassword()
     deleteSecret(passwordName);
 }
 
+bool SecretsHandler::hasSessionId()
+{
+    auto sessionId = getSessionId();
+    return !sessionId.isNull() && !sessionId.isEmpty();
+}
+
+void SecretsHandler::removeSessionId()
+{
+    deleteSecret(sessionIdName);
+}
+
 bool SecretsHandler::clearAllSecrets()
 {
     DeleteCollectionRequest dcr;

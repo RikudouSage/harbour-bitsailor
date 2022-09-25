@@ -25,6 +25,8 @@ public:
 
     Q_INVOKABLE bool hasPin();
     Q_INVOKABLE void removePinAndPassword();
+    Q_INVOKABLE bool hasSessionId();
+    Q_INVOKABLE void removeSessionId();
     bool clearAllSecrets();
 
     void setSessionId(const QString &sessionId);

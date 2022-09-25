@@ -7,6 +7,7 @@ AppSettings::AppSettings(QObject *parent) : QObject(parent)
     prop_LockOnCLose = settings->value("lockOnClose", true).toBool();
     prop_EagerLoading = settings->value("eagerLoading", true).toBool();
     prop_PersistentItemCache = settings->value("persistentItemCache", false).toBool();
+    prop_FastAuth = settings->value("fastAuth", false).toBool();
 }
 
 AppSettings::~AppSettings()
@@ -60,6 +61,22 @@ void AppSettings::setPersistentItemCache(bool enabled)
     saveConfig("persistentItemCache", enabled);
     prop_PersistentItemCache = enabled;
     emit persistentItemCacheChanged();
+}
+
+bool AppSettings::fastAuth()
+{
+    return prop_FastAuth;
+}
+
+void AppSettings::setFastAuth(bool enabled)
+{
+    if (enabled == prop_FastAuth) {
+        return;
+    }
+
+    saveConfig("fastAuth", enabled);
+    prop_FastAuth = enabled;
+    emit fastAuthChanged();
 }
 
 void AppSettings::saveConfig(const QString &name, const QVariant &value)
