@@ -15,6 +15,10 @@ ApplicationWindow {
         id: cli
     }
 
+    SecretsHandler {
+        id: secrets
+    }
+
     Component.onCompleted: {
         if (settings.persistentItemCache) {
             runtimeCache.set('items', runtimeCache.getPersistent('items')); // todo cache item name
@@ -23,6 +27,7 @@ ApplicationWindow {
 
     Component.onDestruction: {
         if (settings.lockOnClose) {
+            secrets.removeSessionId();
             cli.lockVaultInBackground();
         }
 
