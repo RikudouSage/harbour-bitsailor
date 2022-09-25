@@ -33,6 +33,7 @@ public:
         GetNotes,
         GetIdentities,
         SyncVault,
+        DeleteItem,
     };
 
     Q_INVOKABLE void checkLoginStatus();
@@ -51,6 +52,7 @@ public:
     Q_INVOKABLE void getNotes();
     Q_INVOKABLE void getIdentities();
     Q_INVOKABLE void syncVault();
+    Q_INVOKABLE void deleteItem(QString id);
 
 signals:
     void loginStatusResolved(bool loggedIn);
@@ -65,6 +67,7 @@ signals:
     void itemsResolved(QJsonArray items);
     void vaultSynced();
     void vaultSyncFailed();
+    void itemDeleted(bool success);
 
 private slots:
     void onFinished(int exitCode, Method method);

@@ -125,11 +125,19 @@ void BitwardenCli::syncVault()
     startProcess({"sync", "--session", secretsHandler->getSessionId()}, SyncVault);
 }
 
+void BitwardenCli::deleteItem(QString id)
+{
+    startProcess({"delete", "item", id, "--session", secretsHandler->getSessionId()}, DeleteItem);
+}
+
 void BitwardenCli::onFinished(int exitCode, Method method)
 {
     auto process = processes.take(method);
 
     switch (method) {
+    case BitwardenCli::DeleteItem:
+        emit itemDeleted(exitCode == 0);
+        break;
     case BitwardenCli::SyncVault:
         if (exitCode != 0) {
             emit vaultSyncFailed();
