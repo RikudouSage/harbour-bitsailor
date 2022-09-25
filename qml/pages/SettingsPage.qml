@@ -76,8 +76,45 @@ Page {
             TextSwitch {
                 checked: settings.eagerLoading
                 text: qsTr("Load vault items eagerly in main view")
-                onCheckedChanged: {
-                    settings.eagerLoading = checked;
+                automaticCheck: false
+
+                onClicked: {
+                    const description = qsTr("When this option is enabled, all items are loaded right when you enter the main screen. If disabled, the options are only loaded when you actually need to load them, meaning when you enter an item list like '%1', '%2' etc.").arg(qsTr('Logins')).arg(qsTr('Cards'));
+
+                    if (!checked) {
+                        const dialog = pageStack.push("ConfirmSettingPage.qml", {
+                            description: description,
+                        });
+                        dialog.accepted.connect(function() {
+                            settings.eagerLoading = true;
+                        });
+                    } else {
+                        const dialog = pageStack.push("ConfirmSettingPage.qml", {
+                            description: description,
+                        });
+                        dialog.accepted.connect(function() {
+                            settings.eagerLoading = false;
+                        });
+                    }
+                }
+            }
+
+            TextSwitch {
+                checked: settings.persistentItemCache
+                text: qsTr("Save items in cache for faster load")
+                automaticCheck: false
+
+                onClicked: {
+                    if (!checked) {
+                        const dialog = pageStack.push("ConfirmSettingPage.qml", {
+                            description: qsTr("Enabling this option will fasten load times for items in the vault significantly but it means that your vault is dumped to disk. While a great care has been taken to avoid dumping any sensitive information, bugs are possible and those sensitive informations could be leaked. Enable at your own risk."),
+                        });
+                        dialog.accepted.connect(function() {
+                            settings.persistentItemCache = true;
+                        });
+                    } else {
+                        settings.persistentItemCache = false;
+                    }
                 }
             }
 

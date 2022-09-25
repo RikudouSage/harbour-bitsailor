@@ -15,6 +15,8 @@ Page {
     property var notesCount: null
     property var identitiesCount: null
 
+    property var doAfterLoad: []
+
     id: page
     allowedOrientations: Orientation.All
 
@@ -56,7 +58,7 @@ Page {
         onItemsResolved: {
             if (!currentCount) {
                 hideMessage();
-
+                doAfterLoad.push(function() { hideMessage(); });
                 currentCount = "logins";
                 getLogins();
             } else {
@@ -185,6 +187,11 @@ Page {
     onStatusChanged: {
         if (status == PageStatus.Active) {
             pageStack.pushAttached("SettingsPage.qml");
+
+            while (doAfterLoad.length) {
+                const callable = doAfterLoad.shift();
+                callable();
+            }
         }
     }
 }

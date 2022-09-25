@@ -92,7 +92,8 @@ void BitwardenCli::getItems()
 
 void BitwardenCli::getItems(Method method)
 {
-    if (runtimeCache->has(cacheKeyItems)) {
+    auto cache = runtimeCache->get(cacheKeyItems);
+    if (!cache.isNull() && !cache.isEmpty()) {
         handleGetItems(runtimeCache->get(cacheKeyItems), method);
     } else {
         startProcess({"list", "items", "--session", secretsHandler->getSessionId()}, GetLogins);

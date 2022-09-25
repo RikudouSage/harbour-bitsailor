@@ -4,8 +4,9 @@
 
 AppSettings::AppSettings(QObject *parent) : QObject(parent)
 {
-    prop_LockOnCLose = settings->value("lockOnClose", false).toBool();
+    prop_LockOnCLose = settings->value("lockOnClose", true).toBool();
     prop_EagerLoading = settings->value("eagerLoading", true).toBool();
+    prop_PersistentItemCache = settings->value("persistentItemCache", false).toBool();
 }
 
 AppSettings::~AppSettings()
@@ -43,6 +44,22 @@ void AppSettings::setEagerLoading(bool enabled)
     saveConfig("eagerLoading", enabled);
     prop_EagerLoading = enabled;
     emit eagerLoadingChanged();
+}
+
+bool AppSettings::persistentItemCache()
+{
+    return prop_PersistentItemCache;
+}
+
+void AppSettings::setPersistentItemCache(bool enabled)
+{
+    if (enabled == prop_PersistentItemCache) {
+        return;
+    }
+
+    saveConfig("persistentItemCache", enabled);
+    prop_PersistentItemCache = enabled;
+    emit persistentItemCacheChanged();
 }
 
 void AppSettings::saveConfig(const QString &name, const QVariant &value)
