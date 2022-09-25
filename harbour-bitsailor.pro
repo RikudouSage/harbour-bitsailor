@@ -16,6 +16,7 @@ CONFIG += sailfishapp
 PKGCONFIG += sailfishsecrets
 
 SOURCES += src/harbour-bitsailor.cpp \
+    src/appsettings.cpp \
     src/bitwardencli.cpp \
     src/bitwardencliinstaller.cpp \
     src/pathhelper.cpp \
@@ -31,6 +32,9 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/pages/MainPage.qml \
     qml/pages/MissingBitwardenCliPage.qml \
     qml/pages/MissingRequiredBinaryPage.qml \
+    qml/pages/ResetPinPage.qml \
+    qml/pages/SettingsPage.qml \
+    qml/pages/SetupPinPage.qml \
     qml/pages/SystemCheckerPage.qml \
     qml/pages/UnknownErrorOccuredPage.qml \
     qml/pages/UnlockVaultPage.qml \
@@ -54,6 +58,7 @@ CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/harbour-bitsailor-cs.ts
 
 HEADERS += \
+    src/appsettings.h \
     src/bitwardencli.h \
     src/bitwardencliinstaller.h \
     src/pathhelper.h \

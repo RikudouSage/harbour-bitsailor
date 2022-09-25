@@ -6,6 +6,7 @@
 #include <Sailfish/Secrets/secret.h>
 #include <Sailfish/Secrets/storesecretrequest.h>
 #include <Sailfish/Secrets/storedsecretrequest.h>
+#include <Sailfish/Secrets/deletesecretrequest.h>
 
 #include <QDebug>
 
@@ -17,6 +18,7 @@ using Sailfish::Secrets::CreateCollectionRequest;
 using Sailfish::Secrets::Secret;
 using Sailfish::Secrets::StoreSecretRequest;
 using Sailfish::Secrets::StoredSecretRequest;
+using Sailfish::Secrets::DeleteSecretRequest;
 
 const QString SecretsHandler::collectionName(QStringLiteral("bitsailor"));
 
@@ -24,6 +26,7 @@ static const QString sessionIdName = "sessionId";
 static const QString usernameName = "username";
 static const QString passwordName = "password";
 static const QString clientIdName = "clientId";
+static const QString pinName = "pin";
 
 SecretsHandler::SecretsHandler(QObject *parent) : QObject(parent)
 {
@@ -34,8 +37,6 @@ SecretsHandler::SecretsHandler(QObject *parent) : QObject(parent)
     cnr.waitForFinished();
 
     hasBitsailorCollection = isResultValid(cnr) && cnr.collectionNames().contains(collectionName);
-
-    qDebug() << hasBitsailorCollection;
 }
 
 QString SecretsHandler::getSessionId()
@@ -58,6 +59,23 @@ QString SecretsHandler::getClientId()
     return getData(clientIdName);
 }
 
+QString SecretsHandler::getPin()
+{
+    return getData(pinName);
+}
+
+bool SecretsHandler::hasPin()
+{
+    auto pin = getPin();
+    return !pin.isNull() && !pin.isEmpty();
+}
+
+void SecretsHandler::removePinAndPassword()
+{
+    deleteSecret(pinName);
+    deleteSecret(passwordName);
+}
+
 void SecretsHandler::setSessionId(const QString &sessionId)
 {
     storeData(sessionIdName, sessionId);
@@ -78,6 +96,11 @@ void SecretsHandler::setClientId(const QString &clientId)
     storeData(clientIdName, clientId);
 }
 
+void SecretsHandler::setPin(const QString &pin)
+{
+    storeData(pinName, pin);
+}
+
 bool SecretsHandler::isResultValid(const Request &request)
 {
     auto result = request.result();
@@ -89,11 +112,21 @@ bool SecretsHandler::isResultValid(const Request &request)
     return isSuccess;
 }
 
+bool SecretsHandler::isSecretValid(const Secret &secret)
+{
+    return !secret.name().isNull() && !secret.name().isEmpty();
+}
+
 bool SecretsHandler::storeData(const QString &name, const QString &data)
 {
     if (!hasBitsailorCollection) {
         createCollection();
         // todo handle case where collection isn't created
+    }
+
+    auto existingSecret = getSecret(name);
+    if (isSecretValid(existingSecret)) {
+        deleteSecret(name);
     }
 
     Secret secret(toIdentifier(name));
@@ -110,10 +143,10 @@ bool SecretsHandler::storeData(const QString &name, const QString &data)
     return isResultValid(ssr);
 }
 
-QString SecretsHandler::getData(const QString &name)
+Secret SecretsHandler::getSecret(const QString &name)
 {
     if (!hasBitsailorCollection) {
-        return QString();
+        return Secret();
     }
 
     StoredSecretRequest ssr;
@@ -125,10 +158,32 @@ QString SecretsHandler::getData(const QString &name)
 
     auto success = isResultValid(ssr);
     if (!success) {
+        return Secret();
+    }
+
+    return ssr.secret();
+}
+
+bool SecretsHandler::deleteSecret(const QString &name)
+{
+    DeleteSecretRequest dsr;
+    dsr.setManager(secretManager);
+    dsr.setIdentifier(toIdentifier(name));
+    dsr.setUserInteractionMode(SecretManager::SystemInteraction);
+    dsr.startRequest();
+    dsr.waitForFinished();
+
+    return isResultValid(dsr);
+}
+
+QString SecretsHandler::getData(const QString &name)
+{
+    auto secret = getSecret(name);
+    if (!isSecretValid(secret)) {
         return QString();
     }
 
-    return QString::fromUtf8(ssr.secret().data());
+    return QString::fromUtf8(secret.data());
 }
 
 bool SecretsHandler::createCollection()

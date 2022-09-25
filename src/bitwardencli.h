@@ -20,6 +20,10 @@ public:
     Q_INVOKABLE void loginEmailPassword(const QString &email, const QString &password);
     Q_INVOKABLE void loginApiKey(const QString &clientId, const QString &clientSecret);
     Q_INVOKABLE void logout();
+    Q_INVOKABLE void unlockVault(QString password);
+    Q_INVOKABLE void unlockVault(int pin);
+    Q_INVOKABLE void lockVault();
+    Q_INVOKABLE void lockVaultInBackground();
 
     enum Method {
         LoginCheck,
@@ -27,6 +31,8 @@ public:
         LoginEmailPassword,
         LoginApiKey,
         Logout,
+        UnlockVault,
+        LockVault,
     };
 
 signals:
@@ -34,6 +40,10 @@ signals:
     void vaultLockStatusResolved(bool unlocked);
     void logInFinished(bool success);
     void logoutFinished();
+    void vaultUnlockFinished(bool success);
+    void wrongPinProvided();
+    void authenticatorRequired();
+    void vaultLocked();
 
 private slots:
     void onFinished(int exitCode, Method method);

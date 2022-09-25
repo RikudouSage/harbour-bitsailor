@@ -29,6 +29,22 @@
         <source>Authenticating...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Invalid PIN.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wrong password or PIN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The credentials you provided are incorrect. Please try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>An authenticator is required, please use API key login.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LoginPage</name>
@@ -61,26 +77,38 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>If you have 2FA activated, please login using api key and not email and password. See &lt;a href=&apos;%1&apos;&gt;Bitwarden help&lt;/a&gt; for more information.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Email</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The credentials you provided are incorrect. Please try again.</source>
+        <source>Logging in using API key is preferred, using email and password may fail in many unexpected ways. If this app hangs on &apos;Authenticating...&apos; screen indefinitely you must use API key login. If you have 2FA activated you must login using API key. See &lt;a href=&apos;%1&apos;&gt;Bitwarden help&lt;/a&gt; for more information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You must log in before continuing.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MainPage</name>
     <message>
-        <source>Unknown Error</source>
+        <source>Main Page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>There was an unknown error and app cannot proceed. Please contact the developer on &lt;a href=&apos;https://openrepos.net/users/rikudousennin&apos;&gt;OpenRepos&lt;/a&gt;.</source>
+        <source>Yay, logged in.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please wait...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -95,7 +123,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The Bitwarden CLI is not installed, do you wish to install it using &lt;strong&gt;npm&lt;/strong&gt;? The app cannot continue without.</source>
+        <source>The Bitwarden CLI is not installed, do you wish to install it using &lt;strong&gt;npm&lt;/strong&gt;? The app cannot continue without Bitwarden CLI.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -107,6 +135,63 @@
     </message>
     <message>
         <source>Required dependency is missing: &lt;strong&gt;%1&lt;/strong&gt;. This dependency should be installed automatically if you installed the app from store using the provided rpm. Please reinstall using the rpm package or install the missing dependency manually and then restart the app.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ResetPinPage</name>
+    <message>
+        <source>Proceed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The PIN will be deleted and you can unlock the vault using your password. Once you unlock your vault you can set a PIN code again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsPage</name>
+    <message>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lock vault when app is closed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use PIN to unlock vault</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Validating password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The password you provided is invalid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SetupPinPage</name>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To continue please provide your password and set your desired PIN code. Your password will be stored securely using Sailfish OS secrets storage and used automatically whenever you use your PIN.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PIN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Repeat PIN</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -156,6 +241,10 @@
     </message>
     <message>
         <source>PIN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset PIN</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

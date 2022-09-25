@@ -22,7 +22,7 @@ Dialog {
 
             Label {
                 x: Theme.horizontalPageMargin
-                text: qsTr("The Bitwarden CLI is not installed, do you wish to install it using <strong>npm</strong>? The app cannot continue without.");
+                text: qsTr("The Bitwarden CLI is not installed, do you wish to install it using <strong>npm</strong>? The app cannot continue without Bitwarden CLI.");
                 color: Theme.secondaryHighlightColor
                 wrapMode: Label.WordWrap
                 width: parent.width - Theme.horizontalPageMargin * 2

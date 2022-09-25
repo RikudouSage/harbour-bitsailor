@@ -18,14 +18,19 @@ public:
     explicit SecretsHandler(QObject *parent = nullptr);
 
     QString getSessionId();
-    QString getUsername();
+    Q_INVOKABLE QString getUsername();
     QString getPassword();
-    QString getClientId();
+    Q_INVOKABLE QString getClientId();
+    QString getPin();
+
+    Q_INVOKABLE bool hasPin();
+    Q_INVOKABLE void removePinAndPassword();
 
     void setSessionId(const QString &sessionId);
     void setUsername(const QString &username);
-    void setPassword(const QString &password);
+    Q_INVOKABLE void setPassword(const QString &password);
     void setClientId(const QString &clientId);
+    Q_INVOKABLE void setPin(const QString &pin);
 
 private:
     static const QString collectionName;
@@ -33,7 +38,10 @@ private:
     bool hasBitsailorCollection = false;
 
     bool isResultValid(const Request &request);
+    bool isSecretValid(const Secret &secret);
     bool storeData(const QString &name, const QString &data);
+    Secret getSecret(const QString &name);
+    bool deleteSecret(const QString &name);
     QString getData(const QString &name);
     bool createCollection();
     Secret::Identifier toIdentifier(const QString &name);

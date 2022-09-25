@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-Page {
+Dialog {
     id: page
     allowedOrientations: Orientation.All
 
@@ -14,13 +14,13 @@ Page {
 
             width: page.width
             spacing: Theme.paddingLarge
-            PageHeader {
-                title: qsTr("Unknown Error")
+            DialogHeader {
+                acceptText: qsTr("Proceed")
             }
             Label {
                 x: Theme.horizontalPageMargin
-                text: qsTr("There was an unknown error and app cannot proceed. Please contact the developer on <a href='%1'>OpenRepos</a>.").arg("https://openrepos.net/users/rikudousennin")
-                color: Theme.errorColor
+                text: qsTr("The PIN will be deleted and you can unlock the vault using your password. Once you unlock your vault you can set a PIN code again.")
+                color: Theme.secondaryHighlightColor
                 wrapMode: Label.WordWrap
                 width: parent.width - Theme.horizontalPageMargin * 2
             }

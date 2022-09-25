@@ -12,7 +12,7 @@ Page {
 
         function displayLoginPage(error) {
             if (!error) {
-                error = false;
+                error = "";
             }
 
             const dialog = pageStack.push("LoginPage.qml", {error: error});
@@ -21,6 +21,21 @@ Page {
                     cli.loginApiKey(dialog.clientIdText, dialog.clientSecretText);
                 } else {
                     cli.loginEmailPassword(dialog.emailText, dialog.passwordText);
+                }
+            });
+        }
+
+        function displayUnlockPage(error) {
+            if (!error) {
+                error = "";
+            }
+
+            const dialog = pageStack.push("UnlockVaultPage.qml", {error: error});
+            dialog.accepted.connect(function() {
+                if (dialog.passwordText) {
+                    cli.unlockVault(dialog.passwordText);
+                } else if (dialog.pinText) {
+                    cli.unlockVault(dialog.pinText);
                 }
             });
         }
@@ -37,7 +52,7 @@ Page {
             if (unlocked) {
                 pageStack.replace("MainPage.qml");
             } else {
-                const dialog = pageStack.push("UnlockVaultPage.qml");
+                displayUnlockPage();
             }
         }
 
@@ -45,8 +60,24 @@ Page {
             if (success) {
                 cli.checkVaultUnlocked();
             } else {
-                displayLoginPage(true);
+                displayLoginPage(qsTr("The credentials you provided are incorrect. Please try again."));
             }
+        }
+
+        onAuthenticatorRequired: {
+            displayLoginPage(qsTr("An authenticator is required, please use API key login."));
+        }
+
+        onVaultUnlockFinished: {
+            if (!success) {
+                displayUnlockPage(qsTr("Wrong password or PIN"));
+            } else {
+                cli.checkVaultUnlocked();
+            }
+        }
+
+        onWrongPinProvided: {
+            displayUnlockPage(qsTr("Invalid PIN."));
         }
     }
 

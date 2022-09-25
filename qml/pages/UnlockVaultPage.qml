@@ -6,7 +6,11 @@ import "../helpers.js" as Helpers
 import cz.chrastecky.bitsailor 1.0
 
 Dialog {
-    property bool isPinEnabled: false // todo
+    property bool isPinEnabled: secrets.hasPin()
+    property string error: ""
+
+    property string passwordText: password.text
+    property int pinText: Number(pin.text)
 
     id: page
     allowedOrientations: Orientation.All
@@ -21,6 +25,10 @@ Dialog {
         }
     }
 
+    SecretsHandler {
+        id: secrets
+    }
+
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height
@@ -30,11 +38,13 @@ Dialog {
                 text: qsTr("Logout");
 
                 onClicked: {
-                    descriptionLabel.visible = false;
                     loggingOutLabel.visible = true;
-                    page.canAccept = false;
 
-                    // todo hide fields
+                    descriptionLabel.visible = false;
+                    page.canAccept = false;
+                    password.visible = false
+                    pin.visible = false;
+                    errorLabel.visible = false;
 
                     cli.logout();
                 }
@@ -67,6 +77,18 @@ Dialog {
                 x: Theme.horizontalPageMargin
                 text: qsTr("Logging out, please wait...");
                 color: Theme.secondaryHighlightColor
+                wrapMode: Label.WordWrap
+                width: parent.width - Theme.horizontalPageMargin * 2
+            }
+
+
+            Label {
+                id: errorLabel
+                visible: error.length
+
+                x: Theme.horizontalPageMargin
+                text: error;
+                color: Theme.errorColor
                 wrapMode: Label.WordWrap
                 width: parent.width - Theme.horizontalPageMargin * 2
             }
@@ -115,6 +137,26 @@ Dialog {
                     page.accept();
                 }
             }
+
+            Row {
+                visible: isPinEnabled
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                Button {
+                    text: qsTr("Reset PIN")
+                    onClicked: {
+                        const dialog = pageStack.push("ResetPinPage.qml");
+                        dialog.accepted.connect(function() {
+                            secrets.removePinAndPassword();
+                            isPinEnabled = secrets.hasPin();
+                        });
+                    }
+                }
+            }
         }
+    }
+
+    onRejected: {
+        Qt.quit();
     }
 }
