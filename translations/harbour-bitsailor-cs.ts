@@ -30,19 +30,61 @@
 <context>
     <name>ItemDetailPage</name>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="25"/>
-        <source>Failed loading the item, please try again later or sync your vault an check that it wasn&apos;t deleted.</source>
-        <translation>Načtení položky se nezdařilo, zkuste to prosím později znovu nebo synchronizujte svůj trezor a ujistěte se, že položka nebyla smazána.</translation>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="26"/>
+        <source>Failed loading the item, please try again later or sync your vault and check that it wasn&apos;t deleted.</source>
+        <translation>Nezdařilo se načíst položku, zkuste to prosím znovu, nebo synchronizujte trezor a ujistěte se, že nebyla smazána.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="32"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="33"/>
         <source>Loading...</source>
         <translation>Načítání...</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="46"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="49"/>
         <source>Item detail</source>
         <translation>Detail položky</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="63"/>
+        <source>Name</source>
+        <translation>Název</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="71"/>
+        <source>Username</source>
+        <translation>Uživatelské jméno</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="81"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="110"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="148"/>
+        <source>Copied to clipboard</source>
+        <translation>Zkopírováno do schránky</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="91"/>
+        <source>Password</source>
+        <translation>Heslo</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="117"/>
+        <source>URIs</source>
+        <translation>URI</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="132"/>
+        <source>Website</source>
+        <translation>Web</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="132"/>
+        <source>URI</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="162"/>
+        <source>Last update: %1</source>
+        <translation>Naposled upraveno: %1</translation>
     </message>
 </context>
 <context>

@@ -34,7 +34,39 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Failed loading the item, please try again later or sync your vault an check that it wasn&apos;t deleted.</source>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copied to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed loading the item, please try again later or sync your vault and check that it wasn&apos;t deleted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>URIs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>URI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Last update: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

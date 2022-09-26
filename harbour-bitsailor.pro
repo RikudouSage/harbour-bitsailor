@@ -33,6 +33,7 @@ INSTALLS += polkit
 DISTFILES += qml/harbour-bitsailor.qml \
     polkit/cz.chrastecky.bitsailor.policy \
     qml/components/MainPageItem.qml \
+    qml/components/Toaster.qml \
     qml/cover/CoverPage.qml \
     qml/helpers.js \
     qml/pages/ConfirmSettingPage.qml \

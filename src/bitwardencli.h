@@ -37,6 +37,14 @@ public:
         GetItem,
     };
 
+    enum ItemType {
+        Login = 1,
+        SecureNote = 2,
+        Card = 3,
+        Identity = 4,
+    };
+    Q_ENUM(ItemType);
+
     Q_INVOKABLE void checkLoginStatus();
     Q_INVOKABLE void checkVaultUnlocked();
     Q_INVOKABLE void loginEmailPassword(const QString &email, const QString &password);
@@ -79,13 +87,6 @@ private slots:
     void onFinished(int exitCode, Method method);
 
 private:
-    enum ObjectType {
-        Login = 1,
-        SecureNote = 2,
-        Card = 3,
-        Identity = 4,
-    };
-
     const QString bw = getPrivateBinDirPath() + "/bw";
     QMap<Method, QProcess*> processes;
     SecretsHandler* secretsHandler = new SecretsHandler(this);
