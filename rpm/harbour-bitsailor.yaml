@@ -33,7 +33,7 @@ Requires:
   - sailfishsilica-qt5 >= 0.10.9 
   - sailfishsecretsdaemon-secretsplugins-default
   - sailfish-polkit-agent
-#  - nodejs >= 18
+  - nodejs >= 18
 
 # All installed files
 Files:
