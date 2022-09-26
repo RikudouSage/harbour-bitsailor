@@ -171,10 +171,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Bitsailor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Loading vault items</source>
         <translation type="unfinished"></translation>
     </message>
@@ -208,6 +204,10 @@
     </message>
     <message>
         <source>Generate Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BitSailor</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

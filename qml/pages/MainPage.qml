@@ -175,7 +175,7 @@ Page {
             width: page.width
             spacing: Theme.paddingLarge
             PageHeader {
-                title: qsTr("Bitsailor")
+                title: qsTr("BitSailor")
             }
 
             Components.MainPageItem {

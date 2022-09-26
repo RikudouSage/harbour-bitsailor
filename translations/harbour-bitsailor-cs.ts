@@ -206,11 +206,6 @@
         <translation>Vygenerovat heslo</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="178"/>
-        <source>Bitsailor</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../qml/pages/MainPage.qml" line="182"/>
         <source>Logins</source>
         <translation>Přihlášení</translation>
@@ -237,6 +232,11 @@
         <location filename="../qml/pages/MainPage.qml" line="205"/>
         <source>This functionality is not implemented yet.</source>
         <translation>Tato funkcionalita ještě není zprovozněna.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="178"/>
+        <source>BitSailor</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="196"/>
