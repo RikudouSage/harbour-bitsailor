@@ -52,8 +52,6 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/pages/UnknownErrorOccuredPage.qml \
     qml/pages/UnlockVaultPage.qml \
     qml/pages/VaultLoginsPage.qml \
-    rpm/harbour-bitsailor.changes.in \
-    rpm/harbour-bitsailor.changes.run.in \
     rpm/harbour-bitsailor.spec \
     rpm/harbour-bitsailor.yaml \
     translations/*.ts \

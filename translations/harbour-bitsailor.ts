@@ -202,6 +202,14 @@
         <source>Identities (%1)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>This functionality is not implemented yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generate Password</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MissingBitwardenCliPage</name>
@@ -454,6 +462,10 @@
     </message>
     <message>
         <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This functionality is not implemented yet.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

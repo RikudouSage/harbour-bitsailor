@@ -201,47 +201,60 @@
         <translation>Hledat</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="169"/>
+        <location filename="../qml/pages/MainPage.qml" line="165"/>
+        <source>Generate Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="178"/>
         <source>Bitsailor</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="173"/>
+        <location filename="../qml/pages/MainPage.qml" line="182"/>
         <source>Logins</source>
         <translation>Přihlášení</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="173"/>
+        <location filename="../qml/pages/MainPage.qml" line="182"/>
         <source>Logins (%1)</source>
         <translation>Přihlášení (%1)</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="180"/>
+        <location filename="../qml/pages/MainPage.qml" line="189"/>
         <source>Cards</source>
         <translation>Karty</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="180"/>
+        <location filename="../qml/pages/MainPage.qml" line="189"/>
         <source>Cards (%1)</source>
         <translation>Karty (%1)</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="184"/>
+        <location filename="../qml/pages/MainPage.qml" line="167"/>
+        <location filename="../qml/pages/MainPage.qml" line="191"/>
+        <location filename="../qml/pages/MainPage.qml" line="198"/>
+        <location filename="../qml/pages/MainPage.qml" line="205"/>
+        <source>This functionality is not implemented yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/MainPage.qml" line="196"/>
         <source>Notes</source>
         <translation>Poznámky</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="184"/>
+        <location filename="../qml/pages/MainPage.qml" line="196"/>
         <source>Notes (%1)</source>
         <translation>Poznámky (%1)</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="188"/>
+        <location filename="../qml/pages/MainPage.qml" line="203"/>
         <source>Identities</source>
         <translation>Identity</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="188"/>
+        <location filename="../qml/pages/MainPage.qml" line="203"/>
         <source>Identities (%1)</source>
         <translation>Identity (%1)</translation>
     </message>
@@ -541,23 +554,28 @@
         <translation>Přidat přihlášení</translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="50"/>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="48"/>
+        <source>This functionality is not implemented yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="53"/>
         <source>Hide search</source>
         <translation>Skrýt vyhledávání</translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="50"/>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="82"/>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="53"/>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="85"/>
         <source>Search</source>
         <translation>Hledat</translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="66"/>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="69"/>
         <source>Logins</source>
         <translation>Přihlášení</translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="161"/>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="164"/>
         <source>Remove</source>
         <translation>Odstranit</translation>
     </message>

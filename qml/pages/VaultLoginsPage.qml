@@ -44,6 +44,9 @@ Page {
         PullDownMenu {
             MenuItem {
                 text: qsTr("Add login")
+                onClicked: {
+                    app.toaster.show(qsTr("This functionality is not implemented yet."));
+                }
             }
 
             MenuItem {

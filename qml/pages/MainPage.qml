@@ -160,6 +160,15 @@ Page {
             }
         }
 
+        PushUpMenu {
+            MenuItem {
+                text: qsTr("Generate Password")
+                onClicked: {
+                    app.toaster.show(qsTr("This functionality is not implemented yet."));
+                }
+            }
+        }
+
         Column {
             id: column
 
@@ -178,14 +187,23 @@ Page {
 
             Components.MainPageItem {
                 text: cardsCount !== null ? qsTr("Cards (%1)").arg(cardsCount) : qsTr("Cards")
+                onClicked: {
+                    app.toaster.show(qsTr("This functionality is not implemented yet."));
+                }
             }
 
             Components.MainPageItem {
                 text: notesCount !== null ? qsTr("Notes (%1)").arg(notesCount) : qsTr("Notes")
+                onClicked: {
+                    app.toaster.show(qsTr("This functionality is not implemented yet."));
+                }
             }
 
             Components.MainPageItem {
                 text: identitiesCount !== null ? qsTr("Identities (%1)").arg(identitiesCount) : qsTr("Identities")
+                onClicked: {
+                    app.toaster.show(qsTr("This functionality is not implemented yet."));
+                }
             }
         }
     }
