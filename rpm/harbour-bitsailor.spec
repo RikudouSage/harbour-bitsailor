@@ -19,7 +19,8 @@ Source100:  harbour-bitsailor.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   sailfishsecretsdaemon-secretsplugins-default
 Requires:   sailfish-polkit-agent
-Requires:   nodejs >= 18
+Requires:   nodejs
+Requires:   npm
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
