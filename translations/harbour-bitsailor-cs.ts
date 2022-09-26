@@ -2,6 +2,64 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="cs" sourcelanguage="en">
 <context>
+    <name>CleanupPage</name>
+    <message>
+        <location filename="../qml/pages/CleanupPage.qml" line="42"/>
+        <source>Cleaning Up</source>
+        <translation>Čištění</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CleanupPage.qml" line="50"/>
+        <source>Deleted all secrets</source>
+        <translation>Smazány všechny citlivé údaje</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CleanupPage.qml" line="53"/>
+        <source>Includes secrets like your password, username or PIN code.</source>
+        <translation>Zahrnuje například vaše heslo, uživatelské jméno nebo PIN kód.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CleanupPage.qml" line="60"/>
+        <source>Logged out of Bitwarden CLI</source>
+        <translation>Odhlášeno z Bitwarden CLI</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CleanupPage.qml" line="63"/>
+        <source>The Bitwarden CLI could be used on its own even without this app, that&apos;s why it&apos;s safer to log out.</source>
+        <translation>Bitwarden CLI lze používat i bez této aplikace, proto je bezpečnější se odhlásit.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CleanupPage.qml" line="70"/>
+        <source>Deleted temporary files</source>
+        <translation>Smazány dočasné soubory</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CleanupPage.qml" line="73"/>
+        <source>Temporary files include your cached vault for faster loading.</source>
+        <translation>Dočasné soubory zahrnují váš trezor v cache pro rychlejší načítání.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CleanupPage.qml" line="93"/>
+        <source>Config files include all the settings you have made in this app.</source>
+        <translation>Konfigurační soubory zahrnují všechna nastavení této aplikace.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CleanupPage.qml" line="80"/>
+        <source>Deleted all permanent files</source>
+        <translation>Smazány všechny trvalé soubory</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CleanupPage.qml" line="83"/>
+        <source>Permanent files include Bitwarden CLI (if it was installed using this app).</source>
+        <translation>Travalé soubory zahrnují Bitwarden CLI (pokud bylo nainstalováno přes tuto aplikaci).</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/CleanupPage.qml" line="90"/>
+        <source>Deleted all config files</source>
+        <translation>Smazány všechny konfigurační soubory</translation>
+    </message>
+</context>
+<context>
     <name>ConfirmSettingPage</name>
     <message>
         <location filename="../qml/pages/ConfirmSettingPage.qml" line="22"/>
@@ -306,67 +364,77 @@
 <context>
     <name>SettingsPage</name>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="42"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="44"/>
         <source>The password you provided is invalid.</source>
         <translation>Zadali jste neplatné heslo.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="49"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="51"/>
         <source>Validating password</source>
         <translation>Kontrola hesla</translation>
     </message>
     <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="62"/>
+        <source>Clean Up Everything</source>
+        <translation>Vyčistit data</translation>
+    </message>
+    <message>
         <location filename="../qml/pages/SettingsPage.qml" line="65"/>
+        <source>This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?</source>
+        <translation>Tato možnost smaže všechna data, která má tato aplikace uložena ve vašem zařízení, včetně uložiště citlivých údajů, Bitwarden CLI (pokud bylo nainstalováno touto apolikací), dočasné soubory atd. Budete také odhlášeni z Bitwarden CLI. Přejete si pokračovat?</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="83"/>
         <source>Settings</source>
         <translation>Nastavení</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="79"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="97"/>
         <source>Lock vault when app is closed</source>
         <translation>Zamknout trezor při zavření aplikace</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="89"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="107"/>
         <source>Load vault items eagerly in main view</source>
         <translation>Načítat trezor na hlavní obrazovce</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="93"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="111"/>
         <source>When this option is enabled, all items are loaded right when you enter the main screen. If disabled, the options are only loaded when you actually need to load them, meaning when you enter an item list like &apos;%1&apos;, &apos;%2&apos; etc.</source>
         <translation>Pokud je tato možnost povolena, všechny položky trezoru jsou načteny při vstupu na hlavní obrazovku. Při vypnutí jsou položky načteny až když jsou potřeba, tedy když kliknete na jednotlivé položky, jako např. &apos;%1&apos; nebo &apos;%2&apos;.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="93"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="111"/>
         <source>Logins</source>
         <translation>Přihlášení</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="93"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="111"/>
         <source>Cards</source>
         <translation>Karty</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="121"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="139"/>
         <source>Enabling this option will fasten load times for items in the vault significantly but it means that your vault is dumped to disk &lt;strong&gt;unencrypted&lt;/strong&gt;. While a great care has been taken to avoid dumping any sensitive information (passwords, credit card numbers etc.), bugs are possible and those sensitive informations could be leaked. Enable at your own risk.</source>
         <translation>Povolením této možnosti zásadně zrychlíte načítání trezoru, ale znamená to, že vaše údaje budou uloženy na disk &lt;strong&gt;nezašifrované&lt;/strong&gt;. Přestože byla učiněna opatření, aby se na disk neuložily žádné citlivé údaje (hesla, čísla kreditních karet atd.), je vždy možné, že se objeví chyba, díky které budou tyto údaje vyzrazeny. Používejte na vlastní nebezpečí.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="134"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="152"/>
         <source>Fast authentication</source>
         <translation>Rychlá autentizace</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="200"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="218"/>
         <source>Use OS authorization to unlock vault</source>
         <translation>Použít autorizaci OS pro odemčení trezoru</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="217"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="235"/>
         <source>OS authorization check failed.</source>
         <translation>Kontrola autorizace OS selhala.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="219"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="237"/>
         <source>Note that this is normal when running inside emulator.</source>
         <translation>Toto je normální, pokud aplikaci spouštíte uvnitř emulátoru.</translation>
     </message>
@@ -376,17 +444,17 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="115"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="133"/>
         <source>Save items in cache for faster load</source>
         <translation>Uložit položky v cache pro rychlé načtení</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="138"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="156"/>
         <source>When this option is enabled, authentication is skipped and you are assumed to be logged in regardless of the actual status. What this means in practice is that logged in check is postponed until you&apos;re on the main page and is done in the background, this gives anyone opening this app a few seconds to look around before transfering you to the login/unlock screen. This should be ok because all vault operations fail when you&apos;re not logged in. &lt;strong&gt;Warning&lt;/strong&gt;: if used in combination with the setting &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; some data may be leaked to whoever opens this app. Use at your own risk.</source>
         <translation>Pokud je tato možnost povolena, autentizace je přeskočena a aplikace se chová, jako byste byli přihlášeni bez ohledu na skutečný stav. V praxi to znamená, že kontrola přihlášení je přesunuta na později, konkrétně na hlavní obrazovku, a je provedena na pozadí. To umožňuje komukoliv, kdo otevře tuto aplikaci, pár sekund na procházení, než bude přesměrován na přihlašovací obrazovku. To by nemělo ničemu vadit, protože všechny operace s trezorem selžou, pokud nejste přihlášeni. &lt;strong&gt;Varování&lt;/strong&gt;: při použití v kombinaci s &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; mohou být komukoliv, kdo otevře tuto aplikaci, vyzrazena nějaká data. Používejte na vlastní nebezpečí.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="166"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="184"/>
         <source>Use PIN to unlock vault</source>
         <translation>Použít PIN pro odemknutí trezoru</translation>
     </message>

@@ -28,7 +28,7 @@ public:
     Q_INVOKABLE void removePassword();
     Q_INVOKABLE bool hasSessionId();
     Q_INVOKABLE void removeSessionId();
-    bool clearAllSecrets();
+    Q_INVOKABLE bool clearAllSecrets();
 
     void setSessionId(const QString &sessionId);
     void setUsername(const QString &username);

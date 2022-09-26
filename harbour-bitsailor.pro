@@ -19,6 +19,7 @@ SOURCES += src/harbour-bitsailor.cpp \
     src/appsettings.cpp \
     src/bitwardencli.cpp \
     src/bitwardencliinstaller.cpp \
+    src/fileaccessor.cpp \
     src/pathhelper.cpp \
     src/runtimecache.cpp \
     src/secretshandler.cpp \
@@ -36,6 +37,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/components/Toaster.qml \
     qml/cover/CoverPage.qml \
     qml/helpers.js \
+    qml/pages/CleanupPage.qml \
     qml/pages/ConfirmSettingPage.qml \
     qml/pages/InstallBitwardenCliPage.qml \
     qml/pages/ItemDetailPage.qml \
@@ -73,6 +75,7 @@ HEADERS += \
     src/appsettings.h \
     src/bitwardencli.h \
     src/bitwardencliinstaller.h \
+    src/fileaccessor.h \
     src/pathhelper.h \
     src/runtimecache.h \
     src/secretshandler.h \

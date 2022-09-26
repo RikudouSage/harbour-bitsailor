@@ -2,6 +2,53 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>CleanupPage</name>
+    <message>
+        <source>Cleaning Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleted all secrets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logged out of Bitwarden CLI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleted all permanent files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleted all config files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Includes secrets like your password, username or PIN code.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Bitwarden CLI could be used on its own even without this app, that&apos;s why it&apos;s safer to log out.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deleted temporary files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Temporary files include your cached vault for faster loading.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Permanent files include Bitwarden CLI (if it was installed using this app).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Config files include all the settings you have made in this app.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ConfirmSettingPage</name>
     <message>
         <source>Confirm</source>
@@ -312,6 +359,14 @@
     </message>
     <message>
         <source>Use OS authorization to unlock vault</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clean Up Everything</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

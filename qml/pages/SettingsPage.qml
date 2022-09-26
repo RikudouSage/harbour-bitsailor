@@ -10,6 +10,8 @@ Page {
     property string errorText
     property string authCheckType
 
+    property var doAfterLoad: []
+
 
     id: page
     allowedOrientations: Orientation.All
@@ -54,6 +56,22 @@ Page {
         anchors.fill: parent
         contentHeight: column.height
         visible: !busyIndicator.running
+
+        PushUpMenu {
+            MenuItem {
+                text: qsTr("Clean Up Everything");
+                onClicked: {
+                    const dialog = pageStack.push("ConfirmSettingPage.qml", {
+                        description: qsTr("This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?")
+                    });
+                    dialog.accepted.connect(function() {
+                        doAfterLoad.push(function() {
+                            pageStack.replace("CleanupPage.qml");
+                        });
+                    });
+                }
+            }
+        }
 
         Column {
             id: column
@@ -228,6 +246,12 @@ Page {
         }
     }
 
-    Component.onCompleted: {
+    onStatusChanged: {
+        if (status == PageStatus.Active) {
+            while (doAfterLoad.length) {
+                const callable = doAfterLoad.shift();
+                callable();
+            }
+        }
     }
 }
