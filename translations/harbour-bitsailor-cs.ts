@@ -36,6 +36,24 @@
     </message>
 </context>
 <context>
+    <name>ItemDetailPage</name>
+    <message>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="25"/>
+        <source>Failed loading the item, please try again later or sync your vault an check that it wasn&apos;t deleted.</source>
+        <translation>Načtení položky se nezdařilo, zkuste to prosím později znovu nebo synchronizujte svůj trezor a ujistěte se, že položka nebyla smazána.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="32"/>
+        <source>Loading...</source>
+        <translation>Načítání...</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="46"/>
+        <source>Item detail</source>
+        <translation>Detail položky</translation>
+    </message>
+</context>
+<context>
     <name>LoginCheckPage</name>
     <message>
         <location filename="../qml/pages/LoginCheckPage.qml" line="73"/>
@@ -119,82 +137,82 @@
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="41"/>
+        <location filename="../qml/pages/MainPage.qml" line="39"/>
         <source>Please wait...</source>
         <translation>Prosím čekejte...</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="136"/>
+        <location filename="../qml/pages/MainPage.qml" line="135"/>
         <source>Logout</source>
         <translation>Odhlásit se</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="144"/>
+        <location filename="../qml/pages/MainPage.qml" line="143"/>
         <source>Lock</source>
         <translation>Zamknout</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="152"/>
+        <location filename="../qml/pages/MainPage.qml" line="151"/>
         <source>Sync Vault</source>
         <translation>Synchronizovat trezor</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="154"/>
+        <location filename="../qml/pages/MainPage.qml" line="153"/>
         <source>Syncing vault</source>
         <translation>Synchronizace trezoru</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="160"/>
+        <location filename="../qml/pages/MainPage.qml" line="159"/>
         <source>Search</source>
         <translation>Hledat</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="170"/>
+        <location filename="../qml/pages/MainPage.qml" line="169"/>
         <source>Bitsailor</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="174"/>
+        <location filename="../qml/pages/MainPage.qml" line="173"/>
         <source>Logins</source>
         <translation>Přihlášení</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="174"/>
+        <location filename="../qml/pages/MainPage.qml" line="173"/>
         <source>Logins (%1)</source>
         <translation>Přihlášení (%1)</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="181"/>
+        <location filename="../qml/pages/MainPage.qml" line="180"/>
         <source>Cards</source>
         <translation>Karty</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="181"/>
+        <location filename="../qml/pages/MainPage.qml" line="180"/>
         <source>Cards (%1)</source>
         <translation>Karty (%1)</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="185"/>
+        <location filename="../qml/pages/MainPage.qml" line="184"/>
         <source>Notes</source>
         <translation>Poznámky</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="185"/>
+        <location filename="../qml/pages/MainPage.qml" line="184"/>
         <source>Notes (%1)</source>
         <translation>Poznámky (%1)</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="189"/>
+        <location filename="../qml/pages/MainPage.qml" line="188"/>
         <source>Identities</source>
         <translation>Identity</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="189"/>
+        <location filename="../qml/pages/MainPage.qml" line="188"/>
         <source>Identities (%1)</source>
         <translation>Identity (%1)</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="45"/>
+        <location filename="../qml/pages/MainPage.qml" line="43"/>
         <source>Loading vault items</source>
         <translation>Načítání položek v trezoru</translation>
     </message>
@@ -256,37 +274,37 @@
         <translation>Kontrola hesla</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="56"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="57"/>
         <source>Settings</source>
         <translation>Nastavení</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="70"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="71"/>
         <source>Lock vault when app is closed</source>
         <translation>Zamknout trezor při zavření aplikace</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="80"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="81"/>
         <source>Load vault items eagerly in main view</source>
         <translation>Načítat trezor na hlavní obrazovce</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="84"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="85"/>
         <source>When this option is enabled, all items are loaded right when you enter the main screen. If disabled, the options are only loaded when you actually need to load them, meaning when you enter an item list like &apos;%1&apos;, &apos;%2&apos; etc.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="84"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="85"/>
         <source>Logins</source>
         <translation>Přihlášení</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="84"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="85"/>
         <source>Cards</source>
         <translation>Karty</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="125"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="126"/>
         <source>Fast authentication</source>
         <translation>Rychlá autentizace</translation>
     </message>
@@ -296,22 +314,22 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="106"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="107"/>
         <source>Save items in cache for faster load</source>
         <translation>Uložit položky v cache pro rychlé načtení</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="112"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="113"/>
         <source>Enabling this option will fasten load times for items in the vault significantly but it means that your vault is dumped to disk. While a great care has been taken to avoid dumping any sensitive information, bugs are possible and those sensitive informations could be leaked. Enable at your own risk.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="129"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="130"/>
         <source>When this option is enabled, authentication is skipped and you are assumed to be logged in regardless of the actual status. What this means in practice is that logged in check is postponed until you&apos;re on the main page and is done in the background, this gives anyone opening this app a few seconds to look around before transfering you to the login/unlock screen. This should be ok because all vault operations fail when you&apos;re not logged in. &lt;strong&gt;Warning&lt;/strong&gt;: if used in combination with the setting &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; some data may be leaked to whoever opens this app. Use at your own risk.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="149"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="150"/>
         <source>Use PIN to unlock vault</source>
         <translation>Použít PIN pro odemknutí trezoru</translation>
     </message>
@@ -411,35 +429,40 @@
 <context>
     <name>VaultLoginsPage</name>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="18"/>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="19"/>
         <source>Loading</source>
         <translation>Načítání</translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="26"/>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="27"/>
         <source>An error occured while loading items. Please try again.</source>
         <translation>Nastala chyba při načítání položek. Zkuste to prosím později.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="44"/>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="46"/>
         <source>Add login</source>
         <translation>Přidat přihlášení</translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="48"/>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="50"/>
         <source>Hide search</source>
         <translation>Skrýt vyhledávání</translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="48"/>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="80"/>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="50"/>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="82"/>
         <source>Search</source>
         <translation>Hledat</translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="64"/>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="66"/>
         <source>Logins</source>
         <translation>Přihlášení</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="161"/>
+        <source>Remove</source>
+        <translation>Odstranit</translation>
     </message>
 </context>
 </TS>

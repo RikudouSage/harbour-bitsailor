@@ -132,8 +132,6 @@ void BitwardenCli::deleteItem(QString id)
 
 void BitwardenCli::deleteItemInBackground(QString id)
 {
-    qDebug() << "here";
-
     QProcess* process = new QProcess(); // intentionally no parent
     process->setWorkingDirectory(getDataPath());
     process->setStandardInputFile(QProcess::nullDevice());
@@ -159,11 +157,23 @@ void BitwardenCli::deleteItemInBackground(QString id)
     }
 }
 
+void BitwardenCli::getItem(QString id)
+{
+    startProcess({"get", "item", id, "--session", secretsHandler->getSessionId()}, GetItem);
+}
+
 void BitwardenCli::onFinished(int exitCode, Method method)
 {
     auto process = processes.take(method);
 
     switch (method) {
+    case BitwardenCli::GetItem:
+        if (exitCode != 0) {
+            emit itemFetchingFailed();
+        } else {
+            emit itemFetched(QJsonDocument::fromJson(process->readAllStandardOutput()).object());
+        }
+        break;
     case BitwardenCli::DeleteItem:
         emit itemDeleted(exitCode == 0);
         break;

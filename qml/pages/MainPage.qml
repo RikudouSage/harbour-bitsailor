@@ -28,13 +28,11 @@ Page {
     function displayMessage(message) {
         pullDownMenu.enabled = false;
         loadingMessage = message;
-        flickable.visible = false;
     }
 
     function hideMessage() {
         pullDownMenu.enabled = true;
         loadingMessage = "";
-        flickable.visible = true;
     }
 
     function displayPleaseWait() {
@@ -128,6 +126,7 @@ Page {
         id: flickable
         anchors.fill: parent
         contentHeight: column.height
+        visible: !loader.running
 
         PullDownMenu {
             id: pullDownMenu
@@ -192,6 +191,7 @@ Page {
     }
 
     BusyLabel {
+        id: loader
         running: loadingMessage.length;
         text: loadingMessage
     }

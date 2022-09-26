@@ -15,6 +15,7 @@ Page {
     allowedOrientations: Orientation.All
 
     BusyLabel {
+        id: loader
         text: qsTr("Loading")
         running: !loaded
     }
@@ -36,6 +37,7 @@ Page {
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height
+        visible: !loader.running
 
         VerticalScrollDecorator {}
 
@@ -136,6 +138,10 @@ Page {
 
                     contentHeight: Theme.itemSizeMedium
 
+                    onClicked: {
+                        pageStack.push("ItemDetailPage.qml", {itemId: item.id});
+                    }
+
                     Label {
                         id: itemTitle
                         text: item.name
@@ -152,7 +158,7 @@ Page {
                          id: contextMenu
                          ContextMenu {
                              IconMenuItem {
-                                 text: "Remove"
+                                 text: qsTr("Remove")
                                  icon.source: "image://theme/icon-m-remove"
 
                                  onClicked: {

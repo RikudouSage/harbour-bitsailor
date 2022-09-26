@@ -45,6 +45,7 @@ Page {
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height
+        visible: !busyIndicator.running
 
         Column {
             id: column

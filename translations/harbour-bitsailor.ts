@@ -31,6 +31,21 @@
     </message>
 </context>
 <context>
+    <name>ItemDetailPage</name>
+    <message>
+        <source>Item detail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed loading the item, please try again later or sync your vault an check that it wasn&apos;t deleted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LoginCheckPage</name>
     <message>
         <source>Authenticating...</source>
@@ -359,6 +374,10 @@
     </message>
     <message>
         <source>Logins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
