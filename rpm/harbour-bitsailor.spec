@@ -18,6 +18,7 @@ Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-bitsailor.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   sailfishsecretsdaemon-secretsplugins-default
+Requires:   sailfish-polkit-agent
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
@@ -65,5 +66,6 @@ desktop-file-install --delete-original       \
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
+/usr/share/polkit-1/actions/cz.chrastecky.bitsailor.policy
 # >> files
 # << files

@@ -24,7 +24,13 @@ SOURCES += src/harbour-bitsailor.cpp \
     src/secretshandler.cpp \
     src/systemchecker.cpp
 
+polkit.path = /usr/share/polkit-1/actions
+polkit.files = polkit/cz.chrastecky.bitsailor.policy
+
+INSTALLS += polkit
+
 DISTFILES += qml/harbour-bitsailor.qml \
+    polkit/cz.chrastecky.bitsailor.policy \
     qml/components/MainPageItem.qml \
     qml/cover/CoverPage.qml \
     qml/helpers.js \

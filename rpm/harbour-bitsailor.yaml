@@ -32,6 +32,7 @@ PkgConfigBR:
 Requires:
   - sailfishsilica-qt5 >= 0.10.9 
   - sailfishsecretsdaemon-secretsplugins-default
+  - sailfish-polkit-agent
 #  - nodejs >= 18
 
 # All installed files
@@ -40,6 +41,7 @@ Files:
   - '%{_datadir}/%{name}'
   - '%{_datadir}/applications/%{name}.desktop'
   - '%{_datadir}/icons/hicolor/*/apps/%{name}.png'
+  - '/usr/share/polkit-1/actions/cz.chrastecky.bitsailor.policy'
 
 # For more information about yaml and what's supported in Sailfish OS
 # build system, please see https://wiki.merproject.org/wiki/Spectacle
