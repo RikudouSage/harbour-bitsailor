@@ -18,6 +18,7 @@ Page {
         onLogoutFinished: {
             loggedOut = true;
             secretsCleared = true;
+            permanentFilesDeleted = fileAccessor.deletePermanentFilesDirectory();
         }
     }
 
@@ -99,7 +100,6 @@ Page {
         if (status === PageStatus.Active) {
             cli.logout();
             temporaryFilesDeleted = fileAccessor.deleteTemporaryFilesDirectory();
-            permanentFilesDeleted = fileAccessor.deletePermanentFilesDirectory();
             configFilesDeleted = fileAccessor.deleteConfigDirectory();
         }
     }

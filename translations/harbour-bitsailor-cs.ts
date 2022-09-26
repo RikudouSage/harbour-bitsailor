@@ -4,57 +4,57 @@
 <context>
     <name>CleanupPage</name>
     <message>
-        <location filename="../qml/pages/CleanupPage.qml" line="42"/>
+        <location filename="../qml/pages/CleanupPage.qml" line="43"/>
         <source>Cleaning Up</source>
         <translation>Čištění</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CleanupPage.qml" line="50"/>
+        <location filename="../qml/pages/CleanupPage.qml" line="51"/>
         <source>Deleted all secrets</source>
         <translation>Smazány všechny citlivé údaje</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CleanupPage.qml" line="53"/>
+        <location filename="../qml/pages/CleanupPage.qml" line="54"/>
         <source>Includes secrets like your password, username or PIN code.</source>
         <translation>Zahrnuje například vaše heslo, uživatelské jméno nebo PIN kód.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CleanupPage.qml" line="60"/>
+        <location filename="../qml/pages/CleanupPage.qml" line="61"/>
         <source>Logged out of Bitwarden CLI</source>
         <translation>Odhlášeno z Bitwarden CLI</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CleanupPage.qml" line="63"/>
+        <location filename="../qml/pages/CleanupPage.qml" line="64"/>
         <source>The Bitwarden CLI could be used on its own even without this app, that&apos;s why it&apos;s safer to log out.</source>
         <translation>Bitwarden CLI lze používat i bez této aplikace, proto je bezpečnější se odhlásit.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CleanupPage.qml" line="70"/>
+        <location filename="../qml/pages/CleanupPage.qml" line="71"/>
         <source>Deleted temporary files</source>
         <translation>Smazány dočasné soubory</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CleanupPage.qml" line="73"/>
+        <location filename="../qml/pages/CleanupPage.qml" line="74"/>
         <source>Temporary files include your cached vault for faster loading.</source>
         <translation>Dočasné soubory zahrnují váš trezor v cache pro rychlejší načítání.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CleanupPage.qml" line="93"/>
+        <location filename="../qml/pages/CleanupPage.qml" line="94"/>
         <source>Config files include all the settings you have made in this app.</source>
         <translation>Konfigurační soubory zahrnují všechna nastavení této aplikace.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CleanupPage.qml" line="80"/>
+        <location filename="../qml/pages/CleanupPage.qml" line="81"/>
         <source>Deleted all permanent files</source>
         <translation>Smazány všechny trvalé soubory</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CleanupPage.qml" line="83"/>
+        <location filename="../qml/pages/CleanupPage.qml" line="84"/>
         <source>Permanent files include Bitwarden CLI (if it was installed using this app).</source>
         <translation>Travalé soubory zahrnují Bitwarden CLI (pokud bylo nainstalováno přes tuto aplikaci).</translation>
     </message>
     <message>
-        <location filename="../qml/pages/CleanupPage.qml" line="90"/>
+        <location filename="../qml/pages/CleanupPage.qml" line="91"/>
         <source>Deleted all config files</source>
         <translation>Smazány všechny konfigurační soubory</translation>
     </message>
@@ -70,17 +70,17 @@
 <context>
     <name>InstallBitwardenCliPage</name>
     <message>
-        <location filename="../qml/pages/InstallBitwardenCliPage.qml" line="33"/>
+        <location filename="../qml/pages/InstallBitwardenCliPage.qml" line="39"/>
         <source>Installing Bitwarden CLI</source>
         <translation>Instaluje se Bitwarden CLI</translation>
     </message>
     <message>
-        <location filename="../qml/pages/InstallBitwardenCliPage.qml" line="39"/>
+        <location filename="../qml/pages/InstallBitwardenCliPage.qml" line="24"/>
         <source>Installing... Please don&apos;t close the app.</source>
         <translation>Probíhá instalace... Prosím nezavírejte aplikaci.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/InstallBitwardenCliPage.qml" line="50"/>
+        <location filename="../qml/pages/InstallBitwardenCliPage.qml" line="47"/>
         <source>There was an error installing the Bitwarden CLI.</source>
         <translation>Nastala chyba při instalaci Bitwarden CLI.</translation>
     </message>

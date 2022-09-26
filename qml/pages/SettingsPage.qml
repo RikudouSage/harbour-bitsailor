@@ -66,7 +66,7 @@ Page {
                     });
                     dialog.accepted.connect(function() {
                         doAfterLoad.push(function() {
-                            pageStack.replace("CleanupPage.qml");
+                            pageStack.replaceAbove(null, "CleanupPage.qml");
                         });
                     });
                 }

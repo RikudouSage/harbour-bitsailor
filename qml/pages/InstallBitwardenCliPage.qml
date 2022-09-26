@@ -11,7 +11,6 @@ Page {
         id: installer
 
         onFinished: {
-            installingMessage.visible = false;
             if (!success) {
                 errorMessage.visible = true;
             } else {
@@ -20,9 +19,16 @@ Page {
         }
     }
 
+    BusyLabel {
+        id: loader
+        text: qsTr("Installing... Please don't close the app.");
+        running: !errorMessage.visible
+    }
+
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height
+        visible: !loader.running
 
         Column {
             id: column
@@ -31,15 +37,6 @@ Page {
             spacing: Theme.paddingLarge
             PageHeader {
                 title: qsTr("Installing Bitwarden CLI")
-            }
-            Label {
-                id: installingMessage
-
-                x: Theme.horizontalPageMargin
-                text: qsTr("Installing... Please don't close the app.");
-                color: Theme.secondaryHighlightColor
-                wrapMode: Label.WordWrap
-                width: parent.width - Theme.horizontalPageMargin * 2
             }
 
             Label {
