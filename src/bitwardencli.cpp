@@ -73,11 +73,13 @@ void BitwardenCli::unlockVault(int pin)
 
 void BitwardenCli::lockVault()
 {
+    secretsHandler->removeSessionId();
     startProcess({"lock"}, LockVault);
 }
 
 void BitwardenCli::lockVaultInBackground()
 {
+    secretsHandler->removeSessionId();
     QProcess* process = new QProcess(); // intentionally no parent
     process->setWorkingDirectory(getDataPath());
     process->setStandardInputFile(QProcess::nullDevice());

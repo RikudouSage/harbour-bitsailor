@@ -27,7 +27,6 @@ ApplicationWindow {
 
     Component.onDestruction: {
         if (settings.lockOnClose) {
-            secrets.removeSessionId();
             cli.lockVaultInBackground();
         }
 
