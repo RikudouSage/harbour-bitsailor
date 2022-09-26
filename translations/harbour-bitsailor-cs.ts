@@ -304,6 +304,11 @@
         <translation>Karty</translation>
     </message>
     <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="113"/>
+        <source>Enabling this option will fasten load times for items in the vault significantly but it means that your vault is dumped to disk &lt;strong&gt;unencrypted&lt;/strong&gt;. While a great care has been taken to avoid dumping any sensitive information (passwords, credit card numbers etc.), bugs are possible and those sensitive informations could be leaked. Enable at your own risk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qml/pages/SettingsPage.qml" line="126"/>
         <source>Fast authentication</source>
         <translation>Rychlá autentizace</translation>
@@ -317,11 +322,6 @@
         <location filename="../qml/pages/SettingsPage.qml" line="107"/>
         <source>Save items in cache for faster load</source>
         <translation>Uložit položky v cache pro rychlé načtení</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="113"/>
-        <source>Enabling this option will fasten load times for items in the vault significantly but it means that your vault is dumped to disk. While a great care has been taken to avoid dumping any sensitive information, bugs are possible and those sensitive informations could be leaked. Enable at your own risk.</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="130"/>

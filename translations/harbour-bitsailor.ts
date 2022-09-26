@@ -250,10 +250,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enabling this option will fasten load times for items in the vault significantly but it means that your vault is dumped to disk. While a great care has been taken to avoid dumping any sensitive information, bugs are possible and those sensitive informations could be leaked. Enable at your own risk.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>When this option is enabled, all items are loaded right when you enter the main screen. If disabled, the options are only loaded when you actually need to load them, meaning when you enter an item list like &apos;%1&apos;, &apos;%2&apos; etc.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -271,6 +267,10 @@
     </message>
     <message>
         <source>When this option is enabled, authentication is skipped and you are assumed to be logged in regardless of the actual status. What this means in practice is that logged in check is postponed until you&apos;re on the main page and is done in the background, this gives anyone opening this app a few seconds to look around before transfering you to the login/unlock screen. This should be ok because all vault operations fail when you&apos;re not logged in. &lt;strong&gt;Warning&lt;/strong&gt;: if used in combination with the setting &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; some data may be leaked to whoever opens this app. Use at your own risk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enabling this option will fasten load times for items in the vault significantly but it means that your vault is dumped to disk &lt;strong&gt;unencrypted&lt;/strong&gt;. While a great care has been taken to avoid dumping any sensitive information (passwords, credit card numbers etc.), bugs are possible and those sensitive informations could be leaked. Enable at your own risk.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
