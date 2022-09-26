@@ -10,14 +10,6 @@
     </message>
 </context>
 <context>
-    <name>CoverPage</name>
-    <message>
-        <location filename="../qml/cover/CoverPage.qml" line="8"/>
-        <source>My Cover</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>InstallBitwardenCliPage</name>
     <message>
         <location filename="../qml/pages/InstallBitwardenCliPage.qml" line="33"/>
@@ -56,27 +48,27 @@
 <context>
     <name>LoginCheckPage</name>
     <message>
-        <location filename="../qml/pages/LoginCheckPage.qml" line="73"/>
+        <location filename="../qml/pages/LoginCheckPage.qml" line="75"/>
         <source>The credentials you provided are incorrect. Please try again.</source>
         <translation>Přihlašovací údaje, které jste zadali, nejsou platné. Zkuste to prosím znovu.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/LoginCheckPage.qml" line="78"/>
+        <location filename="../qml/pages/LoginCheckPage.qml" line="80"/>
         <source>An authenticator is required, please use API key login.</source>
         <translation>Je vyžadován Authenticator, prosím použijte přihlášení pomoci API klíče.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/LoginCheckPage.qml" line="83"/>
+        <location filename="../qml/pages/LoginCheckPage.qml" line="85"/>
         <source>Wrong password or PIN</source>
         <translation>Špatné heslo nebo PIN</translation>
     </message>
     <message>
-        <location filename="../qml/pages/LoginCheckPage.qml" line="90"/>
+        <location filename="../qml/pages/LoginCheckPage.qml" line="92"/>
         <source>Invalid PIN.</source>
         <translation>Neplatný PIN.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/LoginCheckPage.qml" line="96"/>
+        <location filename="../qml/pages/LoginCheckPage.qml" line="98"/>
         <source>Authenticating...</source>
         <translation>Autentizace...</translation>
     </message>
@@ -249,69 +241,79 @@
     </message>
 </context>
 <context>
-    <name>ResetPinPage</name>
+    <name>ResetAuthStylePage</name>
     <message>
-        <location filename="../qml/pages/ResetPinPage.qml" line="18"/>
+        <location filename="../qml/pages/ResetAuthStylePage.qml" line="20"/>
         <source>Proceed</source>
         <translation>Pokračovat</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/ResetPinPage.qml" line="22"/>
-        <source>The PIN will be deleted and you can unlock the vault using your password. Once you unlock your vault you can set a PIN code again.</source>
-        <translation>PIN bude smazán a vy budete moci odemknout trezor pomocí hesla. Po odemknutí můžete znovu nastavit PIN kód.</translation>
     </message>
 </context>
 <context>
     <name>SettingsPage</name>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="34"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="42"/>
         <source>The password you provided is invalid.</source>
         <translation>Zadali jste neplatné heslo.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="41"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="49"/>
         <source>Validating password</source>
         <translation>Kontrola hesla</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="57"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="65"/>
         <source>Settings</source>
         <translation>Nastavení</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="71"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="79"/>
         <source>Lock vault when app is closed</source>
         <translation>Zamknout trezor při zavření aplikace</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="81"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="89"/>
         <source>Load vault items eagerly in main view</source>
         <translation>Načítat trezor na hlavní obrazovce</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="85"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="93"/>
         <source>When this option is enabled, all items are loaded right when you enter the main screen. If disabled, the options are only loaded when you actually need to load them, meaning when you enter an item list like &apos;%1&apos;, &apos;%2&apos; etc.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokud je tato možnost povolena, všechny položky trezoru jsou načteny při vstupu na hlavní obrazovku. Při vypnutí jsou položky načteny až když jsou potřeba, tedy když kliknete na jednotlivé položky, jako např. &apos;%1&apos; nebo &apos;%2&apos;.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="85"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="93"/>
         <source>Logins</source>
         <translation>Přihlášení</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="85"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="93"/>
         <source>Cards</source>
         <translation>Karty</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="113"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="121"/>
         <source>Enabling this option will fasten load times for items in the vault significantly but it means that your vault is dumped to disk &lt;strong&gt;unencrypted&lt;/strong&gt;. While a great care has been taken to avoid dumping any sensitive information (passwords, credit card numbers etc.), bugs are possible and those sensitive informations could be leaked. Enable at your own risk.</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolením této možnosti zásadně zrychlíte načítání trezoru, ale znamená to, že vaše údaje budou uloženy na disk &lt;strong&gt;nezašifrované&lt;/strong&gt;. Přestože byla učiněna opatření, aby se na disk neuložily žádné citlivé údaje (hesla, čísla kreditních karet atd.), je vždy možné, že se objeví chyba, díky které budou tyto údaje vyzrazeny. Používejte na vlastní nebezpečí.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="126"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="134"/>
         <source>Fast authentication</source>
         <translation>Rychlá autentizace</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="200"/>
+        <source>Use OS authorization to unlock vault</source>
+        <translation>Použít autorizaci OS pro odemčení trezoru</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="217"/>
+        <source>OS authorization check failed.</source>
+        <translation>Kontrola autorizace OS selhala.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SettingsPage.qml" line="219"/>
+        <source>Note that this is normal when running inside emulator.</source>
+        <translation>Toto je normální, pokud aplikaci spouštíte uvnitř emulátoru.</translation>
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="84"/>
@@ -319,17 +321,17 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="107"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="115"/>
         <source>Save items in cache for faster load</source>
         <translation>Uložit položky v cache pro rychlé načtení</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="130"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="138"/>
         <source>When this option is enabled, authentication is skipped and you are assumed to be logged in regardless of the actual status. What this means in practice is that logged in check is postponed until you&apos;re on the main page and is done in the background, this gives anyone opening this app a few seconds to look around before transfering you to the login/unlock screen. This should be ok because all vault operations fail when you&apos;re not logged in. &lt;strong&gt;Warning&lt;/strong&gt;: if used in combination with the setting &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; some data may be leaked to whoever opens this app. Use at your own risk.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokud je tato možnost povolena, autentizace je přeskočena a aplikace se chová, jako byste byli přihlášeni bez ohledu na skutečný stav. V praxi to znamená, že kontrola přihlášení je přesunuta na později, konkrétně na hlavní obrazovku, a je provedena na pozadí. To umožňuje komukoliv, kdo otevře tuto aplikaci, pár sekund na procházení, než bude přesměrován na přihlašovací obrazovku. To by nemělo ničemu vadit, protože všechny operace s trezorem selžou, pokud nejste přihlášeni. &lt;strong&gt;Varování&lt;/strong&gt;: při použití v kombinaci s &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; mohou být komukoliv, kdo otevře tuto aplikaci, vyzrazena nějaká data. Používejte na vlastní nebezpečí.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="150"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="166"/>
         <source>Use PIN to unlock vault</source>
         <translation>Použít PIN pro odemknutí trezoru</translation>
     </message>
@@ -337,29 +339,62 @@
 <context>
     <name>SetupPinPage</name>
     <message>
-        <location filename="../qml/pages/SetupPinPage.qml" line="23"/>
+        <location filename="../qml/pages/SetupPinPage.qml" line="25"/>
         <source>Continue</source>
         <translation>Pokračovat</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SetupPinPage.qml" line="32"/>
+        <location filename="../qml/pages/SetupPinPage.qml" line="34"/>
         <source>To continue please provide your password and set your desired PIN code. Your password will be stored securely using Sailfish OS secrets storage and used automatically whenever you use your PIN.</source>
         <translation>Pro pokračování prosím zadejte své heslo a nastavte vámi zvolený PIN kód. Vaše heslo bude bezpečně uloženo pomocí uložiště citlivých údajů Sailfish OS a bude automaticky použito kdykoliv použijete svůj PIN.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SetupPinPage.qml" line="39"/>
+        <location filename="../qml/pages/SetupPinPage.qml" line="45"/>
+        <source>Warning: Enabling this option will disable &lt;i&gt;%1&lt;/i&gt;.</source>
+        <translation>Varování: Povolením této možnosti zakážete &lt;i&gt;%1&lt;/i&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SetupPinPage.qml" line="52"/>
         <source>Password</source>
         <translation>Heslo</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SetupPinPage.qml" line="60"/>
+        <location filename="../qml/pages/SetupPinPage.qml" line="73"/>
         <source>PIN</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/pages/SetupPinPage.qml" line="82"/>
+        <location filename="../qml/pages/SetupPinPage.qml" line="95"/>
         <source>Repeat PIN</source>
         <translation>Zopakujte PIN</translation>
+    </message>
+</context>
+<context>
+    <name>SetupSystemAuthPage</name>
+    <message>
+        <location filename="../qml/pages/SetupSystemAuthPage.qml" line="40"/>
+        <source>Continue</source>
+        <translation>Pokračovat</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SetupSystemAuthPage.qml" line="49"/>
+        <source>To continue please provide your password. Your password will be stored securely using Sailfish OS secrets storage and used automatically whenever you authorize using Sailfish OS.</source>
+        <translation>Pro pokračování prosím zadejte své heslo. Vaše heslo bude bezpečně uloženo do uložiště citlivých údajů Sailfish OS a bude automaticky použito kdykoliv se autorizujete vůči Sailfish OS.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SetupSystemAuthPage.qml" line="59"/>
+        <source>Note: This option enables unlocking vault using fingerprint if your device supports it.</source>
+        <translation>Poznámka: Tato možnost umožňuje odemykat trezor pomocí otisku prstu, pokud to vaše zařízení umožňuje.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SetupSystemAuthPage.qml" line="70"/>
+        <source>Warning: Enabling this option will disable &lt;i&gt;%1&lt;/i&gt;.</source>
+        <translation>Varování: Povolením této možnosti zakážete &lt;i&gt;%1&lt;/i&gt;.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/SetupSystemAuthPage.qml" line="77"/>
+        <source>Password</source>
+        <translation>Heslo</translation>
     </message>
 </context>
 <context>
@@ -391,39 +426,59 @@
 <context>
     <name>UnlockVaultPage</name>
     <message>
-        <location filename="../qml/pages/UnlockVaultPage.qml" line="38"/>
+        <location filename="../qml/pages/UnlockVaultPage.qml" line="43"/>
+        <source>OS authorization failed</source>
+        <translation>Autorizace vůči OS selhala</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/UnlockVaultPage.qml" line="54"/>
         <source>Logout</source>
         <translation>Odhlásit se</translation>
     </message>
     <message>
-        <location filename="../qml/pages/UnlockVaultPage.qml" line="60"/>
+        <location filename="../qml/pages/UnlockVaultPage.qml" line="76"/>
         <source>Unlock Vault</source>
         <translation>Odemknout trezor</translation>
     </message>
     <message>
-        <location filename="../qml/pages/UnlockVaultPage.qml" line="67"/>
+        <location filename="../qml/pages/UnlockVaultPage.qml" line="83"/>
         <source>Your vault is locked and must be unlocked before continuing.</source>
         <translation>Váš trezor je uzamčen a před pokračováním musí být odemknut.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/UnlockVaultPage.qml" line="78"/>
+        <location filename="../qml/pages/UnlockVaultPage.qml" line="94"/>
         <source>Logging out, please wait...</source>
         <translation>Odhlašování, prosím čekejte...</translation>
     </message>
     <message>
-        <location filename="../qml/pages/UnlockVaultPage.qml" line="100"/>
+        <location filename="../qml/pages/UnlockVaultPage.qml" line="116"/>
         <source>Password</source>
         <translation>Heslo</translation>
     </message>
     <message>
-        <location filename="../qml/pages/UnlockVaultPage.qml" line="122"/>
+        <location filename="../qml/pages/UnlockVaultPage.qml" line="138"/>
         <source>PIN</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/pages/UnlockVaultPage.qml" line="146"/>
+        <location filename="../qml/pages/UnlockVaultPage.qml" line="162"/>
         <source>Reset PIN</source>
         <translation>Reset PINu</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/UnlockVaultPage.qml" line="165"/>
+        <source>The PIN will be deleted and you can unlock the vault using your password. Once you unlock your vault you can set a PIN code again.</source>
+        <translation>PIN bude smazán a vy budete moci odemknout trezor pomocí hesla. Po odemknutí můžete znovu nastavit PIN kód.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/UnlockVaultPage.qml" line="181"/>
+        <source>Reset OS Authorization</source>
+        <translation>Reset autorizace OS</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/UnlockVaultPage.qml" line="184"/>
+        <source>OS authorization will be disabled and you can unlock the vault using your password. Once you unlock your vault you can enable OS authorization again.</source>
+        <translation>Autorizace vůči OS bude zakázána a vy můžete odemknout trezor pomocí hesla. Jakmile odemknete trezor, můžete znovu povolit autorizaci vůči OS.</translation>
     </message>
 </context>
 <context>

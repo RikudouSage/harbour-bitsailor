@@ -9,13 +9,6 @@
     </message>
 </context>
 <context>
-    <name>CoverPage</name>
-    <message>
-        <source>My Cover</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>InstallBitwardenCliPage</name>
     <message>
         <source>Installing Bitwarden CLI</source>
@@ -205,13 +198,9 @@
     </message>
 </context>
 <context>
-    <name>ResetPinPage</name>
+    <name>ResetAuthStylePage</name>
     <message>
         <source>Proceed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The PIN will be deleted and you can unlock the vault using your password. Once you unlock your vault you can set a PIN code again.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -273,6 +262,18 @@
         <source>Enabling this option will fasten load times for items in the vault significantly but it means that your vault is dumped to disk &lt;strong&gt;unencrypted&lt;/strong&gt;. While a great care has been taken to avoid dumping any sensitive information (passwords, credit card numbers etc.), bugs are possible and those sensitive informations could be leaked. Enable at your own risk.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>OS authorization check failed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Note that this is normal when running inside emulator.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use OS authorization to unlock vault</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SetupPinPage</name>
@@ -294,6 +295,33 @@
     </message>
     <message>
         <source>Repeat PIN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Warning: Enabling this option will disable &lt;i&gt;%1&lt;/i&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SetupSystemAuthPage</name>
+    <message>
+        <source>Continue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To continue please provide your password. Your password will be stored securely using Sailfish OS secrets storage and used automatically whenever you authorize using Sailfish OS.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Warning: Enabling this option will disable &lt;i&gt;%1&lt;/i&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Note: This option enables unlocking vault using fingerprint if your device supports it.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -347,6 +375,22 @@
     </message>
     <message>
         <source>Reset PIN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The PIN will be deleted and you can unlock the vault using your password. Once you unlock your vault you can set a PIN code again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset OS Authorization</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OS authorization will be disabled and you can unlock the vault using your password. Once you unlock your vault you can enable OS authorization again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OS authorization failed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -22,6 +22,7 @@ SOURCES += src/harbour-bitsailor.cpp \
     src/pathhelper.cpp \
     src/runtimecache.cpp \
     src/secretshandler.cpp \
+    src/systemauthchecker.cpp \
     src/systemchecker.cpp
 
 polkit.path = /usr/share/polkit-1/actions
@@ -42,9 +43,10 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/pages/MainPage.qml \
     qml/pages/MissingBitwardenCliPage.qml \
     qml/pages/MissingRequiredBinaryPage.qml \
-    qml/pages/ResetPinPage.qml \
+    qml/pages/ResetAuthStylePage.qml \
     qml/pages/SettingsPage.qml \
     qml/pages/SetupPinPage.qml \
+    qml/pages/SetupSystemAuthPage.qml \
     qml/pages/SystemCheckerPage.qml \
     qml/pages/UnknownErrorOccuredPage.qml \
     qml/pages/UnlockVaultPage.qml \
@@ -75,4 +77,5 @@ HEADERS += \
     src/pathhelper.h \
     src/runtimecache.h \
     src/secretshandler.h \
+    src/systemauthchecker.h \
     src/systemchecker.h

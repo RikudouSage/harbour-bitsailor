@@ -24,7 +24,8 @@ public:
     QString getPin();
 
     Q_INVOKABLE bool hasPin();
-    Q_INVOKABLE void removePinAndPassword();
+    Q_INVOKABLE void removePin();
+    Q_INVOKABLE void removePassword();
     Q_INVOKABLE bool hasSessionId();
     Q_INVOKABLE void removeSessionId();
     bool clearAllSecrets();

@@ -71,6 +71,13 @@ void BitwardenCli::unlockVault(int pin)
     unlockVault(password);
 }
 
+void BitwardenCli::unlockVault()
+{
+    auto password = secretsHandler->getPassword();
+
+    unlockVault(password);
+}
+
 void BitwardenCli::lockVault()
 {
     secretsHandler->removeSessionId();

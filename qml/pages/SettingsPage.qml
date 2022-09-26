@@ -8,6 +8,7 @@ Page {
     property string passwordToStore
 
     property string errorText
+    property string authCheckType
 
 
     id: page
@@ -24,9 +25,16 @@ Page {
             busyIndicator.running = false;
 
             if (success) {
-                secrets.setPin(pinToStore);
                 secrets.setPassword(passwordToStore);
-                pinSetting.checked = true;
+
+                if (authCheckType === "pin") {
+                    secrets.setPin(pinToStore);
+                    pinSetting.checked = true;
+                    systemAuthSetting.disable();
+                } else if (authCheckType === "system") {
+                    settings.useSystemAuth = true;
+                    pinSetting.disable();
+                }
 
                 pinToStore = 0;
                 passwordToStore = "";
@@ -145,6 +153,14 @@ Page {
             TextSwitch {
                 id: pinSetting
 
+                function disable() {
+                    secrets.removePin();
+                    checked = false;
+                    if (!systemAuthSetting.checked) {
+                        secrets.removePassword();
+                    }
+                }
+
                 checked: secrets.hasPin()
                 automaticCheck: false
                 text: qsTr("Use PIN to unlock vault")
@@ -152,16 +168,60 @@ Page {
                     errorText = "";
 
                     if (!checked) {
-                        const dialog = pageStack.push("SetupPinPage.qml");
+                        const dialog = pageStack.push("SetupPinPage.qml", {
+                            systemAuthEnabled: settings.useSystemAuth,
+                            systemAuthSettingName: systemAuthSetting.text
+                        });
                         dialog.accepted.connect(function() {
+                            authCheckType = "pin";
                             busyIndicator.running = true;
                             pinToStore = Number(dialog.pinText);
                             passwordToStore = dialog.passwordText;
                             cli.unlockVault(passwordToStore);
                         });
                     } else {
-                        secrets.removePinAndPassword();
-                        checked = false;
+                        disable();
+                    }
+                }
+            }
+
+            TextSwitch {
+                id: systemAuthSetting
+
+                function disable() {
+                    settings.useSystemAuth = false;
+                    if (!pinSetting.checked) {
+                        secrets.removePassword();
+                    }
+                }
+
+                checked: settings.useSystemAuth
+                automaticCheck: false
+                text: qsTr("Use OS authorization to unlock vault")
+                onClicked: {
+                    errorText = "";
+
+                    if (!checked) {
+                        const dialog = pageStack.push("SetupSystemAuthPage.qml", {
+                            pinEnabled: secrets.hasPin(),
+                            pinSettingName: pinSetting.text
+                        });
+                        dialog.accepted.connect(function() {
+                            authCheckType = "system";
+                            busyIndicator.running = true;
+                            passwordToStore = dialog.passwordText;
+                            cli.unlockVault(passwordToStore);
+                        });
+                        dialog.rejected.connect(function() {
+                            if (dialog.failedSystemAuth) {
+                                errorText = qsTr("OS authorization check failed.");
+                                if (isDebug) {
+                                    errorText += " " + qsTr("Note that this is normal when running inside emulator.");
+                                }
+                            }
+                        });
+                    } else {
+                        disable();
                     }
                 }
             }

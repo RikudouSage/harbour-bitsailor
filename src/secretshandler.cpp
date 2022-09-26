@@ -72,9 +72,13 @@ bool SecretsHandler::hasPin()
     return !pin.isNull() && !pin.isEmpty();
 }
 
-void SecretsHandler::removePinAndPassword()
+void SecretsHandler::removePin()
 {
     deleteSecret(pinName);
+}
+
+void SecretsHandler::removePassword()
+{
     deleteSecret(passwordName);
 }
 

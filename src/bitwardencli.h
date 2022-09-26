@@ -44,6 +44,7 @@ public:
     Q_INVOKABLE void logout();
     Q_INVOKABLE void unlockVault(QString password);
     Q_INVOKABLE void unlockVault(int pin);
+    Q_INVOKABLE void unlockVault();
     Q_INVOKABLE void lockVault();
     Q_INVOKABLE void lockVaultInBackground();
     Q_INVOKABLE void getItems();

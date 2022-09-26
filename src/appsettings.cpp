@@ -8,6 +8,7 @@ AppSettings::AppSettings(QObject *parent) : QObject(parent)
     prop_EagerLoading = settings->value("eagerLoading", true).toBool();
     prop_PersistentItemCache = settings->value("persistentItemCache", false).toBool();
     prop_FastAuth = settings->value("fastAuth", false).toBool();
+    prop_UseSystemAuth = settings->value("useSystemAuth", false).toBool();
 }
 
 AppSettings::~AppSettings()
@@ -77,6 +78,22 @@ void AppSettings::setFastAuth(bool enabled)
     saveConfig("fastAuth", enabled);
     prop_FastAuth = enabled;
     emit fastAuthChanged();
+}
+
+bool AppSettings::useSystemAuth()
+{
+    return prop_UseSystemAuth;
+}
+
+void AppSettings::setUseSystemAuth(bool enabled)
+{
+    if (enabled == prop_UseSystemAuth) {
+        return;
+    }
+
+    saveConfig("useSystemAuth", enabled);
+    prop_UseSystemAuth = enabled;
+    emit useSystemAuthChanged();
 }
 
 void AppSettings::saveConfig(const QString &name, const QVariant &value)

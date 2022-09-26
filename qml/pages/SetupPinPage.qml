@@ -4,6 +4,8 @@ import Sailfish.Silica 1.0
 Dialog {
     property string passwordText: password.text
     property string pinText: pin.text
+    property bool systemAuthEnabled
+    property string systemAuthSettingName
 
     id: page
     allowedOrientations: Orientation.All
@@ -30,6 +32,17 @@ Dialog {
                 wrapMode: Label.WordWrap
 
                 text: qsTr("To continue please provide your password and set your desired PIN code. Your password will be stored securely using Sailfish OS secrets storage and used automatically whenever you use your PIN.")
+            }
+
+            Label {
+                x: Theme.horizontalPageMargin
+                width: parent.width - Theme.horizontalPageMargin * 2
+                color: Theme.secondaryHighlightColor
+                wrapMode: Label.WordWrap
+                font.bold: true
+                visible: systemAuthEnabled
+
+                text: qsTr("Warning: Enabling this option will disable <i>%1</i>.").arg(systemAuthSettingName)
             }
 
             TextField {

@@ -42,6 +42,8 @@ Page {
                     cli.unlockVault(dialog.passwordText);
                 } else if (dialog.pinText) {
                     cli.unlockVault(dialog.pinText);
+                } else if (dialog.systemAuthSucceeded) {
+                    cli.unlockVault();
                 }
             });
         }

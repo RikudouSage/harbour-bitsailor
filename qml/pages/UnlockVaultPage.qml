@@ -7,10 +7,12 @@ import cz.chrastecky.bitsailor 1.0
 
 Dialog {
     property bool isPinEnabled: secrets.hasPin()
+    property bool systemAuthEnabled: settings.useSystemAuth
     property string error: ""
 
     property string passwordText: password.text
     property int pinText: Number(pin.text)
+    property bool systemAuthSucceeded: false
 
     id: page
     allowedOrientations: Orientation.All
@@ -27,6 +29,20 @@ Dialog {
 
     SecretsHandler {
         id: secrets
+    }
+
+    SystemAuthChecker {
+        id: systemAuthChecker
+
+        onAuthResolved: {
+            if (success) {
+                systemAuthSucceeded = true;
+                canAccept = true;
+                page.accept();
+            } else {
+                error = qsTr("OS authorization failed");
+            }
+        }
     }
 
     SilicaFlickable {
@@ -98,7 +114,7 @@ Dialog {
 
                 id: password
                 label: qsTr("Password")
-                visible: !isPinEnabled
+                visible: !isPinEnabled && !systemAuthEnabled
                 echoMode: passwordVisible ? TextInput.Normal : TextInput.Password
                 rightItem: IconButton {
                     icon.source: !password.passwordVisible
@@ -145,14 +161,41 @@ Dialog {
                 Button {
                     text: qsTr("Reset PIN")
                     onClicked: {
-                        const dialog = pageStack.push("ResetPinPage.qml");
+                        const dialog = pageStack.push("ResetAuthStylePage.qml", {
+                            infoText: qsTr("The PIN will be deleted and you can unlock the vault using your password. Once you unlock your vault you can set a PIN code again."),
+                        });
                         dialog.accepted.connect(function() {
-                            secrets.removePinAndPassword();
+                            secrets.removePin();
+                            secrets.removePassword();
                             isPinEnabled = secrets.hasPin();
                         });
                     }
                 }
             }
+
+            Row {
+                visible: systemAuthEnabled
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                Button {
+                    text: qsTr("Reset OS Authorization")
+                    onClicked: {
+                        const dialog = pageStack.push("ResetAuthStylePage.qml", {
+                            infoText: qsTr("OS authorization will be disabled and you can unlock the vault using your password. Once you unlock your vault you can enable OS authorization again."),
+                        });
+                        dialog.accepted.connect(function() {
+                            secrets.removePassword();
+                            settings.useSystemAuth = false;
+                        });
+                    }
+                }
+            }
+        }
+    }
+
+    Component.onCompleted: {
+        if (settings.useSystemAuth) {
+            systemAuthChecker.checkAuth();
         }
     }
 
