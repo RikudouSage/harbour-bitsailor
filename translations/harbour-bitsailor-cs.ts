@@ -55,34 +55,34 @@
         <translation>Uživatelské jméno</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="81"/>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="110"/>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="148"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="78"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="104"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="139"/>
         <source>Copied to clipboard</source>
         <translation>Zkopírováno do schránky</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="91"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="88"/>
         <source>Password</source>
         <translation>Heslo</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="117"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="111"/>
         <source>URIs</source>
         <translation>URI</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="132"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="126"/>
         <source>Website</source>
         <translation>Web</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="132"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="126"/>
         <source>URI</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="162"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="153"/>
         <source>Last update: %1</source>
         <translation>Naposled upraveno: %1</translation>
     </message>
@@ -90,27 +90,27 @@
 <context>
     <name>LoginCheckPage</name>
     <message>
-        <location filename="../qml/pages/LoginCheckPage.qml" line="75"/>
+        <location filename="../qml/pages/LoginCheckPage.qml" line="79"/>
         <source>The credentials you provided are incorrect. Please try again.</source>
         <translation>Přihlašovací údaje, které jste zadali, nejsou platné. Zkuste to prosím znovu.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/LoginCheckPage.qml" line="80"/>
+        <location filename="../qml/pages/LoginCheckPage.qml" line="84"/>
         <source>An authenticator is required, please use API key login.</source>
         <translation>Je vyžadován Authenticator, prosím použijte přihlášení pomoci API klíče.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/LoginCheckPage.qml" line="85"/>
+        <location filename="../qml/pages/LoginCheckPage.qml" line="89"/>
         <source>Wrong password or PIN</source>
         <translation>Špatné heslo nebo PIN</translation>
     </message>
     <message>
-        <location filename="../qml/pages/LoginCheckPage.qml" line="92"/>
+        <location filename="../qml/pages/LoginCheckPage.qml" line="96"/>
         <source>Invalid PIN.</source>
         <translation>Neplatný PIN.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/LoginCheckPage.qml" line="98"/>
+        <location filename="../qml/pages/LoginCheckPage.qml" line="102"/>
         <source>Authenticating...</source>
         <translation>Autentizace...</translation>
     </message>

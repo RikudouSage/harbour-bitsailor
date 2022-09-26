@@ -50,7 +50,11 @@ Page {
 
         onLoginStatusResolved: {
             if (loggedIn) {
-                cli.checkVaultUnlocked();
+                if (!secrets.hasSessionId()) {
+                    displayUnlockPage();
+                } else {
+                    cli.checkVaultUnlocked();
+                }
             } else {
                 displayLoginPage();
             }

@@ -74,10 +74,7 @@ Page {
                 rightItem: IconButton {
                     icon.source: "image://theme/icon-m-clipboard"
                     onClicked: {
-                        usernameField.selectAll();
-                        usernameField.copy();
-                        usernameField.deselect();
-
+                        Clipboard.text = item.login.username;
                         app.toaster.show(qsTr("Copied to clipboard"));
                     }
                 }
@@ -103,10 +100,7 @@ Page {
                     IconButton {
                         icon.source: "image://theme/icon-m-clipboard"
                         onClicked: {
-                            passwordField.selectAll();
-                            passwordField.copy();
-                            passwordField.deselect();
-
+                            Clipboard.text = item.login.password;
                             app.toaster.show(qsTr("Copied to clipboard"));
                         }
                     }
@@ -141,10 +135,7 @@ Page {
                         IconButton {
                             icon.source: "image://theme/icon-m-clipboard"
                             onClicked: {
-                                uriField.selectAll();
-                                uriField.copy();
-                                uriField.deselect();
-
+                                Clipboard.text = uri.uri;
                                 app.toaster.show(qsTr("Copied to clipboard"));
                             }
                         }
