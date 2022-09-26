@@ -203,7 +203,7 @@
     <message>
         <location filename="../qml/pages/MainPage.qml" line="165"/>
         <source>Generate Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Vygenerovat heslo</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="178"/>
@@ -236,7 +236,7 @@
         <location filename="../qml/pages/MainPage.qml" line="198"/>
         <location filename="../qml/pages/MainPage.qml" line="205"/>
         <source>This functionality is not implemented yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tato funkcionalita ještě není zprovozněna.</translation>
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="196"/>
@@ -556,7 +556,7 @@
     <message>
         <location filename="../qml/pages/VaultLoginsPage.qml" line="48"/>
         <source>This functionality is not implemented yet.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tato funkcionalita ještě není zprovozněna.</translation>
     </message>
     <message>
         <location filename="../qml/pages/VaultLoginsPage.qml" line="53"/>
