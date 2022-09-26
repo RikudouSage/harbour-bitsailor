@@ -124,8 +124,7 @@ Page {
 
                     function remove() {
                         remorseDelete(function() {
-                            // todo handle removal from cache
-                            cli.deleteItem(item.id);
+                            cli.deleteItemInBackground(item.id);
                             visible = false;
                         });
                     }

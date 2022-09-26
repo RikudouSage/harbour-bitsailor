@@ -53,6 +53,7 @@ public:
     Q_INVOKABLE void getIdentities();
     Q_INVOKABLE void syncVault();
     Q_INVOKABLE void deleteItem(QString id);
+    Q_INVOKABLE void deleteItemInBackground(QString id);
 
 signals:
     void loginStatusResolved(bool loggedIn);

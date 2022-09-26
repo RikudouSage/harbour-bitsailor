@@ -82,7 +82,7 @@ void BitwardenCli::lockVaultInBackground()
     process->setWorkingDirectory(getDataPath());
     process->setStandardInputFile(QProcess::nullDevice());
     process->start(bw, {"lock"});
-    process->deleteLater();
+    connect(process, static_cast<void (QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), process, &QProcess::deleteLater);
 }
 
 void BitwardenCli::getItems()
@@ -128,6 +128,35 @@ void BitwardenCli::syncVault()
 void BitwardenCli::deleteItem(QString id)
 {
     startProcess({"delete", "item", id, "--session", secretsHandler->getSessionId()}, DeleteItem);
+}
+
+void BitwardenCli::deleteItemInBackground(QString id)
+{
+    qDebug() << "here";
+
+    QProcess* process = new QProcess(); // intentionally no parent
+    process->setWorkingDirectory(getDataPath());
+    process->setStandardInputFile(QProcess::nullDevice());
+    process->start(bw, {"delete", "item", id, "--session", secretsHandler->getSessionId()});
+    connect(process, static_cast<void (QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), process, &QProcess::deleteLater);
+
+    if (runtimeCache->has(cacheKeyItems)) {
+        auto rawJson = runtimeCache->get(cacheKeyItems);
+        auto document = QJsonDocument::fromJson(rawJson.toUtf8()).array();
+
+        QJsonArray result;
+
+        for (const auto &item : document) {
+            auto object = item.toObject();
+            if (object.value("id").toString() != id) {
+                result.append(object);
+            }
+        }
+
+        QJsonDocument newDocument(result);
+
+        runtimeCache->set(cacheKeyItems, newDocument.toJson());
+    }
 }
 
 void BitwardenCli::onFinished(int exitCode, Method method)

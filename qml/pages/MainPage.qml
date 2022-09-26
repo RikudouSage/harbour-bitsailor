@@ -209,13 +209,18 @@ Page {
 
     onStatusChanged: {
         if (status == PageStatus.Active) {
-            loaded = true;
             pageStack.pushAttached("SettingsPage.qml");
+
+            if (loaded) {
+                cli.getItems();
+            }
 
             while (doAfterLoad.length) {
                 const callable = doAfterLoad.shift();
                 callable();
             }
+
+            loaded = true;
         }
     }
 }
