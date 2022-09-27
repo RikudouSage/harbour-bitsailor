@@ -37,6 +37,13 @@ public:
         GetItem,
     };
 
+    enum TwoStepLoginMethods {
+        Authenticator = 0,
+        Email = 1,
+        YubiKey = 3,
+    };
+    Q_ENUM(TwoStepLoginMethods);
+
     enum ItemType {
         Login = 1,
         SecureNote = 2,
@@ -44,6 +51,24 @@ public:
         Identity = 4,
     };
     Q_ENUM(ItemType);
+
+    enum LoginUriMatchType {
+        Domain = 0,
+        Host = 1,
+        StartsWith = 2,
+        Exact = 3,
+        RegularExpression = 4,
+        Never = 5,
+    };
+    Q_ENUM(LoginUriMatchType);
+
+    enum FieldType {
+        FieldTypeText = 0,
+        FieldTypeHidden = 1,
+        FieldTypeBoolean = 2,
+        FieldTypeLinked = 3,
+    };
+    Q_ENUM(FieldType);
 
     Q_INVOKABLE void checkLoginStatus();
     Q_INVOKABLE void checkVaultUnlocked();

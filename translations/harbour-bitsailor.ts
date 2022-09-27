@@ -116,6 +116,22 @@
         <source>Last update: %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom fields</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked fields are not supported properly because the official documentation is missing. Will be updated in the future.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LoginCheckPage</name>

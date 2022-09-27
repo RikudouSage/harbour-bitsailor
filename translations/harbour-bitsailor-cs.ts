@@ -103,44 +103,66 @@
         <translation>Detail položky</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="63"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="62"/>
+        <source>Item info</source>
+        <translation>Informace o položce</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="67"/>
         <source>Name</source>
         <translation>Název</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="71"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="75"/>
         <source>Username</source>
         <translation>Uživatelské jméno</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="78"/>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="104"/>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="139"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="82"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="108"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="143"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="188"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="223"/>
         <source>Copied to clipboard</source>
         <translation>Zkopírováno do schránky</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="88"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="92"/>
         <source>Password</source>
         <translation>Heslo</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="111"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="151"/>
+        <source>Notes</source>
+        <translation>Poznámky</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="199"/>
+        <source>Linked fields are not supported properly because the official documentation is missing. Will be updated in the future.</source>
+        <translation>Propojená pole nejsou sprváně podporována, protože k nim chybí oficiální dokumentace. Do budoucna bude upraveno.</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="115"/>
         <source>URIs</source>
         <translation>URI</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="126"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="130"/>
         <source>Website</source>
         <translation>Web</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="126"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="130"/>
         <source>URI</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="153"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="163"/>
+        <source>Custom fields</source>
+        <translation>Vlastní pole</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="260"/>
         <source>Last update: %1</source>
         <translation>Naposled upraveno: %1</translation>
     </message>

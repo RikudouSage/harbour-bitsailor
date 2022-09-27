@@ -58,6 +58,10 @@ Page {
                 visible: errorText.length
             }
 
+            SectionHeader {
+                text: qsTr("Item info")
+            }
+
             TextField {
                 text: item.name
                 label: qsTr("Name")
@@ -109,13 +113,13 @@ Page {
 
             SectionHeader {
                 text: qsTr("URIs")
-                visible: urisRepeater.enabled
+                visible: urisRepeater.visible
             }
 
             Repeater {
                 id: urisRepeater
 
-                visible: item.type === BitwardenCli.Login && typeof item.login !== 'undefined' && typeof item.login.uris !== 'undefined'
+                visible: item.type === BitwardenCli.Login && typeof item.login !== 'undefined' && typeof item.login.uris !== 'undefined' && item.login.uris.length
                 model: item.login.uris
 
                 delegate: TextField {
@@ -138,6 +142,109 @@ Page {
                                 Clipboard.text = uri.uri;
                                 app.toaster.show(qsTr("Copied to clipboard"));
                             }
+                        }
+                    }
+                }
+            }
+
+            SectionHeader {
+                text: qsTr("Notes")
+                visible: notesTextarea.visible
+            }
+
+            TextArea {
+                id: notesTextarea
+                text: item.notes
+                visible: typeof item.notes !== 'undefined' && item.notes
+                readOnly: true
+            }
+
+            SectionHeader {
+                text: qsTr("Custom fields")
+                visible: customFieldsRepeater.visible
+            }
+
+            Repeater {
+                id: customFieldsRepeater
+
+                visible: typeof item.fields !== 'undefined' && item.fields.length
+                model: item.fields
+
+                delegate: Row {
+                    property var field: customFieldsRepeater.model[index]
+                    width: page.width
+
+                    TextField {
+                        id: fieldText
+                        visible: field.type === BitwardenCli.FieldTypeText
+                        label: field.name
+                        text: field.value
+                        readOnly: true
+
+                        rightItem: IconButton {
+                            icon.source: "image://theme/icon-m-clipboard"
+                            onClicked: {
+                                Clipboard.text = fieldText.text;
+                                app.toaster.show(qsTr("Copied to clipboard"));
+                            }
+                        }
+                    }
+
+                    TextField {
+                        id: fieldLinked
+                        visible: field.type === BitwardenCli.FieldTypeLinked
+                        label: field.name
+                        text: field.linkedId
+                        readOnly: true
+                        description: qsTr("Linked fields are not supported properly because the official documentation is missing. Will be updated in the future.")
+                    }
+
+                    TextField {
+                        property bool passwordVisible: false
+
+                        id: fieldHidden
+                        text: passwordVisible ? field.value : 'aaaa aaaa aaaa'
+                        label: field.name
+                        visible: field.type === BitwardenCli.FieldTypeHidden
+                        echoMode: passwordVisible ? TextInput.Normal : TextInput.Password
+                        readOnly: true
+
+                        rightItem: Row {
+                            IconButton {
+                                icon.source: fieldHidden.passwordVisible ? "image://theme/icon-splus-hide-password" : "image://theme/icon-splus-show-password"
+                                onClicked: {
+                                    fieldHidden.passwordVisible = !fieldHidden.passwordVisible;
+                                }
+                            }
+                            IconButton {
+                                icon.source: "image://theme/icon-m-clipboard"
+                                onClicked: {
+                                    Clipboard.text = field.value;
+                                    app.toaster.show(qsTr("Copied to clipboard"));
+                                }
+                            }
+                        }
+                    }
+
+                    Item {
+                        width: parent.width
+                        visible: field.type === BitwardenCli.FieldTypeBoolean
+                        x: Theme.horizontalPageMargin
+                        height: Math.max(fieldBooleanField.height, fieldBooleanIcon.height)
+
+                        Icon {
+                            id: fieldBooleanIcon
+                            property string iconName: field.value === 'true' ? "icon-s-accept" : "icon-s-decline"
+                            source: "image://theme/" + iconName
+                            anchors.left: parent.left
+                            anchors.leftMargin: Theme.horizontalPageMargin
+                        }
+                        TextField {
+                            id: fieldBooleanField
+                            label: field.name
+                            readOnly: true
+                            text: ' '
+                            anchors.left: parent.left
                         }
                     }
                 }
