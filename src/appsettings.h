@@ -13,6 +13,7 @@ class AppSettings : public QObject
     Q_PROPERTY(bool persistentItemCache READ persistentItemCache WRITE setPersistentItemCache NOTIFY persistentItemCacheChanged)
     Q_PROPERTY(bool fastAuth READ fastAuth WRITE setFastAuth NOTIFY fastAuthChanged)
     Q_PROPERTY(bool useSystemAuth READ useSystemAuth WRITE setUseSystemAuth NOTIFY useSystemAuthChanged)
+    Q_PROPERTY(bool useAuthorizationOnUnlocked READ useAuthorizationOnUnlocked WRITE setUseAuthorizationOnUnlocked NOTIFY useAuthorizationOnUnlockedChanged)
 public:
     explicit AppSettings(QObject *parent = nullptr);
     ~AppSettings();
@@ -27,6 +28,8 @@ public:
     void setFastAuth(bool enabled);
     bool useSystemAuth();
     void setUseSystemAuth(bool enabled);
+    bool useAuthorizationOnUnlocked();
+    void setUseAuthorizationOnUnlocked(bool enabled);
 
 signals:
     void lockOnCloseChanged();
@@ -34,6 +37,7 @@ signals:
     void persistentItemCacheChanged();
     void fastAuthChanged();
     void useSystemAuthChanged();
+    void useAuthorizationOnUnlockedChanged();
 
 private:
     void saveConfig(const QString &name, const QVariant &value);
@@ -49,6 +53,7 @@ private:
     bool prop_PersistentItemCache;
     bool prop_FastAuth;
     bool prop_UseSystemAuth;
+    bool prop_UseAuthorizationOnUnlocked;
 };
 
 #endif // APPSETTINGS_H

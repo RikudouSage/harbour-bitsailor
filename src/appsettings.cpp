@@ -9,6 +9,7 @@ AppSettings::AppSettings(QObject *parent) : QObject(parent)
     prop_PersistentItemCache = settings->value("persistentItemCache", false).toBool();
     prop_FastAuth = settings->value("fastAuth", false).toBool();
     prop_UseSystemAuth = settings->value("useSystemAuth", false).toBool();
+    prop_UseAuthorizationOnUnlocked = settings->value("useAuthorizationOnUnlocked", false).toBool();
 }
 
 AppSettings::~AppSettings()
@@ -94,6 +95,22 @@ void AppSettings::setUseSystemAuth(bool enabled)
     saveConfig("useSystemAuth", enabled);
     prop_UseSystemAuth = enabled;
     emit useSystemAuthChanged();
+}
+
+bool AppSettings::useAuthorizationOnUnlocked()
+{
+    return prop_UseAuthorizationOnUnlocked;
+}
+
+void AppSettings::setUseAuthorizationOnUnlocked(bool enabled)
+{
+    if (enabled == prop_UseAuthorizationOnUnlocked) {
+        return;
+    }
+
+    saveConfig("useAuthorizationOnUnlocked", enabled);
+    prop_UseAuthorizationOnUnlocked = enabled;
+    emit useAuthorizationOnUnlockedChanged();
 }
 
 void AppSettings::saveConfig(const QString &name, const QVariant &value)

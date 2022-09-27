@@ -47,6 +47,20 @@ Page {
         id: secrets
     }
 
+    SystemAuthChecker {
+        id: authChecker
+
+        onAuthResolved: {
+            if (!success) {
+                secrets.removeSessionId();
+                const handler = function() {
+                    pageStack.replace("LoginCheckPage.qml");
+                };
+                loaded ? handler() : doAfterLoad.push(handler);
+            }
+        }
+    }
+
     BitwardenCli {
         id: cli
 
@@ -157,6 +171,9 @@ Page {
 
             MenuItem {
                 text: qsTr("Search")
+                onClicked: {
+                    app.toaster.show(qsTr("This functionality is not implemented yet."));
+                }
             }
         }
 
@@ -222,6 +239,10 @@ Page {
 
         if (settings.fastAuth) {
             cli.checkVaultUnlocked();
+        }
+
+        if (settings.useSystemAuth && settings.useAuthorizationOnUnlocked) {
+            authChecker.checkAuth();
         }
     }
 

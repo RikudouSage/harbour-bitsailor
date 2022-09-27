@@ -57,6 +57,8 @@ Page {
         contentHeight: column.height
         visible: !busyIndicator.running
 
+        VerticalScrollDecorator {}
+
         PushUpMenu {
             MenuItem {
                 text: qsTr("Clean Up Everything");
@@ -92,12 +94,8 @@ Page {
                 width: parent.width - Theme.horizontalPageMargin * 2
             }
 
-            TextSwitch {
-                checked: settings.lockOnClose
-                text: qsTr("Lock vault when app is closed")
-                onCheckedChanged: {
-                    settings.lockOnClose = checked;
-                }
+            SectionHeader {
+                text: qsTr("General")
             }
 
             TextSwitch {
@@ -128,42 +126,19 @@ Page {
                 }
             }
 
-            TextSwitch {
-                checked: settings.persistentItemCache
-                text: qsTr("Save items in cache for faster load")
-                automaticCheck: false
-
-                onClicked: {
-                    if (!checked) {
-                        const dialog = pageStack.push("ConfirmSettingPage.qml", {
-                            description: qsTr("Enabling this option will fasten load times for items in the vault significantly but it means that your vault is dumped to disk <strong>unencrypted</strong>. While a great care has been taken to avoid dumping any sensitive information (passwords, credit card numbers etc.), bugs are possible and those sensitive informations could be leaked. Enable at your own risk."),
-                        });
-                        dialog.accepted.connect(function() {
-                            settings.persistentItemCache = true;
-                        });
-                    } else {
-                        settings.persistentItemCache = false;
-                    }
-                }
+            SectionHeader {
+                text: qsTr("Security")
             }
 
             TextSwitch {
-                checked: settings.fastAuth
-                text: qsTr("Fast authentication")
-                automaticCheck: false
+                id: lockOnCloseSetting
+                checked: settings.lockOnClose
+                text: qsTr("Lock vault when app is closed")
 
-                onClicked: {
-                    const description = qsTr("When this option is enabled, authentication is skipped and you are assumed to be logged in regardless of the actual status. What this means in practice is that logged in check is postponed until you're on the main page and is done in the background, this gives anyone opening this app a few seconds to look around before transfering you to the login/unlock screen. This should be ok because all vault operations fail when you're not logged in. <strong>Warning</strong>: if used in combination with the setting <strong>'%1'</strong> some data may be leaked to whoever opens this app. Use at your own risk.").arg(eagerLoadingSetting.text);
-
-                    if (!checked) {
-                        const dialog = pageStack.push("ConfirmSettingPage.qml", {
-                            description: description,
-                        });
-                        dialog.accepted.connect(function() {
-                            settings.fastAuth = true;
-                        });
-                    } else {
-                        settings.fastAuth = false;
+                onCheckedChanged: {
+                    settings.lockOnClose = checked;
+                    if (checked) {
+                        settings.useAuthorizationOnUnlocked = false;
                     }
                 }
             }
@@ -208,6 +183,7 @@ Page {
 
                 function disable() {
                     settings.useSystemAuth = false;
+                    settings.useAuthorizationOnUnlocked = false;
                     if (!pinSetting.checked) {
                         secrets.removePassword();
                     }
@@ -242,6 +218,76 @@ Page {
                         disable();
                     }
                 }
+            }
+
+            SectionHeader {
+                text: qsTr("Performance")
+            }
+
+            TextSwitch {
+                checked: settings.persistentItemCache
+                text: qsTr("Save items in cache for faster load")
+                automaticCheck: false
+
+                onClicked: {
+                    if (!checked) {
+                        const dialog = pageStack.push("ConfirmSettingPage.qml", {
+                            description: qsTr("Enabling this option will fasten load times for items in the vault significantly but it means that your vault is dumped to disk <strong>unencrypted</strong>. While a great care has been taken to avoid dumping any sensitive information (passwords, credit card numbers etc.), bugs are possible and those sensitive informations could be leaked. Enable at your own risk."),
+                        });
+                        dialog.accepted.connect(function() {
+                            settings.persistentItemCache = true;
+                        });
+                    } else {
+                        settings.persistentItemCache = false;
+                    }
+                }
+            }
+
+            TextSwitch {
+                checked: settings.fastAuth
+                text: qsTr("Fast authentication")
+                automaticCheck: false
+
+                onClicked: {
+                    const description = qsTr("When this option is enabled, authentication is skipped and you are assumed to be logged in regardless of the actual status. What this means in practice is that logged in check is postponed until you're on the main page and is done in the background, this gives anyone opening this app a few seconds to look around before transfering you to the login/unlock screen. This should be ok because all vault operations fail when you're not logged in. <strong>Warning</strong>: if used in combination with the setting <strong>'%1'</strong> some data may be leaked to whoever opens this app. Use at your own risk.").arg(eagerLoadingSetting.text);
+
+                    if (!checked) {
+                        const dialog = pageStack.push("ConfirmSettingPage.qml", {
+                            description: description,
+                        });
+                        dialog.accepted.connect(function() {
+                            settings.fastAuth = true;
+                        });
+                    } else {
+                        settings.fastAuth = false;
+                    }
+                }
+            }
+
+            TextSwitch {
+                enabled: settings.useSystemAuth
+                checked: settings.useAuthorizationOnUnlocked
+                automaticCheck: false
+                text: qsTr("Require OS authorization on unlocked vault")
+
+                onClicked: {
+                    if (!checked) {
+                        const dialog = pageStack.push("ConfirmSettingPage.qml", {
+                            description: qsTr("By enabling this option you will force the app to authorize you using OS authorization even when the vault is unlocked. If the authorization fails your vault will be locked and you will be redirected to unlock vault screen. This can speed up getting your vault data significantly. <strong>Warning</strong>: Disables '%1'").arg(lockOnCloseSetting.text),
+                        });
+                        dialog.accepted.connect(function() {
+                            settings.useAuthorizationOnUnlocked = true;
+                            lockOnCloseSetting.checked = false;
+                        });
+                    } else {
+                        settings.useAuthorizationOnUnlocked = false;
+                    }
+                }
+            }
+
+            Item {
+                width: parent.width
+                height: Theme.paddingMedium
             }
         }
     }
