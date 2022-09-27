@@ -34,7 +34,7 @@ Item {
     }
 
     Rectangle {
-        color: Theme.darkSecondaryColor
+        color: "black"
         width: textLabel.width + Theme.horizontalPageMargin * 2
         x: Screen.width / 2 - width / 2
         y: Screen.height - Theme.itemSizeMedium
