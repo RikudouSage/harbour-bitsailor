@@ -29,9 +29,13 @@ SOURCES += src/harbour-bitsailor.cpp \
 polkit.path = /usr/share/polkit-1/actions
 polkit.files = polkit/cz.chrastecky.bitsailor.policy
 
-INSTALLS += polkit
+bw-logo.path = /usr/share/harbour-bitsailor
+bw-logo.files = icons/bw/logo-black-white.png
+
+INSTALLS += polkit bw-logo
 
 DISTFILES += qml/harbour-bitsailor.qml \
+    icons/bw/logo-black-white.png \
     polkit/cz.chrastecky.bitsailor.policy \
     qml/components/MainPageItem.qml \
     qml/components/Toaster.qml \

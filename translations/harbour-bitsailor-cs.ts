@@ -68,6 +68,14 @@
     </message>
 </context>
 <context>
+    <name>CoverPage</name>
+    <message>
+        <location filename="../qml/cover/CoverPage.qml" line="12"/>
+        <source>BitSailor</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>InstallBitwardenCliPage</name>
     <message>
         <location filename="../qml/pages/InstallBitwardenCliPage.qml" line="39"/>
