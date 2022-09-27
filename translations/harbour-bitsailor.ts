@@ -63,6 +63,25 @@
     </message>
 </context>
 <context>
+    <name>CoverPageLogin</name>
+    <message>
+        <source>BitSailor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>InstallBitwardenCliPage</name>
     <message>
         <source>Installing Bitwarden CLI</source>

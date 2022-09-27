@@ -40,6 +40,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/components/MainPageItem.qml \
     qml/components/Toaster.qml \
     qml/cover/CoverPage.qml \
+    qml/cover/CoverPageLogin.qml \
     qml/helpers.js \
     qml/pages/CleanupPage.qml \
     qml/pages/ConfirmSettingPage.qml \

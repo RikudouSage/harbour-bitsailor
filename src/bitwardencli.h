@@ -45,6 +45,7 @@ public:
     Q_ENUM(TwoStepLoginMethods);
 
     enum ItemType {
+        NoType = -1,
         Login = 1,
         SecureNote = 2,
         Card = 3,

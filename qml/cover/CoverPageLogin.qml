@@ -3,8 +3,10 @@ import Sailfish.Silica 1.0
 
 import cz.chrastecky.bitsailor 1.0
 
+// todo find out how to hide cover actions to avoid duplicating stuff
 CoverBackground {
     property bool isLocked: !secrets.hasSessionId()
+    property var item: {type: BitwardenCli.NoType}
 
     SecretsHandler {
         id: secrets
@@ -27,7 +29,7 @@ CoverBackground {
     Column {
         anchors.centerIn: parent
         width: parent.width
-        spacing: Theme.paddingLarge
+        spacing: Theme.paddingMedium
 
         Label {
             text: qsTr("BitSailor")
@@ -38,6 +40,27 @@ CoverBackground {
             source: "file:///usr/share/harbour-bitsailor/icons/logo-black-white.png" // todo find out if some standard path exists for this
             anchors.horizontalCenter: parent.horizontalCenter
             sourceSize: "100x100"
+        }
+        Column {
+            width: parent.width
+            Label {
+                visible: item.type !== BitwardenCli.NoType && item.name
+                text: qsTr("Item: %1").arg(item.name)
+                font.pixelSize: Theme.fontSizeExtraSmall
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+            Label {
+                visible: item.type === BitwardenCli.Login && item.username
+                text: qsTr("Username: %1").arg(item.username)
+                font.pixelSize: Theme.fontSizeExtraSmall
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+            Label {
+                visible: item.type === BitwardenCli.Login && item.password
+                text: qsTr("Password: %1").arg("••••••")
+                font.pixelSize: Theme.fontSizeExtraSmall
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
         }
     }
 
@@ -54,6 +77,19 @@ CoverBackground {
                     iconSource = "file:///usr/share/harbour-bitsailor/icons/loader.gif"
                     cli.lockVault();
                 }
+            }
+        }
+
+        CoverAction {
+            iconSource: "image://theme/icon-cover-people" // icon-m-contact
+            onTriggered: {
+                Clipboard.text = item.username || ''
+            }
+        }
+        CoverAction {
+            iconSource: "image://theme/icon-m-keys"
+            onTriggered: {
+                Clipboard.text = item.password || ''
             }
         }
     }
@@ -77,5 +113,9 @@ CoverBackground {
         onTriggered: {
             cli.checkVaultUnlocked();
         }
+    }
+
+    onIsLockedChanged: {
+        item = {type: BitwardenCli.NoType}
     }
 }

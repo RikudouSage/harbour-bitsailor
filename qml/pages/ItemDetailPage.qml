@@ -19,6 +19,17 @@ Page {
         onItemFetched: {
             loaded = true;
             page.item = item;
+
+            // todo differentiate once more types are available
+            const cover = Qt.createComponent("../cover/CoverPageLogin.qml").createObject(app, {
+                item: {
+                    type: item.type,
+                    name: item.name,
+                    username: typeof item.login !== 'undefined' && typeof item.login.username !== 'undefined' ? item.login.username : null,
+                    password: typeof item.login !== 'undefined' && typeof item.login.username !== 'undefined' ? item.login.password : null,
+                }
+            });
+            app.cover = cover;
         }
 
         onItemFetchingFailed: {
@@ -269,10 +280,8 @@ Page {
             }
 
             pageLoaded = true;
-
-            //app.cover = Qt.resolvedUrl("../cover/ItemDetailCoverPage.qml");
         } else {
-            //app.cover = Qt.resolvedUrl("../cover/CoverPage.qml");
+            app.cover = Qt.resolvedUrl("../cover/CoverPage.qml");
         }
     }
 }
