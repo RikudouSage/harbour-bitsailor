@@ -27,37 +27,56 @@ CoverBackground {
     }
 
     Column {
-        anchors.centerIn: parent
+        y: Theme.horizontalPageMargin
+        anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width
         spacing: Theme.paddingMedium
 
-        Label {
-            text: qsTr("BitSailor")
-            id: label
-            anchors.horizontalCenter: parent.horizontalCenter
-        }
         Icon {
             source: "file:///usr/share/harbour-bitsailor/icons/logo-black-white.png" // todo find out if some standard path exists for this
             anchors.horizontalCenter: parent.horizontalCenter
-            sourceSize: "100x100"
+            sourceSize: "80x80"
         }
         Column {
             width: parent.width
             Label {
                 visible: item.type !== BitwardenCli.NoType && item.name
-                text: qsTr("Item: %1").arg(item.name)
+                text: qsTr("Item") + ":"
+                font.pixelSize: Theme.fontSizeExtraSmall
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.bold: true
+            }
+            Label {
+                visible: item.type !== BitwardenCli.NoType && item.name
+                text: item.name
                 font.pixelSize: Theme.fontSizeExtraSmall
                 anchors.horizontalCenter: parent.horizontalCenter
             }
+
             Label {
-                visible: item.type === BitwardenCli.Login && item.username
-                text: qsTr("Username: %1").arg(item.username)
+                visible: item.type !== BitwardenCli.NoType && item.username
+                text: qsTr("Username") + ":"
+                font.pixelSize: Theme.fontSizeExtraSmall
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.bold: true
+            }
+            Label {
+                visible: item.type !== BitwardenCli.NoType && item.username
+                text: item.username
                 font.pixelSize: Theme.fontSizeExtraSmall
                 anchors.horizontalCenter: parent.horizontalCenter
             }
+
             Label {
-                visible: item.type === BitwardenCli.Login && item.password
-                text: qsTr("Password: %1").arg("••••••")
+                visible: item.type !== BitwardenCli.NoType && item.password
+                text: qsTr("Password") + ":"
+                font.pixelSize: Theme.fontSizeExtraSmall
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.bold: true
+            }
+            Label {
+                visible: item.type !== BitwardenCli.NoType && item.username
+                text: "••••••"
                 font.pixelSize: Theme.fontSizeExtraSmall
                 anchors.horizontalCenter: parent.horizontalCenter
             }

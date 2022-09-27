@@ -78,24 +78,19 @@
 <context>
     <name>CoverPageLogin</name>
     <message>
-        <location filename="../qml/cover/CoverPageLogin.qml" line="35"/>
-        <source>BitSailor</source>
-        <translation></translation>
+        <location filename="../qml/cover/CoverPageLogin.qml" line="44"/>
+        <source>Item</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/cover/CoverPageLogin.qml" line="48"/>
-        <source>Item: %1</source>
-        <translation>Položka: %1</translation>
+        <location filename="../qml/cover/CoverPageLogin.qml" line="58"/>
+        <source>Username</source>
+        <translation type="unfinished">Uživatelské jméno</translation>
     </message>
     <message>
-        <location filename="../qml/cover/CoverPageLogin.qml" line="54"/>
-        <source>Username: %1</source>
-        <translation>Uživ. jm.: %1</translation>
-    </message>
-    <message>
-        <location filename="../qml/cover/CoverPageLogin.qml" line="60"/>
-        <source>Password: %1</source>
-        <translation>Heslo: %1</translation>
+        <location filename="../qml/cover/CoverPageLogin.qml" line="72"/>
+        <source>Password</source>
+        <translation type="unfinished">Heslo</translation>
     </message>
 </context>
 <context>
@@ -674,11 +669,16 @@
     </message>
     <message>
         <location filename="../qml/pages/UnlockVaultPage.qml" line="181"/>
+        <source>Try again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/UnlockVaultPage.qml" line="188"/>
         <source>Reset OS Authorization</source>
         <translation>Reset autorizace OS</translation>
     </message>
     <message>
-        <location filename="../qml/pages/UnlockVaultPage.qml" line="184"/>
+        <location filename="../qml/pages/UnlockVaultPage.qml" line="191"/>
         <source>OS authorization will be disabled and you can unlock the vault using your password. Once you unlock your vault you can enable OS authorization again.</source>
         <translation>Autorizace vůči OS bude zakázána a vy můžete odemknout trezor pomocí hesla. Jakmile odemknete trezor, můžete znovu povolit autorizaci vůči OS.</translation>
     </message>

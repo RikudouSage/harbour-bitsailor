@@ -65,19 +65,15 @@
 <context>
     <name>CoverPageLogin</name>
     <message>
-        <source>BitSailor</source>
+        <source>Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Item: %1</source>
+        <source>Username</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Username: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Password: %1</source>
+        <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -548,6 +544,10 @@
     </message>
     <message>
         <source>OS authorization failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Try again</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
