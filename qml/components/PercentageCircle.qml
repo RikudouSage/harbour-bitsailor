@@ -5,8 +5,6 @@ import QtQuick 2.0
 import QtQml 2.2
 import Sailfish.Silica 1.0
 
-import "../helpers.js" as Helpers
-
 Item {
     id: root
 
@@ -64,8 +62,6 @@ Item {
             if (current === 0) {
                 current = total;
             }
-
-            console.log(current, Helpers.totpRemainingTime(30));
         }
     }
 

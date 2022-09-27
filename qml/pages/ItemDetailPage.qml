@@ -154,7 +154,7 @@ Page {
                     IconButton {
                         icon.source: "image://theme/icon-m-clipboard"
                         onClicked: {
-                            Clipboard.text = totpField.text;
+                            Clipboard.text = Helpers.getTotp(item.login.totp);
                             app.toaster.show(qsTr("Copied to clipboard"));
                         }
                     }
