@@ -259,60 +259,61 @@
         <translation>Hledat</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="179"/>
+        <location filename="../qml/pages/MainPage.qml" line="182"/>
         <source>Generate Password</source>
         <translation>Vygenerovat heslo</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="196"/>
+        <location filename="../qml/pages/MainPage.qml" line="199"/>
         <source>Logins</source>
         <translation>Přihlášení</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="196"/>
+        <location filename="../qml/pages/MainPage.qml" line="199"/>
         <source>Logins (%1)</source>
         <translation>Přihlášení (%1)</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="203"/>
+        <location filename="../qml/pages/MainPage.qml" line="206"/>
         <source>Cards</source>
         <translation>Karty</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="203"/>
+        <location filename="../qml/pages/MainPage.qml" line="206"/>
         <source>Cards (%1)</source>
         <translation>Karty (%1)</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="181"/>
-        <location filename="../qml/pages/MainPage.qml" line="205"/>
-        <location filename="../qml/pages/MainPage.qml" line="212"/>
-        <location filename="../qml/pages/MainPage.qml" line="219"/>
+        <location filename="../qml/pages/MainPage.qml" line="175"/>
+        <location filename="../qml/pages/MainPage.qml" line="184"/>
+        <location filename="../qml/pages/MainPage.qml" line="208"/>
+        <location filename="../qml/pages/MainPage.qml" line="215"/>
+        <location filename="../qml/pages/MainPage.qml" line="222"/>
         <source>This functionality is not implemented yet.</source>
         <translation>Tato funkcionalita ještě není zprovozněna.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="192"/>
+        <location filename="../qml/pages/MainPage.qml" line="195"/>
         <source>BitSailor</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="210"/>
+        <location filename="../qml/pages/MainPage.qml" line="213"/>
         <source>Notes</source>
         <translation>Poznámky</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="210"/>
+        <location filename="../qml/pages/MainPage.qml" line="213"/>
         <source>Notes (%1)</source>
         <translation>Poznámky (%1)</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="217"/>
+        <location filename="../qml/pages/MainPage.qml" line="220"/>
         <source>Identities</source>
         <translation>Identity</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="217"/>
+        <location filename="../qml/pages/MainPage.qml" line="220"/>
         <source>Identities (%1)</source>
         <translation>Identity (%1)</translation>
     </message>
