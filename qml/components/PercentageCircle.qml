@@ -24,7 +24,7 @@ Item {
     property real arcOffset: 0
     property bool showBackground: false
     property real lineWidth: Theme.paddingSmall / 3
-    property color colorCircle: current < 5 ? nearEndColor : okColor
+    property color colorCircle: current / total <= 0.25 ? nearEndColor : okColor
     property string colorBackground: "#779933"
 
     property alias beginAnimation: animationArcBegin.enabled
