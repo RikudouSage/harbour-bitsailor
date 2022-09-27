@@ -178,6 +178,13 @@ Dialog {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 Button {
+                    text: qsTr("Try again")
+                    onClicked: {
+                        systemAuthChecker.checkAuth();
+                    }
+                }
+
+                Button {
                     text: qsTr("Reset OS Authorization")
                     onClicked: {
                         const dialog = pageStack.push("ResetAuthStylePage.qml", {
