@@ -80,17 +80,17 @@
     <message>
         <location filename="../qml/cover/CoverPageLogin.qml" line="44"/>
         <source>Item</source>
-        <translation type="unfinished"></translation>
+        <translation>Název</translation>
     </message>
     <message>
         <location filename="../qml/cover/CoverPageLogin.qml" line="58"/>
         <source>Username</source>
-        <translation type="unfinished">Uživatelské jméno</translation>
+        <translation>Uživ. jm.</translation>
     </message>
     <message>
         <location filename="../qml/cover/CoverPageLogin.qml" line="72"/>
         <source>Password</source>
-        <translation type="unfinished">Heslo</translation>
+        <translation>Heslo</translation>
     </message>
 </context>
 <context>
@@ -670,7 +670,7 @@
     <message>
         <location filename="../qml/pages/UnlockVaultPage.qml" line="181"/>
         <source>Try again</source>
-        <translation type="unfinished"></translation>
+        <translation>Znovu</translation>
     </message>
     <message>
         <location filename="../qml/pages/UnlockVaultPage.qml" line="188"/>
