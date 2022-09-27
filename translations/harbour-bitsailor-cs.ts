@@ -70,9 +70,9 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <location filename="../qml/cover/CoverPage.qml" line="12"/>
+        <location filename="../qml/cover/CoverPage.qml" line="33"/>
         <source>BitSailor</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>

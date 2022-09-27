@@ -68,6 +68,6 @@ desktop-file-install --delete-original       \
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
-/usr/share/polkit-1/actions/cz.chrastecky.bitsailor.policy
+%{_datadir}/polkit-1/actions/cz.chrastecky.bitsailor.policy
 # >> files
 # << files

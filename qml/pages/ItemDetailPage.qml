@@ -269,6 +269,10 @@ Page {
             }
 
             pageLoaded = true;
+
+            //app.cover = Qt.resolvedUrl("../cover/ItemDetailCoverPage.qml");
+        } else {
+            //app.cover = Qt.resolvedUrl("../cover/CoverPage.qml");
         }
     }
 }
