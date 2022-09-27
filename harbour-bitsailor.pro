@@ -38,9 +38,11 @@ DISTFILES += qml/harbour-bitsailor.qml \
     icons/bw/* \
     polkit/cz.chrastecky.bitsailor.policy \
     qml/components/MainPageItem.qml \
+    qml/components/PercentageCircle.qml \
     qml/components/Toaster.qml \
     qml/cover/CoverPage.qml \
     qml/cover/CoverPageLogin.qml \
+    qml/crypto.js \
     qml/helpers.js \
     qml/pages/CleanupPage.qml \
     qml/pages/ConfirmSettingPage.qml \
@@ -59,6 +61,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/pages/UnknownErrorOccuredPage.qml \
     qml/pages/UnlockVaultPage.qml \
     qml/pages/VaultLoginsPage.qml \
+    qml/sha.js \
     rpm/harbour-bitsailor.spec \
     rpm/harbour-bitsailor.yaml \
     translations/*.ts \

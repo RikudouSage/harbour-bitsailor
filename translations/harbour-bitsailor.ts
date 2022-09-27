@@ -95,11 +95,19 @@
 <context>
     <name>ItemDetailPage</name>
     <message>
-        <source>Item detail</source>
+        <source>Failed loading the item, please try again later or sync your vault and check that it wasn&apos;t deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Loading...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item detail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -111,15 +119,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Copied to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Failed loading the item, please try again later or sync your vault and check that it wasn&apos;t deleted.</source>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Verification Code (TOTP)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -127,23 +135,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>URI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Website</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Last update: %1</source>
+        <source>URI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Notes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -152,6 +152,10 @@
     </message>
     <message>
         <source>Linked fields are not supported properly because the official documentation is missing. Will be updated in the future.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Last update: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

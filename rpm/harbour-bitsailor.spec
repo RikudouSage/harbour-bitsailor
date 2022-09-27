@@ -9,7 +9,7 @@ Name:       harbour-bitsailor
 # << macros
 
 Summary:    BitSailor
-Version:    0.1.3
+Version:    0.1.4
 Release:    1
 Group:      Applications/Productivity
 License:    MIT

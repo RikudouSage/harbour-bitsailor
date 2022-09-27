@@ -3,6 +3,9 @@ import Sailfish.Silica 1.0
 
 import cz.chrastecky.bitsailor 1.0
 
+import "../helpers.js" as Helpers
+import "../components" as Components
+
 Page {
     property string itemId
     property var item: {type: -1}
@@ -116,6 +119,42 @@ Page {
                         icon.source: "image://theme/icon-m-clipboard"
                         onClicked: {
                             Clipboard.text = item.login.password;
+                            app.toaster.show(qsTr("Copied to clipboard"));
+                        }
+                    }
+                }
+            }
+
+            TextField {
+                property bool isActive: typeof item.login !== 'undefined' && typeof item.login.totp !== 'undefined' && item.login.totp
+
+                id: totpField
+                text: isActive ? Helpers.getTotp(item.login.totp).match(/.{1,3}/g).join(' ') : ''
+                label: qsTr("Verification Code (TOTP)")
+                visible: isActive
+                readOnly: true
+
+                rightItem: Row {
+                    Components.PercentageCircle {
+                        id: circle
+                        y: height
+
+                        Component.onCompleted: {
+                            start(Helpers.totpRemainingTime(30), 30);
+                        }
+
+                        onFinished: {
+                            if (totpField.isActive) {
+                                totpField.text = Helpers.getTotp(item.login.totp).match(/.{1,3}/g).join(' ');
+                                start(Helpers.totpRemainingTime(30), 30);
+                            }
+                        }
+                    }
+
+                    IconButton {
+                        icon.source: "image://theme/icon-m-clipboard"
+                        onClicked: {
+                            Clipboard.text = totpField.text;
                             app.toaster.show(qsTr("Copied to clipboard"));
                         }
                     }
@@ -271,6 +310,13 @@ Page {
                 text: qsTr("Last update: %1").arg(new Date(item.revisionDate).toLocaleString(Qt.locale(), Locale.ShortFormat))
             }
         }
+    }
+
+    Timer {
+        id: totpTimer
+        running: false
+        repeat: true
+        interval: 30000
     }
 
     onStatusChanged: {

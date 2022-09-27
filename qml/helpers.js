@@ -1,5 +1,15 @@
+.import './crypto.js' as Crypto
+
 function xor(a, b) {
     return (a && !b) || (b && !a);
+}
+
+function getTotp(secret) {
+    return Crypto.calcOTP(secret, "TOTP", 6, 0);
+}
+
+function totpRemainingTime(interval) {
+    return Math.round(interval - ((Date.now() / 1000) % interval));
 }
 
 // todo: rename? the name may be misleading because it doesn't filter out data but instead constructs a new structure
