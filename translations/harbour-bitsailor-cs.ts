@@ -361,7 +361,6 @@
         <translation>Karty (%1)</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="175"/>
         <location filename="../qml/pages/MainPage.qml" line="184"/>
         <location filename="../qml/pages/MainPage.qml" line="208"/>
         <location filename="../qml/pages/MainPage.qml" line="215"/>
@@ -725,16 +724,6 @@
         <translation>Nastala chyba při načítání položek. Zkuste to prosím později.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="46"/>
-        <source>Add login</source>
-        <translation>Přidat přihlášení</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="48"/>
-        <source>This functionality is not implemented yet.</source>
-        <translation>Tato funkcionalita ještě není zprovozněna.</translation>
-    </message>
-    <message>
         <location filename="../qml/pages/VaultLoginsPage.qml" line="53"/>
         <source>Hide search</source>
         <translation>Skrýt vyhledávání</translation>
@@ -751,7 +740,7 @@
         <translation>Přihlášení</translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="164"/>
+        <location filename="../qml/pages/VaultLoginsPage.qml" line="165"/>
         <source>Remove</source>
         <translation>Odstranit</translation>
     </message>

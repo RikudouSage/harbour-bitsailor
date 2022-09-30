@@ -585,10 +585,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add login</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Hide search</source>
         <translation type="unfinished"></translation>
     </message>
@@ -602,10 +598,6 @@
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This functionality is not implemented yet.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -172,7 +172,7 @@ Page {
             MenuItem {
                 text: qsTr("Search")
                 onClicked: {
-                    app.toaster.show(qsTr("This functionality is not implemented yet."));
+                    pageStack.push("VaultLoginsPage.qml", {searchActive: true});
                 }
             }
         }

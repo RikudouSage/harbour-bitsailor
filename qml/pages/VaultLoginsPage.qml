@@ -42,12 +42,12 @@ Page {
         VerticalScrollDecorator {}
 
         PullDownMenu {
-            MenuItem {
+            /*MenuItem {
                 text: qsTr("Add login")
                 onClicked: {
                     app.toaster.show(qsTr("This functionality is not implemented yet."));
                 }
-            }
+            }*/
 
             MenuItem {
                 text: searchActive ? qsTr("Hide search") : qsTr("Search")
@@ -84,6 +84,7 @@ Page {
                 width: parent.width - Theme.horizontalPageMargin * 2
                 placeholderText: qsTr("Search")
                 active: searchActive
+                focus: active
 
                 onTextChanged: {
                     if (!text) {
