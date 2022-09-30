@@ -171,11 +171,34 @@ void BitwardenCli::getItem(QString id)
     startProcess({"get", "item", id, "--session", secretsHandler->getSessionId()}, GetItem);
 }
 
+void BitwardenCli::generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, int length)
+{
+    auto args = QStringList() << "generate";
+    args << "--length" << QString::number(length);
+    if (lowercase) {
+        args << "--lowercase";
+    }
+    if (uppercase) {
+        args << "--uppercase";
+    }
+    if (numbers) {
+        args << "--number";
+    }
+    if (special) {
+        args << "--special";
+    }
+
+    startProcess(args, GeneratePassword);
+}
+
 void BitwardenCli::onFinished(int exitCode, Method method)
 {
     auto process = processes.take(method);
 
     switch (method) {
+    case BitwardenCli::GeneratePassword:
+        emit passwordGenerated(process->readAllStandardOutput());
+        break;
     case BitwardenCli::GetItem:
         if (exitCode != 0) {
             emit itemFetchingFailed();

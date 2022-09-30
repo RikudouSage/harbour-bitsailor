@@ -117,6 +117,59 @@
     </message>
 </context>
 <context>
+    <name>GeneratePasswordPage</name>
+    <message>
+        <location filename="../qml/pages/GeneratePasswordPage.qml" line="23"/>
+        <source>Generating</source>
+        <translation>Generování</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/GeneratePasswordPage.qml" line="43"/>
+        <source>Generate new password</source>
+        <translation>Vygenerovat nové heslo</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/GeneratePasswordPage.qml" line="57"/>
+        <source>Generate Password</source>
+        <translation>Vygenerovat heslo</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/GeneratePasswordPage.qml" line="63"/>
+        <source>Password</source>
+        <translation>Heslo</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/GeneratePasswordPage.qml" line="70"/>
+        <source>Copied to clipboard</source>
+        <translation>Zkopírováno do schránky</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/GeneratePasswordPage.qml" line="77"/>
+        <source>Uppercase letters</source>
+        <translation>Velká písmena</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/GeneratePasswordPage.qml" line="87"/>
+        <source>Lowercase letters</source>
+        <translation>Malá písmena</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/GeneratePasswordPage.qml" line="97"/>
+        <source>Numbers</source>
+        <translation>Číslice</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/GeneratePasswordPage.qml" line="107"/>
+        <source>Special characters</source>
+        <translation>Speciální znaky</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/GeneratePasswordPage.qml" line="121"/>
+        <source>Password length</source>
+        <translation>Délka hesla</translation>
+    </message>
+</context>
+<context>
     <name>InstallBitwardenCliPage</name>
     <message>
         <location filename="../qml/pages/InstallBitwardenCliPage.qml" line="39"/>
@@ -214,7 +267,7 @@
     <message>
         <location filename="../qml/pages/ItemDetailPage.qml" line="263"/>
         <source>Linked fields are not supported properly because the official documentation is missing. Will be updated in the future.</source>
-        <translation>Propojená pole nejsou sprváně podporována, protože k nim chybí oficiální dokumentace. Do budoucna bude upraveno.</translation>
+        <translation type="unfinished">Propojená pole nejsou správně podporována, protože k nim chybí oficiální dokumentace. Do budoucna bude upraveno.</translation>
     </message>
     <message>
         <location filename="../qml/pages/ItemDetailPage.qml" line="324"/>
@@ -361,7 +414,6 @@
         <translation>Karty (%1)</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="184"/>
         <location filename="../qml/pages/MainPage.qml" line="208"/>
         <location filename="../qml/pages/MainPage.qml" line="215"/>
         <location filename="../qml/pages/MainPage.qml" line="222"/>

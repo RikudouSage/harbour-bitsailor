@@ -47,6 +47,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/helpers.js \
     qml/pages/CleanupPage.qml \
     qml/pages/ConfirmSettingPage.qml \
+    qml/pages/GeneratePasswordPage.qml \
     qml/pages/InstallBitwardenCliPage.qml \
     qml/pages/ItemDetailPage.qml \
     qml/pages/LoginCheckPage.qml \

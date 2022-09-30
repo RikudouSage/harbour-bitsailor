@@ -181,7 +181,7 @@ Page {
             MenuItem {
                 text: qsTr("Generate Password")
                 onClicked: {
-                    app.toaster.show(qsTr("This functionality is not implemented yet."));
+                    pageStack.push("GeneratePasswordPage.qml");
                 }
             }
         }

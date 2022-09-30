@@ -97,6 +97,49 @@
     </message>
 </context>
 <context>
+    <name>GeneratePasswordPage</name>
+    <message>
+        <source>Generating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generate Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copied to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generate new password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uppercase letters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lowercase letters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Special characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password length</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>InstallBitwardenCliPage</name>
     <message>
         <source>Installing Bitwarden CLI</source>
