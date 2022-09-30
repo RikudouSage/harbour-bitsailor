@@ -78,6 +78,25 @@
     </message>
 </context>
 <context>
+    <name>CoverPageLoginTotp</name>
+    <message>
+        <source>Item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TOTP</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>InstallBitwardenCliPage</name>
     <message>
         <source>Installing Bitwarden CLI</source>

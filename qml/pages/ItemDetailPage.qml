@@ -8,7 +8,7 @@ import "../components" as Components
 
 Page {
     property string itemId
-    property var item: {type: -1}
+    property var item: {type: BitwardenCli.NoType}
     property bool loaded: false
     property bool pageLoaded: false
     property string errorText
@@ -16,23 +16,36 @@ Page {
     id: page
     allowedOrientations: Orientation.All
 
+    function createCover() {
+        var pageName;
+
+        if (item.type === BitwardenCli.Login) {
+            pageName = 'CoverPageLogin.qml';
+            if (item.login !== 'undefined' && item.login.totp) {
+                pageName = 'CoverPageLoginTotp.qml';
+            }
+        }
+
+        // todo differentiate once more types are available
+        const cover = Qt.createComponent("../cover/" + pageName).createObject(app, {
+            item: {
+                type: item.type,
+                name: item.name,
+                username: typeof item.login !== 'undefined' && typeof item.login.username !== 'undefined' ? item.login.username : null,
+                password: typeof item.login !== 'undefined' && typeof item.login.username !== 'undefined' ? item.login.password : null,
+                totp: typeof item.login !== 'undefined' && item.login.totp ? Helpers.getTotp(item.login.totp) : ''
+            }
+        });
+        app.cover = cover;
+    }
+
     BitwardenCli {
         id: cli
 
         onItemFetched: {
-            loaded = true;
             page.item = item;
-
-            // todo differentiate once more types are available
-            const cover = Qt.createComponent("../cover/CoverPageLogin.qml").createObject(app, {
-                item: {
-                    type: item.type,
-                    name: item.name,
-                    username: typeof item.login !== 'undefined' && typeof item.login.username !== 'undefined' ? item.login.username : null,
-                    password: typeof item.login !== 'undefined' && typeof item.login.username !== 'undefined' ? item.login.password : null,
-                }
-            });
-            app.cover = cover;
+            loaded = true;
+            createCover();
         }
 
         onItemFetchingFailed: {
@@ -77,15 +90,15 @@ Page {
             }
 
             TextField {
-                text: item.name
+                text: visible ? item.name : ''
                 label: qsTr("Name")
                 readOnly: true
-                visible: item.type !== -1
+                visible: item.type !== BitwardenCli.NoType
             }
 
             TextField {
                 id: usernameField
-                text: item.login.username
+                text: visible ? item.login.username : ''
                 label: qsTr("Username")
                 visible: item.type === BitwardenCli.Login && typeof item.login !== 'undefined' && item.login.username
                 readOnly: true
@@ -129,7 +142,7 @@ Page {
                 property bool isActive: typeof item.login !== 'undefined' && typeof item.login.totp !== 'undefined' && item.login.totp
 
                 id: totpField
-                text: isActive ? Helpers.getTotp(item.login.totp).match(/.{1,3}/g).join(' ') : ''
+                text: loaded && isActive ? Helpers.getTotp(item.login.totp).match(/.{1,3}/g).join(' ') : ''
                 label: qsTr("Verification Code (TOTP)")
                 visible: isActive
                 readOnly: true
@@ -146,7 +159,8 @@ Page {
                         onFinished: {
                             if (totpField.isActive) {
                                 totpField.text = Helpers.getTotp(item.login.totp).match(/.{1,3}/g).join(' ');
-                                start(Helpers.totpRemainingTime(30), 30);
+                                createCover();
+                                //start(Helpers.totpRemainingTime(30), 30);
                             }
                         }
                     }
@@ -170,7 +184,7 @@ Page {
                 id: urisRepeater
 
                 visible: item.type === BitwardenCli.Login && typeof item.login !== 'undefined' && typeof item.login.uris !== 'undefined' && item.login.uris.length
-                model: item.login.uris
+                model: visible ? item.login.uris : []
 
                 delegate: TextField {
                     property var uri: urisRepeater.model[index]
@@ -204,7 +218,7 @@ Page {
 
             TextArea {
                 id: notesTextarea
-                text: item.notes
+                text: visible ? item.notes : ''
                 visible: typeof item.notes !== 'undefined' && item.notes
                 readOnly: true
             }
@@ -228,7 +242,7 @@ Page {
                         id: fieldText
                         visible: field.type === BitwardenCli.FieldTypeText
                         label: field.name
-                        text: field.value
+                        text: visible ? field.value : ''
                         readOnly: true
 
                         rightItem: IconButton {
@@ -244,7 +258,7 @@ Page {
                         id: fieldLinked
                         visible: field.type === BitwardenCli.FieldTypeLinked
                         label: field.name
-                        text: field.linkedId
+                        text: visible ? field.linkedId : ''
                         readOnly: true
                         description: qsTr("Linked fields are not supported properly because the official documentation is missing. Will be updated in the future.")
                     }
@@ -305,18 +319,11 @@ Page {
                 color: Theme.secondaryHighlightColor
                 wrapMode: Label.WordWrap
                 width: parent.width - Theme.horizontalPageMargin * 2
-                visible: item.revisionDate
+                visible: typeof item.revisionDate !== 'undefined'
                 font.pixelSize: Theme.fontSizeSmall
                 text: qsTr("Last update: %1").arg(new Date(item.revisionDate).toLocaleString(Qt.locale(), Locale.ShortFormat))
             }
         }
-    }
-
-    Timer {
-        id: totpTimer
-        running: false
-        repeat: true
-        interval: 30000
     }
 
     onStatusChanged: {
