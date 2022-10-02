@@ -450,10 +450,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enabling this option will fasten load times for items in the vault significantly but it means that your vault is dumped to disk &lt;strong&gt;unencrypted&lt;/strong&gt;. While a great care has been taken to avoid dumping any sensitive information (passwords, credit card numbers etc.), bugs are possible and those sensitive informations could be leaked. Enable at your own risk.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>OS authorization check failed.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -491,6 +487,10 @@
     </message>
     <message>
         <source>Require OS authorization on unlocked vault</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enabling this option will fasten load times for items in the vault significantly - your data are &lt;strong&gt;stored on disk encrypted&lt;/strong&gt; without any sensitive data (card numbers, passwords etc.).</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

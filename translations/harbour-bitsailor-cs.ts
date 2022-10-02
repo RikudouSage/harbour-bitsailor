@@ -533,12 +533,12 @@
         <translation>Zamknout trezor při zavření aplikace</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="291"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="292"/>
         <source>Require OS authorization on unlocked vault</source>
         <translation>Vyžadovat autorizaci OS při odemčeném trezoru</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="296"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="297"/>
         <source>By enabling this option you will force the app to authorize you using OS authorization even when the vault is unlocked. If the authorization fails your vault will be locked and you will be redirected to unlock vault screen. This can speed up getting your vault data significantly. &lt;strong&gt;Warning&lt;/strong&gt;: Disables &apos;%1&apos;</source>
         <translation>Povolením této možnosti vynutíte autorizaci vůči OS i v případě, že je trezor odemčen. Pokud autorizace selže, váš trezor bude uzamčen a budete přesměrování na obrazovku pro odemčení trezoru. Výrazně zrychluje přístup k datům ve vašem trezoru. &lt;strong&gt;Varování&lt;/strong&gt;: Zakáže &apos;%1&apos;</translation>
     </message>
@@ -569,11 +569,11 @@
     </message>
     <message>
         <location filename="../qml/pages/SettingsPage.qml" line="255"/>
-        <source>Enabling this option will fasten load times for items in the vault significantly but it means that your vault is dumped to disk &lt;strong&gt;unencrypted&lt;/strong&gt;. While a great care has been taken to avoid dumping any sensitive information (passwords, credit card numbers etc.), bugs are possible and those sensitive informations could be leaked. Enable at your own risk.</source>
-        <translation>Povolením této možnosti zásadně zrychlíte načítání trezoru, ale znamená to, že vaše údaje budou uloženy na disk &lt;strong&gt;nezašifrované&lt;/strong&gt;. Přestože byla učiněna opatření, aby se na disk neuložily žádné citlivé údaje (hesla, čísla kreditních karet atd.), je vždy možné, že se objeví chyba, díky které budou tyto údaje vyzrazeny. Používejte na vlastní nebezpečí.</translation>
+        <source>Enabling this option will fasten load times for items in the vault significantly - your data are &lt;strong&gt;stored on disk encrypted&lt;/strong&gt; without any sensitive data (card numbers, passwords etc.).</source>
+        <translation>Povolením této možnosti zásadně zrychlíte načítání trezoru - vaše data jsou &lt;strong&gt;zašifrovaná uložená na disku&lt;/strong&gt; bez citlivých údajů (čísla karet, hesla atd.).</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="268"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="269"/>
         <source>Fast authentication</source>
         <translation>Rychlá autentizace</translation>
     </message>
@@ -603,7 +603,7 @@
         <translation>Uložit položky v cache pro rychlé načtení</translation>
     </message>
     <message>
-        <location filename="../qml/pages/SettingsPage.qml" line="272"/>
+        <location filename="../qml/pages/SettingsPage.qml" line="273"/>
         <source>When this option is enabled, authentication is skipped and you are assumed to be logged in regardless of the actual status. What this means in practice is that logged in check is postponed until you&apos;re on the main page and is done in the background, this gives anyone opening this app a few seconds to look around before transfering you to the login/unlock screen. This should be ok because all vault operations fail when you&apos;re not logged in. &lt;strong&gt;Warning&lt;/strong&gt;: if used in combination with the setting &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; some data may be leaked to whoever opens this app. Use at your own risk.</source>
         <translation>Pokud je tato možnost povolena, autentizace je přeskočena a aplikace se chová, jako byste byli přihlášeni bez ohledu na skutečný stav. V praxi to znamená, že kontrola přihlášení je přesunuta na později, konkrétně na hlavní obrazovku, a je provedena na pozadí. To umožňuje komukoliv, kdo otevře tuto aplikaci, pár sekund na procházení, než bude přesměrován na přihlašovací obrazovku. To by nemělo ničemu vadit, protože všechny operace s trezorem selžou, pokud nejste přihlášeni. &lt;strong&gt;Varování&lt;/strong&gt;: při použití v kombinaci s &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; mohou být komukoliv, kdo otevře tuto aplikaci, vyzrazena nějaká data. Používejte na vlastní nebezpečí.</translation>
     </message>

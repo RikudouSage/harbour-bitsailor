@@ -252,13 +252,14 @@ Page {
                 onClicked: {
                     if (!checked) {
                         const dialog = pageStack.push("ConfirmSettingPage.qml", {
-                            description: qsTr("Enabling this option will fasten load times for items in the vault significantly but it means that your vault is dumped to disk <strong>unencrypted</strong>. While a great care has been taken to avoid dumping any sensitive information (passwords, credit card numbers etc.), bugs are possible and those sensitive informations could be leaked. Enable at your own risk."),
+                            description: qsTr("Enabling this option will fasten load times for items in the vault significantly - your data are <strong>stored on disk encrypted</strong> without any sensitive data (card numbers, passwords etc.)."),
                         });
                         dialog.accepted.connect(function() {
                             settings.persistentItemCache = true;
                         });
                     } else {
                         settings.persistentItemCache = false;
+                        runtimeCache.removePersistent('items'); // todo get the 'items' key from somewhere
                     }
                 }
             }
