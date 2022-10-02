@@ -6,6 +6,9 @@
 #include <QSettings>
 #include <QStandardPaths>
 
+#include "secretshandler.h"
+#include "encryptor.h"
+
 class RuntimeCache : public QObject
 {
     Q_OBJECT
@@ -24,6 +27,7 @@ public:
     static RuntimeCache* getInstance(QObject *parent = nullptr);
 
 signals:
+    void encryptionKeyNotFound();
 
 private:
     QMap<QString, QString> settings;
@@ -32,6 +36,8 @@ private:
         QSettings::IniFormat,
         this
     );
+    SecretsHandler* secrets = new SecretsHandler(this);
+    Encryptor* encryptor = new Encryptor(this);
 
     static RuntimeCache* instance;
 };

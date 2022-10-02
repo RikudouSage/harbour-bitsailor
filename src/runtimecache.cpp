@@ -32,12 +32,25 @@ void RuntimeCache::remove(const QString &key)
 
 void RuntimeCache::setPersistent(const QString &key, const QString &value)
 {
-    persistentSettings->setValue(key, value);
+    auto pin = secrets->hasPin() ? secrets->getPin() : secrets->getInternalPin();
+    if (pin.isNull() || pin.isEmpty()) {
+        emit encryptionKeyNotFound();
+        return;
+    }
+    auto encrypted = encryptor->encrypt(value, pin);
+    persistentSettings->setValue(key, encrypted);
 }
 
 QString RuntimeCache::getPersistent(const QString &key)
 {
-    return persistentSettings->value(key).toString();
+    auto pin = secrets->hasPin() ? secrets->getPin() : secrets->getInternalPin();
+    if (pin.isNull() || pin.isEmpty()) {
+        emit encryptionKeyNotFound();
+        return "";
+    }
+    auto encrypted = persistentSettings->value(key).toString();
+
+    return encryptor->decrypt(encrypted, pin);
 }
 
 bool RuntimeCache::hasPersistent(const QString &key)

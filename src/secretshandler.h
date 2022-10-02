@@ -30,6 +30,7 @@ public:
     Q_INVOKABLE bool hasSessionId();
     Q_INVOKABLE void removeSessionId();
     Q_INVOKABLE bool clearAllSecrets();
+    Q_INVOKABLE bool hasInternalPin();
 
     void setSessionId(const QString &sessionId);
     void setUsername(const QString &username);

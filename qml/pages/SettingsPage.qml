@@ -12,6 +12,14 @@ Page {
 
     property var doAfterLoad: []
 
+    property bool hasAnyPin: secrets.hasInternalPin() || secrets.hasPin()
+
+    function refreshHasAnyPin() {
+        hasAnyPin = secrets.hasInternalPin() || secrets.hasPin();
+        if (!hasAnyPin) {
+            settings.persistentItemCache = false;
+        }
+    }
 
     id: page
     allowedOrientations: Orientation.All
@@ -157,6 +165,7 @@ Page {
                     if (!systemAuthSetting.checked) {
                         secrets.removePassword();
                     }
+                    refreshHasAnyPin();
                 }
 
                 checked: secrets.hasPin()
@@ -176,6 +185,8 @@ Page {
                             pinToStore = Number(dialog.pinText);
                             passwordToStore = dialog.passwordText;
                             cli.unlockVault(passwordToStore);
+
+                            refreshHasAnyPin();
                         });
                     } else {
                         disable();
@@ -192,6 +203,7 @@ Page {
                     if (!pinSetting.checked) {
                         secrets.removePassword();
                     }
+                    refreshHasAnyPin();
                 }
 
                 checked: settings.useSystemAuth
@@ -210,6 +222,7 @@ Page {
                             busyIndicator.running = true;
                             passwordToStore = dialog.passwordText;
                             cli.unlockVault(passwordToStore);
+                            refreshHasAnyPin();
                         });
                         dialog.rejected.connect(function() {
                             if (dialog.failedSystemAuth) {
@@ -218,6 +231,7 @@ Page {
                                     errorText += " " + qsTr("Note that this is normal when running inside emulator.");
                                 }
                             }
+                            refreshHasAnyPin();
                         });
                     } else {
                         disable();
@@ -230,6 +244,7 @@ Page {
             }
 
             TextSwitch {
+                enabled: hasAnyPin
                 checked: settings.persistentItemCache
                 text: qsTr("Save items in cache for faster load")
                 automaticCheck: false

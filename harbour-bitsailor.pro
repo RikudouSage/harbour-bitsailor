@@ -13,12 +13,13 @@
 TARGET = harbour-bitsailor
 
 CONFIG += sailfishapp
-PKGCONFIG += sailfishsecrets
+PKGCONFIG += sailfishsecrets sailfishcrypto
 
 SOURCES += src/harbour-bitsailor.cpp \
     src/appsettings.cpp \
     src/bitwardencli.cpp \
     src/bitwardencliinstaller.cpp \
+    src/encryptor.cpp \
     src/fileaccessor.cpp \
     src/pathhelper.cpp \
     src/randompingenerator.cpp \
@@ -86,6 +87,7 @@ HEADERS += \
     src/appsettings.h \
     src/bitwardencli.h \
     src/bitwardencliinstaller.h \
+    src/encryptor.h \
     src/fileaccessor.h \
     src/pathhelper.h \
     src/randompingenerator.h \

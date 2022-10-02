@@ -115,6 +115,12 @@ bool SecretsHandler::clearAllSecrets()
     return success;
 }
 
+bool SecretsHandler::hasInternalPin()
+{
+    auto pin = getInternalPin();
+    return !pin.isNull() && !pin.isEmpty();
+}
+
 void SecretsHandler::setSessionId(const QString &sessionId)
 {
     storeData(sessionIdName, sessionId);
