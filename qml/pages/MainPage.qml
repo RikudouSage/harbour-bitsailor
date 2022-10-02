@@ -172,7 +172,7 @@ Page {
             MenuItem {
                 text: qsTr("Search")
                 onClicked: {
-                    pageStack.push("VaultLoginsPage.qml", {searchActive: true});
+                    pageStack.push("VaultPage.qml", {searchActive: true});
                 }
             }
         }
@@ -198,7 +198,7 @@ Page {
             Components.MainPageItem {
                 text: loginsCount !== null ? qsTr("Logins (%1)").arg(loginsCount) : qsTr("Logins");
                 onClicked: {
-                    pageStack.push("VaultLoginsPage.qml");
+                    pageStack.push("VaultPage.qml", {itemLoader: 'getLogins', title: qsTr("Logins")});
                 }
             }
 
@@ -212,7 +212,7 @@ Page {
             Components.MainPageItem {
                 text: notesCount !== null ? qsTr("Notes (%1)").arg(notesCount) : qsTr("Notes")
                 onClicked: {
-                    app.toaster.show(qsTr("This functionality is not implemented yet."));
+                    pageStack.push("VaultPage.qml", {itemLoader: 'getNotes', title: qsTr("Notes")});
                 }
             }
 

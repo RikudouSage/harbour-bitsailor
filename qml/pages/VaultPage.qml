@@ -11,6 +11,9 @@ Page {
 
     property bool searchActive: false
 
+    property string itemLoader: "getItems"
+    property string title: qsTr("Vault")
+
     id: page
     allowedOrientations: Orientation.All
 
@@ -66,7 +69,7 @@ Page {
             width: page.width
             spacing: Theme.paddingLarge
             PageHeader {
-                title: qsTr("Logins")
+                title: page.title
             }
 
             Label {
@@ -88,9 +91,13 @@ Page {
 
                 onTextChanged: {
                     if (!text) {
-                        cli.getLogins();
+                        cli[itemLoader]();
                     } else {
                         logins = allLogins.filter(function(item) {
+                            if (typeof item.login === 'undefined') {
+                                item.login = {};
+                            }
+
                             const searchable = [item.name, item.login.username];
                             var index;
                             for (index in item.fields || []) {
@@ -153,9 +160,10 @@ Page {
 
                     Label {
                         anchors.top: itemTitle.bottom
-                        text: item.login.username || ''
+                        text: typeof item.login !== 'undefined' ? item.login.username || '' : ''
                         font.pixelSize: Theme.fontSizeSmall
                         color: Theme.secondaryHighlightColor
+                        visible: item.type === BitwardenCli.Login
                     }
 
                     Component {
@@ -177,6 +185,6 @@ Page {
     }
 
     Component.onCompleted: {
-        cli.getLogins();
+        cli[itemLoader]();
     }
 }

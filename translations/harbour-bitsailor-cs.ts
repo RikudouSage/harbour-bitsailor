@@ -190,87 +190,88 @@
 <context>
     <name>ItemDetailPage</name>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="53"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="54"/>
         <source>Failed loading the item, please try again later or sync your vault and check that it wasn&apos;t deleted.</source>
         <translation>Nezdařilo se načíst položku, zkuste to prosím znovu, nebo synchronizujte trezor a ujistěte se, že nebyla smazána.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="60"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="61"/>
         <source>Loading...</source>
         <translation>Načítání...</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="76"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="77"/>
         <source>Item detail</source>
         <translation>Detail položky</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="89"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="90"/>
         <source>Item info</source>
         <translation>Informace o položce</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="94"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="95"/>
         <source>Name</source>
         <translation>Název</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="102"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="103"/>
         <source>Username</source>
         <translation>Uživatelské jméno</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="109"/>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="135"/>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="172"/>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="207"/>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="252"/>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="287"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="110"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="136"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="173"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="208"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="242"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="274"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="309"/>
         <source>Copied to clipboard</source>
         <translation>Zkopírováno do schránky</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="119"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="120"/>
         <source>Password</source>
         <translation>Heslo</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="146"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="147"/>
         <source>Verification Code (TOTP)</source>
         <translation>Ověřovací kód (TOTP)</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="179"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="180"/>
         <source>URIs</source>
         <translation>URI</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="194"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="195"/>
         <source>Website</source>
         <translation>Web</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="194"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="195"/>
         <source>URI</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="215"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="216"/>
         <source>Notes</source>
         <translation>Poznámky</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="227"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="249"/>
         <source>Custom fields</source>
         <translation>Vlastní pole</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="263"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="285"/>
         <source>Linked fields are not supported properly because the official documentation is missing. Will be updated in the future.</source>
         <translation>Propojená pole nejsou správně podporována, protože k nim chybí oficiální dokumentace. Do budoucna bude upraveno.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="324"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="346"/>
         <source>Last update: %1</source>
         <translation>Naposled upraveno: %1</translation>
     </message>
@@ -395,6 +396,7 @@
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="199"/>
+        <location filename="../qml/pages/MainPage.qml" line="201"/>
         <source>Logins</source>
         <translation>Přihlášení</translation>
     </message>
@@ -415,7 +417,6 @@
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="208"/>
-        <location filename="../qml/pages/MainPage.qml" line="215"/>
         <location filename="../qml/pages/MainPage.qml" line="222"/>
         <source>This functionality is not implemented yet.</source>
         <translation>Tato funkcionalita ještě není zprovozněna.</translation>
@@ -427,6 +428,7 @@
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="213"/>
+        <location filename="../qml/pages/MainPage.qml" line="215"/>
         <source>Notes</source>
         <translation>Poznámky</translation>
     </message>
@@ -764,35 +766,35 @@
     </message>
 </context>
 <context>
-    <name>VaultLoginsPage</name>
+    <name>VaultPage</name>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="19"/>
+        <location filename="../qml/pages/VaultPage.qml" line="15"/>
+        <source>Vault</source>
+        <translation>Trezor</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/VaultPage.qml" line="22"/>
         <source>Loading</source>
         <translation>Načítání</translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="27"/>
+        <location filename="../qml/pages/VaultPage.qml" line="30"/>
         <source>An error occured while loading items. Please try again.</source>
         <translation>Nastala chyba při načítání položek. Zkuste to prosím později.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="53"/>
+        <location filename="../qml/pages/VaultPage.qml" line="56"/>
         <source>Hide search</source>
         <translation>Skrýt vyhledávání</translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="53"/>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="85"/>
+        <location filename="../qml/pages/VaultPage.qml" line="56"/>
+        <location filename="../qml/pages/VaultPage.qml" line="88"/>
         <source>Search</source>
         <translation>Hledat</translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="69"/>
-        <source>Logins</source>
-        <translation>Přihlášení</translation>
-    </message>
-    <message>
-        <location filename="../qml/pages/VaultLoginsPage.qml" line="165"/>
+        <location filename="../qml/pages/VaultPage.qml" line="173"/>
         <source>Remove</source>
         <translation>Odstranit</translation>
     </message>

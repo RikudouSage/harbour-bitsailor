@@ -618,7 +618,11 @@
     </message>
 </context>
 <context>
-    <name>VaultLoginsPage</name>
+    <name>VaultPage</name>
+    <message>
+        <source>Vault</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Loading</source>
         <translation type="unfinished"></translation>
@@ -633,10 +637,6 @@
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Logins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

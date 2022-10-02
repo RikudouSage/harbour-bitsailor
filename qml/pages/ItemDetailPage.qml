@@ -17,7 +17,7 @@ Page {
     allowedOrientations: Orientation.All
 
     function createCover() {
-        var pageName;
+        var pageName = 'CoverPage.qml';
 
         if (item.type === BitwardenCli.Login) {
             pageName = 'CoverPageLogin.qml';
@@ -43,6 +43,7 @@ Page {
         id: cli
 
         onItemFetched: {
+            console.log(JSON.stringify(item));
             page.item = item;
             loaded = true;
             createCover();
@@ -217,10 +218,31 @@ Page {
             }
 
             TextArea {
+                property bool passwordEnabled: item.type === BitwardenCli.SecureNote
+                property bool passwordVisible: item.type !== BitwardenCli.SecureNote
+
                 id: notesTextarea
-                text: visible ? item.notes : ''
+                text: visible ? (passwordVisible ? item.notes : '••••••••••••••••') : ''
                 visible: typeof item.notes !== 'undefined' && item.notes
                 readOnly: true
+
+                rightItem: Row {
+                    visible: notesTextarea.passwordEnabled
+
+                    IconButton {
+                        icon.source: notesTextarea.passwordVisible ? "image://theme/icon-splus-hide-password" : "image://theme/icon-splus-show-password"
+                        onClicked: {
+                            notesTextarea.passwordVisible = !notesTextarea.passwordVisible;
+                        }
+                    }
+                    IconButton {
+                        icon.source: "image://theme/icon-m-clipboard"
+                        onClicked: {
+                            Clipboard.text = item.notes;
+                            app.toaster.show(qsTr("Copied to clipboard"));
+                        }
+                    }
+                }
             }
 
             SectionHeader {
