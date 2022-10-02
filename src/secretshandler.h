@@ -22,6 +22,7 @@ public:
     QString getPassword();
     Q_INVOKABLE QString getClientId();
     QString getPin();
+    QString getInternalPin();
 
     Q_INVOKABLE bool hasPin();
     Q_INVOKABLE void removePin();
@@ -35,6 +36,7 @@ public:
     Q_INVOKABLE void setPassword(const QString &password);
     void setClientId(const QString &clientId);
     Q_INVOKABLE void setPin(const QString &pin);
+    Q_INVOKABLE void setInternalPin(const QString &pin);
 
 private:
     static const QString collectionName;

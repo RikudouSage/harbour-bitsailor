@@ -18,6 +18,7 @@
 #include "runtimecache.h"
 #include "systemauthchecker.h"
 #include "fileaccessor.h"
+#include "randompingenerator.h"
 
 int main(int argc, char *argv[])
 {
@@ -30,6 +31,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<SecretsHandler>("cz.chrastecky.bitsailor", 1, 0, "SecretsHandler");
     qmlRegisterType<SystemAuthChecker>("cz.chrastecky.bitsailor", 1, 0, "SystemAuthChecker");
     qmlRegisterType<FileAccessor>("cz.chrastecky.bitsailor", 1, 0, "FileAccessor");
+    qmlRegisterType<RandomPinGenerator>("cz.chrastecky.bitsailor", 1, 0, "RandomPinGenerator");
 
     v->rootContext()->setContextProperty("settings", new AppSettings(app.data()));
     v->rootContext()->setContextProperty("runtimeCache", RuntimeCache::getInstance(app.data()));

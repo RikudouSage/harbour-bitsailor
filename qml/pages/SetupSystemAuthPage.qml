@@ -22,8 +22,6 @@ Dialog {
                 failedSystemAuth = true;
                 reject();
             }
-
-            console.log(success);
         }
     }
 

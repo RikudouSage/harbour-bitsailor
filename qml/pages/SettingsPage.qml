@@ -34,6 +34,7 @@ Page {
                     pinSetting.checked = true;
                     systemAuthSetting.disable();
                 } else if (authCheckType === "system") {
+                    secrets.setInternalPin(pinGenerator.generate());
                     settings.useSystemAuth = true;
                     pinSetting.disable();
                 }
@@ -44,6 +45,10 @@ Page {
                 errorText = qsTr("The password you provided is invalid.");
             }
         }
+    }
+
+    RandomPinGenerator {
+        id: pinGenerator
     }
 
     BusyLabel {

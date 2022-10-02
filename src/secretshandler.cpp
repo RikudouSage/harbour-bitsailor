@@ -29,6 +29,7 @@ static const QString usernameName = "username";
 static const QString passwordName = "password";
 static const QString clientIdName = "clientId";
 static const QString pinName = "pin";
+static const QString internalPinName = "internalPin";
 
 SecretsHandler::SecretsHandler(QObject *parent) : QObject(parent)
 {
@@ -64,6 +65,11 @@ QString SecretsHandler::getClientId()
 QString SecretsHandler::getPin()
 {
     return getData(pinName);
+}
+
+QString SecretsHandler::getInternalPin()
+{
+    return getData(internalPinName);
 }
 
 bool SecretsHandler::hasPin()
@@ -132,6 +138,11 @@ void SecretsHandler::setClientId(const QString &clientId)
 void SecretsHandler::setPin(const QString &pin)
 {
     storeData(pinName, pin);
+}
+
+void SecretsHandler::setInternalPin(const QString &pin)
+{
+    storeData(internalPinName, pin);
 }
 
 bool SecretsHandler::isResultValid(const Request &request)

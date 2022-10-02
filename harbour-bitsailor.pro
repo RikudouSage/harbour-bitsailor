@@ -21,6 +21,7 @@ SOURCES += src/harbour-bitsailor.cpp \
     src/bitwardencliinstaller.cpp \
     src/fileaccessor.cpp \
     src/pathhelper.cpp \
+    src/randompingenerator.cpp \
     src/runtimecache.cpp \
     src/secretshandler.cpp \
     src/systemauthchecker.cpp \
@@ -87,6 +88,7 @@ HEADERS += \
     src/bitwardencliinstaller.h \
     src/fileaccessor.h \
     src/pathhelper.h \
+    src/randompingenerator.h \
     src/runtimecache.h \
     src/secretshandler.h \
     src/systemauthchecker.h \
