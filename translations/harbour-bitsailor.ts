@@ -97,6 +97,17 @@
     </message>
 </context>
 <context>
+    <name>CoverPageNote</name>
+    <message>
+        <source>Item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Note</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>GeneratePasswordPage</name>
     <message>
         <source>Generating</source>

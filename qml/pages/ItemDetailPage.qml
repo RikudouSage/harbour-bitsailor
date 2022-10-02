@@ -24,6 +24,8 @@ Page {
             if (item.login !== 'undefined' && item.login.totp) {
                 pageName = 'CoverPageLoginTotp.qml';
             }
+        } else if(item.type === BitwardenCli.SecureNote) {
+            pageName = 'CoverPageNote.qml';
         }
 
         // todo differentiate once more types are available
@@ -33,7 +35,8 @@ Page {
                 name: item.name,
                 username: typeof item.login !== 'undefined' && typeof item.login.username !== 'undefined' ? item.login.username : null,
                 password: typeof item.login !== 'undefined' && typeof item.login.username !== 'undefined' ? item.login.password : null,
-                totp: typeof item.login !== 'undefined' && item.login.totp ? Helpers.getTotp(item.login.totp) : ''
+                totp: typeof item.login !== 'undefined' && item.login.totp ? Helpers.getTotp(item.login.totp) : null,
+                note: typeof item.notes !== 'undefined' ? item.notes : null,
             }
         });
         app.cover = cover;

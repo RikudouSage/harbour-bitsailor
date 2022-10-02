@@ -80,7 +80,7 @@ CoverBackground {
                 font.bold: true
             }
             Label {
-                visible: item.type !== BitwardenCli.NoType && item.username
+                visible: item.type !== BitwardenCli.NoType && item.password
                 text: "••••••"
                 font.pixelSize: Theme.fontSizeExtraSmall
                 anchors.horizontalCenter: parent.horizontalCenter

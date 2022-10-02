@@ -45,6 +45,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/cover/CoverPage.qml \
     qml/cover/CoverPageLogin.qml \
     qml/cover/CoverPageLoginTotp.qml \
+    qml/cover/CoverPageNote.qml \
     qml/crypto.js \
     qml/helpers.js \
     qml/pages/CleanupPage.qml \

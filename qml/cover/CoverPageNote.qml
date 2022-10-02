@@ -36,9 +36,6 @@ CoverBackground {
             source: "file:///usr/share/harbour-bitsailor/icons/logo-black-white.png" // todo find out if some standard path exists for this
             anchors.horizontalCenter: parent.horizontalCenter
             sourceSize: "80x80"
-            visible: [itemFiled, usernameField, passwordField, totpField].filter(function(item) {
-                return item.visible;
-            }).length < 4
         }
         Column {
             width: parent.width
@@ -59,47 +56,16 @@ CoverBackground {
             }
 
             Label {
-                id: usernameField
-
-                visible: item.type !== BitwardenCli.NoType && item.username
-                text: qsTr("Username") + ":"
+                id: noteField
+                visible: item.type !== BitwardenCli.NoType && item.note
+                text: qsTr("Note") + ":"
                 font.pixelSize: Theme.fontSizeExtraSmall
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.bold: true
             }
             Label {
-                visible: item.type !== BitwardenCli.NoType && item.username
-                text: item.username
-                font.pixelSize: Theme.fontSizeExtraSmall
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
-
-            Label {
-                id: passwordField
-                visible: item.type !== BitwardenCli.NoType && item.password
-                text: qsTr("Password") + ":"
-                font.pixelSize: Theme.fontSizeExtraSmall
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.bold: true
-            }
-            Label {
-                visible: item.type !== BitwardenCli.NoType && item.password
+                visible: item.type !== BitwardenCli.NoType && item.note
                 text: "••••••"
-                font.pixelSize: Theme.fontSizeExtraSmall
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
-
-            Label {
-                id: totpField
-                visible: item.type !== BitwardenCli.NoType && item.totp
-                text: qsTr("TOTP") + ":"
-                font.pixelSize: Theme.fontSizeExtraSmall
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.bold: true
-            }
-            Label {
-                visible: item.type !== BitwardenCli.NoType && item.totp
-                text: item.totp.match(/.{1,3}/g).join(' ')
                 font.pixelSize: Theme.fontSizeExtraSmall
                 anchors.horizontalCenter: parent.horizontalCenter
             }
@@ -129,17 +95,9 @@ CoverBackground {
             }
         }
         CoverAction {
-            iconSource: "image://theme/icon-m-keys"
+            iconSource: "image://theme/icon-m-note"
             onTriggered: {
-                Clipboard.text = item.password || ''
-            }
-        }
-        CoverAction {
-            iconSource: "image://theme/icon-s-time"
-            onTriggered: {
-                if (item.totp) {
-                    Clipboard.text = item.totp;
-                }
+                Clipboard.text = item.note || ''
             }
         }
     }
