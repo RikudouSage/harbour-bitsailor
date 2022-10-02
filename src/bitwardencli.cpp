@@ -24,7 +24,7 @@ void BitwardenCli::checkVaultUnlocked()
         return;
     }
 
-    startProcess({"unlock", "--check", "--session", sessionId}, VaultUnlocked);
+    startProcess({"unlock", "--check"}, VaultUnlocked);
 }
 
 void BitwardenCli::loginEmailPassword(const QString &email, const QString &password)
@@ -105,7 +105,7 @@ void BitwardenCli::getItems(Method method)
     if (!cache.isNull() && !cache.isEmpty()) {
         handleGetItems(runtimeCache->get(cacheKeyItems), method);
     } else {
-        startProcess({"list", "items", "--session", secretsHandler->getSessionId()}, GetLogins);
+        startProcess({"list", "items"}, GetLogins);
     }
 }
 
@@ -131,20 +131,26 @@ void BitwardenCli::getIdentities()
 
 void BitwardenCli::syncVault()
 {
-    startProcess({"sync", "--session", secretsHandler->getSessionId()}, SyncVault);
+    startProcess({"sync"}, SyncVault);
 }
 
 void BitwardenCli::deleteItem(QString id)
 {
-    startProcess({"delete", "item", id, "--session", secretsHandler->getSessionId()}, DeleteItem);
+    startProcess({"delete", "item", id}, DeleteItem);
 }
 
 void BitwardenCli::deleteItemInBackground(QString id)
 {
+    auto env = QProcessEnvironment::systemEnvironment();
+    if (secretsHandler->hasSessionId()) {
+        env.insert("BW_SESSION", secretsHandler->getSessionId());
+    }
+
     QProcess* process = new QProcess(); // intentionally no parent
+    process->setProcessEnvironment(env);
     process->setWorkingDirectory(getDataPath());
     process->setStandardInputFile(QProcess::nullDevice());
-    process->start(bw, {"delete", "item", id, "--session", secretsHandler->getSessionId()});
+    process->start(bw, {"delete", "item", id});
     connect(process, static_cast<void (QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), process, &QProcess::deleteLater);
 
     if (runtimeCache->has(cacheKeyItems)) {
@@ -168,7 +174,7 @@ void BitwardenCli::deleteItemInBackground(QString id)
 
 void BitwardenCli::getItem(QString id)
 {
-    startProcess({"get", "item", id, "--session", secretsHandler->getSessionId()}, GetItem);
+    startProcess({"get", "item", id}, GetItem);
 }
 
 void BitwardenCli::generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, int length)
@@ -274,7 +280,11 @@ void BitwardenCli::onFinished(int exitCode, Method method)
 
 void BitwardenCli::startProcess(const QStringList &arguments, Method method)
 {
-    startProcess(arguments, QProcessEnvironment::systemEnvironment(), method);
+    auto env = QProcessEnvironment::systemEnvironment();
+    if (secretsHandler->hasSessionId()) {
+        env.insert("BW_SESSION", secretsHandler->getSessionId());
+    }
+    startProcess(arguments, env, method);
 }
 
 void BitwardenCli::startProcess(const QStringList &arguments, const QProcessEnvironment &environment, Method method)
