@@ -22,7 +22,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Prepare
-      run: mkdir output
+      run: docker pull coderus/sailfishos-platform-sdk:$OS_VERSION && mkdir output
 
     - name: Build ${{ matrix.arch }}
       run: docker run --rm --privileged -v $PWD:/share coderus/sailfishos-platform-sdk:$OS_VERSION /bin/bash -c "
