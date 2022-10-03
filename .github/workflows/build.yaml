@@ -1,0 +1,51 @@
+name: Build RPMs
+
+on:
+  push:
+    tags:
+      - 'v*'
+    branches:
+      - master
+
+env:
+  OS_VERSION: 4.4.0.68
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Prepare
+      run: mkdir output
+
+    - name: Build armv7hl
+      run: docker run --rm --privileged -v $PWD:/share coderus/sailfishos-platform-sdk:$OS_VERSION /bin/bash -c "
+            mkdir -p build ;
+            cd build ;
+            cp -r /share/* . ;
+            mb2 -t SailfishOS-$OS_VERSION-armv7hl build ;
+            sudo cp -r RPMS/*.rpm /share/output"
+
+    - name: Build aarch64
+      run: docker run --rm --privileged -v $PWD:/share coderus/sailfishos-platform-sdk:$OS_VERSION /bin/bash -c "
+            mkdir -p build ;
+            cd build ;
+            cp -r /share/* . ;
+            mb2 -t SailfishOS-$OS_VERSION-aarch64 build ;
+            sudo cp -r RPMS/*.rpm /share/output"
+
+    - name: Build i486
+      run: docker run --rm --privileged -v $PWD:/share coderus/sailfishos-platform-sdk:$OS_VERSION /bin/bash -c "
+            mkdir -p build ;
+            cd build ;
+            cp -r /share/* . ;
+            mb2 -t SailfishOS-$OS_VERSION-i486 build ;
+            sudo cp -r RPMS/*.rpm /share/output"
+      
+    - name: Upload build result
+      uses: actions/upload-artifact@v2
+      with:
+        name: output-rpms
+        path: output
