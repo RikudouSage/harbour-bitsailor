@@ -89,12 +89,6 @@ CoverBackground {
         }
 
         CoverAction {
-            iconSource: "image://theme/icon-cover-people" // icon-m-contact
-            onTriggered: {
-                Clipboard.text = item.username || ''
-            }
-        }
-        CoverAction {
             iconSource: "image://theme/icon-m-note"
             onTriggered: {
                 Clipboard.text = item.note || ''
