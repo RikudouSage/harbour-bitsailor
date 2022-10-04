@@ -46,7 +46,10 @@ Page {
         id: cli
 
         onItemFetched: {
-            console.log(JSON.stringify(item));
+            if (isDebug) {
+                console.log(JSON.stringify(item));
+            }
+
             page.item = item;
             loaded = true;
             createCover();
@@ -173,6 +176,103 @@ Page {
                         icon.source: "image://theme/icon-m-clipboard"
                         onClicked: {
                             Clipboard.text = Helpers.getTotp(item.login.totp);
+                            app.toaster.show(qsTr("Copied to clipboard"));
+                        }
+                    }
+                }
+            }
+
+
+            TextField {
+                text: visible ? item.card.cardholderName : ''
+                label: qsTr("Cardholder Name")
+                visible: item.type === BitwardenCli.Card && typeof item.card !== 'undefined' && item.card.cardholderName
+                readOnly: true
+                rightItem: IconButton {
+                    icon.source: "image://theme/icon-m-clipboard"
+                    onClicked: {
+                        Clipboard.text = item.card.cardholderName;
+                        app.toaster.show(qsTr("Copied to clipboard"));
+                    }
+                }
+            }
+
+            TextField {
+                text: visible ? item.card.brand : ''
+                label: qsTr("Brand")
+                visible: item.type === BitwardenCli.Card && typeof item.card !== 'undefined' && item.card.brand
+                readOnly: true
+                rightItem: IconButton {
+                    icon.source: "image://theme/icon-m-clipboard"
+                    onClicked: {
+                        Clipboard.text = item.card.brand;
+                        app.toaster.show(qsTr("Copied to clipboard"));
+                    }
+                }
+            }
+
+            TextField {
+                property bool passwordVisible: false
+
+                id: cardNumberField
+                text: passwordVisible ? item.card.number : 'aaaabbbbccccdddd'
+                label: qsTr("Card Number")
+                visible: item.type === BitwardenCli.Card && typeof item.card !== 'undefined' && item.card.number
+                echoMode: passwordVisible ? TextInput.Normal : TextInput.Password
+                readOnly: true
+
+                rightItem: Row {
+                    IconButton {
+                        icon.source: cardNumberField.passwordVisible ? "image://theme/icon-splus-hide-password" : "image://theme/icon-splus-show-password"
+                        onClicked: {
+                            cardNumberField.passwordVisible = !cardNumberField.passwordVisible;
+                        }
+                    }
+                    IconButton {
+                        icon.source: "image://theme/icon-m-clipboard"
+                        onClicked: {
+                            Clipboard.text = item.card.number;
+                            app.toaster.show(qsTr("Copied to clipboard"));
+                        }
+                    }
+                }
+            }
+
+            TextField {
+                text: visible ? String("0" + item.card.expMonth).slice(-2) + " / " + item.card.expYear : ''
+                label: qsTr("Expiration")
+                visible: item.type === BitwardenCli.Card && typeof item.card !== 'undefined' && item.card.expMonth && item.card.expYear
+                readOnly: true
+                rightItem: IconButton {
+                    icon.source: "image://theme/icon-m-clipboard"
+                    onClicked: {
+                        Clipboard.text = String("0" + item.card.expMonth).slice(-2) + "/" + item.card.expYear;
+                        app.toaster.show(qsTr("Copied to clipboard"));
+                    }
+                }
+            }
+
+            TextField {
+                property bool passwordVisible: false
+
+                id: cvvField
+                text: passwordVisible ? item.card.code : 'aaa'
+                label: qsTr("Security Code (CVV)")
+                visible: item.type === BitwardenCli.Card && typeof item.card !== 'undefined' && item.card.code
+                echoMode: passwordVisible ? TextInput.Normal : TextInput.Password
+                readOnly: true
+
+                rightItem: Row {
+                    IconButton {
+                        icon.source: cvvField.passwordVisible ? "image://theme/icon-splus-hide-password" : "image://theme/icon-splus-show-password"
+                        onClicked: {
+                            cvvField.passwordVisible = !cvvField.passwordVisible;
+                        }
+                    }
+                    IconButton {
+                        icon.source: "image://theme/icon-m-clipboard"
+                        onClicked: {
+                            Clipboard.text = item.card.code;
                             app.toaster.show(qsTr("Copied to clipboard"));
                         }
                     }

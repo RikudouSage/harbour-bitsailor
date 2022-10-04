@@ -203,88 +203,118 @@
 <context>
     <name>ItemDetailPage</name>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="57"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="60"/>
         <source>Failed loading the item, please try again later or sync your vault and check that it wasn&apos;t deleted.</source>
         <translation>Nezdařilo se načíst položku, zkuste to prosím znovu, nebo synchronizujte trezor a ujistěte se, že nebyla smazána.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="64"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="67"/>
         <source>Loading...</source>
         <translation>Načítání...</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="80"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="83"/>
         <source>Item detail</source>
         <translation>Detail položky</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="93"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="96"/>
         <source>Item info</source>
         <translation>Informace o položce</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="98"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="101"/>
         <source>Name</source>
         <translation>Název</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="106"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="109"/>
         <source>Username</source>
         <translation>Uživatelské jméno</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="113"/>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="139"/>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="176"/>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="211"/>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="245"/>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="277"/>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="312"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="116"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="142"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="179"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="195"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="209"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="235"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="250"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="276"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="311"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="345"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="377"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="412"/>
         <source>Copied to clipboard</source>
         <translation>Zkopírováno do schránky</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="123"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="126"/>
         <source>Password</source>
         <translation>Heslo</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="150"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="153"/>
         <source>Verification Code (TOTP)</source>
         <translation>Ověřovací kód (TOTP)</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="183"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="188"/>
+        <source>Cardholder Name</source>
+        <translation>Jméno držitele karty</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="202"/>
+        <source>Brand</source>
+        <translation>Značka</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="219"/>
+        <source>Card Number</source>
+        <translation>Číslo karty</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="243"/>
+        <source>Expiration</source>
+        <translation>Expirace</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="260"/>
+        <source>Security Code (CVV)</source>
+        <translation>Bezpečnostní kód (CVV)</translation>
+    </message>
+    <message>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="283"/>
         <source>URIs</source>
         <translation>URI</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="198"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="298"/>
         <source>Website</source>
         <translation>Web</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="198"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="298"/>
         <source>URI</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="219"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="319"/>
         <source>Notes</source>
         <translation>Poznámky</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="252"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="352"/>
         <source>Custom fields</source>
         <translation>Vlastní pole</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="288"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="388"/>
         <source>Linked fields are not supported properly because the official documentation is missing. Will be updated in the future.</source>
         <translation>Propojená pole nejsou správně podporována, protože k nim chybí oficiální dokumentace. Do budoucna bude upraveno.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/ItemDetailPage.qml" line="349"/>
+        <location filename="../qml/pages/ItemDetailPage.qml" line="449"/>
         <source>Last update: %1</source>
         <translation>Naposled upraveno: %1</translation>
     </message>
@@ -796,18 +826,18 @@
         <translation>Nastala chyba při načítání položek. Zkuste to prosím později.</translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultPage.qml" line="56"/>
+        <location filename="../qml/pages/VaultPage.qml" line="60"/>
         <source>Hide search</source>
         <translation>Skrýt vyhledávání</translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultPage.qml" line="56"/>
-        <location filename="../qml/pages/VaultPage.qml" line="88"/>
+        <location filename="../qml/pages/VaultPage.qml" line="60"/>
+        <location filename="../qml/pages/VaultPage.qml" line="92"/>
         <source>Search</source>
         <translation>Hledat</translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultPage.qml" line="202"/>
+        <location filename="../qml/pages/VaultPage.qml" line="206"/>
         <source>Remove</source>
         <translation>Odstranit</translation>
     </message>

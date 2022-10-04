@@ -31,6 +31,10 @@ Page {
         }
 
         onItemsResolved: {
+            if (isDebug) {
+                console.log(JSON.stringify(items));
+            }
+
             allLogins = items;
             logins = items;
             loaded = true;
