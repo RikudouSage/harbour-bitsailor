@@ -448,6 +448,11 @@ Page {
                 font.pixelSize: Theme.fontSizeSmall
                 text: qsTr("Last update: %1").arg(new Date(item.revisionDate).toLocaleString(Qt.locale(), Locale.ShortFormat))
             }
+
+            Item {
+                width: parent.width
+                height: Theme.paddingSmall
+            }
         }
     }
 
