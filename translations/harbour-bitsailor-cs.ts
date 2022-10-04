@@ -420,6 +420,7 @@
     </message>
     <message>
         <location filename="../qml/pages/MainPage.qml" line="206"/>
+        <location filename="../qml/pages/MainPage.qml" line="208"/>
         <source>Cards</source>
         <translation>Karty</translation>
     </message>
@@ -429,7 +430,6 @@
         <translation>Karty (%1)</translation>
     </message>
     <message>
-        <location filename="../qml/pages/MainPage.qml" line="208"/>
         <location filename="../qml/pages/MainPage.qml" line="222"/>
         <source>This functionality is not implemented yet.</source>
         <translation>Tato funkcionalita ještě není zprovozněna.</translation>
@@ -807,7 +807,7 @@
         <translation>Hledat</translation>
     </message>
     <message>
-        <location filename="../qml/pages/VaultPage.qml" line="173"/>
+        <location filename="../qml/pages/VaultPage.qml" line="202"/>
         <source>Remove</source>
         <translation>Odstranit</translation>
     </message>

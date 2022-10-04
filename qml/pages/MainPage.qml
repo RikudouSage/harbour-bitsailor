@@ -205,7 +205,7 @@ Page {
             Components.MainPageItem {
                 text: cardsCount !== null ? qsTr("Cards (%1)").arg(cardsCount) : qsTr("Cards")
                 onClicked: {
-                    app.toaster.show(qsTr("This functionality is not implemented yet."));
+                    pageStack.push("VaultPage.qml", {itemLoader: 'getCards', title: qsTr("Cards")});
                 }
             }
 

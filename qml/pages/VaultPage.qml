@@ -97,8 +97,16 @@ Page {
                             if (typeof item.login === 'undefined') {
                                 item.login = {};
                             }
+                            if (typeof item.card === 'undefined') {
+                                item.card = {number: ''};
+                            }
 
-                            const searchable = [item.name, item.login.username];
+                            const searchable = [
+                                item.name,
+                                item.login.username,
+                                item.card.number.slice(-4),
+                                item.card.brand,
+                            ];
                             var index;
                             for (index in item.fields || []) {
                                 if (!item.fields.hasOwnProperty(index)) {
@@ -164,6 +172,27 @@ Page {
                         font.pixelSize: Theme.fontSizeSmall
                         color: Theme.secondaryHighlightColor
                         visible: item.type === BitwardenCli.Login
+                    }
+
+                    Label {
+                        anchors.top: itemTitle.bottom
+                        text: {
+                            if (typeof item.card === 'undefined') {
+                                return '';
+                            }
+
+                            var result = item.card.brand || '';
+                            if (result && item.card.number) {
+                                result += ', ';
+                            }
+                            result += item.card.number ? '*' + item.card.number.slice(-4) : '';
+
+                            return result;
+                        }
+
+                        font.pixelSize: Theme.fontSizeSmall
+                        color: Theme.secondaryHighlightColor
+                        visible: item.type === BitwardenCli.Card
                     }
 
                     Component {
