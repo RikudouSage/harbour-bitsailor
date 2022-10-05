@@ -5,5 +5,10 @@ git:
       file_format: QT
       source_language: en
       translation_files_expression: translations/harbour-bitsailor-<lang>.ts
+    - filter_type: file
+      source_file: translations-other/harbour-bitsailor.ts
+      file_format: QT
+      source_language: en
+      translation_files_expression: translations-other/harbour-bitsailor-<lang>.ts
   settings:
     pr_branch_name: transifex_update_<br_unique_id>
