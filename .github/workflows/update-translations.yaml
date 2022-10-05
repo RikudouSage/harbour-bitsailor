@@ -19,8 +19,9 @@ jobs:
         name: Checkout
       - name: Update Desktop File
         run: php translations-other/update-translations.php
-      - name: Update
-        uses: actions-x/commit@v6
-        with:
-          message: Updated desktop and polkit files
-          branch: ${{ github.head_ref }}
+      - name: Commit
+        run: |
+          git checkout ${{ github.head_ref }}
+          git add . -v
+          git commit -m "Updated desktop and polkit files"
+          git push origin ${{ github.head_ref }}
