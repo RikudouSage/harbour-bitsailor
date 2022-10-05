@@ -3,14 +3,14 @@
     <name>DesktopFile</name>
     <message>
         <source>BitSailor</source>
-        <translation>BitSailor</translation>
+        <translation>BitSailor.</translation>
     </message>
 </context>
 <context>
     <name>PolkitFile</name>
     <message>
         <source>Authorization is needed to unlock the vault.</source>
-        <translation>Pro odemknutí trezoru je vyžadována autorizace.</translation>
+        <translation>Pro odemknutí trezoru je vyžadována autorizace</translation>
     </message>
 </context>
 </TS>
