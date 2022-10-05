@@ -23,4 +23,4 @@ jobs:
         uses: actions-x/commit@v6
         with:
           message: Updated desktop and polkit files
-          branch: $GITHUB_HEAD_REF
+          branch: ${{ github.head_ref }}
