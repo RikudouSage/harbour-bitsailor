@@ -1,0 +1,8 @@
+filters:
+    - filter_type: dir
+      source_file_dir: translations/
+      source_file_extension: ts
+      file_format: QT
+      source_language: en
+      translation_files_expression: translations/harbour-bitsailor-<lang>.ts
+      pr_branch_name: transifex-update-<br_unique_id>
