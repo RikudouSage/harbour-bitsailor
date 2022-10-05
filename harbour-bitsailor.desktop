@@ -4,6 +4,7 @@ X-Nemo-Application-Type=silica-qt5
 Icon=harbour-bitsailor
 Exec=harbour-bitsailor
 Name=BitSailor
+Name[cs]=BitSailor.
 
 [X-Sailjail]
 Sandboxing=Disabled
