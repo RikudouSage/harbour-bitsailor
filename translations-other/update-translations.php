@@ -68,7 +68,7 @@ foreach (glob(__DIR__ . '/*.ts') as $file) {
 
             if (!$found) {
                 $newMessage = $polkit->action->addChild('message', $translation);
-                $newMessage->addAttribute('xml:lang', $lang);
+                $newMessage->addAttribute('xml:lang', $lang, $ns['xml']);
             }
 
             file_put_contents($polkitFile, $polkit->asXML());
