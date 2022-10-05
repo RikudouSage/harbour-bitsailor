@@ -7,4 +7,4 @@ git:
       source_file_dir: translations/
       translation_files_expression: 'translations/harbour-bitsailor-<lang>.ts'
   settings:
-    pr_branch_name: tsfx-upd-<br_unique_id>
+    pr_branch_name: tsfx_upd_<br_unique_id>
