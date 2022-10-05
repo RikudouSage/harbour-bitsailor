@@ -21,6 +21,7 @@ jobs:
         run: php translations-other/update-translations.php
       - name: Commit
         run: |
+          git fetch
           git checkout ${{ github.head_ref }}
           git add . -v
           git commit -m "Updated desktop and polkit files"
