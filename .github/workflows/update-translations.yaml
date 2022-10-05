@@ -4,8 +4,8 @@ on:
   pull_request:
     branches:
       - master
-#    paths:
-#      - 'translations-other/*'
+    paths:
+      - 'translations-other/*'
 
 jobs:
   update_translations:
