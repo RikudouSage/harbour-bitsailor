@@ -18,10 +18,17 @@ jobs:
         run: php translations-other/update-translations.php
       - name: Commit
         run: |
+          export UPDATE_COMMIT_MESSAGE="Updated desktop and polkit files"
+          export LAST_COMMIT_MESSAGE=$(git log --format=%B -n 1)
+          
+          if [ "$LAST_COMMIT_MESSAGE" = "$UPDATE_COMMIT_MESSAGE" ]; then
+            exit 0
+          fi
+  
           git config --global user.email "github-bot@localhost"
           git config --global user.name "Github Bot"
           git fetch
           git checkout ${{ github.head_ref }}
           git add . -v
-          git commit -m "Updated desktop and polkit files"
+          git commit -m "$UPDATE_COMMIT_MESSAGE"
           git push origin ${{ github.head_ref }}
