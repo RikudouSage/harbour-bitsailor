@@ -2,6 +2,8 @@ name: Update Translations
 
 on:
   pull_request:
+    branches:
+      - master
 #    paths:
 #      - 'translations-other/*'
 
