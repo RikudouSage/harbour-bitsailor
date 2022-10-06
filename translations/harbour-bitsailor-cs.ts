@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>CleanupPage</name>
     <message>
@@ -486,8 +484,8 @@
         <translation>Načítat trezor na hlavní obrazovce</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save items in cache for faster load</source>
@@ -559,7 +557,7 @@
     </message>
     <message>
         <source>Update Bitwarden CLI</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizovat Bitwarden CLI</translation>
     </message>
 </context>
 <context>
@@ -689,19 +687,19 @@
     <name>UpdateBitwardenCliPage</name>
     <message>
         <source>Updating Bitwarden CLI</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizace Bitwarden CLI</translation>
     </message>
     <message>
         <source>There was an error updating the Bitwarden CLI.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastala chyba při aktualizaci Bitwarden CLI.</translation>
     </message>
     <message>
         <source>Bitwarden CLI was updated successfully</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitwarden CLI bylo úspěšně aktualizováno</translation>
     </message>
     <message>
         <source>Updating Bitwarden CLI... Please don&apos;t close the app or exit this page.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizace Bitwarden CLI... Prosím nezavírejte aplikaci a neopouštějte tuto obrazovku.</translation>
     </message>
 </context>
 <context>
@@ -735,11 +733,11 @@
     <name>harbour-bitsailor</name>
     <message>
         <source>Update Bitwarden CLI</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizovat Bitwarden CLI</translation>
     </message>
     <message>
         <source>Your Bitwarden CLI might be out of date. You should check for new versions of Bitwarden CLI regularly. You can do so in the settings or by clicking this notification.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitwarden CLI na vašem zařízení může být zastaralé. Měli byste pravidelně kontrolovat aktualizace. Můžete tak učinit v nastavení nebo kliknutím na tuto notifikaci.</translation>
     </message>
 </context>
 </TS>
