@@ -43,6 +43,7 @@ CoverBackground {
                 id: itemFiled
 
                 visible: item.type !== BitwardenCli.NoType && item.name
+                //: Item name on the cover page for card, should be short
                 text: qsTr("Item") + ":"
                 font.pixelSize: Theme.fontSizeExtraSmall
                 anchors.horizontalCenter: parent.horizontalCenter

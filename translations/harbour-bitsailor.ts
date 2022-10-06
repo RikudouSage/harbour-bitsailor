@@ -66,6 +66,7 @@
     <name>CoverPageCard</name>
     <message>
         <source>Item</source>
+        <extracomment>Item name on the cover page for card, should be short</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
