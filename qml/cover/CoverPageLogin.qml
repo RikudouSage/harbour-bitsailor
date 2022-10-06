@@ -43,6 +43,7 @@ CoverBackground {
                 id: itemFiled
 
                 visible: item.type !== BitwardenCli.NoType && item.name
+                //: Item name on the cover page for login detail, should be short, use abbreviations if needed
                 text: qsTr("Item") + ":"
                 font.pixelSize: Theme.fontSizeExtraSmall
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -59,6 +60,7 @@ CoverBackground {
                 id: usernameField
 
                 visible: item.type !== BitwardenCli.NoType && item.username
+                //: On cover page, should be short, use abbreviations if needed
                 text: qsTr("Username") + ":"
                 font.pixelSize: Theme.fontSizeExtraSmall
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -74,6 +76,7 @@ CoverBackground {
             Label {
                 id: passwordField
                 visible: item.type !== BitwardenCli.NoType && item.password
+                //: On cover page, should be short, use abbreviations if needed
                 text: qsTr("Password") + ":"
                 font.pixelSize: Theme.fontSizeExtraSmall
                 anchors.horizontalCenter: parent.horizontalCenter

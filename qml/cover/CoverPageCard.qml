@@ -43,7 +43,7 @@ CoverBackground {
                 id: itemFiled
 
                 visible: item.type !== BitwardenCli.NoType && item.name
-                //: Item name on the cover page for card, should be short
+                //: Item name on the cover page for card detail, should be short, use abbreviations if needed
                 text: qsTr("Item") + ":"
                 font.pixelSize: Theme.fontSizeExtraSmall
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -60,6 +60,7 @@ CoverBackground {
                 id: cardNumberField
 
                 visible: item.type !== BitwardenCli.NoType && item.cardNumber
+                //: On cover page, should be short, use abbreviations if needed
                 text: qsTr("Card Number") + ":"
                 font.pixelSize: Theme.fontSizeExtraSmall
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -75,6 +76,7 @@ CoverBackground {
             Label {
                 id: expirationFiled
                 visible: item.type !== BitwardenCli.NoType && item.expiration
+                //: On cover page, should be short, use abbreviations if needed
                 text: qsTr("Expiration") + ":"
                 font.pixelSize: Theme.fontSizeExtraSmall
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -90,6 +92,7 @@ CoverBackground {
             Label {
                 id: passwordField
                 visible: item.type !== BitwardenCli.NoType && item.securityCode
+                //: On cover page, should be short, use abbreviations if needed
                 text: qsTr("Security Code") + ":"
                 font.pixelSize: Theme.fontSizeExtraSmall
                 anchors.horizontalCenter: parent.horizontalCenter

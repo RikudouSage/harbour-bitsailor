@@ -43,6 +43,7 @@ CoverBackground {
                 id: itemFiled
 
                 visible: item.type !== BitwardenCli.NoType && item.name
+                //: Item name on the cover page for card detail, should be short, use abbreviations if needed
                 text: qsTr("Item") + ":"
                 font.pixelSize: Theme.fontSizeExtraSmall
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -58,6 +59,7 @@ CoverBackground {
             Label {
                 id: noteField
                 visible: item.type !== BitwardenCli.NoType && item.note
+                //: On cover page, should be short, use abbreviations if needed
                 text: qsTr("Note") + ":"
                 font.pixelSize: Theme.fontSizeExtraSmall
                 anchors.horizontalCenter: parent.horizontalCenter

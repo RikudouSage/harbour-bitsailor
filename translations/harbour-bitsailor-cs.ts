@@ -5,6 +5,7 @@
     <name>CleanupPage</name>
     <message>
         <source>Cleaning Up</source>
+        <extracomment>Page title</extracomment>
         <translation>Čištění</translation>
     </message>
     <message>
@@ -66,19 +67,22 @@
     <name>CoverPageCard</name>
     <message>
         <source>Item</source>
-        <extracomment>Item name on the cover page for card, should be short</extracomment>
+        <extracomment>Item name on the cover page for card detail, should be short, use abbreviations if needed</extracomment>
         <translation>Název</translation>
     </message>
     <message>
         <source>Card Number</source>
+        <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
         <translation>Číslo karty</translation>
     </message>
     <message>
         <source>Security Code</source>
+        <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
         <translation>Bezp. kód</translation>
     </message>
     <message>
         <source>Expiration</source>
+        <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
         <translation>Expirace</translation>
     </message>
 </context>
@@ -86,14 +90,17 @@
     <name>CoverPageLogin</name>
     <message>
         <source>Item</source>
+        <extracomment>Item name on the cover page for login detail, should be short, use abbreviations if needed</extracomment>
         <translation>Název</translation>
     </message>
     <message>
         <source>Username</source>
+        <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
         <translation>Uživ. jm.</translation>
     </message>
     <message>
         <source>Password</source>
+        <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
         <translation>Heslo</translation>
     </message>
 </context>
@@ -101,18 +108,22 @@
     <name>CoverPageLoginTotp</name>
     <message>
         <source>Item</source>
+        <extracomment>Item name on the cover page for login detail, should be short, use abbreviations if needed</extracomment>
         <translation>Název</translation>
     </message>
     <message>
         <source>Username</source>
+        <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
         <translation>Uživ. jm.</translation>
     </message>
     <message>
         <source>Password</source>
+        <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
         <translation>Heslo</translation>
     </message>
     <message>
         <source>TOTP</source>
+        <extracomment>TOTP (two factor auth code) on cover page, should be short, use abbreviations if needed</extracomment>
         <translation>TOTP</translation>
     </message>
 </context>
@@ -120,10 +131,12 @@
     <name>CoverPageNote</name>
     <message>
         <source>Item</source>
+        <extracomment>Item name on the cover page for card detail, should be short, use abbreviations if needed</extracomment>
         <translation>Název</translation>
     </message>
     <message>
         <source>Note</source>
+        <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
         <translation>Poznámka</translation>
     </message>
 </context>
