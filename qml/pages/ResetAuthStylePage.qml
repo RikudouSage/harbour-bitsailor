@@ -17,6 +17,7 @@ Dialog {
             width: page.width
             spacing: Theme.paddingLarge
             DialogHeader {
+                //: Dialog accept text
                 acceptText: qsTr("Proceed")
             }
             Label {

@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="cs">
 <context>
     <name>CleanupPage</name>
     <message>
@@ -51,6 +53,7 @@
     <name>ConfirmSettingPage</name>
     <message>
         <source>Confirm</source>
+        <extracomment>Dialog accept text</extracomment>
         <translation>Potvrdit</translation>
     </message>
 </context>
@@ -146,6 +149,7 @@
     </message>
     <message>
         <source>Generate Password</source>
+        <extracomment>Page title</extracomment>
         <translation>Vygenerovat heslo</translation>
     </message>
     <message>
@@ -185,6 +189,7 @@
     <name>InstallBitwardenCliPage</name>
     <message>
         <source>Installing Bitwarden CLI</source>
+        <extracomment>Page title</extracomment>
         <translation>Instaluje se Bitwarden CLI</translation>
     </message>
     <message>
@@ -208,6 +213,7 @@
     </message>
     <message>
         <source>Item detail</source>
+        <extracomment>Page title</extracomment>
         <translation>Detail položky</translation>
     </message>
     <message>
@@ -318,6 +324,7 @@
     </message>
     <message>
         <source>Login</source>
+        <extracomment>Dialog accept text</extracomment>
         <translation>Přihlásit se</translation>
     </message>
     <message>
@@ -365,6 +372,7 @@
     </message>
     <message>
         <source>Logins</source>
+        <extracomment>Page title</extracomment>
         <translation>Přihlášení</translation>
     </message>
     <message>
@@ -373,10 +381,12 @@
     </message>
     <message>
         <source>Cards</source>
+        <extracomment>Page title</extracomment>
         <translation>Karty</translation>
     </message>
     <message>
         <source>Notes</source>
+        <extracomment>Page title</extracomment>
         <translation>Poznámky</translation>
     </message>
     <message>
@@ -421,6 +431,7 @@
     </message>
     <message>
         <source>BitSailor</source>
+        <extracomment>Page title</extracomment>
         <translation>BitSailor</translation>
     </message>
 </context>
@@ -428,10 +439,12 @@
     <name>MissingBitwardenCliPage</name>
     <message>
         <source>Continue</source>
+        <extracomment>Dialog accept text</extracomment>
         <translation>Pokračovat</translation>
     </message>
     <message>
         <source>Exit</source>
+        <extracomment>Dialog reject text</extracomment>
         <translation>Ukončit</translation>
     </message>
     <message>
@@ -443,6 +456,7 @@
     <name>MissingRequiredBinaryPage</name>
     <message>
         <source>Missing Required Dependencies</source>
+        <extracomment>Page title</extracomment>
         <translation>Chybějící nezbytné závislosti</translation>
     </message>
     <message>
@@ -454,6 +468,7 @@
     <name>ResetAuthStylePage</name>
     <message>
         <source>Proceed</source>
+        <extracomment>Dialog accept text</extracomment>
         <translation>Pokračovat</translation>
     </message>
 </context>
@@ -461,6 +476,7 @@
     <name>SettingsPage</name>
     <message>
         <source>Settings</source>
+        <extracomment>Page title</extracomment>
         <translation>Nastavení</translation>
     </message>
     <message>
@@ -484,8 +500,8 @@
         <translation>Načítat trezor na hlavní obrazovce</translation>
     </message>
     <message>
-        <source/>
-        <translation type="unfinished"/>
+        <source></source>
+        <translation></translation>
     </message>
     <message>
         <source>Save items in cache for faster load</source>
@@ -564,6 +580,7 @@
     <name>SetupPinPage</name>
     <message>
         <source>Continue</source>
+        <extracomment>Dialog accept text</extracomment>
         <translation>Pokračovat</translation>
     </message>
     <message>
@@ -591,6 +608,7 @@
     <name>SetupSystemAuthPage</name>
     <message>
         <source>Continue</source>
+        <extracomment>Dialog accept text</extracomment>
         <translation>Pokračovat</translation>
     </message>
     <message>
@@ -614,6 +632,7 @@
     <name>SystemCheckerPage</name>
     <message>
         <source>System Check</source>
+        <extracomment>Page title</extracomment>
         <translation>Kontrola systému</translation>
     </message>
     <message>
@@ -625,6 +644,7 @@
     <name>UnknownErrorOccuredPage</name>
     <message>
         <source>Unknown Error</source>
+        <extracomment>Page title</extracomment>
         <translation>Neznámá chyba</translation>
     </message>
     <message>
@@ -636,6 +656,7 @@
     <name>UnlockVaultPage</name>
     <message>
         <source>Unlock Vault</source>
+        <extracomment>Dialog accept text</extracomment>
         <translation>Odemknout trezor</translation>
     </message>
     <message>
@@ -687,6 +708,7 @@
     <name>UpdateBitwardenCliPage</name>
     <message>
         <source>Updating Bitwarden CLI</source>
+        <extracomment>Page title</extracomment>
         <translation>Aktualizace Bitwarden CLI</translation>
     </message>
     <message>
@@ -733,6 +755,7 @@
     <name>harbour-bitsailor</name>
     <message>
         <source>Update Bitwarden CLI</source>
+        <extracomment>notification title</extracomment>
         <translation>Aktualizovat Bitwarden CLI</translation>
     </message>
     <message>

@@ -42,6 +42,7 @@ ApplicationWindow {
 
     Notification {
         id: outdatedCliNotification
+        //: notification title
         summary: qsTr("Update Bitwarden CLI")
         body: qsTr("Your Bitwarden CLI might be out of date. You should check for new versions of Bitwarden CLI regularly. You can do so in the settings or by clicking this notification.")
         remoteActions: [

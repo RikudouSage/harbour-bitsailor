@@ -107,6 +107,7 @@ Page {
             spacing: Theme.paddingLarge
 
             PageHeader {
+                //: Page title
                 title: qsTr("Settings")
             }
 

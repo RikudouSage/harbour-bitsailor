@@ -192,12 +192,14 @@ Page {
             width: page.width
             spacing: Theme.paddingLarge
             PageHeader {
+                //: Page title
                 title: qsTr("BitSailor")
             }
 
             Components.MainPageItem {
                 text: loginsCount !== null ? qsTr("Logins (%1)").arg(loginsCount) : qsTr("Logins");
                 onClicked: {
+                    //: Page title
                     pageStack.push("VaultPage.qml", {itemLoader: 'getLogins', title: qsTr("Logins")});
                 }
             }
@@ -205,6 +207,7 @@ Page {
             Components.MainPageItem {
                 text: cardsCount !== null ? qsTr("Cards (%1)").arg(cardsCount) : qsTr("Cards")
                 onClicked: {
+                    //: Page title
                     pageStack.push("VaultPage.qml", {itemLoader: 'getCards', title: qsTr("Cards")});
                 }
             }
@@ -212,6 +215,7 @@ Page {
             Components.MainPageItem {
                 text: notesCount !== null ? qsTr("Notes (%1)").arg(notesCount) : qsTr("Notes")
                 onClicked: {
+                    //: Page title
                     pageStack.push("VaultPage.qml", {itemLoader: 'getNotes', title: qsTr("Notes")});
                 }
             }

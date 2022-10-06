@@ -32,6 +32,7 @@ Dialog {
             spacing: Theme.paddingLarge
 
             DialogHeader {
+                //: Dialog accept text
                 acceptText: qsTr("Login")
             }
 

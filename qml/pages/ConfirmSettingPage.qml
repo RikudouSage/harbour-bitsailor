@@ -19,6 +19,7 @@ Dialog {
             spacing: Theme.paddingLarge
             DialogHeader {
                 id: header
+                //: Dialog accept text
                 acceptText: qsTr("Confirm")
             }
             Label {

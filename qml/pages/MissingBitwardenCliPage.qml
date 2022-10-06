@@ -16,7 +16,9 @@ Dialog {
             spacing: Theme.paddingLarge
 
             DialogHeader {
+                //: Dialog accept text
                 acceptText: qsTr("Continue")
+                //: Dialog reject text
                 cancelText: qsTr("Exit")
             }
 

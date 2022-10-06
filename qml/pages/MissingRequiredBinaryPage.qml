@@ -17,6 +17,7 @@ Page {
             width: page.width
             spacing: Theme.paddingLarge
             PageHeader {
+                //: Page title
                 title: qsTr("Missing Required Dependencies")
             }
             Label {

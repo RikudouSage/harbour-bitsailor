@@ -53,6 +53,7 @@
     <name>ConfirmSettingPage</name>
     <message>
         <source>Confirm</source>
+        <extracomment>Dialog accept text</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -148,6 +149,7 @@
     </message>
     <message>
         <source>Generate Password</source>
+        <extracomment>Page title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -187,6 +189,7 @@
     <name>InstallBitwardenCliPage</name>
     <message>
         <source>Installing Bitwarden CLI</source>
+        <extracomment>Page title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -210,6 +213,7 @@
     </message>
     <message>
         <source>Item detail</source>
+        <extracomment>Page title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -320,6 +324,7 @@
     </message>
     <message>
         <source>Login</source>
+        <extracomment>Dialog accept text</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -367,6 +372,7 @@
     </message>
     <message>
         <source>Logins</source>
+        <extracomment>Page title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -375,10 +381,12 @@
     </message>
     <message>
         <source>Cards</source>
+        <extracomment>Page title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Notes</source>
+        <extracomment>Page title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -423,6 +431,7 @@
     </message>
     <message>
         <source>BitSailor</source>
+        <extracomment>Page title</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -430,10 +439,12 @@
     <name>MissingBitwardenCliPage</name>
     <message>
         <source>Continue</source>
+        <extracomment>Dialog accept text</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Exit</source>
+        <extracomment>Dialog reject text</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -445,6 +456,7 @@
     <name>MissingRequiredBinaryPage</name>
     <message>
         <source>Missing Required Dependencies</source>
+        <extracomment>Page title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -456,6 +468,7 @@
     <name>ResetAuthStylePage</name>
     <message>
         <source>Proceed</source>
+        <extracomment>Dialog accept text</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -463,6 +476,7 @@
     <name>SettingsPage</name>
     <message>
         <source>Settings</source>
+        <extracomment>Page title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -566,6 +580,7 @@
     <name>SetupPinPage</name>
     <message>
         <source>Continue</source>
+        <extracomment>Dialog accept text</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -593,6 +608,7 @@
     <name>SetupSystemAuthPage</name>
     <message>
         <source>Continue</source>
+        <extracomment>Dialog accept text</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -616,6 +632,7 @@
     <name>SystemCheckerPage</name>
     <message>
         <source>System Check</source>
+        <extracomment>Page title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -627,6 +644,7 @@
     <name>UnknownErrorOccuredPage</name>
     <message>
         <source>Unknown Error</source>
+        <extracomment>Page title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -638,6 +656,7 @@
     <name>UnlockVaultPage</name>
     <message>
         <source>Unlock Vault</source>
+        <extracomment>Dialog accept text</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -689,6 +708,7 @@
     <name>UpdateBitwardenCliPage</name>
     <message>
         <source>Updating Bitwarden CLI</source>
+        <extracomment>Page title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -735,6 +755,7 @@
     <name>harbour-bitsailor</name>
     <message>
         <source>Update Bitwarden CLI</source>
+        <extracomment>notification title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
