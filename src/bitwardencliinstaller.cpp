@@ -17,8 +17,29 @@ BitwardenCliInstaller::BitwardenCliInstaller(QObject *parent) : QObject(parent)
         dataDir.mkpath(".");
     }
     installProcess->setWorkingDirectory(getDataPath());
+    updateProcess->setWorkingDirectory(getDataPath());
 
     connect(installProcess, SIGNAL(finished(int)), this, SLOT(installProcessExited(int)));
+    connect(updateProcess, SIGNAL(finished(int)), this, SLOT(updateProcessExited(int)));
+
+#ifdef QT_DEBUG
+    connect(installProcess, &QProcess::readyReadStandardError, [=] (auto signal) {
+        Q_UNUSED(signal);
+        qDebug() << static_cast<QString>(installProcess->readAllStandardError());
+    });
+    connect(installProcess, &QProcess::readyReadStandardOutput, [=] (auto signal) {
+        Q_UNUSED(signal);
+        qDebug() << static_cast<QString>(installProcess->readAllStandardOutput());
+    });
+    connect(updateProcess, &QProcess::readyReadStandardError, [=] (auto signal) {
+        Q_UNUSED(signal);
+        qDebug() << static_cast<QString>(updateProcess->readAllStandardError());
+    });
+    connect(updateProcess, &QProcess::readyReadStandardOutput, [=] (auto signal) {
+        Q_UNUSED(signal);
+        qDebug() << static_cast<QString>(updateProcess->readAllStandardOutput());
+    });
+#endif
 }
 
 void BitwardenCliInstaller::install()
@@ -26,7 +47,7 @@ void BitwardenCliInstaller::install()
     for (const auto &path : getPaths()) {
         QFile file(path + "/bw");
         if (file.exists()) {
-            emit finished(true);
+            emit installFinished(true);
             return;
         }
     }
@@ -34,10 +55,18 @@ void BitwardenCliInstaller::install()
     installProcess->start("npm", {"install", "@bitwarden/cli"});
 }
 
+void BitwardenCliInstaller::update()
+{
+    updateProcess->start("npm", {"update"});
+}
+
 void BitwardenCliInstaller::installProcessExited(int exitCode)
 {
+#ifdef QT_DEBUG
+    qDebug() << "Install process exited with " + QString::number(exitCode);
+#endif
     if (exitCode != 0) {
-        emit finished(false);
+        emit installFinished(false);
         return;
     }
     QDir binDir(getPrivateBinDirPath());
@@ -51,5 +80,13 @@ void BitwardenCliInstaller::installProcessExited(int exitCode)
     }
     auto result = QFile::link(getDataPath() + "/node_modules/.bin/bw", bw.fileName());
 
-    emit finished(result);
+    emit installFinished(result);
+}
+
+void BitwardenCliInstaller::updateProcessExited(int exitCode)
+{
+#ifdef QT_DEBUG
+    qDebug() << "Update process exited with " + QString::number(exitCode);
+#endif
+    emit updateFinished(exitCode == 0);
 }

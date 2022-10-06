@@ -557,6 +557,10 @@
         <source>Enabling this option will fasten load times for items in the vault significantly - your data are &lt;strong&gt;stored on disk encrypted&lt;/strong&gt; without any sensitive data (card numbers, passwords etc.).</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Update Bitwarden CLI</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SetupPinPage</name>
@@ -682,6 +686,25 @@
     </message>
 </context>
 <context>
+    <name>UpdateBitwardenCliPage</name>
+    <message>
+        <source>Updating Bitwarden CLI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There was an error updating the Bitwarden CLI.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bitwarden CLI was updated successfully</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Updating Bitwarden CLI... Please don&apos;t close the app or exit this page.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>VaultPage</name>
     <message>
         <source>Vault</source>
@@ -705,6 +728,17 @@
     </message>
     <message>
         <source>Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>harbour-bitsailor</name>
+    <message>
+        <source>Update Bitwarden CLI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your Bitwarden CLI might be out of date. You should check for new versions of Bitwarden CLI regularly. You can do so in the settings or by clicking this notification.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

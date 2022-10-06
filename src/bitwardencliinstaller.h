@@ -10,15 +10,19 @@ class BitwardenCliInstaller : public QObject
 public:
     explicit BitwardenCliInstaller(QObject *parent = nullptr);
     Q_INVOKABLE void install();
+    Q_INVOKABLE void update();
 
 signals:
-    void finished(bool success);
+    void installFinished(bool success);
+    void updateFinished(bool success);
 
 private slots:
     void installProcessExited(int exitCode);
+    void updateProcessExited(int exitCode);
 
 private:
     QProcess* installProcess = new QProcess(this);
+    QProcess* updateProcess = new QProcess(this);
 };
 
 #endif // BITWARDENCLIINSTALLER_H

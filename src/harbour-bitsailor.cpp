@@ -19,6 +19,7 @@
 #include "systemauthchecker.h"
 #include "fileaccessor.h"
 #include "randompingenerator.h"
+#include "pathhelper.h"
 
 int main(int argc, char *argv[])
 {
@@ -35,6 +36,7 @@ int main(int argc, char *argv[])
 
     v->rootContext()->setContextProperty("settings", new AppSettings(app.data()));
     v->rootContext()->setContextProperty("runtimeCache", RuntimeCache::getInstance(app.data()));
+    v->rootContext()->setContextProperty("privateBinPath", getPrivateBinDirPath());
 
 #ifdef QT_DEBUG
     v->rootContext()->setContextProperty("isDebug", true);

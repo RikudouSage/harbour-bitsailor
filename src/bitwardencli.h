@@ -16,6 +16,7 @@
 class BitwardenCli : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QString binaryPath MEMBER bw CONSTANT)
 public:
     explicit BitwardenCli(QObject *parent = nullptr);
 
@@ -116,7 +117,7 @@ private slots:
     void onFinished(int exitCode, Method method);
 
 private:
-    const QString bw = getPrivateBinDirPath() + "/bw";
+    QString bw;
     QMap<Method, QProcess*> processes;
     SecretsHandler* secretsHandler = new SecretsHandler(this);
     RuntimeCache* runtimeCache = RuntimeCache::getInstance(this);

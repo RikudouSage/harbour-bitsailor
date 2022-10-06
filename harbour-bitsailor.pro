@@ -66,6 +66,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/pages/SystemCheckerPage.qml \
     qml/pages/UnknownErrorOccuredPage.qml \
     qml/pages/UnlockVaultPage.qml \
+    qml/pages/UpdateBitwardenCliPage.qml \
     qml/pages/VaultPage.qml \
     qml/sha.js \
     rpm/harbour-bitsailor.spec \

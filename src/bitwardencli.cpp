@@ -4,11 +4,21 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QList>
+#include <QFile>
+
+#include "pathhelper.h"
 
 static const QString cacheKeyItems = "items";
 
 BitwardenCli::BitwardenCli(QObject *parent) : QObject(parent)
 {
+    for (const auto &path : getPaths()) {
+        QFile file(path + "/bw");
+        if (file.exists()) {
+            bw = path + "/bw";
+            break;
+        }
+    }
 }
 
 void BitwardenCli::checkLoginStatus()

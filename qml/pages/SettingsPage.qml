@@ -72,6 +72,18 @@ Page {
 
         VerticalScrollDecorator {}
 
+        PullDownMenu {
+            visible: runtimeCache.getPersistent("hasLocalInstallation") === "y"
+
+            MenuItem {
+                text: qsTr("Update Bitwarden CLI")
+                visible: runtimeCache.getPersistent("hasLocalInstallation") === "y"
+                onClicked: {
+                    pageStack.push("UpdateBitwardenCliPage.qml");
+                }
+            }
+        }
+
         PushUpMenu {
             MenuItem {
                 text: qsTr("Clean Up Everything");

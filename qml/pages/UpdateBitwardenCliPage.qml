@@ -10,21 +10,22 @@ Page {
     BitwardenInstaller {
         id: installer
 
-        onInstallFinished: {
+        onUpdateFinished: {
             if (!success) {
                 errorMessage.visible = true;
                 loader.running = false;
             } else {
                 // todo cache item name
                 runtimeCache.setPersistent("lastUpdated", new Date().toISOString());
-                pageStack.replace("LoginCheckPage.qml");
+                app.toaster.show(qsTr("Bitwarden CLI was updated successfully"));
+                pageStack.pop();
             }
         }
     }
 
     BusyLabel {
         id: loader
-        text: qsTr("Installing... Please don't close the app.");
+        text: qsTr("Updating Bitwarden CLI... Please don't close the app or exit this page.");
         running: true
     }
 
@@ -39,7 +40,7 @@ Page {
             width: page.width
             spacing: Theme.paddingLarge
             PageHeader {
-                title: qsTr("Installing Bitwarden CLI")
+                title: qsTr("Updating Bitwarden CLI")
             }
 
             Label {
@@ -47,7 +48,7 @@ Page {
 
                 visible: false
                 x: Theme.horizontalPageMargin
-                text: qsTr("There was an error installing the Bitwarden CLI.");
+                text: qsTr("There was an error updating the Bitwarden CLI.");
                 color: Theme.errorColor
                 wrapMode: Label.WordWrap
                 width: parent.width - Theme.horizontalPageMargin * 2
@@ -56,8 +57,6 @@ Page {
     }
 
     Component.onCompleted: {
-        // todo cache item name
-        runtimeCache.setPersistent("hasLocalInstallation", "y");
-        installer.install();
+        installer.update();
     }
 }
