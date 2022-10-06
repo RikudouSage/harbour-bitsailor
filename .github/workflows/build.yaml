@@ -6,6 +6,10 @@ on:
       - 'v*'
     branches:
       - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
 
 env:
   OS_VERSION: 4.4.0.68
