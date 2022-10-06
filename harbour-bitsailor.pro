@@ -43,6 +43,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/components/PercentageCircle.qml \
     qml/components/Toaster.qml \
     qml/cover/CoverPage.qml \
+    qml/cover/CoverPageCard.qml \
     qml/cover/CoverPageLogin.qml \
     qml/cover/CoverPageLoginTotp.qml \
     qml/cover/CoverPageNote.qml \

@@ -63,6 +63,25 @@
     </message>
 </context>
 <context>
+    <name>CoverPageCard</name>
+    <message>
+        <source>Item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Card Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Security Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expiration</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CoverPageLogin</name>
     <message>
         <source>Item</source>

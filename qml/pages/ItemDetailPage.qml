@@ -26,6 +26,8 @@ Page {
             }
         } else if(item.type === BitwardenCli.SecureNote) {
             pageName = 'CoverPageNote.qml';
+        } else if(item.type === BitwardenCli.Card) {
+            pageName = 'CoverPageCard.qml';
         }
 
         // todo differentiate once more types are available
@@ -37,6 +39,9 @@ Page {
                 password: typeof item.login !== 'undefined' && typeof item.login.username !== 'undefined' ? item.login.password : null,
                 totp: typeof item.login !== 'undefined' && item.login.totp ? Helpers.getTotp(item.login.totp) : null,
                 note: typeof item.notes !== 'undefined' ? item.notes : null,
+                cardNumber: typeof item.card !== 'undefined' && typeof item.card.number !== 'undefined' ? item.card.number : null,
+                securityCode: typeof item.card !== 'undefined' && typeof item.card.code !== 'undefined' ? item.card.code : null,
+                expiration: typeof item.card !== 'undefined' && item.card.expMonth && item.card.expYear ? String("0" + item.card.expMonth).slice(-2) + "/" + item.card.expYear : null,
             }
         });
         app.cover = cover;

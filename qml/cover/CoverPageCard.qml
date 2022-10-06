@@ -35,9 +35,7 @@ CoverBackground {
         Icon {
             source: "file:///usr/share/harbour-bitsailor/icons/logo-black-white.png" // todo find out if some standard path exists for this
             anchors.horizontalCenter: parent.horizontalCenter
-            sourceSize: [itemFiled, usernameField, passwordField, totpField].filter(function(item) {
-                return item.visible;
-            }).length < 4 ? "80x80" : "40x40"
+            sourceSize: "40x40"
         }
         Column {
             width: parent.width
@@ -58,47 +56,47 @@ CoverBackground {
             }
 
             Label {
-                id: usernameField
+                id: cardNumberField
 
-                visible: item.type !== BitwardenCli.NoType && item.username
-                text: qsTr("Username") + ":"
+                visible: item.type !== BitwardenCli.NoType && item.cardNumber
+                text: qsTr("Card Number") + ":"
                 font.pixelSize: Theme.fontSizeExtraSmall
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.bold: true
             }
             Label {
-                visible: item.type !== BitwardenCli.NoType && item.username
-                text: item.username
+                visible: item.type !== BitwardenCli.NoType && item.cardNumber
+                text: '•••• •••• •••• ' + item.cardNumber.slice(-4)
+                font.pixelSize: Theme.fontSizeExtraSmall
+                anchors.horizontalCenter: parent.horizontalCenter
+            }
+
+            Label {
+                id: expirationFiled
+                visible: item.type !== BitwardenCli.NoType && item.expiration
+                text: qsTr("Expiration") + ":"
+                font.pixelSize: Theme.fontSizeExtraSmall
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.bold: true
+            }
+            Label {
+                visible: item.type !== BitwardenCli.NoType && item.expiration
+                text: item.expiration
                 font.pixelSize: Theme.fontSizeExtraSmall
                 anchors.horizontalCenter: parent.horizontalCenter
             }
 
             Label {
                 id: passwordField
-                visible: item.type !== BitwardenCli.NoType && item.password
-                text: qsTr("Password") + ":"
+                visible: item.type !== BitwardenCli.NoType && item.securityCode
+                text: qsTr("Security Code") + ":"
                 font.pixelSize: Theme.fontSizeExtraSmall
                 anchors.horizontalCenter: parent.horizontalCenter
                 font.bold: true
             }
             Label {
-                visible: item.type !== BitwardenCli.NoType && item.password
-                text: "••••••"
-                font.pixelSize: Theme.fontSizeExtraSmall
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
-
-            Label {
-                id: totpField
-                visible: item.type !== BitwardenCli.NoType && item.totp
-                text: qsTr("TOTP") + ":"
-                font.pixelSize: Theme.fontSizeExtraSmall
-                anchors.horizontalCenter: parent.horizontalCenter
-                font.bold: true
-            }
-            Label {
-                visible: item.type !== BitwardenCli.NoType && item.totp
-                text: item.totp.match(/.{1,3}/g).join(' ')
+                visible: item.type !== BitwardenCli.NoType && item.securityCode
+                text: "•••"
                 font.pixelSize: Theme.fontSizeExtraSmall
                 anchors.horizontalCenter: parent.horizontalCenter
             }
@@ -122,23 +120,23 @@ CoverBackground {
         }
 
         CoverAction {
-            iconSource: "image://theme/icon-cover-people" // icon-m-contact
+            iconSource: "file:///usr/share/harbour-bitsailor/icons/hashtag-solid.svg"
             onTriggered: {
-                Clipboard.text = item.username || ''
+                Clipboard.text = item.cardNumber || ''
             }
         }
+
         CoverAction {
-            iconSource: "image://theme/icon-m-keys"
+            iconSource: "image://theme/icon-s-date"
             onTriggered: {
-                Clipboard.text = item.password || ''
+                Clipboard.text = item.expiration || ''
             }
         }
+
         CoverAction {
-            iconSource: "image://theme/icon-s-time"
+            iconSource: "file:///usr/share/harbour-bitsailor/icons/key-solid.svg"
             onTriggered: {
-                if (item.totp) {
-                    Clipboard.text = item.totp;
-                }
+                Clipboard.text = item.securityCode || ''
             }
         }
     }
