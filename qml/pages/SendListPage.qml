@@ -17,7 +17,7 @@ Page {
             width: page.width
             spacing: Theme.paddingLarge
             PageHeader {
-                //: Page title
+                //: Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send
                 title: qsTr("Send")
             }
         }

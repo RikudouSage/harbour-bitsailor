@@ -71,6 +71,7 @@ Row {
             }
         }
         Label {
+            //: Probably shouldn't be translated as it's the official name of the service, Bitwarden Send
             text: qsTr("Send")
             anchors.horizontalCenter: parent.horizontalCenter
             font.pixelSize: Theme.fontSizeExtraSmall

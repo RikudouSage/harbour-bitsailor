@@ -9,6 +9,7 @@
     </message>
     <message>
         <source>Send</source>
+        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -520,7 +521,7 @@
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title</extracomment>
+        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
