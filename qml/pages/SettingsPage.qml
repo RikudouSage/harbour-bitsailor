@@ -73,11 +73,11 @@ Page {
         VerticalScrollDecorator {}
 
         PullDownMenu {
-            visible: runtimeCache.getPersistent("hasLocalInstallation") === "y"
+            visible: runtimeCache.getPersistent(CacheKey.HasLocalInstallation) === "y"
 
             MenuItem {
                 text: qsTr("Update Bitwarden CLI")
-                visible: runtimeCache.getPersistent("hasLocalInstallation") === "y"
+                visible: runtimeCache.getPersistent(CacheKey.HasLocalInstallation) === "y"
                 onClicked: {
                     pageStack.push("UpdateBitwardenCliPage.qml");
                 }
@@ -272,7 +272,7 @@ Page {
                         });
                     } else {
                         settings.persistentItemCache = false;
-                        runtimeCache.removePersistent('items'); // todo get the 'items' key from somewhere
+                        runtimeCache.removePersistent(CacheKey.Items);
                     }
                 }
             }

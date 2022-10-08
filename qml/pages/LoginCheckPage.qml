@@ -64,8 +64,8 @@ Page {
             if (unlocked) {
                 pageStack.replace("MainPage.qml");
             } else {
-                runtimeCache.remove('items');
-                runtimeCache.removePersistent('items');
+                runtimeCache.remove(CacheKey.Items);
+                runtimeCache.removePersistent(CacheKey.Items);
                 secrets.removeSessionId();
 
                 displayUnlockPage();

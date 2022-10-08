@@ -123,9 +123,8 @@ Page {
 
         onVaultLockStatusResolved: {
             if (!unlocked) {
-                // todo cache key
-                runtimeCache.remove('items');
-                runtimeCache.removePersistent('items');
+                runtimeCache.remove(CacheKey.Items);
+                runtimeCache.removePersistent(CacheKey.Items);
                 secrets.removeSessionId();
 
                 var handle = function() {

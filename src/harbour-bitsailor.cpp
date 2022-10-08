@@ -20,6 +20,7 @@
 #include "fileaccessor.h"
 #include "randompingenerator.h"
 #include "pathhelper.h"
+#include "cachekey.h"
 
 int main(int argc, char *argv[])
 {
@@ -33,6 +34,12 @@ int main(int argc, char *argv[])
     qmlRegisterType<SystemAuthChecker>("cz.chrastecky.bitsailor", 1, 0, "SystemAuthChecker");
     qmlRegisterType<FileAccessor>("cz.chrastecky.bitsailor", 1, 0, "FileAccessor");
     qmlRegisterType<RandomPinGenerator>("cz.chrastecky.bitsailor", 1, 0, "RandomPinGenerator");
+    qmlRegisterSingletonType<CacheKey>("cz.chrastecky.bitsailor", 1, 0, "CacheKey", [](QQmlEngine* engine, QJSEngine* scriptEngine) -> QObject* {
+        Q_UNUSED(engine);
+        Q_UNUSED(scriptEngine);
+
+        return new CacheKey();
+    });
 
     v->rootContext()->setContextProperty("settings", new AppSettings(app.data()));
     v->rootContext()->setContextProperty("runtimeCache", RuntimeCache::getInstance(app.data()));

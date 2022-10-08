@@ -15,8 +15,7 @@ Page {
                 errorMessage.visible = true;
                 loader.running = false;
             } else {
-                // todo cache item name
-                runtimeCache.setPersistent("lastUpdated", new Date().toISOString());
+                runtimeCache.setPersistent(CacheKey.LastUpdated, new Date().toISOString());
                 app.toaster.show(qsTr("Bitwarden CLI was updated successfully"));
                 pageStack.pop();
             }

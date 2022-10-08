@@ -30,7 +30,6 @@ Page {
             pageName = 'CoverPageCard.qml';
         }
 
-        // todo differentiate once more types are available
         const cover = Qt.createComponent("../cover/" + pageName).createObject(app, {
             item: {
                 type: item.type,

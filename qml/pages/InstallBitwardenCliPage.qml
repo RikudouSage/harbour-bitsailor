@@ -15,8 +15,7 @@ Page {
                 errorMessage.visible = true;
                 loader.running = false;
             } else {
-                // todo cache item name
-                runtimeCache.setPersistent("lastUpdated", new Date().toISOString());
+                runtimeCache.setPersistent(CacheKey.LastUpdated, new Date().toISOString());
                 pageStack.replace("LoginCheckPage.qml");
             }
         }
@@ -57,8 +56,7 @@ Page {
     }
 
     Component.onCompleted: {
-        // todo cache item name
-        runtimeCache.setPersistent("hasLocalInstallation", "y");
+        runtimeCache.setPersistent(CacheKey.HasLocalInstallation, "y");
         installer.install();
     }
 }

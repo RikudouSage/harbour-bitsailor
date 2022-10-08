@@ -64,24 +64,22 @@ ApplicationWindow {
 
     Component.onCompleted: {
         if (settings.persistentItemCache) {
-            runtimeCache.set('items', runtimeCache.getPersistent('items')); // todo cache item name
+            runtimeCache.set(CacheKey.Items, runtimeCache.getPersistent(CacheKey.Items));
         }
 
-        // todo cache item name
-        if (!runtimeCache.hasPersistent("hasLocalInstallation")) {
-            runtimeCache.setPersistent("hasLocalInstallation", cli.binaryPath.indexOf(privateBinPath) === 0 ? "y" : "n");
+        if (!runtimeCache.hasPersistent(CacheKey.HasLocalInstallation)) {
+            runtimeCache.setPersistent(CacheKey.HasLocalInstallation, cli.binaryPath.indexOf(privateBinPath) === 0 ? "y" : "n");
         }
 
-        if (runtimeCache.getPersistent("hasLocalInstallation") === "y") {
-            // todo cache item name
-            if (!runtimeCache.hasPersistent("lastUpdated")) {
+        if (runtimeCache.getPersistent(CacheKey.HasLocalInstallation) === "y") {
+            if (!runtimeCache.hasPersistent(CacheKey.LastUpdated)) {
                 // date of first release, could be anything, so why not?
-                runtimeCache.setPersistent("lastUpdated", new Date("2022-09-27 00:26:00").toISOString());
+                runtimeCache.setPersistent(CacheKey.LastUpdated, new Date("2022-09-27 00:26:00").toISOString());
             }
 
             const week = 7 * 24 * 60 * 60 * 1000; // 1 week in milliseconds
 
-            const date = new Date(runtimeCache.getPersistent("lastUpdated"));
+            const date = new Date(runtimeCache.getPersistent(CacheKey.LastUpdated));
             const now = new Date();
 
             const diff = now.getTime() - date.getTime();
@@ -98,8 +96,7 @@ ApplicationWindow {
         }
 
         if (settings.persistentItemCache) {
-            // todo encrypt
-            runtimeCache.setPersistent('items', Helpers.filterOutSensitiveItems(runtimeCache.get('items'))); // todo cache item name
+            runtimeCache.setPersistent(CacheKey.Items, Helpers.filterOutSensitiveItems(runtimeCache.get(CacheKey.Items)));
         }
     }
 

@@ -19,6 +19,7 @@ SOURCES += src/harbour-bitsailor.cpp \
     src/appsettings.cpp \
     src/bitwardencli.cpp \
     src/bitwardencliinstaller.cpp \
+    src/cachekey.cpp \
     src/encryptor.cpp \
     src/fileaccessor.cpp \
     src/pathhelper.cpp \
@@ -90,6 +91,7 @@ HEADERS += \
     src/appsettings.h \
     src/bitwardencli.h \
     src/bitwardencliinstaller.h \
+    src/cachekey.h \
     src/encryptor.h \
     src/fileaccessor.h \
     src/pathhelper.h \

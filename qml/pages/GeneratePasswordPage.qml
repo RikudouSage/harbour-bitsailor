@@ -4,11 +4,11 @@ import Sailfish.Silica 1.0
 import cz.chrastecky.bitsailor 1.0
 
 Page {
-    property bool uppercase: runtimeCache.hasPersistent("generate_uppercase") ? runtimeCache.getPersistent("generate_uppercase") === '1' : true
-    property bool lowercase: runtimeCache.hasPersistent("generate_lowercase") ? runtimeCache.getPersistent("generate_lowercase") === '1' : true
-    property bool numbers: runtimeCache.hasPersistent("generate_numbers") ? runtimeCache.getPersistent("generate_numbers") === '1' : true
-    property bool special: runtimeCache.hasPersistent("generate_special") ? runtimeCache.getPersistent("generate_special") === '1' : false
-    property int length: runtimeCache.hasPersistent("generate_length") ? Number(runtimeCache.getPersistent("generate_length")) : 14
+    property bool uppercase: runtimeCache.hasPersistent(CacheKey.GenerateUppercase) ? runtimeCache.getPersistent(CacheKey.GenerateUppercase) === '1' : true
+    property bool lowercase: runtimeCache.hasPersistent(CacheKey.GenerateLowercase) ? runtimeCache.getPersistent(CacheKey.GenerateLowercase) === '1' : true
+    property bool numbers: runtimeCache.hasPersistent(CacheKey.GenerateNumbers) ? runtimeCache.getPersistent(CacheKey.GenerateNumbers) === '1' : true
+    property bool special: runtimeCache.hasPersistent(CacheKey.GenerateSpecial) ? runtimeCache.getPersistent(CacheKey.GenerateSpecial) === '1' : false
+    property int length: runtimeCache.hasPersistent(CacheKey.GenerateLength) ? Number(runtimeCache.getPersistent(CacheKey.GenerateLength)) : 14
 
     id: page
     allowedOrientations: Orientation.All
@@ -80,7 +80,7 @@ Page {
                 automaticCheck: false
                 onClicked: {
                     uppercase = !checked;
-                    runtimeCache.setPersistent("generate_uppercase", uppercase ? '1' : '0');
+                    runtimeCache.setPersistent(CacheKey.GenerateUppercase, uppercase ? '1' : '0');
                     generatePassword();
                 }
             }
@@ -90,7 +90,7 @@ Page {
                 automaticCheck: false
                 onClicked: {
                     lowercase = !checked;
-                    runtimeCache.setPersistent("generate_lowercase", lowercase ? '1' : '0');
+                    runtimeCache.setPersistent(CacheKey.GenerateLowercase, lowercase ? '1' : '0');
                     generatePassword();
                 }
             }
@@ -100,7 +100,7 @@ Page {
                 automaticCheck: false
                 onClicked: {
                     numbers = !checked;
-                    runtimeCache.setPersistent("generate_numbers", numbers ? '1' : '0');
+                    runtimeCache.setPersistent(CacheKey.GenerateNumbers, numbers ? '1' : '0');
                     generatePassword();
                 }
             }
@@ -110,7 +110,7 @@ Page {
                 automaticCheck: false
                 onClicked: {
                     special = !checked;
-                    runtimeCache.setPersistent("generate_special", special ? '1' : '0');
+                    runtimeCache.setPersistent(CacheKey.GenerateSpecial, special ? '1' : '0');
                     generatePassword();
                 }
             }
@@ -126,7 +126,7 @@ Page {
                  onDownChanged: {
                      if (sliderValue !== length) {
                          length = sliderValue;
-                         runtimeCache.setPersistent("generate_length", String(sliderValue));
+                         runtimeCache.setPersistent(CacheKey.GenerateLength, String(sliderValue));
                          generatePassword();
                      }
                  }
