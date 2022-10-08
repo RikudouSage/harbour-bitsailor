@@ -222,7 +222,8 @@ Page {
             Components.MainPageItem {
                 text: identitiesCount !== null ? qsTr("Identities (%1)").arg(identitiesCount) : qsTr("Identities")
                 onClicked: {
-                    app.toaster.show(qsTr("This functionality is not implemented yet."));
+                    //: Page title
+                    pageStack.push("VaultPage.qml", {itemLoader: 'getIdentities', title: qsTr("Identities")});
                 }
             }
         }

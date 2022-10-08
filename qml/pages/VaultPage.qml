@@ -195,6 +195,16 @@ Page {
                         visible: item.type === BitwardenCli.Card
                     }
 
+                    Label {
+                        anchors.top: itemTitle.bottom
+                        text: typeof item.identity !== 'undefined' ? [item.identity.firstName || '', item.identity.lastName || ''].filter(function(item) {
+                            return item !== '';
+                        }).join(' ') : ''
+                        font.pixelSize: Theme.fontSizeSmall
+                        color: Theme.secondaryHighlightColor
+                        visible: item.type === BitwardenCli.Identity
+                    }
+
                     Component {
                          id: contextMenu
                          ContextMenu {

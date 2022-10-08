@@ -288,6 +288,37 @@
         <source>Security Code (CVV)</source>
         <translation>Bezpečnostní kód (CVV)</translation>
     </message>
+    <message>
+        <source>Identity Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Company</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Social Security Number</source>
+        <extracomment>Translate as local equivalent, see https://en.wikipedia.org/wiki/National_identification_number</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Passport Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>License Number</source>
+        <extracomment>Translate as local equivalent, for example &quot;ID card number&quot;</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Phone</source>
+        <extracomment>Phone number</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LoginCheckPage</name>
@@ -391,6 +422,7 @@
     </message>
     <message>
         <source>Identities</source>
+        <extracomment>Page title</extracomment>
         <translation>Identity</translation>
     </message>
     <message>
@@ -420,10 +452,6 @@
     <message>
         <source>Identities (%1)</source>
         <translation>Identity (%1)</translation>
-    </message>
-    <message>
-        <source>This functionality is not implemented yet.</source>
-        <translation>Tato funkcionalita ještě není zprovozněna.</translation>
     </message>
     <message>
         <source>Generate Password</source>

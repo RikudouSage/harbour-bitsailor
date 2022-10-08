@@ -124,6 +124,191 @@ Page {
             }
 
             TextField {
+                id: nameField
+                text: {
+                    if (!visible) {
+                        return '';
+                    }
+
+                    var text = '';
+                    if (item.identity.title) {
+                        text += item.identity.title + " ";
+                    }
+                    if (item.identity.firstName) {
+                        text += item.identity.firstName + " ";
+                    }
+                    if (item.identity.middleName) {
+                        text += item.identity.middleName + " ";
+                    }
+                    if (item.identity.lastName) {
+                        text += item.identity.lastName + " ";
+                    }
+                    text = text.slice(0, -1);
+
+                    return text;
+                }
+
+                label: qsTr("Identity Name")
+                visible: item.type === BitwardenCli.Identity && (item.identity.title || item.identity.firstName || item.identity.middleName || item.identity.lastName)
+                readOnly: true
+                rightItem: IconButton {
+                    icon.source: "image://theme/icon-m-clipboard"
+                    onClicked: {
+                        Clipboard.text = nameField.text;
+                        app.toaster.show(qsTr("Copied to clipboard"));
+                    }
+                }
+            }
+
+            TextField {
+                id: usernameFieldIdentity
+                text: visible ? item.identity.username : '';
+                label: qsTr("Username")
+                visible: item.type === BitwardenCli.Identity && item.identity.username
+                readOnly: true
+                rightItem: IconButton {
+                    icon.source: "image://theme/icon-m-clipboard"
+                    onClicked: {
+                        Clipboard.text = item.identity.username;
+                        app.toaster.show(qsTr("Copied to clipboard"));
+                    }
+                }
+            }
+
+            TextField {
+                id: companyField
+                text: visible ? item.identity.company : '';
+                label: qsTr("Company")
+                visible: item.type === BitwardenCli.Identity && item.identity.company
+                readOnly: true
+                rightItem: IconButton {
+                    icon.source: "image://theme/icon-m-clipboard"
+                    onClicked: {
+                        Clipboard.text = item.login.company;
+                        app.toaster.show(qsTr("Copied to clipboard"));
+                    }
+                }
+            }
+
+            TextField {
+                id: socialSecurityNumberField
+                text: visible ? item.identity.ssn : '';
+                //: Translate as local equivalent, see https://en.wikipedia.org/wiki/National_identification_number
+                label: qsTr("Social Security Number")
+                visible: item.type === BitwardenCli.Identity && item.identity.ssn
+                readOnly: true
+                rightItem: IconButton {
+                    icon.source: "image://theme/icon-m-clipboard"
+                    onClicked: {
+                        Clipboard.text = item.identity.ssn;
+                        app.toaster.show(qsTr("Copied to clipboard"));
+                    }
+                }
+            }
+
+            TextField {
+                id: passportNumberField
+                text: visible ? item.identity.passportNumber : '';
+                label: qsTr("Passport Number")
+                visible: item.type === BitwardenCli.Identity && item.identity.passportNumber
+                readOnly: true
+                rightItem: IconButton {
+                    icon.source: "image://theme/icon-m-clipboard"
+                    onClicked: {
+                        Clipboard.text = item.identity.passportNumber;
+                        app.toaster.show(qsTr("Copied to clipboard"));
+                    }
+                }
+            }
+
+            TextField {
+                id: licenseNumberField
+                text: visible ? item.identity.licenseNumber : '';
+                //: Translate as local equivalent, for example "ID card number"
+                label: qsTr("License Number")
+                visible: item.type === BitwardenCli.Identity && item.identity.licenseNumber
+                readOnly: true
+                rightItem: IconButton {
+                    icon.source: "image://theme/icon-m-clipboard"
+                    onClicked: {
+                        Clipboard.text = item.identity.licenseNumber;
+                        app.toaster.show(qsTr("Copied to clipboard"));
+                    }
+                }
+            }
+
+            TextField {
+                id: phoneField
+                text: visible ? item.identity.phone : '';
+                //: Phone number
+                label: qsTr("Phone")
+                visible: item.type === BitwardenCli.Identity && item.identity.phone
+                readOnly: true
+                rightItem: IconButton {
+                    icon.source: "image://theme/icon-m-clipboard"
+                    onClicked: {
+                        Clipboard.text = item.identity.phone;
+                        app.toaster.show(qsTr("Copied to clipboard"));
+                    }
+                }
+            }
+
+            TextArea {
+                id: addressField
+                text: {
+                    if (!visible) {
+                        return '';
+                    }
+
+                    var text = '';
+                    if (item.identity.address1) {
+                        text += item.identity.address1 + "\n";
+                    }
+                    if (item.identity.address2) {
+                        text += item.identity.address2 + "\n";
+                    }
+                    if (item.identity.address3) {
+                        text += item.identity.address3 + "\n";
+                    }
+
+                    var city = '';
+                    if (item.identity.city) {
+                        city += item.identity.city + ", ";
+                    }
+                    if (item.identity.state) {
+                        city += item.identity.state + ", ";
+                    }
+                    if (item.identity.postalCode) {
+                        city += item.identity.postalCode + ", ";
+                    }
+                    city = city.slice(0, -2);
+
+                    if (city) {
+                        text += city + "\n";
+                    }
+
+                    if (item.identity.country) {
+                        text += item.identity.country + "\n";
+                    }
+
+                    text = text.slice(0, -1);
+
+                    return text;
+                }
+
+                label: qsTr("Address")
+                visible: item.type === BitwardenCli.Identity && (item.identity.address1 || item.identity.address2 || item.identity.address3 || item.identity.city || item.identity.country || item.identity.postalCode || item.identity.state)
+                readOnly: true
+                rightItem: IconButton {
+                    icon.source: "image://theme/icon-m-clipboard"
+                    onClicked: {
+                        Clipboard.text = item.login.username;
+                        app.toaster.show(qsTr("Copied to clipboard"));
+                    }
+                }
+            }
+
+            TextField {
                 property bool passwordVisible: false
 
                 id: passwordField
@@ -143,7 +328,7 @@ Page {
                     IconButton {
                         icon.source: "image://theme/icon-m-clipboard"
                         onClicked: {
-                            Clipboard.text = item.login.password;
+                            Clipboard.text = addressField.text;
                             app.toaster.show(qsTr("Copied to clipboard"));
                         }
                     }
