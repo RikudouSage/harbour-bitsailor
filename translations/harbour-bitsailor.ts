@@ -319,6 +319,10 @@
         <source>Address</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Email</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LoginCheckPage</name>

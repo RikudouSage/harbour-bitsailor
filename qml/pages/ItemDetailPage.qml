@@ -238,6 +238,21 @@ Page {
             }
 
             TextField {
+                id: emailField
+                text: visible ? item.identity.email : '';
+                label: qsTr("Email")
+                visible: item.type === BitwardenCli.Identity && item.identity.email
+                readOnly: true
+                rightItem: IconButton {
+                    icon.source: "image://theme/icon-m-clipboard"
+                    onClicked: {
+                        Clipboard.text = item.identity.email;
+                        app.toaster.show(qsTr("Copied to clipboard"));
+                    }
+                }
+            }
+
+            TextField {
                 id: phoneField
                 text: visible ? item.identity.phone : '';
                 //: Phone number
