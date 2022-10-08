@@ -41,6 +41,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     icons/bw/* \
     polkit/cz.chrastecky.bitsailor.policy \
     qml/components/BottomMenu.qml \
+    qml/components/BottomMenuItem.qml \
     qml/components/MainPageItem.qml \
     qml/components/PercentageCircle.qml \
     qml/components/Toaster.qml \

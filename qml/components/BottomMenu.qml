@@ -1,22 +1,24 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "." as Components
+
 Row {
     property double inactiveOpacity: 0.7
 
     function makeAllInactive() {
-        vaultsColumn.opacity = inactiveOpacity;
-        sendColumn.opacity = inactiveOpacity;
+        vaults.opacity = inactiveOpacity;
+        send.opacity = inactiveOpacity;
     }
 
     function activateVaults() {
         makeAllInactive();
-        vaultsColumn.opacity = 1;
+        vaults.opacity = 1;
     }
 
     function activateSend() {
         makeAllInactive();
-        sendColumn.opacity = 1;
+        send.opacity = 1;
     }
 
     function findPageByType(type) {
@@ -38,43 +40,23 @@ Row {
     anchors.bottom: parent.bottom
     spacing: Theme.horizontalPageMargin
 
-    Column {
-        id: vaultsColumn
-        opacity: inactiveOpacity
-        IconButton {
-            icon.source: "file:///usr/share/harbour-bitsailor/icons/lock-vault.svg"
-            icon.width: Theme.iconSizeSmallPlus
-            icon.height: icon.width
-            anchors.horizontalCenter: parent.horizontalCenter
-            onClicked: {
-                pageStack.pop(findPageByType("MainPage"));
-            }
-        }
-        Label {
-            text: qsTr("Vaults")
-            anchors.horizontalCenter: parent.horizontalCenter
-            font.pixelSize: Theme.fontSizeExtraSmall
+    Components.BottomMenuItem {
+        id: vaults
+        image: "file:///usr/share/harbour-bitsailor/icons/lock-vault.svg"
+        text: qsTr("Vaults")
+        onClicked: {
+            pageStack.pop(findPageByType("MainPage"));
         }
     }
 
-    Column {
-        id: sendColumn
-        opacity: inactiveOpacity
-        IconButton {
-            icon.source: "file:///usr/share/harbour-bitsailor/icons/paper-plane-send.svg"
-            icon.width: Theme.iconSizeSmallPlus
-            icon.height: icon.width
-            anchors.horizontalCenter: parent.horizontalCenter
-            onClicked: {
-                pageStack.pop(findPageByType("MainPage"), PageStackAction.Immediate);
-                pageStack.push("../pages/SendListPage.qml");
-            }
-        }
-        Label {
-            //: Probably shouldn't be translated as it's the official name of the service, Bitwarden Send
-            text: qsTr("Send")
-            anchors.horizontalCenter: parent.horizontalCenter
-            font.pixelSize: Theme.fontSizeExtraSmall
+    Components.BottomMenuItem {
+        id: send
+        image: "file:///usr/share/harbour-bitsailor/icons/paper-plane-send.svg"
+        //: Probably shouldn't be translated as it's the official name of the service, Bitwarden Send
+        text: qsTr("Send")
+        onClicked: {
+            pageStack.pop(findPageByType("MainPage"), PageStackAction.Immediate);
+            pageStack.push("../pages/SendListPage.qml");
         }
     }
 }
