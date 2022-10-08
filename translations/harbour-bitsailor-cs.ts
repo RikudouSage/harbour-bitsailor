@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>CleanupPage</name>
     <message>
@@ -290,34 +288,34 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Jméno identity</translation>
     </message>
     <message>
         <source>Company</source>
-        <translation type="unfinished"></translation>
+        <translation>Společnost</translation>
     </message>
     <message>
         <source>Social Security Number</source>
         <extracomment>Translate as local equivalent, see https://en.wikipedia.org/wiki/National_identification_number</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Rodné číslo</translation>
     </message>
     <message>
         <source>Passport Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo pasu</translation>
     </message>
     <message>
         <source>License Number</source>
         <extracomment>Translate as local equivalent, for example &quot;ID card number&quot;</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Číslo občanského průkazu</translation>
     </message>
     <message>
         <source>Phone</source>
         <extracomment>Phone number</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Telefon</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresa</translation>
     </message>
 </context>
 <context>
@@ -528,8 +526,8 @@
         <translation>Načítat trezor na hlavní obrazovce</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save items in cache for faster load</source>
