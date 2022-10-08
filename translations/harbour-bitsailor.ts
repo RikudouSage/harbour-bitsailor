@@ -290,6 +290,7 @@
     </message>
     <message>
         <source>Identity Name</source>
+        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>

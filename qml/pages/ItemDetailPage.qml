@@ -147,7 +147,7 @@ Page {
 
                     return text;
                 }
-
+                //: Name as in "person's name", this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future
                 label: qsTr("Identity Name")
                 visible: item.type === BitwardenCli.Identity && (item.identity.title || item.identity.firstName || item.identity.middleName || item.identity.lastName)
                 readOnly: true
