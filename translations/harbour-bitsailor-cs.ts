@@ -1,4 +1,17 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="cs">
+<context>
+    <name>BottomMenu</name>
+    <message>
+        <source>Vaults</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 <context>
     <name>CleanupPage</name>
     <message>
@@ -504,6 +517,14 @@
     </message>
 </context>
 <context>
+    <name>SendListPage</name>
+    <message>
+        <source>Send</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SettingsPage</name>
     <message>
         <source>Settings</source>
@@ -531,8 +552,8 @@
         <translation>Načítat trezor na hlavní obrazovce</translation>
     </message>
     <message>
-        <source/>
-        <translation type="unfinished"/>
+        <source></source>
+        <translation></translation>
     </message>
     <message>
         <source>Save items in cache for faster load</source>

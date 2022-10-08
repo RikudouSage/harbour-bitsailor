@@ -2,6 +2,17 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
+    <name>BottomMenu</name>
+    <message>
+        <source>Vaults</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CleanupPage</name>
     <message>
         <source>Cleaning Up</source>
@@ -502,6 +513,14 @@
     <message>
         <source>Proceed</source>
         <extracomment>Dialog accept text</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SendListPage</name>
+    <message>
+        <source>Send</source>
+        <extracomment>Page title</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>

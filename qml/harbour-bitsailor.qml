@@ -30,6 +30,52 @@ ApplicationWindow {
                 }
             }
         }
+
+        onCurrentPageChanged: {
+            bottomMenu.visible = false;
+            currentPageConnection.target = pageStack.currentPage;
+            currentPageConnection.handleBottomMenuDisplay();
+        }
+    }
+
+    Connections {
+        id: currentPageConnection
+        target: pageStack.currentPage
+        ignoreUnknownSignals: true
+
+        function handleBottomMenuDisplay() {
+            const page = pageStack.currentPage;
+            if (!page.loaded) {
+                return;
+            }
+
+            const regex = /(.+?)_QML/;
+            const matches = regex.exec(pageStack.currentPage.toString());
+            const typeName = matches[1];
+            if (!typeName) {
+                return;
+            }
+
+            switch (typeName) {
+            case "MainPage":
+                bottomMenu.activateVaults();
+                bottomMenu.visible = true;
+                break;
+            case "SendListPage":
+                bottomMenu.activateSend();
+                bottomMenu.visible = true;
+                break;
+            }
+        }
+
+        onLoadedChanged: {
+            handleBottomMenuDisplay();
+        }
+    }
+
+    Timer {
+        id: checkLoadedTimer
+        running: false
     }
 
     BitwardenCli {
@@ -102,5 +148,10 @@ ApplicationWindow {
 
     Components.Toaster {
         id: toasterElement
+    }
+
+    Components.BottomMenu {
+        id: bottomMenu
+        visible: false
     }
 }

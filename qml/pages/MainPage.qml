@@ -252,18 +252,17 @@ Page {
 
     onStatusChanged: {
         if (status == PageStatus.Active) {
-            pageStack.pushAttached("SettingsPage.qml");
-
             if (loaded) {
                 cli.getItems();
             }
 
+            loaded = true;
+
+            pageStack.pushAttached("SettingsPage.qml");
             while (doAfterLoad.length) {
                 const callable = doAfterLoad.shift();
                 callable();
             }
-
-            loaded = true;
         }
     }
 }

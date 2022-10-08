@@ -40,6 +40,7 @@ INSTALLS += polkit bw-logo
 DISTFILES += qml/harbour-bitsailor.qml \
     icons/bw/* \
     polkit/cz.chrastecky.bitsailor.policy \
+    qml/components/BottomMenu.qml \
     qml/components/MainPageItem.qml \
     qml/components/PercentageCircle.qml \
     qml/components/Toaster.qml \
@@ -61,6 +62,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/pages/MissingBitwardenCliPage.qml \
     qml/pages/MissingRequiredBinaryPage.qml \
     qml/pages/ResetAuthStylePage.qml \
+    qml/pages/SendListPage.qml \
     qml/pages/SettingsPage.qml \
     qml/pages/SetupPinPage.qml \
     qml/pages/SetupSystemAuthPage.qml \
