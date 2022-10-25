@@ -104,6 +104,11 @@ void BitwardenCli::lockVaultInBackground()
     connect(process, static_cast<void (QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), process, &QProcess::deleteLater);
 }
 
+void BitwardenCli::getSends()
+{
+    startProcess({"send", "list"}, GetSends);
+}
+
 void BitwardenCli::getItems()
 {
     getItems(GetItems);
@@ -211,7 +216,22 @@ void BitwardenCli::onFinished(int exitCode, Method method)
 {
     auto process = processes.take(method);
 
+#ifdef QT_DEBUG
+    if (exitCode != 0) {
+        qDebug() << "stderr: " << QString(process->readAllStandardError());
+        qDebug() << "stdout: " << QString(process->readAllStandardOutput());
+    }
+#endif
+
     switch (method) {
+    case BitwardenCli::GetSends:
+        if (exitCode != 0) {
+            emit failedGettingSends();
+        } else {
+            auto document = QJsonDocument::fromJson(process->readAllStandardOutput()).array();
+            emit sendsResolved(document);
+        }
+        break;
     case BitwardenCli::GeneratePassword:
         emit passwordGenerated(process->readAllStandardOutput());
         break;

@@ -37,6 +37,7 @@ public:
         DeleteItem,
         GetItem,
         GeneratePassword,
+        GetSends,
     };
 
     enum TwoStepLoginMethods {
@@ -73,6 +74,12 @@ public:
     };
     Q_ENUM(FieldType);
 
+    enum SendType {
+        SendTypeText = 0,
+        SendTypeFile = 1,
+    };
+    Q_ENUM(SendType);
+
     Q_INVOKABLE void checkLoginStatus();
     Q_INVOKABLE void checkVaultUnlocked();
     Q_INVOKABLE void loginEmailPassword(const QString &email, const QString &password);
@@ -83,6 +90,7 @@ public:
     Q_INVOKABLE void unlockVault();
     Q_INVOKABLE void lockVault();
     Q_INVOKABLE void lockVaultInBackground();
+    Q_INVOKABLE void getSends();
     Q_INVOKABLE void getItems();
     void getItems(Method method);
     Q_INVOKABLE void getLogins();
@@ -106,6 +114,8 @@ signals:
     void vaultLocked();
     void failedGettingItems();
     void itemsResolved(QJsonArray items);
+    void failedGettingSends();
+    void sendsResolved(QJsonArray items);
     void vaultSynced();
     void vaultSyncFailed();
     void itemDeleted(bool success);
