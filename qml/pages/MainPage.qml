@@ -198,24 +198,39 @@ Page {
             Components.MainPageItem {
                 text: loginsCount !== null ? qsTr("Logins (%1)").arg(loginsCount) : qsTr("Logins");
                 onClicked: {
-                    //: Page title
-                    pageStack.push("VaultPage.qml", {itemLoader: 'getLogins', title: qsTr("Logins")});
+                    pageStack.push("VaultPage.qml", {
+                        itemLoader: 'getLogins',
+                        //: Page title
+                        title: qsTr("Logins"),
+                        addItemTitle: qsTr('Add login'),
+                        addItemType: BitwardenCli.Login,
+                    });
                 }
             }
 
             Components.MainPageItem {
                 text: cardsCount !== null ? qsTr("Cards (%1)").arg(cardsCount) : qsTr("Cards")
                 onClicked: {
-                    //: Page title
-                    pageStack.push("VaultPage.qml", {itemLoader: 'getCards', title: qsTr("Cards")});
+                    pageStack.push("VaultPage.qml", {
+                        itemLoader: 'getCards',
+                        //: Page title
+                        title: qsTr("Cards"),
+                        addItemTitle: qsTr("Add card"),
+                        addItemType: BitwardenCli.Card,
+                    });
                 }
             }
 
             Components.MainPageItem {
                 text: notesCount !== null ? qsTr("Notes (%1)").arg(notesCount) : qsTr("Notes")
                 onClicked: {
-                    //: Page title
-                    pageStack.push("VaultPage.qml", {itemLoader: 'getNotes', title: qsTr("Notes")});
+                    pageStack.push("VaultPage.qml", {
+                        itemLoader: 'getNotes',
+                        //: Page title
+                        title: qsTr("Notes"),
+                        addItemTitle: qsTr("Add note"),
+                        addItemType: BitwardenCli.SecureNote,
+                    });
                 }
             }
 
@@ -223,7 +238,12 @@ Page {
                 text: identitiesCount !== null ? qsTr("Identities (%1)").arg(identitiesCount) : qsTr("Identities")
                 onClicked: {
                     //: Page title
-                    pageStack.push("VaultPage.qml", {itemLoader: 'getIdentities', title: qsTr("Identities")});
+                    pageStack.push("VaultPage.qml", {
+                        itemLoader: 'getIdentities',
+                        title: qsTr("Identities"),
+                        addItemTitle: qsTr("Add identity"),
+                        addItemType: BitwardenCli.Identity,
+                    });
                 }
             }
         }

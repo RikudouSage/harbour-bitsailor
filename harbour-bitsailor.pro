@@ -52,6 +52,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/cover/CoverPageNote.qml \
     qml/crypto.js \
     qml/helpers.js \
+    qml/pages/AddItemPage.qml \
     qml/pages/CleanupPage.qml \
     qml/pages/ConfirmSettingPage.qml \
     qml/pages/GeneratePasswordPage.qml \

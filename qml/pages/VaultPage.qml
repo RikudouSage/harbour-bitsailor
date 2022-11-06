@@ -14,6 +14,9 @@ Page {
     property string itemLoader: "getItems"
     property string title: qsTr("Vault")
 
+    property string addItemTitle: qsTr("Add item")
+    property int addItemType: BitwardenCli.NoType
+
     id: page
     allowedOrientations: Orientation.All
 
@@ -45,12 +48,12 @@ Page {
         VerticalScrollDecorator {}
 
         PullDownMenu {
-            /*MenuItem {
-                text: qsTr("Add login")
+            MenuItem {
+                text: addItemTitle
                 onClicked: {
-                    app.toaster.show(qsTr("This functionality is not implemented yet."));
+                    pageStack.push("AddItemPage.qml", {type: addItemType});
                 }
-            }*/
+            }
 
             MenuItem {
                 text: searchActive ? qsTr("Hide search") : qsTr("Search")
