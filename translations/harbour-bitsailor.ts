@@ -552,6 +552,10 @@
         <source>URL copied to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>No sends were found.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>

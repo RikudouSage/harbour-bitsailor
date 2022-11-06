@@ -35,6 +35,7 @@ Page {
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height
+        visible: !loader.running
 
         PullDownMenu {
             MenuItem {
@@ -77,6 +78,14 @@ Page {
                 onTextChanged: {
 
                 }
+            }
+
+            Label {
+                x: Theme.horizontalPageMargin
+                text: qsTr("No sends were found.")
+                wrapMode: Label.WordWrap
+                width: parent.width - Theme.horizontalPageMargin * 2
+                visible: items.length < 1
             }
 
             Repeater {
