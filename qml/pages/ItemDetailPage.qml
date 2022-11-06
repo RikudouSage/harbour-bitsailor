@@ -184,7 +184,7 @@ Page {
                 rightItem: IconButton {
                     icon.source: "image://theme/icon-m-clipboard"
                     onClicked: {
-                        Clipboard.text = item.login.company;
+                        Clipboard.text = item.identity.company;
                         app.toaster.show(qsTr("Copied to clipboard"));
                     }
                 }
@@ -317,7 +317,7 @@ Page {
                 rightItem: IconButton {
                     icon.source: "image://theme/icon-m-clipboard"
                     onClicked: {
-                        Clipboard.text = item.login.username;
+                        Clipboard.text = addressField.text;
                         app.toaster.show(qsTr("Copied to clipboard"));
                     }
                 }
@@ -343,7 +343,7 @@ Page {
                     IconButton {
                         icon.source: "image://theme/icon-m-clipboard"
                         onClicked: {
-                            Clipboard.text = addressField.text;
+                            Clipboard.text = item.login.password;
                             app.toaster.show(qsTr("Copied to clipboard"));
                         }
                     }
