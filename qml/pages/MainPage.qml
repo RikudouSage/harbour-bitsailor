@@ -237,9 +237,9 @@ Page {
             Components.MainPageItem {
                 text: identitiesCount !== null ? qsTr("Identities (%1)").arg(identitiesCount) : qsTr("Identities")
                 onClicked: {
-                    //: Page title
                     pageStack.push("VaultPage.qml", {
                         itemLoader: 'getIdentities',
+                        //: Page title
                         title: qsTr("Identities"),
                         addItemTitle: qsTr("Add identity"),
                         addItemType: BitwardenCli.Identity,
