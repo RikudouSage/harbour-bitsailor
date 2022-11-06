@@ -28,10 +28,15 @@ Page {
                 id: typeSelect
 
                 property var itemData: [
+                    //: Item type
                     {text: qsTr("-- choose type --"), value: BitwardenCli.NoType},
+                    //: Item type
                     {text: qsTr("Login"), value: BitwardenCli.Login},
+                    //: Item type
                     {text: qsTr("Card"), value: BitwardenCli.Card},
+                    //: Item type
                     {text: qsTr("Note"), value: BitwardenCli.SecureNote},
+                    //: Item type
                     {text: qsTr("Identity"), value: BitwardenCli.Identity},
                 ]
 
@@ -63,7 +68,7 @@ Page {
 
                 TextField {
                     id: name
-                    //: As in name of the item
+                    //: Name of the item
                     label: qsTr("Name")
                 }
 

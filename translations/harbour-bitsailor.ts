@@ -14,22 +14,27 @@
     </message>
     <message>
         <source>-- choose type --</source>
+        <extracomment>Item type</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Login</source>
+        <extracomment>Item type</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Card</source>
+        <extracomment>Item type</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Identity</source>
+        <extracomment>Item type</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Note</source>
+        <extracomment>Item type</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -38,7 +43,7 @@
     </message>
     <message>
         <source>Name</source>
-        <extracomment>As in name of the item</extracomment>
+        <extracomment>Name of the item</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
