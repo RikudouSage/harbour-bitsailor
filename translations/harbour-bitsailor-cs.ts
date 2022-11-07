@@ -50,6 +50,14 @@
         <source>Password</source>
         <translation>Heslo</translation>
     </message>
+    <message>
+        <source>Item information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authenticator key (TOTP)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BottomMenu</name>
@@ -204,47 +212,70 @@
     </message>
 </context>
 <context>
-    <name>GeneratePasswordPage</name>
-    <message>
-        <source>Generating</source>
-        <translation>Generování</translation>
-    </message>
-    <message>
-        <source>Generate Password</source>
-        <extracomment>Page title</extracomment>
-        <translation>Vygenerovat heslo</translation>
-    </message>
+    <name>GeneratePasswordContent</name>
     <message>
         <source>Password</source>
-        <translation>Heslo</translation>
+        <translation type="unfinished">Heslo</translation>
     </message>
     <message>
         <source>Copied to clipboard</source>
-        <translation>Zkopírováno do schránky</translation>
+        <translation type="unfinished">Zkopírováno do schránky</translation>
     </message>
+    <message>
+        <source>Uppercase letters</source>
+        <translation type="unfinished">Velká písmena</translation>
+    </message>
+    <message>
+        <source>Lowercase letters</source>
+        <translation type="unfinished">Malá písmena</translation>
+    </message>
+    <message>
+        <source>Numbers</source>
+        <translation type="unfinished">Číslice</translation>
+    </message>
+    <message>
+        <source>Special characters</source>
+        <translation type="unfinished">Speciální znaky</translation>
+    </message>
+    <message>
+        <source>Password length</source>
+        <translation type="unfinished">Délka hesla</translation>
+    </message>
+</context>
+<context>
+    <name>GeneratePasswordDialog</name>
+    <message>
+        <source>Generate new password</source>
+        <translation type="unfinished">Vygenerovat nové heslo</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use password</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generating password</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>GeneratePasswordPage</name>
     <message>
         <source>Generate new password</source>
         <translation>Vygenerovat nové heslo</translation>
     </message>
     <message>
-        <source>Uppercase letters</source>
-        <translation>Velká písmena</translation>
+        <source>Generate Password</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished">Vygenerovat heslo</translation>
     </message>
     <message>
-        <source>Lowercase letters</source>
-        <translation>Malá písmena</translation>
-    </message>
-    <message>
-        <source>Numbers</source>
-        <translation>Číslice</translation>
-    </message>
-    <message>
-        <source>Special characters</source>
-        <translation>Speciální znaky</translation>
-    </message>
-    <message>
-        <source>Password length</source>
-        <translation>Délka hesla</translation>
+        <source>Generating password</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

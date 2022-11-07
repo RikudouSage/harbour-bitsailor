@@ -50,6 +50,14 @@
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Item information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authenticator key (TOTP)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BottomMenu</name>
@@ -204,26 +212,13 @@
     </message>
 </context>
 <context>
-    <name>GeneratePasswordPage</name>
-    <message>
-        <source>Generating</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Generate Password</source>
-        <extracomment>Page title</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
+    <name>GeneratePasswordContent</name>
     <message>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Copied to clipboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Generate new password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -244,6 +239,42 @@
     </message>
     <message>
         <source>Password length</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>GeneratePasswordDialog</name>
+    <message>
+        <source>Generate new password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use password</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generating password</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>GeneratePasswordPage</name>
+    <message>
+        <source>Generate new password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generate Password</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generating password</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

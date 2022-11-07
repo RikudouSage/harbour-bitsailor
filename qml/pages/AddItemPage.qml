@@ -66,6 +66,10 @@ Page {
                 width: parent.width
                 visible: type !== BitwardenCli.NoType
 
+                SectionHeader {
+                    text: qsTr("Item information")
+                }
+
                 TextField {
                     id: name
                     //: Name of the item
@@ -87,13 +91,34 @@ Page {
                     echoMode: passwordVisible ? TextInput.Normal : TextInput.Password
 
                     rightItem: Row {
+/*                        IconButton {
+                            // todo
+                            icon.source: "image://theme/icon-s-checkmark"
+                        }
+*/
                         IconButton {
                             icon.source: loginPassword.passwordVisible ? "image://theme/icon-splus-hide-password" : "image://theme/icon-splus-show-password"
                             onClicked: {
                                 loginPassword.passwordVisible = !loginPassword.passwordVisible;
                             }
                         }
+
+                        IconButton {
+                            icon.source: "image://theme/icon-s-sync"
+                            onClicked: {
+                                const dialog = pageStack.push("GeneratePasswordDialog.qml");
+                                dialog.accepted.connect(function() {
+                                    loginPassword.text = dialog.password;
+                                });
+                            }
+                        }
                     }
+                }
+
+                TextField {
+                    id: loginTotp
+                    label: qsTr("Authenticator key (TOTP)")
+                    visible: type === BitwardenCli.Login
                 }
             }
         }

@@ -3,9 +3,13 @@ import Sailfish.Silica 1.0
 
 import "../components" as Components
 
-Page {
+Dialog {
+    property alias password: generator.password
+
     id: page
     allowedOrientations: Orientation.All
+
+    canAccept: !generator.loading
 
     BusyLabel {
         id: loader
@@ -29,9 +33,10 @@ Page {
 
         Components.GeneratePasswordContent {
             id: generator
-            title: PageHeader {
+            title: DialogHeader {
                 //: Page title
-                title: qsTr("Generate Password")
+                acceptText: qsTr("Use password")
+                cancelText: qsTr("Cancel")
             }
         }
 

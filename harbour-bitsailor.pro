@@ -42,6 +42,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     polkit/cz.chrastecky.bitsailor.policy \
     qml/components/BottomMenu.qml \
     qml/components/BottomMenuItem.qml \
+    qml/components/GeneratePasswordContent.qml \
     qml/components/IntValueMenuItem.qml \
     qml/components/MainPageItem.qml \
     qml/components/PercentageCircle.qml \
@@ -56,6 +57,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/pages/AddItemPage.qml \
     qml/pages/CleanupPage.qml \
     qml/pages/ConfirmSettingPage.qml \
+    qml/pages/GeneratePasswordDialog.qml \
     qml/pages/GeneratePasswordPage.qml \
     qml/pages/InstallBitwardenCliPage.qml \
     qml/pages/ItemDetailPage.qml \
