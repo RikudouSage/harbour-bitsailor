@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>AddItemPage</name>
     <message>
@@ -60,54 +58,54 @@
     </message>
     <message>
         <source>URIs</source>
-        <translation type="unfinished">URI</translation>
+        <translation>URI</translation>
     </message>
     <message>
         <source>URI %1</source>
-        <translation type="unfinished"></translation>
+        <translation>URI %1</translation>
     </message>
     <message>
         <source>New URI</source>
-        <translation type="unfinished"></translation>
+        <translation>Nová URI</translation>
     </message>
     <message>
         <source>Match type</source>
-        <translation type="unfinished"></translation>
+        <translation>Zjišťování shody</translation>
     </message>
     <message>
         <source>Default match detection</source>
         <extracomment>URI match type</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Výchozí</translation>
     </message>
     <message>
         <source>Base domain</source>
         <extracomment>URI match type</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Základní doména</translation>
     </message>
     <message>
         <source>Host</source>
         <extracomment>URI match type</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Host</translation>
     </message>
     <message>
         <source>Starts with</source>
         <extracomment>URI match type</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Začíná na</translation>
     </message>
     <message>
         <source>Exact</source>
         <extracomment>URI match type</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Přesná shoda</translation>
     </message>
     <message>
         <source>Regular expression</source>
         <extracomment>URI match type</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Regulární výraz</translation>
     </message>
     <message>
         <source>Never</source>
         <extracomment>URI match type</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Nikdy</translation>
     </message>
 </context>
 <context>
@@ -118,7 +116,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
 </context>
@@ -434,7 +432,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -669,7 +667,7 @@
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -733,8 +731,8 @@
         <translation>Načítat trezor na hlavní obrazovce</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save items in cache for faster load</source>
