@@ -254,7 +254,7 @@
     </message>
     <message>
         <source>Use password</source>
-        <extracomment>Page title</extracomment>
+        <extracomment>Dialog accept</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -34,7 +34,7 @@ Dialog {
         Components.GeneratePasswordContent {
             id: generator
             title: DialogHeader {
-                //: Page title
+                //: Dialog accept
                 acceptText: qsTr("Use password")
                 cancelText: qsTr("Cancel")
             }
