@@ -63,6 +63,7 @@ Page {
             }
 
             Column {
+                id: mainColumn
                 width: parent.width
                 visible: type !== BitwardenCli.NoType
 
@@ -119,6 +120,116 @@ Page {
                     id: loginTotp
                     label: qsTr("Authenticator key (TOTP)")
                     visible: type === BitwardenCli.Login
+                }
+
+                SectionHeader {
+                    text: qsTr("URIs")
+                    visible: type === BitwardenCli.Login
+                }
+
+                ListModel {
+                    id: urisModel
+
+                    ListElement {
+                        value: ''
+                        matchType: BitwardenCli.NoType
+                    }
+                }
+
+                Repeater {
+                    id: urisRepeater
+                    model: urisModel
+
+                    Column {
+                        width: mainColumn.width
+
+                        TextField {
+                            property var uri: urisModel.get(index)
+
+                            id: uriField
+                            text: uri.value
+                            label: qsTr("URI %1").arg(index + 1)
+                            visible: page.type === BitwardenCli.Login
+
+                            onTextChanged: {
+                                uri.value = text;
+                            }
+
+                            rightItem: Row {
+                                IconButton {
+                                    icon.source: "image://theme/icon-s-setting"
+                                    onClicked: {
+                                        matchTypeSelect.visible = !matchTypeSelect.visible;
+                                    }
+                                }
+
+                                IconButton {
+                                    visible: index > 0
+                                    icon.source: "image://theme/icon-splus-remove"
+                                    icon.color: "red"
+                                    onClicked: {
+                                        urisModel.remove(index);
+                                    }
+                                }
+                            }
+                        }
+
+                        ComboBox {
+                            property var uri: urisModel.get(index)
+
+                            id: matchTypeSelect
+                            visible: false
+                            label: qsTr("Match type")
+
+                            property var itemData: [
+                                //: URI match type
+                                {text: qsTr("Default match detection"), value: BitwardenCli.NoType},
+                                //: URI match type
+                                {text: qsTr("Base domain"), value: BitwardenCli.Domain},
+                                //: URI match type
+                                {text: qsTr("Host"), value: BitwardenCli.Host},
+                                //: URI match type
+                                {text: qsTr("Starts with"), value: BitwardenCli.StartsWith},
+                                //: URI match type
+                                {text: qsTr("Exact"), value: BitwardenCli.Exact},
+                                //: URI match type
+                                {text: qsTr("Regular expression"), value: BitwardenCli.RegularExpression},
+                                //: URI match type
+                                {text: qsTr("Never"), value: BitwardenCli.Never},
+                            ]
+
+                            menu: ContextMenu {
+                                Components.IntValueMenuItem {text: matchTypeSelect.itemData[0].text; value: matchTypeSelect.itemData[0].value}
+                                Components.IntValueMenuItem {text: matchTypeSelect.itemData[1].text; value: matchTypeSelect.itemData[1].value}
+                                Components.IntValueMenuItem {text: matchTypeSelect.itemData[2].text; value: matchTypeSelect.itemData[2].value}
+                                Components.IntValueMenuItem {text: matchTypeSelect.itemData[3].text; value: matchTypeSelect.itemData[3].value}
+                                Components.IntValueMenuItem {text: matchTypeSelect.itemData[4].text; value: matchTypeSelect.itemData[4].value}
+                                Components.IntValueMenuItem {text: matchTypeSelect.itemData[5].text; value: matchTypeSelect.itemData[5].value}
+                                Components.IntValueMenuItem {text: matchTypeSelect.itemData[6].text; value: matchTypeSelect.itemData[6].value}
+                            }
+
+                            onCurrentItemChanged: {
+                                uri.matchType = currentItem.value;
+                            }
+
+                            Component.onCompleted: {
+                                const index = itemData.map(function(item) {
+                                    return item.value;
+                                }).indexOf(uri.matchType);
+                                currentIndex = index;
+                            }
+                        }
+                    }
+                }
+
+                Button {
+                    text: qsTr("New URI")
+                    x: Theme.horizontalPageMargin
+                    visible: type === BitwardenCli.Login
+                    width: parent.width - Theme.horizontalPageMargin * 2
+                    onClicked: {
+                        urisModel.append({value: '', matchType: BitwardenCli.NoType});
+                    }
                 }
             }
         }

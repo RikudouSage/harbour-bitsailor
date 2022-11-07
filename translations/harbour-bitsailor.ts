@@ -58,6 +58,57 @@
         <source>Authenticator key (TOTP)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>URIs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>URI %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New URI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Match type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default match detection</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Base domain</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Host</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starts with</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exact</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Regular expression</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BottomMenu</name>
