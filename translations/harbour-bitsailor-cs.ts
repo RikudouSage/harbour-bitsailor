@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>AddItemPage</name>
     <message>
@@ -52,11 +50,11 @@
     </message>
     <message>
         <source>Item information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informace o položce</translation>
     </message>
     <message>
         <source>Authenticator key (TOTP)</source>
-        <translation type="unfinished"></translation>
+        <translation>Klíč autentikátoru (TOTP)</translation>
     </message>
 </context>
 <context>
@@ -67,7 +65,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
 </context>
@@ -215,51 +213,51 @@
     <name>GeneratePasswordContent</name>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Heslo</translation>
+        <translation>Heslo</translation>
     </message>
     <message>
         <source>Copied to clipboard</source>
-        <translation type="unfinished">Zkopírováno do schránky</translation>
+        <translation>Zkopírováno do schránky</translation>
     </message>
     <message>
         <source>Uppercase letters</source>
-        <translation type="unfinished">Velká písmena</translation>
+        <translation>Velká písmena</translation>
     </message>
     <message>
         <source>Lowercase letters</source>
-        <translation type="unfinished">Malá písmena</translation>
+        <translation>Malá písmena</translation>
     </message>
     <message>
         <source>Numbers</source>
-        <translation type="unfinished">Číslice</translation>
+        <translation>Číslice</translation>
     </message>
     <message>
         <source>Special characters</source>
-        <translation type="unfinished">Speciální znaky</translation>
+        <translation>Speciální znaky</translation>
     </message>
     <message>
         <source>Password length</source>
-        <translation type="unfinished">Délka hesla</translation>
+        <translation>Délka hesla</translation>
     </message>
 </context>
 <context>
     <name>GeneratePasswordDialog</name>
     <message>
         <source>Generate new password</source>
-        <translation type="unfinished">Vygenerovat nové heslo</translation>
+        <translation>Vygenerovat nové heslo</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Zrušit</translation>
     </message>
     <message>
         <source>Use password</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Použít heslo</translation>
     </message>
     <message>
         <source>Generating password</source>
-        <translation type="unfinished"></translation>
+        <translation>Generování hesla</translation>
     </message>
 </context>
 <context>
@@ -271,11 +269,11 @@
     <message>
         <source>Generate Password</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished">Vygenerovat heslo</translation>
+        <translation>Vygenerovat heslo</translation>
     </message>
     <message>
         <source>Generating password</source>
-        <translation type="unfinished"></translation>
+        <translation>Generování hesla</translation>
     </message>
 </context>
 <context>
@@ -383,7 +381,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -618,7 +616,7 @@
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -682,8 +680,8 @@
         <translation>Načítat trezor na hlavní obrazovce</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save items in cache for faster load</source>
