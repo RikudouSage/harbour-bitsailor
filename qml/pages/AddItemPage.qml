@@ -231,6 +231,62 @@ Page {
                         urisModel.append({value: '', matchType: BitwardenCli.NoType});
                     }
                 }
+
+                SectionHeader {
+                    visible: type === BitwardenCli.Login
+                    text: qsTr("Notes")
+                }
+
+                TextArea {
+                    id: loginNotes
+                    visible: type === BitwardenCli.Login
+                    label: qsTr("Note")
+                }
+
+                /*SectionHeader {
+                    visible: type === BitwardenCli.Login
+                    text: qsTr("Custom fields")
+                }
+
+                ListModel {
+                    id: customFieldsModel
+                }
+
+                Repeater {
+                    model: customFieldsModel
+                    // todo
+                }
+
+                ComboBox {
+                    id: newFieldTypeSelect
+                    label: qsTr("New field type")
+                    visible: type === BitwardenCli.Login
+
+                    property var itemData: [
+                        //: Custom field type
+                        {text: qsTr("Text"), value: BitwardenCli.FieldTypeText},
+                        //: Custom field type
+                        {text: qsTr("Hidden"), value: BitwardenCli.FieldTypeHidden},
+                        //: Custom field type
+                        {text: qsTr("Boolean"), value: BitwardenCli.FieldTypeBoolean},
+                    ]
+
+                    menu: ContextMenu {
+                        Components.IntValueMenuItem {text: newFieldTypeSelect.itemData[0].text; value: newFieldTypeSelect.itemData[0].value}
+                        Components.IntValueMenuItem {text: newFieldTypeSelect.itemData[1].text; value: newFieldTypeSelect.itemData[1].value}
+                        Components.IntValueMenuItem {text: newFieldTypeSelect.itemData[2].text; value: newFieldTypeSelect.itemData[2].value}
+                    }
+                }
+                Button {
+                    text: qsTr("Add new field")
+                    x: Theme.horizontalPageMargin
+                    width: parent.width - Theme.horizontalPageMargin * 2
+                    visible: type === BitwardenCli.Login
+
+                    onClicked: {
+                        customFieldsModel.append({fieldType: newFieldTypeSelect.currentItem.value, value: ''});
+                    }
+                }*/
             }
         }
     }

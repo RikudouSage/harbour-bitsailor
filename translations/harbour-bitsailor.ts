@@ -109,6 +109,10 @@
         <extracomment>URI match type</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BottomMenu</name>
