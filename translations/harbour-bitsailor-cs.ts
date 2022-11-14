@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>AddItemPage</name>
     <message>
@@ -111,7 +109,7 @@
     </message>
     <message>
         <source>Notes</source>
-        <translation type="unfinished">Poznámky</translation>
+        <translation>Poznámky</translation>
     </message>
 </context>
 <context>
@@ -122,12 +120,12 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
         <source>Generator</source>
-        <translation type="unfinished"></translation>
+        <translation>Generátor</translation>
     </message>
 </context>
 <context>
@@ -191,7 +189,7 @@
     <message>
         <source>Confirm</source>
         <extracomment>Dialog accept text</extracomment>
-        <translation type="unfinished">Potvrdit</translation>
+        <translation>Potvrdit</translation>
     </message>
 </context>
 <context>
@@ -450,7 +448,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -681,7 +679,7 @@
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -745,8 +743,8 @@
         <translation>Načítat trezor na hlavní obrazovce</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save items in cache for faster load</source>
@@ -822,19 +820,19 @@
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokročilé</translation>
     </message>
     <message>
         <source>Custom Bitwarden URL</source>
-        <translation type="unfinished"></translation>
+        <translation>Vlastní Bitwarden URL</translation>
     </message>
     <message>
         <source>If you self-host your Bitwarden server, you may set its URL here. Leave empty to use the global default.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokud si sami hostujete Bitwarden, můžete zde zadat jeho URL. Ponechte prázdné pro použití výchozího nastavení.</translation>
     </message>
     <message>
         <source>Bitwarden URL</source>
-        <translation type="unfinished"></translation>
+        <translation>URL Bitwardenu</translation>
     </message>
 </context>
 <context>
