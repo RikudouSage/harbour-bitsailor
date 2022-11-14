@@ -176,15 +176,6 @@ Page {
             }
         }
 
-        PushUpMenu {
-            MenuItem {
-                text: qsTr("Generate Password")
-                onClicked: {
-                    pageStack.push("GeneratePasswordPage.qml");
-                }
-            }
-        }
-
         Column {
             id: column
 

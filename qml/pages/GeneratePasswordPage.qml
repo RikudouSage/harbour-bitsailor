@@ -4,6 +4,8 @@ import Sailfish.Silica 1.0
 import "../components" as Components
 
 Page {
+    property bool loaded: !loader.running
+
     id: page
     allowedOrientations: Orientation.All
 

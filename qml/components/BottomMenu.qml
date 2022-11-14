@@ -9,6 +9,7 @@ Row {
     function makeAllInactive() {
         vaults.opacity = inactiveOpacity;
         send.opacity = inactiveOpacity;
+        generator.opacity = inactiveOpacity;
     }
 
     function activateVaults() {
@@ -19,6 +20,11 @@ Row {
     function activateSend() {
         makeAllInactive();
         send.opacity = 1;
+    }
+
+    function activateGenerator() {
+        makeAllInactive();
+        generator.opacity = 1;
     }
 
     function findPageByType(type) {
@@ -57,6 +63,16 @@ Row {
         onClicked: {
             pageStack.pop(findPageByType("MainPage"), PageStackAction.Immediate);
             pageStack.push("../pages/SendListPage.qml");
+        }
+    }
+
+    Components.BottomMenuItem {
+        id: generator
+        image: 'image://theme/icon-m-refresh' // todo
+        text: qsTr("Generator")
+        onClicked: {
+            pageStack.pop(findPageByType("MainPage"), PageStackAction.Immediate);
+            pageStack.push("../pages/GeneratePasswordPage.qml");
         }
     }
 }

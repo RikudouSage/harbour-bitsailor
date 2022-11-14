@@ -65,6 +65,10 @@ ApplicationWindow {
                 bottomMenu.activateSend();
                 bottomMenu.visible = true;
                 break;
+            case "GeneratePasswordPage":
+                bottomMenu.activateGenerator();
+                bottomMenu.visible = true;
+                break;
             }
         }
 

@@ -125,6 +125,10 @@
         <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CleanupPage</name>
@@ -604,10 +608,6 @@
     </message>
     <message>
         <source>Identities (%1)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Generate Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
