@@ -38,6 +38,8 @@ public:
         GetItem,
         GeneratePassword,
         GetSends,
+        GetServerUrl,
+        SetServerUrl,
     };
 
     enum TwoStepLoginMethods {
@@ -102,6 +104,8 @@ public:
     Q_INVOKABLE void deleteItemInBackground(QString id);
     Q_INVOKABLE void getItem(QString id);
     Q_INVOKABLE void generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, int length);
+    Q_INVOKABLE void getServerUrl();
+    Q_INVOKABLE void setServerUrl(QString url);
 
 signals:
     void loginStatusResolved(bool loggedIn);
@@ -122,6 +126,8 @@ signals:
     void itemFetched(QJsonObject item);
     void itemFetchingFailed();
     void passwordGenerated(QString password);
+    void serverUrlResolved(QString serverUrl);
+    void serverUrlSet(bool success);
 
 private slots:
     void onFinished(int exitCode, Method method);

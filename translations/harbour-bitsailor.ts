@@ -187,6 +187,14 @@
     </message>
 </context>
 <context>
+    <name>ConfirmStringSettingPage</name>
+    <message>
+        <source>Confirm</source>
+        <extracomment>Dialog accept text</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CoverPage</name>
     <message>
         <source>BitSailor</source>
@@ -810,6 +818,22 @@
     </message>
     <message>
         <source>Update Bitwarden CLI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom Bitwarden URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you self-host your Bitwarden server, you may set its URL here. Leave empty to use the global default.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bitwarden URL</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

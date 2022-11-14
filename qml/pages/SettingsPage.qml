@@ -14,6 +14,8 @@ Page {
 
     property bool hasAnyPin: secrets.hasInternalPin() || secrets.hasPin()
 
+    property var currentServerUrl: null
+
     function refreshHasAnyPin() {
         hasAnyPin = secrets.hasInternalPin() || secrets.hasPin();
         if (!hasAnyPin) {
@@ -51,6 +53,16 @@ Page {
                 passwordToStore = "";
             } else {
                 errorText = qsTr("The password you provided is invalid.");
+            }
+        }
+
+        onServerUrlResolved: {
+            currentServerUrl = serverUrl;
+        }
+
+        onServerUrlSet: {
+            if (success) {
+                cli.getServerUrl();
             }
         }
     }
@@ -316,6 +328,36 @@ Page {
                     } else {
                         settings.useAuthorizationOnUnlocked = false;
                     }
+                }
+            }
+
+            SectionHeader {
+                text: qsTr("Advanced")
+            }
+
+            TextSwitch {
+                enabled: currentServerUrl !== null
+                checked: currentServerUrl !== null && currentServerUrl !== 'https://bitwarden.com'
+                automaticCheck: false
+                text: qsTr("Custom Bitwarden URL")
+
+                onClicked: {
+                    if (checked) {
+                        cli.setServerUrl('https://bitwarden.com');
+                    } else {
+                        const dialog = pageStack.push("ConfirmStringSettingPage.qml", {
+                            description: qsTr("If you self-host your Bitwarden server, you may set its URL here. Leave empty to use the global default."),
+                            inputLabel: qsTr("Bitwarden URL"),
+                            value: currentServerUrl,
+                        });
+                        dialog.accepted.connect(function() {
+                            cli.setServerUrl(dialog.value);
+                        });
+                    }
+                }
+
+                Component.onCompleted: {
+                    cli.getServerUrl();
                 }
             }
 

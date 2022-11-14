@@ -212,11 +212,22 @@ void BitwardenCli::generatePassword(bool lowercase, bool uppercase, bool numbers
     startProcess(args, GeneratePassword);
 }
 
+void BitwardenCli::getServerUrl()
+{
+    startProcess({"config", "server"}, GetServerUrl);
+}
+
+void BitwardenCli::setServerUrl(QString url)
+{
+    startProcess({"config", "server", url}, SetServerUrl);
+}
+
 void BitwardenCli::onFinished(int exitCode, Method method)
 {
     auto process = processes.take(method);
 
 #ifdef QT_DEBUG
+    qDebug() << "exit code: " << exitCode;
     if (exitCode != 0) {
         qDebug() << "stderr: " << QString(process->readAllStandardError());
         qDebug() << "stdout: " << QString(process->readAllStandardOutput());
@@ -224,6 +235,12 @@ void BitwardenCli::onFinished(int exitCode, Method method)
 #endif
 
     switch (method) {
+    case BitwardenCli::SetServerUrl:
+        emit serverUrlSet(exitCode == 0);
+        break;
+    case BitwardenCli::GetServerUrl:
+        emit serverUrlResolved(process->readAllStandardOutput());
+        break;
     case BitwardenCli::GetSends:
         if (exitCode != 0) {
             emit failedGettingSends();

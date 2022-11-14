@@ -57,6 +57,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/pages/AddItemPage.qml \
     qml/pages/CleanupPage.qml \
     qml/pages/ConfirmSettingPage.qml \
+    qml/pages/ConfirmStringSettingPage.qml \
     qml/pages/GeneratePasswordDialog.qml \
     qml/pages/GeneratePasswordPage.qml \
     qml/pages/InstallBitwardenCliPage.qml \
