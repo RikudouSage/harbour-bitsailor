@@ -829,12 +829,16 @@
         <translation>Vlastní URL Bitwardenu</translation>
     </message>
     <message>
-        <source>If you self-host your Bitwarden server, you may set its URL here. Leave empty to use the global default.</source>
-        <translation>Pokud si sami hostujete Bitwarden, můžete zde zadat jeho URL. Ponechte prázdné pro použití výchozího nastavení.</translation>
-    </message>
-    <message>
         <source>Bitwarden URL</source>
         <translation>URL Bitwardenu</translation>
+    </message>
+    <message>
+        <source>Note: Currently this app cannot find out if the URL has been changed and it appears as if the default was set. If you&apos;ve set it before, it should work as expected.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you self-host your Bitwarden server, you may set its URL here. Leave empty to use the global default.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
