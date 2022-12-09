@@ -48,12 +48,12 @@ Page {
         VerticalScrollDecorator {}
 
         PullDownMenu {
-            MenuItem {
+            /*MenuItem {
                 text: addItemTitle
                 onClicked: {
                     pageStack.push("AddItemPage.qml", {type: addItemType});
                 }
-            }
+            }*/
 
             MenuItem {
                 text: searchActive ? qsTr("Hide search") : qsTr("Search")

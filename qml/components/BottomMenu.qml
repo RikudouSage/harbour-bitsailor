@@ -68,7 +68,7 @@ Row {
 
     Components.BottomMenuItem {
         id: generator
-        image: 'image://theme/icon-m-refresh' // todo
+        image: 'file:///usr/share/harbour-bitsailor/icons/rotate-right-solid.svg'
         text: qsTr("Generator")
         onClicked: {
             pageStack.pop(findPageByType("MainPage"), PageStackAction.Immediate);

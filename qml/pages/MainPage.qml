@@ -274,9 +274,6 @@ Page {
                 const callable = doAfterLoad.shift();
                 callable();
             }
-
-            // todo remove
-            pageStack.push("AddItemPage.qml", {type: BitwardenCli.Login});
         }
     }
 }
