@@ -58,6 +58,7 @@ Page {
 
         onServerUrlResolved: {
             currentServerUrl = serverUrl;
+            busyIndicatorServerUrl.running = false;
         }
 
         onServerUrlSet: {
@@ -72,15 +73,22 @@ Page {
     }
 
     BusyLabel {
-        id: busyIndicator
+        id: busyIndicatorPassword
         text: qsTr("Validating password")
+        running: false
+    }
+
+    BusyLabel {
+        id: busyIndicatorServerUrl
+        //: As in the action of setting url (present continuous)
+        text: qsTr("Setting URL")
         running: false
     }
 
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height
-        visible: !busyIndicator.running
+        visible: !busyIndicatorPassword.running && !busyIndicatorServerUrl.running
 
         VerticalScrollDecorator {}
 
@@ -206,7 +214,7 @@ Page {
                         });
                         dialog.accepted.connect(function() {
                             authCheckType = "pin";
-                            busyIndicator.running = true;
+                            busyIndicatorPassword.running = true;
                             pinToStore = Number(dialog.pinText);
                             passwordToStore = dialog.passwordText;
                             cli.unlockVault(passwordToStore);
@@ -244,7 +252,7 @@ Page {
                         });
                         dialog.accepted.connect(function() {
                             authCheckType = "system";
-                            busyIndicator.running = true;
+                            busyIndicatorPassword.running = true;
                             passwordToStore = dialog.passwordText;
                             cli.unlockVault(passwordToStore);
                             refreshHasAnyPin();
@@ -351,6 +359,7 @@ Page {
                             value: currentServerUrl,
                         });
                         dialog.accepted.connect(function() {
+                            busyIndicatorServerUrl.running = true;
                             cli.setServerUrl(dialog.value);
                         });
                     }

@@ -840,6 +840,11 @@
         <source>If you self-host your Bitwarden server, you may set its URL here. Leave empty to use the global default.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Setting URL</source>
+        <extracomment>As in the action of setting url (present continuous)</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SetupPinPage</name>
