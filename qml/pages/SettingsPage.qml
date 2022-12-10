@@ -361,7 +361,7 @@ Page {
                             description: "<b>"
                                          + qsTr("Note: Currently this app cannot find out if the URL has been changed and it appears as if the default was set. If you've set it before, it should work as expected.")
                                          + "</b><br/><br/>" + qsTr("If you self-host your Bitwarden server, you may set its URL here. Leave empty to use the global default.")
-                                         + qsTr("Note: You will be logged out."),
+                                         + "<br/><br/>" + qsTr("Note: You will be logged out."),
                             inputLabel: qsTr("Bitwarden URL"),
                             value: currentServerUrl,
                         });
