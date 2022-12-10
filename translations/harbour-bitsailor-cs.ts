@@ -857,6 +857,10 @@
         <extracomment>As in the action of setting url (present continuous)</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Note: You will be logged out.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SetupPinPage</name>
