@@ -6,6 +6,15 @@ import cz.chrastecky.bitsailor 1.0
 Page {
     property var doAfterLoad: []
 
+    // these are only set if changing server url
+    property string clientId
+    property string clientSecret
+    property string email
+    property string password
+
+    // this is set always
+    property string customServerUrl
+
     id: page
     allowedOrientations: Orientation.All
 
@@ -21,12 +30,22 @@ Page {
                 error = "";
             }
 
-            const dialog = pageStack.push("LoginPage.qml", {error: error});
+            const dialog = pageStack.push("LoginPage.qml", {error: error, customServerUrl: customServerUrl});
             dialog.accepted.connect(function() {
-                if (dialog.clientIdText.length && dialog.clientSecretText.length) {
-                    cli.loginApiKey(dialog.clientIdText, dialog.clientSecretText);
+                if (dialog.customServerUrl.length) {
+                    cli.setServerUrl(dialog.customServerUrl);
+
+                    customServerUrl = dialog.customServerUrl;
+                    clientId = dialog.clientIdText;
+                    clientSecret = dialog.clientSecretText;
+                    email = dialog.emailText;
+                    password = dialog.passwordText;
                 } else {
-                    cli.loginEmailPassword(dialog.emailText, dialog.passwordText);
+                    if (dialog.clientIdText.length && dialog.clientSecretText.length) {
+                        cli.loginApiKey(dialog.clientIdText, dialog.clientSecretText);
+                    } else {
+                        cli.loginEmailPassword(dialog.emailText, dialog.passwordText);
+                    }
                 }
             });
         }
@@ -46,6 +65,14 @@ Page {
                     cli.unlockVault();
                 }
             });
+        }
+
+        onServerUrlSet: {
+            if (clientId.length && clientSecret.length) {
+                cli.loginApiKey(clientId, clientSecret);
+            } else {
+                cli.loginEmailPassword(email, password);
+            }
         }
 
         onLoginStatusResolved: {

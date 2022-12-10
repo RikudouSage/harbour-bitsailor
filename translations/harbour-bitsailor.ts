@@ -551,6 +551,18 @@
         <source>See &lt;a href=&apos;%1&apos;&gt;Bitwarden help&lt;/a&gt; for information on how to create an API key.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom server URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you use your own server for Bitwarden, set its URL here.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainPage</name>

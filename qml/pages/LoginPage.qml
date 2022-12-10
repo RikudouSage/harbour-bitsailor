@@ -10,6 +10,7 @@ Dialog {
     property string passwordText
     property string clientIdText
     property string clientSecretText
+    property string customServerUrl
 
     property string error
 
@@ -173,7 +174,37 @@ Dialog {
                         }
                     }
                 }
+                ExpandingSection {
+                    title: qsTr("Advanced")
 
+                    content.sourceComponent: Column {
+                        TextField {
+                            id: customUrl
+                            label: qsTr("Custom server URL")
+
+                            EnterKey.iconSource: "image://theme/icon-m-enter-accept"
+                            EnterKey.onClicked: {
+                                page.accept();
+                            }
+
+                            onTextChanged: {
+                                customServerUrl = text;
+                            }
+
+                            text: customServerUrl
+                        }
+
+                        Label {
+                            text: qsTr("If you use your own server for Bitwarden, set its URL here.");
+                            color: Theme.highlightColor
+                            width: parent.width - Theme.horizontalPageMargin * 2
+                            wrapMode: Label.WordWrap
+                            x: Theme.horizontalPageMargin
+                            font.pixelSize: Theme.fontSizeSmall
+                            linkColor: Theme.lightPrimaryColor
+                        }
+                    }
+                }
             }
         }
     }
