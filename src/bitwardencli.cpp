@@ -227,7 +227,7 @@ void BitwardenCli::onFinished(int exitCode, Method method)
     auto process = processes.take(method);
 
 #ifdef QT_DEBUG
-    qDebug() << "exit code: " << exitCode;
+    qDebug() << "method " << method << " exit code: " << exitCode;
     if (exitCode != 0) {
         qDebug() << "stderr: " << QString(process->readAllStandardError());
         qDebug() << "stdout: " << QString(process->readAllStandardOutput());

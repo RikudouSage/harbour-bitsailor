@@ -32,21 +32,13 @@ Page {
 
             const dialog = pageStack.push("LoginPage.qml", {error: error, customServerUrl: customServerUrl});
             dialog.accepted.connect(function() {
-                if (dialog.customServerUrl.length) {
-                    cli.setServerUrl(dialog.customServerUrl);
+                customServerUrl = dialog.customServerUrl || 'https://bitwarden.com';
+                clientId = dialog.clientIdText;
+                clientSecret = dialog.clientSecretText;
+                email = dialog.emailText;
+                password = dialog.passwordText;
 
-                    customServerUrl = dialog.customServerUrl;
-                    clientId = dialog.clientIdText;
-                    clientSecret = dialog.clientSecretText;
-                    email = dialog.emailText;
-                    password = dialog.passwordText;
-                } else {
-                    if (dialog.clientIdText.length && dialog.clientSecretText.length) {
-                        cli.loginApiKey(dialog.clientIdText, dialog.clientSecretText);
-                    } else {
-                        cli.loginEmailPassword(dialog.emailText, dialog.passwordText);
-                    }
-                }
+                cli.setServerUrl(customServerUrl);
             });
         }
 

@@ -34,7 +34,7 @@ Page {
         id: cli
 
         onVaultUnlockFinished: {
-            busyIndicator.running = false;
+            busyIndicatorPassword.running = false;
 
             if (success) {
                 secrets.setPassword(passwordToStore);
