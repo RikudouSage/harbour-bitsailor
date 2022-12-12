@@ -2,7 +2,8 @@
 #define SYSTEMAUTHCHECKER_H
 
 #include <QObject>
-#include <QProcess>
+#include <QDBusPendingCallWatcher>
+#include <QDBusPendingCall>
 
 class SystemAuthChecker : public QObject
 {
@@ -15,10 +16,13 @@ signals:
     void authResolved(bool success);
 
 private slots:
-    void processFinished(int exitCode, QProcess::ExitStatus exitStatus);
+    void finished(QDBusPendingCallWatcher* watcher);
 
 private:
-    QProcess* checkProcess = new QProcess(this);
+    QDBusPendingCallWatcher* createCallWatcher(QDBusPendingCall &dbusCall);
+
+private:
+    QDBusPendingCallWatcher* callWatcher = nullptr;
 };
 
 #endif // SYSTEMAUTHCHECKER_H
