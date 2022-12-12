@@ -14,6 +14,7 @@ TARGET = harbour-bitsailor
 
 CONFIG += sailfishapp
 PKGCONFIG += sailfishsecrets sailfishcrypto
+QT += dbus
 
 SOURCES += src/harbour-bitsailor.cpp \
     src/appsettings.cpp \
