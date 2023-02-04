@@ -23,8 +23,9 @@ jobs:
         arch: ['armv7hl', 'aarch64', 'i486']
 
     steps:
-    - uses: actions/checkout@v2
-
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
     - name: Prepare
       run: docker pull coderus/sailfishos-platform-sdk:$OS_VERSION && mkdir output
 

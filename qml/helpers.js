@@ -1,11 +1,5 @@
-.import './crypto.js' as Crypto
-
 function xor(a, b) {
     return (a && !b) || (b && !a);
-}
-
-function getTotp(secret) {
-    return Crypto.calcOTP(secret, "TOTP", 6, 0);
 }
 
 function totpRemainingTime(interval) {

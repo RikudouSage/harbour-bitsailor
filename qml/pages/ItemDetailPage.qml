@@ -36,7 +36,7 @@ Page {
                 name: item.name,
                 username: typeof item.login !== 'undefined' && typeof item.login.username !== 'undefined' ? item.login.username : null,
                 password: typeof item.login !== 'undefined' && typeof item.login.username !== 'undefined' ? item.login.password : null,
-                totp: typeof item.login !== 'undefined' && item.login.totp ? Helpers.getTotp(item.login.totp) : null,
+                totp: typeof item.login !== 'undefined' && item.login.totp ? otpGenerator.generateTOTP(item.login.totp, 6) : null,
                 note: typeof item.notes !== 'undefined' ? item.notes : null,
                 cardNumber: typeof item.card !== 'undefined' && typeof item.card.number !== 'undefined' ? item.card.number : null,
                 securityCode: typeof item.card !== 'undefined' && typeof item.card.code !== 'undefined' ? item.card.code : null,
@@ -44,6 +44,10 @@ Page {
             }
         });
         app.cover = cover;
+    }
+
+    OneTimePasswordGenerator {
+        id: otpGenerator
     }
 
     BitwardenCli {
@@ -354,7 +358,7 @@ Page {
                 property bool isActive: typeof item.login !== 'undefined' && typeof item.login.totp !== 'undefined' && item.login.totp
 
                 id: totpField
-                text: loaded && isActive ? Helpers.getTotp(item.login.totp).match(/.{1,3}/g).join(' ') : ''
+                text: loaded && isActive ? otpGenerator.generateTOTP(item.login.totp, 6).match(/.{1,3}/g).join(' ') : ''
                 label: qsTr("Verification Code (TOTP)")
                 visible: isActive
                 readOnly: true
@@ -370,7 +374,7 @@ Page {
 
                         onFinished: {
                             if (totpField.isActive) {
-                                totpField.text = Helpers.getTotp(item.login.totp).match(/.{1,3}/g).join(' ');
+                                totpField.text = otpGenerator.generateTOTP(item.login.totp, 6).match(/.{1,3}/g).join(' ');
                                 createCover();
                                 //start(Helpers.totpRemainingTime(30), 30);
                             }
@@ -380,7 +384,7 @@ Page {
                     IconButton {
                         icon.source: "image://theme/icon-m-clipboard"
                         onClicked: {
-                            Clipboard.text = Helpers.getTotp(item.login.totp);
+                            Clipboard.text = otpGenerator.generateTOTP(item.login.totp, 6);
                             app.toaster.show(qsTr("Copied to clipboard"));
                         }
                     }

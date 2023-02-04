@@ -28,7 +28,8 @@ SOURCES += src/harbour-bitsailor.cpp \
     src/runtimecache.cpp \
     src/secretshandler.cpp \
     src/systemauthchecker.cpp \
-    src/systemchecker.cpp
+    src/systemchecker.cpp \
+    otp/onetimepasswordgenerator.cpp
 
 polkit.path = /usr/share/polkit-1/actions
 polkit.files = polkit/cz.chrastecky.bitsailor.policy
@@ -53,7 +54,6 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/cover/CoverPageLogin.qml \
     qml/cover/CoverPageLoginTotp.qml \
     qml/cover/CoverPageNote.qml \
-    qml/crypto.js \
     qml/helpers.js \
     qml/pages/AddItemPage.qml \
     qml/pages/CleanupPage.qml \
@@ -78,7 +78,6 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/pages/UnlockVaultPage.qml \
     qml/pages/UpdateBitwardenCliPage.qml \
     qml/pages/VaultPage.qml \
-    qml/sha.js \
     rpm/harbour-bitsailor.spec \
     rpm/harbour-bitsailor.yaml \
     translations/*.ts \
@@ -108,4 +107,5 @@ HEADERS += \
     src/runtimecache.h \
     src/secretshandler.h \
     src/systemauthchecker.h \
-    src/systemchecker.h
+    src/systemchecker.h \
+    otp/onetimepasswordgenerator.h
