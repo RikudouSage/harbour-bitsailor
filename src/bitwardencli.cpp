@@ -222,6 +222,11 @@ void BitwardenCli::setServerUrl(QString url)
     startProcess({"config", "server", url}, SetServerUrl);
 }
 
+void BitwardenCli::createItem(const QString &encodedData)
+{
+    startProcess({"create", "item", encodedData}, CreateItem);
+}
+
 void BitwardenCli::onFinished(int exitCode, Method method)
 {
     auto process = processes.take(method);
@@ -235,6 +240,9 @@ void BitwardenCli::onFinished(int exitCode, Method method)
 #endif
 
     switch (method) {
+    case BitwardenCli::CreateItem:
+        emit itemCreationFinished(exitCode == 0);
+        break;
     case BitwardenCli::SetServerUrl:
         emit serverUrlSet(exitCode == 0);
         break;
@@ -336,6 +344,9 @@ void BitwardenCli::startProcess(const QStringList &arguments, Method method)
 
 void BitwardenCli::startProcess(const QStringList &arguments, const QProcessEnvironment &environment, Method method)
 {
+#ifdef QT_DEBUG
+    qDebug() << "Starting command: " << "bw " << arguments.join(" ");
+#endif
     QProcess* process = new QProcess(this);
     process->setWorkingDirectory(getDataPath());
     process->setProcessEnvironment(environment);

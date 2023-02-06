@@ -28,11 +28,6 @@
         <translation>Karta</translation>
     </message>
     <message>
-        <source>Identity</source>
-        <extracomment>Item type</extracomment>
-        <translation>Identita</translation>
-    </message>
-    <message>
         <source>Note</source>
         <extracomment>Item type</extracomment>
         <translation>Poznámka</translation>
@@ -112,6 +107,40 @@
     <message>
         <source>Notes</source>
         <translation>Poznámky</translation>
+    </message>
+    <message>
+        <source>Cardholder Name</source>
+        <translation type="unfinished">Jméno držitele karty</translation>
+    </message>
+    <message>
+        <source>Brand</source>
+        <translation type="unfinished">Značka</translation>
+    </message>
+    <message>
+        <source>Other</source>
+        <extracomment>Card brand</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>-- choose --</source>
+        <extracomment>Choose a card brand from a ComboBox</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Card Number</source>
+        <translation type="unfinished">Číslo karty</translation>
+    </message>
+    <message>
+        <source>Expiration month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expiration year</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Security Code</source>
+        <translation type="unfinished">Bezp. kód</translation>
     </message>
 </context>
 <context>
@@ -1039,6 +1068,14 @@
     <message>
         <source>Add item</source>
         <translation>Přidat položku</translation>
+    </message>
+    <message>
+        <source>There was an error when creating the new item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There was an error while synchronizing the vault, please try again.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

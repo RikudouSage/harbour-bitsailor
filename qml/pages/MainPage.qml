@@ -234,6 +234,7 @@ Page {
                         title: qsTr("Identities"),
                         addItemTitle: qsTr("Add identity"),
                         addItemType: BitwardenCli.Identity,
+                        addItemEnabled: false,
                     });
                 }
             }

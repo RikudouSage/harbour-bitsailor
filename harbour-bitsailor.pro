@@ -48,6 +48,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/components/IntValueMenuItem.qml \
     qml/components/MainPageItem.qml \
     qml/components/PercentageCircle.qml \
+    qml/components/StringValueMenuItem.qml \
     qml/components/Toaster.qml \
     qml/cover/CoverPage.qml \
     qml/cover/CoverPageCard.qml \

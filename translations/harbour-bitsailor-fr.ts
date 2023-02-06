@@ -28,11 +28,6 @@
         <translation>Carte de paiement</translation>
     </message>
     <message>
-        <source>Identity</source>
-        <extracomment>Item type</extracomment>
-        <translation>Identité</translation>
-    </message>
-    <message>
         <source>Note</source>
         <extracomment>Item type</extracomment>
         <translation>Note sécurisée</translation>
@@ -112,6 +107,40 @@
     <message>
         <source>Notes</source>
         <translation>Notes</translation>
+    </message>
+    <message>
+        <source>Cardholder Name</source>
+        <translation type="unfinished">Nom du titulaire de la carte</translation>
+    </message>
+    <message>
+        <source>Brand</source>
+        <translation type="unfinished">Réseau de paiement</translation>
+    </message>
+    <message>
+        <source>Other</source>
+        <extracomment>Card brand</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>-- choose --</source>
+        <extracomment>Choose a card brand from a ComboBox</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Card Number</source>
+        <translation type="unfinished">Numéro de carte</translation>
+    </message>
+    <message>
+        <source>Expiration month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expiration year</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Security Code</source>
+        <translation type="unfinished">Code de sécurité</translation>
     </message>
 </context>
 <context>
@@ -1039,6 +1068,14 @@
     <message>
         <source>Add item</source>
         <translation>Ajouter un élément</translation>
+    </message>
+    <message>
+        <source>There was an error when creating the new item</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There was an error while synchronizing the vault, please try again.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -40,6 +40,7 @@ public:
         GetSends,
         GetServerUrl,
         SetServerUrl,
+        CreateItem,
     };
 
     enum TwoStepLoginMethods {
@@ -106,6 +107,7 @@ public:
     Q_INVOKABLE void generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, int length);
     Q_INVOKABLE void getServerUrl();
     Q_INVOKABLE void setServerUrl(QString url);
+    Q_INVOKABLE void createItem(const QString &encodedData);
 
 signals:
     void loginStatusResolved(bool loggedIn);
@@ -128,6 +130,7 @@ signals:
     void passwordGenerated(QString password);
     void serverUrlResolved(QString serverUrl);
     void serverUrlSet(bool success);
+    void itemCreationFinished(bool success);
 
 private slots:
     void onFinished(int exitCode, Method method);

@@ -16,6 +16,7 @@ Page {
 
     property string addItemTitle: qsTr("Add item")
     property int addItemType: BitwardenCli.NoType
+    property bool addItemEnabled: true
 
     id: page
     allowedOrientations: Orientation.All
@@ -38,6 +39,23 @@ Page {
             logins = items;
             loaded = true;
         }
+
+        onVaultSynced: {
+            cli[itemLoader]();
+        }
+
+        onVaultSyncFailed: {
+            errorText = qsTr("There was an error while synchronizing the vault, please try again.");
+        }
+
+        onItemCreationFinished: {
+            if (success) {
+                loaded = false;
+                cli.syncVault();
+            } else {
+                errorText = qsTr("There was an error when creating the new item");
+            }
+        }
     }
 
     SilicaFlickable {
@@ -48,12 +66,44 @@ Page {
         VerticalScrollDecorator {}
 
         PullDownMenu {
-            /*MenuItem {
+            MenuItem {
                 text: addItemTitle
+                visible: addItemEnabled
                 onClicked: {
-                    pageStack.push("AddItemPage.qml", {type: addItemType});
+                    const dialog = pageStack.push("AddItemPage.qml", {type: addItemType});
+                    dialog.accepted.connect(function() {
+                        const object = JSON.parse(JSON.stringify(dialog.itemTemplate));
+                        const type = dialog.type;
+                        switch (type) {
+                        case BitwardenCli.Login:
+                            object.login = JSON.parse(JSON.stringify(dialog.loginItemTemplate));
+                            object.login.password = dialog.loginPasswordValue || null;
+                            object.login.totp = dialog.loginTotpValue || null;
+                            object.login.username = dialog.loginUsernameValue || null;
+                            object.login.uris = dialog.getUris() || null;
+                            break;
+                        case BitwardenCli.SecureNote:
+                            object.secureNote = JSON.parse(JSON.stringify(dialog.secureNoteItemTemplate));
+                            break;
+                        case BitwardenCli.Card:
+                            object.card = JSON.parse(JSON.stringify(dialog.cardItemTemplate));
+                            object.card.cardholderName = dialog.cardCardholderNameValue || null;
+                            object.card.brand = dialog.cardBrandValue || null;
+                            object.card.number = dialog.cardNumberValue || null;
+                            object.card.expMonth = dialog.cardExpirationMonthValue || null;
+                            object.card.expYear = dialog.cardExpirationYearValue || null;
+                            object.card.code = dialog.cardCvvValue || null
+                            break;
+                        }
+
+                        object.type = dialog.type;
+                        object.name = dialog.nameValue;
+                        object.notes = dialog.loginNotesValue || dialog.secureNoteNoteValue || null;
+
+                        cli.createItem(Qt.btoa(JSON.stringify(object)));
+                    });
                 }
-            }*/
+            }
 
             MenuItem {
                 text: searchActive ? qsTr("Hide search") : qsTr("Search")

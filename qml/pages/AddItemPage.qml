@@ -4,11 +4,73 @@ import Sailfish.Silica 1.0
 import cz.chrastecky.bitsailor 1.0
 import "../components" as Components
 
-Page {
+Dialog {
     property int type: BitwardenCli.NoType
+    readonly property var itemTemplate: {
+        "organizationId": null,
+        "collectionIds": null,
+        "folderId": null,
+        "type": null,
+        "name": null,
+        "notes": null,
+        "favorite": false,
+        "fields": [],
+        "login": null,
+        "secureNote": null,
+        "card": null,
+        "identity": null,
+        "reprompt": 0
+    }
+    readonly property var loginItemTemplate: {
+        "uris": [],
+        "username": null,
+        "password": null,
+        "totp": null
+    }
+    readonly property var secureNoteItemTemplate: {
+        "type": 0
+    }
+    readonly property var cardItemTemplate: {
+        "cardholderName": null,
+        "brand": null,
+        "number": null,
+        "expMonth": null,
+        "expYear": null,
+        "code": null
+    }
+
+    property alias nameValue: name.text
+    property alias loginUsernameValue: loginUsername.text
+    property alias loginPasswordValue: loginPassword.text
+    property alias loginTotpValue: loginTotp.text
+    property alias loginNotesValue: loginNotes.text
+    property alias cardCardholderNameValue: cardCardholderName.text
+    property alias cardBrandValue: cardBrand.value
+    property alias cardNumberValue: cardNumber.text
+    property alias cardExpirationMonthValue: cardExpirationMonth.value
+    property alias cardExpirationYearValue: cardExpirationYear.text
+    property alias cardCvvValue: cardCvv.text
+    property alias secureNoteNoteValue: secureNoteNote.text
+    function getUris() {
+        const result = [];
+        for (var i = 0; i < urisModel.count; ++i) {
+            const item = urisModel.get(i);
+            if (!item.value) {
+                continue;
+            }
+
+            result.push({
+                uri: item.value,
+                match: item.matchType >= 0 ? item.matchType : null
+            });
+        }
+        return result;
+    }
 
     id: page
     allowedOrientations: Orientation.All
+
+    canAccept: name.text && type !== BitwardenCli.NoType
 
     SilicaFlickable {
         anchors.fill: parent
@@ -19,9 +81,9 @@ Page {
 
             width: page.width
             spacing: Theme.paddingLarge
-            PageHeader {
+            DialogHeader {
                 //: Page title
-                title: qsTr("Add item")
+                acceptText: qsTr("Add item")
             }
 
             ComboBox {
@@ -37,7 +99,7 @@ Page {
                     //: Item type
                     {text: qsTr("Note"), value: BitwardenCli.SecureNote},
                     //: Item type
-                    {text: qsTr("Identity"), value: BitwardenCli.Identity},
+                    //{text: qsTr("Identity"), value: BitwardenCli.Identity},
                 ]
 
                 label: qsTr("Type")
@@ -47,7 +109,7 @@ Page {
                     Components.IntValueMenuItem {text: typeSelect.itemData[1].text; value: typeSelect.itemData[1].value}
                     Components.IntValueMenuItem {text: typeSelect.itemData[2].text; value: typeSelect.itemData[2].value}
                     Components.IntValueMenuItem {text: typeSelect.itemData[3].text; value: typeSelect.itemData[3].value}
-                    Components.IntValueMenuItem {text: typeSelect.itemData[4].text; value: typeSelect.itemData[4].value}
+                    //Components.IntValueMenuItem {text: typeSelect.itemData[4].text; value: typeSelect.itemData[4].value}
                 }
 
                 onCurrentItemChanged: {
@@ -93,7 +155,7 @@ Page {
 
                     rightItem: Row {
 /*                        IconButton {
-                            // todo
+                            // todo check for password leaks
                             icon.source: "image://theme/icon-s-checkmark"
                         }
 */
@@ -147,7 +209,7 @@ Page {
                             property var uri: urisModel.get(index)
 
                             id: uriField
-                            text: uri.value
+                            text: typeof uri !== 'undefined' ? uri.value : ''
                             label: qsTr("URI %1").arg(index + 1)
                             visible: page.type === BitwardenCli.Login
 
@@ -287,6 +349,110 @@ Page {
                         customFieldsModel.append({fieldType: newFieldTypeSelect.currentItem.value, value: ''});
                     }
                 }*/
+
+                TextField {
+                    id: cardCardholderName
+                    label: qsTr("Cardholder Name")
+                    visible: type === BitwardenCli.Card
+                }
+
+                ComboBox {
+                    id: cardBrand
+                    label: qsTr("Brand")
+                    visible: type === BitwardenCli.Card
+                    menu: ContextMenu {
+                        //: Choose a card brand from a ComboBox
+                        Components.StringValueMenuItem {text: qsTr("-- choose --"); value: ''}
+                        Components.StringValueMenuItem {text: "Visa"}
+                        Components.StringValueMenuItem {text: "Mastercard"}
+                        Components.StringValueMenuItem {text: "American Express"}
+                        Components.StringValueMenuItem {text: "Discover"}
+                        Components.StringValueMenuItem {text: "Diners Club"}
+                        Components.StringValueMenuItem {text: "JCB"}
+                        Components.StringValueMenuItem {text: "Maestro"}
+                        Components.StringValueMenuItem {text: "UnionPay"}
+                        //: Card brand
+                        Components.StringValueMenuItem {text: qsTr("Other"); value: 'Other'}
+                    }
+                }
+
+                TextField {
+                    property bool passwordVisible: false
+
+                    id: cardNumber
+                    label: qsTr("Card Number")
+                    visible: type === BitwardenCli.Card
+                    echoMode: passwordVisible ? TextInput.Normal : TextInput.Password
+
+                    rightItem: Row {
+                        IconButton {
+                            icon.source: cardNumber.passwordVisible ? "image://theme/icon-splus-hide-password" : "image://theme/icon-splus-show-password"
+                            onClicked: {
+                                cardNumber.passwordVisible = !cardNumber.passwordVisible;
+                            }
+                        }
+                    }
+                }
+
+                ComboBox {
+                    id: cardExpirationMonth
+                    label: qsTr("Expiration month")
+                    visible: type === BitwardenCli.Card
+
+                    menu: ContextMenu {
+                        Components.StringValueMenuItem {text: '01'}
+                        Components.StringValueMenuItem {text: '02'}
+                        Components.StringValueMenuItem {text: '03'}
+                        Components.StringValueMenuItem {text: '04'}
+                        Components.StringValueMenuItem {text: '05'}
+                        Components.StringValueMenuItem {text: '06'}
+                        Components.StringValueMenuItem {text: '07'}
+                        Components.StringValueMenuItem {text: '08'}
+                        Components.StringValueMenuItem {text: '09'}
+                        Components.StringValueMenuItem {text: '10'}
+                        Components.StringValueMenuItem {text: '11'}
+                        Components.StringValueMenuItem {text: '12'}
+                    }
+                }
+
+                TextField {
+                    id: cardExpirationYear
+                    label: qsTr("Expiration year")
+                    visible: type === BitwardenCli.Card
+                    inputMethodHints: Qt.ImhDigitsOnly
+                    validator: IntValidator {
+                        bottom: 2000
+                        top: 2100
+                    }
+                }
+
+                TextField {
+                    property bool passwordVisible: false
+
+                    id: cardCvv
+                    label: qsTr("Security Code")
+                    visible: type === BitwardenCli.Card
+                    echoMode: passwordVisible ? TextInput.Normal : TextInput.Password
+                    inputMethodHints: Qt.ImhDigitsOnly
+                    validator: RegExpValidator {
+                        regExp: /^[0-9]{3,4}$/
+                    }
+
+                    rightItem: Row {
+                        IconButton {
+                            icon.source: cardCvv.passwordVisible ? "image://theme/icon-splus-hide-password" : "image://theme/icon-splus-show-password"
+                            onClicked: {
+                                cardCvv.passwordVisible = !cardCvv.passwordVisible;
+                            }
+                        }
+                    }
+                }
+
+                TextArea {
+                    id: secureNoteNote
+                    visible: type === BitwardenCli.SecureNote
+                    label: qsTr("Note")
+                }
             }
         }
     }
