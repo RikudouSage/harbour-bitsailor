@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>AddItemPage</name>
     <message>
@@ -110,37 +108,37 @@
     </message>
     <message>
         <source>Cardholder Name</source>
-        <translation type="unfinished">Jméno držitele karty</translation>
+        <translation>Jméno držitele karty</translation>
     </message>
     <message>
         <source>Brand</source>
-        <translation type="unfinished">Značka</translation>
+        <translation>Značka</translation>
     </message>
     <message>
         <source>Other</source>
         <extracomment>Card brand</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Ostatní</translation>
     </message>
     <message>
         <source>-- choose --</source>
         <extracomment>Choose a card brand from a ComboBox</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>-- zvolte --</translation>
     </message>
     <message>
         <source>Card Number</source>
-        <translation type="unfinished">Číslo karty</translation>
+        <translation>Číslo karty</translation>
     </message>
     <message>
         <source>Expiration month</source>
-        <translation type="unfinished"></translation>
+        <translation>Měsíc expirace</translation>
     </message>
     <message>
         <source>Expiration year</source>
-        <translation type="unfinished"></translation>
+        <translation>Rok expirace</translation>
     </message>
     <message>
         <source>Security Code</source>
-        <translation type="unfinished">Bezp. kód</translation>
+        <translation>Bezpečnostní kód</translation>
     </message>
 </context>
 <context>
@@ -151,7 +149,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -479,7 +477,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -722,7 +720,7 @@
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -786,8 +784,8 @@
         <translation>Načítat trezor na hlavní obrazovce</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save items in cache for faster load</source>
@@ -1071,11 +1069,11 @@
     </message>
     <message>
         <source>There was an error when creating the new item</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastala chyba při vytváření položky</translation>
     </message>
     <message>
         <source>There was an error while synchronizing the vault, please try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastala chyba při synchronizaci trezoru, prosím zkuste to znovu.</translation>
     </message>
 </context>
 <context>
