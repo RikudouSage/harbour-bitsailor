@@ -592,6 +592,14 @@
         <source>If you use your own server for Bitwarden, set its URL here.</source>
         <translation>Pokud pro Bitwarden používáte svůj vlastní server, nastavte zde jeho URL.</translation>
     </message>
+    <message>
+        <source>Clean Up Data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?</source>
+        <translation type="unfinished">Tato možnost smaže všechna data, která má tato aplikace uložena ve vašem zařízení, včetně uložiště citlivých údajů, Bitwarden CLI (pokud bylo nainstalováno touto aplikací), dočasné soubory atd. Budete také odhlášeni z Bitwarden CLI. Přejete si pokračovat?</translation>
+    </message>
 </context>
 <context>
     <name>MainPage</name>
