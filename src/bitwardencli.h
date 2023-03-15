@@ -19,6 +19,7 @@ class BitwardenCli : public QObject
     Q_PROPERTY(QString binaryPath MEMBER bw CONSTANT)
 public:
     explicit BitwardenCli(QObject *parent = nullptr);
+    ~BitwardenCli();
 
     enum Method {
         LoginCheck,
