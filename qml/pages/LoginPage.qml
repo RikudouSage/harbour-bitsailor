@@ -14,6 +14,8 @@ Dialog {
 
     property string error
 
+    property var doAfterLoad: []
+
     id: page
     allowedOrientations: Orientation.All
     canAccept: Helpers.xor(emailText.length && passwordText.length, clientIdText.length && clientSecretText.length)
@@ -25,6 +27,22 @@ Dialog {
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height
+
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("Clean Up Data")
+                onClicked: {
+                    const dialog = pageStack.push("ConfirmSettingPage.qml", {
+                        description: qsTr("This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?")
+                    });
+                    dialog.accepted.connect(function() {
+                        doAfterLoad.push(function() {
+                            pageStack.replaceAbove(null, "CleanupPage.qml");
+                        });
+                    });
+                }
+            }
+        }
 
         Column {
             id: column
@@ -211,5 +229,14 @@ Dialog {
 
     onRejected: {
         Qt.quit();
+    }
+
+    onStatusChanged: {
+        if (status == PageStatus.Active) {
+            while (doAfterLoad.length) {
+                const callable = doAfterLoad.shift();
+                callable();
+            }
+        }
     }
 }
