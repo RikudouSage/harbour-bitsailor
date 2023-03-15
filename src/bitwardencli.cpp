@@ -21,6 +21,18 @@ BitwardenCli::BitwardenCli(QObject *parent) : QObject(parent)
     }
 }
 
+BitwardenCli::~BitwardenCli()
+{
+    for (const auto process : processes) {
+#ifdef QT_DEBUG
+        qDebug() << "Destroying: " << process->program() << process->arguments();
+#endif
+        process->disconnect();
+        process->terminate();
+        process->deleteLater();
+    }
+}
+
 void BitwardenCli::checkLoginStatus()
 {
     startProcess({"login", "--check"}, LoginCheck);
@@ -347,7 +359,7 @@ void BitwardenCli::startProcess(const QStringList &arguments, const QProcessEnvi
 #ifdef QT_DEBUG
     qDebug() << "Starting command: " << "bw " << arguments.join(" ");
 #endif
-    QProcess* process = new QProcess(this);
+    QProcess* process = new QProcess();
     process->setWorkingDirectory(getDataPath());
     process->setProcessEnvironment(environment);
     process->setStandardInputFile(QProcess::nullDevice());
