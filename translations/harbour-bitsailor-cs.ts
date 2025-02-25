@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>AddItemPage</name>
     <message>
@@ -151,7 +149,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -394,124 +392,124 @@
     <name>ItemDetailPage</name>
     <message>
         <source>Failed loading the item, please try again later or sync your vault and check that it wasn&apos;t deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nezdařilo se načíst položku, zkuste to prosím znovu, nebo synchronizujte trezor a ujistěte se, že nebyla smazána.</translation>
     </message>
     <message>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>Načítání...</translation>
     </message>
     <message>
         <source>Item detail</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Detail položky</translation>
     </message>
     <message>
         <source>Item info</source>
-        <translation type="unfinished"></translation>
+        <translation>Informace o položce</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Název</translation>
+        <translation>Název</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Uživatelské jméno</translation>
     </message>
     <message>
         <source>Copied to clipboard</source>
-        <translation type="unfinished">Zkopírováno do schránky</translation>
+        <translation>Zkopírováno do schránky</translation>
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
-        <translation type="unfinished"></translation>
+        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <translation>Jméno identity</translation>
     </message>
     <message>
         <source>Company</source>
-        <translation type="unfinished"></translation>
+        <translation>Společnost</translation>
     </message>
     <message>
         <source>Social Security Number</source>
         <extracomment>Translate as local equivalent, see https://en.wikipedia.org/wiki/National_identification_number</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Rodné číslo</translation>
     </message>
     <message>
         <source>Passport Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Číslo pasu</translation>
     </message>
     <message>
         <source>License Number</source>
         <extracomment>Translate as local equivalent, for example &quot;ID card number&quot;</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Číslo občanského průkazu</translation>
     </message>
     <message>
         <source>Email</source>
-        <translation type="unfinished">E-mail</translation>
+        <translation>E-mail</translation>
     </message>
     <message>
         <source>Phone</source>
         <extracomment>Phone number</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Telefon</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresa</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Heslo</translation>
+        <translation>Heslo</translation>
     </message>
     <message>
         <source>Verification Code (TOTP)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ověřovací kód (TOTP)</translation>
     </message>
     <message>
         <source>Cardholder Name</source>
-        <translation type="unfinished">Jméno držitele karty</translation>
+        <translation>Jméno držitele karty</translation>
     </message>
     <message>
         <source>Brand</source>
-        <translation type="unfinished">Značka</translation>
+        <translation>Značka</translation>
     </message>
     <message>
         <source>Card Number</source>
-        <translation type="unfinished">Číslo karty</translation>
+        <translation>Číslo karty</translation>
     </message>
     <message>
         <source>Expiration</source>
-        <translation type="unfinished">Expirace</translation>
+        <translation>Expirace</translation>
     </message>
     <message>
         <source>Security Code (CVV)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bezpečnostní kód (CVV)</translation>
     </message>
     <message>
         <source>URIs</source>
-        <translation type="unfinished">URI</translation>
+        <translation>URI</translation>
     </message>
     <message>
         <source>Website</source>
-        <translation type="unfinished"></translation>
+        <translation>Web</translation>
     </message>
     <message>
         <source>URI</source>
-        <translation type="unfinished"></translation>
+        <translation>URI</translation>
     </message>
     <message>
         <source>Notes</source>
-        <translation type="unfinished">Poznámky</translation>
+        <translation>Poznámky</translation>
     </message>
     <message>
         <source>Custom fields</source>
-        <translation type="unfinished"></translation>
+        <translation>Vlastní pole</translation>
     </message>
     <message>
         <source>Linked fields are not supported properly because the official documentation is missing. Will be updated in the future.</source>
-        <translation type="unfinished"></translation>
+        <translation>Propojená pole nejsou správně podporována, protože k nim chybí oficiální dokumentace. Do budoucna bude upraveno.</translation>
     </message>
     <message>
         <source>Last update: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Naposled upraveno: %1</translation>
     </message>
 </context>
 <context>
@@ -730,7 +728,7 @@
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -794,8 +792,8 @@
         <translation>Načítat trezor na hlavní obrazovce</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save items in cache for faster load</source>
