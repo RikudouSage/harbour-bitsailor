@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fr">
 <context>
     <name>AddItemPage</name>
     <message>
@@ -110,37 +108,37 @@
     </message>
     <message>
         <source>Cardholder Name</source>
-        <translation type="unfinished">Nom du titulaire de la carte</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Brand</source>
-        <translation type="unfinished">Réseau de paiement</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Other</source>
         <extracomment>Card brand</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>-- choose --</source>
         <extracomment>Choose a card brand from a ComboBox</extracomment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Card Number</source>
-        <translation type="unfinished">Numéro de carte</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Expiration month</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Expiration year</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Security Code</source>
-        <translation type="unfinished">Code de sécurité</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -151,7 +149,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -394,124 +392,124 @@
     <name>ItemDetailPage</name>
     <message>
         <source>Failed loading the item, please try again later or sync your vault and check that it wasn&apos;t deleted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec de chargement de l&apos;élément, veuillez réessayer plus tard ou synchroniser votre coffre puis vérifier qu&apos;il n&apos;est pas supprimé.</translation>
     </message>
     <message>
         <source>Loading...</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargement...</translation>
     </message>
     <message>
         <source>Item detail</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Détail de l&apos;élément</translation>
     </message>
     <message>
         <source>Item info</source>
-        <translation type="unfinished"></translation>
+        <translation>Info de l&apos;élément</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Nom</translation>
+        <translation>Nom</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom d&apos;utilisateur</translation>
     </message>
     <message>
         <source>Copied to clipboard</source>
-        <translation type="unfinished">Copié dans le presse-papiers</translation>
+        <translation>Copié dans le presse-papiers</translation>
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
-        <translation type="unfinished"></translation>
+        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <translation>Nom</translation>
     </message>
     <message>
         <source>Company</source>
-        <translation type="unfinished"></translation>
+        <translation>Entreprise</translation>
     </message>
     <message>
         <source>Social Security Number</source>
         <extracomment>Translate as local equivalent, see https://en.wikipedia.org/wiki/National_identification_number</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Numéro de sécurité sociale</translation>
     </message>
     <message>
         <source>Passport Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Numéro de passeport</translation>
     </message>
     <message>
         <source>License Number</source>
         <extracomment>Translate as local equivalent, for example &quot;ID card number&quot;</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Numéro de permis</translation>
     </message>
     <message>
         <source>Email</source>
-        <translation type="unfinished">E-mail</translation>
+        <translation>E-mail</translation>
     </message>
     <message>
         <source>Phone</source>
         <extracomment>Phone number</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Téléphone</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresse</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Mot de passe</translation>
+        <translation>Mot de passe</translation>
     </message>
     <message>
         <source>Verification Code (TOTP)</source>
-        <translation type="unfinished"></translation>
+        <translation>Code de vérification (TOTP)</translation>
     </message>
     <message>
         <source>Cardholder Name</source>
-        <translation type="unfinished">Nom du titulaire de la carte</translation>
+        <translation>Nom du titulaire de la carte</translation>
     </message>
     <message>
         <source>Brand</source>
-        <translation type="unfinished">Réseau de paiement</translation>
+        <translation>Réseau de paiement</translation>
     </message>
     <message>
         <source>Card Number</source>
-        <translation type="unfinished">Numéro de carte</translation>
+        <translation>Numéro de carte</translation>
     </message>
     <message>
         <source>Expiration</source>
-        <translation type="unfinished">Expiration</translation>
+        <translation>Expiration</translation>
     </message>
     <message>
         <source>Security Code (CVV)</source>
-        <translation type="unfinished"></translation>
+        <translation>Code de sécurité (CVV)</translation>
     </message>
     <message>
         <source>URIs</source>
-        <translation type="unfinished">URIs</translation>
+        <translation>URIs</translation>
     </message>
     <message>
         <source>Website</source>
-        <translation type="unfinished"></translation>
+        <translation>Site web</translation>
     </message>
     <message>
         <source>URI</source>
-        <translation type="unfinished"></translation>
+        <translation>URI</translation>
     </message>
     <message>
         <source>Notes</source>
-        <translation type="unfinished">Notes</translation>
+        <translation>Notes</translation>
     </message>
     <message>
         <source>Custom fields</source>
-        <translation type="unfinished"></translation>
+        <translation>Champs personnalisés</translation>
     </message>
     <message>
         <source>Linked fields are not supported properly because the official documentation is missing. Will be updated in the future.</source>
-        <translation type="unfinished"></translation>
+        <translation>Les champs liés ne sont pas supportés correctement à cause de leur absence dans la documentation officielle. Cela sera implémenté à l&apos;avenir.</translation>
     </message>
     <message>
         <source>Last update: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Mis à jour: %1</translation>
     </message>
 </context>
 <context>
@@ -594,11 +592,11 @@
     </message>
     <message>
         <source>Clean Up Data</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?</source>
-        <translation type="unfinished">Cela va supprimer tout ce que stocke cette application sur votre système, y compris les collections de secrets système, Bitwarden CLI (si installé via cette app), les fichiers temporaires etc. Bitwarden CLI sera également déconnecté. Souhaitez-vous continuer ?</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -730,7 +728,7 @@
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -794,8 +792,8 @@
         <translation>Charger les éléments du coffre dans la vue principale</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save items in cache for faster load</source>
@@ -1079,11 +1077,11 @@
     </message>
     <message>
         <source>There was an error when creating the new item</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>There was an error while synchronizing the vault, please try again.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
