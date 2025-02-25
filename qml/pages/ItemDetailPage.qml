@@ -82,6 +82,25 @@ Page {
         }
     }
 
+    BitwardenApi {
+        id: api
+
+        onItemFetched: {
+            if (isDebug) {
+                console.log(JSON.stringify(item));
+            }
+
+            page.item = item;
+            loaded = true;
+            createCover();
+        }
+
+        onItemFetchingFailed: {
+            loaded = true;
+            errorText = qsTr("Failed loading the item, please try again later or sync your vault and check that it wasn't deleted.");
+        }
+    }
+
     BusyLabel {
         id: loader
         running: !loaded
@@ -681,7 +700,7 @@ Page {
     onStatusChanged: {
         if (status === PageStatus.Active) {
             if (!pageLoaded) {
-                cli.getItem(itemId);
+                settings.useApi ? api.getItem(itemId) : cli.getItem(itemId);
             }
 
             pageLoaded = true;

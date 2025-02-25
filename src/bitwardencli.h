@@ -8,6 +8,7 @@
 #include <QJsonArray>
 #include <QList>
 #include <QJsonObject>
+#include <QNetworkAccessManager>
 
 #include "pathhelper.h"
 #include "secretshandler.h"
@@ -42,6 +43,7 @@ public:
         GetServerUrl,
         SetServerUrl,
         CreateItem,
+        Serve,
     };
 
     enum TwoStepLoginMethods {
@@ -109,6 +111,8 @@ public:
     Q_INVOKABLE void getServerUrl();
     Q_INVOKABLE void setServerUrl(QString url);
     Q_INVOKABLE void createItem(const QString &encodedData);
+    Q_INVOKABLE void serve();
+    Q_INVOKABLE void stopServer();
 
 signals:
     void loginStatusResolved(bool loggedIn);
@@ -132,11 +136,13 @@ signals:
     void serverUrlResolved(QString serverUrl);
     void serverUrlSet(bool success);
     void itemCreationFinished(bool success);
+    void serverStarted();
 
 private slots:
     void onFinished(int exitCode, Method method);
 
 private:
+    QNetworkAccessManager networkManager;
     QString bw;
     QMap<Method, QProcess*> processes;
     SecretsHandler* secretsHandler = new SecretsHandler(this);

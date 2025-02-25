@@ -688,6 +688,11 @@
         <source>Add identity</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The BitWarden server is not running,
+please restart the app</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MissingBitwardenCliPage</name>
@@ -896,6 +901,14 @@
     </message>
     <message>
         <source>Note: You will be logged out.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use api (experimental)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>By enabling this option the app will use a local BitWarden server instead of the BitWarden CLI. That can make all BitWarden operations &lt;strong&gt;much&lt;/strong&gt; faster, but the support is experimental and there might be bugs which cause the server to crash, thus rendering the app unusable until you close it and start it again.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

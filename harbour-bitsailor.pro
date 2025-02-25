@@ -18,6 +18,7 @@ QT += dbus
 
 SOURCES += src/harbour-bitsailor.cpp \
     src/appsettings.cpp \
+    src/bitwardenapi.cpp \
     src/bitwardencli.cpp \
     src/bitwardencliinstaller.cpp \
     src/cachekey.cpp \
@@ -100,6 +101,7 @@ TRANSLATIONS += translations/harbour-bitsailor-*.ts
 
 HEADERS += \
     src/appsettings.h \
+    src/bitwardenapi.h \
     src/bitwardencli.h \
     src/bitwardencliinstaller.h \
     src/cachekey.h \

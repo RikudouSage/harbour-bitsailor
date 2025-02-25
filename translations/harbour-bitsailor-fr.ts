@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fr">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="fr">
 <context>
     <name>AddItemPage</name>
     <message>
@@ -108,37 +110,37 @@
     </message>
     <message>
         <source>Cardholder Name</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">Nom du titulaire de la carte</translation>
     </message>
     <message>
         <source>Brand</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">Réseau de paiement</translation>
     </message>
     <message>
         <source>Other</source>
         <extracomment>Card brand</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>-- choose --</source>
         <extracomment>Choose a card brand from a ComboBox</extracomment>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Card Number</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">Numéro de carte</translation>
     </message>
     <message>
         <source>Expiration month</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Expiration year</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Security Code</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">Code de sécurité</translation>
     </message>
 </context>
 <context>
@@ -149,7 +151,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -421,7 +423,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Nom</translation>
     </message>
     <message>
@@ -592,11 +594,11 @@
     </message>
     <message>
         <source>Clean Up Data</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished">Cela va supprimer tout ce que stocke cette application sur votre système, y compris les collections de secrets système, Bitwarden CLI (si installé via cette app), les fichiers temporaires etc. Bitwarden CLI sera également déconnecté. Souhaitez-vous continuer ?</translation>
     </message>
 </context>
 <context>
@@ -686,6 +688,11 @@
         <source>Add identity</source>
         <translation>Ajouter une identité</translation>
     </message>
+    <message>
+        <source>The BitWarden server is not running,
+please restart the app</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MissingBitwardenCliPage</name>
@@ -728,7 +735,7 @@
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -792,8 +799,8 @@
         <translation>Charger les éléments du coffre dans la vue principale</translation>
     </message>
     <message>
-        <source/>
-        <translation type="unfinished"/>
+        <source></source>
+        <translation></translation>
     </message>
     <message>
         <source>Save items in cache for faster load</source>
@@ -895,6 +902,14 @@
     <message>
         <source>Note: You will be logged out.</source>
         <translation>Note: Vous allez être déconnecté.</translation>
+    </message>
+    <message>
+        <source>Use api (experimental)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>By enabling this option the app will use a local BitWarden server instead of the BitWarden CLI. That can make all BitWarden operations &lt;strong&gt;much&lt;/strong&gt; faster, but the support is experimental and there might be bugs which cause the server to crash, thus rendering the app unusable until you close it and start it again.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1077,11 +1092,11 @@
     </message>
     <message>
         <source>There was an error when creating the new item</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>There was an error while synchronizing the vault, please try again.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
