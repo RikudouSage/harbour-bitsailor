@@ -52,14 +52,16 @@ Page {
         function generateTotpSafe(totpData) {
             var secret = totpData;
             var digits = 6;
+            var hash = "SHA1";
 
             const url = urlParser.parse(totpData);
             if (url.scheme === "otpauth" && url.host === "totp") {
                 secret = url.query("secret");
                 digits = Number(url.query("digits") || 6);
+                hash = url.query("algorithm") || "SHA1";
             }
 
-            return generateTOTP(secret, digits);
+            return generateTOTP(secret, digits, hash);
         }
     }
 
