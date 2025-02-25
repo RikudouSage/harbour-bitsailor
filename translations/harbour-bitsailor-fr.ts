@@ -394,124 +394,124 @@
     <name>ItemDetailPage</name>
     <message>
         <source>Failed loading the item, please try again later or sync your vault and check that it wasn&apos;t deleted.</source>
-        <translation>Échec de chargement de l&apos;élément, veuillez réessayer plus tard ou synchroniser votre coffre puis vérifier qu&apos;il n&apos;est pas supprimé.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Loading...</source>
-        <translation>Chargement...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Item detail</source>
         <extracomment>Page title</extracomment>
-        <translation>Détail de l&apos;élément</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Item info</source>
-        <translation>Info de l&apos;élément</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Nom</translation>
+        <translation type="unfinished">Nom</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Nom d&apos;utilisateur</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Copied to clipboard</source>
-        <translation>Copié dans le presse-papiers</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Mot de passe</translation>
-    </message>
-    <message>
-        <source>Verification Code (TOTP)</source>
-        <translation>Code de vérification (TOTP)</translation>
-    </message>
-    <message>
-        <source>URIs</source>
-        <translation>URIs</translation>
-    </message>
-    <message>
-        <source>Website</source>
-        <translation>Site web</translation>
-    </message>
-    <message>
-        <source>URI</source>
-        <translation>URI</translation>
-    </message>
-    <message>
-        <source>Notes</source>
-        <translation>Notes</translation>
-    </message>
-    <message>
-        <source>Custom fields</source>
-        <translation>Champs personnalisés</translation>
-    </message>
-    <message>
-        <source>Linked fields are not supported properly because the official documentation is missing. Will be updated in the future.</source>
-        <translation>Les champs liés ne sont pas supportés correctement à cause de leur absence dans la documentation officielle. Cela sera implémenté à l&apos;avenir.</translation>
-    </message>
-    <message>
-        <source>Last update: %1</source>
-        <translation>Mis à jour: %1</translation>
-    </message>
-    <message>
-        <source>Cardholder Name</source>
-        <translation>Nom du titulaire de la carte</translation>
-    </message>
-    <message>
-        <source>Brand</source>
-        <translation>Réseau de paiement</translation>
-    </message>
-    <message>
-        <source>Card Number</source>
-        <translation>Numéro de carte</translation>
-    </message>
-    <message>
-        <source>Expiration</source>
-        <translation>Expiration</translation>
-    </message>
-    <message>
-        <source>Security Code (CVV)</source>
-        <translation>Code de sécurité (CVV)</translation>
+        <translation type="unfinished">Copié dans le presse-papiers</translation>
     </message>
     <message>
         <source>Identity Name</source>
         <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
-        <translation>Nom</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Company</source>
-        <translation>Entreprise</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Social Security Number</source>
         <extracomment>Translate as local equivalent, see https://en.wikipedia.org/wiki/National_identification_number</extracomment>
-        <translation>Numéro de sécurité sociale</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Passport Number</source>
-        <translation>Numéro de passeport</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>License Number</source>
         <extracomment>Translate as local equivalent, for example &quot;ID card number&quot;</extracomment>
-        <translation>Numéro de permis</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Email</source>
+        <translation type="unfinished">E-mail</translation>
     </message>
     <message>
         <source>Phone</source>
         <extracomment>Phone number</extracomment>
-        <translation>Téléphone</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Address</source>
-        <translation>Adresse</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Email</source>
-        <translation>E-mail</translation>
+        <source>Password</source>
+        <translation type="unfinished">Mot de passe</translation>
+    </message>
+    <message>
+        <source>Verification Code (TOTP)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cardholder Name</source>
+        <translation type="unfinished">Nom du titulaire de la carte</translation>
+    </message>
+    <message>
+        <source>Brand</source>
+        <translation type="unfinished">Réseau de paiement</translation>
+    </message>
+    <message>
+        <source>Card Number</source>
+        <translation type="unfinished">Numéro de carte</translation>
+    </message>
+    <message>
+        <source>Expiration</source>
+        <translation type="unfinished">Expiration</translation>
+    </message>
+    <message>
+        <source>Security Code (CVV)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>URIs</source>
+        <translation type="unfinished">URIs</translation>
+    </message>
+    <message>
+        <source>Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>URI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <translation type="unfinished">Notes</translation>
+    </message>
+    <message>
+        <source>Custom fields</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked fields are not supported properly because the official documentation is missing. Will be updated in the future.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Last update: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

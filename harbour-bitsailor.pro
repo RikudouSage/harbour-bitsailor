@@ -23,13 +23,15 @@ SOURCES += src/harbour-bitsailor.cpp \
     src/cachekey.cpp \
     src/encryptor.cpp \
     src/fileaccessor.cpp \
+    src/parsedurl.cpp \
     src/pathhelper.cpp \
     src/randompingenerator.cpp \
     src/runtimecache.cpp \
     src/secretshandler.cpp \
     src/systemauthchecker.cpp \
     src/systemchecker.cpp \
-    otp/onetimepasswordgenerator.cpp
+    otp/onetimepasswordgenerator.cpp \
+    src/urlparser.cpp
 
 polkit.path = /usr/share/polkit-1/actions
 polkit.files = polkit/cz.chrastecky.bitsailor.policy
@@ -103,10 +105,12 @@ HEADERS += \
     src/cachekey.h \
     src/encryptor.h \
     src/fileaccessor.h \
+    src/parsedurl.h \
     src/pathhelper.h \
     src/randompingenerator.h \
     src/runtimecache.h \
     src/secretshandler.h \
     src/systemauthchecker.h \
     src/systemchecker.h \
-    otp/onetimepasswordgenerator.h
+    otp/onetimepasswordgenerator.h \
+    src/urlparser.h

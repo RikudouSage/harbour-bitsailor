@@ -22,6 +22,10 @@ Requires:   sailfishsecretsdaemon-secretsplugins-default
 Requires:   sailfish-polkit-agent
 Requires:   nodejs
 Requires:   npm
+Requires:   python3-base
+Requires:   make
+Requires:   gcc
+Requires:   gcc-c++
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)

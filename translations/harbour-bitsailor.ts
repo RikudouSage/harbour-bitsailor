@@ -422,11 +422,67 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Identity Name</source>
+        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Company</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Social Security Number</source>
+        <extracomment>Translate as local equivalent, see https://en.wikipedia.org/wiki/National_identification_number</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Passport Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>License Number</source>
+        <extracomment>Translate as local equivalent, for example &quot;ID card number&quot;</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Email</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Phone</source>
+        <extracomment>Phone number</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Verification Code (TOTP)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cardholder Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Brand</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Card Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Expiration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Security Code (CVV)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -455,62 +511,6 @@
     </message>
     <message>
         <source>Last update: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cardholder Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Brand</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Card Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Expiration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Security Code (CVV)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Identity Name</source>
-        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Company</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Social Security Number</source>
-        <extracomment>Translate as local equivalent, see https://en.wikipedia.org/wiki/National_identification_number</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Passport Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>License Number</source>
-        <extracomment>Translate as local equivalent, for example &quot;ID card number&quot;</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Phone</source>
-        <extracomment>Phone number</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Email</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
