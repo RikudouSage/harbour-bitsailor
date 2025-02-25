@@ -908,7 +908,7 @@ please restart the app</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>By enabling this option the app will use a local BitWarden server instead of the BitWarden CLI. That can make all BitWarden operations &lt;strong&gt;much&lt;/strong&gt; faster, but the support is experimental and there might be bugs which cause the server to crash, thus rendering the app unusable until you close it and start it again.</source>
+        <source>By enabling this option the app will use a local BitWarden server instead of the BitWarden CLI. That can make all BitWarden operations &lt;strong&gt;much&lt;/strong&gt; faster, but the support is experimental and there might be bugs which cause the server to crash, thus rendering the app unusable until you close it and start it again.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Note that there are potential security issues because every installed app can use the server to get a list of your unencrypted passwords.&lt;/strong&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
