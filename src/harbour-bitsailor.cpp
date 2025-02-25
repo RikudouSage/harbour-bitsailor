@@ -22,6 +22,8 @@
 #include "pathhelper.h"
 #include "cachekey.h"
 #include "otp/onetimepasswordgenerator.h"
+#include "parsedurl.h"
+#include "urlparser.h"
 
 int main(int argc, char *argv[])
 {
@@ -36,6 +38,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<FileAccessor>("cz.chrastecky.bitsailor", 1, 0, "FileAccessor");
     qmlRegisterType<RandomPinGenerator>("cz.chrastecky.bitsailor", 1, 0, "RandomPinGenerator");
     qmlRegisterType<OneTimePasswordGenerator>("cz.chrastecky.bitsailor", 1, 0, "OneTimePasswordGenerator");
+    qmlRegisterType<ParsedUrl>("cz.chrastecky.bitasilor", 1, 0, "ParsedUrl");
     qmlRegisterSingletonType<CacheKey>("cz.chrastecky.bitsailor", 1, 0, "CacheKey", [](QQmlEngine* engine, QJSEngine* scriptEngine) -> QObject* {
         Q_UNUSED(engine);
         Q_UNUSED(scriptEngine);
@@ -46,6 +49,7 @@ int main(int argc, char *argv[])
     v->rootContext()->setContextProperty("settings", new AppSettings(app.data()));
     v->rootContext()->setContextProperty("runtimeCache", RuntimeCache::getInstance(app.data()));
     v->rootContext()->setContextProperty("privateBinPath", getPrivateBinDirPath());
+    v->rootContext()->setContextProperty("urlParser", new UrlParser(app.data()));
 
 #ifdef QT_DEBUG
     v->rootContext()->setContextProperty("isDebug", true);
