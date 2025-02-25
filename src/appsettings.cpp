@@ -10,6 +10,7 @@ AppSettings::AppSettings(QObject *parent) : QObject(parent)
     prop_FastAuth = settings->value("fastAuth", false).toBool();
     prop_UseSystemAuth = settings->value("useSystemAuth", false).toBool();
     prop_UseAuthorizationOnUnlocked = settings->value("useAuthorizationOnUnlocked", false).toBool();
+    prop_UseApi = settings->value("useApi", false).toBool();
 }
 
 AppSettings::~AppSettings()
@@ -111,6 +112,22 @@ void AppSettings::setUseAuthorizationOnUnlocked(bool enabled)
     saveConfig("useAuthorizationOnUnlocked", enabled);
     prop_UseAuthorizationOnUnlocked = enabled;
     emit useAuthorizationOnUnlockedChanged();
+}
+
+bool AppSettings::useApi()
+{
+    return prop_UseApi;
+}
+
+void AppSettings::setUseApi(bool enabled)
+{
+    if (enabled == prop_UseApi) {
+        return;
+    }
+
+    saveConfig("useApi", enabled);
+    prop_UseApi = enabled;
+    emit useApiChanged();
 }
 
 void AppSettings::saveConfig(const QString &name, const QVariant &value)

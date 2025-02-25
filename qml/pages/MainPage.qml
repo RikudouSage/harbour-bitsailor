@@ -61,6 +61,26 @@ Page {
         }
     }
 
+    Connections {
+        target: settings
+
+        onUseApiChanged: {
+            if (settings.useApi) {
+                cli.serve();
+            } else {
+                cli.stopServer();
+            }
+        }
+    }
+
+    BitwardenApi {
+        id: api
+
+        onApiNotRunning: {
+            app.toaster.show(qsTr("The BitWarden server is not running,\nplease restart the app"), 100000);
+        }
+    }
+
     BitwardenCli {
         id: cli
 
@@ -132,6 +152,9 @@ Page {
                 };
                 loaded ? handle() : doAfterLoad.push(handle);
             }
+        }
+
+        onServerStarted: {
         }
     }
 
@@ -248,8 +271,13 @@ Page {
     }
 
     Component.onCompleted: {
+        if (settings.useApi) {
+            cli.serve();
+        }
+
         if (settings.eagerLoading) {
             cli.getItems();
+
             displayLoadingVaultItems();
         }
 

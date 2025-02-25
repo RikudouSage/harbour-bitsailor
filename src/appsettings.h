@@ -14,6 +14,7 @@ class AppSettings : public QObject
     Q_PROPERTY(bool fastAuth READ fastAuth WRITE setFastAuth NOTIFY fastAuthChanged)
     Q_PROPERTY(bool useSystemAuth READ useSystemAuth WRITE setUseSystemAuth NOTIFY useSystemAuthChanged)
     Q_PROPERTY(bool useAuthorizationOnUnlocked READ useAuthorizationOnUnlocked WRITE setUseAuthorizationOnUnlocked NOTIFY useAuthorizationOnUnlockedChanged)
+    Q_PROPERTY(bool useApi READ useApi WRITE setUseApi NOTIFY useApiChanged)
 public:
     explicit AppSettings(QObject *parent = nullptr);
     ~AppSettings();
@@ -30,6 +31,8 @@ public:
     void setUseSystemAuth(bool enabled);
     bool useAuthorizationOnUnlocked();
     void setUseAuthorizationOnUnlocked(bool enabled);
+    bool useApi();
+    void setUseApi(bool enabled);
 
 signals:
     void lockOnCloseChanged();
@@ -38,6 +41,7 @@ signals:
     void fastAuthChanged();
     void useSystemAuthChanged();
     void useAuthorizationOnUnlockedChanged();
+    void useApiChanged();
 
 private:
     void saveConfig(const QString &name, const QVariant &value);
@@ -54,6 +58,7 @@ private:
     bool prop_FastAuth;
     bool prop_UseSystemAuth;
     bool prop_UseAuthorizationOnUnlocked;
+    bool prop_UseApi;
 };
 
 #endif // APPSETTINGS_H

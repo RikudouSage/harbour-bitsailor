@@ -343,6 +343,25 @@ Page {
                 }
             }
 
+            TextSwitch {
+                automaticCheck: false
+                checked: settings.useApi
+                text: qsTr("Use api (experimental)")
+
+                onClicked: {
+                    if (checked) {
+                        settings.useApi = false;
+                    } else {
+                        const dialog = pageStack.push("ConfirmSettingPage.qml", {
+                            description: qsTr("By enabling this option the app will use a local BitWarden server instead of the BitWarden CLI. That can make all BitWarden operations <strong>much</strong> faster, but the support is experimental and there might be bugs which cause the server to crash, thus rendering the app unusable until you close it and start it again.<br><br><strong>Note that there are potential security issues because every installed app can use the server to get a list of your unencrypted passwords.</strong>"),
+                        });
+                        dialog.accepted.connect(function() {
+                            settings.useApi = true;
+                        });
+                    }
+                }
+            }
+
             SectionHeader {
                 text: qsTr("Advanced")
             }

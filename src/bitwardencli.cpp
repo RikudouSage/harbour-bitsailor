@@ -5,6 +5,10 @@
 #include <QJsonObject>
 #include <QList>
 #include <QFile>
+#include <QTimer>
+#include <QNetworkRequest>
+#include <QUrl>
+#include <QNetworkReply>
 
 #include "pathhelper.h"
 
@@ -237,6 +241,43 @@ void BitwardenCli::setServerUrl(QString url)
 void BitwardenCli::createItem(const QString &encodedData)
 {
     startProcess({"create", "item", encodedData}, CreateItem);
+}
+
+void BitwardenCli::serve()
+{
+    startProcess({"serve"}, Serve);
+
+    QTimer *timer = new QTimer(this);
+    timer->setInterval(200);
+    timer->setTimerType(Qt::TimerType::PreciseTimer);
+    timer->start();
+
+    connect(timer, &QTimer::timeout, [=]() {
+        QNetworkRequest request(QUrl("http://127.0.0.1:8087"));
+        auto reply = networkManager.get(request);
+        connect(reply, &QNetworkReply::finished, [=]() {
+            reply->deleteLater();
+            if (reply->error() == QNetworkReply::ConnectionRefusedError) {
+                return;
+            }
+
+            emit serverStarted();
+
+            timer->stop();
+            timer->disconnect();
+            timer->deleteLater();
+        });
+    });
+}
+
+void BitwardenCli::stopServer()
+{
+    if (!processes.contains(Serve)) {
+        return;
+    }
+
+    const auto process = processes.value(Serve);
+    process->terminate();
 }
 
 void BitwardenCli::onFinished(int exitCode, Method method)

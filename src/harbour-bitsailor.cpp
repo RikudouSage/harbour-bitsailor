@@ -24,6 +24,7 @@
 #include "otp/onetimepasswordgenerator.h"
 #include "parsedurl.h"
 #include "urlparser.h"
+#include "bitwardenapi.h"
 
 int main(int argc, char *argv[])
 {
@@ -39,6 +40,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<RandomPinGenerator>("cz.chrastecky.bitsailor", 1, 0, "RandomPinGenerator");
     qmlRegisterType<OneTimePasswordGenerator>("cz.chrastecky.bitsailor", 1, 0, "OneTimePasswordGenerator");
     qmlRegisterType<ParsedUrl>("cz.chrastecky.bitasilor", 1, 0, "ParsedUrl");
+    qmlRegisterType<BitwardenApi>("cz.chrastecky.bitsailor", 1, 0, "BitwardenApi");
     qmlRegisterSingletonType<CacheKey>("cz.chrastecky.bitsailor", 1, 0, "CacheKey", [](QQmlEngine* engine, QJSEngine* scriptEngine) -> QObject* {
         Q_UNUSED(engine);
         Q_UNUSED(scriptEngine);
