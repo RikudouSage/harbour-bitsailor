@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>AddItemPage</name>
     <message>
@@ -151,7 +149,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -423,7 +421,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -691,7 +689,8 @@
     <message>
         <source>The BitWarden server is not running,
 please restart the app</source>
-        <translation type="unfinished"></translation>
+        <translation>BitWarden server neběží,
+restartujte prosím aplikaci.</translation>
     </message>
 </context>
 <context>
@@ -735,7 +734,7 @@ please restart the app</source>
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -799,8 +798,8 @@ please restart the app</source>
         <translation>Načítat trezor na hlavní obrazovce</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save items in cache for faster load</source>
@@ -905,11 +904,11 @@ please restart the app</source>
     </message>
     <message>
         <source>Use api (experimental)</source>
-        <translation type="unfinished"></translation>
+        <translation>Použít api (experimentální)</translation>
     </message>
     <message>
         <source>By enabling this option the app will use a local BitWarden server instead of the BitWarden CLI. That can make all BitWarden operations &lt;strong&gt;much&lt;/strong&gt; faster, but the support is experimental and there might be bugs which cause the server to crash, thus rendering the app unusable until you close it and start it again.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Note that there are potential security issues because every installed app can use the server to get a list of your unencrypted passwords.&lt;/strong&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolením této možnosti zapnete lokální BitWarden server, který se použije namísto BitWarden CLI. Všechny operace díky tomu mohou být &lt;strong&gt;mnohem&lt;/strong&gt; rychlejší, ale podpora je experimentální a mohou se objevit chyby, kvůli kterým bude aplikace nestabilní a mohou být vyžadovány častější restarty aplikace.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Mějte na paměti, že existují také potenciální bezpečností rizika, protože jakákoliv nainstalovaná aplikace může k serveru přistupovat a získat tak seznam vašich nezašifrovaných hesel.&lt;/strong&gt;</translation>
     </message>
 </context>
 <context>
