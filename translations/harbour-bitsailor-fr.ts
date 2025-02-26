@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fr">
 <context>
     <name>AddItemPage</name>
     <message>
@@ -110,37 +108,37 @@
     </message>
     <message>
         <source>Cardholder Name</source>
-        <translation type="unfinished">Nom du titulaire de la carte</translation>
+        <translation>Titulaire</translation>
     </message>
     <message>
         <source>Brand</source>
-        <translation type="unfinished">Réseau de paiement</translation>
+        <translation>Réseau de paiement</translation>
     </message>
     <message>
         <source>Other</source>
         <extracomment>Card brand</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Autre</translation>
     </message>
     <message>
         <source>-- choose --</source>
         <extracomment>Choose a card brand from a ComboBox</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>-- sélectionner --</translation>
     </message>
     <message>
         <source>Card Number</source>
-        <translation type="unfinished">Numéro de carte</translation>
+        <translation>Numéro</translation>
     </message>
     <message>
         <source>Expiration month</source>
-        <translation type="unfinished"></translation>
+        <translation>Mois d&apos;expiration</translation>
     </message>
     <message>
         <source>Expiration year</source>
-        <translation type="unfinished"></translation>
+        <translation>Année d&apos;expiration</translation>
     </message>
     <message>
         <source>Security Code</source>
-        <translation type="unfinished">Code de sécurité</translation>
+        <translation>Code de sécurité</translation>
     </message>
 </context>
 <context>
@@ -151,7 +149,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -423,7 +421,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Nom</translation>
     </message>
     <message>
@@ -594,11 +592,11 @@
     </message>
     <message>
         <source>Clean Up Data</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettoyer les données</translation>
     </message>
     <message>
         <source>This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?</source>
-        <translation type="unfinished">Cela va supprimer tout ce que stocke cette application sur votre système, y compris les collections de secrets système, Bitwarden CLI (si installé via cette app), les fichiers temporaires etc. Bitwarden CLI sera également déconnecté. Souhaitez-vous continuer ?</translation>
+        <translation>Cela supprimera tout ce que cette application stocke sur le système, y compris la collection de secrets du système, Bitwarden CLI (s&apos;il a été installé via cette application), les fichiers temporaires, etc. Bitwarden CLI sera également déconnecté. Souhaitez-vous continuer ?</translation>
     </message>
 </context>
 <context>
@@ -609,7 +607,7 @@
     </message>
     <message>
         <source>Lock</source>
-        <translation>Vérouiller</translation>
+        <translation>Verrouiller</translation>
     </message>
     <message>
         <source>Please wait...</source>
@@ -691,7 +689,8 @@
     <message>
         <source>The BitWarden server is not running,
 please restart the app</source>
-        <translation type="unfinished"></translation>
+        <translation>Le serveur BitWarden ne fonctionne pas,
+veuillez redémarrer l&apos;application</translation>
     </message>
 </context>
 <context>
@@ -735,7 +734,7 @@ please restart the app</source>
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -799,8 +798,8 @@ please restart the app</source>
         <translation>Charger les éléments du coffre dans la vue principale</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save items in cache for faster load</source>
@@ -824,7 +823,7 @@ please restart the app</source>
     </message>
     <message>
         <source>When this option is enabled, authentication is skipped and you are assumed to be logged in regardless of the actual status. What this means in practice is that logged in check is postponed until you&apos;re on the main page and is done in the background, this gives anyone opening this app a few seconds to look around before transfering you to the login/unlock screen. This should be ok because all vault operations fail when you&apos;re not logged in. &lt;strong&gt;Warning&lt;/strong&gt;: if used in combination with the setting &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; some data may be leaked to whoever opens this app. Use at your own risk.</source>
-        <translation>Lorsque cette option est activée, l&apos;authentification est passée et vous devriez être connecté quel que soit le statut réel. Ce que cela signifie en pratique est que la vérification de connexion est repoussée jusqu&apos;à ce que vous soyez sur la page principale et se fait en arrière-plan, cela donne quelques secondes à n&apos;importe qui ouvrant cette app de regarder le contenu avant d&apos;être redirigé à l&apos;écran de connexion/dévérouillage. Cela devrait être correct puisque toutes les opérations de coffre échouent lorsque vous n&apos;êtes pas connecté. &lt;strong&gt;Attention&lt;/strong&gt;: si utilisé en combinaison avec l&apos;option &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; des données pourraient être divulguées à quiconque ouvrirait cette app. Utilisez cette option à vos propres risques.</translation>
+        <translation>Lorsque cette option est activée, l&apos;authentification est passée et vous devriez être connecté quel que soit le statut réel. Ce que cela signifie en pratique est que la vérification de connexion est repoussée jusqu&apos;à ce que vous soyez sur la page principale et se fait en arrière-plan, cela donne quelques secondes à n&apos;importe qui ouvrant cette app de regarder le contenu avant d&apos;être redirigé à l&apos;écran de connexion/déverrouillage. Cela devrait être correct puisque toutes les opérations de coffre échouent lorsque vous n&apos;êtes pas connecté. &lt;strong&gt;Attention&lt;/strong&gt;: si utilisé en combinaison avec l&apos;option &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; des données pourraient être divulguées à quiconque ouvrirait cette app. Utilisez cette option à vos propres risques.</translation>
     </message>
     <message>
         <source>OS authorization check failed.</source>
@@ -836,7 +835,7 @@ please restart the app</source>
     </message>
     <message>
         <source>Use OS authorization to unlock vault</source>
-        <translation>Utiliser l&apos;authentification OS pour dévérouiller le coffre</translation>
+        <translation>Utiliser l&apos;authentification OS pour déverrouiller le coffre</translation>
     </message>
     <message>
         <source>Clean Up Everything</source>
@@ -860,11 +859,11 @@ please restart the app</source>
     </message>
     <message>
         <source>By enabling this option you will force the app to authorize you using OS authorization even when the vault is unlocked. If the authorization fails your vault will be locked and you will be redirected to unlock vault screen. This can speed up getting your vault data significantly. &lt;strong&gt;Warning&lt;/strong&gt;: Disables &apos;%1&apos;</source>
-        <translation>En activant cette option, vous forcerez l&apos;application à vous authentifier en utilisant l&apos;authentification OS même si le coffre est dévérouillé. SI l&apos;authentification échoue, votre coffre sera vérouillé et vous serez redirigé pour dévérouiller l&apos;écran du coffre. Cela peut significativement accélérer l&apos;obtention de vos données du coffre. &lt;strong&gt;Attention&lt;/strong&gt;: Désactive &apos;%1&apos; </translation>
+        <translation>En activant cette option, vous forcerez l&apos;application à vous authentifier en utilisant l&apos;authentification OS même si le coffre est déverrouillé. SI l&apos;authentification échoue, votre coffre sera verrouillé et vous serez redirigé pour déverrouiller l&apos;écran du coffre. Cela peut significativement accélérer l&apos;obtention de vos données du coffre. &lt;strong&gt;Attention&lt;/strong&gt;: Désactive &apos;%1&apos; </translation>
     </message>
     <message>
         <source>Require OS authorization on unlocked vault</source>
-        <translation>Demander l&apos;authentification OS sur le coffre dévérouillé</translation>
+        <translation>Demander l&apos;authentification OS sur le coffre déverrouillé</translation>
     </message>
     <message>
         <source>Enabling this option will fasten load times for items in the vault significantly - your data are &lt;strong&gt;stored on disk encrypted&lt;/strong&gt; without any sensitive data (card numbers, passwords etc.).</source>
@@ -905,11 +904,11 @@ please restart the app</source>
     </message>
     <message>
         <source>Use api (experimental)</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser l&apos;API (expérimental)</translation>
     </message>
     <message>
         <source>By enabling this option the app will use a local BitWarden server instead of the BitWarden CLI. That can make all BitWarden operations &lt;strong&gt;much&lt;/strong&gt; faster, but the support is experimental and there might be bugs which cause the server to crash, thus rendering the app unusable until you close it and start it again.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Note that there are potential security issues because every installed app can use the server to get a list of your unencrypted passwords.&lt;/strong&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>En activant cette option, l&apos;application utilisera un serveur BitWarden local au lieu du CLI BitWarden. Cela peut rendre toutes les opérations BitWarden &lt;strong&gt;beaucoup&lt;/strong&gt; plus rapides, mais le support est expérimental et il peut y avoir des bogues qui font planter le serveur, rendant ainsi l&apos;application inutilisable jusqu&apos;à ce que vous la fermiez et la redémarriez.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Notez qu&apos;il y a des problèmes de sécurité potentiels parce que chaque application installée peut utiliser le serveur pour obtenir une liste de vos mots de passe non cryptés.&lt;/strong&gt;</translation>
     </message>
 </context>
 <context>
@@ -961,7 +960,7 @@ please restart the app</source>
     </message>
     <message>
         <source>Note: This option enables unlocking vault using fingerprint if your device supports it.</source>
-        <translation>Note: Cette option active le dévérouillage du coffre en utilisant l&apos;empreinte digitale si votre appareil le permet.</translation>
+        <translation>Note: Cette option active le déverrouillage du coffre en utilisant l&apos;empreinte digitale si votre appareil le permet.</translation>
     </message>
 </context>
 <context>
@@ -1092,11 +1091,11 @@ please restart the app</source>
     </message>
     <message>
         <source>There was an error when creating the new item</source>
-        <translation type="unfinished"></translation>
+        <translation>Une erreur s&apos;est produite lors de la création du nouvel élément</translation>
     </message>
     <message>
         <source>There was an error while synchronizing the vault, please try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Une erreur s&apos;est produite lors de la synchronisation du coffre-fort, veuillez réessayer.</translation>
     </message>
 </context>
 <context>
