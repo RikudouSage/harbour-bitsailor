@@ -122,7 +122,7 @@
     <message>
         <source>-- choose --</source>
         <extracomment>Choose a card brand from a ComboBox</extracomment>
-        <translation>-- Sélectionner --</translation>
+        <translation>-- sélectionner --</translation>
     </message>
     <message>
         <source>Card Number</source>
