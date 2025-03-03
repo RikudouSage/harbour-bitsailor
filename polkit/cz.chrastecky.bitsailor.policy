@@ -12,5 +12,5 @@
             <allow_inactive>auth_admin</allow_inactive>
             <allow_active>auth_admin</allow_active>
         </defaults>
-    <message xml:lang="sk">Pre odomknutie trezoru je vyžadovaná autorizácia.</message><message xml:lang="fr">L"authentification est nécessaire pour dévérouiller le coffre.</message></action>
+    <message xml:lang="sk">Pre odomknutie trezoru je vyžadovaná autorizácia.</message><message xml:lang="fr">L"authentification est nécessaire pour dévérouiller le coffre.</message><message xml:lang="pl">Do odblokowania sejfu wymagana jest autoryzacja.</message></action>
 </policyconfig>
