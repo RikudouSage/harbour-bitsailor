@@ -413,6 +413,11 @@ Page {
                                 //start(Helpers.totpRemainingTime(30), 30);
                             }
                         }
+                        onTick: {
+                            if (totpField.isActive) {
+                                totpField.text = otpGenerator.generateTotpSafe(item.login.totp).match(/.{1,3}/g).join(' ');
+                            }
+                        }
                     }
 
                     IconButton {
