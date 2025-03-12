@@ -128,3 +128,29 @@ void BitwardenApi::killApi()
     emit killingApiFailed();
 }
 
+void BitwardenApi::getSends()
+{
+    QUrl url(apiUrl + "/list/object/send");
+    QNetworkRequest request(url);
+    request.setRawHeader("Authorization", secretsHandler->getServerApiKey().toUtf8());
+
+    auto reply = manager.get(request);
+
+    connect(reply, &QNetworkReply::finished, [=]() {
+        reply->deleteLater();
+        if (reply->error() == QNetworkReply::ConnectionRefusedError) {
+            emit apiNotRunning();
+            return;
+        }
+        if (reply->error() == QNetworkReply::NoError) {
+            auto body = reply->readAll();
+            auto document = QJsonDocument::fromJson(body).object()["data"].toArray();
+
+            emit sendsResolved(document);
+        } else {
+            qDebug() << reply->readAll();
+            emit failedGettingSends();
+        }
+    });
+}
+

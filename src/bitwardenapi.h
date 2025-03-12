@@ -17,6 +17,7 @@ public:
     Q_INVOKABLE void getItem(const QString &id);
     Q_INVOKABLE void isRunning();
     Q_INVOKABLE void killApi();
+    Q_INVOKABLE void getSends();
 
 signals:
     void apiIsRunning();
@@ -25,6 +26,8 @@ signals:
     void killingApiSucceeded();
     void itemFetched(QJsonObject item);
     void itemFetchingFailed();
+    void failedGettingSends();
+    void sendsResolved(QJsonArray items);
 
 private:
     QNetworkAccessManager manager;

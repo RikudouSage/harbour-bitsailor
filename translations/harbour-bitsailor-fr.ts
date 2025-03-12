@@ -803,6 +803,12 @@ veuillez redémarrer l&apos;application</translation>
         <source>No sends were found.</source>
         <translation>Aucun send trouvé.</translation>
     </message>
+    <message>
+        <source>The BitWarden server is not running,
+please restart the app</source>
+        <translation type="unfinished">Le serveur BitWarden ne fonctionne pas,
+veuillez redémarrer l&apos;application</translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>
