@@ -9,6 +9,7 @@ Item {
     id: root
 
     signal finished();
+    signal tick();
 
     width: size
     height: size
@@ -49,6 +50,7 @@ Item {
         if (current === 0) {
             root.finished();
         }
+        root.tick();
     }
 
     Timer {
