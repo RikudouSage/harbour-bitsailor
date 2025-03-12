@@ -43,6 +43,14 @@ Page {
         displayMessage(qsTr("Loading vault items"));
     }
 
+    function safeCall(callable) {
+        if (page.status == PageStatus.Active && loaded) {
+            callable();
+        } else {
+            doAfterLoad.push(callable);
+        }
+    }
+
     SecretsHandler {
         id: secrets
     }
@@ -66,8 +74,16 @@ Page {
 
         onUseApiChanged: {
             if (settings.useApi) {
-                cli.serve();
+                cli.serve(settings.forceUnsafeApi);
             } else {
+                cli.stopServer();
+            }
+        }
+
+        onForceUnsafeApiChanged: {
+            if (settings.forceUnsafeApi && settings.useApi) {
+                cli.serve(true);
+            } else if (!settings.forceUnsafeApi) {
                 cli.stopServer();
             }
         }
@@ -83,7 +99,6 @@ Page {
 
     BitwardenCli {
         id: cli
-
         onLogoutFinished: {
             redoLogin();
         }
@@ -97,23 +112,23 @@ Page {
                 hideMessage();
                 doAfterLoad.push(function() { hideMessage(); });
                 currentCount = "logins";
-                getLogins();
+                cli.getLogins();
             } else {
                 switch (currentCount) {
                 case "logins":
                     loginsCount = items.length;
                     currentCount = "cards";
-                    getCards();
+                    cli.getCards();
                     break;
                 case "cards":
                     cardsCount = items.length;
                     currentCount = "notes";
-                    getNotes();
+                    cli.getNotes();
                     break;
                 case "notes":
                     notesCount = items.length;
                     currentCount = "identities";
-                    getIdentities();
+                    cli.getIdentities();
                     break;
                 case "identities":
                     identitiesCount = items.length;
@@ -155,6 +170,60 @@ Page {
         }
 
         onServerStarted: {
+        }
+
+        onServerShouldBePatched: {
+            safeCall(function() {
+                const dialog = pageStack.push("PatchServerPage.qml");
+                dialog.accepted.connect(function() {
+                    if (dialog.ignored) {
+                        settings.forceUnsafeApi = true;
+                    } else {
+                        settings.forceUnsafeApi = false;
+                        displayMessage(qsTr("Patching the server..."));
+                        cli.patchServer();
+                    }
+                });
+                dialog.rejected.connect(function() {
+                    console.log('disabling api');
+                    settings.useApi = false;
+                });
+            });
+        }
+
+        onServerPatched: {
+            cli.serve(settings.forceUnsafeApi);
+        }
+
+        onServerPatchError: {
+            safeCall(function() {
+                const dialog = pageStack.push("PatchServerPage.qml", {
+                    canOnlyIgnore: true,
+                    description: qsTr("There was an error while patching the server, please contact the developer to let him know to fix it.<br><br>Meanwhile you can disable the server patch (<strong>which is not recommended because it poses a security risk</strong>) or you can cancel this disalog to disable api and use the CLI again."),
+                });
+                dialog.accepted.connect(function() {
+                    settings.forceUnsafeApi = true;
+                });
+                dialog.rejected.connect(function() {
+                    settings.useApi = false;
+                });
+            });
+        }
+
+        onServerUnpatchable: {
+            safeCall(function() {
+                const dialog = pageStack.push("PatchServerPage.qml", {
+                    canOnlyIgnore: true,
+                    description: qsTr("The BitWarden CLI is not installed locally and thus the server cannot be patched.<br><br>You can ignore this and continue using the api regardless <strong>but it poses a security risk</strong>.<br><br>The recommended approach is to <strong>cancel this dialog which will disable api</strong> altogether and you will fall back to using the CLI which is slower but safer."),
+                });
+                dialog.accepted.connect(function() {
+                    settings.forceUnsafeApi = true;
+                });
+                dialog.rejected.connect(function() {
+                    settings.useApi = false;
+                });
+            });
+            console.log('server unpatchable');
         }
     }
 
@@ -272,7 +341,7 @@ Page {
 
     Component.onCompleted: {
         if (settings.useApi) {
-            cli.serve();
+            cli.serve(settings.forceUnsafeApi);
         }
 
         if (settings.eagerLoading) {

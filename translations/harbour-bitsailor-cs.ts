@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="cs">
 <context>
     <name>AddItemPage</name>
     <message>
@@ -149,7 +151,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -421,7 +423,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -692,6 +694,18 @@ please restart the app</source>
         <translation>BitWarden server neběží,
 restartujte prosím aplikaci.</translation>
     </message>
+    <message>
+        <source>Patching the server...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There was an error while patching the server, please contact the developer to let him know to fix it.&lt;br&gt;&lt;br&gt;Meanwhile you can disable the server patch (&lt;strong&gt;which is not recommended because it poses a security risk&lt;/strong&gt;) or you can cancel this disalog to disable api and use the CLI again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The BitWarden CLI is not installed locally and thus the server cannot be patched.&lt;br&gt;&lt;br&gt;You can ignore this and continue using the api regardless &lt;strong&gt;but it poses a security risk&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;The recommended approach is to &lt;strong&gt;cancel this dialog which will disable api&lt;/strong&gt; altogether and you will fall back to using the CLI which is slower but safer.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MissingBitwardenCliPage</name>
@@ -723,6 +737,26 @@ restartujte prosím aplikaci.</translation>
     </message>
 </context>
 <context>
+    <name>PatchServerPage</name>
+    <message>
+        <source>Ignore patching</source>
+        <extracomment>Dialog accept text</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Patch server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignore the above warning, don&apos;t patch the server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The built-in BitWarden server is insecure and allows anyone to access it once it&apos;s running. To fix that we can patch the server to force it to require authentication before revealing its secrets.&lt;br&gt;&lt;br&gt;You can also ignore this, but it&apos;s &lt;strong&gt;highly discouraged&lt;/strong&gt; and you should &lt;strong&gt;really&lt;/strong&gt; know what you&apos;re doing.&lt;br&gt;&lt;br&gt;If you cancel, the api will be disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ResetAuthStylePage</name>
     <message>
         <source>Proceed</source>
@@ -734,7 +768,7 @@ restartujte prosím aplikaci.</translation>
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -798,8 +832,8 @@ restartujte prosím aplikaci.</translation>
         <translation>Načítat trezor na hlavní obrazovce</translation>
     </message>
     <message>
-        <source/>
-        <translation type="unfinished"/>
+        <source></source>
+        <translation></translation>
     </message>
     <message>
         <source>Save items in cache for faster load</source>
@@ -907,8 +941,8 @@ restartujte prosím aplikaci.</translation>
         <translation>Použít api (experimentální)</translation>
     </message>
     <message>
-        <source>By enabling this option the app will use a local BitWarden server instead of the BitWarden CLI. That can make all BitWarden operations &lt;strong&gt;much&lt;/strong&gt; faster, but the support is experimental and there might be bugs which cause the server to crash, thus rendering the app unusable until you close it and start it again.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Note that there are potential security issues because every installed app can use the server to get a list of your unencrypted passwords.&lt;/strong&gt;</source>
-        <translation>Povolením této možnosti zapnete lokální BitWarden server, který se použije namísto BitWarden CLI. Všechny operace díky tomu mohou být &lt;strong&gt;mnohem&lt;/strong&gt; rychlejší, ale podpora je experimentální a mohou se objevit chyby, kvůli kterým bude aplikace nestabilní a mohou být vyžadovány častější restarty aplikace.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Mějte na paměti, že existují také potenciální bezpečností rizika, protože jakákoliv nainstalovaná aplikace může k serveru přistupovat a získat tak seznam vašich nezašifrovaných hesel.&lt;/strong&gt;</translation>
+        <source>By enabling this option the app will use a local BitWarden server instead of the BitWarden CLI. That can make all BitWarden operations &lt;strong&gt;much&lt;/strong&gt; faster, but the support is experimental and there might be bugs which cause the server to crash, thus rendering the app unusable until you close it and start it again.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1057,6 +1091,11 @@ restartujte prosím aplikaci.</translation>
     <message>
         <source>Updating Bitwarden CLI... Please don&apos;t close the app or exit this page.</source>
         <translation>Aktualizace Bitwarden CLI... Prosím nezavírejte aplikaci a neopouštějte tuto obrazovku.</translation>
+    </message>
+    <message>
+        <source>Please restart the app
+for the changes to take effect.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

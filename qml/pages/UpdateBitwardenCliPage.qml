@@ -17,6 +17,11 @@ Page {
             } else {
                 runtimeCache.setPersistent(CacheKey.LastUpdated, new Date().toISOString());
                 app.toaster.show(qsTr("Bitwarden CLI was updated successfully"));
+                if (settings.useApi) {
+                    // todo
+                    app.toaster.show(qsTr("Please restart the app\nfor the changes to take effect."));
+                }
+
                 pageStack.pop();
             }
         }

@@ -16,6 +16,7 @@ void BitwardenApi::getItem(const QString &id)
 {
     QUrl url("http://127.0.0.1:8087/object/item/" + id);
     QNetworkRequest request(url);
+    request.setRawHeader("Authorization", secretsHandler->getServerApiKey().toUtf8());
 
     auto reply = manager.get(request);
 
@@ -31,6 +32,7 @@ void BitwardenApi::getItem(const QString &id)
 
             emit itemFetched(document);
         } else {
+            qDebug() << reply->readAll();
             emit itemFetchingFailed();
         }
     });

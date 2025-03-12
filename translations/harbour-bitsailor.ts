@@ -693,6 +693,18 @@
 please restart the app</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Patching the server...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There was an error while patching the server, please contact the developer to let him know to fix it.&lt;br&gt;&lt;br&gt;Meanwhile you can disable the server patch (&lt;strong&gt;which is not recommended because it poses a security risk&lt;/strong&gt;) or you can cancel this disalog to disable api and use the CLI again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The BitWarden CLI is not installed locally and thus the server cannot be patched.&lt;br&gt;&lt;br&gt;You can ignore this and continue using the api regardless &lt;strong&gt;but it poses a security risk&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;The recommended approach is to &lt;strong&gt;cancel this dialog which will disable api&lt;/strong&gt; altogether and you will fall back to using the CLI which is slower but safer.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MissingBitwardenCliPage</name>
@@ -720,6 +732,26 @@ please restart the app</source>
     </message>
     <message>
         <source>Required dependency is missing: &lt;strong&gt;%1&lt;/strong&gt;. This dependency should be installed automatically if you installed the app from store using the provided rpm. Please reinstall using the rpm package or install the missing dependency manually and then restart the app.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PatchServerPage</name>
+    <message>
+        <source>Ignore patching</source>
+        <extracomment>Dialog accept text</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Patch server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignore the above warning, don&apos;t patch the server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The built-in BitWarden server is insecure and allows anyone to access it once it&apos;s running. To fix that we can patch the server to force it to require authentication before revealing its secrets.&lt;br&gt;&lt;br&gt;You can also ignore this, but it&apos;s &lt;strong&gt;highly discouraged&lt;/strong&gt; and you should &lt;strong&gt;really&lt;/strong&gt; know what you&apos;re doing.&lt;br&gt;&lt;br&gt;If you cancel, the api will be disabled.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -908,7 +940,7 @@ please restart the app</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>By enabling this option the app will use a local BitWarden server instead of the BitWarden CLI. That can make all BitWarden operations &lt;strong&gt;much&lt;/strong&gt; faster, but the support is experimental and there might be bugs which cause the server to crash, thus rendering the app unusable until you close it and start it again.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Note that there are potential security issues because every installed app can use the server to get a list of your unencrypted passwords.&lt;/strong&gt;</source>
+        <source>By enabling this option the app will use a local BitWarden server instead of the BitWarden CLI. That can make all BitWarden operations &lt;strong&gt;much&lt;/strong&gt; faster, but the support is experimental and there might be bugs which cause the server to crash, thus rendering the app unusable until you close it and start it again.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1057,6 +1089,11 @@ please restart the app</source>
     </message>
     <message>
         <source>Updating Bitwarden CLI... Please don&apos;t close the app or exit this page.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please restart the app
+for the changes to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
