@@ -802,6 +802,11 @@ please restart the app</source>
         <source>No sends were found.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The BitWarden server is not running,
+please restart the app</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsPage</name>

@@ -9,6 +9,16 @@ Page {
     property bool searchActive: false
     property var items: []
 
+    function onSendsResolved() {
+        page.items = items;
+        loaded = true;
+    }
+
+    function onFailedGettingSends() {
+        loaded = true;
+        errorMessage = qsTr("Failed loading list of sends");
+    }
+
     id: page
     allowedOrientations: Orientation.All
 
@@ -22,13 +32,27 @@ Page {
         id: cli
 
         onSendsResolved: {
-            page.items = items;
-            loaded = true;
+            page.onSendsResolved();
         }
 
         onFailedGettingSends: {
-            loaded = true;
-            errorMessage = qsTr("Failed loading list of sends");
+            page.onFailedGettingSends();
+        }
+    }
+
+    BitwardenApi {
+        id: api
+
+        onApiNotRunning: {
+            app.toaster.show(qsTr("The BitWarden server is not running,\nplease restart the app"), 100000);
+        }
+
+        onSendsResolved: {
+            page.onSendsResolved();
+        }
+
+        onFailedGettingSends: {
+            page.onFailedGettingSends();
         }
     }
 
@@ -136,7 +160,7 @@ Page {
 
     onStatusChanged: {
         if (status === PageStatus.Active) {
-            cli.getSends();
+            settings.useApi ? api.getSends() : cli.getSends();
         }
     }
 }
