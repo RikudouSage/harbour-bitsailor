@@ -18,6 +18,18 @@ ApplicationWindow {
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: defaultAllowedOrientations
 
+    BitwardenApi {
+        id: api
+
+        onApiIsRunning: {
+            api.killApi();
+        }
+
+        onKillingApiFailed: {
+            apiAlreadyRunning.publish();
+        }
+    }
+
     Connections {
         id: pageStackConnection
         target: pageStack
@@ -91,6 +103,12 @@ ApplicationWindow {
     }
 
     Notification {
+        id: apiAlreadyRunning
+        summary: qsTr("The API is already running")
+        body: qsTr("The API is already running and could not be stopped. It's possible that the api will not work at all. Please try restarting the app. If you see this error again, try disabling api in the Settings.");
+    }
+
+    Notification {
         id: outdatedCliNotification
         //: notification title
         summary: qsTr("Update Bitwarden CLI")
@@ -137,6 +155,10 @@ ApplicationWindow {
             if (diff > week) {
                 outdatedCliNotification.publish();
             }
+        }
+
+        if (settings.useApi) {
+            api.isRunning();
         }
     }
 

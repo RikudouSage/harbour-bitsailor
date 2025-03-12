@@ -1148,5 +1148,13 @@ for the changes to take effect.</source>
         <source>Your Bitwarden CLI might be out of date. You should check for new versions of Bitwarden CLI regularly. You can do so in the settings or by clicking this notification.</source>
         <translation>Bitwarden CLI na vašem zařízení může být zastaralé. Měli byste pravidelně kontrolovat aktualizace. Můžete tak učinit v nastavení nebo kliknutím na tuto notifikaci.</translation>
     </message>
+    <message>
+        <source>The API is already running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The API is already running and could not be stopped. It&apos;s possible that the api will not work at all. Please try restarting the app. If you see this error again, try disabling api in the Settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
