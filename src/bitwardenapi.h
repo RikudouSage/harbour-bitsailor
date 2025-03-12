@@ -7,6 +7,7 @@
 #include <QNetworkAccessManager>
 
 #include "runtimecache.h"
+#include "secretshandler.h"
 
 class BitwardenApi : public QObject
 {
@@ -23,6 +24,7 @@ signals:
 private:
     QNetworkAccessManager manager;
     RuntimeCache* runtimeCache = RuntimeCache::getInstance(this);
+    SecretsHandler* secretsHandler = new SecretsHandler(this);
 };
 
 #endif // BITWARDENAPI_H

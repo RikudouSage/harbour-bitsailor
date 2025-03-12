@@ -52,7 +52,7 @@ void BitwardenCliInstaller::install()
         }
     }
 
-    installProcess->start("npm", {"install", "@bitwarden/cli"});
+    installProcess->start("npm", {"install", "@bitwarden/cli", "@babel/core"});
 }
 
 void BitwardenCliInstaller::update()

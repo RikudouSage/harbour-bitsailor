@@ -26,6 +26,7 @@ SOURCES += src/harbour-bitsailor.cpp \
     src/fileaccessor.cpp \
     src/parsedurl.cpp \
     src/pathhelper.cpp \
+    src/random-helper.cpp \
     src/randompingenerator.cpp \
     src/runtimecache.cpp \
     src/secretshandler.cpp \
@@ -40,11 +41,15 @@ polkit.files = polkit/cz.chrastecky.bitsailor.policy
 bw-logo.path = /usr/share/harbour-bitsailor/icons
 bw-logo.files = icons/bw/*
 
-INSTALLS += polkit bw-logo
+patches.path = /usr/share/harbour-bitsailor/patches
+patches.files = patch/*
+
+INSTALLS += polkit bw-logo patches
 
 DISTFILES += qml/harbour-bitsailor.qml \
     icons/bw/* \
     polkit/cz.chrastecky.bitsailor.policy \
+    patch/* \
     qml/components/BottomMenu.qml \
     qml/components/BottomMenuItem.qml \
     qml/components/GeneratePasswordContent.qml \
@@ -72,6 +77,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/pages/MainPage.qml \
     qml/pages/MissingBitwardenCliPage.qml \
     qml/pages/MissingRequiredBinaryPage.qml \
+    qml/pages/PatchServerPage.qml \
     qml/pages/ResetAuthStylePage.qml \
     qml/pages/SendListPage.qml \
     qml/pages/SettingsPage.qml \
@@ -109,6 +115,7 @@ HEADERS += \
     src/fileaccessor.h \
     src/parsedurl.h \
     src/pathhelper.h \
+    src/random-helper.h \
     src/randompingenerator.h \
     src/runtimecache.h \
     src/secretshandler.h \

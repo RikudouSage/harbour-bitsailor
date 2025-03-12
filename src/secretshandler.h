@@ -23,6 +23,7 @@ public:
     Q_INVOKABLE QString getClientId();
     QString getPin();
     QString getInternalPin();
+    QString getServerApiKey();
 
     Q_INVOKABLE bool hasPin();
     Q_INVOKABLE void removePin();
@@ -38,6 +39,7 @@ public:
     void setClientId(const QString &clientId);
     Q_INVOKABLE void setPin(const QString &pin);
     Q_INVOKABLE void setInternalPin(const QString &pin);
+    void setServerApiKey(const QString &apiKey);
 
 private:
     static const QString collectionName;

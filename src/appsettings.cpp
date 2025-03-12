@@ -11,6 +11,7 @@ AppSettings::AppSettings(QObject *parent) : QObject(parent)
     prop_UseSystemAuth = settings->value("useSystemAuth", false).toBool();
     prop_UseAuthorizationOnUnlocked = settings->value("useAuthorizationOnUnlocked", false).toBool();
     prop_UseApi = settings->value("useApi", false).toBool();
+    prop_ForceUnsafeApi = settings->value("forceUnsafeApi", false).toBool();
 }
 
 AppSettings::~AppSettings()
@@ -128,6 +129,22 @@ void AppSettings::setUseApi(bool enabled)
     saveConfig("useApi", enabled);
     prop_UseApi = enabled;
     emit useApiChanged();
+}
+
+bool AppSettings::forceUnsafeApi()
+{
+    return prop_ForceUnsafeApi;
+}
+
+void AppSettings::setForceUnsafeApi(bool enabled)
+{
+    if (enabled == prop_ForceUnsafeApi) {
+        return;
+    }
+
+    saveConfig("forceUnsafeApi", enabled);
+    prop_ForceUnsafeApi = enabled;
+    emit forceUnsafeApiChanged();
 }
 
 void AppSettings::saveConfig(const QString &name, const QVariant &value)

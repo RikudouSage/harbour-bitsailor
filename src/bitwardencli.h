@@ -111,8 +111,9 @@ public:
     Q_INVOKABLE void getServerUrl();
     Q_INVOKABLE void setServerUrl(QString url);
     Q_INVOKABLE void createItem(const QString &encodedData);
-    Q_INVOKABLE void serve();
+    Q_INVOKABLE void serve(bool force = false);
     Q_INVOKABLE void stopServer();
+    Q_INVOKABLE void patchServer();
 
 signals:
     void loginStatusResolved(bool loggedIn);
@@ -137,6 +138,10 @@ signals:
     void serverUrlSet(bool success);
     void itemCreationFinished(bool success);
     void serverStarted();
+    void serverPatched();
+    void serverPatchError();
+    void serverUnpatchable();
+    void serverShouldBePatched();
 
 private slots:
     void onFinished(int exitCode, Method method);
@@ -147,10 +152,12 @@ private:
     QMap<Method, QProcess*> processes;
     SecretsHandler* secretsHandler = new SecretsHandler(this);
     RuntimeCache* runtimeCache = RuntimeCache::getInstance(this);
+    const QString serverPatchScripts = "/usr/share/harbour-bitsailor/patches";
 
     void startProcess(const QStringList &arguments, Method method);
     void startProcess(const QStringList &arguments, const QProcessEnvironment &environment, Method method);
     void handleGetItems(const QString &rawJson, Method method = GetItems);
+    bool serverNeedsPatching();
 };
 
 #endif // BITWARDENCLI_H

@@ -15,6 +15,7 @@ class AppSettings : public QObject
     Q_PROPERTY(bool useSystemAuth READ useSystemAuth WRITE setUseSystemAuth NOTIFY useSystemAuthChanged)
     Q_PROPERTY(bool useAuthorizationOnUnlocked READ useAuthorizationOnUnlocked WRITE setUseAuthorizationOnUnlocked NOTIFY useAuthorizationOnUnlockedChanged)
     Q_PROPERTY(bool useApi READ useApi WRITE setUseApi NOTIFY useApiChanged)
+    Q_PROPERTY(bool forceUnsafeApi READ forceUnsafeApi WRITE setForceUnsafeApi NOTIFY forceUnsafeApiChanged)
 public:
     explicit AppSettings(QObject *parent = nullptr);
     ~AppSettings();
@@ -33,6 +34,8 @@ public:
     void setUseAuthorizationOnUnlocked(bool enabled);
     bool useApi();
     void setUseApi(bool enabled);
+    bool forceUnsafeApi();
+    void setForceUnsafeApi(bool enabled);
 
 signals:
     void lockOnCloseChanged();
@@ -42,6 +45,7 @@ signals:
     void useSystemAuthChanged();
     void useAuthorizationOnUnlockedChanged();
     void useApiChanged();
+    void forceUnsafeApiChanged();
 
 private:
     void saveConfig(const QString &name, const QVariant &value);
@@ -59,6 +63,7 @@ private:
     bool prop_UseSystemAuth;
     bool prop_UseAuthorizationOnUnlocked;
     bool prop_UseApi;
+    bool prop_ForceUnsafeApi;
 };
 
 #endif // APPSETTINGS_H

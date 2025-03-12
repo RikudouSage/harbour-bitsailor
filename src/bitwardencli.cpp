@@ -11,6 +11,7 @@
 #include <QNetworkReply>
 
 #include "pathhelper.h"
+#include "random-helper.h"
 
 static const QString cacheKeyItems = "items";
 
@@ -243,9 +244,20 @@ void BitwardenCli::createItem(const QString &encodedData)
     startProcess({"create", "item", encodedData}, CreateItem);
 }
 
-void BitwardenCli::serve()
+void BitwardenCli::serve(bool force)
 {
-    startProcess({"serve"}, Serve);
+    if (!force && serverNeedsPatching()) {
+        emit serverShouldBePatched();
+        return;
+    }
+    auto env = QProcessEnvironment::systemEnvironment();
+    if (secretsHandler->hasSessionId()) {
+        env.insert("BW_SESSION", secretsHandler->getSessionId());
+    }
+    secretsHandler->setServerApiKey(generateRandomString(32));
+    env.insert("BITSAILOR_BW_API_KEY", secretsHandler->getServerApiKey());
+
+    startProcess({"serve"}, env, Serve);
 
     QTimer *timer = new QTimer(this);
     timer->setInterval(200);
@@ -427,6 +439,18 @@ void BitwardenCli::startProcess(const QStringList &arguments, const QProcessEnvi
         }
     });
 
+#ifdef QT_DEBUG
+    if (method == Serve) {
+        connect(process, &QProcess::readyReadStandardOutput, [=](auto signal) {
+            Q_UNUSED(signal);
+            QString stdOut = process->readAllStandardOutput();
+            if (method == Serve) {
+                qDebug() << stdOut;
+            }
+        });
+    }
+#endif
+
     processes.insert(method, process);
     process->start(bw, arguments);
 }
@@ -499,4 +523,83 @@ void BitwardenCli::handleGetItems(const QString &rawJson, Method method)
     default:
         break;
     }
+}
+
+void BitwardenCli::patchServer()
+{
+    if (bw != getDataPath() + "/bin/bw") {
+        qDebug() << "Server unpatchable";
+        emit serverUnpatchable();
+        return;
+    }
+
+    const auto source1 = serverPatchScripts + "/plugin-runner.js";
+    const auto source2 = serverPatchScripts + "/plugin.js";
+    const auto destination1 = getDataPath() + "/runner.js";
+    const auto destination2 = getDataPath() + "/plugin.js";
+
+    if (QFile::exists(destination1) && !QFile::remove(destination1)) {
+        qWarning() << destination1 + " already exists and failed to be removed";
+        emit serverPatchError();
+        return;
+    }
+    if (QFile::exists(destination2) && !QFile::remove(destination2)) {
+        qWarning() << destination2 + " already exists and failed to be removed";
+        emit serverPatchError();
+        return;
+    }
+    if (!QFile::copy(source1, destination1) || !QFile::copy(source2, destination2)) {
+        emit serverPatchError();
+        qDebug() << "Could not copy patches";
+        return;
+    }
+
+    QProcess* process = new QProcess();
+    process->setWorkingDirectory(getDataPath());
+    process->setStandardInputFile(QProcess::nullDevice());
+
+    connect(process, static_cast<void (QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), [=](int exitCode, QProcess::ExitStatus exitStatus) {
+        process->deleteLater();
+
+        qDebug() << process->readAllStandardOutput();
+        qDebug() << exitCode;
+        qDebug() << exitStatus;
+
+        if (exitStatus != QProcess::ExitStatus::NormalExit || exitCode != 0) {
+            qWarning() << process->readAllStandardError();
+            qDebug() << process->readAllStandardOutput();
+            emit serverPatchError();
+        } else {
+            if (serverNeedsPatching()) {
+                emit serverPatchError();
+            } else {
+                emit serverPatched();
+            }
+        }
+    });
+
+    qDebug() << "Starting server patch script:" << "node" << getDataPath() + "/runner.js";
+    process->start("node", {getDataPath() + "/runner.js"});
+}
+
+bool BitwardenCli::serverNeedsPatching()
+{
+    if (bw != getDataPath() + "/bin/bw") {
+        return true;
+    }
+
+    QFile patchableScript(getDataPath() + "/node_modules/@bitwarden/cli/build/bw.js");
+    if (!patchableScript.exists()) {
+        return true;
+    }
+
+    if (!patchableScript.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        return true;
+    }
+
+    QTextStream stream(&patchableScript);
+    const QString &content = stream.readAll();
+    patchableScript.close();
+
+    return !content.contains("BITSAILOR_BW_API_KEY");
 }
