@@ -15,9 +15,14 @@ class BitwardenApi : public QObject
 public:
     explicit BitwardenApi(QObject *parent = nullptr);
     Q_INVOKABLE void getItem(const QString &id);
+    Q_INVOKABLE void isRunning();
+    Q_INVOKABLE void killApi();
 
 signals:
+    void apiIsRunning();
     void apiNotRunning();
+    void killingApiFailed();
+    void killingApiSucceeded();
     void itemFetched(QJsonObject item);
     void itemFetchingFailed();
 
@@ -25,6 +30,8 @@ private:
     QNetworkAccessManager manager;
     RuntimeCache* runtimeCache = RuntimeCache::getInstance(this);
     SecretsHandler* secretsHandler = new SecretsHandler(this);
+
+    const QString apiUrl = "http://127.0.0.1:8087";
 };
 
 #endif // BITWARDENAPI_H
