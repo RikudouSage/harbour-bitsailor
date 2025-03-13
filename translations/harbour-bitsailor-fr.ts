@@ -337,6 +337,10 @@
         <source>Password length</source>
         <translation>Longueur</translation>
     </message>
+    <message>
+        <source>Generating password failed</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GeneratePasswordDialog</name>
