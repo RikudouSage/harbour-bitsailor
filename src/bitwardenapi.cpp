@@ -18,25 +18,11 @@ BitwardenApi::BitwardenApi(QObject *parent) : QObject(parent)
 
 void BitwardenApi::getItem(const QString &id)
 {
-    QUrl url(apiUrl + "/object/item/" + id);
-    QNetworkRequest request(url);
-    request.setRawHeader("Authorization", secretsHandler->getServerApiKey().toUtf8());
-
-    auto reply = manager.get(request);
-
-    connect(reply, &QNetworkReply::finished, [=]() {
-        reply->deleteLater();
-        if (reply->error() == QNetworkReply::ConnectionRefusedError) {
-            emit apiNotRunning();
-            return;
-        }
-        if (reply->error() == QNetworkReply::NoError) {
-            auto body = reply->readAll();
+    sendRequest(apiUrl + "/object/item/" + id, [=](const auto &body, const auto &statusCode) {
+        if (statusCode == 200) {
             auto document = QJsonDocument::fromJson(body).object()["data"].toObject();
-
             emit itemFetched(document);
         } else {
-            qDebug() << reply->readAll();
             emit itemFetchingFailed();
         }
     });
@@ -45,7 +31,7 @@ void BitwardenApi::getItem(const QString &id)
 void BitwardenApi::isRunning()
 {
     auto *socket = new QTcpSocket(this);
-    socket->connectToHost("127.0.0.1", 8087);
+    socket->connectToHost(apiHost, apiPort);
 
     connect(socket, &QTcpSocket::connected, [=]() {
         emit apiIsRunning();
@@ -130,27 +116,74 @@ void BitwardenApi::killApi()
 
 void BitwardenApi::getSends()
 {
-    QUrl url(apiUrl + "/list/object/send");
+    sendRequest(apiUrl + "/list/object/send", [=](const auto &body, const auto &statusCode) {
+        if (statusCode == 200) {
+            auto document = QJsonDocument::fromJson(body).object()["data"].toObject()["data"].toArray();
+            emit sendsResolved(document);
+        } else {
+            emit failedGettingSends();
+        }
+    });
+}
+
+void BitwardenApi::sendRequest(const QString &url, const std::function<void (QByteArray, int)> &callback)
+{
+    sendRequest(QUrl(url), callback);
+}
+
+void BitwardenApi::sendRequest(Method method, const QString &url, const QByteArray &data, const std::function<void (QByteArray, int)> &callback)
+{
+    sendRequest(method, QUrl(url), data, callback);
+}
+
+void BitwardenApi::sendRequest(const QUrl &url, const std::function<void (QByteArray, int)> &callback)
+{
+    sendRequest(Method::Get, url, QByteArray(), callback);
+}
+
+void BitwardenApi::sendRequest(Method method, const QString &url, const QJsonDocument &data, const std::function<void (QByteArray, int)> &callback)
+{
+    sendRequest(method, QUrl(url), data, callback);
+}
+
+void BitwardenApi::sendRequest(Method method, const QUrl &url, const QByteArray &data, const std::function<void (QByteArray, int)> &callback)
+{
     QNetworkRequest request(url);
     request.setRawHeader("Authorization", secretsHandler->getServerApiKey().toUtf8());
 
-    auto reply = manager.get(request);
+    QNetworkReply *reply;
+
+    QString methodName;
+    if (method == Method::Get) {
+        reply = manager.get(request);
+        methodName = "GET";
+    } else if (method == Method::Post) {
+        reply = manager.post(request, data);
+        methodName = "POST";
+    }
+
+    qDebug() << "Sending " + methodName + " request to " + url.toString();
 
     connect(reply, &QNetworkReply::finished, [=]() {
         reply->deleteLater();
+        const auto body = reply->readAll();
+        const auto statusCode = reply->attribute(QNetworkRequest::Attribute::HttpStatusCodeAttribute).toInt();
+
+#ifdef QT_DEBUG
+        qDebug() << "Got " + QString::number(statusCode) + " response for " + methodName + " request to " + url.toString() + ": " + QString(body);
+#endif
+
         if (reply->error() == QNetworkReply::ConnectionRefusedError) {
             emit apiNotRunning();
             return;
         }
-        if (reply->error() == QNetworkReply::NoError) {
-            auto body = reply->readAll();
-            auto document = QJsonDocument::fromJson(body).object()["data"].toObject()["data"].toArray();
 
-            emit sendsResolved(document);
-        } else {
-            qDebug() << reply->readAll();
-            emit failedGettingSends();
-        }
+        callback(body, statusCode);
     });
+}
+
+void BitwardenApi::sendRequest(Method method, const QUrl &url, const QJsonDocument &data, const std::function<void (QByteArray, int)> &callback)
+{
+    sendRequest(method, url, data.toJson(), callback);
 }
 
