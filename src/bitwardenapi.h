@@ -21,6 +21,7 @@ public:
     Q_INVOKABLE void isRunning();
     Q_INVOKABLE void killApi();
     Q_INVOKABLE void getSends();
+    Q_INVOKABLE void syncVault();
 
 signals:
     void apiIsRunning();
@@ -31,6 +32,8 @@ signals:
     void itemFetchingFailed();
     void failedGettingSends();
     void sendsResolved(QJsonArray items);
+    void vaultSynced();
+    void vaultSyncFailed();
 
 private:
     QNetworkAccessManager manager;
@@ -39,7 +42,7 @@ private:
 
     const QString apiHost = "127.0.0.1";
     const int apiPort = 8087;
-    const QString apiUrl = "http://" + apiHost + QString::number(apiPort);
+    const QString apiUrl = "http://" + apiHost + ":" + QString::number(apiPort);
 
 private:
     enum Method {
@@ -49,6 +52,8 @@ private:
 
     void sendRequest(const QString &url, const std::function<void(QByteArray, int)> &callback);
     void sendRequest(const QUrl &url, const std::function<void(QByteArray, int)> &callback);
+    void sendRequest(Method method, const QString &url, const std::function<void(QByteArray, int)> &callback);
+    void sendRequest(Method method, const QUrl &url, const std::function<void(QByteArray, int)> &callback);
     void sendRequest(Method method, const QString &url, const QJsonDocument &data, const std::function<void(QByteArray, int)> &callback);
     void sendRequest(Method method, const QUrl &url, const QJsonDocument &data, const std::function<void(QByteArray, int)> &callback);
     void sendRequest(Method method, const QString &url, const QByteArray &data, const std::function<void(QByteArray, int)> &callback);

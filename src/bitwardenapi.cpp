@@ -9,7 +9,10 @@
 #include <QTcpSocket>
 #include <QFile>
 #include <QDir>
+
 #include <sys/signal.h>
+
+#include "cache-keys.h"
 
 BitwardenApi::BitwardenApi(QObject *parent) : QObject(parent)
 {
@@ -126,6 +129,19 @@ void BitwardenApi::getSends()
     });
 }
 
+void BitwardenApi::syncVault()
+{
+    sendRequest(Method::Post, apiUrl + "/sync", [=](const auto &body, const auto &statusCode) {
+        Q_UNUSED(body);
+        if (statusCode == 200) {
+            runtimeCache->remove(cacheKeyItems);
+            emit vaultSynced();
+        } else {
+            emit vaultSyncFailed();
+        }
+    });
+}
+
 void BitwardenApi::sendRequest(const QString &url, const std::function<void (QByteArray, int)> &callback)
 {
     sendRequest(QUrl(url), callback);
@@ -139,6 +155,16 @@ void BitwardenApi::sendRequest(Method method, const QString &url, const QByteArr
 void BitwardenApi::sendRequest(const QUrl &url, const std::function<void (QByteArray, int)> &callback)
 {
     sendRequest(Method::Get, url, QByteArray(), callback);
+}
+
+void BitwardenApi::sendRequest(Method method, const QString &url, const std::function<void (QByteArray, int)> &callback)
+{
+    sendRequest(method, QUrl(url), callback);
+}
+
+void BitwardenApi::sendRequest(Method method, const QUrl &url, const std::function<void (QByteArray, int)> &callback)
+{
+    sendRequest(method, url, QByteArray(), callback);
 }
 
 void BitwardenApi::sendRequest(Method method, const QString &url, const QJsonDocument &data, const std::function<void (QByteArray, int)> &callback)

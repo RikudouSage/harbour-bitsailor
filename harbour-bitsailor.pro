@@ -110,6 +110,7 @@ HEADERS += \
     src/bitwardenapi.h \
     src/bitwardencli.h \
     src/bitwardencliinstaller.h \
+    src/cache-keys.h \
     src/cachekey.h \
     src/encryptor.h \
     src/fileaccessor.h \
