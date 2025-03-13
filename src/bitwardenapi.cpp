@@ -144,7 +144,7 @@ void BitwardenApi::getSends()
         }
         if (reply->error() == QNetworkReply::NoError) {
             auto body = reply->readAll();
-            auto document = QJsonDocument::fromJson(body).object()["data"].toArray();
+            auto document = QJsonDocument::fromJson(body).object()["data"].toObject()["data"].toArray();
 
             emit sendsResolved(document);
         } else {

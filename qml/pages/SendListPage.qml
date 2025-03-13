@@ -9,12 +9,12 @@ Page {
     property bool searchActive: false
     property var items: []
 
-    function onSendsResolved() {
+    function onSendsResolved(items) {
         page.items = items;
         loaded = true;
     }
 
-    function onFailedGettingSends() {
+    function onFailedGettingSends(items) {
         loaded = true;
         errorMessage = qsTr("Failed loading list of sends");
     }
@@ -32,11 +32,11 @@ Page {
         id: cli
 
         onSendsResolved: {
-            page.onSendsResolved();
+            page.onSendsResolved(items);
         }
 
         onFailedGettingSends: {
-            page.onFailedGettingSends();
+            page.onFailedGettingSends(items);
         }
     }
 
@@ -48,11 +48,11 @@ Page {
         }
 
         onSendsResolved: {
-            page.onSendsResolved();
+            page.onSendsResolved(items);
         }
 
         onFailedGettingSends: {
-            page.onFailedGettingSends();
+            page.onFailedGettingSends(items);
         }
     }
 
