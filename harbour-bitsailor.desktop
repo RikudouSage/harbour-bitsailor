@@ -4,6 +4,7 @@ X-Nemo-Application-Type=silica-qt5
 Icon=harbour-bitsailor
 Exec=harbour-bitsailor
 Name=BitSailor
+Name[de]=BitSailor
 Name[pl]=BitSailor
 Name[fr]=BitSailor
 Name[sk]=BitSailor
