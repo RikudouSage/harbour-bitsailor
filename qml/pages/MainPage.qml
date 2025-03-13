@@ -7,6 +7,8 @@ import "../components" as Components
 
 Page {
     property string loadingMessage
+    property bool loadItemsUsingApiOnceAvailable: false
+    property bool initialLoadCompleted: false
 
     property string currentCount
 
@@ -59,7 +61,8 @@ Page {
         identitiesCount = null;
 
         if (settings.eagerLoading) {
-            cli.getItems();
+            // @disable-check M127
+            settings.useApi ? api.getItems() : cli.getItems();
             displayLoadingVaultItems();
         }
     }
@@ -67,6 +70,42 @@ Page {
     function onVaultSyncFailed() {
         // todo
         hideMessage();
+    }
+
+    function onItemsResolved(items) {
+        if (!currentCount) {
+            hideMessage();
+            doAfterLoad.push(function() { hideMessage(); });
+            currentCount = "logins";
+            // @disable-check M127
+            settings.useApi ? api.getLogins() : cli.getLogins();
+        } else {
+            switch (currentCount) {
+            case "logins":
+                loginsCount = items.length;
+                currentCount = "cards";
+                // @disable-check M127
+                settings.useApi ? api.getCards() : cli.getCards();
+                break;
+            case "cards":
+                cardsCount = items.length;
+                currentCount = "notes";
+                // @disable-check M127
+                settings.useApi ? api.getNotes() : cli.getNotes();
+                break;
+            case "notes":
+                notesCount = items.length;
+                currentCount = "identities";
+                // @disable-check M127
+                settings.useApi ? api.getIdentities() : cli.getIdentities();
+                break;
+            case "identities":
+                identitiesCount = items.length;
+                currentCount = "";
+                initialLoadCompleted = true;
+                break;
+            }
+        }
     }
 
     SecretsHandler {
@@ -121,6 +160,18 @@ Page {
         onVaultSynced: {
             page.onVaultSynced();
         }
+
+        onItemsResolved: {
+            page.onItemsResolved(items);
+        }
+
+        onIsRunningResult: {
+            if (running) {
+                api.getItems();
+            } else {
+                loadItemsUsingApiOnceAvailable = true;
+            }
+        }
     }
 
     BitwardenCli {
@@ -134,34 +185,7 @@ Page {
         }
 
         onItemsResolved: {
-            if (!currentCount) {
-                hideMessage();
-                doAfterLoad.push(function() { hideMessage(); });
-                currentCount = "logins";
-                cli.getLogins();
-            } else {
-                switch (currentCount) {
-                case "logins":
-                    loginsCount = items.length;
-                    currentCount = "cards";
-                    cli.getCards();
-                    break;
-                case "cards":
-                    cardsCount = items.length;
-                    currentCount = "notes";
-                    cli.getNotes();
-                    break;
-                case "notes":
-                    notesCount = items.length;
-                    currentCount = "identities";
-                    cli.getIdentities();
-                    break;
-                case "identities":
-                    identitiesCount = items.length;
-                    currentCount = "";
-                    break;
-                }
-            }
+            page.onItemsResolved(items);
         }
 
         onVaultSyncFailed: {
@@ -186,6 +210,10 @@ Page {
         }
 
         onServerStarted: {
+            if (loadItemsUsingApiOnceAvailable) {
+                api.getItems();
+                loadItemsUsingApiOnceAvailable = false;
+            }
         }
 
         onServerShouldBePatched: {
@@ -361,7 +389,11 @@ Page {
         }
 
         if (settings.eagerLoading) {
-            cli.getItems();
+            if (settings.useApi) {
+                api.isRunning(); // handled async in onIsRunningResult
+            } else {
+                cli.getItems();
+            }
 
             displayLoadingVaultItems();
         }
@@ -377,8 +409,8 @@ Page {
 
     onStatusChanged: {
         if (status == PageStatus.Active) {
-            if (loaded) {
-                cli.getItems();
+            if (loaded && initialLoadCompleted) {
+                settings.useApi ? api.getItems() : cli.getItems();
             }
 
             loaded = true;

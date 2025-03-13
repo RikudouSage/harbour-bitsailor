@@ -30,11 +30,13 @@ public:
         Logout,
         UnlockVault,
         LockVault,
+        // todo remove
         GetItems,
         GetLogins,
         GetCards,
         GetNotes,
         GetIdentities,
+        // todo end remove
         SyncVault,
         DeleteItem,
         GetItem,
@@ -97,12 +99,14 @@ public:
     Q_INVOKABLE void lockVault();
     Q_INVOKABLE void lockVaultInBackground();
     Q_INVOKABLE void getSends();
+    // todo refactor
     Q_INVOKABLE void getItems();
     void getItems(Method method);
     Q_INVOKABLE void getLogins();
     Q_INVOKABLE void getCards();
     Q_INVOKABLE void getNotes();
     Q_INVOKABLE void getIdentities();
+    // todo end refactor
     Q_INVOKABLE void syncVault();
     Q_INVOKABLE void deleteItem(QString id);
     Q_INVOKABLE void deleteItemInBackground(QString id);
@@ -156,6 +160,7 @@ private:
 
     void startProcess(const QStringList &arguments, Method method);
     void startProcess(const QStringList &arguments, const QProcessEnvironment &environment, Method method);
+    // todo remove
     void handleGetItems(const QString &rawJson, Method method = GetItems);
     bool serverNeedsPatching();
 };
