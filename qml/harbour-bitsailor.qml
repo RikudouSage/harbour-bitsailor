@@ -21,8 +21,10 @@ ApplicationWindow {
     BitwardenApi {
         id: api
 
-        onApiIsRunning: {
-            api.killApi();
+        onIsRunningResult: {
+            if (running) {
+                api.killApi();
+            }
         }
 
         onKillingApiFailed: {

@@ -37,13 +37,13 @@ void BitwardenApi::isRunning()
     socket->connectToHost(apiHost, apiPort);
 
     connect(socket, &QTcpSocket::connected, [=]() {
-        emit apiIsRunning();
+        emit isRunningResult(true);
         socket->disconnectFromHost();
         socket->deleteLater();
     });
     connect(socket, static_cast<void (QTcpSocket::*)(QAbstractSocket::SocketError)>(&QTcpSocket::error), [=](auto error) {
         Q_UNUSED(error);
-        emit apiNotRunning();
+        emit isRunningResult(false);
         socket->disconnectFromHost();
         socket->deleteLater();
     });
@@ -142,6 +142,48 @@ void BitwardenApi::syncVault()
     });
 }
 
+void BitwardenApi::getItems()
+{
+    getItems(GetItemType::GetItems);
+}
+
+void BitwardenApi::getItems(GetItemType itemType)
+{
+    auto cache = runtimeCache->get(cacheKeyItems);
+    if (!cache.isNull() && !cache.isEmpty()) {
+        handleGetItems(runtimeCache->get(cacheKeyItems), itemType);
+    } else {
+        sendRequest(apiUrl + "/list/object/items", [=](const auto &body, const auto &statusCode) {
+            if (statusCode == 200) {
+                const auto document = QJsonDocument::fromJson(body).object()["data"].toObject()["data"].toArray();
+                handleGetItems(QJsonDocument(document).toJson(), GetLogins);
+            } else {
+                emit failedGettingItems();
+            }
+        });
+    }
+}
+
+void BitwardenApi::getLogins()
+{
+    getItems(GetItemType::GetLogins);
+}
+
+void BitwardenApi::getCards()
+{
+    getItems(GetItemType::GetCards);
+}
+
+void BitwardenApi::getNotes()
+{
+    getItems(GetItemType::GetNotes);
+}
+
+void BitwardenApi::getIdentities()
+{
+    getItems(GetItemType::GetIdentities);
+}
+
 void BitwardenApi::sendRequest(const QString &url, const std::function<void (QByteArray, int)> &callback)
 {
     sendRequest(QUrl(url), callback);
@@ -206,6 +248,76 @@ void BitwardenApi::sendRequest(Method method, const QUrl &url, const QByteArray 
 
         callback(body, statusCode);
     });
+}
+
+void BitwardenApi::handleGetItems(const QString &rawJson, GetItemType getItemType)
+{
+    runtimeCache->set(cacheKeyItems, rawJson);
+    auto document = QJsonDocument::fromJson(rawJson.toUtf8()).array();
+
+    switch (getItemType) {
+    case GetItems:
+        emit itemsResolved(document);
+        break;
+    case GetLogins:
+    {
+        QJsonArray result;
+
+        for (const auto &item : document) {
+            auto object = item.toObject();
+            if (object.value("type").toInt() == Login) {
+                result.append(object);
+            }
+        }
+
+        emit itemsResolved(result);
+        break;
+    }
+    case GetCards:
+    {
+        QJsonArray result;
+
+        for (const auto &item : document) {
+            auto object = item.toObject();
+            if (object.value("type").toInt() == Card) {
+                result.append(object);
+            }
+        }
+
+        emit itemsResolved(result);
+        break;
+    }
+    case GetNotes:
+    {
+        QJsonArray result;
+
+        for (const auto &item : document) {
+            auto object = item.toObject();
+            if (object.value("type").toInt() == SecureNote) {
+                result.append(object);
+            }
+        }
+
+        emit itemsResolved(result);
+        break;
+    }
+    case GetIdentities:
+    {
+        QJsonArray result;
+
+        for (const auto &item : document) {
+            auto object = item.toObject();
+            if (object.value("type").toInt() == Identity) {
+                result.append(object);
+            }
+        }
+
+        emit itemsResolved(result);
+        break;
+    }
+    default:
+        break;
+    }
 }
 
 void BitwardenApi::sendRequest(Method method, const QUrl &url, const QJsonDocument &data, const std::function<void (QByteArray, int)> &callback)

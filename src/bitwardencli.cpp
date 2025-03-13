@@ -454,6 +454,7 @@ void BitwardenCli::startProcess(const QStringList &arguments, const QProcessEnvi
     process->start(bw, arguments);
 }
 
+// todo remove
 void BitwardenCli::handleGetItems(const QString &rawJson, Method method)
 {
     runtimeCache->set(cacheKeyItems, rawJson);
