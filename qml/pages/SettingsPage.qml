@@ -23,11 +23,50 @@ Page {
         }
     }
 
+    function onServerUrlResolved(serverUrl) {
+        currentServerUrl = serverUrl;
+        busyIndicatorServerUrl.running = false;
+    }
+
     id: page
     allowedOrientations: Orientation.All
 
     SecretsHandler {
         id: secrets
+    }
+
+    BitwardenApi {
+        id: api
+
+        onServerUrlResolved: {
+            page.onServerUrlResolved(serverUrl);
+        }
+
+        onServerUrlResolvingFailed: {
+            errorText = qsTr("Failed getting the configured server URL");
+        }
+
+        onIsRunningResult: {
+            if (running) {
+                api.getServerUrl();
+                apiRunningCheckTimer.stop();
+            } else {
+                if (isDebug) {
+                    console.log('api not running yet');
+                }
+            }
+        }
+    }
+
+    Timer {
+        id: apiRunningCheckTimer
+        repeat: true
+        interval: 200
+        running: false
+
+        onTriggered: {
+            api.isRunning();
+        }
     }
 
     BitwardenCli {
@@ -57,8 +96,7 @@ Page {
         }
 
         onServerUrlResolved: {
-            currentServerUrl = serverUrl;
-            busyIndicatorServerUrl.running = false;
+            page.onServerUrlResolved(serverUrl);
         }
 
         onServerUrlSet: {
@@ -393,7 +431,11 @@ Page {
                 }
 
                 Component.onCompleted: {
-                    cli.getServerUrl();
+                    if (!settings.useApi) {
+                        cli.getServerUrl();
+                    } else {
+                        apiRunningCheckTimer.start(); // trigger asynchronously once api is running
+                    }
                 }
             }
 

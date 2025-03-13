@@ -8,6 +8,7 @@ import "../components" as Components
 Page {
     property string loadingMessage
     property bool loadItemsUsingApiOnceAvailable: false
+    property bool checkUnlockUsingApiOnceAvailable: false
     property bool initialLoadCompleted: false
 
     property string currentCount
@@ -108,6 +109,20 @@ Page {
         }
     }
 
+    function onVaultLockStatusResolved(unlocked) {
+        if (!unlocked) {
+            runtimeCache.remove(CacheKey.Items);
+            runtimeCache.removePersistent(CacheKey.Items);
+            secrets.removeSessionId();
+
+            var handle = function() {
+                pageStack.replace("LoginCheckPage.qml");
+            };
+            // @disable-check M127
+            loaded ? handle() : doAfterLoad.push(handle);
+        }
+    }
+
     SecretsHandler {
         id: secrets
     }
@@ -165,11 +180,24 @@ Page {
             page.onItemsResolved(items);
         }
 
+        onVaultLockStatusResolved: {
+            page.onVaultLockStatusResolved(unlocked);
+        }
+
         onIsRunningResult: {
-            if (running) {
-                api.getItems();
-            } else {
-                loadItemsUsingApiOnceAvailable = true;
+            if (settings.eagerLoading) {
+                if (running) {
+                    api.getItems();
+                } else {
+                    loadItemsUsingApiOnceAvailable = true;
+                }
+            }
+            if (settings.fastAuth) {
+                if (running) {
+                    api.checkVaultUnlocked();
+                } else {
+                    checkUnlockUsingApiOnceAvailable = true;
+                }
             }
         }
     }
@@ -197,22 +225,17 @@ Page {
         }
 
         onVaultLockStatusResolved: {
-            if (!unlocked) {
-                runtimeCache.remove(CacheKey.Items);
-                runtimeCache.removePersistent(CacheKey.Items);
-                secrets.removeSessionId();
-
-                var handle = function() {
-                    pageStack.replace("LoginCheckPage.qml");
-                };
-                loaded ? handle() : doAfterLoad.push(handle);
-            }
+            page.onVaultLockStatusResolved(unlocked);
         }
 
         onServerStarted: {
             if (loadItemsUsingApiOnceAvailable) {
                 api.getItems();
                 loadItemsUsingApiOnceAvailable = false;
+            }
+            if (checkUnlockUsingApiOnceAvailable) {
+                api.checkVaultUnlocked();
+                checkUnlockUsingApiOnceAvailable = false;
             }
         }
 
@@ -399,7 +422,11 @@ Page {
         }
 
         if (settings.fastAuth) {
-            cli.checkVaultUnlocked();
+            if (settings.useApi) {
+                api.isRunning(); // handled async in onIsRunningResult
+            } else {
+                cli.checkVaultUnlocked();
+            }
         }
 
         if (settings.useSystemAuth && settings.useAuthorizationOnUnlocked) {

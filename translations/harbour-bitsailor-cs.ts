@@ -950,6 +950,10 @@ prosím restartujte aplikaci</translation>
         <source>By enabling this option the app will use a local BitWarden server instead of the BitWarden CLI. That can make all BitWarden operations &lt;strong&gt;much&lt;/strong&gt; faster, but the support is experimental and there might be bugs which cause the server to crash, thus rendering the app unusable until you close it and start it again.</source>
         <translation>Povolením této možnosti bude aplikace používat lokální BitWarden server namísto BitWarden CLI. To může všechny operace &lt;strong&gt;výrazně&lt;/strong&gt; zrychlit, ale podpora je experimentální a mohou se objevit chyby, které způsobí nestabilitu serveru, kvůli čemuž bude celá aplikace až do restartu nepoužitelná.</translation>
     </message>
+    <message>
+        <source>Failed getting the configured server URL</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SetupPinPage</name>
