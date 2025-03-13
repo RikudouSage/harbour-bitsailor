@@ -211,6 +211,32 @@ void BitwardenApi::checkVaultUnlocked()
     });
 }
 
+void BitwardenApi::generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, int length)
+{
+    auto url = QString(apiUrl + "/generate?length=%1&minNumber=0").arg(length);
+    if (lowercase) {
+        url += "&lowercase=true";
+    }
+    if (uppercase) {
+        url += "&uppercase=true";
+    }
+    if (numbers) {
+        url += "&number=true";
+    }
+    if (special) {
+        url += "&special=true";
+    }
+
+    sendRequest(url, [=](const auto &body, const auto &statusCode) {
+        if (statusCode == 200) {
+            const auto password = QJsonDocument::fromJson(body).object()["data"].toObject()["data"].toString();
+            emit passwordGenerated(password);
+        } else {
+            emit generatingPasswordFailed();
+        }
+    });
+}
+
 void BitwardenApi::sendRequest(const QString &url, const std::function<void (QByteArray, int)> &callback)
 {
     sendRequest(QUrl(url), callback);

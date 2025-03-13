@@ -17,20 +17,41 @@ Column {
     property alias password: passwordField.text
 
     function generatePassword() {
-        cli.generatePassword(lowercase, uppercase, numbers, special, length);
+        if (settings.useApi) {
+            api.generatePassword(lowercase, uppercase, numbers, special, length);
+        } else {
+            cli.generatePassword(lowercase, uppercase, numbers, special, length);
+        }
         loading = true;
+    }
+
+    function onPasswordGenerated(password) {
+        passwordField.text = password;
+        loading = false;
+    }
+
+    function onPasswordGeneratingFailed() {
+        loading = false;
+        app.toaster.show(qsTr("Generating password failed"));
     }
 
     id: root
     width: parent.width
     spacing: Theme.paddingLarge
 
+    BitwardenApi {
+        id: api
+
+        onPasswordGenerated: {
+            root.onPasswordGenerated(password);
+        }
+    }
+
     BitwardenCli {
         id: cli
 
         onPasswordGenerated: {
-            passwordField.text = password;
-            loading = false;
+            root.onPasswordGenerated(password);
         }
     }
 
