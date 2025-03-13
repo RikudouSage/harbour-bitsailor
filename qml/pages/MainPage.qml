@@ -51,6 +51,24 @@ Page {
         }
     }
 
+    function onVaultSynced() {
+        hideMessage();
+        loginsCount = null;
+        cardsCount = null;
+        notesCount = null;
+        identitiesCount = null;
+
+        if (settings.eagerLoading) {
+            cli.getItems();
+            displayLoadingVaultItems();
+        }
+    }
+
+    function onVaultSyncFailed() {
+        // todo
+        hideMessage();
+    }
+
     SecretsHandler {
         id: secrets
     }
@@ -94,6 +112,14 @@ Page {
 
         onApiNotRunning: {
             app.toaster.show(qsTr("The BitWarden server is not running,\nplease restart the app"), 100000);
+        }
+
+        onVaultSyncFailed: {
+            page.onVaultSyncFailed();
+        }
+
+        onVaultSynced: {
+            page.onVaultSynced();
         }
     }
 
@@ -139,21 +165,11 @@ Page {
         }
 
         onVaultSyncFailed: {
-            // todo
-            hideMessage();
+            page.onVaultSyncFailed();
         }
 
         onVaultSynced: {
-            hideMessage();
-            loginsCount = null;
-            cardsCount = null;
-            notesCount = null;
-            identitiesCount = null;
-
-            if (settings.eagerLoading) {
-                cli.getItems();
-                displayLoadingVaultItems();
-            }
+            page.onVaultSynced();
         }
 
         onVaultLockStatusResolved: {
@@ -256,7 +272,7 @@ Page {
                 text: qsTr("Sync Vault")
                 onClicked: {
                     displayMessage(qsTr("Syncing vault"));
-                    cli.syncVault();
+                    settings.useApi ? api.syncVault() : cli.syncVault();
                 }
             }
 

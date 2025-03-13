@@ -12,8 +12,7 @@
 
 #include "pathhelper.h"
 #include "random-helper.h"
-
-static const QString cacheKeyItems = "items";
+#include "cache-keys.h"
 
 BitwardenCli::BitwardenCli(QObject *parent) : QObject(parent)
 {

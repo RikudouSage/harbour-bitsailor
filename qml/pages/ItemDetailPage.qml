@@ -46,6 +46,21 @@ Page {
         app.cover = cover;
     }
 
+    function onItemFetched(item) {
+        if (isDebug) {
+            console.log(JSON.stringify(item));
+        }
+
+        page.item = item;
+        loaded = true;
+        createCover();
+    }
+
+    function onItemFetchingFailed() {
+        loaded = true;
+        errorText = qsTr("Failed loading the item, please try again later or sync your vault and check that it wasn't deleted.");
+    }
+
     OneTimePasswordGenerator {
         id: otpGenerator
 
@@ -69,18 +84,11 @@ Page {
         id: cli
 
         onItemFetched: {
-            if (isDebug) {
-                console.log(JSON.stringify(item));
-            }
-
-            page.item = item;
-            loaded = true;
-            createCover();
+            page.onItemFetched(item);
         }
 
         onItemFetchingFailed: {
-            loaded = true;
-            errorText = qsTr("Failed loading the item, please try again later or sync your vault and check that it wasn't deleted.");
+            page.onItemFetchingFailed();
         }
     }
 
@@ -88,18 +96,11 @@ Page {
         id: api
 
         onItemFetched: {
-            if (isDebug) {
-                console.log(JSON.stringify(item));
-            }
-
-            page.item = item;
-            loaded = true;
-            createCover();
+            page.onItemFetched(item);
         }
 
         onItemFetchingFailed: {
-            loaded = true;
-            errorText = qsTr("Failed loading the item, please try again later or sync your vault and check that it wasn't deleted.");
+            page.onItemFetchingFailed();
         }
     }
 
