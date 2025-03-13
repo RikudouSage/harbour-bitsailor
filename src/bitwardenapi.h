@@ -5,6 +5,9 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QNetworkAccessManager>
+#include <QUrl>
+
+#include <functional>
 
 #include "runtimecache.h"
 #include "secretshandler.h"
@@ -34,7 +37,22 @@ private:
     RuntimeCache* runtimeCache = RuntimeCache::getInstance(this);
     SecretsHandler* secretsHandler = new SecretsHandler(this);
 
-    const QString apiUrl = "http://127.0.0.1:8087";
+    const QString apiHost = "127.0.0.1";
+    const int apiPort = 8087;
+    const QString apiUrl = "http://" + apiHost + QString::number(apiPort);
+
+private:
+    enum Method {
+        Get,
+        Post,
+    };
+
+    void sendRequest(const QString &url, const std::function<void(QByteArray, int)> &callback);
+    void sendRequest(const QUrl &url, const std::function<void(QByteArray, int)> &callback);
+    void sendRequest(Method method, const QString &url, const QJsonDocument &data, const std::function<void(QByteArray, int)> &callback);
+    void sendRequest(Method method, const QUrl &url, const QJsonDocument &data, const std::function<void(QByteArray, int)> &callback);
+    void sendRequest(Method method, const QString &url, const QByteArray &data, const std::function<void(QByteArray, int)> &callback);
+    void sendRequest(Method method, const QUrl &url, const QByteArray &data, const std::function<void(QByteArray, int)> &callback);
 };
 
 #endif // BITWARDENAPI_H
