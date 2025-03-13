@@ -50,6 +50,8 @@ public:
     Q_INVOKABLE void getCards();
     Q_INVOKABLE void getNotes();
     Q_INVOKABLE void getIdentities();
+    Q_INVOKABLE void getServerUrl();
+    Q_INVOKABLE void checkVaultUnlocked();
 
 signals:
     void isRunningResult(bool running);
@@ -64,6 +66,9 @@ signals:
     void vaultSyncFailed();
     void failedGettingItems();
     void itemsResolved(QJsonArray items);
+    void serverUrlResolved(QString serverUrl);
+    void serverUrlResolvingFailed();
+    void vaultLockStatusResolved(bool unlocked);
 
 private:
     QNetworkAccessManager manager;

@@ -184,6 +184,33 @@ void BitwardenApi::getIdentities()
     getItems(GetItemType::GetIdentities);
 }
 
+void BitwardenApi::getServerUrl()
+{
+    sendRequest(apiUrl + "/status", [=](const auto &body, const auto &statusCode) {
+        if (statusCode == 200) {
+            auto url = QJsonDocument::fromJson(body).object()["data"].toObject()["template"].toObject()["serverUrl"].toString();
+            if (url.isNull()) {
+                url = "https://bitwarden.com";
+            }
+            emit serverUrlResolved(url);
+        } else {
+            emit serverUrlResolvingFailed();
+        }
+    });
+}
+
+void BitwardenApi::checkVaultUnlocked()
+{
+    sendRequest(apiUrl + "/status", [=](const auto &body, const auto &statusCode) {
+        if (statusCode == 200) {
+            auto unlocked = QJsonDocument::fromJson(body).object()["data"].toObject()["template"].toObject()["status"].toString() == "unlocked";
+            emit vaultLockStatusResolved(unlocked);
+        } else {
+            emit vaultLockStatusResolved(false);
+        }
+    });
+}
+
 void BitwardenApi::sendRequest(const QString &url, const std::function<void (QByteArray, int)> &callback)
 {
     sendRequest(QUrl(url), callback);
