@@ -11,5 +11,6 @@ Page {
 
     Components.GeneratePasswordTabs {
         id: generator
+        height: parent.height - app.bottomMenuRef.height
     }
 }

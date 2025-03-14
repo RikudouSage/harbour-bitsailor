@@ -10,6 +10,7 @@ import cz.chrastecky.bitsailor 1.0
 
 ApplicationWindow {
     property alias toaster: toasterElement
+    property alias bottomMenuRef: bottomMenu
     property var actionsWhenNotBusy: []
 
     id: app

@@ -3,8 +3,9 @@ import Sailfish.Silica 1.0
 import Sailfish.Silica.private 1.0
 
 TabView {
-    anchors.fill: parent
     currentIndex: 0
+    width: parent.width
+    height: parent.height
 
     header: TabBar {
         model: ListModel {
