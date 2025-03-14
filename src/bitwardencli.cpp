@@ -208,10 +208,10 @@ void BitwardenCli::getItem(QString id)
     startProcess({"get", "item", id}, GetItem);
 }
 
-void BitwardenCli::generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, int length)
+void BitwardenCli::generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, bool avoidAmbiguous, int length)
 {
     auto args = QStringList() << "generate";
-    args << "--length" << QString::number(length);
+    args << "--length" << QString::number(length) << "--minNumber" << "0";
     if (lowercase) {
         args << "--lowercase";
     }
@@ -223,6 +223,9 @@ void BitwardenCli::generatePassword(bool lowercase, bool uppercase, bool numbers
     }
     if (special) {
         args << "--special";
+    }
+    if (avoidAmbiguous) {
+        args << "--ambiguous";
     }
 
     startProcess(args, GeneratePassword);

@@ -111,7 +111,7 @@ public:
     Q_INVOKABLE void deleteItem(QString id);
     Q_INVOKABLE void deleteItemInBackground(QString id);
     Q_INVOKABLE void getItem(QString id);
-    Q_INVOKABLE void generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, int length);
+    Q_INVOKABLE void generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, bool avoidAmbiguous, int length);
     Q_INVOKABLE void getServerUrl();
     Q_INVOKABLE void setServerUrl(QString url);
     Q_INVOKABLE void createItem(const QString &encodedData);

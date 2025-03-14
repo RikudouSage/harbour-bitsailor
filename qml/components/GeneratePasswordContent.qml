@@ -12,15 +12,16 @@ SilicaFlickable {
     property bool lowercase: runtimeCache.hasPersistent(CacheKey.GenerateLowercase) ? runtimeCache.getPersistent(CacheKey.GenerateLowercase) === '1' : true
     property bool numbers: runtimeCache.hasPersistent(CacheKey.GenerateNumbers) ? runtimeCache.getPersistent(CacheKey.GenerateNumbers) === '1' : true
     property bool special: runtimeCache.hasPersistent(CacheKey.GenerateSpecial) ? runtimeCache.getPersistent(CacheKey.GenerateSpecial) === '1' : false
+    property bool avoidAmbiguous: runtimeCache.hasPersistent(CacheKey.GenerateAvoidAmbiguous) ? runtimeCache.getPersistent(CacheKey.GenerateAvoidAmbiguous) === '1' : false
     property int length: runtimeCache.hasPersistent(CacheKey.GenerateLength) ? Number(runtimeCache.getPersistent(CacheKey.GenerateLength)) : 14
 
     property alias password: passwordField.text
 
     function generatePassword() {
         if (settings.useApi) {
-            api.generatePassword(lowercase, uppercase, numbers, special, length);
+            api.generatePassword(lowercase, uppercase, numbers, special, avoidAmbiguous, length);
         } else {
-            cli.generatePassword(lowercase, uppercase, numbers, special, length);
+            cli.generatePassword(lowercase, uppercase, numbers, special, avoidAmbiguous, length);
         }
         loading = true;
     }
@@ -97,6 +98,24 @@ SilicaFlickable {
             }
         }
 
+        Slider {
+             width: parent.width
+             minimumValue: 5
+             maximumValue: 100
+             value: length
+             label: qsTr("Password length")
+             valueText: String(sliderValue)
+             stepSize: 1
+
+             onDownChanged: {
+                 if (sliderValue !== length) {
+                     length = sliderValue;
+                     runtimeCache.setPersistent(CacheKey.GenerateLength, String(sliderValue));
+                     generatePassword();
+                 }
+             }
+        }
+
         TextSwitch {
             text: qsTr("Uppercase letters")
             checked: uppercase
@@ -137,22 +156,15 @@ SilicaFlickable {
                 generatePassword();
             }
         }
-        Slider {
-             width: parent.width
-             minimumValue: 5
-             maximumValue: 100
-             value: length
-             label: qsTr("Password length")
-             valueText: String(sliderValue)
-             stepSize: 1
-
-             onDownChanged: {
-                 if (sliderValue !== length) {
-                     length = sliderValue;
-                     runtimeCache.setPersistent(CacheKey.GenerateLength, String(sliderValue));
-                     generatePassword();
-                 }
-             }
+        TextSwitch {
+            text: qsTr("Avoid ambiguous characters")
+            checked: avoidAmbiguous
+            automaticCheck: false
+            onClicked: {
+                avoidAmbiguous = !checked
+                runtimeCache.setPersistent(CacheKey.GenerateAvoidAmbiguous, avoidAmbiguous ? '1' : '0');
+                generatePassword();
+            }
         }
     }
 

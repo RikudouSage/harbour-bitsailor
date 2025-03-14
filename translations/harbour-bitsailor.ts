@@ -349,6 +349,10 @@
         <source>Generate new password</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Avoid ambiguous characters</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GeneratePasswordDialog</name>
