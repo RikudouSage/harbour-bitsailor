@@ -63,6 +63,16 @@ void RuntimeCache::removePersistent(const QString &key)
     persistentSettings->remove(key);
 }
 
+QString RuntimeCache::getOrSetPersistent(const QString &key, const QString &defaultValue)
+{
+    if (hasPersistent(key)) {
+        return getPersistent(key);
+    }
+    setPersistent(key, defaultValue);
+
+    return defaultValue;
+}
+
 RuntimeCache *RuntimeCache::getInstance(QObject *parent)
 {
     if (instance == nullptr) {

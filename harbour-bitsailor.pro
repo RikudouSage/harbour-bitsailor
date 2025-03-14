@@ -52,6 +52,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     patch/* \
     qml/components/BottomMenu.qml \
     qml/components/BottomMenuItem.qml \
+    qml/components/GeneratePassphraseContent.qml \
     qml/components/GeneratePasswordContent.qml \
     qml/components/GeneratePasswordTabs.qml \
     qml/components/IntValueMenuItem.qml \

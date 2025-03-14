@@ -215,19 +215,19 @@ void BitwardenApi::generatePassword(bool lowercase, bool uppercase, bool numbers
 {
     auto url = QString(apiUrl + "/generate?length=%1&minNumber=%2&minSpecial=%3").arg(length).arg(minimumNumbers).arg(minimumSpecial);
     if (lowercase) {
-        url += "&lowercase=true";
+        url += "&lowercase=1";
     }
     if (uppercase) {
-        url += "&uppercase=true";
+        url += "&uppercase=1";
     }
     if (numbers) {
-        url += "&number=true";
+        url += "&number=1";
     }
     if (special) {
-        url += "&special=true";
+        url += "&special=1";
     }
     if (avoidAmbiguous) {
-        url += "&ambiguous=true";
+        url += "&ambiguous=1";
     }
 
     sendRequest(url, [=](const auto &body, const auto &statusCode) {
@@ -236,6 +236,26 @@ void BitwardenApi::generatePassword(bool lowercase, bool uppercase, bool numbers
             emit passwordGenerated(password);
         } else {
             emit generatingPasswordFailed();
+        }
+    });
+}
+
+void BitwardenApi::generatePassphrase(uint wordsCount, bool capitalize, bool includeNumber, const QString &separator)
+{
+    auto url = QString(apiUrl + "/generate?passphrase=1&words=%1&separator=%2").arg(wordsCount).arg(separator);
+    if (capitalize) {
+        url += "&capitalize=1";
+    }
+    if (includeNumber) {
+        url += "&includeNumber=1";
+    }
+
+    sendRequest(url, [=](const auto &body, const auto &statusCode) {
+        if (statusCode == 200) {
+            const auto password = QJsonDocument::fromJson(body).object()["data"].toObject()["data"].toString();
+            emit passphraseGenerated(password);
+        } else {
+            emit generatingPassphraseFailed();
         }
     });
 }

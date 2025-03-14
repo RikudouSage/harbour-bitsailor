@@ -308,6 +308,41 @@
     </message>
 </context>
 <context>
+    <name>GeneratePassphraseContent</name>
+    <message>
+        <source>Generate new passphrase</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generating passphrase</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Passphrase</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copied to clipboard</source>
+        <translation type="unfinished">Copié dans le presse-papiers</translation>
+    </message>
+    <message>
+        <source>Words count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Capitalize words</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Include numbers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Word separator</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>GeneratePasswordContent</name>
     <message>
         <source>Password</source>
@@ -381,6 +416,11 @@
     <message>
         <source>Password</source>
         <translation type="unfinished">Mot de passe</translation>
+    </message>
+    <message>
+        <source>Passphrase</source>
+        <extracomment>As an alternative to passwords, this is generally composed of English words separated by a separator, not characters, for example Punctual-Defeat-Exile</extracomment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

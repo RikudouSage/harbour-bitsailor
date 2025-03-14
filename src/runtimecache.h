@@ -23,6 +23,7 @@ public:
     Q_INVOKABLE QString getPersistent(const QString &key);
     Q_INVOKABLE bool hasPersistent(const QString &key);
     Q_INVOKABLE void removePersistent(const QString &key);
+    Q_INVOKABLE QString getOrSetPersistent(const QString &key, const QString &defaultValue);
 
     static RuntimeCache* getInstance(QObject *parent = nullptr);
 

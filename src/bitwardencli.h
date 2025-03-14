@@ -41,6 +41,7 @@ public:
         DeleteItem,
         GetItem,
         GeneratePassword,
+        GeneratePassphrase,
         GetSends,
         GetServerUrl,
         SetServerUrl,
@@ -112,6 +113,7 @@ public:
     Q_INVOKABLE void deleteItemInBackground(QString id);
     Q_INVOKABLE void getItem(QString id);
     Q_INVOKABLE void generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, bool avoidAmbiguous, int minimumNumbers, int minimumSpecial, int length);
+    Q_INVOKABLE void generatePassphrase(uint wordsCount, bool capitalize, bool includeNumber, const QString &separator);
     Q_INVOKABLE void getServerUrl();
     Q_INVOKABLE void setServerUrl(QString url);
     Q_INVOKABLE void createItem(const QString &encodedData);
@@ -138,6 +140,7 @@ signals:
     void itemFetched(QJsonObject item);
     void itemFetchingFailed();
     void passwordGenerated(QString password);
+    void passphraseGenerated(const QString &passphrase);
     void serverUrlResolved(QString serverUrl);
     void serverUrlSet(bool success);
     void itemCreationFinished(bool success);

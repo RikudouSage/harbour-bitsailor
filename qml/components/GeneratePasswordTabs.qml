@@ -12,9 +12,13 @@ TabView {
             ListElement {
                 title: qsTr("Password")
             }
+            ListElement {
+                //: As an alternative to passwords, this is generally composed of English words separated by a separator, not characters, for example Punctual-Defeat-Exile
+                title: qsTr("Passphrase")
+            }
         }
     }
-    model: [passwordTab]
+    model: [passwordTab, passphraseTab]
 
     Component {
         id: passwordTab
@@ -23,8 +27,19 @@ TabView {
             flickable: passwordContent
             GeneratePasswordContent {
                 id: passwordContent
-                title: PageHeader {
-                }
+                title: PageHeader {}
+            }
+        }
+    }
+
+    Component {
+        id: passphraseTab
+
+        TabItem {
+            flickable: passphraseContent
+            GeneratePassphraseContent {
+                id: passphraseContent
+                title: PageHeader {}
             }
         }
     }

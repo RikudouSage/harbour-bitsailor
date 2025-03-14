@@ -53,6 +53,7 @@ public:
     Q_INVOKABLE void getServerUrl();
     Q_INVOKABLE void checkVaultUnlocked();
     Q_INVOKABLE void generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, bool avoidAmbiguous, int minimumNumbers, int minimumSpecial, int length);
+    Q_INVOKABLE void generatePassphrase(uint wordsCount, bool capitalize, bool includeNumber, const QString &separator);
 
 signals:
     void isRunningResult(bool running);
@@ -72,6 +73,8 @@ signals:
     void vaultLockStatusResolved(bool unlocked);
     void passwordGenerated(QString password);
     void generatingPasswordFailed();
+    void passphraseGenerated(const QString &passphrase);
+    void generatingPassphraseFailed();
 
 private:
     QNetworkAccessManager manager;
