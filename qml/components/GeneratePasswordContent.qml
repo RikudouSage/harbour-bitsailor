@@ -6,29 +6,32 @@ import cz.chrastecky.bitsailor 1.0
 SilicaFlickable {
     property alias title: componentLoader.sourceComponent
 
-    property bool loading: false
+    property bool loading: true
 
     property bool uppercase: runtimeCache.hasPersistent(CacheKey.GenerateUppercase) ? runtimeCache.getPersistent(CacheKey.GenerateUppercase) === '1' : true
     property bool lowercase: runtimeCache.hasPersistent(CacheKey.GenerateLowercase) ? runtimeCache.getPersistent(CacheKey.GenerateLowercase) === '1' : true
     property bool numbers: runtimeCache.hasPersistent(CacheKey.GenerateNumbers) ? runtimeCache.getPersistent(CacheKey.GenerateNumbers) === '1' : true
     property bool special: runtimeCache.hasPersistent(CacheKey.GenerateSpecial) ? runtimeCache.getPersistent(CacheKey.GenerateSpecial) === '1' : false
     property bool avoidAmbiguous: runtimeCache.hasPersistent(CacheKey.GenerateAvoidAmbiguous) ? runtimeCache.getPersistent(CacheKey.GenerateAvoidAmbiguous) === '1' : false
+    property int minimumNumbers: runtimeCache.hasPersistent(CacheKey.GenerateMinimumNumbers) ? Number(runtimeCache.getPersistent(CacheKey.GenerateMinimumNumbers)) : 0
+    property int minimumSpecial: runtimeCache.hasPersistent(CacheKey.GenerateMinimumSpecial) ? Number(runtimeCache.getPersistent(CacheKey.GenerateMinimumSpecial)) : 0
     property int length: runtimeCache.hasPersistent(CacheKey.GenerateLength) ? Number(runtimeCache.getPersistent(CacheKey.GenerateLength)) : 14
 
     property alias password: passwordField.text
 
     function generatePassword() {
         if (settings.useApi) {
-            api.generatePassword(lowercase, uppercase, numbers, special, avoidAmbiguous, length);
+            api.generatePassword(lowercase, uppercase, numbers, special, avoidAmbiguous, minimumNumbers, minimumSpecial, length);
         } else {
-            cli.generatePassword(lowercase, uppercase, numbers, special, avoidAmbiguous, length);
+            cli.generatePassword(lowercase, uppercase, numbers, special, avoidAmbiguous, minimumNumbers, minimumSpecial, length);
         }
-        loading = true;
+        loadingDelayTimer.restart();
     }
 
     function onPasswordGenerated(password) {
         passwordField.text = password;
         loading = false;
+        loadingDelayTimer.stop();
     }
 
     function onPasswordGeneratingFailed() {
@@ -166,6 +169,95 @@ SilicaFlickable {
                 runtimeCache.setPersistent(CacheKey.GenerateAvoidAmbiguous, avoidAmbiguous ? '1' : '0');
                 generatePassword();
             }
+        }
+
+        Separator {
+            height: 5
+            width: parent.width
+            color: Theme.highlightColor
+            horizontalAlignment: Qt.AlignHCenter
+        }
+
+        TextField {
+            id: minimumNumbersField
+            //: How many numbers at minimum should be part of the generated password
+            label: qsTr("Minimum numbers")
+            text: minimumNumbers
+            // @disable-check M325
+            acceptableInput: String(Number(text)) === text && Number(text) >= 0
+            inputMethodHints: Qt.ImhDigitsOnly
+
+            rightItem: Row {
+                IconButton {
+                    icon.source: "image://theme/icon-splus-remove"
+                    onClicked: minimumNumbersField.text = String(Number(minimumNumbersField.text) - 1)
+                }
+                IconButton {
+                    icon.source: "image://theme/icon-splus-add"
+                    onClicked: minimumNumbersField.text = String(Number(minimumNumbersField.text) + 1)
+                }
+            }
+
+            onTextChanged: {
+                if (Number(text) < 0) {
+                    text = "0";
+                }
+
+                minimumNumbers = Number(text);
+                runtimeCache.setPersistent(CacheKey.GenerateMinimumNumbers, text);
+                generateTimer.restart();
+            }
+        }
+
+        TextField {
+            id: minimumSpecialField
+            //: How many special chars at minimum should be part of the generated password
+            label: qsTr("Minimum special")
+            text: minimumSpecial
+            // @disable-check M325
+            acceptableInput: String(Number(text)) === text && Number(text) >= 0
+            inputMethodHints: Qt.ImhDigitsOnly
+
+            rightItem: Row {
+                IconButton {
+                    icon.source: "image://theme/icon-splus-remove"
+                    onClicked: minimumSpecialField.text = String(Number(minimumSpecialField.text) - 1)
+                }
+                IconButton {
+                    icon.source: "image://theme/icon-splus-add"
+                    onClicked: minimumSpecialField.text = String(Number(minimumSpecialField.text) + 1)
+                }
+            }
+
+            onTextChanged: {
+                if (Number(text) < 0) {
+                    text = "0";
+                }
+
+                minimumSpecial = Number(text);
+                runtimeCache.setPersistent(CacheKey.GenerateMinimumSpecial, text);
+                generateTimer.restart();
+            }
+        }
+    }
+
+    Timer {
+        id: generateTimer
+        interval: 300
+        repeat: false
+
+        onTriggered: {
+            generatePassword();
+        }
+    }
+
+    Timer {
+        id: loadingDelayTimer
+        interval: 300
+        repeat: false
+
+        onTriggered: {
+            loading = true;
         }
     }
 

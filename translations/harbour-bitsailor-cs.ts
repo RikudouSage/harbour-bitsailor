@@ -353,6 +353,16 @@
         <source>Avoid ambiguous characters</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Minimum numbers</source>
+        <extracomment>How many numbers at minimum should be part of the generated password</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Minimum special</source>
+        <extracomment>How many special chars at minimum should be part of the generated password</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GeneratePasswordDialog</name>
