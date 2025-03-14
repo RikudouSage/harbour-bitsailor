@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="cs">
 <context>
     <name>AddItemPage</name>
     <message>
@@ -149,7 +151,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -341,11 +343,11 @@
     </message>
     <message>
         <source>Generating password</source>
-        <translation>Generování hesla</translation>
+        <translation type="unfinished">Generování hesla</translation>
     </message>
     <message>
         <source>Generate new password</source>
-        <translation>Vygenerovat nové heslo</translation>
+        <translation type="unfinished">Vygenerovat nové heslo</translation>
     </message>
 </context>
 <context>
@@ -361,11 +363,10 @@
     </message>
 </context>
 <context>
-    <name>GeneratePasswordPage</name>
+    <name>GeneratePasswordTabs</name>
     <message>
-        <source>Generate Password</source>
-        <extracomment>Page title</extracomment>
-        <translation>Vygenerovat heslo</translation>
+        <source>Password</source>
+        <translation type="unfinished">Heslo</translation>
     </message>
 </context>
 <context>
@@ -417,7 +418,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -762,7 +763,7 @@ restartujte prosím aplikaci.</translation>
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -832,8 +833,8 @@ prosím restartujte aplikaci</translation>
         <translation>Načítat trezor na hlavní obrazovce</translation>
     </message>
     <message>
-        <source/>
-        <translation type="unfinished"/>
+        <source></source>
+        <translation></translation>
     </message>
     <message>
         <source>Save items in cache for faster load</source>
