@@ -10,7 +10,7 @@ Name:       harbour-bitsailor
 %define _binary_payload w2.xzdio
 
 Summary:    BitSailor
-Version:    0.4.1
+Version:    0.4.2
 Release:    1
 Group:      Applications/Productivity
 License:    MIT
