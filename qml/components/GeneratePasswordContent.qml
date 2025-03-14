@@ -3,7 +3,7 @@ import Sailfish.Silica 1.0
 
 import cz.chrastecky.bitsailor 1.0
 
-Column {
+SilicaFlickable {
     property alias title: componentLoader.sourceComponent
 
     property bool loading: false
@@ -36,8 +36,17 @@ Column {
     }
 
     id: root
-    width: parent.width
-    spacing: Theme.paddingLarge
+    anchors.fill: parent
+    contentHeight: innerContent.height
+
+    PullDownMenu {
+        MenuItem {
+            text: qsTr("Generate new password")
+            onClicked: {
+                generator.generatePassword();
+            }
+        }
+    }
 
     BitwardenApi {
         id: api
@@ -45,6 +54,12 @@ Column {
         onPasswordGenerated: {
             root.onPasswordGenerated(password);
         }
+    }
+
+    BusyLabel {
+        id: loader
+        text: qsTr("Generating password")
+        running: root.loading
     }
 
     BitwardenCli {
@@ -55,83 +70,90 @@ Column {
         }
     }
 
-    Loader {
-        id: componentLoader
+    Column {
+        id: innerContent
         width: parent.width
-    }
+        visible: !root.loading
+        spacing: Theme.paddingLarge
 
-    TextField {
-        id: passwordField
-        readOnly: true
-        label: qsTr("Password")
+        Loader {
+            id: componentLoader
+            width: parent.width
+        }
 
-        rightItem: Row {
-            IconButton {
-                icon.source: "image://theme/icon-m-clipboard"
-                onClicked: {
-                    Clipboard.text = passwordField.text;
-                    app.toaster.show(qsTr("Copied to clipboard"));
+        TextField {
+            id: passwordField
+            readOnly: true
+            label: qsTr("Password")
+
+            rightItem: Row {
+                IconButton {
+                    icon.source: "image://theme/icon-m-clipboard"
+                    onClicked: {
+                        Clipboard.text = passwordField.text;
+                        app.toaster.show(qsTr("Copied to clipboard"));
+                    }
                 }
             }
         }
-    }
 
-    TextSwitch {
-        text: qsTr("Uppercase letters")
-        checked: uppercase
-        automaticCheck: false
-        onClicked: {
-            uppercase = !checked;
-            runtimeCache.setPersistent(CacheKey.GenerateUppercase, uppercase ? '1' : '0');
-            generatePassword();
+        TextSwitch {
+            text: qsTr("Uppercase letters")
+            checked: uppercase
+            automaticCheck: false
+            onClicked: {
+                uppercase = !checked;
+                runtimeCache.setPersistent(CacheKey.GenerateUppercase, uppercase ? '1' : '0');
+                generatePassword();
+            }
         }
-    }
-    TextSwitch {
-        text: qsTr("Lowercase letters")
-        checked: lowercase
-        automaticCheck: false
-        onClicked: {
-            lowercase = !checked;
-            runtimeCache.setPersistent(CacheKey.GenerateLowercase, lowercase ? '1' : '0');
-            generatePassword();
+        TextSwitch {
+            text: qsTr("Lowercase letters")
+            checked: lowercase
+            automaticCheck: false
+            onClicked: {
+                lowercase = !checked;
+                runtimeCache.setPersistent(CacheKey.GenerateLowercase, lowercase ? '1' : '0');
+                generatePassword();
+            }
         }
-    }
-    TextSwitch {
-        text: qsTr("Numbers")
-        checked: numbers
-        automaticCheck: false
-        onClicked: {
-            numbers = !checked;
-            runtimeCache.setPersistent(CacheKey.GenerateNumbers, numbers ? '1' : '0');
-            generatePassword();
+        TextSwitch {
+            text: qsTr("Numbers")
+            checked: numbers
+            automaticCheck: false
+            onClicked: {
+                numbers = !checked;
+                runtimeCache.setPersistent(CacheKey.GenerateNumbers, numbers ? '1' : '0');
+                generatePassword();
+            }
         }
-    }
-    TextSwitch {
-        text: qsTr("Special characters")
-        checked: special
-        automaticCheck: false
-        onClicked: {
-            special = !checked;
-            runtimeCache.setPersistent(CacheKey.GenerateSpecial, special ? '1' : '0');
-            generatePassword();
+        TextSwitch {
+            text: qsTr("Special characters")
+            checked: special
+            automaticCheck: false
+            onClicked: {
+                special = !checked;
+                runtimeCache.setPersistent(CacheKey.GenerateSpecial, special ? '1' : '0');
+                generatePassword();
+            }
         }
-    }
-    Slider {
-         width: parent.width
-         minimumValue: 5
-         maximumValue: 100
-         value: length
-         label: qsTr("Password length")
-         valueText: String(sliderValue)
-         stepSize: 1
+        Slider {
+             width: parent.width
+             minimumValue: 5
+             maximumValue: 100
+             value: length
+             label: qsTr("Password length")
+             valueText: String(sliderValue)
+             stepSize: 1
 
-         onDownChanged: {
-             if (sliderValue !== length) {
-                 length = sliderValue;
-                 runtimeCache.setPersistent(CacheKey.GenerateLength, String(sliderValue));
-                 generatePassword();
+             onDownChanged: {
+                 if (sliderValue !== length) {
+                     length = sliderValue;
+                     runtimeCache.setPersistent(CacheKey.GenerateLength, String(sliderValue));
+                     generatePassword();
+                 }
              }
-         }
+        }
     }
 
     Component.onCompleted: {
