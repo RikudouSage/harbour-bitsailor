@@ -211,9 +211,9 @@ void BitwardenApi::checkVaultUnlocked()
     });
 }
 
-void BitwardenApi::generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, bool avoidAmbiguous, int length)
+void BitwardenApi::generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, bool avoidAmbiguous, int minimumNumbers, int minimumSpecial, int length)
 {
-    auto url = QString(apiUrl + "/generate?length=%1&minNumber=0").arg(length);
+    auto url = QString(apiUrl + "/generate?length=%1&minNumber=%2&minSpecial=%3").arg(length).arg(minimumNumbers).arg(minimumSpecial);
     if (lowercase) {
         url += "&lowercase=true";
     }

@@ -208,10 +208,10 @@ void BitwardenCli::getItem(QString id)
     startProcess({"get", "item", id}, GetItem);
 }
 
-void BitwardenCli::generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, bool avoidAmbiguous, int length)
+void BitwardenCli::generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, bool avoidAmbiguous, int minimumNumbers, int minimumSpecial, int length)
 {
     auto args = QStringList() << "generate";
-    args << "--length" << QString::number(length) << "--minNumber" << "0";
+    args << "--length" << QString::number(length) << "--minNumber" << QString::number(minimumNumbers) << "--minSpecial" << QString::number(minimumSpecial);
     if (lowercase) {
         args << "--lowercase";
     }
@@ -421,8 +421,9 @@ void BitwardenCli::startProcess(const QStringList &arguments, const QProcessEnvi
 
     if (processes.contains(method)) {
         auto oldProcess = processes.take(method);
+        oldProcess->disconnect();
+        connect(oldProcess, static_cast<void (QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), oldProcess, &QObject::deleteLater);
         oldProcess->terminate();
-        oldProcess->deleteLater();
     }
 
     connect(process, static_cast<void (QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), [=](int exitCode, QProcess::ExitStatus exitStatus) {

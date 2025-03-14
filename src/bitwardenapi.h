@@ -52,7 +52,7 @@ public:
     Q_INVOKABLE void getIdentities();
     Q_INVOKABLE void getServerUrl();
     Q_INVOKABLE void checkVaultUnlocked();
-    Q_INVOKABLE void generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, bool avoidAmbiguous, int length);
+    Q_INVOKABLE void generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, bool avoidAmbiguous, int minimumNumbers, int minimumSpecial, int length);
 
 signals:
     void isRunningResult(bool running);
