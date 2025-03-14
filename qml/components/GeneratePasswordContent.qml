@@ -37,7 +37,8 @@ SilicaFlickable {
     }
 
     id: root
-    anchors.fill: parent
+    height: parent.height
+    width: parent.width
     contentHeight: innerContent.height
 
     PullDownMenu {
