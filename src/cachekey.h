@@ -15,6 +15,7 @@ class CacheKey : public QObject
     Q_PROPERTY(QString GenerateNumbers MEMBER generateNumbers CONSTANT)
     Q_PROPERTY(QString GenerateSpecial MEMBER generateSpecial CONSTANT)
     Q_PROPERTY(QString GenerateLength MEMBER generateLength CONSTANT)
+    Q_PROPERTY(QString GenerateAvoidAmbiguous MEMBER generateAvoidAmbiguous CONSTANT)
 public:
     explicit CacheKey(QObject *parent = nullptr);
 
@@ -27,6 +28,7 @@ private:
     const QString generateNumbers = "generate_numbers";
     const QString generateSpecial = "generate_special";
     const QString generateLength = "generate_length";
+    const QString generateAvoidAmbiguous = "generate_ambiguous";
 };
 
 #endif // CACHEKEY_H
