@@ -11,34 +11,12 @@ Dialog {
 
     canAccept: !generator.loading
 
-    BusyLabel {
-        id: loader
-        text: qsTr("Generating password")
-        running: generator.loading
-    }
-
-    SilicaFlickable {
-        anchors.fill: parent
-        contentHeight: generator.height
-        visible: !loader.running
-
-        PullDownMenu {
-            MenuItem {
-                text: qsTr("Generate new password")
-                onClicked: {
-                    generator.generatePassword();
-                }
-            }
+    Components.GeneratePasswordContent {
+        id: generator
+        title: DialogHeader {
+            //: Dialog accept
+            acceptText: qsTr("Use password")
+            cancelText: qsTr("Cancel")
         }
-
-        Components.GeneratePasswordContent {
-            id: generator
-            title: DialogHeader {
-                //: Dialog accept
-                acceptText: qsTr("Use password")
-                cancelText: qsTr("Cancel")
-            }
-        }
-
     }
 }

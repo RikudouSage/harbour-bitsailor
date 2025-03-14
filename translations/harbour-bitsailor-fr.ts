@@ -341,13 +341,17 @@
         <source>Generating password failed</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Generating password</source>
+        <translation type="unfinished">Génération du mot de passe</translation>
+    </message>
+    <message>
+        <source>Generate new password</source>
+        <translation type="unfinished">Générer un mot de passe</translation>
+    </message>
 </context>
 <context>
     <name>GeneratePasswordDialog</name>
-    <message>
-        <source>Generate new password</source>
-        <translation>Générer un mot de passe</translation>
-    </message>
     <message>
         <source>Cancel</source>
         <translation>Annuler</translation>
@@ -357,25 +361,13 @@
         <extracomment>Dialog accept</extracomment>
         <translation>Utiliser le mot de passe</translation>
     </message>
-    <message>
-        <source>Generating password</source>
-        <translation>Génération du mot de passe</translation>
-    </message>
 </context>
 <context>
     <name>GeneratePasswordPage</name>
     <message>
-        <source>Generate new password</source>
-        <translation>Générer un mot de passe</translation>
-    </message>
-    <message>
         <source>Generate Password</source>
         <extracomment>Page title</extracomment>
         <translation>Générer mot de passe</translation>
-    </message>
-    <message>
-        <source>Generating password</source>
-        <translation>Génération du mot de passe</translation>
     </message>
 </context>
 <context>

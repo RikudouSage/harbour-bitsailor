@@ -341,13 +341,17 @@
         <source>Generating password failed</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>GeneratePasswordDialog</name>
+    <message>
+        <source>Generating password</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <source>Generate new password</source>
         <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>GeneratePasswordDialog</name>
     <message>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
@@ -357,24 +361,12 @@
         <extracomment>Dialog accept</extracomment>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Generating password</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>GeneratePasswordPage</name>
     <message>
-        <source>Generate new password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Generate Password</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Generating password</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
