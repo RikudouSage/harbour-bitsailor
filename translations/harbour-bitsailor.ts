@@ -363,10 +363,9 @@
     </message>
 </context>
 <context>
-    <name>GeneratePasswordPage</name>
+    <name>GeneratePasswordTabs</name>
     <message>
-        <source>Generate Password</source>
-        <extracomment>Page title</extracomment>
+        <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

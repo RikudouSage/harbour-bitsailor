@@ -43,7 +43,7 @@ SilicaFlickable {
         MenuItem {
             text: qsTr("Generate new password")
             onClicked: {
-                generator.generatePassword();
+                root.generatePassword();
             }
         }
     }
