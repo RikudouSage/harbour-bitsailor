@@ -53,6 +53,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/components/BottomMenu.qml \
     qml/components/BottomMenuItem.qml \
     qml/components/GeneratePasswordContent.qml \
+    qml/components/GeneratePasswordTabs.qml \
     qml/components/IntValueMenuItem.qml \
     qml/components/MainPageItem.qml \
     qml/components/PercentageCircle.qml \

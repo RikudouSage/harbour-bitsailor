@@ -9,11 +9,7 @@ Page {
     id: page
     allowedOrientations: Orientation.All
 
-    Components.GeneratePasswordContent {
+    Components.GeneratePasswordTabs {
         id: generator
-        title: PageHeader {
-            //: Page title
-            title: qsTr("Generate Password")
-        }
     }
 }
