@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>AddItemPage</name>
     <message>
@@ -151,7 +149,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -311,35 +309,35 @@
     <name>GeneratePassphraseContent</name>
     <message>
         <source>Generate new passphrase</source>
-        <translation type="unfinished"></translation>
+        <translation>Vygenerovat novou frázi</translation>
     </message>
     <message>
         <source>Generating passphrase</source>
-        <translation type="unfinished"></translation>
+        <translation>Generování heslové fráze</translation>
     </message>
     <message>
         <source>Passphrase</source>
-        <translation type="unfinished"></translation>
+        <translation>Heslová fráze</translation>
     </message>
     <message>
         <source>Copied to clipboard</source>
-        <translation type="unfinished">Zkopírováno do schránky</translation>
+        <translation>Zkopírováno do schránky</translation>
     </message>
     <message>
         <source>Words count</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet slov</translation>
     </message>
     <message>
         <source>Capitalize words</source>
-        <translation type="unfinished"></translation>
+        <translation>Velká písmena na začátku slova</translation>
     </message>
     <message>
         <source>Include numbers</source>
-        <translation type="unfinished"></translation>
+        <translation>Zahrnout číslice</translation>
     </message>
     <message>
         <source>Word separator</source>
-        <translation type="unfinished"></translation>
+        <translation>Oddělovač slov</translation>
     </message>
 </context>
 <context>
@@ -386,17 +384,17 @@
     </message>
     <message>
         <source>Avoid ambiguous characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepoužívat zaměnitelné znaky</translation>
     </message>
     <message>
         <source>Minimum numbers</source>
         <extracomment>How many numbers at minimum should be part of the generated password</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Minimální počet číslic</translation>
     </message>
     <message>
         <source>Minimum special</source>
         <extracomment>How many special chars at minimum should be part of the generated password</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Minimální počet speciálních znaků</translation>
     </message>
 </context>
 <context>
@@ -420,7 +418,7 @@
     <message>
         <source>Passphrase</source>
         <extracomment>As an alternative to passwords, this is generally composed of English words separated by a separator, not characters, for example Punctual-Defeat-Exile</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Heslová fráze</translation>
     </message>
 </context>
 <context>
@@ -472,7 +470,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -817,7 +815,7 @@ restartujte prosím aplikaci.</translation>
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -887,8 +885,8 @@ prosím restartujte aplikaci</translation>
         <translation>Načítat trezor na hlavní obrazovce</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save items in cache for faster load</source>
