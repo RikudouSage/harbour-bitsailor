@@ -231,6 +231,20 @@ void BitwardenCli::generatePassword(bool lowercase, bool uppercase, bool numbers
     startProcess(args, GeneratePassword);
 }
 
+void BitwardenCli::generatePassphrase(uint wordsCount, bool capitalize, bool includeNumber, const QString &separator)
+{
+    auto args = QStringList() << "generate" << "--passphrase";
+    args << "--words" << QString::number(wordsCount) << "--separator" << separator;
+    if (capitalize) {
+        args << "--capitalize";
+    }
+    if (includeNumber) {
+        args << "--includeNumber";
+    }
+
+    startProcess(args, GeneratePassphrase);
+}
+
 void BitwardenCli::getServerUrl()
 {
     startProcess({"config", "server"}, GetServerUrl);
@@ -326,6 +340,9 @@ void BitwardenCli::onFinished(int exitCode, Method method)
         break;
     case BitwardenCli::GeneratePassword:
         emit passwordGenerated(process->readAllStandardOutput());
+        break;
+    case BitwardenCli::GeneratePassphrase:
+        emit passphraseGenerated(process->readAllStandardOutput());
         break;
     case BitwardenCli::GetItem:
         if (exitCode != 0) {

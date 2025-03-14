@@ -18,6 +18,10 @@ class CacheKey : public QObject
     Q_PROPERTY(QString GenerateAvoidAmbiguous MEMBER generateAvoidAmbiguous CONSTANT)
     Q_PROPERTY(QString GenerateMinimumNumbers MEMBER generateMinimumNumbers CONSTANT)
     Q_PROPERTY(QString GenerateMinimumSpecial MEMBER generateMinimumSpecial CONSTANT)
+    Q_PROPERTY(QString GenerateWordCount MEMBER generateWordCount CONSTANT)
+    Q_PROPERTY(QString GenerateCapitalizePassphrase MEMBER generateCapitalizePassphrase CONSTANT)
+    Q_PROPERTY(QString GeneratePassphraseIncludeNumber MEMBER generatePassphraseIncludeNumber CONSTANT)
+    Q_PROPERTY(QString GeneratePassphraseSeparator MEMBER generatePassphraseSeparator CONSTANT)
 public:
     explicit CacheKey(QObject *parent = nullptr);
 
@@ -33,6 +37,10 @@ private:
     const QString generateAvoidAmbiguous = "generate_ambiguous";
     const QString generateMinimumNumbers = "generate_min_numbers";
     const QString generateMinimumSpecial = "generate_min_special";
+    const QString generateWordCount = "generate_word_count";
+    const QString generateCapitalizePassphrase = "generate_capitalize_passphrase";
+    const QString generatePassphraseIncludeNumber = "generate_include_number_passphrase";
+    const QString generatePassphraseSeparator = "generate_passphrase_separator";
 };
 
 #endif // CACHEKEY_H
