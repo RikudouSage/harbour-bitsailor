@@ -21,8 +21,8 @@ Page {
         }
     }
 
-    function onSendCreated(link) {
-        Clipboard.text = link;
+    function onSendCreated(item) {
+        Clipboard.text = item.accessUrl;
         app.toaster.show(qsTr("URL copied to clipboard"));
         safeCall(function() {
             pageStack.pop();
@@ -39,11 +39,8 @@ Page {
                     cli.createTextSend(dialog.name, dialog.text, dialog.hideText, dialog.deletionDate, dialog.maximumAccessCount, dialog.password, dialog.hideEmail, dialog.privateNotes);
                 }
             } else {
-                if (settings.useApi) {
-                    api.createFileSend(dialog.name, dialog.file, dialog.deletionDate, dialog.maximumAccessCount, dialog.password, dialog.hideEmail, dialog.privateNotes);
-                } else {
-                    cli.createFileSend(dialog.name, dialog.file, dialog.deletionDate, dialog.maximumAccessCount, dialog.password, dialog.hideEmail, dialog.privateNotes);
-                }
+                // api does not support creating file Sends
+                cli.createFileSend(dialog.name, dialog.file, dialog.deletionDate, dialog.maximumAccessCount, dialog.password, dialog.hideEmail, dialog.privateNotes);
             }
         });
     }
@@ -52,7 +49,10 @@ Page {
         id: cli
 
         onSendCreated: {
-            page.onSendCreated(link);
+            if (settings.useApi && item.type === BitwardenCli.SendTypeFile) {
+                api.addTempSend(item);
+            }
+            page.onSendCreated(item);
         }
     }
 
@@ -60,7 +60,7 @@ Page {
         id: api
 
         onSendCreated: {
-            page.onSendCreated(link);
+            page.onSendCreated(item);
         }
     }
 
@@ -98,7 +98,8 @@ Page {
             id: textDialog
             text: qsTr("Text")
             onClicked: {
-                dialog = pageStack.push("CreateSendPage.qml", {sendType: 'text', text: app.textToShare})
+                dialog = pageStack.push("CreateSendPage.qml", {sendType: 'text', text: app.textToShare});
+                app.textToShare = '';
                 handleDialog();
             }
         }
