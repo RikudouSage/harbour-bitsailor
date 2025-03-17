@@ -8,6 +8,11 @@
 		<extracomment>Displayed in the app grid as application name</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Share via Send</source>
+        <extracomment>Displayed as a description when someone shares a file/text, should be short</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PolkitFile</name>
