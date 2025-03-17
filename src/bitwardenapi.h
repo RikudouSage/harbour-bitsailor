@@ -54,6 +54,25 @@ public:
     Q_INVOKABLE void checkVaultUnlocked();
     Q_INVOKABLE void generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, bool avoidAmbiguous, int minimumNumbers, int minimumSpecial, int length);
     Q_INVOKABLE void generatePassphrase(uint wordsCount, bool capitalize, bool includeNumber, const QString &separator);
+    Q_INVOKABLE void createFileSend(
+            const QString &name,
+            const QString &filePath,
+            const uint &deletionDate,
+            const uint &maximumAccessCount,
+            const QString &password,
+            const bool &hideEmail,
+            const QString &privateNotes
+    );
+    Q_INVOKABLE void createTextSend(
+            const QString &name,
+            const QString &text,
+            const bool &hideText,
+            const uint &deletionDate,
+            const uint &maximumAccessCount,
+            const QString &password,
+            const bool &hideEmail,
+            const QString &privateNotes
+    );
 
 signals:
     void isRunningResult(bool running);
@@ -75,6 +94,7 @@ signals:
     void generatingPasswordFailed();
     void passphraseGenerated(const QString &passphrase);
     void generatingPassphraseFailed();
+    void sendCreated(const QString &link);
 
 private:
     QNetworkAccessManager manager;
@@ -90,10 +110,14 @@ private:
     void sendRequest(const QUrl &url, const std::function<void(QByteArray, int)> &callback);
     void sendRequest(Method method, const QString &url, const std::function<void(QByteArray, int)> &callback);
     void sendRequest(Method method, const QUrl &url, const std::function<void(QByteArray, int)> &callback);
+    void sendRequest(Method method, const QString &url, const QJsonObject &data, const std::function<void(QByteArray, int)> &callback);
     void sendRequest(Method method, const QString &url, const QJsonDocument &data, const std::function<void(QByteArray, int)> &callback);
     void sendRequest(Method method, const QUrl &url, const QJsonDocument &data, const std::function<void(QByteArray, int)> &callback);
     void sendRequest(Method method, const QString &url, const QByteArray &data, const std::function<void(QByteArray, int)> &callback);
     void sendRequest(Method method, const QUrl &url, const QByteArray &data, const std::function<void(QByteArray, int)> &callback);
+
+    const QJsonArray getTempSends();
+    void addTempSend(const QJsonObject &object);
 
     // todo remove
     void handleGetItems(const QString &rawJson, GetItemType getItemType = GetItems);

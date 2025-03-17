@@ -13,6 +13,9 @@
 #include <sys/signal.h>
 
 #include "cache-keys.h"
+#include "cli-api-common-parts.h"
+
+static const QString cacheKeyTempSends = "api_tempSends";
 
 BitwardenApi::BitwardenApi(QObject *parent) : QObject(parent)
 {
@@ -122,6 +125,13 @@ void BitwardenApi::getSends()
     sendRequest(apiUrl + "/list/object/send", [=](const auto &body, const auto &statusCode) {
         if (statusCode == 200) {
             auto document = QJsonDocument::fromJson(body).object()["data"].toObject()["data"].toArray();
+            // the api does not return updated values
+            const auto tempCreated = getTempSends();
+
+            for (auto&& item : tempCreated) {
+                document.append(item);
+            }
+
             emit sendsResolved(document);
         } else {
             emit failedGettingSends();
@@ -260,6 +270,43 @@ void BitwardenApi::generatePassphrase(uint wordsCount, bool capitalize, bool inc
     });
 }
 
+void BitwardenApi::createFileSend(const QString &name, const QString &filePath, const uint &deletionDate, const uint &maximumAccessCount, const QString &password, const bool &hideEmail, const QString &privateNotes)
+{
+    auto json = createCommonCreateSendParts(name, deletionDate, maximumAccessCount, password, hideEmail, privateNotes);
+    json["type"] = SendType::SendTypeFile;
+
+    QJsonObject file;
+    file["fileName"] = filePath;
+    json["file"] = file;
+
+    sendRequest(Method::Post, apiUrl + "/object/send", json, [=](const auto body, const auto statusCode) {
+        Q_UNUSED(statusCode);
+        const auto item = QJsonDocument::fromJson(body).object()["data"].toObject();
+        addTempSend(item);
+        const auto url = item["accessUrl"].toString();
+        emit sendCreated(url);
+    });
+}
+
+void BitwardenApi::createTextSend(const QString &name, const QString &text, const bool &hideText, const uint &deletionDate, const uint &maximumAccessCount, const QString &password, const bool &hideEmail, const QString &privateNotes)
+{
+    auto json = createCommonCreateSendParts(name, deletionDate, maximumAccessCount, password, hideEmail, privateNotes);
+    json["type"] = SendType::SendTypeText;
+
+    QJsonObject textNode;
+    textNode["text"] = text;
+    textNode["hidden"] = hideText;
+    json["text"] = textNode;
+
+    sendRequest(Method::Post, apiUrl + "/object/send", json, [=](const auto body, const auto statusCode) {
+        Q_UNUSED(statusCode);
+        const auto item = QJsonDocument::fromJson(body).object()["data"].toObject();
+        addTempSend(item);
+        const auto url = item["accessUrl"].toString();
+        emit sendCreated(url);
+    });
+}
+
 void BitwardenApi::sendRequest(const QString &url, const std::function<void (QByteArray, int)> &callback)
 {
     sendRequest(QUrl(url), callback);
@@ -285,6 +332,11 @@ void BitwardenApi::sendRequest(Method method, const QUrl &url, const std::functi
     sendRequest(method, url, QByteArray(), callback);
 }
 
+void BitwardenApi::sendRequest(Method method, const QString &url, const QJsonObject &data, const std::function<void (QByteArray, int)> &callback)
+{
+    sendRequest(method, url, QJsonDocument(data), callback);
+}
+
 void BitwardenApi::sendRequest(Method method, const QString &url, const QJsonDocument &data, const std::function<void (QByteArray, int)> &callback)
 {
     sendRequest(method, QUrl(url), data, callback);
@@ -302,6 +354,7 @@ void BitwardenApi::sendRequest(Method method, const QUrl &url, const QByteArray 
         reply = manager.get(request);
         methodName = "GET";
     } else if (method == Method::Post) {
+        request.setRawHeader("Content-Type", "application/json");
         reply = manager.post(request, data);
         methodName = "POST";
     }
@@ -324,6 +377,20 @@ void BitwardenApi::sendRequest(Method method, const QUrl &url, const QByteArray 
 
         callback(body, statusCode);
     });
+}
+
+const QJsonArray BitwardenApi::getTempSends()
+{
+    return runtimeCache->has(cacheKeyTempSends)
+            ? QJsonDocument::fromJson(runtimeCache->get(cacheKeyTempSends).toUtf8()).array()
+            : QJsonArray();
+}
+
+void BitwardenApi::addTempSend(const QJsonObject &object)
+{
+    auto tempSends = getTempSends();
+    tempSends.append(object);
+    runtimeCache->set(cacheKeyTempSends, QJsonDocument(tempSends).toJson(QJsonDocument::JsonFormat::Compact));
 }
 
 void BitwardenApi::handleGetItems(const QString &rawJson, GetItemType getItemType)

@@ -57,9 +57,10 @@ Page {
     }
 
     SilicaFlickable {
-        anchors.fill: parent
         contentHeight: column.height
         visible: !loader.running
+        width: parent.width
+        height: parent.height - app.bottomMenuRef.height
 
         PullDownMenu {
             MenuItem {
@@ -69,6 +70,12 @@ Page {
                     if (searchActive) {
                         search.focus = true;
                     }
+                }
+            }
+            MenuItem {
+                text: qsTr("Create a Send")
+                onClicked: {
+                    pageStack.push("CreateSendChooseTypePage.qml")
                 }
             }
         }

@@ -13,6 +13,7 @@
 #include "pathhelper.h"
 #include "secretshandler.h"
 #include "runtimecache.h"
+#include "cli-api-common-parts.h"
 
 class BitwardenCli : public QObject
 {
@@ -47,6 +48,7 @@ public:
         SetServerUrl,
         CreateItem,
         Serve,
+        CreateSend,
     };
 
     enum TwoStepLoginMethods {
@@ -82,7 +84,6 @@ public:
         FieldTypeLinked = 3,
     };
     Q_ENUM(FieldType);
-
     enum SendType {
         SendTypeText = 0,
         SendTypeFile = 1,
@@ -120,6 +121,25 @@ public:
     Q_INVOKABLE void serve(bool force = false);
     Q_INVOKABLE void stopServer();
     Q_INVOKABLE void patchServer();
+    Q_INVOKABLE void createFileSend(
+            const QString &name,
+            const QString &filePath,
+            const uint &deletionDate,
+            const uint &maximumAccessCount,
+            const QString &password,
+            const bool &hideEmail,
+            const QString &privateNotes
+    );
+    Q_INVOKABLE void createTextSend(
+            const QString &name,
+            const QString &text,
+            const bool &hideText,
+            const uint &deletionDate,
+            const uint &maximumAccessCount,
+            const QString &password,
+            const bool &hideEmail,
+            const QString &privateNotes
+    );
 
 signals:
     void loginStatusResolved(bool loggedIn);
@@ -149,6 +169,7 @@ signals:
     void serverPatchError();
     void serverUnpatchable();
     void serverShouldBePatched();
+    void sendCreated(const QString &link);
 
 private slots:
     void onFinished(int exitCode, Method method);
