@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>AddItemPage</name>
     <message>
@@ -151,7 +149,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -311,23 +309,23 @@
     <name>CreateSendChooseTypePage</name>
     <message>
         <source>Create a Send</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvořit Send</translation>
     </message>
     <message>
         <source>Creating</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytváření</translation>
     </message>
     <message>
         <source>File</source>
-        <translation type="unfinished">Soubor</translation>
+        <translation>Soubor</translation>
     </message>
     <message>
         <source>Text</source>
-        <translation type="unfinished">Text</translation>
+        <translation>Text</translation>
     </message>
     <message>
         <source>URL copied to clipboard</source>
-        <translation type="unfinished">URL zkopírována do schránky</translation>
+        <translation>URL zkopírována do schránky</translation>
     </message>
 </context>
 <context>
@@ -335,79 +333,79 @@
     <message>
         <source>Create</source>
         <extracomment>Dialog accept</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Vytvořit</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Zrušit</translation>
+        <translation>Zrušit</translation>
     </message>
     <message>
         <source>Text to share</source>
-        <translation type="unfinished"></translation>
+        <translation>Text ke sdílení</translation>
     </message>
     <message>
         <source>Send name</source>
-        <translation type="unfinished"></translation>
+        <translation>Název Sendu</translation>
     </message>
     <message>
         <source>When accessing the Send, hide the text by default</source>
-        <translation type="unfinished"></translation>
+        <translation>Při přístupu k Sendu pomocí URL, skrýt ve výchozím nastavení text</translation>
     </message>
     <message>
         <source>Deletion date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum smazání</translation>
     </message>
     <message>
         <source>1 hour</source>
-        <translation type="unfinished"></translation>
+        <translation>1 hodina</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"></translation>
+        <translation>1 den</translation>
     </message>
     <message>
         <source>2 days</source>
-        <translation type="unfinished"></translation>
+        <translation>2 dny</translation>
     </message>
     <message>
         <source>3 days</source>
-        <translation type="unfinished"></translation>
+        <translation>3 dny</translation>
     </message>
     <message>
         <source>7 days</source>
-        <translation type="unfinished"></translation>
+        <translation>7 dní</translation>
     </message>
     <message>
         <source>30 days</source>
-        <translation type="unfinished"></translation>
+        <translation>30 dní</translation>
     </message>
     <message>
         <source>Additional settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Další nastavení</translation>
     </message>
     <message>
         <source>Maximum access count</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximální počet přístupů</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Heslo</translation>
+        <translation>Heslo</translation>
     </message>
     <message>
         <source>Require this password to view the Send.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro zobrazení Sendu bude vyžadováno toto heslo.</translation>
     </message>
     <message>
         <source>Hide my email address from recipients</source>
-        <translation type="unfinished"></translation>
+        <translation>Skrýt můj e-mail před příjemci</translation>
     </message>
     <message>
         <source>Private notes</source>
-        <translation type="unfinished"></translation>
+        <translation>Soukromé poznámky</translation>
     </message>
     <message>
         <source>Choose file</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvolit soubor</translation>
     </message>
 </context>
 <context>
@@ -575,7 +573,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -920,7 +918,7 @@ restartujte prosím aplikaci.</translation>
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -963,7 +961,7 @@ prosím restartujte aplikaci</translation>
     </message>
     <message>
         <source>Create a Send</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvořit Send</translation>
     </message>
 </context>
 <context>
@@ -994,8 +992,8 @@ prosím restartujte aplikaci</translation>
         <translation>Načítat trezor na hlavní obrazovce</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save items in cache for faster load</source>
