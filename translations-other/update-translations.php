@@ -16,32 +16,64 @@ foreach (glob(__DIR__ . '/*.ts') as $file) {
     $xml = new SimpleXMLElement(file_get_contents($file));
     foreach ($xml->context as $context) {
         if ((string) $context->name === CONTEXT_DESKTOP_FILE) {
-            $translation = (string) $context->message->translation;
-            $desktop = array_map('trim', file($desktopFile));
+            foreach ($context->message as $message) {
+                $translation = (string) $message->translation;
+                $desktop = array_map('trim', file($desktopFile));
 
-            $found = false;
-            $rawNameLineNumber = -1;
-            $targetLineNumber = -1;
+                $foundName = false;
+                $rawNameLineNumber = -1;
+                $targetNameLineNumber = -1;
 
-            foreach ($desktop as $lineNumber => $lineContent) {
-                if (strpos($lineContent, "Name=") === 0) {
-                    $rawNameLineNumber = $lineNumber;
+                $foundShare = false;
+                $rawShareLineNumber = -1;
+                $targetShareLineNumber = -1;
+
+                $foundShareSection = false;
+
+                foreach ($desktop as $lineNumber => $lineContent) {
+                    if (str_starts_with($lineContent, "Name=")) {
+                        $rawNameLineNumber = $lineNumber;
+                    }
+                    if (str_starts_with($lineContent, "Name[{$lang}]=")) {
+                        $foundName = true;
+                        $targetNameLineNumber = $lineNumber;
+                    }
+
+                    if ($lineContent === '[X-Share Method anything]') {
+                        $foundShareSection = true;
+                    }
+
+                    if ($foundShareSection) {
+                        if (str_starts_with($lineContent, 'Description=')) {
+                            $rawShareLineNumber = $lineNumber;
+                        }
+                        if (str_starts_with($lineContent, "Description[{$lang}]=")) {
+                            $foundShare = true;
+                            $targetShareLineNumber = $lineNumber;
+                        }
+                    }
                 }
-                if (strpos($lineContent, "Name[{$lang}]=") === 0) {
-                    $found = true;
-                    $targetLineNumber = $lineNumber;
+
+                assert($rawNameLineNumber >= 0);
+                assert($rawShareLineNumber >= 0);
+
+                if ((string) $message->source === 'BitSailor') {
+                    if (!$foundName) {
+                        array_splice($desktop, $rawNameLineNumber + 1, 0, "Name[{$lang}]={$translation}");
+                    } else {
+                        $desktop[$targetNameLineNumber] = "Name[{$lang}]={$translation}";
+                    }
                 }
+                if ((string) $message->source === 'Share via Send.') {
+                    if (!$foundShare) {
+                        array_splice($desktop, $rawShareLineNumber + 1, 0, "Description[{$lang}]={$translation}");
+                    } else {
+                        $desktop[$targetShareLineNumber] = "Description[{$lang}]={$translation}";
+                    }
+                }
+
+                file_put_contents($desktopFile, implode("\n", $desktop));
             }
-
-            assert($rawNameLineNumber >= 0);
-
-            if (!$found) {
-                array_splice($desktop, $rawNameLineNumber + 1, 0, "Name[{$lang}]={$translation}");
-            } else {
-                $desktop[$targetLineNumber] = "Name[{$lang}]={$translation}";
-            }
-
-            file_put_contents($desktopFile, implode("\n", $desktop));
         }
         if ((string) $context->name === CONTEXT_POLKIT_FILE) {
             $translation = (string) $context->message->translation;
@@ -50,7 +82,7 @@ foreach (glob(__DIR__ . '/*.ts') as $file) {
             $ns['xml'] ??= 'http://www.w3.org/XML/1998/namespace';
             $messages = $polkit->action->message;
 
-            $found = false;
+            $foundName = false;
 
             foreach ($messages as $message) {
                 assert($message instanceof SimpleXMLElement);
@@ -62,11 +94,11 @@ foreach (glob(__DIR__ . '/*.ts') as $file) {
                     continue;
                 }
                 $message[0] = $translation;
-                $found = true;
+                $foundName = true;
                 break;
             }
 
-            if (!$found) {
+            if (!$foundName) {
                 $newMessage = $polkit->action->addChild('message', $translation);
                 $newMessage->addAttribute('xml:lang', $lang, $ns['xml']);
             }
