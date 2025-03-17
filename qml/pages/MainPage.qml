@@ -120,6 +120,13 @@ Page {
             };
             // @disable-check M127
             loaded ? handle() : doAfterLoad.push(handle);
+            return;
+        }
+
+        if (app.fileToShare || app.textToShare) {
+            safeCall(function() {
+                pageStack.push("CreateSendChooseTypePage.qml");
+            });
         }
     }
 
@@ -137,6 +144,7 @@ Page {
                     pageStack.replace("LoginCheckPage.qml");
                 };
                 loaded ? handler() : doAfterLoad.push(handler);
+                return;
             }
         }
     }
@@ -158,6 +166,27 @@ Page {
             } else if (!settings.forceUnsafeApi) {
                 cli.stopServer();
             }
+        }
+    }
+
+    Connections {
+        target: app
+        onFileToShareChanged: {
+            if (!app.fileToShare) {
+                return;
+            }
+
+            safeCall(function() {
+                pageStack.push("CreateSendChooseTypePage.qml");
+            });
+        }
+        onTextToShareChanged: {
+            if (!app.textToShare) {
+                return;
+            }
+            safeCall(function() {
+                pageStack.push("CreateSendChooseTypePage.qml");
+            });
         }
     }
 

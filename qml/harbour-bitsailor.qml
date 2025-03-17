@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import Nemo.Notifications 1.0
+import Sailfish.Share 1.0
 
 import "pages"
 import "components" as Components
@@ -12,6 +13,8 @@ ApplicationWindow {
     property alias toaster: toasterElement
     property alias bottomMenuRef: bottomMenu
     property var actionsWhenNotBusy: []
+    property string fileToShare
+    property string textToShare
 
     id: app
 
@@ -30,6 +33,25 @@ ApplicationWindow {
 
         onKillingApiFailed: {
             apiAlreadyRunning.publish();
+        }
+    }
+
+    ShareProvider {
+        method: "anything"
+        capabilities: ["*"]
+        registerName: true
+
+        onTriggered: {
+            if (!resources.length) {
+                return;
+            }
+
+            app.activate();
+            if (resources[0].type === ShareResource.StringDataType) {
+                app.textToShare = resources[0].data
+            } else {
+                app.fileToShare = resources[0].filePath;
+            }
         }
     }
 

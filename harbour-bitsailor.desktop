@@ -4,6 +4,7 @@ X-Nemo-Application-Type=silica-qt5
 Icon=harbour-bitsailor
 Exec=harbour-bitsailor
 Name=BitSailor
+X-Share-Methods=anything;
 Name[de]=BitSailor
 Name[pl]=BitSailor
 Name[fr]=BitSailor
@@ -18,3 +19,8 @@ OrganizationName=cz.chrastecky
 ApplicationName=bitsailor
 # Add the required permissions here
 Permissions=
+
+[X-Share Method anything]
+Description=Share via Send
+Capabilities=*
+SupportsMultipleFiles=no

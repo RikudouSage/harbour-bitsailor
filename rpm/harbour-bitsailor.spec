@@ -75,5 +75,6 @@ desktop-file-install --delete-original       \
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 %{_datadir}/polkit-1/actions/cz.chrastecky.bitsailor.policy
+%{_datadir}/dbus-1/services/cz.chrastecky.bitsailor.service
 # >> files
 # << files

@@ -45,12 +45,16 @@ bw-logo.files = icons/bw/*
 patches.path = /usr/share/harbour-bitsailor/patches
 patches.files = patch/*
 
-INSTALLS += polkit bw-logo patches
+dbus.path = /usr/share/dbus-1/services
+dbus.files = dbus/*
+
+INSTALLS += polkit bw-logo patches dbus
 
 DISTFILES += qml/harbour-bitsailor.qml \
     icons/bw/* \
     polkit/cz.chrastecky.bitsailor.policy \
     patch/* \
+    dbus/* \
     qml/components/BottomMenu.qml \
     qml/components/BottomMenuItem.qml \
     qml/components/GeneratePassphraseContent.qml \

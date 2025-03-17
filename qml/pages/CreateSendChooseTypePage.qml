@@ -8,16 +8,25 @@ import "../components" as Components
 Page {
     property CreateSendPage dialog
     property bool loading: false
+    property var doAfterLoad: []
 
     id: page
     allowedOrientations: Orientation.All
 
+    function safeCall(callable) {
+        if (page.status == PageStatus.Active) {
+            callable();
+        } else {
+            doAfterLoad.push(callable);
+        }
+    }
+
     function onSendCreated(link) {
-        loading = false;
         Clipboard.text = link;
         app.toaster.show(qsTr("URL copied to clipboard"));
-        console.log(link);
-        pageStack.pop();
+        safeCall(function() {
+            pageStack.pop();
+        });
     }
 
     function handleDialog() {
@@ -70,18 +79,49 @@ Page {
         visible: !loading
 
         Button {
+            id: fileDialog
             text: qsTr("File")
             onClicked: {
-                dialog = pageStack.push("CreateSendPage.qml", {sendType: 'file'})
+                const fileToShareParts = app.fileToShare ? app.fileToShare.split('/') : [];
+
+                dialog = pageStack.push("CreateSendPage.qml", {
+                    sendType: 'file',
+                    file: app.fileToShare || '',
+                    name: app.fileToShare ? fileToShareParts[fileToShareParts.length - 1] : '',
+                })
+                app.fileToShare = '';
                 handleDialog();
             }
         }
 
         Button {
+            id: textDialog
             text: qsTr("Text")
             onClicked: {
-                dialog = pageStack.push("CreateSendPage.qml", {sendType: 'text'})
+                dialog = pageStack.push("CreateSendPage.qml", {sendType: 'text', text: app.textToShare})
                 handleDialog();
+            }
+        }
+    }
+
+    Component.onCompleted: {
+        if (app.fileToShare) {
+            safeCall(function() {
+                fileDialog.clicked(true);
+            });
+        }
+        if (app.textToShare) {
+            safeCall(function() {
+                textDialog.clicked(true);
+            });
+        }
+    }
+
+    onStatusChanged: {
+        if (status == PageStatus.Active) {
+            while (doAfterLoad.length) {
+                const callable = doAfterLoad.shift();
+                callable();
             }
         }
     }
