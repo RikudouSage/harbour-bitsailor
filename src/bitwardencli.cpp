@@ -412,6 +412,10 @@ void BitwardenCli::onFinished(int exitCode, Method method)
     case VaultUnlocked:
         emit vaultLockStatusResolved(exitCode == 0);
         break;
+    case BitwardenCli::CreateSend:
+        const auto url = QJsonDocument::fromJson(process->readAll()).object()["accessUrl"].toString().trimmed();
+        emit sendCreated(url);
+        break;
     }
 
     delete process;
@@ -601,6 +605,33 @@ void BitwardenCli::patchServer()
 
     qDebug() << "Starting server patch script:" << "node" << getDataPath() + "/runner.js";
     process->start("node", {getDataPath() + "/runner.js"});
+}
+
+void BitwardenCli::createFileSend(const QString &name, const QString &filePath, const uint &deletionDate, const uint &maximumAccessCount, const QString &password, const bool &hideEmail, const QString &privateNotes)
+{
+    auto json = createCommonCreateSendParts(name, deletionDate, maximumAccessCount, password, hideEmail, privateNotes);
+    json["type"] = SendType::SendTypeFile;
+
+    QJsonObject file;
+    file["fileName"] = filePath;
+    json["file"] = file;
+
+    const QString jsonString = QJsonDocument(json).toJson(QJsonDocument::JsonFormat::Compact).toBase64();
+    startProcess({"send", "create", jsonString}, CreateSend);
+}
+
+void BitwardenCli::createTextSend(const QString &name, const QString &text, const bool &hideText, const uint &deletionDate, const uint &maximumAccessCount, const QString &password, const bool &hideEmail, const QString &privateNotes)
+{
+    auto json = createCommonCreateSendParts(name, deletionDate, maximumAccessCount, password, hideEmail, privateNotes);
+    json["type"] = SendType::SendTypeText;
+
+    QJsonObject textNode;
+    textNode["text"] = text;
+    textNode["hidden"] = hideText;
+    json["text"] = textNode;
+
+    const QString jsonString = QJsonDocument(json).toJson(QJsonDocument::JsonFormat::Compact).toBase64();
+    startProcess({"send", "create", jsonString}, CreateSend);
 }
 
 bool BitwardenCli::serverNeedsPatching()

@@ -22,6 +22,7 @@ SOURCES += src/harbour-bitsailor.cpp \
     src/bitwardencli.cpp \
     src/bitwardencliinstaller.cpp \
     src/cachekey.cpp \
+    src/cli-api-common-parts.cpp \
     src/encryptor.cpp \
     src/fileaccessor.cpp \
     src/parsedurl.cpp \
@@ -70,6 +71,8 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/pages/CleanupPage.qml \
     qml/pages/ConfirmSettingPage.qml \
     qml/pages/ConfirmStringSettingPage.qml \
+    qml/pages/CreateSendChooseTypePage.qml \
+    qml/pages/CreateSendPage.qml \
     qml/pages/GeneratePasswordDialog.qml \
     qml/pages/GeneratePasswordPage.qml \
     qml/pages/InstallBitwardenCliPage.qml \
@@ -114,6 +117,7 @@ HEADERS += \
     src/bitwardencliinstaller.h \
     src/cache-keys.h \
     src/cachekey.h \
+    src/cli-api-common-parts.h \
     src/encryptor.h \
     src/fileaccessor.h \
     src/parsedurl.h \

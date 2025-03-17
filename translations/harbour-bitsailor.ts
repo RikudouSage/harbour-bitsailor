@@ -308,6 +308,109 @@
     </message>
 </context>
 <context>
+    <name>CreateSendChooseTypePage</name>
+    <message>
+        <source>Create a Send</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Creating</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>URL copied to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CreateSendPage</name>
+    <message>
+        <source>Create</source>
+        <extracomment>Dialog accept</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text to share</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When accessing the Send, hide the text by default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deletion date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 hour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2 days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>3 days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>7 days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>30 days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Additional settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Maximum access count</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Require this password to view the Send.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide my email address from recipients</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Private notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose file</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>GeneratePassphraseContent</name>
     <message>
         <source>Generate new passphrase</source>
@@ -854,6 +957,10 @@ please restart the app</source>
     <message>
         <source>The BitWarden server is not running,
 please restart the app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create a Send</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
