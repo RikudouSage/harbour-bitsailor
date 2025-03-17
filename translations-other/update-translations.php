@@ -64,7 +64,7 @@ foreach (glob(__DIR__ . '/*.ts') as $file) {
                         $desktop[$targetNameLineNumber] = "Name[{$lang}]={$translation}";
                     }
                 }
-                if ((string) $message->source === 'Share via Send.') {
+                if ((string) $message->source === 'Share via Send') {
                     if (!$foundShare) {
                         array_splice($desktop, $rawShareLineNumber + 1, 0, "Description[{$lang}]={$translation}");
                     } else {
