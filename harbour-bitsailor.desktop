@@ -22,5 +22,6 @@ Permissions=
 
 [X-Share Method anything]
 Description=Share via Send
+Description[cs]=Sdílet přes Send
 Capabilities=*
 SupportsMultipleFiles=no
