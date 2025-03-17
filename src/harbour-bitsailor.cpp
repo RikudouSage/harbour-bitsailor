@@ -7,6 +7,7 @@
 #include <QGuiApplication>
 #include <QtQml>
 #include <QQmlEngine>
+#include <QDBusConnection>
 
 #include <sailfishapp.h>
 
@@ -60,6 +61,7 @@ int main(int argc, char *argv[])
 #endif
 
     v->setSource(SailfishApp::pathToMainQml());
+    QDBusConnection::sessionBus().registerService("cz.chrastecky.bitsailor");
     v->show();
 
     return app->exec();

@@ -5,9 +5,9 @@ import Sailfish.Pickers 1.0
 Dialog {
     property string sendType // file or text
 
-    property string file: chooseField.value
-    property string text: textField.text
-    property string name: nameField.text
+    property alias file: chooseField.value
+    property alias text: textField.text
+    property alias name: nameField.text
     property bool hideText: hideTextField.checked
     property int deletionDate: deletionDateSelect.value
 

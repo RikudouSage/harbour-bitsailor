@@ -1,0 +1,4 @@
+[D-BUS Service]
+Name=cz.chrastecky.bitsailor
+Exec=/usr/bin/invoker --type=silica-qt5 --id=harbour-bitsailor --single-instance harbour-bitsailor
+#Exec=/usr/bin/harbour-bitsailor
