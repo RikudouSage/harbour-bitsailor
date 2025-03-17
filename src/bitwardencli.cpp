@@ -413,8 +413,8 @@ void BitwardenCli::onFinished(int exitCode, Method method)
         emit vaultLockStatusResolved(exitCode == 0);
         break;
     case BitwardenCli::CreateSend:
-        const auto url = QJsonDocument::fromJson(process->readAll()).object()["accessUrl"].toString().trimmed();
-        emit sendCreated(url);
+        const auto item = QJsonDocument::fromJson(process->readAll()).object();
+        emit sendCreated(item);
         break;
     }
 

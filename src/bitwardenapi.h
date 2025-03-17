@@ -73,6 +73,8 @@ public:
             const bool &hideEmail,
             const QString &privateNotes
     );
+    // todo make this private if file Sends via api get supported
+    Q_INVOKABLE void addTempSend(const QJsonObject &object);
 
 signals:
     void isRunningResult(bool running);
@@ -94,7 +96,7 @@ signals:
     void generatingPasswordFailed();
     void passphraseGenerated(const QString &passphrase);
     void generatingPassphraseFailed();
-    void sendCreated(const QString &link);
+    void sendCreated(const QJsonObject &item);
 
 private:
     QNetworkAccessManager manager;
@@ -117,7 +119,6 @@ private:
     void sendRequest(Method method, const QUrl &url, const QByteArray &data, const std::function<void(QByteArray, int)> &callback);
 
     const QJsonArray getTempSends();
-    void addTempSend(const QJsonObject &object);
 
     // todo remove
     void handleGetItems(const QString &rawJson, GetItemType getItemType = GetItems);

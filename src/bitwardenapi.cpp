@@ -283,8 +283,7 @@ void BitwardenApi::createFileSend(const QString &name, const QString &filePath, 
         Q_UNUSED(statusCode);
         const auto item = QJsonDocument::fromJson(body).object()["data"].toObject();
         addTempSend(item);
-        const auto url = item["accessUrl"].toString();
-        emit sendCreated(url);
+        emit sendCreated(item);
     });
 }
 
@@ -302,8 +301,7 @@ void BitwardenApi::createTextSend(const QString &name, const QString &text, cons
         Q_UNUSED(statusCode);
         const auto item = QJsonDocument::fromJson(body).object()["data"].toObject();
         addTempSend(item);
-        const auto url = item["accessUrl"].toString();
-        emit sendCreated(url);
+        emit sendCreated(item);
     });
 }
 

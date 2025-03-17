@@ -169,7 +169,7 @@ signals:
     void serverPatchError();
     void serverUnpatchable();
     void serverShouldBePatched();
-    void sendCreated(const QString &link);
+    void sendCreated(const QJsonObject &item);
 
 private slots:
     void onFinished(int exitCode, Method method);
