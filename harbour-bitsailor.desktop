@@ -22,6 +22,7 @@ Permissions=
 
 [X-Share Method anything]
 Description=Share via Send
+Description[pl]=Udostępnij przy użyciu Wyślij
 Description[cs]=Sdílet přes Send
 Capabilities=*
 SupportsMultipleFiles=no
