@@ -6,6 +6,11 @@
 		<extracomment>Displayed in the app grid as application name</extracomment>
         <translation>BitSailor</translation>
     </message>
+    <message>
+        <source>Share via Send</source>
+        <extracomment>Displayed as a description when someone shares a file/text, should be short</extracomment>
+        <translation>Mit Send teilen</translation>
+    </message>
 </context>
 <context>
     <name>PolkitFile</name>
