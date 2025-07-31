@@ -16,7 +16,7 @@ module.exports = function({ types: t }) {
                     return;
                 }
                 const callExpr = path.node.body;
-                if (callExpr.callee.name !== 'bw_serve_command_awaiter') {
+                if (callExpr.callee.name !== 'bw_serve_command_awaiter' && callExpr.callee.name !== 'serve_command_awaiter') {
                     return;
                 }
 
