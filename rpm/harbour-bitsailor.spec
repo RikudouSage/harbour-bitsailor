@@ -10,7 +10,7 @@ Name:       harbour-bitsailor
 %define _binary_payload w2.xzdio
 
 Summary:    BitSailor
-Version:    0.4.4
+Version:    0.4.5
 Release:    1
 Group:      Applications/Productivity
 License:    MIT
@@ -20,7 +20,7 @@ Source100:  harbour-bitsailor.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   sailfishsecretsdaemon-secretsplugins-default
 Requires:   sailfish-polkit-agent
-Requires:   nodejs
+Requires:   nodejs >= 20.19
 Requires:   npm
 Requires:   python3-base
 Requires:   make
