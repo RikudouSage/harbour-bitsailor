@@ -1013,7 +1013,7 @@ bitte starte die Anwendung neu</translation>
     </message>
     <message>
         <source>Fast authentication</source>
-        <translation>Schnelle Authentifizierung.</translation>
+        <translation>Schnelle Authentifizierung</translation>
     </message>
     <message>
         <source>When this option is enabled, authentication is skipped and you are assumed to be logged in regardless of the actual status. What this means in practice is that logged in check is postponed until you&apos;re on the main page and is done in the background, this gives anyone opening this app a few seconds to look around before transfering you to the login/unlock screen. This should be ok because all vault operations fail when you&apos;re not logged in. &lt;strong&gt;Warning&lt;/strong&gt;: if used in combination with the setting &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; some data may be leaked to whoever opens this app. Use at your own risk.</source>
