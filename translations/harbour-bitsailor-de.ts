@@ -1029,7 +1029,7 @@ bitte starte die Anwendung neu</translation>
     </message>
     <message>
         <source>Use OS authorization to unlock vault</source>
-        <translation>Benutze OS-Autorisierung ebenfalls, um Tresor zu entsperren.</translation>
+        <translation>Benutze OS-Autorisierung ebenfalls, um Tresor zu entsperren</translation>
     </message>
     <message>
         <source>Clean Up Everything</source>
