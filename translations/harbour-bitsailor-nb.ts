@@ -5,7 +5,7 @@
     <message>
         <source>Add item</source>
         <extracomment>Page title</extracomment>
-        <translation>Legg til oppføring </translation>
+        <translation>Legg til oppføring</translation>
     </message>
     <message>
         <source>Type</source>
