@@ -12,6 +12,7 @@ AppSettings::AppSettings(QObject *parent) : QObject(parent)
     prop_UseAuthorizationOnUnlocked = settings->value("useAuthorizationOnUnlocked", false).toBool();
     prop_UseApi = settings->value("useApi", false).toBool();
     prop_ForceUnsafeApi = settings->value("forceUnsafeApi", false).toBool();
+    prop_UseSystemCaStore = settings->value("useSystemCaStore", false).toBool();
 }
 
 AppSettings::~AppSettings()
@@ -19,7 +20,7 @@ AppSettings::~AppSettings()
     settings->sync();
 }
 
-bool AppSettings::lockOnClose()
+bool AppSettings::lockOnClose() const
 {
     return prop_LockOnCLose;
 }
@@ -35,7 +36,7 @@ void AppSettings::setLockOnClose(bool lock)
     emit lockOnCloseChanged();
 }
 
-bool AppSettings::eagerLoading()
+bool AppSettings::eagerLoading() const
 {
     return prop_EagerLoading;
 }
@@ -51,7 +52,7 @@ void AppSettings::setEagerLoading(bool enabled)
     emit eagerLoadingChanged();
 }
 
-bool AppSettings::persistentItemCache()
+bool AppSettings::persistentItemCache() const
 {
     return prop_PersistentItemCache;
 }
@@ -67,7 +68,7 @@ void AppSettings::setPersistentItemCache(bool enabled)
     emit persistentItemCacheChanged();
 }
 
-bool AppSettings::fastAuth()
+bool AppSettings::fastAuth() const
 {
     return prop_FastAuth;
 }
@@ -83,7 +84,7 @@ void AppSettings::setFastAuth(bool enabled)
     emit fastAuthChanged();
 }
 
-bool AppSettings::useSystemAuth()
+bool AppSettings::useSystemAuth() const
 {
     return prop_UseSystemAuth;
 }
@@ -99,7 +100,7 @@ void AppSettings::setUseSystemAuth(bool enabled)
     emit useSystemAuthChanged();
 }
 
-bool AppSettings::useAuthorizationOnUnlocked()
+bool AppSettings::useAuthorizationOnUnlocked() const
 {
     return prop_UseAuthorizationOnUnlocked;
 }
@@ -115,7 +116,7 @@ void AppSettings::setUseAuthorizationOnUnlocked(bool enabled)
     emit useAuthorizationOnUnlockedChanged();
 }
 
-bool AppSettings::useApi()
+bool AppSettings::useApi() const
 {
     return prop_UseApi;
 }
@@ -131,7 +132,7 @@ void AppSettings::setUseApi(bool enabled)
     emit useApiChanged();
 }
 
-bool AppSettings::forceUnsafeApi()
+bool AppSettings::forceUnsafeApi() const
 {
     return prop_ForceUnsafeApi;
 }
@@ -145,6 +146,22 @@ void AppSettings::setForceUnsafeApi(bool enabled)
     saveConfig("forceUnsafeApi", enabled);
     prop_ForceUnsafeApi = enabled;
     emit forceUnsafeApiChanged();
+}
+
+bool AppSettings::useSystemCaStore() const
+{
+    return prop_UseSystemCaStore;
+}
+
+void AppSettings::setUseSystemCaStore(bool enabled)
+{
+    if (enabled == prop_UseSystemCaStore) {
+        return;
+    }
+
+    saveConfig("useSystemCaStore", enabled);
+    prop_UseSystemCaStore = enabled;
+    emit useSystemCaStoreChanged();
 }
 
 void AppSettings::saveConfig(const QString &name, const QVariant &value)

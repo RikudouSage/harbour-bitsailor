@@ -16,26 +16,29 @@ class AppSettings : public QObject
     Q_PROPERTY(bool useAuthorizationOnUnlocked READ useAuthorizationOnUnlocked WRITE setUseAuthorizationOnUnlocked NOTIFY useAuthorizationOnUnlockedChanged)
     Q_PROPERTY(bool useApi READ useApi WRITE setUseApi NOTIFY useApiChanged)
     Q_PROPERTY(bool forceUnsafeApi READ forceUnsafeApi WRITE setForceUnsafeApi NOTIFY forceUnsafeApiChanged)
+    Q_PROPERTY(bool useSystemCaStore READ useSystemCaStore WRITE setUseSystemCaStore NOTIFY useSystemCaStoreChanged)
 public:
     explicit AppSettings(QObject *parent = nullptr);
     ~AppSettings();
 
-    bool lockOnClose();
+    bool lockOnClose() const;
     void setLockOnClose(bool lock);
-    bool eagerLoading();
+    bool eagerLoading() const;
     void setEagerLoading(bool enabled);
-    bool persistentItemCache();
+    bool persistentItemCache() const;
     void setPersistentItemCache(bool enabled);
-    bool fastAuth();
+    bool fastAuth() const;
     void setFastAuth(bool enabled);
-    bool useSystemAuth();
+    bool useSystemAuth() const;
     void setUseSystemAuth(bool enabled);
-    bool useAuthorizationOnUnlocked();
+    bool useAuthorizationOnUnlocked() const;
     void setUseAuthorizationOnUnlocked(bool enabled);
-    bool useApi();
+    bool useApi() const;
     void setUseApi(bool enabled);
-    bool forceUnsafeApi();
+    bool forceUnsafeApi() const;
     void setForceUnsafeApi(bool enabled);
+    bool useSystemCaStore() const;
+    void setUseSystemCaStore(bool enabled);
 
 signals:
     void lockOnCloseChanged();
@@ -46,6 +49,7 @@ signals:
     void useAuthorizationOnUnlockedChanged();
     void useApiChanged();
     void forceUnsafeApiChanged();
+    void useSystemCaStoreChanged();
 
 private:
     void saveConfig(const QString &name, const QVariant &value);
@@ -64,6 +68,7 @@ private:
     bool prop_UseAuthorizationOnUnlocked;
     bool prop_UseApi;
     bool prop_ForceUnsafeApi;
+    bool prop_UseSystemCaStore;
 };
 
 #endif // APPSETTINGS_H
