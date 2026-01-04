@@ -440,6 +440,7 @@ Page {
             }
 
             TextSwitch {
+                visible: enabled
                 enabled: secrets.invalidCertificatesAllowed()
                 checked: !secrets.invalidCertificatesAllowed()
                 automaticCheck: false
