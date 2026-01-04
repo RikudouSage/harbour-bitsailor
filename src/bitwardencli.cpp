@@ -448,8 +448,6 @@ void BitwardenCli::startProcess(const QStringList &arguments, Method method)
         env.insert("NODE_OPTIONS", "--use-openssl-ca");
     }
 
-    qDebug() << env.toStringList();
-
     startProcess(arguments, env, method);
 }
 
