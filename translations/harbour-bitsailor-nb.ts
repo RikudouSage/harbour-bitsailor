@@ -1,5 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="nb">
-
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="nb">
 <context>
     <name>AddItemPage</name>
     <message>
@@ -150,7 +151,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -526,6 +527,27 @@
     </message>
 </context>
 <context>
+    <name>IgnoreInvalidCertsPage</name>
+    <message>
+        <source>Ignore Invalid Certificates</source>
+        <extracomment>Dialog accept</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <extracomment>Dialog reject</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you ignore certificate errors you make yourself vulnerable to man-in-the-middle attacks which is exactly what issuer verification is meant to prevent. If you disable verification, anyone can use any certificate to impersonate any page. A malicious actor could impersonate your Bitwarden server using any https certificate, log any passwords that come through and then simply forward the response to you, thus stealing your passwords without you ever knowing.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I acknowledge the above warning and that I&apos;m making myself available to man-in-the-middle attacks which https is meant to prevent and which I&apos;m knowingly circumventing</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>InstallBitwardenCliPage</name>
     <message>
         <source>Installing Bitwarden CLI</source>
@@ -539,6 +561,30 @@
     <message>
         <source>There was an error installing the Bitwarden CLI.</source>
         <translation>Det oppstod en feil ved installasjon av Bitwarden CLI.</translation>
+    </message>
+</context>
+<context>
+    <name>InvalidCertificatePage</name>
+    <message>
+        <source>Invalid Certificate</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The certificate of the server you&apos;re trying to access is invalid. If that&apos;s intentional (e.g. a self-signed certificate), you can ignore certificate errors using the button below.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignore certificate validation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use system CA store</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -574,7 +620,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Navn på identitet</translation>
     </message>
     <message>
@@ -721,7 +767,7 @@
     </message>
     <message>
         <source>Logging in using API key is preferred, using email and password may fail in many unexpected ways. If this app hangs on &apos;Authenticating...&apos; screen indefinitely you must use API key login. If you have 2FA activated you must login using API key. See &lt;a href=&apos;%1&apos;&gt;Bitwarden help&lt;/a&gt; for more information.</source>
-        <translation>Det anbefales å logge inn med API-nøkkel. Innlogging med e‑postadresse og passord kan feile på flere uforutsette måter. Hvis appen henger på «Autentiserer…», må du bruke API-nøkkel. Har du 2FA aktivert, er API-nøkkel påkrevd. Se <a href='%1'>Bitwarden hjelp</a>.</translation>
+        <translation>Det anbefales å logge inn med API-nøkkel. Innlogging med e‑postadresse og passord kan feile på flere uforutsette måter. Hvis appen henger på «Autentiserer…», må du bruke API-nøkkel. Har du 2FA aktivert, er API-nøkkel påkrevd. Se &lt;a href=&apos;%1&apos;&gt;Bitwarden hjelp&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>You must log in before continuing.</source>
@@ -729,7 +775,7 @@
     </message>
     <message>
         <source>See &lt;a href=&apos;%1&apos;&gt;Bitwarden help&lt;/a&gt; for information on how to create an API key.</source>
-        <translation>Se <a href='%1'>Bitwarden hjelp</a> for informasjon om hvordan du oppretter en API-nøkkel.</translation>
+        <translation>Se &lt;a href=&apos;%1&apos;&gt;Bitwarden hjelp&lt;/a&gt; for informasjon om hvordan du oppretter en API-nøkkel.</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -803,10 +849,6 @@
         <translation>Synkroniserer hvelvet</translation>
     </message>
     <message>
-        <source>Pålogginger (%1)</source>
-        <translation>Zugangsdaten (%1)</translation>
-    </message>
-    <message>
         <source>Cards (%1)</source>
         <translation>Kort (%1)</translation>
     </message>
@@ -856,6 +898,10 @@ please restart the app</source>
         <source>The BitWarden CLI is not installed locally and thus the server cannot be patched.&lt;br&gt;&lt;br&gt;You can ignore this and continue using the api regardless &lt;strong&gt;but it poses a security risk&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;The recommended approach is to &lt;strong&gt;cancel this dialog which will disable api&lt;/strong&gt; altogether and you will fall back to using the CLI which is slower but safer.</source>
         <translation>BitWarden CLI er ikke installert lokalt, og derfor kan ikke serveren patches.&lt;br&gt;&lt;br&gt; Du kan ignorere dette og fortsette å bruke API-en, &lt;strong&gt;men det utgjør en sikkerhetsrisiko&lt;/strong&gt;.&lt;br&gt;&lt;br&gt; Anbefalt framgangsmåte er å &lt;strong&gt;avbryte denne dialogen — det vil deaktivere API-en&lt;/strong&gt;, og du vil falle tilbake til å bruke CLI-en, som er tregere men tryggere.</translation>
     </message>
+    <message>
+        <source>Logins (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MissingBitwardenCliPage</name>
@@ -871,7 +917,7 @@ please restart the app</source>
     </message>
     <message>
         <source>The Bitwarden CLI is not installed, do you wish to install it using &lt;strong&gt;npm&lt;/strong&gt;? The app cannot continue without Bitwarden CLI.</source>
-        <translation>Bitwarden CLI mangler — vil du installere den med <strong>npm</strong>? Appen krever Bitwarden CLI for å fortsette.</translation>
+        <translation>Bitwarden CLI mangler — vil du installere den med &lt;strong&gt;npm&lt;/strong&gt;? Appen krever Bitwarden CLI for å fortsette.</translation>
     </message>
 </context>
 <context>
@@ -883,7 +929,7 @@ please restart the app</source>
     </message>
     <message>
         <source>Required dependency is missing: &lt;strong&gt;%1&lt;/strong&gt;. This dependency should be installed automatically if you installed the app from store using the provided rpm. Please reinstall using the rpm package or install the missing dependency manually and then restart the app.</source>
-        <translation>Påkrevd avhengighet mangler: <strong>%1</strong>. Denne avhengigheten skal installeres automatisk hvis du installerte appen fra App Store. Installer på nytt ved å bruke RPM-pakken fra App Store, eller installer den manglende avhengigheten manuelt og start deretter appen på nytt.</translation>
+        <translation>Påkrevd avhengighet mangler: &lt;strong&gt;%1&lt;/strong&gt;. Denne avhengigheten skal installeres automatisk hvis du installerte appen fra App Store. Installer på nytt ved å bruke RPM-pakken fra App Store, eller installer den manglende avhengigheten manuelt og start deretter appen på nytt.</translation>
     </message>
 </context>
 <context>
@@ -902,8 +948,8 @@ please restart the app</source>
         <translation>Ignorer advarselen ovenfor — ikke patch serveren</translation>
     </message>
     <message>
-        <source>> The built-in BitWarden server is insecure and allows anyone to access it once it&apos;s running. To fix that we can patch the server to force it to require authentication before revealing its secrets.&lt;br&gt;&lt;br&gt;You can also ignore this, but it&apos;s &lt;strong&gt;highly discouraged&lt;/strong&gt; and you should &lt;strong&gt;really&lt;/strong&gt; know what you&apos;re doing.&lt;br&gt;&lt;br&gt;If you cancel, the api will be disabled.</source>
-        <translation>Den innebygde BitWarden‑serveren er usikker og gir hvem som helst tilgang når den kjører. For å fikse dette kan vi patche serveren slik at den krever autentisering før den avslører hemmelighetene sine.&lt;br&gt;&lt;br&gt; Du kan også ignorere dette, men det er &lt;strong&gt;sterkt frarådet&lt;/strong&gt; og du bør &lt;strong&gt;virkelig&lt;/strong&gt; vite hva du gjør før du gjør det.&lt;br&gt;&lt;br&gt; Hvis du avbryter, vil API‑en bli deaktivert.</translation>
+        <source>The built-in BitWarden server is insecure and allows anyone to access it once it&apos;s running. To fix that we can patch the server to force it to require authentication before revealing its secrets.&lt;br&gt;&lt;br&gt;You can also ignore this, but it&apos;s &lt;strong&gt;highly discouraged&lt;/strong&gt; and you should &lt;strong&gt;really&lt;/strong&gt; know what you&apos;re doing.&lt;br&gt;&lt;br&gt;If you cancel, the api will be disabled.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -918,7 +964,7 @@ please restart the app</source>
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -991,8 +1037,8 @@ please restart the app</source>
         <translation>Forhåndslast hvelvoppføringer i hovedvisningen</translation>
     </message>
     <message>
-        <source/>
-        <translation type="unfinished"/>
+        <source></source>
+        <translation></translation>
     </message>
     <message>
         <source>Save items in cache for faster load</source>
@@ -1111,6 +1157,26 @@ please restart the app</source>
         <source>Failed getting the configured server URL</source>
         <translation>Kunne ikke hente den konfigurerte server‑URLen</translation>
     </message>
+    <message>
+        <source>Enable certificate validation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Using this toggle you&apos;ll again enable https certificate checks when communicating with Bitwarden servers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please restart the app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use system CA store</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SetupPinPage</name>
@@ -1137,7 +1203,7 @@ please restart the app</source>
     </message>
     <message>
         <source>Warning: Enabling this option will disable &lt;i&gt;%1&lt;/i&gt;.</source>
-        <translation>&lt;strong&gt;Advarsel&lt;/strong&gt; Hvis du aktiverer dette alternativet, blir <i>%1</i> deaktivert</translation>
+        <translation>&lt;strong&gt;Advarsel&lt;/strong&gt; Hvis du aktiverer dette alternativet, blir &lt;i&gt;%1&lt;/i&gt; deaktivert</translation>
     </message>
 </context>
 <context>
@@ -1322,6 +1388,10 @@ for the changes to take effect.</source>
     <message>
         <source>The API is already running and could not be stopped. It&apos;s possible that the api will not work at all. Please try restarting the app. If you see this error again, try disabling api in the Settings.</source>
         <translation>APIet kjører allerede og kunne ikke stoppes. Det er mulig at APIet ikke vil fungere i det hele tatt. Prøv å starte appen på nytt. Hvis du får denne feilen igjen, prøv å deaktivere API i Innstillinger.</translation>
+    </message>
+    <message>
+        <source>Certificate validation is ignored</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
