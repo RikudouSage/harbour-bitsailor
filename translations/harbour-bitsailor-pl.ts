@@ -1146,6 +1146,18 @@ Uruchom ponownie aplikację</translation>
         <source>Failed getting the configured server URL</source>
         <translation>Niepowodzenie komunikacji z URL serwera</translation>
     </message>
+    <message>
+        <source>Enable certificate validation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Using this toggle you&apos;ll again enable https certificate checks when communicating with Bitwarden servers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please restart the app</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SetupPinPage</name>
@@ -1360,7 +1372,7 @@ aby zastosować zmiany.</translation>
         <translation>Api jest już uruchomione i nie może zostać zatrzymane. Jest możliwe, że API nie będzie działać wcale. Proszę spróbować uruchomić aplikację ponownie. Jeśli błąd się powtórzy proszę spróbować wyłączyć API w nastawach.</translation>
     </message>
     <message>
-        <source>Certificate checks are ignored</source>
+        <source>Certificate validation is ignored</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

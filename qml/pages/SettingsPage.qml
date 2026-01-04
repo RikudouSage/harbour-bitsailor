@@ -439,6 +439,23 @@ Page {
                 }
             }
 
+            TextSwitch {
+                enabled: secrets.invalidCertificatesAllowed()
+                checked: !secrets.invalidCertificatesAllowed()
+                automaticCheck: false
+                text: qsTr("Enable certificate validation")
+
+                onClicked: {
+                    const dialog = pageStack.push("ConfirmSettingPage.qml", {
+                        description: qsTr("Using this toggle you'll again enable https certificate checks when communicating with Bitwarden servers."),
+                    });
+                    dialog.accepted.connect(function() {
+                        secrets.disallowInvalidCertificates();
+                        app.toaster.show(qsTr("Please restart the app"), 100000);
+                    });
+                }
+            }
+
             Item {
                 width: parent.width
                 height: Theme.paddingMedium

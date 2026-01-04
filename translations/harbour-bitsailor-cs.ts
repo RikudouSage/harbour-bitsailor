@@ -1147,6 +1147,18 @@ prosím restartujte aplikaci</translation>
         <source>Failed getting the configured server URL</source>
         <translation>Nezdařilo se získat nastavenou URL serveru</translation>
     </message>
+    <message>
+        <source>Enable certificate validation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Using this toggle you&apos;ll again enable https certificate checks when communicating with Bitwarden servers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please restart the app</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SetupPinPage</name>
@@ -1361,7 +1373,7 @@ aby se změny projevily.</translation>
         <translation>API již běží a nepodařilo se ji zastavit. Je možné, že api nebude vůbec fungovat. Prosím, zkuste restartovat aplikaci. Pokud tuto chybu uvidíte znovu, zkuste api vypnout v nastavení.</translation>
     </message>
     <message>
-        <source>Certificate checks are ignored</source>
+        <source>Certificate validation is ignored</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

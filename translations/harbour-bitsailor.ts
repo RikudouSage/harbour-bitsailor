@@ -1145,6 +1145,18 @@ please restart the app</source>
         <source>Failed getting the configured server URL</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable certificate validation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Using this toggle you&apos;ll again enable https certificate checks when communicating with Bitwarden servers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please restart the app</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SetupPinPage</name>
@@ -1358,7 +1370,7 @@ for the changes to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Certificate checks are ignored</source>
+        <source>Certificate validation is ignored</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

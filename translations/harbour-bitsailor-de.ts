@@ -1148,6 +1148,18 @@ Die Bitwarden-CLI wird außerdem abgemeldet. Möchten Sie fortfahren?</translati
         <source>Failed getting the configured server URL</source>
         <translation>Abrufen der konfigurierten Server-URL fehlgeschlagen</translation>
     </message>
+    <message>
+        <source>Enable certificate validation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Using this toggle you&apos;ll again enable https certificate checks when communicating with Bitwarden servers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please restart the app</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SetupPinPage</name>
@@ -1362,7 +1374,7 @@ um die Änderungen anzuwenden.</translation>
         <translation>Die API läuft bereits und konnte nicht gestoppt werden. Möglicherweise funktioniert die API überhaupt nicht. Bitte versuche, die Anwendung neuzustarten. Wenn dieser Fehler erneut auftritt, versuche die API in den Einstellungen zu deaktivieren.</translation>
     </message>
     <message>
-        <source>Certificate checks are ignored</source>
+        <source>Certificate validation is ignored</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

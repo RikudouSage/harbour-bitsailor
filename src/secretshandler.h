@@ -34,7 +34,7 @@ public:
     Q_INVOKABLE bool clearAllSecrets();
     Q_INVOKABLE bool hasInternalPin();
     Q_INVOKABLE void allowInvalidCertificates();
-    void disallowInvalidCertificates();
+    Q_INVOKABLE void disallowInvalidCertificates();
 
     void setSessionId(const QString &sessionId);
     void setUsername(const QString &username);

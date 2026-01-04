@@ -144,7 +144,7 @@ ApplicationWindow {
             anchors.horizontalCenter: parent.horizontalCenter
             horizontalAlignment: Text.AlignHCenter
             color: Theme.lightPrimaryColor
-            text: qsTr("Certificate checks are ignored")
+            text: qsTr("Certificate validation is ignored")
         }
     }
 
