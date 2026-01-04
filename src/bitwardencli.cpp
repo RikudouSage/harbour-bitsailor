@@ -13,6 +13,7 @@
 #include "pathhelper.h"
 #include "random-helper.h"
 #include "cache-keys.h"
+#include "appsettings.h"
 
 BitwardenCli::BitwardenCli(QObject *parent) : QObject(parent)
 {
@@ -67,6 +68,13 @@ void BitwardenCli::loginApiKey(const QString &clientId, const QString &clientSec
     auto env = QProcessEnvironment::systemEnvironment();
     env.insert("BW_CLIENTID", clientId);
     env.insert("BW_CLIENTSECRET", clientSecret);
+    if (secretsHandler->invalidCertificatesAllowed()) {
+        env.insert("NODE_TLS_REJECT_UNAUTHORIZED", "0");
+    }
+    const AppSettings settingsSnapshot;
+    if (settingsSnapshot.useSystemCaStore()) {
+        env.insert("NODE_OPTIONS", "--use-openssl-ca");
+    }
 
     startProcess({"login", "--apikey"}, env, LoginApiKey);
 }
@@ -435,6 +443,13 @@ void BitwardenCli::startProcess(const QStringList &arguments, Method method)
     if (secretsHandler->invalidCertificatesAllowed()) {
         env.insert("NODE_TLS_REJECT_UNAUTHORIZED", "0");
     }
+    const AppSettings settingsSnapshot;
+    if (settingsSnapshot.useSystemCaStore()) {
+        env.insert("NODE_OPTIONS", "--use-openssl-ca");
+    }
+
+    qDebug() << env.toStringList();
+
     startProcess(arguments, env, method);
 }
 

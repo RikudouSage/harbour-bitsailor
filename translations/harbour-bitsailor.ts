@@ -578,6 +578,14 @@
         <source>Ignore certificate validation</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Use system CA store</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ItemDetailPage</name>
@@ -1155,6 +1163,14 @@ please restart the app</source>
     </message>
     <message>
         <source>Please restart the app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use system CA store</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

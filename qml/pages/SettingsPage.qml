@@ -456,6 +456,28 @@ Page {
                 }
             }
 
+            TextSwitch {
+                checked: settings.useSystemCaStore
+                automaticCheck: false
+                text: qsTr("Use system CA store")
+
+                onClicked: {
+                    const description = qsTr("This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. <strong>Note that you still have to make your self-signed certificate trusted</strong>.");
+
+                    if (!checked) {
+                        const dialog = pageStack.push("ConfirmSettingPage.qml", {
+                            description: description,
+                        });
+                        dialog.accepted.connect(function() {
+                            settings.useSystemCaStore = true;
+                        });
+                    } else {
+                        settings.useSystemCaStore = false;
+                    }
+
+                }
+            }
+
             Item {
                 width: parent.width
                 height: Theme.paddingMedium
