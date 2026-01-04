@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>AddItemPage</name>
     <message>
@@ -151,7 +149,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -531,20 +529,20 @@
     <message>
         <source>Ignore Invalid Certificates</source>
         <extracomment>Dialog accept</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Ignorovat chybné certifikáty</translation>
     </message>
     <message>
         <source>Cancel</source>
         <extracomment>Dialog reject</extracomment>
-        <translation type="unfinished">Zrušit</translation>
+        <translation>Zrušit</translation>
     </message>
     <message>
         <source>If you ignore certificate errors you make yourself vulnerable to man-in-the-middle attacks which is exactly what issuer verification is meant to prevent. If you disable verification, anyone can use any certificate to impersonate any page. A malicious actor could impersonate your Bitwarden server using any https certificate, log any passwords that come through and then simply forward the response to you, thus stealing your passwords without you ever knowing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorováním chyb certifikátů se stáváte zranitelnými vůči man-in-the-middle útokům, což je přesně to, kvůli čemu kontrola vydavatele existuje. Pokud kontrolu zakážete, kdokoliv může použít jakýkoliv certifikát a vydávat se za jakoukoliv stránku. Útočník se může vydávat za váš Bitwarden server pomocí libovolného https certifikátu, uložit si všechna hesla a pak jen předat odpověď serveru vám, díky čemuž ukradl vaše hesla, aniž byste o tom vůbec věděli.</translation>
     </message>
     <message>
         <source>I acknowledge the above warning and that I&apos;m making myself available to man-in-the-middle attacks which https is meant to prevent and which I&apos;m knowingly circumventing</source>
-        <translation type="unfinished"></translation>
+        <translation>Beru na vědomí varování výše, stejně tak fakt, že se vzdávám ochrany vůči man-in-the-middle útokům, kterým má https zabránit, což vědomě vypínám</translation>
     </message>
 </context>
 <context>
@@ -568,23 +566,23 @@
     <message>
         <source>Invalid Certificate</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Chybný certifikát</translation>
     </message>
     <message>
         <source>The certificate of the server you&apos;re trying to access is invalid. If that&apos;s intentional (e.g. a self-signed certificate), you can ignore certificate errors using the button below.</source>
-        <translation type="unfinished"></translation>
+        <translation>Certifikát serveru, ke kterému se připojujete je neplatný. Pokud je to schválně (např. self-signed certifikát), můžete ignorovat chyby certifikátů tlačítkem níže.</translation>
     </message>
     <message>
         <source>Ignore certificate validation</source>
-        <translation type="unfinished"></translation>
+        <translation>Ignorovat validaci certifikátů</translation>
     </message>
     <message>
         <source>Use system CA store</source>
-        <translation type="unfinished"></translation>
+        <translation>Použít systémový CA store</translation>
     </message>
     <message>
         <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Použije se systémový CA store (uložiště kořenových autorit) namísto výchozího. To znamená, že všechny certifikáty, které považuje za důvěryhodné systém, bude za důvěryhodné považovat i BitSailor. &lt;strong&gt;Mějte na paměti, že váš self-signed certifikát musí být důvěryhodný pro systém, nestačí jen zapnout tuto možnost&lt;/strong&gt;.</translation>
     </message>
 </context>
 <context>
@@ -620,7 +618,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -965,7 +963,7 @@ restartujte prosím aplikaci.</translation>
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -1039,8 +1037,8 @@ prosím restartujte aplikaci</translation>
         <translation>Načítat trezor na hlavní obrazovce</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save items in cache for faster load</source>
@@ -1157,23 +1155,23 @@ prosím restartujte aplikaci</translation>
     </message>
     <message>
         <source>Enable certificate validation</source>
-        <translation type="unfinished"></translation>
+        <translation>Povolit ověřování certifikátů</translation>
     </message>
     <message>
         <source>Using this toggle you&apos;ll again enable https certificate checks when communicating with Bitwarden servers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pomocí tohoto nastavení opět povolíte kontrolu https certifikátů pro komunikaci s Bitwarden servery.</translation>
     </message>
     <message>
         <source>Please restart the app</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím restartujte aplikaci</translation>
     </message>
     <message>
         <source>Use system CA store</source>
-        <translation type="unfinished"></translation>
+        <translation>Použít systémový CA store</translation>
     </message>
     <message>
         <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Použije se systémový CA store (uložiště kořenových autorit) namísto výchozího. To znamená, že všechny certifikáty, které považuje za důvěryhodné systém, bude za důvěryhodné považovat i BitSailor. &lt;strong&gt;Mějte na paměti, že váš self-signed certifikát musí být důvěryhodný pro systém, nestačí jen zapnout tuto možnost&lt;/strong&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1390,7 +1388,7 @@ aby se změny projevily.</translation>
     </message>
     <message>
         <source>Certificate validation is ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontrola certifikátů je vypnutá</translation>
     </message>
 </context>
 </TS>
