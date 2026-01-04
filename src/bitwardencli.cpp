@@ -320,6 +320,13 @@ void BitwardenCli::onFinished(int exitCode, Method method)
     }
 #endif
 
+    process->deleteLater();
+    if (invalidCert) {
+        emit invalidCertificate();
+        invalidCert = false;
+        return;
+    }
+
     switch (method) {
     case BitwardenCli::CreateItem:
         emit itemCreationFinished(exitCode == 0);
@@ -417,8 +424,6 @@ void BitwardenCli::onFinished(int exitCode, Method method)
         emit sendCreated(item);
         break;
     }
-
-    delete process;
 }
 
 void BitwardenCli::startProcess(const QStringList &arguments, Method method)
@@ -426,6 +431,9 @@ void BitwardenCli::startProcess(const QStringList &arguments, Method method)
     auto env = QProcessEnvironment::systemEnvironment();
     if (secretsHandler->hasSessionId()) {
         env.insert("BW_SESSION", secretsHandler->getSessionId());
+    }
+    if (secretsHandler->invalidCertificatesAllowed()) {
+        env.insert("NODE_TLS_REJECT_UNAUTHORIZED", "0");
     }
     startProcess(arguments, env, method);
 }
@@ -461,6 +469,12 @@ void BitwardenCli::startProcess(const QStringList &arguments, const QProcessEnvi
         if (method == LoginEmailPassword && stdErr.contains("Authenticator")) {
             process->terminate();
         }
+        if (stdErr.contains(QRegExp("unable to verify .+ certificate"))) {
+            invalidCert = true;
+        }
+#ifdef QT_DEBUG
+        qDebug() << stdErr;
+#endif
     });
 
 #ifdef QT_DEBUG

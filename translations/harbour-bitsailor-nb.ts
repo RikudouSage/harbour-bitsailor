@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="de">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="nb">
 
 <context>
     <name>AddItemPage</name>
@@ -456,7 +456,7 @@
     </message>
     <message>
         <source>Uppercase letters</source>
-        <translation>Store bokstaver/translation>
+        <translation>Store bokstaver</translation>
     </message>
     <message>
         <source>Lowercase letters</source>
@@ -850,11 +850,11 @@ please restart the app</source>
     </message>
     <message>
         <source>There was an error while patching the server, please contact the developer to let him know to fix it.&lt;br&gt;&lt;br&gt;Meanwhile you can disable the server patch (&lt;strong&gt;which is not recommended because it poses a security risk&lt;/strong&gt;) or you can cancel this disalog to disable api and use the CLI again.</source>
-        <translation>Det oppstod en feil under patching av serveren. Kontakt utvikleren og gi beskjed slik at det kan rettes.<br><br> I mellomtiden kan du deaktivere serverpatchen (<strong>noe som ikke anbefales fordi det utgjør en sikkerhetsrisiko</strong>), eller avbryte for å bruke CLI igjen.</translation>
+        <translation>Det oppstod en feil under patching av serveren. Kontakt utvikleren og gi beskjed slik at det kan rettes.&lt;br&gt;&lt;br&gt; I mellomtiden kan du deaktivere serverpatchen (&lt;strong&gt;noe som ikke anbefales fordi det utgjør en sikkerhetsrisiko&lt;/strong&gt;), eller avbryte for å bruke CLI igjen.</translation>
     </message>
     <message>
         <source>The BitWarden CLI is not installed locally and thus the server cannot be patched.&lt;br&gt;&lt;br&gt;You can ignore this and continue using the api regardless &lt;strong&gt;but it poses a security risk&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;The recommended approach is to &lt;strong&gt;cancel this dialog which will disable api&lt;/strong&gt; altogether and you will fall back to using the CLI which is slower but safer.</source>
-        <translation>BitWarden CLI er ikke installert lokalt, og derfor kan ikke serveren patches.<br><br> Du kan ignorere dette og fortsette å bruke API-en, <strong>men det utgjør en sikkerhetsrisiko</strong>.<br><br> Anbefalt framgangsmåte er å <strong>avbryte denne dialogen — det vil deaktivere API-en</strong>, og du vil falle tilbake til å bruke CLI-en, som er tregere men tryggere.</translation>
+        <translation>BitWarden CLI er ikke installert lokalt, og derfor kan ikke serveren patches.&lt;br&gt;&lt;br&gt; Du kan ignorere dette og fortsette å bruke API-en, &lt;strong&gt;men det utgjør en sikkerhetsrisiko&lt;/strong&gt;.&lt;br&gt;&lt;br&gt; Anbefalt framgangsmåte er å &lt;strong&gt;avbryte denne dialogen — det vil deaktivere API-en&lt;/strong&gt;, og du vil falle tilbake til å bruke CLI-en, som er tregere men tryggere.</translation>
     </message>
 </context>
 <context>
@@ -903,7 +903,7 @@ please restart the app</source>
     </message>
     <message>
         <source>> The built-in BitWarden server is insecure and allows anyone to access it once it&apos;s running. To fix that we can patch the server to force it to require authentication before revealing its secrets.&lt;br&gt;&lt;br&gt;You can also ignore this, but it&apos;s &lt;strong&gt;highly discouraged&lt;/strong&gt; and you should &lt;strong&gt;really&lt;/strong&gt; know what you&apos;re doing.&lt;br&gt;&lt;br&gt;If you cancel, the api will be disabled.</source>
-        <translation>en innebygde BitWarden‑serveren er usikker og gir hvem som helst tilgang når den kjører. For å fikse dette kan vi patche serveren slik at den krever autentisering før den avslører hemmelighetene sine.<br><br> Du kan også ignorere dette, men det er <strong>sterkt frarådet</strong> og du bør <strong>virkelig</strong> vite hva du gjør før du gjør det.<br><br> Hvis du avbryter, vil API‑en bli deaktivert.</translation>
+        <translation>Den innebygde BitWarden‑serveren er usikker og gir hvem som helst tilgang når den kjører. For å fikse dette kan vi patche serveren slik at den krever autentisering før den avslører hemmelighetene sine.&lt;br&gt;&lt;br&gt; Du kan også ignorere dette, men det er &lt;strong&gt;sterkt frarådet&lt;/strong&gt; og du bør &lt;strong&gt;virkelig&lt;/strong&gt; vite hva du gjør før du gjør det.&lt;br&gt;&lt;br&gt; Hvis du avbryter, vil API‑en bli deaktivert.</translation>
     </message>
 </context>
 <context>
@@ -1185,7 +1185,7 @@ please restart the app</source>
     </message>
     <message>
         <source>There was an unknown error and app cannot proceed. Please contact the developer on &lt;a href=&apos;%1&apos;&gt;OpenRepos&lt;/a&gt;.</source>
-        <translation>Det oppstod en ukjent feil, og appen kan ikke fortsette. Kontakt utvikleren på &lt;a href=&apos;%1&apos;&gt;OpenRepos&lt;/a&gt;.</source>OpenRepos&lt;/a&gt;.</translation>
+        <translation>Det oppstod en ukjent feil, og appen kan ikke fortsette. Kontakt utvikleren på &lt;a href=&apos;%1&apos;&gt;OpenRepos&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
