@@ -1360,5 +1360,9 @@ aby se změny projevily.</translation>
         <source>The API is already running and could not be stopped. It&apos;s possible that the api will not work at all. Please try restarting the app. If you see this error again, try disabling api in the Settings.</source>
         <translation>API již běží a nepodařilo se ji zastavit. Je možné, že api nebude vůbec fungovat. Prosím, zkuste restartovat aplikaci. Pokud tuto chybu uvidíte znovu, zkuste api vypnout v nastavení.</translation>
     </message>
+    <message>
+        <source>Certificate checks are ignored</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

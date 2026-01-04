@@ -24,7 +24,7 @@ public:
     QString getPin();
     QString getInternalPin();
     QString getServerApiKey();
-    bool invalidCertificatesAllowed();
+    Q_INVOKABLE bool invalidCertificatesAllowed();
 
     Q_INVOKABLE bool hasPin();
     Q_INVOKABLE void removePin();

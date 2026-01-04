@@ -1359,5 +1359,9 @@ aby zastosować zmiany.</translation>
         <source>The API is already running and could not be stopped. It&apos;s possible that the api will not work at all. Please try restarting the app. If you see this error again, try disabling api in the Settings.</source>
         <translation>Api jest już uruchomione i nie może zostać zatrzymane. Jest możliwe, że API nie będzie działać wcale. Proszę spróbować uruchomić aplikację ponownie. Jeśli błąd się powtórzy proszę spróbować wyłączyć API w nastawach.</translation>
     </message>
+    <message>
+        <source>Certificate checks are ignored</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

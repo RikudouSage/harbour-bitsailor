@@ -50,6 +50,7 @@ Page {
                     const dialog = pageStack.push("IgnoreInvalidCertsPage.qml");
                     dialog.accepted.connect(function() {
                         secrets.allowInvalidCertificates();
+                        app.invalidCertsAllowed = true;
                         safeCall(function() {
                             pageStack.replace("LoginCheckPage.qml");
                         });

@@ -1361,5 +1361,9 @@ um die Änderungen anzuwenden.</translation>
         <source>The API is already running and could not be stopped. It&apos;s possible that the api will not work at all. Please try restarting the app. If you see this error again, try disabling api in the Settings.</source>
         <translation>Die API läuft bereits und konnte nicht gestoppt werden. Möglicherweise funktioniert die API überhaupt nicht. Bitte versuche, die Anwendung neuzustarten. Wenn dieser Fehler erneut auftritt, versuche die API in den Einstellungen zu deaktivieren.</translation>
     </message>
+    <message>
+        <source>Certificate checks are ignored</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
