@@ -527,6 +527,27 @@
     </message>
 </context>
 <context>
+    <name>IgnoreInvalidCertsPage</name>
+    <message>
+        <source>Ignore Invalid Certificates</source>
+        <extracomment>Dialog accept</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <extracomment>Dialog reject</extracomment>
+        <translation type="unfinished">Annuler</translation>
+    </message>
+    <message>
+        <source>If you ignore certificate errors you make yourself vulnerable to man-in-the-middle attacks which is exactly what issuer verification is meant to prevent. If you disable verification, anyone can use any certificate to impersonate any page. A malicious actor could impersonate your Bitwarden server using any https certificate, log any passwords that come through and then simply forward the response to you, thus stealing your passwords without you ever knowing.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I acknowledge the above warning and that I&apos;m making myself available to man-in-the-middle attacks which https is meant to prevent and which I&apos;m knowingly circumventing</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>InstallBitwardenCliPage</name>
     <message>
         <source>Installing Bitwarden CLI</source>
@@ -540,6 +561,22 @@
     <message>
         <source>There was an error installing the Bitwarden CLI.</source>
         <translation>Une erreur est survenue lors de l&apos;installation de Bitwarden CLI.</translation>
+    </message>
+</context>
+<context>
+    <name>InvalidCertificatePage</name>
+    <message>
+        <source>Invalid Certificate</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The certificate of the server you&apos;re trying to access is invalid. If that&apos;s intentional (e.g. a self-signed certificate), you can ignore certificate errors using the button below.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignore certificate validation</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1110,6 +1147,18 @@ veuillez redémarrer l&apos;application</translation>
         <source>Failed getting the configured server URL</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable certificate validation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Using this toggle you&apos;ll again enable https certificate checks when communicating with Bitwarden servers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please restart the app</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SetupPinPage</name>
@@ -1320,6 +1369,10 @@ for the changes to take effect.</source>
     </message>
     <message>
         <source>The API is already running and could not be stopped. It&apos;s possible that the api will not work at all. Please try restarting the app. If you see this error again, try disabling api in the Settings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Certificate validation is ignored</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

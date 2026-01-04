@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="cs">
 <context>
     <name>AddItemPage</name>
     <message>
@@ -149,7 +151,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -525,6 +527,27 @@
     </message>
 </context>
 <context>
+    <name>IgnoreInvalidCertsPage</name>
+    <message>
+        <source>Ignore Invalid Certificates</source>
+        <extracomment>Dialog accept</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <extracomment>Dialog reject</extracomment>
+        <translation type="unfinished">Zrušit</translation>
+    </message>
+    <message>
+        <source>If you ignore certificate errors you make yourself vulnerable to man-in-the-middle attacks which is exactly what issuer verification is meant to prevent. If you disable verification, anyone can use any certificate to impersonate any page. A malicious actor could impersonate your Bitwarden server using any https certificate, log any passwords that come through and then simply forward the response to you, thus stealing your passwords without you ever knowing.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I acknowledge the above warning and that I&apos;m making myself available to man-in-the-middle attacks which https is meant to prevent and which I&apos;m knowingly circumventing</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>InstallBitwardenCliPage</name>
     <message>
         <source>Installing Bitwarden CLI</source>
@@ -538,6 +561,22 @@
     <message>
         <source>There was an error installing the Bitwarden CLI.</source>
         <translation>Nastala chyba při instalaci Bitwarden CLI.</translation>
+    </message>
+</context>
+<context>
+    <name>InvalidCertificatePage</name>
+    <message>
+        <source>Invalid Certificate</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The certificate of the server you&apos;re trying to access is invalid. If that&apos;s intentional (e.g. a self-signed certificate), you can ignore certificate errors using the button below.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignore certificate validation</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -573,7 +612,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -918,7 +957,7 @@ restartujte prosím aplikaci.</translation>
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -992,8 +1031,8 @@ prosím restartujte aplikaci</translation>
         <translation>Načítat trezor na hlavní obrazovce</translation>
     </message>
     <message>
-        <source/>
-        <translation type="unfinished"/>
+        <source></source>
+        <translation></translation>
     </message>
     <message>
         <source>Save items in cache for faster load</source>
@@ -1107,6 +1146,18 @@ prosím restartujte aplikaci</translation>
     <message>
         <source>Failed getting the configured server URL</source>
         <translation>Nezdařilo se získat nastavenou URL serveru</translation>
+    </message>
+    <message>
+        <source>Enable certificate validation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Using this toggle you&apos;ll again enable https certificate checks when communicating with Bitwarden servers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please restart the app</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1320,6 +1371,10 @@ aby se změny projevily.</translation>
     <message>
         <source>The API is already running and could not be stopped. It&apos;s possible that the api will not work at all. Please try restarting the app. If you see this error again, try disabling api in the Settings.</source>
         <translation>API již běží a nepodařilo se ji zastavit. Je možné, že api nebude vůbec fungovat. Prosím, zkuste restartovat aplikaci. Pokud tuto chybu uvidíte znovu, zkuste api vypnout v nastavení.</translation>
+    </message>
+    <message>
+        <source>Certificate validation is ignored</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

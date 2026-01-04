@@ -31,6 +31,7 @@ static const QString clientIdName = "clientId";
 static const QString pinName = "pin";
 static const QString internalPinName = "internalPin";
 static const QString apiKeyName = "apiKey";
+static const QString invalidCertsName = "invalidCertsAllowed";
 
 SecretsHandler::SecretsHandler(QObject *parent) : QObject(parent)
 {
@@ -76,6 +77,11 @@ QString SecretsHandler::getInternalPin()
 QString SecretsHandler::getServerApiKey()
 {
     return getData(apiKeyName);
+}
+
+bool SecretsHandler::invalidCertificatesAllowed()
+{
+    return getData(invalidCertsName) == "true";
 }
 
 bool SecretsHandler::hasPin()
@@ -125,6 +131,16 @@ bool SecretsHandler::hasInternalPin()
 {
     auto pin = getInternalPin();
     return !pin.isNull() && !pin.isEmpty();
+}
+
+void SecretsHandler::allowInvalidCertificates()
+{
+    storeData(invalidCertsName, "true");
+}
+
+void SecretsHandler::disallowInvalidCertificates()
+{
+    deleteSecret(invalidCertsName);
 }
 
 void SecretsHandler::setSessionId(const QString &sessionId)

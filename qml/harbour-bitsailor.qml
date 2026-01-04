@@ -15,7 +15,7 @@ ApplicationWindow {
     property var actionsWhenNotBusy: []
     property string fileToShare
     property string textToShare
-
+    property bool invalidCertsAllowed: secrets.invalidCertificatesAllowed()
     id: app
 
     initialPage: Component { SystemCheckerPage { } }
@@ -125,6 +125,33 @@ ApplicationWindow {
 
     SecretsHandler {
         id: secrets
+    }
+
+    Rectangle {
+        id: invalidCertsBanner
+        color: Theme.errorColor
+        visible: app.invalidCertsAllowed
+        z: 1000
+        width: parent.width
+        height: Theme.itemSizeLarge
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
+
+        Label {
+            id: warningLabel
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: Theme.paddingSmall
+            anchors.horizontalCenter: parent.horizontalCenter
+            horizontalAlignment: Text.AlignHCenter
+            color: Theme.lightPrimaryColor
+            text: qsTr("Certificate validation is ignored")
+        }
+    }
+
+    Binding {
+        target: pageStack
+        property: "anchors.topMargin"
+        value: invalidCertsBanner.visible ? invalidCertsBanner.height : 0
     }
 
     Notification {

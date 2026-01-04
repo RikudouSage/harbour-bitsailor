@@ -170,6 +170,7 @@ signals:
     void serverUnpatchable();
     void serverShouldBePatched();
     void sendCreated(const QJsonObject &item);
+    void invalidCertificate();
 
 private slots:
     void onFinished(int exitCode, Method method);
@@ -181,6 +182,7 @@ private:
     SecretsHandler* secretsHandler = new SecretsHandler(this);
     RuntimeCache* runtimeCache = RuntimeCache::getInstance(this);
     const QString serverPatchScripts = "/usr/share/harbour-bitsailor/patches";
+    bool invalidCert = false;
 
     void startProcess(const QStringList &arguments, Method method);
     void startProcess(const QStringList &arguments, const QProcessEnvironment &environment, Method method);

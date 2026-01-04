@@ -114,6 +114,17 @@ Page {
         onWrongPinProvided: {
             displayUnlockPage(qsTr("Invalid PIN."));
         }
+
+        onInvalidCertificate: {
+            const handle = function() {
+                pageStack.replace("InvalidCertificatePage.qml");
+            };
+            if (pageStack.busy) {
+                doAfterLoad.push(handle);
+            } else {
+                handle();
+            }
+        }
     }
 
     BusyLabel {
