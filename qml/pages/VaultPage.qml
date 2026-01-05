@@ -70,7 +70,7 @@ Page {
                 text: addItemTitle
                 visible: addItemEnabled
                 onClicked: {
-                    const dialog = pageStack.push("AddItemPage.qml", {type: addItemType});
+                    const dialog = pageStack.push("EditItemPage.qml", {type: addItemType});
                     dialog.accepted.connect(function() {
                         const object = JSON.parse(JSON.stringify(dialog.itemTemplate));
                         const type = dialog.type;

@@ -6,6 +6,10 @@ import "../components" as Components
 
 Dialog {
     property int type: BitwardenCli.NoType
+    property bool typeEditable: true
+    //: Page title
+    property string acceptText: qsTr("Add item")
+
     readonly property var itemTemplate: {
         "organizationId": null,
         "collectionIds": null,
@@ -39,6 +43,7 @@ Dialog {
         "code": null
     }
 
+    property var initialUris: []
     property alias nameValue: name.text
     property alias loginUsernameValue: loginUsername.text
     property alias loginPasswordValue: loginPassword.text
@@ -83,11 +88,12 @@ Dialog {
             spacing: Theme.paddingLarge
             DialogHeader {
                 //: Page title
-                acceptText: qsTr("Add item")
+                acceptText: page.acceptText
             }
 
             ComboBox {
                 id: typeSelect
+                visible: typeEditable
 
                 property var itemData: [
                     //: Item type
@@ -454,6 +460,22 @@ Dialog {
                     label: qsTr("Note")
                 }
             }
+        }
+    }
+
+    Component.onCompleted: {
+        if (initialUris.length) {
+            urisModel.remove(0);
+            for (var i in initialUris) {
+                if (!initialUris.hasOwnProperty(i)) {
+                    continue;
+                }
+
+                const uri = initialUris[i];
+                urisModel.append({value: uri.uri, matchType: uri.match});
+            }
+
+            initialUris = [];
         }
     }
 }

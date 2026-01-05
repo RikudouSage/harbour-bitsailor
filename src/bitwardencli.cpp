@@ -268,6 +268,11 @@ void BitwardenCli::createItem(const QString &encodedData)
     startProcess({"create", "item", encodedData}, CreateItem);
 }
 
+void BitwardenCli::updateItem(const QString &id, const QString &encodedData)
+{
+    startProcess({"edit", "item", id, encodedData}, UpdateItem);
+}
+
 void BitwardenCli::serve(bool force)
 {
     if (!force && serverNeedsPatching()) {
@@ -338,6 +343,9 @@ void BitwardenCli::onFinished(int exitCode, Method method)
     switch (method) {
     case BitwardenCli::CreateItem:
         emit itemCreationFinished(exitCode == 0);
+        break;
+    case BitwardenCli::UpdateItem:
+        emit itemUpdated(exitCode == 0);
         break;
     case BitwardenCli::SetServerUrl:
         emit serverUrlSet(exitCode == 0);

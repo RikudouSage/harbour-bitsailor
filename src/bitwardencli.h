@@ -49,6 +49,7 @@ public:
         CreateItem,
         Serve,
         CreateSend,
+        UpdateItem,
     };
 
     enum TwoStepLoginMethods {
@@ -118,6 +119,7 @@ public:
     Q_INVOKABLE void getServerUrl();
     Q_INVOKABLE void setServerUrl(QString url);
     Q_INVOKABLE void createItem(const QString &encodedData);
+    Q_INVOKABLE void updateItem(const QString &id, const QString &encodedData);
     Q_INVOKABLE void serve(bool force = false);
     Q_INVOKABLE void stopServer();
     Q_INVOKABLE void patchServer();
@@ -164,6 +166,7 @@ signals:
     void serverUrlResolved(QString serverUrl);
     void serverUrlSet(bool success);
     void itemCreationFinished(bool success);
+    void itemUpdated(bool success);
     void serverStarted();
     void serverPatched();
     void serverPatchError();
