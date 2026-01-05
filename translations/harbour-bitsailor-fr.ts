@@ -2,148 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="fr">
 <context>
-    <name>AddItemPage</name>
-    <message>
-        <source>Add item</source>
-        <extracomment>Page title</extracomment>
-        <translation>Ajouter un élément</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>Type</translation>
-    </message>
-    <message>
-        <source>-- choose type --</source>
-        <extracomment>Item type</extracomment>
-        <translation>-- choisir un type --</translation>
-    </message>
-    <message>
-        <source>Login</source>
-        <extracomment>Item type</extracomment>
-        <translation>Identifiant</translation>
-    </message>
-    <message>
-        <source>Card</source>
-        <extracomment>Item type</extracomment>
-        <translation>Carte de paiement</translation>
-    </message>
-    <message>
-        <source>Note</source>
-        <extracomment>Item type</extracomment>
-        <translation>Note sécurisée</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Nom d&apos;utilisateur</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <extracomment>Name of the item</extracomment>
-        <translation>Nom</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Mot de passe</translation>
-    </message>
-    <message>
-        <source>Item information</source>
-        <translation>Informations sur l&apos;élément</translation>
-    </message>
-    <message>
-        <source>Authenticator key (TOTP)</source>
-        <translation>Clé d&apos;authentification (TOTP)</translation>
-    </message>
-    <message>
-        <source>URIs</source>
-        <translation>URIs</translation>
-    </message>
-    <message>
-        <source>URI %1</source>
-        <translation>URI %1</translation>
-    </message>
-    <message>
-        <source>New URI</source>
-        <translation>Nouvelle URI</translation>
-    </message>
-    <message>
-        <source>Match type</source>
-        <translation>Détéction de correspondance URI</translation>
-    </message>
-    <message>
-        <source>Default match detection</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Détection par défaut</translation>
-    </message>
-    <message>
-        <source>Base domain</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Domaine de base</translation>
-    </message>
-    <message>
-        <source>Host</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Hôte</translation>
-    </message>
-    <message>
-        <source>Starts with</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Commence par</translation>
-    </message>
-    <message>
-        <source>Exact</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Exact</translation>
-    </message>
-    <message>
-        <source>Regular expression</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Expression régulière</translation>
-    </message>
-    <message>
-        <source>Never</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Jamais</translation>
-    </message>
-    <message>
-        <source>Notes</source>
-        <translation>Notes</translation>
-    </message>
-    <message>
-        <source>Cardholder Name</source>
-        <translation>Titulaire</translation>
-    </message>
-    <message>
-        <source>Brand</source>
-        <translation>Réseau de paiement</translation>
-    </message>
-    <message>
-        <source>Other</source>
-        <extracomment>Card brand</extracomment>
-        <translation>Autre</translation>
-    </message>
-    <message>
-        <source>-- choose --</source>
-        <extracomment>Choose a card brand from a ComboBox</extracomment>
-        <translation>-- sélectionner --</translation>
-    </message>
-    <message>
-        <source>Card Number</source>
-        <translation>Numéro</translation>
-    </message>
-    <message>
-        <source>Expiration month</source>
-        <translation>Mois d&apos;expiration</translation>
-    </message>
-    <message>
-        <source>Expiration year</source>
-        <translation>Année d&apos;expiration</translation>
-    </message>
-    <message>
-        <source>Security Code</source>
-        <translation>Code de sécurité</translation>
-    </message>
-</context>
-<context>
     <name>BottomMenu</name>
     <message>
         <source>Vaults</source>
@@ -408,6 +266,148 @@
     <message>
         <source>Choose file</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>EditItemPage</name>
+    <message>
+        <source>Add item</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished">Ajouter un élément</translation>
+    </message>
+    <message>
+        <source>-- choose type --</source>
+        <extracomment>Item type</extracomment>
+        <translation type="unfinished">-- choisir un type --</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <extracomment>Item type</extracomment>
+        <translation type="unfinished">Connexion</translation>
+    </message>
+    <message>
+        <source>Card</source>
+        <extracomment>Item type</extracomment>
+        <translation type="unfinished">Carte de paiement</translation>
+    </message>
+    <message>
+        <source>Note</source>
+        <extracomment>Item type</extracomment>
+        <translation type="unfinished">Note</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished">Type</translation>
+    </message>
+    <message>
+        <source>Item information</source>
+        <translation type="unfinished">Informations sur l&apos;élément</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <extracomment>Name of the item</extracomment>
+        <translation type="unfinished">Nom</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished">Mot de passe</translation>
+    </message>
+    <message>
+        <source>Authenticator key (TOTP)</source>
+        <translation type="unfinished">Clé d&apos;authentification (TOTP)</translation>
+    </message>
+    <message>
+        <source>URIs</source>
+        <translation type="unfinished">URIs</translation>
+    </message>
+    <message>
+        <source>URI %1</source>
+        <translation type="unfinished">URI %1</translation>
+    </message>
+    <message>
+        <source>Match type</source>
+        <translation type="unfinished">Détéction de correspondance URI</translation>
+    </message>
+    <message>
+        <source>Default match detection</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Détection par défaut</translation>
+    </message>
+    <message>
+        <source>Base domain</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Domaine de base</translation>
+    </message>
+    <message>
+        <source>Host</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Hôte</translation>
+    </message>
+    <message>
+        <source>Starts with</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Commence par</translation>
+    </message>
+    <message>
+        <source>Exact</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Exact</translation>
+    </message>
+    <message>
+        <source>Regular expression</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Expression régulière</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Jamais</translation>
+    </message>
+    <message>
+        <source>New URI</source>
+        <translation type="unfinished">Nouvelle URI</translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <translation type="unfinished">Notes</translation>
+    </message>
+    <message>
+        <source>Cardholder Name</source>
+        <translation type="unfinished">Nom du titulaire de la carte</translation>
+    </message>
+    <message>
+        <source>Brand</source>
+        <translation type="unfinished">Réseau de paiement</translation>
+    </message>
+    <message>
+        <source>-- choose --</source>
+        <extracomment>Choose a card brand from a ComboBox</extracomment>
+        <translation type="unfinished">-- sélectionner --</translation>
+    </message>
+    <message>
+        <source>Other</source>
+        <extracomment>Card brand</extracomment>
+        <translation type="unfinished">Autre</translation>
+    </message>
+    <message>
+        <source>Card Number</source>
+        <translation type="unfinished">Numéro de carte</translation>
+    </message>
+    <message>
+        <source>Expiration month</source>
+        <translation type="unfinished">Mois d&apos;expiration</translation>
+    </message>
+    <message>
+        <source>Expiration year</source>
+        <translation type="unfinished">Année d&apos;expiration</translation>
+    </message>
+    <message>
+        <source>Security Code</source>
+        <translation type="unfinished">Code de sécurité</translation>
     </message>
 </context>
 <context>
@@ -709,6 +709,16 @@
     <message>
         <source>Last update: %1</source>
         <translation>Mis à jour: %1</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <extracomment>Pull down menu in detail</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <extracomment>Accept button for updating an item</extracomment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

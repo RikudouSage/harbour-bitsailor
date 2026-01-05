@@ -16,6 +16,14 @@ Page {
     id: page
     allowedOrientations: Orientation.All
 
+    function reloadPage() {
+        if (settings.useApi) {
+            api.getItem(itemId);
+        } else {
+            cli.getItem(itemId);
+        }
+    }
+
     function createCover() {
         var pageName = 'CoverPage.qml';
 
@@ -90,6 +98,10 @@ Page {
         onItemFetchingFailed: {
             page.onItemFetchingFailed();
         }
+
+        onItemUpdated: {
+            reloadPage();
+        }
     }
 
     BitwardenApi {
@@ -114,6 +126,76 @@ Page {
         anchors.fill: parent
         contentHeight: column.height
         visible: !loader.running
+
+        PullDownMenu {
+            MenuItem {
+                //: Pull down menu in detail
+                text: qsTr("Edit")
+                onClicked: {
+                    const values = {
+                        type: item.type,
+                        nameValue: item.name,
+                        typeEditable: false,
+                        //: Accept button for updating an item
+                        acceptText: qsTr("Update"),
+                    };
+
+                    if (item.type === BitwardenCli.Login) {
+                        values.loginUsernameValue = item.login.username;
+                        values.loginPasswordValue = item.login.password;
+                        values.loginTotpValue = item.login.totp;
+                        values.loginNotesValue = item.notes;
+                        values.initialUris = item.login.uris;
+                    }
+                    if (item.type === BitwardenCli.Card) {
+                        values.cardCardholderNameValue = item.card.cardholderName;
+                        values.cardBrandValue = item.card.brand;
+                        values.cardNumberValue = item.card.number;
+                        values.cardExpirationMonthValue = item.card.expMonth;
+                        values.cardExpirationYearValue = item.card.expYear;
+                        values.cardCvvValue = item.card.code;
+                    }
+                    if (item.type === BitwardenCli.SecureNote) {
+                        values.secureNoteNoteValue = item.notes;
+                    }
+
+                    const dialog = pageStack.push("EditItemPage.qml", values);
+                    // todo deduplicate with VaultPage
+                    dialog.accepted.connect(function() {
+                        const object = page.item;
+                        const type = dialog.type;
+                        switch (type) {
+                        case BitwardenCli.Login:
+                            object.login = JSON.parse(JSON.stringify(dialog.loginItemTemplate));
+                            object.login.password = dialog.loginPasswordValue || null;
+                            object.login.totp = dialog.loginTotpValue || null;
+                            object.login.username = dialog.loginUsernameValue || null;
+                            object.login.uris = dialog.getUris() || null;
+                            break;
+                        case BitwardenCli.SecureNote:
+                            object.secureNote = JSON.parse(JSON.stringify(dialog.secureNoteItemTemplate));
+                            break;
+                        case BitwardenCli.Card:
+                            object.card = JSON.parse(JSON.stringify(dialog.cardItemTemplate));
+                            object.card.cardholderName = dialog.cardCardholderNameValue || null;
+                            object.card.brand = dialog.cardBrandValue || null;
+                            object.card.number = dialog.cardNumberValue || null;
+                            object.card.expMonth = dialog.cardExpirationMonthValue || null;
+                            object.card.expYear = dialog.cardExpirationYearValue || null;
+                            object.card.code = dialog.cardCvvValue || null
+                            break;
+                        }
+
+                        object.type = dialog.type;
+                        object.name = dialog.nameValue;
+                        object.notes = dialog.loginNotesValue || dialog.secureNoteNoteValue || null;
+
+                        loaded = false;
+                        cli.updateItem(page.itemId, Qt.btoa(JSON.stringify(object)));
+                    });
+                }
+            }
+        }
 
         VerticalScrollDecorator {}
 
@@ -708,7 +790,7 @@ Page {
     onStatusChanged: {
         if (status === PageStatus.Active) {
             if (!pageLoaded) {
-                settings.useApi ? api.getItem(itemId) : cli.getItem(itemId);
+                reloadPage();
             }
 
             pageLoaded = true;

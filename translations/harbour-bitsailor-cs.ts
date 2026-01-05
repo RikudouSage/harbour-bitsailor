@@ -1,146 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
-<context>
-    <name>AddItemPage</name>
-    <message>
-        <source>Add item</source>
-        <extracomment>Page title</extracomment>
-        <translation>Přidat položku</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>Typ</translation>
-    </message>
-    <message>
-        <source>-- choose type --</source>
-        <extracomment>Item type</extracomment>
-        <translation>-- zvolte typ --</translation>
-    </message>
-    <message>
-        <source>Login</source>
-        <extracomment>Item type</extracomment>
-        <translation>Přihlášení</translation>
-    </message>
-    <message>
-        <source>Card</source>
-        <extracomment>Item type</extracomment>
-        <translation>Karta</translation>
-    </message>
-    <message>
-        <source>Note</source>
-        <extracomment>Item type</extracomment>
-        <translation>Poznámka</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Uživatelské jméno</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <extracomment>Name of the item</extracomment>
-        <translation>Název</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Heslo</translation>
-    </message>
-    <message>
-        <source>Item information</source>
-        <translation>Informace o položce</translation>
-    </message>
-    <message>
-        <source>Authenticator key (TOTP)</source>
-        <translation>Klíč autentikátoru (TOTP)</translation>
-    </message>
-    <message>
-        <source>URIs</source>
-        <translation>URI</translation>
-    </message>
-    <message>
-        <source>URI %1</source>
-        <translation>URI %1</translation>
-    </message>
-    <message>
-        <source>New URI</source>
-        <translation>Nová URI</translation>
-    </message>
-    <message>
-        <source>Match type</source>
-        <translation>Zjišťování shody</translation>
-    </message>
-    <message>
-        <source>Default match detection</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Výchozí</translation>
-    </message>
-    <message>
-        <source>Base domain</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Základní doména</translation>
-    </message>
-    <message>
-        <source>Host</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Host</translation>
-    </message>
-    <message>
-        <source>Starts with</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Začíná na</translation>
-    </message>
-    <message>
-        <source>Exact</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Přesná shoda</translation>
-    </message>
-    <message>
-        <source>Regular expression</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Regulární výraz</translation>
-    </message>
-    <message>
-        <source>Never</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Nikdy</translation>
-    </message>
-    <message>
-        <source>Notes</source>
-        <translation>Poznámky</translation>
-    </message>
-    <message>
-        <source>Cardholder Name</source>
-        <translation>Jméno držitele karty</translation>
-    </message>
-    <message>
-        <source>Brand</source>
-        <translation>Značka</translation>
-    </message>
-    <message>
-        <source>Other</source>
-        <extracomment>Card brand</extracomment>
-        <translation>Ostatní</translation>
-    </message>
-    <message>
-        <source>-- choose --</source>
-        <extracomment>Choose a card brand from a ComboBox</extracomment>
-        <translation>-- zvolte --</translation>
-    </message>
-    <message>
-        <source>Card Number</source>
-        <translation>Číslo karty</translation>
-    </message>
-    <message>
-        <source>Expiration month</source>
-        <translation>Měsíc expirace</translation>
-    </message>
-    <message>
-        <source>Expiration year</source>
-        <translation>Rok expirace</translation>
-    </message>
-    <message>
-        <source>Security Code</source>
-        <translation>Bezpečnostní kód</translation>
-    </message>
-</context>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="cs">
 <context>
     <name>BottomMenu</name>
     <message>
@@ -149,7 +9,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -409,6 +269,148 @@
     </message>
 </context>
 <context>
+    <name>EditItemPage</name>
+    <message>
+        <source>Add item</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished">Přidat položku</translation>
+    </message>
+    <message>
+        <source>-- choose type --</source>
+        <extracomment>Item type</extracomment>
+        <translation type="unfinished">-- zvolte typ --</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <extracomment>Item type</extracomment>
+        <translation type="unfinished">Přihlásit se</translation>
+    </message>
+    <message>
+        <source>Card</source>
+        <extracomment>Item type</extracomment>
+        <translation type="unfinished">Karta</translation>
+    </message>
+    <message>
+        <source>Note</source>
+        <extracomment>Item type</extracomment>
+        <translation type="unfinished">Poznámka</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished">Typ</translation>
+    </message>
+    <message>
+        <source>Item information</source>
+        <translation type="unfinished">Informace o položce</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <extracomment>Name of the item</extracomment>
+        <translation type="unfinished">Název</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished">Heslo</translation>
+    </message>
+    <message>
+        <source>Authenticator key (TOTP)</source>
+        <translation type="unfinished">Klíč autentikátoru (TOTP)</translation>
+    </message>
+    <message>
+        <source>URIs</source>
+        <translation type="unfinished">URI</translation>
+    </message>
+    <message>
+        <source>URI %1</source>
+        <translation type="unfinished">URI %1</translation>
+    </message>
+    <message>
+        <source>Match type</source>
+        <translation type="unfinished">Zjišťování shody</translation>
+    </message>
+    <message>
+        <source>Default match detection</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Výchozí</translation>
+    </message>
+    <message>
+        <source>Base domain</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Základní doména</translation>
+    </message>
+    <message>
+        <source>Host</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Host</translation>
+    </message>
+    <message>
+        <source>Starts with</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Začíná na</translation>
+    </message>
+    <message>
+        <source>Exact</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Přesná shoda</translation>
+    </message>
+    <message>
+        <source>Regular expression</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Regulární výraz</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Nikdy</translation>
+    </message>
+    <message>
+        <source>New URI</source>
+        <translation type="unfinished">Nová URI</translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <translation type="unfinished">Poznámky</translation>
+    </message>
+    <message>
+        <source>Cardholder Name</source>
+        <translation type="unfinished">Jméno držitele karty</translation>
+    </message>
+    <message>
+        <source>Brand</source>
+        <translation type="unfinished">Značka</translation>
+    </message>
+    <message>
+        <source>-- choose --</source>
+        <extracomment>Choose a card brand from a ComboBox</extracomment>
+        <translation type="unfinished">-- zvolte --</translation>
+    </message>
+    <message>
+        <source>Other</source>
+        <extracomment>Card brand</extracomment>
+        <translation type="unfinished">Ostatní</translation>
+    </message>
+    <message>
+        <source>Card Number</source>
+        <translation type="unfinished">Číslo karty</translation>
+    </message>
+    <message>
+        <source>Expiration month</source>
+        <translation type="unfinished">Měsíc expirace</translation>
+    </message>
+    <message>
+        <source>Expiration year</source>
+        <translation type="unfinished">Rok expirace</translation>
+    </message>
+    <message>
+        <source>Security Code</source>
+        <translation type="unfinished">Bezp. kód</translation>
+    </message>
+</context>
+<context>
     <name>GeneratePassphraseContent</name>
     <message>
         <source>Generate new passphrase</source>
@@ -618,7 +620,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -707,6 +709,16 @@
     <message>
         <source>Last update: %1</source>
         <translation>Naposled upraveno: %1</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <extracomment>Pull down menu in detail</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <extracomment>Accept button for updating an item</extracomment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -963,7 +975,7 @@ restartujte prosím aplikaci.</translation>
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -1037,8 +1049,8 @@ prosím restartujte aplikaci</translation>
         <translation>Načítat trezor na hlavní obrazovce</translation>
     </message>
     <message>
-        <source/>
-        <translation type="unfinished"/>
+        <source></source>
+        <translation></translation>
     </message>
     <message>
         <source>Save items in cache for faster load</source>

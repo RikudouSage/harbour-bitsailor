@@ -2,148 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="nb">
 <context>
-    <name>AddItemPage</name>
-    <message>
-        <source>Add item</source>
-        <extracomment>Page title</extracomment>
-        <translation>Legg til oppføring</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>Type</translation>
-    </message>
-    <message>
-        <source>-- choose type --</source>
-        <extracomment>Item type</extracomment>
-        <translation>-- Velg type --</translation>
-    </message>
-    <message>
-        <source>Login</source>
-        <extracomment>Item type</extracomment>
-        <translation>Pålogging</translation>
-    </message>
-    <message>
-        <source>Card</source>
-        <extracomment>Item type</extracomment>
-        <translation>Kort</translation>
-    </message>
-    <message>
-        <source>Note</source>
-        <extracomment>Item type</extracomment>
-        <translation>Notat</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>Brukernavn</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <extracomment>Name of the item</extracomment>
-        <translation>Navn</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>Passord</translation>
-    </message>
-    <message>
-        <source>Item information</source>
-        <translation>Påloggingsdetaljer</translation>
-    </message>
-    <message>
-        <source>Authenticator key (TOTP)</source>
-        <translation>Autentiseringsnøkkel (TOTP)</translation>
-    </message>
-    <message>
-        <source>URIs</source>
-        <translation>URI-er</translation>
-    </message>
-    <message>
-        <source>URI %1</source>
-        <translation>URI %1</translation>
-    </message>
-    <message>
-        <source>New URI</source>
-        <translation>Ny URI</translation>
-    </message>
-    <message>
-        <source>Match type</source>
-        <translation>Matchdeteksjon</translation>
-    </message>
-    <message>
-        <source>Default match detection</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Standard matchdeteksjon</translation>
-    </message>
-    <message>
-        <source>Base domain</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Basisdomene</translation>
-    </message>
-    <message>
-        <source>Host</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Server</translation>
-    </message>
-    <message>
-        <source>Starts with</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Start med</translation>
-    </message>
-    <message>
-        <source>Exact</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Nøyaktig</translation>
-    </message>
-    <message>
-        <source>Regular expression</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Regulært uttrykk</translation>
-    </message>
-    <message>
-        <source>Never</source>
-        <extracomment>URI match type</extracomment>
-        <translation>Aldri</translation>
-    </message>
-    <message>
-        <source>Notes</source>
-        <translation>Notater</translation>
-    </message>
-    <message>
-        <source>Cardholder Name</source>
-        <translation>Kortinnehaverens navn</translation>
-    </message>
-    <message>
-        <source>Brand</source>
-        <translation>Merke</translation>
-    </message>
-    <message>
-        <source>Other</source>
-        <extracomment>Card brand</extracomment>
-        <translation>Annet</translation>
-    </message>
-    <message>
-        <source>-- choose --</source>
-        <extracomment>Choose a card brand from a ComboBox</extracomment>
-        <translation>-- Velge --</translation>
-    </message>
-    <message>
-        <source>Card Number</source>
-        <translation>Kortnummer</translation>
-    </message>
-    <message>
-        <source>Expiration month</source>
-        <translation>Utløpsmåned</translation>
-    </message>
-    <message>
-        <source>Expiration year</source>
-        <translation>Utløpsår</translation>
-    </message>
-    <message>
-        <source>Security Code</source>
-        <translation>Sikkerhetskode</translation>
-    </message>
-</context>
-<context>
     <name>BottomMenu</name>
     <message>
         <source>Vaults</source>
@@ -408,6 +266,148 @@
     <message>
         <source>Choose file</source>
         <translation>Velg fil</translation>
+    </message>
+</context>
+<context>
+    <name>EditItemPage</name>
+    <message>
+        <source>Add item</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished">Legg til oppføring</translation>
+    </message>
+    <message>
+        <source>-- choose type --</source>
+        <extracomment>Item type</extracomment>
+        <translation type="unfinished">-- Velg type --</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <extracomment>Item type</extracomment>
+        <translation type="unfinished">Pålogging</translation>
+    </message>
+    <message>
+        <source>Card</source>
+        <extracomment>Item type</extracomment>
+        <translation type="unfinished">Kort</translation>
+    </message>
+    <message>
+        <source>Note</source>
+        <extracomment>Item type</extracomment>
+        <translation type="unfinished">Notat</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation type="unfinished">Type</translation>
+    </message>
+    <message>
+        <source>Item information</source>
+        <translation type="unfinished">Påloggingsdetaljer</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <extracomment>Name of the item</extracomment>
+        <translation type="unfinished">Navn</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation type="unfinished">Brukernavn</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished">Passord</translation>
+    </message>
+    <message>
+        <source>Authenticator key (TOTP)</source>
+        <translation type="unfinished">Autentiseringsnøkkel (TOTP)</translation>
+    </message>
+    <message>
+        <source>URIs</source>
+        <translation type="unfinished">URIer</translation>
+    </message>
+    <message>
+        <source>URI %1</source>
+        <translation type="unfinished">URI %1</translation>
+    </message>
+    <message>
+        <source>Match type</source>
+        <translation type="unfinished">Matchdeteksjon</translation>
+    </message>
+    <message>
+        <source>Default match detection</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Standard matchdeteksjon</translation>
+    </message>
+    <message>
+        <source>Base domain</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Basisdomene</translation>
+    </message>
+    <message>
+        <source>Host</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Server</translation>
+    </message>
+    <message>
+        <source>Starts with</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Start med</translation>
+    </message>
+    <message>
+        <source>Exact</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Nøyaktig</translation>
+    </message>
+    <message>
+        <source>Regular expression</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Regulært uttrykk</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <extracomment>URI match type</extracomment>
+        <translation type="unfinished">Aldri</translation>
+    </message>
+    <message>
+        <source>New URI</source>
+        <translation type="unfinished">Ny URI</translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cardholder Name</source>
+        <translation type="unfinished">Navn på kortholder</translation>
+    </message>
+    <message>
+        <source>Brand</source>
+        <translation type="unfinished">Merke</translation>
+    </message>
+    <message>
+        <source>-- choose --</source>
+        <extracomment>Choose a card brand from a ComboBox</extracomment>
+        <translation type="unfinished">-- Velge --</translation>
+    </message>
+    <message>
+        <source>Other</source>
+        <extracomment>Card brand</extracomment>
+        <translation type="unfinished">Annet</translation>
+    </message>
+    <message>
+        <source>Card Number</source>
+        <translation type="unfinished">Kortnummer</translation>
+    </message>
+    <message>
+        <source>Expiration month</source>
+        <translation type="unfinished">Utløpsmåned</translation>
+    </message>
+    <message>
+        <source>Expiration year</source>
+        <translation type="unfinished">Utløpsår</translation>
+    </message>
+    <message>
+        <source>Security Code</source>
+        <translation type="unfinished">Sikkerhetskode</translation>
     </message>
 </context>
 <context>
@@ -709,6 +709,16 @@
     <message>
         <source>Last update: %1</source>
         <translation>Siste oppdatering: %1</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <extracomment>Pull down menu in detail</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Update</source>
+        <extracomment>Accept button for updating an item</extracomment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

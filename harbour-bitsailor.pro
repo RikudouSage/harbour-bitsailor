@@ -71,12 +71,12 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/cover/CoverPageLoginTotp.qml \
     qml/cover/CoverPageNote.qml \
     qml/helpers.js \
-    qml/pages/AddItemPage.qml \
     qml/pages/CleanupPage.qml \
     qml/pages/ConfirmSettingPage.qml \
     qml/pages/ConfirmStringSettingPage.qml \
     qml/pages/CreateSendChooseTypePage.qml \
     qml/pages/CreateSendPage.qml \
+    qml/pages/EditItemPage.qml \
     qml/pages/GeneratePasswordDialog.qml \
     qml/pages/GeneratePasswordPage.qml \
     qml/pages/IgnoreInvalidCertsPage.qml \
