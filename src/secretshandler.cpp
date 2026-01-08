@@ -178,6 +178,11 @@ void SecretsHandler::setServerApiKey(const QString &apiKey)
     storeData(apiKeyName, apiKey);
 }
 
+const QString SecretsHandler::prefixed(const QString &name)
+{
+    return accountManager->currentAccount() + ":" + name;
+}
+
 bool SecretsHandler::isResultValid(const Request &request)
 {
     auto result = request.result();
