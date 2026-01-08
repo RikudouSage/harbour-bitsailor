@@ -17,6 +17,7 @@ PKGCONFIG += sailfishsecrets sailfishcrypto
 QT += dbus
 
 SOURCES += src/harbour-bitsailor.cpp \
+    src/accountmanager.cpp \
     src/appsettings.cpp \
     src/bitwardenapi.cpp \
     src/bitwardencli.cpp \
@@ -117,6 +118,7 @@ CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/harbour-bitsailor-*.ts
 
 HEADERS += \
+    src/accountmanager.h \
     src/appsettings.h \
     src/bitwardenapi.h \
     src/bitwardencli.h \
