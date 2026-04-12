@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="de">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="de">
 <context>
     <name>BottomMenu</name>
     <message>
@@ -9,7 +7,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -273,141 +271,141 @@
     <message>
         <source>Add item</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished">Eintrag hinzufügen</translation>
+        <translation>Eintrag hinzufügen</translation>
     </message>
     <message>
         <source>-- choose type --</source>
         <extracomment>Item type</extracomment>
-        <translation type="unfinished">-- Typ auswählen --</translation>
+        <translation>-- Typ auswählen --</translation>
     </message>
     <message>
         <source>Login</source>
         <extracomment>Item type</extracomment>
-        <translation type="unfinished">Anmeldung</translation>
+        <translation>Zugangsdaten</translation>
     </message>
     <message>
         <source>Card</source>
         <extracomment>Item type</extracomment>
-        <translation type="unfinished">Karte</translation>
+        <translation>Karte</translation>
     </message>
     <message>
         <source>Note</source>
         <extracomment>Item type</extracomment>
-        <translation type="unfinished">Notiz</translation>
+        <translation>Notiz</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished">Typ</translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <source>Item information</source>
-        <translation type="unfinished">Eintrag-Details</translation>
+        <translation>Eintrag-Details</translation>
     </message>
     <message>
         <source>Name</source>
         <extracomment>Name of the item</extracomment>
-        <translation type="unfinished">Name</translation>
+        <translation>Name</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished">Benutzername</translation>
+        <translation>Benutzername</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Passwort</translation>
+        <translation>Passwort</translation>
     </message>
     <message>
         <source>Authenticator key (TOTP)</source>
-        <translation type="unfinished">Authentifizierungsschlüssel (TOTP)</translation>
+        <translation>Authentifizierungsschlüssel (TOTP)</translation>
     </message>
     <message>
         <source>URIs</source>
-        <translation type="unfinished">URIs</translation>
+        <translation>URIs</translation>
     </message>
     <message>
         <source>URI %1</source>
-        <translation type="unfinished">URI %1</translation>
+        <translation>URI %1</translation>
     </message>
     <message>
         <source>Match type</source>
-        <translation type="unfinished">Übereinstimmungserkennung</translation>
+        <translation>Übereinstimmungserkennung</translation>
     </message>
     <message>
         <source>Default match detection</source>
         <extracomment>URI match type</extracomment>
-        <translation type="unfinished">Standard-Übereinstimmungserkennung</translation>
+        <translation>Standard-Übereinstimmungserkennung</translation>
     </message>
     <message>
         <source>Base domain</source>
         <extracomment>URI match type</extracomment>
-        <translation type="unfinished">Basis-Domäne</translation>
+        <translation>Basis-Domäne</translation>
     </message>
     <message>
         <source>Host</source>
         <extracomment>URI match type</extracomment>
-        <translation type="unfinished">Server</translation>
+        <translation>Server</translation>
     </message>
     <message>
         <source>Starts with</source>
         <extracomment>URI match type</extracomment>
-        <translation type="unfinished">Beginnt mit</translation>
+        <translation>Beginnt mit</translation>
     </message>
     <message>
         <source>Exact</source>
         <extracomment>URI match type</extracomment>
-        <translation type="unfinished">Exakt</translation>
+        <translation>Exakt</translation>
     </message>
     <message>
         <source>Regular expression</source>
         <extracomment>URI match type</extracomment>
-        <translation type="unfinished">Regulärer Ausdruck</translation>
+        <translation>Regulärer Ausdruck</translation>
     </message>
     <message>
         <source>Never</source>
         <extracomment>URI match type</extracomment>
-        <translation type="unfinished">Niemals</translation>
+        <translation>Niemals</translation>
     </message>
     <message>
         <source>New URI</source>
-        <translation type="unfinished">Neue URI</translation>
+        <translation>Neue URI</translation>
     </message>
     <message>
         <source>Notes</source>
-        <translation type="unfinished">Notizen</translation>
+        <translation>Notizen</translation>
     </message>
     <message>
         <source>Cardholder Name</source>
-        <translation type="unfinished">Name des Karteninhabers</translation>
+        <translation>Name des Karteninhabers</translation>
     </message>
     <message>
         <source>Brand</source>
-        <translation type="unfinished">Marke</translation>
+        <translation>Marke</translation>
     </message>
     <message>
         <source>-- choose --</source>
         <extracomment>Choose a card brand from a ComboBox</extracomment>
-        <translation type="unfinished">-- Auswählen --</translation>
+        <translation>-- Auswählen --</translation>
     </message>
     <message>
         <source>Other</source>
         <extracomment>Card brand</extracomment>
-        <translation type="unfinished">Sonstige</translation>
+        <translation>Sonstige</translation>
     </message>
     <message>
         <source>Card Number</source>
-        <translation type="unfinished">Kartennummer</translation>
+        <translation>Kartennummer</translation>
     </message>
     <message>
         <source>Expiration month</source>
-        <translation type="unfinished">Ablaufmonat</translation>
+        <translation>Ablaufmonat</translation>
     </message>
     <message>
         <source>Expiration year</source>
-        <translation type="unfinished">Ablaufjahr</translation>
+        <translation>Ablaufjahr</translation>
     </message>
     <message>
         <source>Security Code</source>
-        <translation type="unfinished">Sicherheitscode</translation>
+        <translation>Sicherheitscode</translation>
     </message>
 </context>
 <context>
@@ -531,20 +529,20 @@
     <message>
         <source>Ignore Invalid Certificates</source>
         <extracomment>Dialog accept</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige Zertifikate ignorieren</translation>
     </message>
     <message>
         <source>Cancel</source>
         <extracomment>Dialog reject</extracomment>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <source>If you ignore certificate errors you make yourself vulnerable to man-in-the-middle attacks which is exactly what issuer verification is meant to prevent. If you disable verification, anyone can use any certificate to impersonate any page. A malicious actor could impersonate your Bitwarden server using any https certificate, log any passwords that come through and then simply forward the response to you, thus stealing your passwords without you ever knowing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wenn Sie Zertifikatsfehler ignorieren, machen Sie sich anfällig für Man-in-the-Middle-Angriffe – genau das soll die Ausstellerüberprüfung verhindern. Wenn Sie die Überprüfung deaktivieren, kann jeder mit einem beliebigen Zertifikat eine beliebige Seite vortäuschen. Ein böswilliger Angreifer könnte sich mit einem beliebigen HTTPS-Zertifikat als Ihr Bitwarden-Server ausgeben, alle durchlaufenden Passwörter protokollieren und die Antwort dann einfach an Sie weiterleiten, wodurch er Ihre Passwörter stiehlt, ohne dass Sie es jemals bemerken.</translation>
     </message>
     <message>
         <source>I acknowledge the above warning and that I&apos;m making myself available to man-in-the-middle attacks which https is meant to prevent and which I&apos;m knowingly circumventing</source>
-        <translation type="unfinished"></translation>
+        <translation>Ich nehme die obenstehende Warnung zur Kenntnis und bin mir bewusst, dass ich mich dadurch Man-in-the-Middle-Angriffen aussetze, die durch HTTPS verhindert werden sollen und die ich wissentlich umgehe.</translation>
     </message>
 </context>
 <context>
@@ -568,23 +566,23 @@
     <message>
         <source>Invalid Certificate</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Ungültiges Zertifikat</translation>
     </message>
     <message>
         <source>The certificate of the server you&apos;re trying to access is invalid. If that&apos;s intentional (e.g. a self-signed certificate), you can ignore certificate errors using the button below.</source>
-        <translation type="unfinished"></translation>
+        <translation>Das Zertifikat des Servers, auf den zugegriffen werden soll, ist ungültig. Falls dies beabsichtigt ist (z. B. bei einem selbstsignierten Zertifikat), können Zertifikatsfehler über die Schaltfläche unten ignoriert werden.</translation>
     </message>
     <message>
         <source>Ignore certificate validation</source>
-        <translation type="unfinished"></translation>
+        <translation>Zertifikatsprüfung ignorieren</translation>
     </message>
     <message>
         <source>Use system CA store</source>
-        <translation type="unfinished"></translation>
+        <translation>System-CA-Speicher verwenden</translation>
     </message>
     <message>
         <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dadurch wird der Zertifikatsspeicher des Systems anstelle des Standard-Speichers verwendet. Das bedeutet, dass alle Zertifikate, denen das System vertraut, auch von BitSailor als vertrauenswürdig eingestuft werden.. &lt;strong&gt;Bitte beachten, dass ein selbstsigniertes Zertifikat noch als vertrauenswürdig eingestuft werden muss&lt;/strong&gt;.</translation>
     </message>
 </context>
 <context>
@@ -620,7 +618,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Name der Identität</translation>
     </message>
     <message>
@@ -713,12 +711,12 @@
     <message>
         <source>Edit</source>
         <extracomment>Pull down menu in detail</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Bearbeiten</translation>
     </message>
     <message>
         <source>Update</source>
         <extracomment>Accept button for updating an item</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisieren</translation>
     </message>
 </context>
 <context>
@@ -975,7 +973,7 @@ bitte starte die Anwendung neu</translation>
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -1049,8 +1047,8 @@ bitte starte die Anwendung neu</translation>
         <translation>Lade Einträge eifrig in der Hauptansicht</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save items in cache for faster load</source>
@@ -1168,23 +1166,23 @@ Die Bitwarden-CLI wird außerdem abgemeldet. Möchten Sie fortfahren?</translati
     </message>
     <message>
         <source>Enable certificate validation</source>
-        <translation type="unfinished"></translation>
+        <translation>Zertifikatsüberprüfung aktivieren</translation>
     </message>
     <message>
         <source>Using this toggle you&apos;ll again enable https certificate checks when communicating with Bitwarden servers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mit diesem Schalter wird die Überprüfung von HTTPS-Zertifikaten bei der Kommunikation mit den Bitwarden-Servern wieder aktiviert.</translation>
     </message>
     <message>
         <source>Please restart the app</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte die Anwendung neustarten</translation>
     </message>
     <message>
         <source>Use system CA store</source>
-        <translation type="unfinished"></translation>
+        <translation>System-CA-Speicher verwenden</translation>
     </message>
     <message>
         <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dadurch wird der Zertifikatsspeicher des Systems anstelle des Standard-Speichers verwendet. Das bedeutet, dass alle Zertifikate, denen das System vertraut, auch von BitSailor als vertrauenswürdig eingestuft werden.. &lt;strong&gt;Bitte beachten, dass ein selbstsigniertes Zertifikat noch als vertrauenswürdig eingestuft werden muss&lt;/strong&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1401,7 +1399,7 @@ um die Änderungen anzuwenden.</translation>
     </message>
     <message>
         <source>Certificate validation is ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Zertifikatsprüfung wird ignoriert</translation>
     </message>
 </context>
 </TS>
