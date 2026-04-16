@@ -46,42 +46,42 @@ SecretsHandler::SecretsHandler(QObject *parent) : QObject(parent)
 
 QString SecretsHandler::getSessionId()
 {
-    return getData(sessionIdName);
+    return getData(prefixed(sessionIdName));
 }
 
 QString SecretsHandler::getUsername()
 {
-    return getData(usernameName);
+    return getData(prefixed(usernameName));
 }
 
 QString SecretsHandler::getPassword()
 {
-    return getData(passwordName);
+    return getData(prefixed(passwordName));
 }
 
 QString SecretsHandler::getClientId()
 {
-    return getData(clientIdName);
+    return getData(prefixed(clientIdName));
 }
 
 QString SecretsHandler::getPin()
 {
-    return getData(pinName);
+    return getData(prefixed(pinName));
 }
 
 QString SecretsHandler::getInternalPin()
 {
-    return getData(internalPinName);
+    return getData(prefixed(internalPinName));
 }
 
 QString SecretsHandler::getServerApiKey()
 {
-    return getData(apiKeyName);
+    return getData(prefixed(apiKeyName));
 }
 
 bool SecretsHandler::invalidCertificatesAllowed()
 {
-    return getData(invalidCertsName) == "true";
+    return getData(prefixed(invalidCertsName)) == "true";
 }
 
 bool SecretsHandler::hasPin()
@@ -92,12 +92,12 @@ bool SecretsHandler::hasPin()
 
 void SecretsHandler::removePin()
 {
-    deleteSecret(pinName);
+    deleteSecret(prefixed(pinName));
 }
 
 void SecretsHandler::removePassword()
 {
-    deleteSecret(passwordName);
+    deleteSecret(prefixed(passwordName));
 }
 
 bool SecretsHandler::hasSessionId()
@@ -108,7 +108,7 @@ bool SecretsHandler::hasSessionId()
 
 void SecretsHandler::removeSessionId()
 {
-    deleteSecret(sessionIdName);
+    deleteSecret(prefixed(sessionIdName));
 }
 
 bool SecretsHandler::clearAllSecrets()
@@ -135,47 +135,52 @@ bool SecretsHandler::hasInternalPin()
 
 void SecretsHandler::allowInvalidCertificates()
 {
-    storeData(invalidCertsName, "true");
+    storeData(prefixed(invalidCertsName), "true");
 }
 
 void SecretsHandler::disallowInvalidCertificates()
 {
-    deleteSecret(invalidCertsName);
+    deleteSecret(prefixed(invalidCertsName));
 }
 
 void SecretsHandler::setSessionId(const QString &sessionId)
 {
-    storeData(sessionIdName, sessionId);
+    storeData(prefixed(sessionIdName), sessionId);
 }
 
 void SecretsHandler::setUsername(const QString &username)
 {
-    storeData(usernameName, username);
+    storeData(prefixed(usernameName), username);
 }
 
 void SecretsHandler::setPassword(const QString &password)
 {
-    storeData(passwordName, password);
+    storeData(prefixed(passwordName), password);
 }
 
 void SecretsHandler::setClientId(const QString &clientId)
 {
-    storeData(clientIdName, clientId);
+    storeData(prefixed(clientIdName), clientId);
 }
 
 void SecretsHandler::setPin(const QString &pin)
 {
-    storeData(pinName, pin);
+    storeData(prefixed(pinName), pin);
 }
 
 void SecretsHandler::setInternalPin(const QString &pin)
 {
-    storeData(internalPinName, pin);
+    storeData(prefixed(internalPinName), pin);
 }
 
 void SecretsHandler::setServerApiKey(const QString &apiKey)
 {
-    storeData(apiKeyName, apiKey);
+    storeData(prefixed(apiKeyName), apiKey);
+}
+
+const QString SecretsHandler::prefixed(const QString &name)
+{
+    return accountManager->currentAccount() + ":" + name;
 }
 
 bool SecretsHandler::isResultValid(const Request &request)

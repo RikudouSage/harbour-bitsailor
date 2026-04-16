@@ -7,6 +7,8 @@
 #include <Sailfish/Secrets/request.h>
 #include <Sailfish/Secrets/secret.h>
 
+#include "accountmanager.h"
+
 using Sailfish::Secrets::SecretManager;
 using Sailfish::Secrets::Request;
 using Sailfish::Secrets::Secret;
@@ -45,6 +47,9 @@ public:
     void setServerApiKey(const QString &apiKey);
 
 private:
+    const QString prefixed(const QString &name);
+    const AccountManager *accountManager = AccountManager::getInstance(this);
+
     static const QString collectionName;
     SecretManager* secretManager = new SecretManager(this);
     bool hasBitsailorCollection = false;
