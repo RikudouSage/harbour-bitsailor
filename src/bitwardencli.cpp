@@ -15,6 +15,16 @@
 #include "cache-keys.h"
 #include "appsettings.h"
 
+static void addNodeOption(QProcessEnvironment &env, const QString &option)
+{
+    const auto existingOptions = env.value("NODE_OPTIONS");
+    if (existingOptions.split(" ").contains(option)) {
+        return;
+    }
+
+    env.insert("NODE_OPTIONS", existingOptions.isEmpty() ? option : existingOptions + " " + option);
+}
+
 BitwardenCli::BitwardenCli(QObject *parent) : QObject(parent)
 {
     for (const auto &path : getPaths()) {
@@ -58,23 +68,16 @@ void BitwardenCli::loginEmailPassword(const QString &email, const QString &passw
 {
     secretsHandler->setUsername(email);
 
-    startProcess({"login", email, password, "--raw"}, LoginEmailPassword);
+    startProcess({"login", email, "--raw"}, LoginEmailPassword, password + "\n");
 }
 
 void BitwardenCli::loginApiKey(const QString &clientId, const QString &clientSecret)
 {
     secretsHandler->setClientId(clientId);
 
-    auto env = QProcessEnvironment::systemEnvironment();
+    auto env = createProcessEnvironment();
     env.insert("BW_CLIENTID", clientId);
     env.insert("BW_CLIENTSECRET", clientSecret);
-    if (secretsHandler->invalidCertificatesAllowed()) {
-        env.insert("NODE_TLS_REJECT_UNAUTHORIZED", "0");
-    }
-    const AppSettings settingsSnapshot;
-    if (settingsSnapshot.useSystemCaStore()) {
-        env.insert("NODE_OPTIONS", "--use-openssl-ca");
-    }
 
     startProcess({"login", "--apikey"}, env, LoginApiKey);
 }
@@ -87,7 +90,7 @@ void BitwardenCli::logout()
 
 void BitwardenCli::unlockVault(QString password)
 {
-    startProcess({"unlock", password, "--raw"}, UnlockVault);
+    startProcess({"unlock", "--raw"}, UnlockVault, password + "\n");
 }
 
 void BitwardenCli::unlockVault(int pin)
@@ -442,7 +445,7 @@ void BitwardenCli::onFinished(int exitCode, Method method)
     }
 }
 
-void BitwardenCli::startProcess(const QStringList &arguments, Method method)
+QProcessEnvironment BitwardenCli::createProcessEnvironment()
 {
     auto env = QProcessEnvironment::systemEnvironment();
     if (secretsHandler->hasSessionId()) {
@@ -451,15 +454,23 @@ void BitwardenCli::startProcess(const QStringList &arguments, Method method)
     if (secretsHandler->invalidCertificatesAllowed()) {
         env.insert("NODE_TLS_REJECT_UNAUTHORIZED", "0");
     }
+#ifdef QT_DEBUG
+    addNodeOption(env, "--experimental-global-webcrypto");
+#endif
     const AppSettings settingsSnapshot;
     if (settingsSnapshot.useSystemCaStore()) {
-        env.insert("NODE_OPTIONS", "--use-openssl-ca");
+        addNodeOption(env, "--use-openssl-ca");
     }
 
-    startProcess(arguments, env, method);
+    return env;
 }
 
-void BitwardenCli::startProcess(const QStringList &arguments, const QProcessEnvironment &environment, Method method)
+void BitwardenCli::startProcess(const QStringList &arguments, Method method, const QString &standardInput)
+{
+    startProcess(arguments, createProcessEnvironment(), method, standardInput);
+}
+
+void BitwardenCli::startProcess(const QStringList &arguments, const QProcessEnvironment &environment, Method method, const QString &standardInput)
 {
 #ifdef QT_DEBUG
     qDebug() << "Starting command: " << "bw " << arguments.join(" ");
@@ -467,7 +478,9 @@ void BitwardenCli::startProcess(const QStringList &arguments, const QProcessEnvi
     QProcess* process = new QProcess();
     process->setWorkingDirectory(getDataPath());
     process->setProcessEnvironment(environment);
-    process->setStandardInputFile(QProcess::nullDevice());
+    if (standardInput.isNull()) {
+        process->setStandardInputFile(QProcess::nullDevice());
+    }
 
     if (processes.contains(method)) {
         auto oldProcess = processes.take(method);
@@ -509,6 +522,13 @@ void BitwardenCli::startProcess(const QStringList &arguments, const QProcessEnvi
         });
     }
 #endif
+
+    if (!standardInput.isNull()) {
+        connect(process, &QProcess::started, [=]() {
+            process->write(standardInput.toUtf8());
+            process->closeWriteChannel();
+        });
+    }
 
     processes.insert(method, process);
     process->start(bw, arguments);

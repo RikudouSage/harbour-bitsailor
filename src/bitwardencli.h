@@ -187,8 +187,9 @@ private:
     const QString serverPatchScripts = "/usr/share/harbour-bitsailor/patches";
     bool invalidCert = false;
 
-    void startProcess(const QStringList &arguments, Method method);
-    void startProcess(const QStringList &arguments, const QProcessEnvironment &environment, Method method);
+    QProcessEnvironment createProcessEnvironment();
+    void startProcess(const QStringList &arguments, Method method, const QString &standardInput = QString());
+    void startProcess(const QStringList &arguments, const QProcessEnvironment &environment, Method method, const QString &standardInput = QString());
     // todo remove
     void handleGetItems(const QString &rawJson, Method method = GetItems);
     bool serverNeedsPatching();
