@@ -14,7 +14,15 @@ TARGET = harbour-bitsailor
 
 CONFIG += sailfishapp
 PKGCONFIG += sailfishsecrets sailfishcrypto
-QT += dbus
+QT += dbus concurrent
+
+GO_LIBDIR = /usr/share/$$TARGET/lib
+INCLUDEPATH += $$PWD/core
+LIBS += -L$$PWD/core -lbw
+QMAKE_RPATHDIR += $$GO_LIBDIR
+libbw.path = $$GO_LIBDIR
+libbw.files = $$PWD/core/libbw.so
+INSTALLS += libbw
 
 SOURCES += src/harbour-bitsailor.cpp \
     src/appsettings.cpp \
@@ -135,4 +143,10 @@ HEADERS += \
     src/systemauthchecker.h \
     src/systemchecker.h \
     otp/onetimepasswordgenerator.h \
-    src/urlparser.h
+    src/urlparser.h \
+    core/libbw.h \
+    core/cbindings/bw_common.h \
+    core/cbindings/bw_errors.h \
+    core/cbindings/bw_generator.h \
+    core/cbindings/bw_item.h \
+    core/cbindings/bw_send.h
