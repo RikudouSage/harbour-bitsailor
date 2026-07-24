@@ -17,6 +17,9 @@ class AppSettings : public QObject
     Q_PROPERTY(bool useApi READ useApi WRITE setUseApi NOTIFY useApiChanged)
     Q_PROPERTY(bool forceUnsafeApi READ forceUnsafeApi WRITE setForceUnsafeApi NOTIFY forceUnsafeApiChanged)
     Q_PROPERTY(bool useSystemCaStore READ useSystemCaStore WRITE setUseSystemCaStore NOTIFY useSystemCaStoreChanged)
+
+    Q_PROPERTY(QString deviceUuid READ deviceUuid WRITE setDeviceUuid NOTIFY deviceUuidChanged)
+    Q_PROPERTY(QString baseUrl READ baseUrl WRITE setBaseUrl NOTIFY baseUrlChanged)
 public:
     explicit AppSettings(QObject *parent = nullptr);
     ~AppSettings();
@@ -39,6 +42,10 @@ public:
     void setForceUnsafeApi(bool enabled);
     bool useSystemCaStore() const;
     void setUseSystemCaStore(bool enabled);
+    QString deviceUuid();
+    void setDeviceUuid(const QString &value);
+    QString baseUrl();
+    void setBaseUrl(const QString &value);
 
 signals:
     void lockOnCloseChanged();
@@ -50,6 +57,8 @@ signals:
     void useApiChanged();
     void forceUnsafeApiChanged();
     void useSystemCaStoreChanged();
+    void deviceUuidChanged();
+    void baseUrlChanged();
 
 private:
     void saveConfig(const QString &name, const QVariant &value);
@@ -69,6 +78,8 @@ private:
     bool prop_UseApi;
     bool prop_ForceUnsafeApi;
     bool prop_UseSystemCaStore;
+    QString prop_DeviceUuid;
+    QString prop_BaseUrl;
 };
 
 #endif // APPSETTINGS_H

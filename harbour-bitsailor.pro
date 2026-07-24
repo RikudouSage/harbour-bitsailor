@@ -12,7 +12,7 @@
 # The name of your application
 TARGET = harbour-bitsailor
 
-CONFIG += sailfishapp
+CONFIG += sailfishapp c++20
 PKGCONFIG += sailfishsecrets sailfishcrypto
 QT += dbus concurrent
 
@@ -26,6 +26,7 @@ INSTALLS += libbw
 
 SOURCES += src/harbour-bitsailor.cpp \
     src/appsettings.cpp \
+    src/bitsailorcore.cpp \
     src/bitwardenapi.cpp \
     src/bitwardencli.cpp \
     src/bitwardencliinstaller.cpp \
@@ -126,12 +127,14 @@ TRANSLATIONS += translations/harbour-bitsailor-*.ts
 
 HEADERS += \
     src/appsettings.h \
+    src/bitsailorcore.h \
     src/bitwardenapi.h \
     src/bitwardencli.h \
     src/bitwardencliinstaller.h \
     src/cache-keys.h \
     src/cachekey.h \
     src/cli-api-common-parts.h \
+    src/consts.h \
     src/encryptor.h \
     src/fileaccessor.h \
     src/parsedurl.h \
@@ -145,8 +148,8 @@ HEADERS += \
     otp/onetimepasswordgenerator.h \
     src/urlparser.h \
     core/libbw.h \
-    core/cbindings/bw_common.h \
-    core/cbindings/bw_errors.h \
-    core/cbindings/bw_generator.h \
-    core/cbindings/bw_item.h \
-    core/cbindings/bw_send.h
+    core/bw_common.h \
+    core/bw_errors.h \
+    core/bw_generator.h \
+    core/bw_item.h \
+    core/bw_send.h

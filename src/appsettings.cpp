@@ -2,6 +2,8 @@
 
 #include <QDebug>
 
+#include "consts.h"
+
 AppSettings::AppSettings(QObject *parent) : QObject(parent)
 {
     prop_LockOnCLose = settings->value("lockOnClose", true).toBool();
@@ -13,6 +15,8 @@ AppSettings::AppSettings(QObject *parent) : QObject(parent)
     prop_UseApi = settings->value("useApi", false).toBool();
     prop_ForceUnsafeApi = settings->value("forceUnsafeApi", false).toBool();
     prop_UseSystemCaStore = settings->value("useSystemCaStore", false).toBool();
+    prop_DeviceUuid = settings->value("deviceUuid", "").toString();
+    prop_BaseUrl = settings->value("baseUrl", defaultVaultUrl).toString();
 }
 
 AppSettings::~AppSettings()
@@ -162,6 +166,38 @@ void AppSettings::setUseSystemCaStore(bool enabled)
     saveConfig("useSystemCaStore", enabled);
     prop_UseSystemCaStore = enabled;
     emit useSystemCaStoreChanged();
+}
+
+QString AppSettings::deviceUuid()
+{
+    return prop_DeviceUuid;
+}
+
+void AppSettings::setDeviceUuid(const QString &value)
+{
+    if (value == prop_DeviceUuid) {
+        return;
+    }
+
+    saveConfig("deviceUuid", value);
+    prop_DeviceUuid = value;
+    emit deviceUuidChanged();
+}
+
+QString AppSettings::baseUrl()
+{
+    return prop_BaseUrl;
+}
+
+void AppSettings::setBaseUrl(const QString &value)
+{
+    if (value == prop_BaseUrl) {
+        return;
+    }
+
+    saveConfig("baseUrl", value);
+    prop_BaseUrl = value;
+    emit baseUrlChanged();
 }
 
 void AppSettings::saveConfig(const QString &name, const QVariant &value)

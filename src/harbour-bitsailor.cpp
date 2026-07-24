@@ -26,6 +26,7 @@
 #include "parsedurl.h"
 #include "urlparser.h"
 #include "bitwardenapi.h"
+#include "bitsailorcore.h"
 
 int main(int argc, char *argv[])
 {
@@ -49,7 +50,11 @@ int main(int argc, char *argv[])
         return new CacheKey();
     });
 
-    v->rootContext()->setContextProperty("settings", new AppSettings(app.data()));
+    auto settings = new AppSettings(app.data());
+    auto core = new BitSailorCore(settings, app.data());
+
+    v->rootContext()->setContextProperty("settings", settings);
+    v->rootContext()->setContextProperty("core", core);
     v->rootContext()->setContextProperty("runtimeCache", RuntimeCache::getInstance(app.data()));
     v->rootContext()->setContextProperty("privateBinPath", getPrivateBinDirPath());
     v->rootContext()->setContextProperty("urlParser", new UrlParser(app.data()));
