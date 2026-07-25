@@ -18,7 +18,7 @@ ApplicationWindow {
     property bool invalidCertsAllowed: secrets.invalidCertificatesAllowed()
     id: app
 
-    initialPage: Component { SystemCheckerPage { } }
+    initialPage: Component { LoginCheckPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: defaultAllowedOrientations
 

@@ -10,6 +10,8 @@
 #include <Sailfish/Secrets/deletecollectionrequest.h>
 
 #include <QDebug>
+#include <QJsonDocument>
+#include <QJsonParseError>
 
 using Sailfish::Secrets::CollectionNamesRequest;
 using Sailfish::Secrets::SecretManager;
@@ -24,7 +26,7 @@ using Sailfish::Secrets::DeleteCollectionRequest;
 
 const QString SecretsHandler::collectionName(QStringLiteral("bitsailor"));
 
-static const QString sessionIdName = "sessionId";
+static const QString sessionJsonName = "sessionJson";
 static const QString usernameName = "username";
 static const QString passwordName = "password";
 static const QString clientIdName = "clientId";
@@ -44,9 +46,17 @@ SecretsHandler::SecretsHandler(QObject *parent) : QObject(parent)
     hasBitsailorCollection = isResultValid(cnr) && cnr.collectionNames().contains(collectionName);
 }
 
-QString SecretsHandler::getSessionId()
+QJsonObject SecretsHandler::getSessionJson()
 {
-    return getData(sessionIdName);
+    const auto json = getData(sessionJsonName);
+    QJsonParseError err;
+    auto doc = QJsonDocument::fromJson(json.toUtf8(), &err);
+    if (err.errorString() != "") {
+        qWarning() << "Failed parsing session: " << err.errorString();
+        return QJsonObject();
+    }
+
+    return doc.object();
 }
 
 QString SecretsHandler::getUsername()
@@ -84,6 +94,12 @@ bool SecretsHandler::invalidCertificatesAllowed()
     return getData(invalidCertsName) == "true";
 }
 
+bool SecretsHandler::hasSessionJson()
+{
+    auto sessionJson = getData(sessionJsonName);
+    return !sessionJson.isNull() && !sessionJson.isEmpty();
+}
+
 bool SecretsHandler::hasPin()
 {
     auto pin = getPin();
@@ -100,15 +116,9 @@ void SecretsHandler::removePassword()
     deleteSecret(passwordName);
 }
 
-bool SecretsHandler::hasSessionId()
+void SecretsHandler::removeSessionJson()
 {
-    auto sessionId = getSessionId();
-    return !sessionId.isNull() && !sessionId.isEmpty();
-}
-
-void SecretsHandler::removeSessionId()
-{
-    deleteSecret(sessionIdName);
+    deleteSecret(sessionJsonName);
 }
 
 bool SecretsHandler::clearAllSecrets()
@@ -141,11 +151,6 @@ void SecretsHandler::allowInvalidCertificates()
 void SecretsHandler::disallowInvalidCertificates()
 {
     deleteSecret(invalidCertsName);
-}
-
-void SecretsHandler::setSessionId(const QString &sessionId)
-{
-    storeData(sessionIdName, sessionId);
 }
 
 void SecretsHandler::setUsername(const QString &username)

@@ -5,13 +5,14 @@
 #include <QUuid>
 
 #include "appsettings.h"
+#include "secretshandler.h"
 #include "core/libbw.h"
 
 class BitSailorCore : public QObject
 {
     Q_OBJECT
 public:
-    explicit BitSailorCore(AppSettings *settings, QObject *parent = nullptr);
+    explicit BitSailorCore(AppSettings *settings, SecretsHandler *secrets, QObject *parent = nullptr);
     ~BitSailorCore();
 
 private:
@@ -30,6 +31,7 @@ private:
 
     ContextHandle ctx = 0;
     ClientHandle client = 0;
+    SessionHandle session = 0;
 };
 
 #endif // BITSAILORCORE_H

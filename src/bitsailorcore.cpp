@@ -2,10 +2,11 @@
 
 #include <cstring>
 #include <QDebug>
+#include <QJsonDocument>
 
 #include "consts.h"
 
-BitSailorCore::BitSailorCore(AppSettings *settings, QObject *parent) : QObject(parent)
+BitSailorCore::BitSailorCore(AppSettings *settings, SecretsHandler *secrets, QObject *parent) : QObject(parent)
 {
     if (settings->deviceUuid() == "") {
         settings->setDeviceUuid(uuidToString(generateUuid()));
@@ -29,6 +30,17 @@ BitSailorCore::BitSailorCore(AppSettings *settings, QObject *parent) : QObject(p
         valid = false;
         qWarning() << "Failed initializing client: " << getLastError();
     }
+
+    if (secrets->hasSessionJson()) {
+        auto json = secrets->getSessionJson();
+        if (json.isEmpty()) {
+            qWarning() << "The session json is empty";
+        }
+        auto jsonStr = QJsonDocument(json).toJson();
+        if (BitwardenImportSession(nullptr, jsonStr.data(), &session) != BitwardenSuccess) {
+            qWarning() << "Failed importing session: " << getLastError();
+        }
+    }
 }
 
 BitSailorCore::~BitSailorCore()
@@ -38,6 +50,9 @@ BitSailorCore::~BitSailorCore()
     }
     if (client != 0 && BitwardenCloseHandle(client) != BitwardenSuccess) {
         qWarning() << "Failed closing client: " << getLastError();
+    }
+    if (session != 0 && BitwardenCloseHandle(session) != BitwardenSuccess) {
+        qWarning() << "Failed closing session: " << getLastError();
     }
 }
 

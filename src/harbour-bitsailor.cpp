@@ -33,10 +33,8 @@ int main(int argc, char *argv[])
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
     QScopedPointer<QQuickView> v(SailfishApp::createView());
 
-    qmlRegisterType<SystemChecker>("cz.chrastecky.bitsailor", 1, 0, "SystemChecker");
     qmlRegisterType<BitwardenCliInstaller>("cz.chrastecky.bitsailor", 1, 0, "BitwardenInstaller");
     qmlRegisterType<BitwardenCli>("cz.chrastecky.bitsailor", 1, 0, "BitwardenCli");
-    qmlRegisterType<SecretsHandler>("cz.chrastecky.bitsailor", 1, 0, "SecretsHandler");
     qmlRegisterType<SystemAuthChecker>("cz.chrastecky.bitsailor", 1, 0, "SystemAuthChecker");
     qmlRegisterType<FileAccessor>("cz.chrastecky.bitsailor", 1, 0, "FileAccessor");
     qmlRegisterType<RandomPinGenerator>("cz.chrastecky.bitsailor", 1, 0, "RandomPinGenerator");
@@ -50,8 +48,9 @@ int main(int argc, char *argv[])
         return new CacheKey();
     });
 
+    auto secrets = new SecretsHandler(app.data());
     auto settings = new AppSettings(app.data());
-    auto core = new BitSailorCore(settings, app.data());
+    auto core = new BitSailorCore(settings, secrets, app.data());
 
     v->rootContext()->setContextProperty("settings", settings);
     v->rootContext()->setContextProperty("core", core);

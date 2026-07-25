@@ -41,7 +41,6 @@ SOURCES += src/harbour-bitsailor.cpp \
     src/runtimecache.cpp \
     src/secretshandler.cpp \
     src/systemauthchecker.cpp \
-    src/systemchecker.cpp \
     otp/onetimepasswordgenerator.cpp \
     src/urlparser.cpp
 
@@ -103,7 +102,6 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/pages/SettingsPage.qml \
     qml/pages/SetupPinPage.qml \
     qml/pages/SetupSystemAuthPage.qml \
-    qml/pages/SystemCheckerPage.qml \
     qml/pages/UnknownErrorOccuredPage.qml \
     qml/pages/UnlockVaultPage.qml \
     qml/pages/UpdateBitwardenCliPage.qml \
@@ -144,7 +142,6 @@ HEADERS += \
     src/runtimecache.h \
     src/secretshandler.h \
     src/systemauthchecker.h \
-    src/systemchecker.h \
     otp/onetimepasswordgenerator.h \
     src/urlparser.h \
     core/libbw.h \
