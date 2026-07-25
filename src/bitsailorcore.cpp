@@ -81,7 +81,7 @@ void BitSailorCore::logout()
         }
 
         session = 0;
-        secrets->removeSessionJson();
+        secrets->clearAllSecrets();
 
         emit logoutFinished();
     });
