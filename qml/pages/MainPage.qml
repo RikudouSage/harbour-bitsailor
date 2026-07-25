@@ -130,10 +130,6 @@ Page {
         }
     }
 
-    SecretsHandler {
-        id: secrets
-    }
-
     SystemAuthChecker {
         id: authChecker
 

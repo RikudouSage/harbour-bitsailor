@@ -55,13 +55,7 @@ void BitwardenCli::checkLoginStatus()
 
 void BitwardenCli::checkVaultUnlocked()
 {
-    auto sessionId = secretsHandler->getSessionId();
-    if (sessionId.isNull() || sessionId.isEmpty()) {
-        emit vaultLockStatusResolved(false);
-        return;
-    }
-
-    startProcess({"unlock", "--check"}, VaultUnlocked);
+    // todo
 }
 
 void BitwardenCli::loginEmailPassword(const QString &email, const QString &password)
@@ -117,13 +111,11 @@ void BitwardenCli::unlockVault()
 
 void BitwardenCli::lockVault()
 {
-    secretsHandler->removeSessionId();
     startProcess({"lock"}, LockVault);
 }
 
 void BitwardenCli::lockVaultInBackground()
 {
-    secretsHandler->removeSessionId();
     QProcess* process = new QProcess(); // intentionally no parent
     process->setWorkingDirectory(getDataPath());
     process->setStandardInputFile(QProcess::nullDevice());
@@ -184,9 +176,6 @@ void BitwardenCli::deleteItem(QString id)
 void BitwardenCli::deleteItemInBackground(QString id)
 {
     auto env = QProcessEnvironment::systemEnvironment();
-    if (secretsHandler->hasSessionId()) {
-        env.insert("BW_SESSION", secretsHandler->getSessionId());
-    }
 
     QProcess* process = new QProcess(); // intentionally no parent
     process->setProcessEnvironment(env);
@@ -283,9 +272,6 @@ void BitwardenCli::serve(bool force)
         return;
     }
     auto env = QProcessEnvironment::systemEnvironment();
-    if (secretsHandler->hasSessionId()) {
-        env.insert("BW_SESSION", secretsHandler->getSessionId());
-    }
     secretsHandler->setServerApiKey(generateRandomString(32));
     env.insert("BITSAILOR_BW_API_KEY", secretsHandler->getServerApiKey());
 
@@ -407,7 +393,7 @@ void BitwardenCli::onFinished(int exitCode, Method method)
         auto success = exitCode == 0;
         if (success) {
             auto sessionKey = QString::fromUtf8(process->readAll()).trimmed();
-            secretsHandler->setSessionId(sessionKey);
+
         }
         emit vaultUnlockFinished(success);
         break;
@@ -423,7 +409,6 @@ void BitwardenCli::onFinished(int exitCode, Method method)
             auto success = exitCode == 0;
             if (success) {
                 auto sessionKey = QString::fromUtf8(process->readAll()).trimmed();
-                secretsHandler->setSessionId(sessionKey);
             }
             emit logInFinished(success);
         }
@@ -448,9 +433,6 @@ void BitwardenCli::onFinished(int exitCode, Method method)
 QProcessEnvironment BitwardenCli::createProcessEnvironment()
 {
     auto env = QProcessEnvironment::systemEnvironment();
-    if (secretsHandler->hasSessionId()) {
-        env.insert("BW_SESSION", secretsHandler->getSessionId());
-    }
     if (secretsHandler->invalidCertificatesAllowed()) {
         env.insert("NODE_TLS_REJECT_UNAUTHORIZED", "0");
     }

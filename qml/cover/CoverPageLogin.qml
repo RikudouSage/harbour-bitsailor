@@ -8,10 +8,6 @@ CoverBackground {
     property bool isLocked: !secrets.hasSessionId()
     property var item: {type: BitwardenCli.NoType}
 
-    SecretsHandler {
-        id: secrets
-    }
-
     BitwardenCli {
         id: cli
 

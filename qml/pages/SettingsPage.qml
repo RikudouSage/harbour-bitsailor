@@ -31,10 +31,6 @@ Page {
     id: page
     allowedOrientations: Orientation.All
 
-    SecretsHandler {
-        id: secrets
-    }
-
     BitwardenApi {
         id: api
 

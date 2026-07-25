@@ -743,6 +743,34 @@
         <source>An authenticator is required, please use API key login.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>There was an error while changing the URL, please report that to the developers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown status: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your account has 2-factor logging in enabled which is currently unsupported. Please login using your api key.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There was an error while logging in: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There was an unknown error while logging in.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed unlocking, did you provide the correct password?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed unlocking because the session got in an invalid state. We logged you out.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LoginPage</name>
@@ -1233,18 +1261,6 @@ please restart the app</source>
     </message>
     <message>
         <source>Note: This option enables unlocking vault using fingerprint if your device supports it.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SystemCheckerPage</name>
-    <message>
-        <source>System Check</source>
-        <extracomment>Page title</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Checking if system is ready...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

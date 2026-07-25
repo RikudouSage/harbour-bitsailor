@@ -19,6 +19,7 @@ public:
     explicit SecretsHandler(QObject *parent = nullptr);
 
     QJsonObject getSessionJson();
+    QJsonObject getEncryptedVault();
     Q_INVOKABLE QString getUsername();
     QString getPassword();
     Q_INVOKABLE QString getClientId();
@@ -27,20 +28,22 @@ public:
     QString getServerApiKey();
     Q_INVOKABLE bool invalidCertificatesAllowed();
 
+    bool hasEncryptedVault();
     bool hasSessionJson();
     Q_INVOKABLE bool hasPin();
     Q_INVOKABLE bool hasInternalPin();
 
     Q_INVOKABLE void removePin();
     Q_INVOKABLE void removePassword();
-    Q_INVOKABLE void removeSessionId();
-    void removeSessionJson();
+    Q_INVOKABLE void removeSessionJson();
+    Q_INVOKABLE void removeEncryptedVault();
     Q_INVOKABLE bool clearAllSecrets();
 
     Q_INVOKABLE void allowInvalidCertificates();
     Q_INVOKABLE void disallowInvalidCertificates();
 
     void setSessionJson(const QJsonObject &sessionJson);
+    void setEncryptedVault(const QJsonObject &json);
     void setUsername(const QString &username);
     Q_INVOKABLE void setPassword(const QString &password);
     void setClientId(const QString &clientId);

@@ -123,10 +123,6 @@ ApplicationWindow {
         id: cli
     }
 
-    SecretsHandler {
-        id: secrets
-    }
-
     Rectangle {
         id: invalidCertsBanner
         color: Theme.errorColor

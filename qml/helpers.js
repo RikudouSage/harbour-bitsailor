@@ -1,3 +1,13 @@
+function safeCallerFactory(queue, page) {
+    return function(callable) {
+        if (pageStack.busy || page.status !== PageStatus.Active) {
+            queue.push(callable);
+        } else {
+            callable();
+        }
+    };
+}
+
 function xor(a, b) {
     return (a && !b) || (b && !a);
 }

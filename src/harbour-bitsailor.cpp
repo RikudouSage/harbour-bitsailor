@@ -11,7 +11,6 @@
 
 #include <sailfishapp.h>
 
-#include "systemchecker.h"
 #include "bitwardencliinstaller.h"
 #include "bitwardencli.h"
 #include "secretshandler.h"
@@ -33,6 +32,10 @@ int main(int argc, char *argv[])
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
     QScopedPointer<QQuickView> v(SailfishApp::createView());
 
+    auto secrets = new SecretsHandler(app.data());
+    auto settings = new AppSettings(app.data());
+    auto core = new BitSailorCore(settings, secrets, app.data());
+
     qmlRegisterType<BitwardenCliInstaller>("cz.chrastecky.bitsailor", 1, 0, "BitwardenInstaller");
     qmlRegisterType<BitwardenCli>("cz.chrastecky.bitsailor", 1, 0, "BitwardenCli");
     qmlRegisterType<SystemAuthChecker>("cz.chrastecky.bitsailor", 1, 0, "SystemAuthChecker");
@@ -47,12 +50,15 @@ int main(int argc, char *argv[])
 
         return new CacheKey();
     });
+    qmlRegisterSingletonType<BitSailorCore>("cz.chrastecky.bitsailor", 1, 0, "BitSailorCore", [](QQmlEngine* engine, QJSEngine* scriptEngine) -> QObject* {
+        Q_UNUSED(engine);
+        Q_UNUSED(scriptEngine);
 
-    auto secrets = new SecretsHandler(app.data());
-    auto settings = new AppSettings(app.data());
-    auto core = new BitSailorCore(settings, secrets, app.data());
+        return new BitSailorCore(QCoreApplication::instance());
+    });
 
     v->rootContext()->setContextProperty("settings", settings);
+    v->rootContext()->setContextProperty("secrets", secrets);
     v->rootContext()->setContextProperty("core", core);
     v->rootContext()->setContextProperty("runtimeCache", RuntimeCache::getInstance(app.data()));
     v->rootContext()->setContextProperty("privateBinPath", getPrivateBinDirPath());

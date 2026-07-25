@@ -20,10 +20,6 @@ Dialog {
     allowedOrientations: Orientation.All
     canAccept: Helpers.xor(emailText.length && passwordText.length, clientIdText.length && clientSecretText.length)
 
-    SecretsHandler {
-        id: secrets
-    }
-
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height

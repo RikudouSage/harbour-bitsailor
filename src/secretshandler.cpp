@@ -26,6 +26,7 @@ using Sailfish::Secrets::DeleteCollectionRequest;
 
 const QString SecretsHandler::collectionName(QStringLiteral("bitsailor"));
 
+static const QString encryptedVaultName = "encryptedVault";
 static const QString sessionJsonName = "sessionJson";
 static const QString usernameName = "username";
 static const QString passwordName = "password";
@@ -51,8 +52,21 @@ QJsonObject SecretsHandler::getSessionJson()
     const auto json = getData(sessionJsonName);
     QJsonParseError err;
     auto doc = QJsonDocument::fromJson(json.toUtf8(), &err);
-    if (err.errorString() != "") {
+    if (err.error) {
         qWarning() << "Failed parsing session: " << err.errorString();
+        return QJsonObject();
+    }
+
+    return doc.object();
+}
+
+QJsonObject SecretsHandler::getEncryptedVault()
+{
+    const auto json = getData(encryptedVaultName);
+    QJsonParseError err;
+    auto doc = QJsonDocument::fromJson(json.toUtf8(), &err);
+    if (err.error) {
+        qWarning() << "Failed parsing vault: " << err.errorString();
         return QJsonObject();
     }
 
@@ -94,6 +108,12 @@ bool SecretsHandler::invalidCertificatesAllowed()
     return getData(invalidCertsName) == "true";
 }
 
+bool SecretsHandler::hasEncryptedVault()
+{
+    auto value = getData(encryptedVaultName);
+    return !value.isNull() && !value.isEmpty();
+}
+
 bool SecretsHandler::hasSessionJson()
 {
     auto sessionJson = getData(sessionJsonName);
@@ -119,6 +139,11 @@ void SecretsHandler::removePassword()
 void SecretsHandler::removeSessionJson()
 {
     deleteSecret(sessionJsonName);
+}
+
+void SecretsHandler::removeEncryptedVault()
+{
+    deleteSecret(encryptedVaultName);
 }
 
 bool SecretsHandler::clearAllSecrets()
@@ -151,6 +176,16 @@ void SecretsHandler::allowInvalidCertificates()
 void SecretsHandler::disallowInvalidCertificates()
 {
     deleteSecret(invalidCertsName);
+}
+
+void SecretsHandler::setSessionJson(const QJsonObject &sessionJson)
+{
+    storeData(sessionJsonName, QString::fromUtf8(QJsonDocument(sessionJson).toJson(QJsonDocument::Compact)));
+}
+
+void SecretsHandler::setEncryptedVault(const QJsonObject &json)
+{
+    storeData(encryptedVaultName, QString::fromUtf8(QJsonDocument(json).toJson(QJsonDocument::Compact)));
 }
 
 void SecretsHandler::setUsername(const QString &username)

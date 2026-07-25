@@ -6,10 +6,6 @@ import cz.chrastecky.bitsailor 1.0
 CoverBackground {
     property bool isLocked: !secrets.hasSessionId()
 
-    SecretsHandler {
-        id: secrets
-    }
-
     BitwardenCli {
         id: cli
 
