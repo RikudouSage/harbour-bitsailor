@@ -548,22 +548,6 @@
     </message>
 </context>
 <context>
-    <name>InstallBitwardenCliPage</name>
-    <message>
-        <source>Installing Bitwarden CLI</source>
-        <extracomment>Page title</extracomment>
-        <translation>Instaluje se Bitwarden CLI</translation>
-    </message>
-    <message>
-        <source>Installing... Please don&apos;t close the app.</source>
-        <translation>Probíhá instalace... Prosím nezavírejte aplikaci.</translation>
-    </message>
-    <message>
-        <source>There was an error installing the Bitwarden CLI.</source>
-        <translation>Nastala chyba při instalaci Bitwarden CLI.</translation>
-    </message>
-</context>
-<context>
     <name>InvalidCertificatePage</name>
     <message>
         <source>Invalid Certificate</source>
@@ -839,156 +823,107 @@
 <context>
     <name>MainPage</name>
     <message>
-        <source>Logout</source>
-        <translation>Odhlásit se</translation>
-    </message>
-    <message>
-        <source>Lock</source>
-        <translation>Zamknout</translation>
-    </message>
-    <message>
         <source>Please wait...</source>
-        <translation>Prosím čekejte...</translation>
-    </message>
-    <message>
-        <source>Logins</source>
-        <extracomment>Page title</extracomment>
-        <translation>Přihlášení</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation>Hledat</translation>
-    </message>
-    <message>
-        <source>Cards</source>
-        <extracomment>Page title</extracomment>
-        <translation>Karty</translation>
-    </message>
-    <message>
-        <source>Notes</source>
-        <extracomment>Page title</extracomment>
-        <translation>Poznámky</translation>
-    </message>
-    <message>
-        <source>Identities</source>
-        <extracomment>Page title</extracomment>
-        <translation>Identity</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Loading vault items</source>
-        <translation>Načítání položek v trezoru</translation>
-    </message>
-    <message>
-        <source>Sync Vault</source>
-        <translation>Synchronizovat trezor</translation>
-    </message>
-    <message>
-        <source>Syncing vault</source>
-        <translation>Synchronizace trezoru</translation>
-    </message>
-    <message>
-        <source>Logins (%1)</source>
-        <translation>Přihlášení (%1)</translation>
-    </message>
-    <message>
-        <source>Cards (%1)</source>
-        <translation>Karty (%1)</translation>
-    </message>
-    <message>
-        <source>Notes (%1)</source>
-        <translation>Poznámky (%1)</translation>
-    </message>
-    <message>
-        <source>Identities (%1)</source>
-        <translation>Identity (%1)</translation>
-    </message>
-    <message>
-        <source>BitSailor</source>
-        <extracomment>Page title</extracomment>
-        <translation>BitSailor</translation>
-    </message>
-    <message>
-        <source>Add login</source>
-        <translation>Přidat přihlášení</translation>
-    </message>
-    <message>
-        <source>Add card</source>
-        <translation>Přidat kartu</translation>
-    </message>
-    <message>
-        <source>Add note</source>
-        <translation>Přidat poznámku</translation>
-    </message>
-    <message>
-        <source>Add identity</source>
-        <translation>Přidat identitu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The BitWarden server is not running,
 please restart the app</source>
-        <translation>BitWarden server neběží,
-restartujte prosím aplikaci.</translation>
+        <translation type="unfinished">Bitwarden server neběží,
+prosím restartujte aplikaci</translation>
     </message>
     <message>
         <source>Patching the server...</source>
-        <translation>Patchování serveru...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>There was an error while patching the server, please contact the developer to let him know to fix it.&lt;br&gt;&lt;br&gt;Meanwhile you can disable the server patch (&lt;strong&gt;which is not recommended because it poses a security risk&lt;/strong&gt;) or you can cancel this disalog to disable api and use the CLI again.</source>
-        <translation>Nastala chyba při patchování serveru, prosím kontaktujte vývojáře a dejte mu vědět.&lt;br&gt;&lt;br&gt;Prozatím můžete patchování serveru vypnout (&lt;strong&gt;což nedoporučujeme, protože se jedná o bezpečnostní riziko&lt;/strong&gt;), nebo můžete tento dialog zrušit a tím zakázat api a opět používat CLI.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The BitWarden CLI is not installed locally and thus the server cannot be patched.&lt;br&gt;&lt;br&gt;You can ignore this and continue using the api regardless &lt;strong&gt;but it poses a security risk&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;The recommended approach is to &lt;strong&gt;cancel this dialog which will disable api&lt;/strong&gt; altogether and you will fall back to using the CLI which is slower but safer.</source>
-        <translation>BitWarden CLI není nainstalováno lokálně a proto nemůže server být opatchován.&lt;br&gt;&lt;br&gt;Můžete patchování ignorovat a pokračovat s používáním api, &lt;strong&gt;ale jedná se o bezpečnostní riziko.&lt;/strong&gt;&lt;br&gt;&lt;br&gt;Doporučujeme &lt;strong&gt;zrušit tento dialog, čímž se zakáže api&lt;/strong&gt; a budete znovu používat CLI, což je sice pomalejší, ale bezpečné.</translation>
-    </message>
-</context>
-<context>
-    <name>MissingBitwardenCliPage</name>
-    <message>
-        <source>Continue</source>
-        <extracomment>Dialog accept text</extracomment>
-        <translation>Pokračovat</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Exit</source>
-        <extracomment>Dialog reject text</extracomment>
-        <translation>Ukončit</translation>
+        <source>Logout</source>
+        <translation type="unfinished">Odhlásit se</translation>
     </message>
     <message>
-        <source>The Bitwarden CLI is not installed, do you wish to install it using &lt;strong&gt;npm&lt;/strong&gt;? The app cannot continue without Bitwarden CLI.</source>
-        <translation>Bitwarden CLI není nainstalováno, přejete si jej nainstalovat pomocí &lt;strong&gt;npm&lt;/strong&gt;? Aplikace nemůže bez Bitwarden CLI pokračovat.</translation>
+        <source>Lock</source>
+        <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>MissingRequiredBinaryPage</name>
     <message>
-        <source>Missing Required Dependencies</source>
+        <source>Sync Vault</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Syncing vault</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Hledat</translation>
+    </message>
+    <message>
+        <source>BitSailor</source>
         <extracomment>Page title</extracomment>
-        <translation>Chybějící nezbytné závislosti</translation>
+        <translation type="unfinished">BitSailor</translation>
     </message>
     <message>
-        <source>Required dependency is missing: &lt;strong&gt;%1&lt;/strong&gt;. This dependency should be installed automatically if you installed the app from store using the provided rpm. Please reinstall using the rpm package or install the missing dependency manually and then restart the app.</source>
-        <translation>Chybí nezbytná závislost: &lt;strong&gt;%1&lt;/strong&gt;. Tato závislost by měla být nainstalována automaticky, pokud jste aplikaci nainstalovali z obchodu pomocí balíčku rpm. Prosím přeinstalujte pomocí rpm balíčku, nebo nainstalujte chybějící závislost ručně a restartujte aplikaci.</translation>
-    </message>
-</context>
-<context>
-    <name>PatchServerPage</name>
-    <message>
-        <source>Ignore patching</source>
-        <extracomment>Dialog accept text</extracomment>
-        <translation>Ignorovat patchování</translation>
+        <source>Logins (%1)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Patch server</source>
-        <translation>Opatchovat server</translation>
+        <source>Logins</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished">Přihlášení</translation>
     </message>
     <message>
-        <source>Ignore the above warning, don&apos;t patch the server</source>
-        <translation>Ignorovat varování výše, nepatchovat server</translation>
+        <source>Add login</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The built-in BitWarden server is insecure and allows anyone to access it once it&apos;s running. To fix that we can patch the server to force it to require authentication before revealing its secrets.&lt;br&gt;&lt;br&gt;You can also ignore this, but it&apos;s &lt;strong&gt;highly discouraged&lt;/strong&gt; and you should &lt;strong&gt;really&lt;/strong&gt; know what you&apos;re doing.&lt;br&gt;&lt;br&gt;If you cancel, the api will be disabled.</source>
-        <translation>BitWarden server je nezabezpečený a umožňuje přístup úplně všem, pokud běží. Abychom se tomuhle vyhnuli, je možno opatchovat server, aby vyžadoval před odhalením hesel autentizaci.&lt;br&gt;&lt;br&gt;Můžete to také ignorovat, ale &lt;strong&gt;důrazně to nedoporučujeme&lt;/strong&gt; a měli byste si být &lt;strong&gt;opravdu&lt;/strong&gt; jistí, že víte, co děláte.&lt;br&gt;&lt;br&gt;Pokud tento dialog zrušíte, api bude zakázána.</translation>
+        <source>Cards (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cards</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished">Karty</translation>
+    </message>
+    <message>
+        <source>Add card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished">Poznámky</translation>
+    </message>
+    <message>
+        <source>Add note</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Identities (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Identities</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add identity</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1328,32 +1263,6 @@ prosím restartujte aplikaci</translation>
     <message>
         <source>Try again</source>
         <translation>Znovu</translation>
-    </message>
-</context>
-<context>
-    <name>UpdateBitwardenCliPage</name>
-    <message>
-        <source>Updating Bitwarden CLI</source>
-        <extracomment>Page title</extracomment>
-        <translation>Aktualizace Bitwarden CLI</translation>
-    </message>
-    <message>
-        <source>There was an error updating the Bitwarden CLI.</source>
-        <translation>Nastala chyba při aktualizaci Bitwarden CLI.</translation>
-    </message>
-    <message>
-        <source>Bitwarden CLI was updated successfully</source>
-        <translation>Bitwarden CLI bylo úspěšně aktualizováno</translation>
-    </message>
-    <message>
-        <source>Updating Bitwarden CLI... Please don&apos;t close the app or exit this page.</source>
-        <translation>Aktualizace Bitwarden CLI... Prosím nezavírejte aplikaci a neopouštějte tuto obrazovku.</translation>
-    </message>
-    <message>
-        <source>Please restart the app
-for the changes to take effect.</source>
-        <translation>Prosím restartujte aplikaci,
-aby se změny projevily.</translation>
     </message>
 </context>
 <context>

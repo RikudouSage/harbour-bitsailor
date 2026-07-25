@@ -548,22 +548,6 @@
     </message>
 </context>
 <context>
-    <name>InstallBitwardenCliPage</name>
-    <message>
-        <source>Installing Bitwarden CLI</source>
-        <extracomment>Page title</extracomment>
-        <translation>Instalowanie narzędzi konsolowych Bitwarden</translation>
-    </message>
-    <message>
-        <source>Installing... Please don&apos;t close the app.</source>
-        <translation>Trwa instalacja... Proszę nie zamykać aplikacji.</translation>
-    </message>
-    <message>
-        <source>There was an error installing the Bitwarden CLI.</source>
-        <translation>Wystąpił błąd instalacji narzędzi konsolowych Bitwarden</translation>
-    </message>
-</context>
-<context>
     <name>InvalidCertificatePage</name>
     <message>
         <source>Invalid Certificate</source>
@@ -839,155 +823,107 @@
 <context>
     <name>MainPage</name>
     <message>
-        <source>Logout</source>
-        <translation>Wyloguj</translation>
-    </message>
-    <message>
-        <source>Lock</source>
-        <translation>Zablokuj</translation>
-    </message>
-    <message>
         <source>Please wait...</source>
-        <translation>Proszę czekać...</translation>
-    </message>
-    <message>
-        <source>Logins</source>
-        <extracomment>Page title</extracomment>
-        <translation>Loginy</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation>Szukaj</translation>
-    </message>
-    <message>
-        <source>Cards</source>
-        <extracomment>Page title</extracomment>
-        <translation>Karty</translation>
-    </message>
-    <message>
-        <source>Notes</source>
-        <extracomment>Page title</extracomment>
-        <translation>Notatki</translation>
-    </message>
-    <message>
-        <source>Identities</source>
-        <extracomment>Page title</extracomment>
-        <translation>Tożsamości</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Loading vault items</source>
-        <translation>Ładowanie elementów sejfu</translation>
-    </message>
-    <message>
-        <source>Sync Vault</source>
-        <translation>Synchronizuj sejf</translation>
-    </message>
-    <message>
-        <source>Syncing vault</source>
-        <translation>Synchronizowanie sejfu</translation>
-    </message>
-    <message>
-        <source>Logins (%1)</source>
-        <translation>Loginy (%1)</translation>
-    </message>
-    <message>
-        <source>Cards (%1)</source>
-        <translation>Karty (%1)</translation>
-    </message>
-    <message>
-        <source>Notes (%1)</source>
-        <translation>Notatki (%1)</translation>
-    </message>
-    <message>
-        <source>Identities (%1)</source>
-        <translation>Tożsamości (%1)</translation>
-    </message>
-    <message>
-        <source>BitSailor</source>
-        <extracomment>Page title</extracomment>
-        <translation>BitSailor</translation>
-    </message>
-    <message>
-        <source>Add login</source>
-        <translation>Dodaj login</translation>
-    </message>
-    <message>
-        <source>Add card</source>
-        <translation>Dodaj kartę</translation>
-    </message>
-    <message>
-        <source>Add note</source>
-        <translation>Dodaj notatkę</translation>
-    </message>
-    <message>
-        <source>Add identity</source>
-        <translation>Dodaj tożsamość</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The BitWarden server is not running,
 please restart the app</source>
-        <translation>Serwer BitWarden nie jest uruchomiony, proszę zrestartować aplikację</translation>
+        <translation type="unfinished">Serwer BitWarden nie jest uruchmiony
+Uruchom ponownie aplikację</translation>
     </message>
     <message>
         <source>Patching the server...</source>
-        <translation>Wgrywanie łatek na serwer...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>There was an error while patching the server, please contact the developer to let him know to fix it.&lt;br&gt;&lt;br&gt;Meanwhile you can disable the server patch (&lt;strong&gt;which is not recommended because it poses a security risk&lt;/strong&gt;) or you can cancel this disalog to disable api and use the CLI again.</source>
-        <translation>Wystąpił błąd przy ładowaniu poprawek na serwer, proszę skontaktować się z developerem aby mógł to  naprawić.&lt;br&gt;&lt;br&gt;Tymczasem możesz wyłączyć ładowanie poprawel na serwer (&lt;strong&gt;nie jest to zalecane, ponieważ stwarza zagrożenie bezpieczeństwa&lt;/strong&gt;) lub możesz zamknąć to okno dialogowe i spróbować ponownie użyć narzędzia konsoli.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The BitWarden CLI is not installed locally and thus the server cannot be patched.&lt;br&gt;&lt;br&gt;You can ignore this and continue using the api regardless &lt;strong&gt;but it poses a security risk&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;The recommended approach is to &lt;strong&gt;cancel this dialog which will disable api&lt;/strong&gt; altogether and you will fall back to using the CLI which is slower but safer.</source>
-        <translation>Narzędzia konsoli BitWarden nie są zainstalowane lokalnie więc nie można wgrać poprawek na serwer.&lt;br&gt;&lt;br&gt;Możesz zignorować ten komunikat i używać api pomimo tego &lt;strong&gt;ale to stwarza zagrożenie bezpieczeństwa&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Zalecanym podejściem jest &lt;strong&gt;zamknięcie tego okna dialogowego, co oznacza wyłączenie api&lt;/strong&gt; co oznacza powrót do korzystania z narzędzi konsolowych, co jest wolniejsze lecz bezpieczniejsze.</translation>
-    </message>
-</context>
-<context>
-    <name>MissingBitwardenCliPage</name>
-    <message>
-        <source>Continue</source>
-        <extracomment>Dialog accept text</extracomment>
-        <translation>Kontynuuj</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Exit</source>
-        <extracomment>Dialog reject text</extracomment>
-        <translation>Wyjście</translation>
+        <source>Logout</source>
+        <translation type="unfinished">Wyloguj</translation>
     </message>
     <message>
-        <source>The Bitwarden CLI is not installed, do you wish to install it using &lt;strong&gt;npm&lt;/strong&gt;? The app cannot continue without Bitwarden CLI.</source>
-        <translation>Narzędzia konsolowe CLI nie są zainstalowane, chcesz je zainstalować przy użyciu &lt;strong&gt;npm&lt;/strong&gt;? Aplikacja nie może kontynuować bez narzędzi konsolowych.</translation>
+        <source>Lock</source>
+        <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>MissingRequiredBinaryPage</name>
     <message>
-        <source>Missing Required Dependencies</source>
+        <source>Sync Vault</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Syncing vault</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Szukaj</translation>
+    </message>
+    <message>
+        <source>BitSailor</source>
         <extracomment>Page title</extracomment>
-        <translation>Brakujące wymagane zależności</translation>
+        <translation type="unfinished">BitSailor</translation>
     </message>
     <message>
-        <source>Required dependency is missing: &lt;strong&gt;%1&lt;/strong&gt;. This dependency should be installed automatically if you installed the app from store using the provided rpm. Please reinstall using the rpm package or install the missing dependency manually and then restart the app.</source>
-        <translation>Wymagana zależność nie jest zainstalowana &lt;strong&gt;%1&lt;/strong&gt;. Ta zależność powinna zostać zainstalowana automatycznie, jeśli aplikacja była instalowana ze sklepu przy użyciu dostarczonego pakietu rpm. Proszę zainstaluj ponownie pakiet rpm lub zainstaluj brakującą zależność ręcznie i uruchom ponownie aplikację.</translation>
-    </message>
-</context>
-<context>
-    <name>PatchServerPage</name>
-    <message>
-        <source>Ignore patching</source>
-        <extracomment>Dialog accept text</extracomment>
-        <translation>Ignoruj wgrywanie poprawek</translation>
+        <source>Logins (%1)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Patch server</source>
-        <translation>Wgraj poprawki na serwer</translation>
+        <source>Logins</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished">Loginy</translation>
     </message>
     <message>
-        <source>Ignore the above warning, don&apos;t patch the server</source>
-        <translation>Zignoruj powyższe ostrzeżenie, nie instaluj poprawek serwera</translation>
+        <source>Add login</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The built-in BitWarden server is insecure and allows anyone to access it once it&apos;s running. To fix that we can patch the server to force it to require authentication before revealing its secrets.&lt;br&gt;&lt;br&gt;You can also ignore this, but it&apos;s &lt;strong&gt;highly discouraged&lt;/strong&gt; and you should &lt;strong&gt;really&lt;/strong&gt; know what you&apos;re doing.&lt;br&gt;&lt;br&gt;If you cancel, the api will be disabled.</source>
-        <translation>Wbudowany serwer BitWarde jest niezabezpieczony i pozwala na dostęp wszystkim, kiedy jest uruchomiony. Aby to naprawić, możemy wgrać poprawki na serwer by wymusić wymaganie autentykację przed wyświetleniem sekretów.&lt;br&gt;&lt;br&gt;Możesz również zignorować to, ale jest to  &lt;strong&gt;bardzo niewskazane&lt;/strong&gt; i powinieneś &lt;strong&gt;naprawdę&lt;/strong&gt; być świadomy co robisz.&lt;br&gt;&lt;br&gt;Jeśli anulujesz, dostęp do api będzie wyłączony.</translation>
+        <source>Cards (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cards</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished">Karty</translation>
+    </message>
+    <message>
+        <source>Add card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished">Notatki</translation>
+    </message>
+    <message>
+        <source>Add note</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Identities (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Identities</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add identity</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1327,32 +1263,6 @@ Uruchom ponownie aplikację</translation>
     <message>
         <source>Try again</source>
         <translation>Spróbuj ponownie</translation>
-    </message>
-</context>
-<context>
-    <name>UpdateBitwardenCliPage</name>
-    <message>
-        <source>Updating Bitwarden CLI</source>
-        <extracomment>Page title</extracomment>
-        <translation>Trwa aktualizacja narzędzi konsolowych Bitwarden</translation>
-    </message>
-    <message>
-        <source>There was an error updating the Bitwarden CLI.</source>
-        <translation>Wystąpił błąd aktualizacji narzędzi konsolowych Bitwarden</translation>
-    </message>
-    <message>
-        <source>Bitwarden CLI was updated successfully</source>
-        <translation>Aktualizacja narzędzi konsolowych Bitwarden zakończona powodzeniem</translation>
-    </message>
-    <message>
-        <source>Updating Bitwarden CLI... Please don&apos;t close the app or exit this page.</source>
-        <translation>Trwa aktualizacja narzędzi konsolowych Bitwarden. Proszę nie zamykać aplikacji ani nie opuszczać tej strony.</translation>
-    </message>
-    <message>
-        <source>Please restart the app
-for the changes to take effect.</source>
-        <translation>Proszę zrestartować aplikację
-aby zastosować zmiany.</translation>
     </message>
 </context>
 <context>

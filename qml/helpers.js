@@ -1,6 +1,12 @@
-function safeCallerFactory(queue, page) {
+function safeCallerFactory(queue, page, additionalChecks) {
     return function(callable) {
-        if (pageStack.busy || page.status !== PageStatus.Active) {
+        if (!additionalChecks) {
+            additionalChecks = function() {
+                return true;
+            };
+        }
+
+        if (pageStack.busy || page.status !== PageStatus.Active || !additionalChecks()) {
             queue.push(callable);
         } else {
             callable();

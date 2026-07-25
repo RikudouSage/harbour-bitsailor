@@ -11,6 +11,7 @@
 BitSailorCore::BitSailorCore(AppSettings *settings, SecretsHandler *secrets, QObject *parent) : QObject(parent)
 {
     qRegisterMetaType<BitSailorCore::SessionStatus>("SessionStatus");
+    qRegisterMetaType<BitSailorCore::ItemType>("ItemType");
 
     this->settings = settings;
     this->secrets = secrets;
@@ -139,6 +140,57 @@ void BitSailorCore::unlockVault()
     });
 }
 
+void BitSailorCore::fetchItems()
+{
+    QtConcurrent::run([=] {
+        BitwardenItemSlice items = {};
+        if (BitwardenGetItems(vault, ctx, session, &items) != BitwardenSuccess) {
+            qWarning() << "Failed getting items: " << getLastError();
+            emit itemResolvingFailed();
+            return;
+        }
+
+        QJsonArray result;
+        for (size_t i = 0; i < items.len; ++i) {
+            auto item = items.items[i];
+            QJsonObject outItem;
+            outItem.insert("type", item.type);
+            outItem.insert("name", item.name);
+            outItem.insert("notes", item.notes);
+
+            if (item.type == BitwardenItemTypeLogin) {
+                QJsonObject login;
+                login.insert("username", item.login->username);
+                login.insert("password", item.login->password);
+                login.insert("totp", item.login->totp);
+                if (item.login->uris.len > 0) {
+                    QJsonArray uris;
+                    for (size_t j = 0; j < item.login->uris.len; ++j) {
+                        auto uri = item.login->uris.items[j];
+                        QJsonObject outUri;
+                        outUri.insert("uri", uri.uri);
+                    }
+                    login.insert("uris", uris);
+                }
+
+                outItem.insert("login", login);
+            } else if (item.type == BitwardenItemTypeCard) {
+                QJsonObject card;
+                card.insert("cardholderName", item.card->cardholderName);
+                card.insert("brand", item.card->brand);
+                card.insert("number", item.card->number);
+                card.insert("expMonth", item.card->expirationMonth);
+                card.insert("expYear", item.card->expirationYear);
+                card.insert("code", item.card->code);
+                outItem.insert("card", card);
+            }
+            result.append(outItem);
+        }
+        BitwardenFreeItems(&items);
+        emit itemsResolved(result);
+    });
+}
+
 const QString BitSailorCore::getLastError() const
 {
     std::size_t len = BitwardenGetLastError(nullptr, 0);
@@ -160,6 +212,9 @@ void BitSailorCore::initialize()
 
     if (settings->deviceUuid() == "") {
         settings->setDeviceUuid(uuidToString(generateUuid()));
+#ifdef QT_DEBUG
+        qDebug() << "Device ID: " << settings->deviceUuid();
+#endif
     }
 
     if (BitwardenNewContext(&ctx) != BitwardenSuccess) {
@@ -181,8 +236,16 @@ void BitSailorCore::initialize()
         qWarning() << "Failed initializing client: " << getLastError();
     }
 
+    if (BitwardenGetVault(client, &vault) != BitwardenSuccess) {
+        valid = false;
+        qWarning() << "Failded getting a vault: " << getLastError();
+    }
+
     if (secrets->hasSessionJson()) {
         auto json = secrets->getSessionJson();
+#ifdef QT_DEBUG
+        qDebug() << "Session JSON: " << json;
+#endif
         if (json.isEmpty()) {
             qWarning() << "The session json is empty";
         }
@@ -190,6 +253,27 @@ void BitSailorCore::initialize()
         if (BitwardenImportSession(nullptr, jsonStr.data(), &session) != BitwardenSuccess) {
             valid = false;
             qWarning() << "Failed importing session: " << getLastError();
+        }
+    }
+
+    if (secrets->hasEncryptedVault()) {
+        auto json = secrets->getEncryptedVault();
+#ifdef QT_DEBUG
+        qDebug() << "Vault JSON: " << json;
+#endif
+        if (json.isEmpty()) {
+            qWarning() << "The session json is empty";
+        }
+        auto jsonStr = QJsonDocument(json).toJson();
+        VaultHandle newVault;
+        if (BitwardenImportVault(vault, jsonStr.data(), &newVault) != BitwardenSuccess) {
+            valid = false;
+            qWarning() << "Failed importing session: " << getLastError();
+        } else {
+            if (BitwardenCloseHandle(vault) != BitwardenSuccess) {
+                qWarning() << "Failed closing vault handle: " << getLastError();
+            }
+            vault = newVault;
         }
     }
 }

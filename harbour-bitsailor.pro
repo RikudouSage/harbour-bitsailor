@@ -88,15 +88,11 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/pages/GeneratePasswordDialog.qml \
     qml/pages/GeneratePasswordPage.qml \
     qml/pages/IgnoreInvalidCertsPage.qml \
-    qml/pages/InstallBitwardenCliPage.qml \
     qml/pages/InvalidCertificatePage.qml \
     qml/pages/ItemDetailPage.qml \
     qml/pages/LoginCheckPage.qml \
     qml/pages/LoginPage.qml \
     qml/pages/MainPage.qml \
-    qml/pages/MissingBitwardenCliPage.qml \
-    qml/pages/MissingRequiredBinaryPage.qml \
-    qml/pages/PatchServerPage.qml \
     qml/pages/ResetAuthStylePage.qml \
     qml/pages/SendListPage.qml \
     qml/pages/SettingsPage.qml \
@@ -104,7 +100,6 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/pages/SetupSystemAuthPage.qml \
     qml/pages/UnknownErrorOccuredPage.qml \
     qml/pages/UnlockVaultPage.qml \
-    qml/pages/UpdateBitwardenCliPage.qml \
     qml/pages/VaultPage.qml \
     rpm/harbour-bitsailor.spec \
     rpm/harbour-bitsailor.yaml \

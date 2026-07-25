@@ -5,6 +5,7 @@
 
 #include <QObject>
 #include <QUuid>
+#include <QJsonArray>
 
 #include "appsettings.h"
 #include "secretshandler.h"
@@ -19,7 +20,18 @@ public:
         SessionStatusLocked = ::BitwardenSessionStatusLocked,
         SessionStatusNone = ::BitwardenSessionStatusNone,
     };
+    enum ItemType {
+        ItemTypeLogin = ::BitwardenItemTypeLogin,
+        ItemTypeSecureNote = ::BitwardenItemTypeSecureNote,
+        ItemTypeCard = ::BitwardenItemTypeCard,
+        ItemTypeIdentity = ::BitwardenItemTypeIdentity,
+        ItemTypeSshKey = ::BitwardenItemTypeSshKey,
+        ItemTypeBankAccount = ::BitwardenItemTypeBankAccount,
+        ItemTypeDriversLicense = ::BitwardenItemTypeDriversLicense,
+        ItemTypePassport = ::BitwardenItemTypePassport,
+    };
     Q_ENUM(SessionStatus)
+    Q_ENUM(ItemType)
 
     explicit BitSailorCore(AppSettings *settings, SecretsHandler *secrets, QObject *parent = nullptr);
     explicit BitSailorCore(QObject *parent = nullptr);
@@ -36,6 +48,8 @@ public:
     Q_INVOKABLE void unlockVault(int pin);
     Q_INVOKABLE void unlockVault();
 
+    Q_INVOKABLE void fetchItems();
+
 signals:
     void loginStatusFetched(SessionStatus status);
     void serverUrlChanged(bool success);
@@ -45,6 +59,9 @@ signals:
     void couldNotFetchEmail();
     void unlockFinished(bool success, const QString &error);
     void wrongPinProvided();
+
+    void itemsResolved(const QJsonArray &items);
+    void itemResolvingFailed();
 
 private:
     const QString getLastError() const;
@@ -80,5 +97,6 @@ private: // dependencies
 };
 
 Q_DECLARE_METATYPE(BitSailorCore::SessionStatus)
+Q_DECLARE_METATYPE(BitSailorCore::ItemType)
 
 #endif // BITSAILORCORE_H

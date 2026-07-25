@@ -373,7 +373,7 @@
     </message>
     <message>
         <source>Notes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Notat</translation>
     </message>
     <message>
         <source>Cardholder Name</source>
@@ -545,22 +545,6 @@
     <message>
         <source>I acknowledge the above warning and that I&apos;m making myself available to man-in-the-middle attacks which https is meant to prevent and which I&apos;m knowingly circumventing</source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>InstallBitwardenCliPage</name>
-    <message>
-        <source>Installing Bitwarden CLI</source>
-        <extracomment>Page title</extracomment>
-        <translation>Installerer Bitwarden-CLI</translation>
-    </message>
-    <message>
-        <source>Installing... Please don&apos;t close the app.</source>
-        <translation>Installerer… Vennligst ikke lukk appen.</translation>
-    </message>
-    <message>
-        <source>There was an error installing the Bitwarden CLI.</source>
-        <translation>Det oppstod en feil ved installasjon av Bitwarden CLI.</translation>
     </message>
 </context>
 <context>
@@ -839,154 +823,105 @@
 <context>
     <name>MainPage</name>
     <message>
-        <source>Logout</source>
-        <translation>Logg av</translation>
-    </message>
-    <message>
-        <source>Lock</source>
-        <translation>Lås</translation>
-    </message>
-    <message>
         <source>Please wait...</source>
-        <translation>Vennligst vent...</translation>
-    </message>
-    <message>
-        <source>Logins</source>
-        <extracomment>Page title</extracomment>
-        <translation>Påloggingsinformasjon</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation>Søk</translation>
-    </message>
-    <message>
-        <source>Cards</source>
-        <extracomment>Page title</extracomment>
-        <translation>Kort</translation>
-    </message>
-    <message>
-        <source>Notes</source>
-        <extracomment>Page title</extracomment>
-        <translation>Notater</translation>
-    </message>
-    <message>
-        <source>Identities</source>
-        <extracomment>Page title</extracomment>
-        <translation>Identiteter</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Loading vault items</source>
-        <translation>Laster inn oppføringer fra hvelvet…</translation>
-    </message>
-    <message>
-        <source>Sync Vault</source>
-        <translation>Synkroniser hvelvet</translation>
-    </message>
-    <message>
-        <source>Syncing vault</source>
-        <translation>Synkroniserer hvelvet</translation>
-    </message>
-    <message>
-        <source>Cards (%1)</source>
-        <translation>Kort (%1)</translation>
-    </message>
-    <message>
-        <source>Notes (%1)</source>
-        <translation>Notater (%1)</translation>
-    </message>
-    <message>
-        <source>Identities (%1)</source>
-        <translation>Identiteter (%1)</translation>
-    </message>
-    <message>
-        <source>BitSailor</source>
-        <extracomment>Page title</extracomment>
-        <translation>BitSailor</translation>
-    </message>
-    <message>
-        <source>Add login</source>
-        <translation>Legg til påloggingsinformasjon</translation>
-    </message>
-    <message>
-        <source>Add card</source>
-        <translation>Legg til kort</translation>
-    </message>
-    <message>
-        <source>Add note</source>
-        <translation>Nytt notat</translation>
-    </message>
-    <message>
-        <source>Add identity</source>
-        <translation>Ny identitetsoppføring</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The BitWarden server is not running,
 please restart the app</source>
-        <translation>BitWarden‑serveren kjører ikke. Vennligst start appen på nytt.</translation>
+        <translation type="unfinished">BitWarden‑serveren kjører ikke. Vennligst start appen på nytt</translation>
     </message>
     <message>
         <source>Patching the server...</source>
-        <translation>Oppdaterer serveren...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>There was an error while patching the server, please contact the developer to let him know to fix it.&lt;br&gt;&lt;br&gt;Meanwhile you can disable the server patch (&lt;strong&gt;which is not recommended because it poses a security risk&lt;/strong&gt;) or you can cancel this disalog to disable api and use the CLI again.</source>
-        <translation>Det oppstod en feil under patching av serveren. Kontakt utvikleren og gi beskjed slik at det kan rettes.&lt;br&gt;&lt;br&gt; I mellomtiden kan du deaktivere serverpatchen (&lt;strong&gt;noe som ikke anbefales fordi det utgjør en sikkerhetsrisiko&lt;/strong&gt;), eller avbryte for å bruke CLI igjen.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The BitWarden CLI is not installed locally and thus the server cannot be patched.&lt;br&gt;&lt;br&gt;You can ignore this and continue using the api regardless &lt;strong&gt;but it poses a security risk&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;The recommended approach is to &lt;strong&gt;cancel this dialog which will disable api&lt;/strong&gt; altogether and you will fall back to using the CLI which is slower but safer.</source>
-        <translation>BitWarden CLI er ikke installert lokalt, og derfor kan ikke serveren patches.&lt;br&gt;&lt;br&gt; Du kan ignorere dette og fortsette å bruke API-en, &lt;strong&gt;men det utgjør en sikkerhetsrisiko&lt;/strong&gt;.&lt;br&gt;&lt;br&gt; Anbefalt framgangsmåte er å &lt;strong&gt;avbryte denne dialogen — det vil deaktivere API-en&lt;/strong&gt;, og du vil falle tilbake til å bruke CLI-en, som er tregere men tryggere.</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation type="unfinished">Logg ut</translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sync Vault</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Syncing vault</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation type="unfinished">Søk</translation>
+    </message>
+    <message>
+        <source>BitSailor</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished">BitSailor</translation>
     </message>
     <message>
         <source>Logins (%1)</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>MissingBitwardenCliPage</name>
     <message>
-        <source>Continue</source>
-        <extracomment>Dialog accept text</extracomment>
-        <translation>Fortsett</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <extracomment>Dialog reject text</extracomment>
-        <translation>Avslutt</translation>
-    </message>
-    <message>
-        <source>The Bitwarden CLI is not installed, do you wish to install it using &lt;strong&gt;npm&lt;/strong&gt;? The app cannot continue without Bitwarden CLI.</source>
-        <translation>Bitwarden CLI mangler — vil du installere den med &lt;strong&gt;npm&lt;/strong&gt;? Appen krever Bitwarden CLI for å fortsette.</translation>
-    </message>
-</context>
-<context>
-    <name>MissingRequiredBinaryPage</name>
-    <message>
-        <source>Missing Required Dependencies</source>
+        <source>Logins</source>
         <extracomment>Page title</extracomment>
-        <translation>Mangler nødvendige avhengigheter</translation>
+        <translation type="unfinished">Pålogginger</translation>
     </message>
     <message>
-        <source>Required dependency is missing: &lt;strong&gt;%1&lt;/strong&gt;. This dependency should be installed automatically if you installed the app from store using the provided rpm. Please reinstall using the rpm package or install the missing dependency manually and then restart the app.</source>
-        <translation>Påkrevd avhengighet mangler: &lt;strong&gt;%1&lt;/strong&gt;. Denne avhengigheten skal installeres automatisk hvis du installerte appen fra App Store. Installer på nytt ved å bruke RPM-pakken fra App Store, eller installer den manglende avhengigheten manuelt og start deretter appen på nytt.</translation>
-    </message>
-</context>
-<context>
-    <name>PatchServerPage</name>
-    <message>
-        <source>Ignore patching</source>
-        <extracomment>Dialog accept text</extracomment>
-        <translation>Ignorer patch</translation>
+        <source>Add login</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Patch server</source>
-        <translation>Patching av serveren</translation>
+        <source>Cards (%1)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ignore the above warning, don&apos;t patch the server</source>
-        <translation>Ignorer advarselen ovenfor — ikke patch serveren</translation>
+        <source>Cards</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished">Kort</translation>
     </message>
     <message>
-        <source>The built-in BitWarden server is insecure and allows anyone to access it once it&apos;s running. To fix that we can patch the server to force it to require authentication before revealing its secrets.&lt;br&gt;&lt;br&gt;You can also ignore this, but it&apos;s &lt;strong&gt;highly discouraged&lt;/strong&gt; and you should &lt;strong&gt;really&lt;/strong&gt; know what you&apos;re doing.&lt;br&gt;&lt;br&gt;If you cancel, the api will be disabled.</source>
+        <source>Add card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished">Notat</translation>
+    </message>
+    <message>
+        <source>Add note</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Identities (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Identities</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add identity</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1330,31 +1265,6 @@ please restart the app</source>
     <message>
         <source>Try again</source>
         <translation>Prøv igjen</translation>
-    </message>
-</context>
-<context>
-    <name>UpdateBitwardenCliPage</name>
-    <message>
-        <source>Updating Bitwarden CLI</source>
-        <extracomment>Page title</extracomment>
-        <translation>Oppdaterer Bitwarden CLI</translation>
-    </message>
-    <message>
-        <source>There was an error updating the Bitwarden CLI.</source>
-        <translation>Det oppstod en feil under oppdatering av Bitwarden CLI.</translation>
-    </message>
-    <message>
-        <source>Bitwarden CLI was updated successfully</source>
-        <translation>Bitwarden CLI ble oppdatert</translation>
-    </message>
-    <message>
-        <source>Updating Bitwarden CLI... Please don&apos;t close the app or exit this page.</source>
-        <translation>Oppdaterer Bitwarden CLI… Ikke lukk appen eller forlat siden.</translation>
-    </message>
-    <message>
-        <source>Please restart the app
-for the changes to take effect.</source>
-        <translation>BVennligst start appen på nytt for at endringene skal tre i kraft.</translation>
     </message>
 </context>
 <context>

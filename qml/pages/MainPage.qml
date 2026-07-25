@@ -4,8 +4,13 @@ import Sailfish.Silica 1.0
 import cz.chrastecky.bitsailor 1.0
 
 import "../components" as Components
+import "../helpers.js" as Helpers
 
 Page {
+    property var safeCall: Helpers.safeCallerFactory(doAfterLoad, page, function() {
+        return loaded;
+    });
+
     property string loadingMessage
     property bool loadItemsUsingApiOnceAvailable: false
     property bool checkUnlockUsingApiOnceAvailable: false
@@ -46,14 +51,6 @@ Page {
         displayMessage(qsTr("Loading vault items"));
     }
 
-    function safeCall(callable) {
-        if (page.status == PageStatus.Active && loaded) {
-            callable();
-        } else {
-            doAfterLoad.push(callable);
-        }
-    }
-
     function onVaultSynced() {
         hideMessage();
         loginsCount = null;
@@ -74,39 +71,41 @@ Page {
     }
 
     function onItemsResolved(items) {
-        if (!currentCount) {
+        safeCall(function() {
             hideMessage();
-            doAfterLoad.push(function() { hideMessage(); });
-            currentCount = "logins";
-            // @disable-check M127
-            settings.useApi ? api.getLogins() : cli.getLogins();
-        } else {
-            switch (currentCount) {
-            case "logins":
-                loginsCount = items.length;
-                currentCount = "cards";
-                // @disable-check M127
-                settings.useApi ? api.getCards() : cli.getCards();
-                break;
-            case "cards":
-                cardsCount = items.length;
-                currentCount = "notes";
-                // @disable-check M127
-                settings.useApi ? api.getNotes() : cli.getNotes();
-                break;
-            case "notes":
-                notesCount = items.length;
-                currentCount = "identities";
-                // @disable-check M127
-                settings.useApi ? api.getIdentities() : cli.getIdentities();
-                break;
-            case "identities":
-                identitiesCount = items.length;
-                currentCount = "";
-                initialLoadCompleted = true;
-                break;
+
+            loginsCount = 0;
+            cardsCount = 0;
+            notesCount = 0;
+            identitiesCount = 0;
+
+            console.log(JSON.stringify(items))
+
+            for (var i in items) {
+                if (!items.hasOwnProperty(i)) {
+                    continue;
+                }
+                const item = items[i];
+
+                switch (item.type) {
+                case BitSailorCore.ItemTypeLogin:
+                    ++loginsCount;
+                    break;
+                case BitSailorCore.ItemTypeCard:
+                    ++cardsCount;
+                    break;
+                case BitSailorCore.ItemTypeSecureNote:
+                    ++notesCount;
+                    break;
+                case BitSailorCore.ItemTypeIdentity:
+                    ++identitiesCount;
+                    break;
+                }
             }
-        }
+
+
+            initialLoadCompleted = true;
+        });
     }
 
     function onVaultLockStatusResolved(unlocked) {
@@ -224,6 +223,27 @@ Page {
                     checkUnlockUsingApiOnceAvailable = true;
                 }
             }
+        }
+    }
+
+    Connections {
+        target: core
+
+        onLoginStatusFetched: {
+            if (status != BitSailorCore.SessionStatusUnlocked) {
+                redoLogin();
+                return;
+            }
+
+            core.fetchItems();
+        }
+
+        onItemsResolved: {
+            page.onItemsResolved(items);
+        }
+
+        onItemResolvingFailed: {
+            page.onVaultSyncFailed();
         }
     }
 
@@ -432,31 +452,11 @@ Page {
     }
 
     Component.onCompleted: {
-        if (settings.useApi) {
-            cli.serve(settings.forceUnsafeApi);
-        }
-
-        if (settings.eagerLoading) {
-            if (settings.useApi) {
-                api.isRunning(); // handled async in onIsRunningResult
-            } else {
-                cli.getItems();
-            }
-
-            displayLoadingVaultItems();
-        }
-
-        if (settings.fastAuth) {
-            if (settings.useApi) {
-                api.isRunning(); // handled async in onIsRunningResult
-            } else {
-                cli.checkVaultUnlocked();
-            }
-        }
-
         if (settings.useSystemAuth && settings.useAuthorizationOnUnlocked) {
             authChecker.checkAuth();
         }
+
+        core.getLoginStatus();
     }
 
     onStatusChanged: {
