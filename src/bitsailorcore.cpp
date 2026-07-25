@@ -204,10 +204,14 @@ void BitSailorCore::cleanup()
     if (session != 0 && BitwardenCloseHandle(session) != BitwardenSuccess) {
         qWarning() << "Failed closing session: " << getLastError();
     }
+    if (vault != 0 && BitwardenCloseHandle(vault) != BitwardenSuccess) {
+        qWarning() << "Failed closing vault: " << getLastError();
+    }
 
     ctx = 0;
     client = 0;
     session = 0;
+    vault = 0;
     email = "";
 }
 
