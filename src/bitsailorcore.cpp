@@ -317,9 +317,6 @@ void BitSailorCore::initialize()
 
     if (secrets->hasEncryptedVault()) {
         auto json = secrets->getEncryptedVault();
-#ifdef QT_DEBUG
-        qDebug() << "Vault JSON: " << json;
-#endif
         if (json.isEmpty()) {
             qWarning() << "The session json is empty";
         }
