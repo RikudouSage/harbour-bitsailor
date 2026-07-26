@@ -37,12 +37,7 @@ Requires:
   - sailfishsilica-qt5 >= 0.10.9 
   - sailfishsecretsdaemon-secretsplugins-default
   - sailfish-polkit-agent
-  - nodejs >= 20.19
-  - npm
   - python3-base
-  - make
-  - gcc
-  - gcc-c++
 
 # All installed files
 Files:
