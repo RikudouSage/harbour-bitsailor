@@ -21,6 +21,7 @@ public:
         SessionStatusNone = ::BitwardenSessionStatusNone,
     };
     enum ItemType {
+        ItemTypeNone = 0,
         ItemTypeLogin = ::BitwardenItemTypeLogin,
         ItemTypeSecureNote = ::BitwardenItemTypeSecureNote,
         ItemTypeCard = ::BitwardenItemTypeCard,
@@ -61,6 +62,7 @@ public:
     Q_INVOKABLE void syncVault();
     Q_INVOKABLE void fetchItems();
     Q_INVOKABLE void fetchSends();
+    Q_INVOKABLE void deleteItem(const QString &id, bool emitEvents = true);
 
 signals:
     void serverUrlChanged(bool success);
@@ -81,6 +83,7 @@ signals:
     void itemsResolved(const QJsonArray &items);
     void itemResolvingFailed();
     void sendsResolved(bool success, const QJsonArray &items);
+    void deletingFinished(bool success);
 
 private:
     const QString getLastError() const;

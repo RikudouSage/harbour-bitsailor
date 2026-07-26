@@ -266,6 +266,23 @@ void BitSailorCore::fetchSends()
     });
 }
 
+void BitSailorCore::deleteItem(const QString &id, bool emitEvents)
+{
+    QtConcurrent::run([=] {
+        if (BitwardenDeleteItem(vault, ctx, session, uuidToCoreUuid(qUuidFromString(id))) != BitwardenSuccess) {
+            qWarning() << "Failed deleting item: " << getLastError();
+            if (emitEvents) {
+                emit deletingFinished(false);
+            }
+            return;
+        }
+
+        if (emitEvents) {
+            emit deletingFinished(true);
+        }
+    });
+}
+
 void BitSailorCore::syncVault()
 {
     QtConcurrent::run([=] {

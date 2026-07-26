@@ -172,10 +172,16 @@ Page {
         }
 
         onItemsResolved: {
+            if (page.status !== PageStatus.Active) {
+                return;
+            }
             page.onItemsResolved(items);
         }
 
         onItemResolvingFailed: {
+            if (page.status !== PageStatus.Active) {
+                return;
+            }
             page.onVaultSyncFailed();
         }
 
