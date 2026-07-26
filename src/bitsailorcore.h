@@ -38,28 +38,39 @@ public:
     ~BitSailorCore();
 
     Q_INVOKABLE void initialize();
-
-    Q_INVOKABLE void getLoginStatus();
+    Q_INVOKABLE void getServerUrl();
     Q_INVOKABLE void changeServerUrl(const QString &url);
-    Q_INVOKABLE void loginApiKey(const QString &clientId, const QString &clientSecret);
-    Q_INVOKABLE void loginEmailPassword(const QString &email, const QString &password);
-    Q_INVOKABLE void logout();
+
+    Q_INVOKABLE void lockVault(bool sync = false);
     Q_INVOKABLE void unlockVault(const QString &password);
     Q_INVOKABLE void unlockVault(int pin);
     Q_INVOKABLE void unlockVault();
+    Q_INVOKABLE void validateMasterPassword(const QString &password);
 
+    Q_INVOKABLE void getLoginStatus();
+    Q_INVOKABLE void loginApiKey(const QString &clientId, const QString &clientSecret);
+    Q_INVOKABLE void loginEmailPassword(const QString &email, const QString &password);
+    Q_INVOKABLE void logout();
+
+    Q_INVOKABLE void syncVault();
     Q_INVOKABLE void fetchItems();
 
 signals:
-    void loginStatusFetched(SessionStatus status);
     void serverUrlChanged(bool success);
+    void serverUrlResolved(const QString &url);
+
+    void vaultLocked(bool success);
+    void unlockFinished(bool success, const QString &error);
+    void masterPasswordValidationFinished(bool success);
+
+    void loginStatusFetched(SessionStatus status);
     void loginFinished(bool success, const QString &error);
     void twoFactorNeeded();
     void logoutFinished();
     void couldNotFetchEmail();
-    void unlockFinished(bool success, const QString &error);
     void wrongPinProvided();
 
+    void syncVaultFinished(bool success);
     void itemsResolved(const QJsonArray &items);
     void itemResolvingFailed();
 

@@ -24,7 +24,7 @@ using Sailfish::Secrets::StoredSecretRequest;
 using Sailfish::Secrets::DeleteSecretRequest;
 using Sailfish::Secrets::DeleteCollectionRequest;
 
-const QString SecretsHandler::collectionName(QStringLiteral("bitsailor"));
+const QString SecretsHandler::collectionName(QStringLiteral("bitsailor_v2"));
 
 static const QString encryptedVaultName = "encryptedVault";
 static const QString sessionJsonName = "sessionJson";

@@ -831,16 +831,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The BitWarden server is not running,
-please restart the app</source>
-        <translation type="unfinished">Der Bitwarden-Server läuft nicht,
-bitte starte die Anwendung neu</translation>
-    </message>
-    <message>
-        <source>Patching the server...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>There was an error while patching the server, please contact the developer to let him know to fix it.&lt;br&gt;&lt;br&gt;Meanwhile you can disable the server patch (&lt;strong&gt;which is not recommended because it poses a security risk&lt;/strong&gt;) or you can cancel this disalog to disable api and use the CLI again.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1008,36 +998,8 @@ bitte starte die Anwendung neu</translation>
         <translation>Das eingegebene Passwort ist ungültig.</translation>
     </message>
     <message>
-        <source>Load vault items eagerly in main view</source>
-        <translation>Lade Einträge eifrig in der Hauptansicht</translation>
-    </message>
-    <message>
         <source></source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Save items in cache for faster load</source>
-        <translation>Speichere Einträge im Cache für schnellere Ladezeiten</translation>
-    </message>
-    <message>
-        <source>When this option is enabled, all items are loaded right when you enter the main screen. If disabled, the options are only loaded when you actually need to load them, meaning when you enter an item list like &apos;%1&apos;, &apos;%2&apos; etc.</source>
-        <translation>Wenn diese Option aktiviert ist, werden alle Einträge unmittelbar beim Betreten der Hauptansicht geladen. Wenn deaktiviert, werden die Optionen nur geladen, wenn sie tatsächlich benötigt werdem, dass heißt wenn eine Liste von Einträgen wie &apos;%1&apos;, &apos;%2&apos; usw. aufgerufen wird.</translation>
-    </message>
-    <message>
-        <source>Logins</source>
-        <translation>Zugangsdaten</translation>
-    </message>
-    <message>
-        <source>Cards</source>
-        <translation>Karten</translation>
-    </message>
-    <message>
-        <source>Fast authentication</source>
-        <translation>Schnelle Authentifizierung</translation>
-    </message>
-    <message>
-        <source>When this option is enabled, authentication is skipped and you are assumed to be logged in regardless of the actual status. What this means in practice is that logged in check is postponed until you&apos;re on the main page and is done in the background, this gives anyone opening this app a few seconds to look around before transfering you to the login/unlock screen. This should be ok because all vault operations fail when you&apos;re not logged in. &lt;strong&gt;Warning&lt;/strong&gt;: if used in combination with the setting &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; some data may be leaked to whoever opens this app. Use at your own risk.</source>
-        <translation>Wenn diese Option aktiviert ist, wird die Authentifizierung übersprungen und es wird angenommen, dass du angemeldet bist unabhängig vom tatsächlichen Anmeldestatus. Das bedeutet in der Praxis, dass die Anmeldeüberprüfung hinausgezögert wird, bis du die Hauptseite erreichst und wird im Hintergrund durchgeführt. Das gibt jedem nach dem Öffnen der Anwendung einige Sekunden, sich umzusehen, bevor er auf den Anmelde-/Entsperrbildschirm weitergeleitet wird. Das sollte in Ordnung sein, weil alle Tresor-Operationen fehlschlagen, wenn du nicht angemeldet bist. &lt;strong&gt;Warnung&lt;/strong&gt;: In Kombination mit der Einstellung &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; können einige Daten an jeden preisgegeben werden, der die Anwendung öffnet. Auf eigenes Risiko verwenden.</translation>
     </message>
     <message>
         <source>OS authorization check failed.</source>
@@ -1061,32 +1023,8 @@ bitte starte die Anwendung neu</translation>
 Die Bitwarden-CLI wird außerdem abgemeldet. Möchten Sie fortfahren?</translation>
     </message>
     <message>
-        <source>General</source>
-        <translation>Allgemein</translation>
-    </message>
-    <message>
         <source>Security</source>
         <translation>Sicherheit</translation>
-    </message>
-    <message>
-        <source>Performance</source>
-        <translation>Leistung</translation>
-    </message>
-    <message>
-        <source>By enabling this option you will force the app to authorize you using OS authorization even when the vault is unlocked. If the authorization fails your vault will be locked and you will be redirected to unlock vault screen. This can speed up getting your vault data significantly. &lt;strong&gt;Warning&lt;/strong&gt;: Disables &apos;%1&apos;</source>
-        <translation>Durch Aktivieren dieser Option erzwingen sie eine OS-Autorisierung, auch wenn der Tresor entsperrt ist. Wenn die Legitimation fehlschlägt, wird Ihr Tresor gesperrt und sie werden zum Tresor-Entsperrbildschirm weitergeleitet. Dies kann das Erreichen der Tresordaten deutlich beschleunigen. &lt;strong&gt;Achtung&lt;/strong&gt;: Deaktiviert &apos;%1&apos;</translation>
-    </message>
-    <message>
-        <source>Require OS authorization on unlocked vault</source>
-        <translation>OS-Autorisierung bei entsperrtem Tresor verlangen</translation>
-    </message>
-    <message>
-        <source>Enabling this option will fasten load times for items in the vault significantly - your data are &lt;strong&gt;stored on disk encrypted&lt;/strong&gt; without any sensitive data (card numbers, passwords etc.).</source>
-        <translation>Ein Aktivieren dieser Einstellung wird die Ladezeiten für Tresor-Einträge spürbar verringern - Ihre Daten werden &lt;strong&gt;verschlüsselt gespeichert&lt;/strong&gt; ohne jegliche sensitiven Daten (Kartennummer, Passwörter etc.).</translation>
-    </message>
-    <message>
-        <source>Update Bitwarden CLI</source>
-        <translation>Aktualisieren Sie die Bitwarden-CLI</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1101,14 +1039,6 @@ Die Bitwarden-CLI wird außerdem abgemeldet. Möchten Sie fortfahren?</translati
         <translation>Bitwarden-URL</translation>
     </message>
     <message>
-        <source>Note: Currently this app cannot find out if the URL has been changed and it appears as if the default was set. If you&apos;ve set it before, it should work as expected.</source>
-        <translation>Hinweis: Derzeit kann diese App nicht feststellen, ob sich die URL geändert hat und sie wird so gezeigt, als ob die Standardeinstellung festgelegt wurde. Wenn Sie die URL bereits eingestellt haben, sollte sie wie erwartet funktionieren.</translation>
-    </message>
-    <message>
-        <source>If you self-host your Bitwarden server, you may set its URL here. Leave empty to use the global default.</source>
-        <translation>Wenn Sie Ihren Bitwarden-Server selbst hosten, können Sie dessen URL hier festlegen. Leer lassen, um den Standardserver zu verwenden.</translation>
-    </message>
-    <message>
         <source>Setting URL</source>
         <extracomment>As in the action of setting url (present continuous)</extracomment>
         <translation>Setze URL</translation>
@@ -1116,18 +1046,6 @@ Die Bitwarden-CLI wird außerdem abgemeldet. Möchten Sie fortfahren?</translati
     <message>
         <source>Note: You will be logged out.</source>
         <translation>Hinweis: Du wirst abgemeldet werden.</translation>
-    </message>
-    <message>
-        <source>Use api (experimental)</source>
-        <translation>Verwende die API (experimentiell)</translation>
-    </message>
-    <message>
-        <source>By enabling this option the app will use a local BitWarden server instead of the BitWarden CLI. That can make all BitWarden operations &lt;strong&gt;much&lt;/strong&gt; faster, but the support is experimental and there might be bugs which cause the server to crash, thus rendering the app unusable until you close it and start it again.</source>
-        <translation>Durch Aktivieren dieser Einstellung wird die App einen lokalen Bitwarden-Servet anstatt der Bitwarden-CLI verwenden. Das kann alle Bitwarden-Aktionen &lt;strong&gt;drastisch&lt;/strong&gt; beschleunigen, aber die Unterstützung ist experimentiell und könnte Fehler enthalten, die den Server zum Absturz bringen und somit die App unbenutzbar machen, bis sie geschlossen und wieder geöffnet wird.</translation>
-    </message>
-    <message>
-        <source>Failed getting the configured server URL</source>
-        <translation>Abrufen der konfigurierten Server-URL fehlgeschlagen</translation>
     </message>
     <message>
         <source>Enable certificate validation</source>
@@ -1142,12 +1060,8 @@ Die Bitwarden-CLI wird außerdem abgemeldet. Möchten Sie fortfahren?</translati
         <translation>Bitte die Anwendung neustarten</translation>
     </message>
     <message>
-        <source>Use system CA store</source>
-        <translation>System-CA-Speicher verwenden</translation>
-    </message>
-    <message>
-        <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
-        <translation>Dadurch wird der Zertifikatsspeicher des Systems anstelle des Standard-Speichers verwendet. Das bedeutet, dass alle Zertifikate, denen das System vertraut, auch von BitSailor als vertrauenswürdig eingestuft werden.. &lt;strong&gt;Bitte beachten, dass ein selbstsigniertes Zertifikat noch als vertrauenswürdig eingestuft werden muss&lt;/strong&gt;.</translation>
+        <source>Could not fetch your email address, the session is in an invalid state. Logout is advised</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

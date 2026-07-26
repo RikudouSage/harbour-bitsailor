@@ -831,16 +831,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The BitWarden server is not running,
-please restart the app</source>
-        <translation type="unfinished">Bitwarden server neběží,
-prosím restartujte aplikaci</translation>
-    </message>
-    <message>
-        <source>Patching the server...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>There was an error while patching the server, please contact the developer to let him know to fix it.&lt;br&gt;&lt;br&gt;Meanwhile you can disable the server patch (&lt;strong&gt;which is not recommended because it poses a security risk&lt;/strong&gt;) or you can cancel this disalog to disable api and use the CLI again.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1008,36 +998,8 @@ prosím restartujte aplikaci</translation>
         <translation>Zadali jste neplatné heslo.</translation>
     </message>
     <message>
-        <source>Load vault items eagerly in main view</source>
-        <translation>Načítat trezor na hlavní obrazovce</translation>
-    </message>
-    <message>
         <source></source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Save items in cache for faster load</source>
-        <translation>Uložit položky v cache pro rychlé načtení</translation>
-    </message>
-    <message>
-        <source>When this option is enabled, all items are loaded right when you enter the main screen. If disabled, the options are only loaded when you actually need to load them, meaning when you enter an item list like &apos;%1&apos;, &apos;%2&apos; etc.</source>
-        <translation>Pokud je tato možnost povolena, všechny položky trezoru jsou načteny při vstupu na hlavní obrazovku. Při vypnutí jsou položky načteny až když jsou potřeba, tedy když kliknete na jednotlivé položky, jako např. &apos;%1&apos; nebo &apos;%2&apos;.</translation>
-    </message>
-    <message>
-        <source>Logins</source>
-        <translation>Přihlášení</translation>
-    </message>
-    <message>
-        <source>Cards</source>
-        <translation>Karty</translation>
-    </message>
-    <message>
-        <source>Fast authentication</source>
-        <translation>Rychlá autentizace</translation>
-    </message>
-    <message>
-        <source>When this option is enabled, authentication is skipped and you are assumed to be logged in regardless of the actual status. What this means in practice is that logged in check is postponed until you&apos;re on the main page and is done in the background, this gives anyone opening this app a few seconds to look around before transfering you to the login/unlock screen. This should be ok because all vault operations fail when you&apos;re not logged in. &lt;strong&gt;Warning&lt;/strong&gt;: if used in combination with the setting &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; some data may be leaked to whoever opens this app. Use at your own risk.</source>
-        <translation>Pokud je tato možnost povolena, autentizace je přeskočena a aplikace se chová, jako byste byli přihlášeni bez ohledu na skutečný stav. V praxi to znamená, že kontrola přihlášení je přesunuta na později, konkrétně na hlavní obrazovku, a je provedena na pozadí. To umožňuje komukoliv, kdo otevře tuto aplikaci, pár sekund na procházení, než bude přesměrován na přihlašovací obrazovku. To by nemělo ničemu vadit, protože všechny operace s trezorem selžou, pokud nejste přihlášeni. &lt;strong&gt;Varování&lt;/strong&gt;: při použití v kombinaci s &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; mohou být komukoliv, kdo otevře tuto aplikaci, vyzrazena nějaká data. Používejte na vlastní nebezpečí.</translation>
     </message>
     <message>
         <source>OS authorization check failed.</source>
@@ -1060,32 +1022,8 @@ prosím restartujte aplikaci</translation>
         <translation>Tato možnost smaže všechna data, která má tato aplikace uložena ve vašem zařízení, včetně uložiště citlivých údajů, Bitwarden CLI (pokud bylo nainstalováno touto aplikací), dočasné soubory atd. Budete také odhlášeni z Bitwarden CLI. Přejete si pokračovat?</translation>
     </message>
     <message>
-        <source>General</source>
-        <translation>Obecné</translation>
-    </message>
-    <message>
         <source>Security</source>
         <translation>Zabezpečení</translation>
-    </message>
-    <message>
-        <source>Performance</source>
-        <translation>Výkon</translation>
-    </message>
-    <message>
-        <source>By enabling this option you will force the app to authorize you using OS authorization even when the vault is unlocked. If the authorization fails your vault will be locked and you will be redirected to unlock vault screen. This can speed up getting your vault data significantly. &lt;strong&gt;Warning&lt;/strong&gt;: Disables &apos;%1&apos;</source>
-        <translation>Povolením této možnosti vynutíte autorizaci vůči OS i v případě, že je trezor odemčen. Pokud autorizace selže, váš trezor bude uzamčen a budete přesměrování na obrazovku pro odemčení trezoru. Výrazně zrychluje přístup k datům ve vašem trezoru. &lt;strong&gt;Varování&lt;/strong&gt;: Zakáže &apos;%1&apos;</translation>
-    </message>
-    <message>
-        <source>Require OS authorization on unlocked vault</source>
-        <translation>Vyžadovat autorizaci OS při odemčeném trezoru</translation>
-    </message>
-    <message>
-        <source>Enabling this option will fasten load times for items in the vault significantly - your data are &lt;strong&gt;stored on disk encrypted&lt;/strong&gt; without any sensitive data (card numbers, passwords etc.).</source>
-        <translation>Povolením této možnosti zásadně zrychlíte načítání trezoru - vaše data jsou &lt;strong&gt;zašifrovaná uložená na disku&lt;/strong&gt; bez citlivých údajů (čísla karet, hesla atd.).</translation>
-    </message>
-    <message>
-        <source>Update Bitwarden CLI</source>
-        <translation>Aktualizovat Bitwarden CLI</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1100,14 +1038,6 @@ prosím restartujte aplikaci</translation>
         <translation>URL Bitwardenu</translation>
     </message>
     <message>
-        <source>Note: Currently this app cannot find out if the URL has been changed and it appears as if the default was set. If you&apos;ve set it before, it should work as expected.</source>
-        <translation>Poznámka: V současnosti nedokáže aplikace zjistit, jestli byla URL změněna a vypadá to, jako by byla nastavena výchozí. Pokud jste ji již dříve nastavili, mělo by vše fungovat.</translation>
-    </message>
-    <message>
-        <source>If you self-host your Bitwarden server, you may set its URL here. Leave empty to use the global default.</source>
-        <translation>Pokud si sami hostujete Bitwarden, můžete zde zadat jeho URL. Ponechte prázdné pro použití výchozího nastavení.</translation>
-    </message>
-    <message>
         <source>Setting URL</source>
         <extracomment>As in the action of setting url (present continuous)</extracomment>
         <translation>Nastavování URL</translation>
@@ -1115,18 +1045,6 @@ prosím restartujte aplikaci</translation>
     <message>
         <source>Note: You will be logged out.</source>
         <translation>Poznámka: Budete odhlášeni.</translation>
-    </message>
-    <message>
-        <source>Use api (experimental)</source>
-        <translation>Použít api (experimentální)</translation>
-    </message>
-    <message>
-        <source>By enabling this option the app will use a local BitWarden server instead of the BitWarden CLI. That can make all BitWarden operations &lt;strong&gt;much&lt;/strong&gt; faster, but the support is experimental and there might be bugs which cause the server to crash, thus rendering the app unusable until you close it and start it again.</source>
-        <translation>Povolením této možnosti bude aplikace používat lokální BitWarden server namísto BitWarden CLI. To může všechny operace &lt;strong&gt;výrazně&lt;/strong&gt; zrychlit, ale podpora je experimentální a mohou se objevit chyby, které způsobí nestabilitu serveru, kvůli čemuž bude celá aplikace až do restartu nepoužitelná.</translation>
-    </message>
-    <message>
-        <source>Failed getting the configured server URL</source>
-        <translation>Nezdařilo se získat nastavenou URL serveru</translation>
     </message>
     <message>
         <source>Enable certificate validation</source>
@@ -1141,12 +1059,8 @@ prosím restartujte aplikaci</translation>
         <translation>Prosím restartujte aplikaci</translation>
     </message>
     <message>
-        <source>Use system CA store</source>
-        <translation>Použít systémový CA store</translation>
-    </message>
-    <message>
-        <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
-        <translation>Použije se systémový CA store (uložiště kořenových autorit) namísto výchozího. To znamená, že všechny certifikáty, které považuje za důvěryhodné systém, bude za důvěryhodné považovat i BitSailor. &lt;strong&gt;Mějte na paměti, že váš self-signed certifikát musí být důvěryhodný pro systém, nestačí jen zapnout tuto možnost&lt;/strong&gt;.</translation>
+        <source>Could not fetch your email address, the session is in an invalid state. Logout is advised</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

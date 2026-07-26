@@ -831,15 +831,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The BitWarden server is not running,
-please restart the app</source>
-        <translation type="unfinished">BitWarden‑serveren kjører ikke. Vennligst start appen på nytt</translation>
-    </message>
-    <message>
-        <source>Patching the server...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>There was an error while patching the server, please contact the developer to let him know to fix it.&lt;br&gt;&lt;br&gt;Meanwhile you can disable the server patch (&lt;strong&gt;which is not recommended because it poses a security risk&lt;/strong&gt;) or you can cancel this disalog to disable api and use the CLI again.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1006,38 +997,8 @@ please restart the app</source>
         <translation>Passordet du oppga er ugyldig.</translation>
     </message>
     <message>
-        <source>Load vault items eagerly in main view</source>
-        <translation>Forhåndslast hvelvoppføringer i hovedvisningen</translation>
-    </message>
-    <message>
         <source></source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Save items in cache for faster load</source>
-        <translation>Lagre oppføringer i cache for raskere lasting</translation>
-    </message>
-    <message>
-        <source>When this option is enabled, all items are loaded right when you enter the main screen. If disabled, the options are only loaded when you actually need to load them, meaning when you enter an item list like &apos;%1&apos;, &apos;%2&apos; etc.</source>
-        <translation>Når dette valget er aktivert, lastes alle oppføringer så snart du går inn på hovedvisningen. Hvis det er deaktivert, lastes oppføringene først når du trenger dem — for eksempel når du åpner en oppføringsliste som «%1», «%2» osv.</translation>
-    </message>
-    <message>
-        <source>Logins</source>
-        <translation>Pålogginger</translation>
-    </message>
-    <message>
-        <source>Cards</source>
-        <translation>Kort</translation>
-    </message>
-    <message>
-        <source>Fast authentication</source>
-        <translation>Rask autentisering</translation>
-    </message>
-    <message>
-        <source>When this option is enabled, authentication is skipped and you are assumed to be logged in regardless of the actual status. What this means in practice is that logged in check is postponed until you&apos;re on the main page and is done in the background, this gives anyone opening this app a few seconds to look around before transfering you to the login/unlock screen. This should be ok because all vault operations fail when you&apos;re not logged in. &lt;strong&gt;Warning&lt;/strong&gt;: if used in combination with the setting &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; some data may be leaked to whoever opens this app. Use at your own risk.</source>
-        <translation>Når dette valget er aktivert, blir autentisering hoppet over og du antas å være innlogget uavhengig av faktisk status. I praksis betyr dette at kontrollen av om du er innlogget utsettes til du er på hovedsiden og kjøres i bakgrunnen — det gir alle som åpner appen noen sekunder til å se rundt før du blir sendt til innloggings-/opplåsningsskjermen. Dette bør være greit siden alle hvelvoperasjoner feiler når du ikke er innlogget.
-
-&lt;strong&gt;Advarsel&lt;/strong&gt;: hvis dette brukes i kombinasjon med innstillingen **«%1»**, kan noen data lekkes til den som åpner appen. Bruk på egen risiko.</translation>
     </message>
     <message>
         <source>OS authorization check failed.</source>
@@ -1061,33 +1022,8 @@ please restart the app</source>
 </translation>
     </message>
     <message>
-        <source>General</source>
-        <translation>Generelt</translation>
-    </message>
-    <message>
         <source>Security</source>
         <translation>Sikkerhet</translation>
-    </message>
-    <message>
-        <source>Performance</source>
-        <translation>Ytelse</translation>
-    </message>
-    <message>
-        <source>By enabling this option you will force the app to authorize you using OS authorization even when the vault is unlocked. If the authorization fails your vault will be locked and you will be redirected to unlock vault screen. This can speed up getting your vault data significantly. &lt;strong&gt;Warning&lt;/strong&gt;: Disables &apos;%1&apos;</source>
-        <translation>DHvis du aktiverer dette valget, vil appen kreve operativsystemets autorisasjon selv når hvelvet er opplåst. Hvis autorisasjonen feiler, låses hvelvet og du blir sendt til opplåsningsskjermen. Dette kan gi raskere tilgang til hvelvdataene dine.
-&lt;strong&gt;Advarsel;/strong&gt;: deaktiverer «%1»</translation>
-    </message>
-    <message>
-        <source>Require OS authorization on unlocked vault</source>
-        <translation>Krev operativsystemets autorisasjon for opplåst hvelv</translation>
-    </message>
-    <message>
-        <source>Enabling this option will fasten load times for items in the vault significantly - your data are &lt;strong&gt;stored on disk encrypted&lt;/strong&gt; without any sensitive data (card numbers, passwords etc.).</source>
-        <translation>EHvis du aktiverer dette alternativet vil lastetiden for oppføringer i hvelvet bli betydelig raskere — &lt;strong&gt;dataene dine blir lagret kryptert på disken&lt;/strong&gt; uten noen sensitive opplysninger (kortnumre, passord osv.).</translation>
-    </message>
-    <message>
-        <source>Update Bitwarden CLI</source>
-        <translation>Oppdater Bitwarden-CLI</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1102,14 +1038,6 @@ please restart the app</source>
         <translation>Bitwarden-URL</translation>
     </message>
     <message>
-        <source>Note: Currently this app cannot find out if the URL has been changed and it appears as if the default was set. If you&apos;ve set it before, it should work as expected.</source>
-        <translation>&lt;strong&gt;Merk;/strong&gt;: For øyeblikket kan ikke denne appen oppdage om URL‑en er endret, og det kan se ut som om standardverdien er valgt. Hvis du tidligere har endret URL‑en, skal den likevel fungere som forventet.</translation>
-    </message>
-    <message>
-        <source>If you self-host your Bitwarden server, you may set its URL here. Leave empty to use the global default.</source>
-        <translation>Wenn Sie Ihren Bitwarden-Server selbst hosten, können Sie dessen URL hier festlegen. Leer lassen, um den Standardserver zu verwenden.</translation>
-    </message>
-    <message>
         <source>Setting URL</source>
         <extracomment>As in the action of setting url (present continuous)</extracomment>
         <translation>Setze URL</translation>
@@ -1117,18 +1045,6 @@ please restart the app</source>
     <message>
         <source>Note: You will be logged out.</source>
         <translation>Merk: Du vil bli logget ut.</translation>
-    </message>
-    <message>
-        <source>Use api (experimental)</source>
-        <translation>Bruk API (eksperimentelt)</translation>
-    </message>
-    <message>
-        <source>By enabling this option the app will use a local BitWarden server instead of the BitWarden CLI. That can make all BitWarden operations &lt;strong&gt;much&lt;/strong&gt; faster, but the support is experimental and there might be bugs which cause the server to crash, thus rendering the app unusable until you close it and start it again.</source>
-        <translation>Hvis du aktiverer dette valget, vil appen bruke en lokal BitWarden‑server i stedet for BitWarden CLI. Det kan gjøre alle BitWarden‑operasjoner &lt;strong&gt;mye&lt;/strong&gt; raskere, men støtten er eksperimentell og det kan finnes feil som får serveren til å krasje. Dette kan gjøre appen ubrukelig inntil du lukker den og starter den på nytt.</translation>
-    </message>
-    <message>
-        <source>Failed getting the configured server URL</source>
-        <translation>Kunne ikke hente den konfigurerte server‑URLen</translation>
     </message>
     <message>
         <source>Enable certificate validation</source>
@@ -1143,11 +1059,7 @@ please restart the app</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use system CA store</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
+        <source>Could not fetch your email address, the session is in an invalid state. Logout is advised</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

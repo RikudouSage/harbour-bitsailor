@@ -831,16 +831,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The BitWarden server is not running,
-please restart the app</source>
-        <translation type="unfinished">Le serveur BitWarden ne fonctionne pas,
-veuillez redémarrer l&apos;application</translation>
-    </message>
-    <message>
-        <source>Patching the server...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>There was an error while patching the server, please contact the developer to let him know to fix it.&lt;br&gt;&lt;br&gt;Meanwhile you can disable the server patch (&lt;strong&gt;which is not recommended because it poses a security risk&lt;/strong&gt;) or you can cancel this disalog to disable api and use the CLI again.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1008,36 +998,8 @@ veuillez redémarrer l&apos;application</translation>
         <translation>Le mot de passse saisi est invalide.</translation>
     </message>
     <message>
-        <source>Load vault items eagerly in main view</source>
-        <translation>Charger les éléments du coffre dans la vue principale</translation>
-    </message>
-    <message>
         <source></source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Save items in cache for faster load</source>
-        <translation>Sauvegarder les éléments en cache pour un chargement plus rapide</translation>
-    </message>
-    <message>
-        <source>When this option is enabled, all items are loaded right when you enter the main screen. If disabled, the options are only loaded when you actually need to load them, meaning when you enter an item list like &apos;%1&apos;, &apos;%2&apos; etc.</source>
-        <translation>Lorsque cette option est active, tous les éléments sont chargés dès que vous arrivez sur l&apos;écran principal. Si désactivé, les options sont seulement chargées lorsque vous avez besoin de les charger, lorsque vous ouvrez une liste d&apos;éléments comme &apos;%1&apos;, &apos;%2&apos; etc.</translation>
-    </message>
-    <message>
-        <source>Logins</source>
-        <translation>Identifiants</translation>
-    </message>
-    <message>
-        <source>Cards</source>
-        <translation>Cartes</translation>
-    </message>
-    <message>
-        <source>Fast authentication</source>
-        <translation>Authentification rapide</translation>
-    </message>
-    <message>
-        <source>When this option is enabled, authentication is skipped and you are assumed to be logged in regardless of the actual status. What this means in practice is that logged in check is postponed until you&apos;re on the main page and is done in the background, this gives anyone opening this app a few seconds to look around before transfering you to the login/unlock screen. This should be ok because all vault operations fail when you&apos;re not logged in. &lt;strong&gt;Warning&lt;/strong&gt;: if used in combination with the setting &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; some data may be leaked to whoever opens this app. Use at your own risk.</source>
-        <translation>Lorsque cette option est activée, l&apos;authentification est passée et vous devriez être connecté quel que soit le statut réel. Ce que cela signifie en pratique est que la vérification de connexion est repoussée jusqu&apos;à ce que vous soyez sur la page principale et se fait en arrière-plan, cela donne quelques secondes à n&apos;importe qui ouvrant cette app de regarder le contenu avant d&apos;être redirigé à l&apos;écran de connexion/déverrouillage. Cela devrait être correct puisque toutes les opérations de coffre échouent lorsque vous n&apos;êtes pas connecté. &lt;strong&gt;Attention&lt;/strong&gt;: si utilisé en combinaison avec l&apos;option &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; des données pourraient être divulguées à quiconque ouvrirait cette app. Utilisez cette option à vos propres risques.</translation>
     </message>
     <message>
         <source>OS authorization check failed.</source>
@@ -1060,32 +1022,8 @@ veuillez redémarrer l&apos;application</translation>
         <translation>Cela va supprimer tout ce que stocke cette application sur votre système, y compris les collections de secrets système, Bitwarden CLI (si installé via cette app), les fichiers temporaires etc. Bitwarden CLI sera également déconnecté. Souhaitez-vous continuer ?</translation>
     </message>
     <message>
-        <source>General</source>
-        <translation>Général</translation>
-    </message>
-    <message>
         <source>Security</source>
         <translation>Sécurité</translation>
-    </message>
-    <message>
-        <source>Performance</source>
-        <translation>Performance</translation>
-    </message>
-    <message>
-        <source>By enabling this option you will force the app to authorize you using OS authorization even when the vault is unlocked. If the authorization fails your vault will be locked and you will be redirected to unlock vault screen. This can speed up getting your vault data significantly. &lt;strong&gt;Warning&lt;/strong&gt;: Disables &apos;%1&apos;</source>
-        <translation>En activant cette option, vous forcerez l&apos;application à vous authentifier en utilisant l&apos;authentification OS même si le coffre est déverrouillé. SI l&apos;authentification échoue, votre coffre sera verrouillé et vous serez redirigé pour déverrouiller l&apos;écran du coffre. Cela peut significativement accélérer l&apos;obtention de vos données du coffre. &lt;strong&gt;Attention&lt;/strong&gt;: Désactive &apos;%1&apos; </translation>
-    </message>
-    <message>
-        <source>Require OS authorization on unlocked vault</source>
-        <translation>Demander l&apos;authentification OS sur le coffre déverrouillé</translation>
-    </message>
-    <message>
-        <source>Enabling this option will fasten load times for items in the vault significantly - your data are &lt;strong&gt;stored on disk encrypted&lt;/strong&gt; without any sensitive data (card numbers, passwords etc.).</source>
-        <translation>Activer cette option va significativement accélérer les temps de chargement des données du coffre - vos données sont &lt;strong&gt;stockées chiffrées&lt;/strong&gt; sans aucune donnée sensible (numéros de cartes, mots de passe etc.). </translation>
-    </message>
-    <message>
-        <source>Update Bitwarden CLI</source>
-        <translation>Mettre à jour Bitwarden CLI</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1100,14 +1038,6 @@ veuillez redémarrer l&apos;application</translation>
         <translation>URL Bitwarden</translation>
     </message>
     <message>
-        <source>Note: Currently this app cannot find out if the URL has been changed and it appears as if the default was set. If you&apos;ve set it before, it should work as expected.</source>
-        <translation>Note: Actuellement cette app ne peut pas voir si l&apos;URL a été changée et l&apos;URL affichée apparaît comme celle par défaut. Si vous l&apos;avez définie ici auparavant, cela devrait fonctionner comme souhaité.</translation>
-    </message>
-    <message>
-        <source>If you self-host your Bitwarden server, you may set its URL here. Leave empty to use the global default.</source>
-        <translation>Si vous hébergez votre serveur Bitwarden, vous pouvez définir son URL ici. Laissez vide pour utiliser le serveur global par défaut.</translation>
-    </message>
-    <message>
         <source>Setting URL</source>
         <extracomment>As in the action of setting url (present continuous)</extracomment>
         <translation>Définition de l&apos;URL</translation>
@@ -1115,18 +1045,6 @@ veuillez redémarrer l&apos;application</translation>
     <message>
         <source>Note: You will be logged out.</source>
         <translation>Note: Vous allez être déconnecté.</translation>
-    </message>
-    <message>
-        <source>Use api (experimental)</source>
-        <translation>Utiliser l&apos;API (expérimental)</translation>
-    </message>
-    <message>
-        <source>By enabling this option the app will use a local BitWarden server instead of the BitWarden CLI. That can make all BitWarden operations &lt;strong&gt;much&lt;/strong&gt; faster, but the support is experimental and there might be bugs which cause the server to crash, thus rendering the app unusable until you close it and start it again.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Failed getting the configured server URL</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enable certificate validation</source>
@@ -1141,11 +1059,7 @@ veuillez redémarrer l&apos;application</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use system CA store</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
+        <source>Could not fetch your email address, the session is in an invalid state. Logout is advised</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -13,17 +13,14 @@ Page {
     id: page
     allowedOrientations: Orientation.All
 
-    BitwardenCli {
-        id: cli
+    Connections {
+        target: core
+
         onLogoutFinished: {
             loggedOut = true;
             secretsCleared = true;
             permanentFilesDeleted = fileAccessor.deletePermanentFilesDirectory();
         }
-    }
-
-    SecretsHandler {
-        id: secrets
     }
 
     FileAccessor {
@@ -99,7 +96,7 @@ Page {
 
     onStatusChanged: {
         if (status === PageStatus.Active) {
-            cli.logout();
+            core.logout();
             temporaryFilesDeleted = fileAccessor.deleteTemporaryFilesDirectory();
             configFilesDeleted = fileAccessor.deleteConfigDirectory();
         }

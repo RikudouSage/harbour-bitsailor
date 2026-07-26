@@ -60,6 +60,33 @@ void BitSailorCore::changeServerUrl(const QString &url)
     });
 }
 
+void BitSailorCore::lockVault(bool sync)
+{
+    auto handler = [=] {
+        if (BitwardenLockSession(session) != BitwardenSuccess) {
+            qWarning() << "Failed locking session: " << getLastError();
+            emit vaultLocked(false);
+            return;
+        }
+
+        QString error;
+        exportSession(&error);
+        if (!error.isNull()) {
+            qWarning() << "Failed exporting locked session: " << error;
+            emit vaultLocked(false);
+            return;
+        }
+
+        emit vaultLocked(true);
+    };
+
+    if (sync) {
+        handler();
+    } else {
+        QtConcurrent::run(handler);
+    }
+}
+
 void BitSailorCore::loginApiKey(const QString &clientId, const QString &clientSecret)
 {
     login([=] {
@@ -140,6 +167,26 @@ void BitSailorCore::unlockVault()
     });
 }
 
+void BitSailorCore::validateMasterPassword(const QString &password)
+{
+    QtConcurrent::run([=] {
+        auto email = getEmail();
+        if (email.isNull()) {
+            qWarning() << "Failed fetching email";
+            emit couldNotFetchEmail();
+            return;
+        }
+
+        if (BitwardenValidatePassword(client, ctx, email.toUtf8().data(), password.toUtf8().data(), session) != BitwardenSuccess) {
+            qWarning () << "Validation of password did not succeed: " << getLastError();
+            emit masterPasswordValidationFinished(false);
+            return;
+        }
+
+        emit masterPasswordValidationFinished(true);
+    });
+}
+
 void BitSailorCore::fetchItems()
 {
     QtConcurrent::run([=] {
@@ -188,6 +235,18 @@ void BitSailorCore::fetchItems()
         }
         BitwardenFreeItems(&items);
         emit itemsResolved(result);
+    });
+}
+
+void BitSailorCore::syncVault()
+{
+    QtConcurrent::run([=] {
+        if (!syncRaw()) {
+            emit syncVaultFinished(false);
+            return;
+        }
+
+        emit syncVaultFinished(true);
     });
 }
 
@@ -276,6 +335,13 @@ void BitSailorCore::initialize()
             vault = newVault;
         }
     }
+}
+
+void BitSailorCore::getServerUrl()
+{
+    QtConcurrent::run([=] {
+        emit serverUrlResolved(settings->baseUrl());
+    });
 }
 
 void BitSailorCore::cleanup()

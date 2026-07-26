@@ -212,11 +212,7 @@ ApplicationWindow {
 
     Component.onDestruction: {
         if (settings.lockOnClose) {
-            cli.lockVaultInBackground();
-        }
-
-        if (settings.persistentItemCache) {
-            runtimeCache.setPersistent(CacheKey.Items, Helpers.filterOutSensitiveItems(runtimeCache.get(CacheKey.Items)));
+            core.lockVault(true)
         }
     }
 

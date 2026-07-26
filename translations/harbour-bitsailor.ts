@@ -831,15 +831,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The BitWarden server is not running,
-please restart the app</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Patching the server...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>There was an error while patching the server, please contact the developer to let him know to fix it.&lt;br&gt;&lt;br&gt;Meanwhile you can disable the server patch (&lt;strong&gt;which is not recommended because it poses a security risk&lt;/strong&gt;) or you can cancel this disalog to disable api and use the CLI again.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1006,36 +997,8 @@ please restart the app</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Load vault items eagerly in main view</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source></source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Save items in cache for faster load</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>When this option is enabled, all items are loaded right when you enter the main screen. If disabled, the options are only loaded when you actually need to load them, meaning when you enter an item list like &apos;%1&apos;, &apos;%2&apos; etc.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Logins</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cards</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fast authentication</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>When this option is enabled, authentication is skipped and you are assumed to be logged in regardless of the actual status. What this means in practice is that logged in check is postponed until you&apos;re on the main page and is done in the background, this gives anyone opening this app a few seconds to look around before transfering you to the login/unlock screen. This should be ok because all vault operations fail when you&apos;re not logged in. &lt;strong&gt;Warning&lt;/strong&gt;: if used in combination with the setting &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; some data may be leaked to whoever opens this app. Use at your own risk.</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>OS authorization check failed.</source>
@@ -1058,31 +1021,7 @@ please restart the app</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>General</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Security</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Performance</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>By enabling this option you will force the app to authorize you using OS authorization even when the vault is unlocked. If the authorization fails your vault will be locked and you will be redirected to unlock vault screen. This can speed up getting your vault data significantly. &lt;strong&gt;Warning&lt;/strong&gt;: Disables &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Require OS authorization on unlocked vault</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enabling this option will fasten load times for items in the vault significantly - your data are &lt;strong&gt;stored on disk encrypted&lt;/strong&gt; without any sensitive data (card numbers, passwords etc.).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Update Bitwarden CLI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1098,32 +1037,12 @@ please restart the app</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Note: Currently this app cannot find out if the URL has been changed and it appears as if the default was set. If you&apos;ve set it before, it should work as expected.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>If you self-host your Bitwarden server, you may set its URL here. Leave empty to use the global default.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Setting URL</source>
         <extracomment>As in the action of setting url (present continuous)</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Note: You will be logged out.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use api (experimental)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>By enabling this option the app will use a local BitWarden server instead of the BitWarden CLI. That can make all BitWarden operations &lt;strong&gt;much&lt;/strong&gt; faster, but the support is experimental and there might be bugs which cause the server to crash, thus rendering the app unusable until you close it and start it again.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Failed getting the configured server URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1139,11 +1058,7 @@ please restart the app</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use system CA store</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
+        <source>Could not fetch your email address, the session is in an invalid state. Logout is advised</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
