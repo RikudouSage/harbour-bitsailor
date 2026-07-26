@@ -30,8 +30,14 @@ public:
         ItemTypeDriversLicense = ::BitwardenItemTypeDriversLicense,
         ItemTypePassport = ::BitwardenItemTypePassport,
     };
+    enum SendType {
+        SendTypeText = ::BitwardenSendTypeText,
+        SendTypeFile = ::BitwardenSendTypeFile,
+    };
+
     Q_ENUM(SessionStatus)
     Q_ENUM(ItemType)
+    Q_ENUM(SendType)
 
     explicit BitSailorCore(AppSettings *settings, SecretsHandler *secrets, QObject *parent = nullptr);
     explicit BitSailorCore(QObject *parent = nullptr);
@@ -54,6 +60,7 @@ public:
 
     Q_INVOKABLE void syncVault();
     Q_INVOKABLE void fetchItems();
+    Q_INVOKABLE void fetchSends();
 
 signals:
     void serverUrlChanged(bool success);
@@ -73,6 +80,7 @@ signals:
     void syncVaultFinished(bool success);
     void itemsResolved(const QJsonArray &items);
     void itemResolvingFailed();
+    void sendsResolved(bool success, const QJsonArray &items);
 
 private:
     const QString getLastError() const;
@@ -86,6 +94,7 @@ private:
     UUID uuidFromString(const QString &uuid) const;
     UUID uuidToCoreUuid(const QUuid &uuid) const;
     QUuid uuidToQUuid(const UUID &uuid) const;
+    QDateTime cTimeToQDate(int64_t time) const;
     QString getEmail();
 
     void login(const std::function<BitwardenResult()> &loginCallable);
@@ -109,5 +118,6 @@ private: // dependencies
 
 Q_DECLARE_METATYPE(BitSailorCore::SessionStatus)
 Q_DECLARE_METATYPE(BitSailorCore::ItemType)
+Q_DECLARE_METATYPE(BitSailorCore::SendType)
 
 #endif // BITSAILORCORE_H

@@ -956,12 +956,6 @@
         <translation>Nie znaleziono wysyłek.</translation>
     </message>
     <message>
-        <source>The BitWarden server is not running,
-please restart the app</source>
-        <translation>Serwer BitWarden nie jest uruchmiony
-Uruchom ponownie aplikację</translation>
-    </message>
-    <message>
         <source>Create a Send</source>
         <translation>Stwórz wysyłkę</translation>
     </message>

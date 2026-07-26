@@ -956,11 +956,6 @@
         <translation>Ingen sendinger funnet.</translation>
     </message>
     <message>
-        <source>The BitWarden server is not running,
-please restart the app</source>
-        <translation>BitWarden‑serveren kjører ikke. Vennligst start appen på nytt</translation>
-    </message>
-    <message>
         <source>Create a Send</source>
         <translation>Opprett en sending</translation>
     </message>

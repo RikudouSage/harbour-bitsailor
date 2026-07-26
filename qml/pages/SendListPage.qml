@@ -14,7 +14,7 @@ Page {
         loaded = true;
     }
 
-    function onFailedGettingSends(items) {
+    function onFailedGettingSends() {
         loaded = true;
         errorMessage = qsTr("Failed loading list of sends");
     }
@@ -28,31 +28,15 @@ Page {
         text: qsTr("Loading items")
     }
 
-    BitwardenCli {
-        id: cli
+    Connections {
+        target: core
 
         onSendsResolved: {
+            if (!success) {
+                page.onFailedGettingSends();
+                return;
+            }
             page.onSendsResolved(items);
-        }
-
-        onFailedGettingSends: {
-            page.onFailedGettingSends(items);
-        }
-    }
-
-    BitwardenApi {
-        id: api
-
-        onApiNotRunning: {
-            app.toaster.show(qsTr("The BitWarden server is not running,\nplease restart the app"), 100000);
-        }
-
-        onSendsResolved: {
-            page.onSendsResolved(items);
-        }
-
-        onFailedGettingSends: {
-            page.onFailedGettingSends(items);
         }
     }
 
@@ -147,7 +131,7 @@ Page {
                         anchors.top: itemTitle.bottom
                         font.pixelSize: Theme.fontSizeSmall
                         color: Theme.secondaryHighlightColor
-                        text: (item.type === BitwardenCli.SendTypeText ? qsTr('Text') : qsTr('File')) + ', ' + new Date(item.deletionDate).toLocaleString(Qt.locale(), Locale.ShortFormat)
+                        text: (item.type === BitSailorCore.SendTypeText ? qsTr('Text') : qsTr('File')) + ', ' + new Date(item.deletionDate).toLocaleString(Qt.locale(), Locale.ShortFormat)
                     }
 
                     IconButton {
@@ -167,7 +151,7 @@ Page {
 
     onStatusChanged: {
         if (status === PageStatus.Active) {
-            settings.useApi ? api.getSends() : cli.getSends();
+            core.fetchSends();
         }
     }
 }

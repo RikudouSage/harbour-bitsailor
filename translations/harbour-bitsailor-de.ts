@@ -956,12 +956,6 @@
         <translation>Keine Sends gefunden.</translation>
     </message>
     <message>
-        <source>The BitWarden server is not running,
-please restart the app</source>
-        <translation>Der Bitwarden-Server läuft nicht,
-bitte starte die Anwendung neu</translation>
-    </message>
-    <message>
         <source>Create a Send</source>
         <translation>Einen Send erstellen</translation>
     </message>

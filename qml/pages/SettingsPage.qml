@@ -52,7 +52,7 @@ Page {
             page.onServerUrlChanged(url);
         }
 
-        onServerUrlSet: {
+        onServerUrlChanged: {
             if (success) {
                 pageStack.replace("LoginCheck.qml");
             }

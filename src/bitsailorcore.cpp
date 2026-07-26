@@ -12,6 +12,7 @@ BitSailorCore::BitSailorCore(AppSettings *settings, SecretsHandler *secrets, QOb
 {
     qRegisterMetaType<BitSailorCore::SessionStatus>("SessionStatus");
     qRegisterMetaType<BitSailorCore::ItemType>("ItemType");
+    qRegisterMetaType<BitSailorCore::SendType>("SendType");
 
     this->settings = settings;
     this->secrets = secrets;
@@ -238,6 +239,33 @@ void BitSailorCore::fetchItems()
     });
 }
 
+void BitSailorCore::fetchSends()
+{
+    QtConcurrent::run([=] {
+        BitwardenSendSlice items = {};
+        if (BitwardenGetSends(vault, ctx, session, &items) != BitwardenSuccess) {
+            qWarning() << "Failed fetching sends: " << getLastError();
+            emit sendsResolved(false, {});
+            return;
+        }
+
+        QJsonArray result;
+        for (size_t i = 0; i < items.len; ++i) {
+            auto item = items.items[i];
+            QJsonObject outItem;
+            outItem.insert("name", item.name);
+            outItem.insert("type", item.type);
+            outItem.insert("deletionDate", cTimeToQDate(item.deletionDate).toUTC().toString(Qt::ISODate));
+            outItem.insert("accessUrl", item.accessUrl);
+
+            result.append(outItem);
+        }
+        BitwardenFreeSends(&items);
+
+        emit sendsResolved(true, result);
+    });
+}
+
 void BitSailorCore::syncVault()
 {
     QtConcurrent::run([=] {
@@ -414,6 +442,11 @@ QUuid BitSailorCore::uuidToQUuid(const UUID &uuid) const
 {
     QByteArray raw(reinterpret_cast<const char *>(uuid.bytes), 16);
     return QUuid::fromRfc4122(raw);
+}
+
+QDateTime BitSailorCore::cTimeToQDate(int64_t time) const
+{
+    return QDateTime::fromMSecsSinceEpoch(time);
 }
 
 QString BitSailorCore::getEmail()

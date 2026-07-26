@@ -956,12 +956,6 @@
         <translation>Žádné sendy nebyly nalezeny.</translation>
     </message>
     <message>
-        <source>The BitWarden server is not running,
-please restart the app</source>
-        <translation>Bitwarden server neběží,
-prosím restartujte aplikaci</translation>
-    </message>
-    <message>
         <source>Create a Send</source>
         <translation>Vytvořit Send</translation>
     </message>
