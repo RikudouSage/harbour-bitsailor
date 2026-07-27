@@ -172,7 +172,7 @@ Page {
         }
 
         onItemsResolved: {
-            if (page.status !== PageStatus.Active) {
+            if (page.status !== PageStatus.Active && page.status !== PageStatus.Activating) {
                 return;
             }
             page.onItemsResolved(items);
