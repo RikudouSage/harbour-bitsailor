@@ -29,10 +29,6 @@
         <translation>Alle Geheimnisse wurden gelöscht</translation>
     </message>
     <message>
-        <source>Logged out of Bitwarden CLI</source>
-        <translation>Aus Bitwarden-CLI abgemeldet</translation>
-    </message>
-    <message>
         <source>Deleted all permanent files</source>
         <translation>Alle dauerhaften Dateien gelöscht</translation>
     </message>
@@ -43,10 +39,6 @@
     <message>
         <source>Includes secrets like your password, username or PIN code.</source>
         <translation>Enthält Geheimnisse wie Passwort, Benutzernamen oder PIN-Code.</translation>
-    </message>
-    <message>
-        <source>The Bitwarden CLI could be used on its own even without this app, that&apos;s why it&apos;s safer to log out.</source>
-        <translation>Die Bitwarden-CLI könnte für sich ohne diese APP verwendet werden, deshalb ist es sicherer, sich abzumelden.</translation>
     </message>
     <message>
         <source>Deleted temporary files</source>
@@ -524,14 +516,6 @@
     <message>
         <source>Ignore certificate validation</source>
         <translation>Zertifikatsprüfung ignorieren</translation>
-    </message>
-    <message>
-        <source>Use system CA store</source>
-        <translation>System-CA-Speicher verwenden</translation>
-    </message>
-    <message>
-        <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
-        <translation>Dadurch wird der Zertifikatsspeicher des Systems anstelle des Standard-Speichers verwendet. Das bedeutet, dass alle Zertifikate, denen das System vertraut, auch von BitSailor als vertrauenswürdig eingestuft werden.. &lt;strong&gt;Bitte beachten, dass ein selbstsigniertes Zertifikat noch als vertrauenswürdig eingestuft werden muss&lt;/strong&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1170,23 +1154,6 @@ Die Bitwarden-CLI wird außerdem abgemeldet. Möchten Sie fortfahren?</translati
 </context>
 <context>
     <name>harbour-bitsailor</name>
-    <message>
-        <source>Update Bitwarden CLI</source>
-        <extracomment>notification title</extracomment>
-        <translation>Bitwarden-CLI aktualisieren</translation>
-    </message>
-    <message>
-        <source>Your Bitwarden CLI might be out of date. You should check for new versions of Bitwarden CLI regularly. You can do so in the settings or by clicking this notification.</source>
-        <translation>Deine Bitwarden-CLI ist möglicherweise veraltet. Du solltest regelmäßig nach neuen Versionen für die Bitwarden-CLI suchen. Du kannst dies über die Einstellungen tun oder indem du auf diese Benachrichtigung tippst.</translation>
-    </message>
-    <message>
-        <source>The API is already running</source>
-        <translation>Die API läuft bereits</translation>
-    </message>
-    <message>
-        <source>The API is already running and could not be stopped. It&apos;s possible that the api will not work at all. Please try restarting the app. If you see this error again, try disabling api in the Settings.</source>
-        <translation>Die API läuft bereits und konnte nicht gestoppt werden. Möglicherweise funktioniert die API überhaupt nicht. Bitte versuche, die Anwendung neuzustarten. Wenn dieser Fehler erneut auftritt, versuche die API in den Einstellungen zu deaktivieren.</translation>
-    </message>
     <message>
         <source>Certificate validation is ignored</source>
         <translation>Die Zertifikatsprüfung wird ignoriert</translation>

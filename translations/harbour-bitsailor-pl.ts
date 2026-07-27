@@ -29,10 +29,6 @@
         <translation>Usuń wszystkie sekrety</translation>
     </message>
     <message>
-        <source>Logged out of Bitwarden CLI</source>
-        <translation>Wylogowany z CLI Bitwarden</translation>
-    </message>
-    <message>
         <source>Deleted all permanent files</source>
         <translation>Trwale usuń wszystkie pliki</translation>
     </message>
@@ -43,10 +39,6 @@
     <message>
         <source>Includes secrets like your password, username or PIN code.</source>
         <translation>Zawiera sekrety takie jak hasła, nazwy użytkownika i kody PIN.</translation>
-    </message>
-    <message>
-        <source>The Bitwarden CLI could be used on its own even without this app, that&apos;s why it&apos;s safer to log out.</source>
-        <translation>Narzędzie linii poleceń Bitwarden może być użyte samodzielnie, nawet bez tej aplikacji, dlatego bezpieczniej jest wylogować się.</translation>
     </message>
     <message>
         <source>Deleted temporary files</source>
@@ -523,14 +515,6 @@
     </message>
     <message>
         <source>Ignore certificate validation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use system CA store</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1169,23 +1153,6 @@
 </context>
 <context>
     <name>harbour-bitsailor</name>
-    <message>
-        <source>Update Bitwarden CLI</source>
-        <extracomment>notification title</extracomment>
-        <translation>Aktualizuj narzędzia konsolowe Bitwarden</translation>
-    </message>
-    <message>
-        <source>Your Bitwarden CLI might be out of date. You should check for new versions of Bitwarden CLI regularly. You can do so in the settings or by clicking this notification.</source>
-        <translation>Zainstalowane narzędzia konsolowe Bitwarden mogą być nieaktualne. Powinieneś sprawdzać dostępność aktualizacji regularnie. Można to zrobić w nastawach lub klikając to powiadomienie.</translation>
-    </message>
-    <message>
-        <source>The API is already running</source>
-        <translation>Api jest już uruchomione</translation>
-    </message>
-    <message>
-        <source>The API is already running and could not be stopped. It&apos;s possible that the api will not work at all. Please try restarting the app. If you see this error again, try disabling api in the Settings.</source>
-        <translation>Api jest już uruchomione i nie może zostać zatrzymane. Jest możliwe, że API nie będzie działać wcale. Proszę spróbować uruchomić aplikację ponownie. Jeśli błąd się powtórzy proszę spróbować wyłączyć API w nastawach.</translation>
-    </message>
     <message>
         <source>Certificate validation is ignored</source>
         <translation type="unfinished"></translation>

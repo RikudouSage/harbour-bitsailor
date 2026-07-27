@@ -29,10 +29,6 @@
         <translation>Smazány všechny citlivé údaje</translation>
     </message>
     <message>
-        <source>Logged out of Bitwarden CLI</source>
-        <translation>Odhlášeno z Bitwarden CLI</translation>
-    </message>
-    <message>
         <source>Deleted all permanent files</source>
         <translation>Smazány všechny trvalé soubory</translation>
     </message>
@@ -43,10 +39,6 @@
     <message>
         <source>Includes secrets like your password, username or PIN code.</source>
         <translation>Zahrnuje například vaše heslo, uživatelské jméno nebo PIN kód.</translation>
-    </message>
-    <message>
-        <source>The Bitwarden CLI could be used on its own even without this app, that&apos;s why it&apos;s safer to log out.</source>
-        <translation>Bitwarden CLI lze používat i bez této aplikace, proto je bezpečnější se odhlásit.</translation>
     </message>
     <message>
         <source>Deleted temporary files</source>
@@ -524,14 +516,6 @@
     <message>
         <source>Ignore certificate validation</source>
         <translation>Ignorovat validaci certifikátů</translation>
-    </message>
-    <message>
-        <source>Use system CA store</source>
-        <translation>Použít systémový CA store</translation>
-    </message>
-    <message>
-        <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
-        <translation>Použije se systémový CA store (uložiště kořenových autorit) namísto výchozího. To znamená, že všechny certifikáty, které považuje za důvěryhodné systém, bude za důvěryhodné považovat i BitSailor. &lt;strong&gt;Mějte na paměti, že váš self-signed certifikát musí být důvěryhodný pro systém, nestačí jen zapnout tuto možnost&lt;/strong&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1169,23 +1153,6 @@
 </context>
 <context>
     <name>harbour-bitsailor</name>
-    <message>
-        <source>Update Bitwarden CLI</source>
-        <extracomment>notification title</extracomment>
-        <translation>Aktualizovat Bitwarden CLI</translation>
-    </message>
-    <message>
-        <source>Your Bitwarden CLI might be out of date. You should check for new versions of Bitwarden CLI regularly. You can do so in the settings or by clicking this notification.</source>
-        <translation>Bitwarden CLI na vašem zařízení může být zastaralé. Měli byste pravidelně kontrolovat aktualizace. Můžete tak učinit v nastavení nebo kliknutím na tuto notifikaci.</translation>
-    </message>
-    <message>
-        <source>The API is already running</source>
-        <translation>API již běží</translation>
-    </message>
-    <message>
-        <source>The API is already running and could not be stopped. It&apos;s possible that the api will not work at all. Please try restarting the app. If you see this error again, try disabling api in the Settings.</source>
-        <translation>API již běží a nepodařilo se ji zastavit. Je možné, že api nebude vůbec fungovat. Prosím, zkuste restartovat aplikaci. Pokud tuto chybu uvidíte znovu, zkuste api vypnout v nastavení.</translation>
-    </message>
     <message>
         <source>Certificate validation is ignored</source>
         <translation>Kontrola certifikátů je vypnutá</translation>

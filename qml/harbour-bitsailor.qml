@@ -23,6 +23,8 @@ ApplicationWindow {
     cover: Covers.CoverPage {}
     allowedOrientations: defaultAllowedOrientations
 
+    onInvalidCertsAllowedChanged: core.initialize();
+
     ShareProvider {
         method: "anything"
         capabilities: ["*"]
