@@ -20,11 +20,7 @@ SilicaFlickable {
     property alias password: passwordField.text
 
     function generatePassword() {
-        if (settings.useApi) {
-            api.generatePassword(lowercase, uppercase, numbers, special, avoidAmbiguous, minimumNumbers, minimumSpecial, length);
-        } else {
-            cli.generatePassword(lowercase, uppercase, numbers, special, avoidAmbiguous, minimumNumbers, minimumSpecial, length);
-        }
+        core.generatePassword(lowercase, uppercase, numbers, special, avoidAmbiguous, minimumNumbers, minimumSpecial, length);
         loadingDelayTimer.restart();
     }
 
@@ -53,10 +49,15 @@ SilicaFlickable {
         }
     }
 
-    BitwardenApi {
-        id: api
+    Connections {
+        target: core
 
-        onPasswordGenerated: {
+        onPasswordGeneratingFinished: {
+            if (!success) {
+                console.error("failed generating password"); // todo
+                return;
+            }
+
             root.onPasswordGenerated(password);
         }
     }
@@ -65,14 +66,6 @@ SilicaFlickable {
         id: loader
         text: qsTr("Generating password")
         running: root.loading
-    }
-
-    BitwardenCli {
-        id: cli
-
-        onPasswordGenerated: {
-            root.onPasswordGenerated(password);
-        }
     }
 
     Column {

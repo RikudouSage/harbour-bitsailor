@@ -5,25 +5,19 @@ import cz.chrastecky.bitsailor 1.0
 
 Page {
     property var secretsCleared: null
-    property var loggedOut: null
     property var temporaryFilesDeleted: null
-    property var permanentFilesDeleted: null
     property var configFilesDeleted: null
 
     id: page
     allowedOrientations: Orientation.All
 
-    BitwardenCli {
-        id: cli
+    Connections {
+        target: core
+
         onLogoutFinished: {
             loggedOut = true;
             secretsCleared = true;
-            permanentFilesDeleted = fileAccessor.deletePermanentFilesDirectory();
         }
-    }
-
-    SecretsHandler {
-        id: secrets
     }
 
     FileAccessor {
@@ -55,16 +49,6 @@ Page {
                 description: qsTr("Includes secrets like your password, username or PIN code.")
             }
             IconTextSwitch {
-                property alias propertyToCheck: page.loggedOut
-                property string iconName: propertyToCheck === null ? "icon-m-clock" : propertyToCheck ? "icon-m-certificates" : "icon-m-cancel"
-                icon.source: "image://theme/" + iconName
-                icon.color: propertyToCheck === null ? Theme.primaryColor : propertyToCheck ? Theme.secondaryHighlightColor : Theme.errorColor
-                text: qsTr("Logged out of Bitwarden CLI")
-                automaticCheck: false
-                checked: propertyToCheck
-                description: qsTr("The Bitwarden CLI could be used on its own even without this app, that's why it's safer to log out.")
-            }
-            IconTextSwitch {
                 property alias propertyToCheck: page.temporaryFilesDeleted
                 property string iconName: propertyToCheck === null ? "icon-m-clock" : propertyToCheck ? "icon-m-certificates" : "icon-m-cancel"
                 icon.source: "image://theme/" + iconName
@@ -72,17 +56,7 @@ Page {
                 text: qsTr("Deleted temporary files")
                 automaticCheck: false
                 checked: propertyToCheck
-                description: qsTr("Temporary files include your cached vault for faster loading.")
-            }
-            IconTextSwitch {
-                property alias propertyToCheck: page.permanentFilesDeleted
-                property string iconName: propertyToCheck === null ? "icon-m-clock" : propertyToCheck ? "icon-m-certificates" : "icon-m-cancel"
-                icon.source: "image://theme/" + iconName
-                icon.color: propertyToCheck === null ? Theme.primaryColor : propertyToCheck ? Theme.secondaryHighlightColor : Theme.errorColor
-                text: qsTr("Deleted all permanent files")
-                automaticCheck: false
-                checked: propertyToCheck
-                description: qsTr("Permanent files include Bitwarden CLI (if it was installed using this app).")
+                description: qsTr("Temporary files include some of your settings.")
             }
             IconTextSwitch {
                 property alias propertyToCheck: page.configFilesDeleted
@@ -99,7 +73,7 @@ Page {
 
     onStatusChanged: {
         if (status === PageStatus.Active) {
-            cli.logout();
+            core.logout();
             temporaryFilesDeleted = fileAccessor.deleteTemporaryFilesDirectory();
             configFilesDeleted = fileAccessor.deleteConfigDirectory();
         }

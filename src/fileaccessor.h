@@ -10,7 +10,6 @@ public:
     explicit FileAccessor(QObject *parent = nullptr);
     Q_INVOKABLE bool deleteConfigDirectory();
     Q_INVOKABLE bool deleteTemporaryFilesDirectory();
-    Q_INVOKABLE bool deletePermanentFilesDirectory();
 private:
     bool deleteDirectory(QString path);
 };

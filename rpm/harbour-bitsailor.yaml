@@ -1,6 +1,6 @@
 Name: harbour-bitsailor
 Summary: BitSailor
-Version: 0.5.4
+Version: 1.0.0
 Release: 1
 # The contents of the Group field should be one of the groups listed here:
 # https://github.com/mer-tools/spectacle/blob/master/data/GROUPS
@@ -12,7 +12,7 @@ License: MIT
 Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: |
-  A Sailfish OS Bitwarden client using the official Bitwarden CLI
+  A Sailfish OS Bitwarden client
 Builder: qmake5
 
 Macros:
@@ -37,12 +37,7 @@ Requires:
   - sailfishsilica-qt5 >= 0.10.9 
   - sailfishsecretsdaemon-secretsplugins-default
   - sailfish-polkit-agent
-  - nodejs >= 20.19
-  - npm
   - python3-base
-  - make
-  - gcc
-  - gcc-c++
 
 # All installed files
 Files:

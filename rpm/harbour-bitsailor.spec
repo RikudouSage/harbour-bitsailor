@@ -10,7 +10,7 @@ Name:       harbour-bitsailor
 %define _binary_payload w2.xzdio
 
 Summary:    BitSailor
-Version:    0.5.4
+Version:    1.0.0
 Release:    1
 Group:      Applications/Productivity
 License:    MIT
@@ -20,12 +20,7 @@ Source100:  harbour-bitsailor.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   sailfishsecretsdaemon-secretsplugins-default
 Requires:   sailfish-polkit-agent
-Requires:   nodejs >= 20.19
-Requires:   npm
 Requires:   python3-base
-Requires:   make
-Requires:   gcc
-Requires:   gcc-c++
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
@@ -35,7 +30,7 @@ BuildRequires:  pkgconfig(sailfishcrypto)
 BuildRequires:  desktop-file-utils
 
 %description
-A Sailfish OS Bitwarden client using the official Bitwarden CLI
+A Sailfish OS Bitwarden client
 
 
 %prep

@@ -29,14 +29,6 @@
         <translation>Usuń wszystkie sekrety</translation>
     </message>
     <message>
-        <source>Logged out of Bitwarden CLI</source>
-        <translation>Wylogowany z CLI Bitwarden</translation>
-    </message>
-    <message>
-        <source>Deleted all permanent files</source>
-        <translation>Trwale usuń wszystkie pliki</translation>
-    </message>
-    <message>
         <source>Deleted all config files</source>
         <translation>Usuń wszystkie pliki konfiguracyjne</translation>
     </message>
@@ -45,24 +37,16 @@
         <translation>Zawiera sekrety takie jak hasła, nazwy użytkownika i kody PIN.</translation>
     </message>
     <message>
-        <source>The Bitwarden CLI could be used on its own even without this app, that&apos;s why it&apos;s safer to log out.</source>
-        <translation>Narzędzie linii poleceń Bitwarden może być użyte samodzielnie, nawet bez tej aplikacji, dlatego bezpieczniej jest wylogować się.</translation>
-    </message>
-    <message>
         <source>Deleted temporary files</source>
         <translation>Usunięte pliki tymczasowe</translation>
     </message>
     <message>
-        <source>Temporary files include your cached vault for faster loading.</source>
-        <translation>Tymczasowe pliki zawierają lokalną kopię twojego sejfu dla szybszego ładowania.</translation>
-    </message>
-    <message>
-        <source>Permanent files include Bitwarden CLI (if it was installed using this app).</source>
-        <translation>Pliki stałe zawierają narzędzie linii poleceń Bitwarden (jeśli zostało zainstalowane przy użyciu tej aplikacji)</translation>
-    </message>
-    <message>
         <source>Config files include all the settings you have made in this app.</source>
         <translation>Pliki konfiguracji zawierają nastawy wykonane w tej aplikacji.</translation>
+    </message>
+    <message>
+        <source>Temporary files include some of your settings.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -87,82 +71,45 @@
         <source>BitSailor</source>
         <translation>BitSailor</translation>
     </message>
-</context>
-<context>
-    <name>CoverPageCard</name>
     <message>
         <source>Item</source>
         <extracomment>Item name on the cover page for card detail, should be short, use abbreviations if needed</extracomment>
-        <translation>Pozycja</translation>
+        <translation type="unfinished">Pozycja</translation>
     </message>
     <message>
         <source>Card Number</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>Numer karty</translation>
-    </message>
-    <message>
-        <source>Security Code</source>
-        <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>Kod zabezpieczeń</translation>
+        <translation type="unfinished">Numer karty</translation>
     </message>
     <message>
         <source>Expiration</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>Data ważności</translation>
+        <translation type="unfinished">Data ważności</translation>
     </message>
-</context>
-<context>
-    <name>CoverPageLogin</name>
     <message>
-        <source>Item</source>
-        <extracomment>Item name on the cover page for login detail, should be short, use abbreviations if needed</extracomment>
-        <translation>Pozycja</translation>
+        <source>Security Code</source>
+        <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
+        <translation type="unfinished">Kod zabezpieczeń</translation>
     </message>
     <message>
         <source>Username</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>Nazwa użytkownika</translation>
+        <translation type="unfinished">Nazwa użytkownika</translation>
     </message>
     <message>
         <source>Password</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>Hasło</translation>
-    </message>
-</context>
-<context>
-    <name>CoverPageLoginTotp</name>
-    <message>
-        <source>Item</source>
-        <extracomment>Item name on the cover page for login detail, should be short, use abbreviations if needed</extracomment>
-        <translation>Pozycja</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>Nazwa użytkownika</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>Hasło</translation>
+        <translation type="unfinished">Hasło</translation>
     </message>
     <message>
         <source>TOTP</source>
         <extracomment>TOTP (two factor auth code) on cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>TOTP</translation>
-    </message>
-</context>
-<context>
-    <name>CoverPageNote</name>
-    <message>
-        <source>Item</source>
-        <extracomment>Item name on the cover page for card detail, should be short, use abbreviations if needed</extracomment>
-        <translation>Pozycja</translation>
+        <translation type="unfinished">TOTP</translation>
     </message>
     <message>
         <source>Note</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>Notatka</translation>
+        <translation type="unfinished">Notatka</translation>
     </message>
 </context>
 <context>
@@ -186,6 +133,10 @@
     <message>
         <source>URL copied to clipboard</source>
         <translation>Adres URL skopiowany do schowka</translation>
+    </message>
+    <message>
+        <source>Failed creating Send</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -548,22 +499,6 @@
     </message>
 </context>
 <context>
-    <name>InstallBitwardenCliPage</name>
-    <message>
-        <source>Installing Bitwarden CLI</source>
-        <extracomment>Page title</extracomment>
-        <translation>Instalowanie narzędzi konsolowych Bitwarden</translation>
-    </message>
-    <message>
-        <source>Installing... Please don&apos;t close the app.</source>
-        <translation>Trwa instalacja... Proszę nie zamykać aplikacji.</translation>
-    </message>
-    <message>
-        <source>There was an error installing the Bitwarden CLI.</source>
-        <translation>Wystąpił błąd instalacji narzędzi konsolowych Bitwarden</translation>
-    </message>
-</context>
-<context>
     <name>InvalidCertificatePage</name>
     <message>
         <source>Invalid Certificate</source>
@@ -576,14 +511,6 @@
     </message>
     <message>
         <source>Ignore certificate validation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use system CA store</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -720,6 +647,10 @@
         <extracomment>Accept button for updating an item</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>There was an error when updating the item</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LoginCheckPage</name>
@@ -728,20 +659,32 @@
         <translation>Autentykacja...</translation>
     </message>
     <message>
-        <source>Invalid PIN.</source>
-        <translation>Nieprawidłowy PIN.</translation>
+        <source>There was an error while changing the URL, please report that to the developers.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Wrong password or PIN</source>
-        <translation>Nieprawidłowe hasło lub PIN</translation>
+        <source>Unknown status: %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The credentials you provided are incorrect. Please try again.</source>
-        <translation>Wprowadzone dane logowania są nieprawidłowe. Spróbuj ponownie.</translation>
+        <source>Your account has 2-factor logging in enabled which is currently unsupported. Please login using your api key.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>An authenticator is required, please use API key login.</source>
-        <translation>Uwierzytelniacz jest wymagany, użyj loginu klucza API.</translation>
+        <source>There was an error while logging in: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There was an unknown error while logging in.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed unlocking because the session got in an invalid state. We logged you out.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed unlocking, did you provide the correct password/PIN?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -804,162 +747,96 @@
         <translation>Wyczyść dane</translation>
     </message>
     <message>
-        <source>This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?</source>
-        <translation>Ta akcja usunie wszystkie dane przechowywane przez aplikację w Twoim systemie, włączając sekrety, narzędzia konsolowe Bitwarted (jeśli zostały zainstalowane przy użyciu tej aplikacji), pliki tymczasowe itp. Narzędzie konsolowe Bitwarden również zostanie wylogowane. Czy chcesz kontynuować?</translation>
+        <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MainPage</name>
     <message>
-        <source>Logout</source>
-        <translation>Wyloguj</translation>
-    </message>
-    <message>
-        <source>Lock</source>
-        <translation>Zablokuj</translation>
-    </message>
-    <message>
         <source>Please wait...</source>
-        <translation>Proszę czekać...</translation>
-    </message>
-    <message>
-        <source>Logins</source>
-        <extracomment>Page title</extracomment>
-        <translation>Loginy</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation>Szukaj</translation>
-    </message>
-    <message>
-        <source>Cards</source>
-        <extracomment>Page title</extracomment>
-        <translation>Karty</translation>
-    </message>
-    <message>
-        <source>Notes</source>
-        <extracomment>Page title</extracomment>
-        <translation>Notatki</translation>
-    </message>
-    <message>
-        <source>Identities</source>
-        <extracomment>Page title</extracomment>
-        <translation>Tożsamości</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Loading vault items</source>
-        <translation>Ładowanie elementów sejfu</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation type="unfinished">Wyloguj</translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Sync Vault</source>
-        <translation>Synchronizuj sejf</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Syncing vault</source>
-        <translation>Synchronizowanie sejfu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Logins (%1)</source>
-        <translation>Loginy (%1)</translation>
-    </message>
-    <message>
-        <source>Cards (%1)</source>
-        <translation>Karty (%1)</translation>
-    </message>
-    <message>
-        <source>Notes (%1)</source>
-        <translation>Notatki (%1)</translation>
-    </message>
-    <message>
-        <source>Identities (%1)</source>
-        <translation>Tożsamości (%1)</translation>
+        <source>Search</source>
+        <translation type="unfinished">Szukaj</translation>
     </message>
     <message>
         <source>BitSailor</source>
         <extracomment>Page title</extracomment>
-        <translation>BitSailor</translation>
+        <translation type="unfinished">BitSailor</translation>
+    </message>
+    <message>
+        <source>Logins (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logins</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished">Loginy</translation>
     </message>
     <message>
         <source>Add login</source>
-        <translation>Dodaj login</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cards (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cards</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished">Karty</translation>
     </message>
     <message>
         <source>Add card</source>
-        <translation>Dodaj kartę</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished">Notatki</translation>
     </message>
     <message>
         <source>Add note</source>
-        <translation>Dodaj notatkę</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Identities (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Identities</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add identity</source>
-        <translation>Dodaj tożsamość</translation>
-    </message>
-    <message>
-        <source>The BitWarden server is not running,
-please restart the app</source>
-        <translation>Serwer BitWarden nie jest uruchomiony, proszę zrestartować aplikację</translation>
-    </message>
-    <message>
-        <source>Patching the server...</source>
-        <translation>Wgrywanie łatek na serwer...</translation>
-    </message>
-    <message>
-        <source>There was an error while patching the server, please contact the developer to let him know to fix it.&lt;br&gt;&lt;br&gt;Meanwhile you can disable the server patch (&lt;strong&gt;which is not recommended because it poses a security risk&lt;/strong&gt;) or you can cancel this disalog to disable api and use the CLI again.</source>
-        <translation>Wystąpił błąd przy ładowaniu poprawek na serwer, proszę skontaktować się z developerem aby mógł to  naprawić.&lt;br&gt;&lt;br&gt;Tymczasem możesz wyłączyć ładowanie poprawel na serwer (&lt;strong&gt;nie jest to zalecane, ponieważ stwarza zagrożenie bezpieczeństwa&lt;/strong&gt;) lub możesz zamknąć to okno dialogowe i spróbować ponownie użyć narzędzia konsoli.</translation>
-    </message>
-    <message>
-        <source>The BitWarden CLI is not installed locally and thus the server cannot be patched.&lt;br&gt;&lt;br&gt;You can ignore this and continue using the api regardless &lt;strong&gt;but it poses a security risk&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;The recommended approach is to &lt;strong&gt;cancel this dialog which will disable api&lt;/strong&gt; altogether and you will fall back to using the CLI which is slower but safer.</source>
-        <translation>Narzędzia konsoli BitWarden nie są zainstalowane lokalnie więc nie można wgrać poprawek na serwer.&lt;br&gt;&lt;br&gt;Możesz zignorować ten komunikat i używać api pomimo tego &lt;strong&gt;ale to stwarza zagrożenie bezpieczeństwa&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;Zalecanym podejściem jest &lt;strong&gt;zamknięcie tego okna dialogowego, co oznacza wyłączenie api&lt;/strong&gt; co oznacza powrót do korzystania z narzędzi konsolowych, co jest wolniejsze lecz bezpieczniejsze.</translation>
-    </message>
-</context>
-<context>
-    <name>MissingBitwardenCliPage</name>
-    <message>
-        <source>Continue</source>
-        <extracomment>Dialog accept text</extracomment>
-        <translation>Kontynuuj</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <extracomment>Dialog reject text</extracomment>
-        <translation>Wyjście</translation>
-    </message>
-    <message>
-        <source>The Bitwarden CLI is not installed, do you wish to install it using &lt;strong&gt;npm&lt;/strong&gt;? The app cannot continue without Bitwarden CLI.</source>
-        <translation>Narzędzia konsolowe CLI nie są zainstalowane, chcesz je zainstalować przy użyciu &lt;strong&gt;npm&lt;/strong&gt;? Aplikacja nie może kontynuować bez narzędzi konsolowych.</translation>
-    </message>
-</context>
-<context>
-    <name>MissingRequiredBinaryPage</name>
-    <message>
-        <source>Missing Required Dependencies</source>
-        <extracomment>Page title</extracomment>
-        <translation>Brakujące wymagane zależności</translation>
-    </message>
-    <message>
-        <source>Required dependency is missing: &lt;strong&gt;%1&lt;/strong&gt;. This dependency should be installed automatically if you installed the app from store using the provided rpm. Please reinstall using the rpm package or install the missing dependency manually and then restart the app.</source>
-        <translation>Wymagana zależność nie jest zainstalowana &lt;strong&gt;%1&lt;/strong&gt;. Ta zależność powinna zostać zainstalowana automatycznie, jeśli aplikacja była instalowana ze sklepu przy użyciu dostarczonego pakietu rpm. Proszę zainstaluj ponownie pakiet rpm lub zainstaluj brakującą zależność ręcznie i uruchom ponownie aplikację.</translation>
-    </message>
-</context>
-<context>
-    <name>PatchServerPage</name>
-    <message>
-        <source>Ignore patching</source>
-        <extracomment>Dialog accept text</extracomment>
-        <translation>Ignoruj wgrywanie poprawek</translation>
-    </message>
-    <message>
-        <source>Patch server</source>
-        <translation>Wgraj poprawki na serwer</translation>
-    </message>
-    <message>
-        <source>Ignore the above warning, don&apos;t patch the server</source>
-        <translation>Zignoruj powyższe ostrzeżenie, nie instaluj poprawek serwera</translation>
-    </message>
-    <message>
-        <source>The built-in BitWarden server is insecure and allows anyone to access it once it&apos;s running. To fix that we can patch the server to force it to require authentication before revealing its secrets.&lt;br&gt;&lt;br&gt;You can also ignore this, but it&apos;s &lt;strong&gt;highly discouraged&lt;/strong&gt; and you should &lt;strong&gt;really&lt;/strong&gt; know what you&apos;re doing.&lt;br&gt;&lt;br&gt;If you cancel, the api will be disabled.</source>
-        <translation>Wbudowany serwer BitWarde jest niezabezpieczony i pozwala na dostęp wszystkim, kiedy jest uruchomiony. Aby to naprawić, możemy wgrać poprawki na serwer by wymusić wymaganie autentykację przed wyświetleniem sekretów.&lt;br&gt;&lt;br&gt;Możesz również zignorować to, ale jest to  &lt;strong&gt;bardzo niewskazane&lt;/strong&gt; i powinieneś &lt;strong&gt;naprawdę&lt;/strong&gt; być świadomy co robisz.&lt;br&gt;&lt;br&gt;Jeśli anulujesz, dostęp do api będzie wyłączony.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1010,12 +887,6 @@ please restart the app</source>
         <translation>Nie znaleziono wysyłek.</translation>
     </message>
     <message>
-        <source>The BitWarden server is not running,
-please restart the app</source>
-        <translation>Serwer BitWarden nie jest uruchmiony
-Uruchom ponownie aplikację</translation>
-    </message>
-    <message>
         <source>Create a Send</source>
         <translation>Stwórz wysyłkę</translation>
     </message>
@@ -1044,36 +915,8 @@ Uruchom ponownie aplikację</translation>
         <translation>Podane hasło jest nieprawidłowe.</translation>
     </message>
     <message>
-        <source>Load vault items eagerly in main view</source>
-        <translation>Ładuj elementy sejfu na żądanie</translation>
-    </message>
-    <message>
         <source></source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Save items in cache for faster load</source>
-        <translation>Zapisz element w pamięci podręcznej aby ładowała się szybciej</translation>
-    </message>
-    <message>
-        <source>When this option is enabled, all items are loaded right when you enter the main screen. If disabled, the options are only loaded when you actually need to load them, meaning when you enter an item list like &apos;%1&apos;, &apos;%2&apos; etc.</source>
-        <translation>Jeśli ta nastawa jest włączona, wszystkie elementy będą ładowane w momencie wyświetlenia głównego ekranu. Jeśli nastawa jest wyłączona, elementy są ładowane tylko wtedy gdy są potrzebne, to znaczy jeśli wyświetlisz pozycję &apos;%1&apos;, &apos;%2&apos; itd.</translation>
-    </message>
-    <message>
-        <source>Logins</source>
-        <translation>Loginy</translation>
-    </message>
-    <message>
-        <source>Cards</source>
-        <translation>Karty</translation>
-    </message>
-    <message>
-        <source>Fast authentication</source>
-        <translation>Szybka autentykacja</translation>
-    </message>
-    <message>
-        <source>When this option is enabled, authentication is skipped and you are assumed to be logged in regardless of the actual status. What this means in practice is that logged in check is postponed until you&apos;re on the main page and is done in the background, this gives anyone opening this app a few seconds to look around before transfering you to the login/unlock screen. This should be ok because all vault operations fail when you&apos;re not logged in. &lt;strong&gt;Warning&lt;/strong&gt;: if used in combination with the setting &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; some data may be leaked to whoever opens this app. Use at your own risk.</source>
-        <translation>Jeśli ta nastawa jest włączona, autentykacja jest pominięta i aplikacja zakłada, że jesteś zalogowany, niezależnie od stanu faktycznego. To w praktyce oznacza to, że sprawdzenie logowania jest odłożone do momentu gdy wyświetlasz stronę główną aplikacji i jest wykonane w tle. To umożliwia każdemu, kto uruchomi aplikację do rozejrzenia się przez kilka sekund, zanim zostanie wyświetlony ekran logowania lub odblokowania. To nie powinno być problemem, gdyż operacje na sejfie nie powiodą się, jeśli nie jesteś zalogowany.&lt;strong&gt;Uwaga&lt;/strong&gt;: jeśli nastawa używana w połączeniu z  &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; niektóre dane mogą się pokazać każdemu, kto uruchomi aplikację. Włączaj na własne ryzyko.</translation>
     </message>
     <message>
         <source>OS authorization check failed.</source>
@@ -1092,36 +935,8 @@ Uruchom ponownie aplikację</translation>
         <translation>Wyczyść wszystko</translation>
     </message>
     <message>
-        <source>This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?</source>
-        <translation>Ta akcja usunie wszystkie dane przechowywane przez aplikację w Twoim systemie, włączając sekrety, narzędzia konsolowe Bitwarted (jeśli zostały zainstalowane przy użyciu tej aplikacji), pliki tymczasowe itp. Narzędzie konsolowe Bitwarden również zostanie wylogowane. Czy chcesz kontynuować?</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Ogólne</translation>
-    </message>
-    <message>
         <source>Security</source>
         <translation>Bezpieczeństwo</translation>
-    </message>
-    <message>
-        <source>Performance</source>
-        <translation>Wydajność</translation>
-    </message>
-    <message>
-        <source>By enabling this option you will force the app to authorize you using OS authorization even when the vault is unlocked. If the authorization fails your vault will be locked and you will be redirected to unlock vault screen. This can speed up getting your vault data significantly. &lt;strong&gt;Warning&lt;/strong&gt;: Disables &apos;%1&apos;</source>
-        <translation>Włączając tą opcję wymusisz autoryzację aplikacji przy użyciu autoryzacji systemu operacyjnego, nawet jeśli sejf jest otwarty. Jeśli autoryzacja się nie powiedzie sejf zostanie zamknięty i zostaniesz przeniesiony do ekranu odblokowania sejfu. To może znacząco przyśpieszyć dostęp do danych.&lt;strong&gt;Uwaga&lt;/strong&gt;: wyłącza &apos;%1&apos;</translation>
-    </message>
-    <message>
-        <source>Require OS authorization on unlocked vault</source>
-        <translation>Wymagaj autoryzacji przy użyciu systemu operacyjnego aby otworzyć sejf</translation>
-    </message>
-    <message>
-        <source>Enabling this option will fasten load times for items in the vault significantly - your data are &lt;strong&gt;stored on disk encrypted&lt;/strong&gt; without any sensitive data (card numbers, passwords etc.).</source>
-        <translation>Włączenie tej opcji znacząco przyśpieszy ładowanie elementów sejfu - Twoje dane są  &lt;strong&gt;przechowywane na zaszyfrowanym dysku&lt;/strong&gt; bez żadnych wrażliwych danych (numery kart, hasła itp). </translation>
-    </message>
-    <message>
-        <source>Update Bitwarden CLI</source>
-        <translation>Aktualizuj narzędzia konsolowe BitWarden</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1136,14 +951,6 @@ Uruchom ponownie aplikację</translation>
         <translation>Adres URL Bitwarden</translation>
     </message>
     <message>
-        <source>Note: Currently this app cannot find out if the URL has been changed and it appears as if the default was set. If you&apos;ve set it before, it should work as expected.</source>
-        <translation>Uwaga: aktualnie aplikacja nie może sprawdzić, czy URL został zmieniony i wygląda na to, że jest ustawiony domyślny. Jeśli został zmieniony wcześniej wszystko powinno działać w porządku.</translation>
-    </message>
-    <message>
-        <source>If you self-host your Bitwarden server, you may set its URL here. Leave empty to use the global default.</source>
-        <translation>Jeśli sam hostujesz serwer Bitwarden, tutaj wprowadź adres URL. Pozostaw pusty aby użyć ustawień domyślnych.</translation>
-    </message>
-    <message>
         <source>Setting URL</source>
         <extracomment>As in the action of setting url (present continuous)</extracomment>
         <translation>Adres URL nastawy</translation>
@@ -1151,18 +958,6 @@ Uruchom ponownie aplikację</translation>
     <message>
         <source>Note: You will be logged out.</source>
         <translation>Uwaga: zostaniesz wylogowany</translation>
-    </message>
-    <message>
-        <source>Use api (experimental)</source>
-        <translation>Użyj api (eksperymentalnie)</translation>
-    </message>
-    <message>
-        <source>By enabling this option the app will use a local BitWarden server instead of the BitWarden CLI. That can make all BitWarden operations &lt;strong&gt;much&lt;/strong&gt; faster, but the support is experimental and there might be bugs which cause the server to crash, thus rendering the app unusable until you close it and start it again.</source>
-        <translation>Włączają tą opcję aplikacja użyje lokalnego serwera BitWarden, zamiast narzędzi konsolowych. To może &lt;strong&gt;znacząco&lt;/strong&gt; przyśpieszyć operacje, ale wsparcie jest eksperymentalne i mogą pojawić się błędy, które spowodują awarię serwera a działanie aplikacji niestabilne dopóki nie zostanie zrestartowana.</translation>
-    </message>
-    <message>
-        <source>Failed getting the configured server URL</source>
-        <translation>Niepowodzenie komunikacji z URL serwera</translation>
     </message>
     <message>
         <source>Enable certificate validation</source>
@@ -1177,11 +972,11 @@ Uruchom ponownie aplikację</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use system CA store</source>
+        <source>Could not fetch your email address, the session is in an invalid state. Logout is advised</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
+        <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1238,30 +1033,6 @@ Uruchom ponownie aplikację</translation>
     </message>
 </context>
 <context>
-    <name>SystemCheckerPage</name>
-    <message>
-        <source>System Check</source>
-        <extracomment>Page title</extracomment>
-        <translation>Sprawdzenie systemu</translation>
-    </message>
-    <message>
-        <source>Checking if system is ready...</source>
-        <translation>Sprawdzenie, czy system jest gotowy...</translation>
-    </message>
-</context>
-<context>
-    <name>UnknownErrorOccuredPage</name>
-    <message>
-        <source>Unknown Error</source>
-        <extracomment>Page title</extracomment>
-        <translation>Nieznany błąd</translation>
-    </message>
-    <message>
-        <source>There was an unknown error and app cannot proceed. Please contact the developer on &lt;a href=&apos;%1&apos;&gt;OpenRepos&lt;/a&gt;.</source>
-        <translation>Wystąpił nieznany błąd i aplikacja została zatrzymana. Proszę skontaktować się z developerem na &lt;a href=&apos;%1&apos;&gt;OpenRepos&lt;/a&gt;.</translation>
-    </message>
-</context>
-<context>
     <name>UnlockVaultPage</name>
     <message>
         <source>Unlock Vault</source>
@@ -1314,32 +1085,6 @@ Uruchom ponownie aplikację</translation>
     </message>
 </context>
 <context>
-    <name>UpdateBitwardenCliPage</name>
-    <message>
-        <source>Updating Bitwarden CLI</source>
-        <extracomment>Page title</extracomment>
-        <translation>Trwa aktualizacja narzędzi konsolowych Bitwarden</translation>
-    </message>
-    <message>
-        <source>There was an error updating the Bitwarden CLI.</source>
-        <translation>Wystąpił błąd aktualizacji narzędzi konsolowych Bitwarden</translation>
-    </message>
-    <message>
-        <source>Bitwarden CLI was updated successfully</source>
-        <translation>Aktualizacja narzędzi konsolowych Bitwarden zakończona powodzeniem</translation>
-    </message>
-    <message>
-        <source>Updating Bitwarden CLI... Please don&apos;t close the app or exit this page.</source>
-        <translation>Trwa aktualizacja narzędzi konsolowych Bitwarden. Proszę nie zamykać aplikacji ani nie opuszczać tej strony.</translation>
-    </message>
-    <message>
-        <source>Please restart the app
-for the changes to take effect.</source>
-        <translation>Proszę zrestartować aplikację
-aby zastosować zmiany.</translation>
-    </message>
-</context>
-<context>
     <name>VaultPage</name>
     <message>
         <source>Vault</source>
@@ -1370,35 +1115,22 @@ aby zastosować zmiany.</translation>
         <translation>Dodaj element</translation>
     </message>
     <message>
-        <source>There was an error when creating the new item</source>
-        <translation>Wystąpił błąd przy dodawaniu elementu</translation>
-    </message>
-    <message>
         <source>There was an error while synchronizing the vault, please try again.</source>
         <translation>Wystąpił błąd podczas synchronizacji sejfu, proszę spróbować ponownie.</translation>
+    </message>
+    <message>
+        <source>There was an error when creating the new item</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>harbour-bitsailor</name>
     <message>
-        <source>Update Bitwarden CLI</source>
-        <extracomment>notification title</extracomment>
-        <translation>Aktualizuj narzędzia konsolowe Bitwarden</translation>
-    </message>
-    <message>
-        <source>Your Bitwarden CLI might be out of date. You should check for new versions of Bitwarden CLI regularly. You can do so in the settings or by clicking this notification.</source>
-        <translation>Zainstalowane narzędzia konsolowe Bitwarden mogą być nieaktualne. Powinieneś sprawdzać dostępność aktualizacji regularnie. Można to zrobić w nastawach lub klikając to powiadomienie.</translation>
-    </message>
-    <message>
-        <source>The API is already running</source>
-        <translation>Api jest już uruchomione</translation>
-    </message>
-    <message>
-        <source>The API is already running and could not be stopped. It&apos;s possible that the api will not work at all. Please try restarting the app. If you see this error again, try disabling api in the Settings.</source>
-        <translation>Api jest już uruchomione i nie może zostać zatrzymane. Jest możliwe, że API nie będzie działać wcale. Proszę spróbować uruchomić aplikację ponownie. Jeśli błąd się powtórzy proszę spróbować wyłączyć API w nastawach.</translation>
-    </message>
-    <message>
         <source>Certificate validation is ignored</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Debug secret storage is used. Uninstall this version immediately unless you are developing BitSailor itself.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

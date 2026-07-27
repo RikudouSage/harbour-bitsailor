@@ -15,7 +15,7 @@ Page {
     property string title: qsTr("Vault")
 
     property string addItemTitle: qsTr("Add item")
-    property int addItemType: BitwardenCli.NoType
+    property int addItemType: BitSailorCore.ItemTypeNone
     property bool addItemEnabled: true
 
     id: page
@@ -27,32 +27,68 @@ Page {
         running: !loaded
     }
 
-    BitwardenCli {
-        id: cli
-
-        onFailedGettingItems: {
-            errorText = qsTr("An error occured while loading items. Please try again.")
-        }
+    Connections {
+        target: core
 
         onItemsResolved: {
+            if (page.status !== PageStatus.Active && page.status !== PageStatus.Activating) {
+                return;
+            }
+
+            var wantedType = 0;
+
+            switch (itemLoader) {
+            case 'getLogins':
+                wantedType = BitSailorCore.ItemTypeLogin;
+                break;
+            case 'getCards':
+                wantedType = BitSailorCore.ItemTypeCard;
+                break;
+            case 'getNotes':
+                wantedType = BitSailorCore.ItemTypeSecureNote;
+                break;
+            case 'getIdentities':
+                wantedType = BitSailorCore.ItemTypeIdentity;
+                break;
+            }
+
+            if (wantedType !== 0) {
+                items = items.filter(function(item) {
+                    return item.type === wantedType;
+                });
+            }
+
             allLogins = items;
             logins = items;
             loaded = true;
         }
 
-        onVaultSynced: {
-            cli[itemLoader]();
+        onItemResolvingFailed: {
+            if (page.status !== PageStatus.Active && page.status !== PageStatus.Activating) {
+                return;
+            }
+            errorText = qsTr("An error occured while loading items. Please try again.")
         }
 
-        onVaultSyncFailed: {
-            errorText = qsTr("There was an error while synchronizing the vault, please try again.");
+        onSyncVaultFinished: {
+            if (!success) {
+                errorText = qsTr("There was an error while synchronizing the vault, please try again.");
+                return;
+            }
+
+            core.fetchItems();
         }
 
         onItemCreationFinished: {
+            if (page.status !== PageStatus.Active && page.status !== PageStatus.Activating) {
+                return;
+            }
+
             if (success) {
                 loaded = false;
-                cli.syncVault();
+                core.fetchItems();
             } else {
+                loaded = true;
                 errorText = qsTr("There was an error when creating the new item");
             }
         }
@@ -75,17 +111,17 @@ Page {
                         const object = JSON.parse(JSON.stringify(dialog.itemTemplate));
                         const type = dialog.type;
                         switch (type) {
-                        case BitwardenCli.Login:
+                        case BitSailorCore.ItemTypeLogin:
                             object.login = JSON.parse(JSON.stringify(dialog.loginItemTemplate));
                             object.login.password = dialog.loginPasswordValue || null;
                             object.login.totp = dialog.loginTotpValue || null;
                             object.login.username = dialog.loginUsernameValue || null;
                             object.login.uris = dialog.getUris() || null;
                             break;
-                        case BitwardenCli.SecureNote:
+                        case BitSailorCore.ItemTypeSecureNote:
                             object.secureNote = JSON.parse(JSON.stringify(dialog.secureNoteItemTemplate));
                             break;
-                        case BitwardenCli.Card:
+                        case BitSailorCore.ItemTypeCard:
                             object.card = JSON.parse(JSON.stringify(dialog.cardItemTemplate));
                             object.card.cardholderName = dialog.cardCardholderNameValue || null;
                             object.card.brand = dialog.cardBrandValue || null;
@@ -100,7 +136,9 @@ Page {
                         object.name = dialog.nameValue;
                         object.notes = dialog.loginNotesValue || dialog.secureNoteNoteValue || null;
 
-                        cli.createItem(Qt.btoa(JSON.stringify(object)));
+                        loaded = false;
+                        errorText = "";
+                        core.createItem(object);
                     });
                 }
             }
@@ -144,7 +182,7 @@ Page {
 
                 onTextChanged: {
                     if (!text) {
-                        cli[itemLoader]();
+                        core.fetchItems();
                     } else {
                         logins = allLogins.filter(function(item) {
                             if (typeof item.login === 'undefined') {
@@ -198,7 +236,7 @@ Page {
 
                     function remove() {
                         remorseDelete(function() {
-                            cli.deleteItemInBackground(item.id);
+                            core.deleteItem(item.id, false);
                             visible = false;
                         });
                     }
@@ -224,7 +262,7 @@ Page {
                         text: typeof item.login !== 'undefined' ? item.login.username || '' : ''
                         font.pixelSize: Theme.fontSizeSmall
                         color: Theme.secondaryHighlightColor
-                        visible: item.type === BitwardenCli.Login
+                        visible: item.type === BitSailorCore.ItemTypeLogin
                     }
 
                     Label {
@@ -245,7 +283,7 @@ Page {
 
                         font.pixelSize: Theme.fontSizeSmall
                         color: Theme.secondaryHighlightColor
-                        visible: item.type === BitwardenCli.Card
+                        visible: item.type === BitSailorCore.ItemTypeCard
                     }
 
                     Label {
@@ -255,7 +293,7 @@ Page {
                         }).join(' ') : ''
                         font.pixelSize: Theme.fontSizeSmall
                         color: Theme.secondaryHighlightColor
-                        visible: item.type === BitwardenCli.Identity
+                        visible: item.type === BitSailorCore.ItemTypeCard
                     }
 
                     Component {
@@ -277,6 +315,6 @@ Page {
     }
 
     Component.onCompleted: {
-        cli[itemLoader]();
+        core.fetchItems();
     }
 }

@@ -6,6 +6,7 @@ import Sailfish.Share 1.0
 import "pages"
 import "components" as Components
 import "helpers.js" as Helpers
+import "cover" as Covers
 
 import cz.chrastecky.bitsailor 1.0
 
@@ -18,23 +19,11 @@ ApplicationWindow {
     property bool invalidCertsAllowed: secrets.invalidCertificatesAllowed()
     id: app
 
-    initialPage: Component { SystemCheckerPage { } }
-    cover: Qt.resolvedUrl("cover/CoverPage.qml")
+    initialPage: Component { LoginCheckPage { } }
+    cover: Covers.CoverPage {}
     allowedOrientations: defaultAllowedOrientations
 
-    BitwardenApi {
-        id: api
-
-        onIsRunningResult: {
-            if (running) {
-                api.killApi();
-            }
-        }
-
-        onKillingApiFailed: {
-            apiAlreadyRunning.publish();
-        }
-    }
+    onInvalidCertsAllowedChanged: core.initialize();
 
     ShareProvider {
         method: "anything"
@@ -119,108 +108,59 @@ ApplicationWindow {
         running: false
     }
 
-    BitwardenCli {
-        id: cli
-    }
-
-    SecretsHandler {
-        id: secrets
-    }
-
-    Rectangle {
-        id: invalidCertsBanner
-        color: Theme.errorColor
-        visible: app.invalidCertsAllowed
+    Column {
+        id: warningBanners
+        visible: invalidCertsBanner.visible || debugSecretsBanner.visible
         z: 1000
         width: parent.width
-        height: Theme.itemSizeLarge
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
 
-        Label {
-            id: warningLabel
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: Theme.paddingSmall
-            anchors.horizontalCenter: parent.horizontalCenter
-            horizontalAlignment: Text.AlignHCenter
-            color: Theme.lightPrimaryColor
-            text: qsTr("Certificate validation is ignored")
+        Rectangle {
+            id: debugSecretsBanner
+            color: Theme.errorColor
+            visible: isDebug
+            width: parent.width
+            height: debugSecretsLabel.height + Theme.paddingMedium
+
+            Label {
+                id: debugSecretsLabel
+                anchors.centerIn: parent
+                width: parent.width - Theme.horizontalPageMargin * 2
+                horizontalAlignment: Text.AlignHCenter
+                wrapMode: Text.WordWrap
+                color: Theme.lightPrimaryColor
+                text: qsTr("Debug secret storage is used. Uninstall this version immediately unless you are developing BitSailor itself.")
+            }
+        }
+
+        Rectangle {
+            id: invalidCertsBanner
+            color: Theme.errorColor
+            visible: app.invalidCertsAllowed
+            width: parent.width
+            height: Theme.itemSizeLarge
+
+            Label {
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: Theme.paddingSmall
+                anchors.horizontalCenter: parent.horizontalCenter
+                horizontalAlignment: Text.AlignHCenter
+                color: Theme.lightPrimaryColor
+                text: qsTr("Certificate validation is ignored")
+            }
         }
     }
 
     Binding {
         target: pageStack
         property: "anchors.topMargin"
-        value: invalidCertsBanner.visible ? invalidCertsBanner.height : 0
-    }
-
-    Notification {
-        id: apiAlreadyRunning
-        summary: qsTr("The API is already running")
-        body: qsTr("The API is already running and could not be stopped. It's possible that the api will not work at all. Please try restarting the app. If you see this error again, try disabling api in the Settings.");
-    }
-
-    Notification {
-        id: outdatedCliNotification
-        //: notification title
-        summary: qsTr("Update Bitwarden CLI")
-        body: qsTr("Your Bitwarden CLI might be out of date. You should check for new versions of Bitwarden CLI regularly. You can do so in the settings or by clicking this notification.")
-        remoteActions: [
-            {
-                "name": "default",
-            }
-        ]
-        onActionInvoked: {
-            if (name === "default") {
-                app.activate();
-                const callable = function() {
-                    pageStack.push("pages/UpdateBitwardenCliPage.qml");
-                };
-
-                pageStack.busy ? actionsWhenNotBusy.push(callable) : callable();
-            }
-        }
-    }
-
-    Component.onCompleted: {
-        if (settings.persistentItemCache) {
-            runtimeCache.set(CacheKey.Items, runtimeCache.getPersistent(CacheKey.Items));
-        }
-
-        if (!runtimeCache.hasPersistent(CacheKey.HasLocalInstallation)) {
-            runtimeCache.setPersistent(CacheKey.HasLocalInstallation, cli.binaryPath.indexOf(privateBinPath) === 0 ? "y" : "n");
-        }
-
-        if (runtimeCache.getPersistent(CacheKey.HasLocalInstallation) === "y") {
-            if (!runtimeCache.hasPersistent(CacheKey.LastUpdated)) {
-                // date of first release, could be anything, so why not?
-                runtimeCache.setPersistent(CacheKey.LastUpdated, new Date("2022-09-27 00:26:00").toISOString());
-            }
-
-            const week = 7 * 24 * 60 * 60 * 1000; // 1 week in milliseconds
-
-            const date = new Date(runtimeCache.getPersistent(CacheKey.LastUpdated));
-            const now = new Date();
-
-            const diff = now.getTime() - date.getTime();
-
-            if (diff > week) {
-                outdatedCliNotification.publish();
-            }
-        }
-
-        if (settings.useApi) {
-            api.isRunning();
-        }
+        value: warningBanners.visible ? warningBanners.height : 0
     }
 
     Component.onDestruction: {
         if (settings.lockOnClose) {
-            cli.lockVaultInBackground();
-        }
-
-        if (settings.persistentItemCache) {
-            runtimeCache.setPersistent(CacheKey.Items, Helpers.filterOutSensitiveItems(runtimeCache.get(CacheKey.Items)));
+            core.lockVault(true)
         }
     }
 

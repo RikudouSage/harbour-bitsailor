@@ -2,9 +2,15 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 import cz.chrastecky.bitsailor 1.0
+import "../helpers.js" as Helpers
 
 Page {
+    readonly property string stateLogin: 'login'
+    readonly property string stateUnlock: 'unlock'
+
     property var doAfterLoad: []
+    property var safeCaller: Helpers.safeCallerFactory(doAfterLoad, page);
+    property string checkState: stateLogin
 
     // these are only set if changing server url
     property string clientId
@@ -18,112 +24,111 @@ Page {
     id: page
     allowedOrientations: Orientation.All
 
-    SecretsHandler {
-        id: secrets
-    }
-
-    BitwardenCli {
-        id: cli
+    Connections {
+        target: core
 
         function displayLoginPage(error) {
-            if (!error) {
-                error = "";
-            }
+            safeCaller(function() {
+                if (!error) {
+                    error = "";
+                }
 
-            const dialog = pageStack.push("LoginPage.qml", {error: error, customServerUrl: customServerUrl});
-            dialog.accepted.connect(function() {
-                customServerUrl = dialog.customServerUrl || 'https://bitwarden.com';
-                clientId = dialog.clientIdText;
-                clientSecret = dialog.clientSecretText;
-                email = dialog.emailText;
-                password = dialog.passwordText;
+                const dialog = pageStack.push("LoginPage.qml", {error: error, customServerUrl: customServerUrl});
+                dialog.accepted.connect(function() {
+                    customServerUrl = dialog.customServerUrl || 'https://bitwarden.com';
+                    clientId = dialog.clientIdText;
+                    clientSecret = dialog.clientSecretText;
+                    email = dialog.emailText;
+                    password = dialog.passwordText;
 
-                cli.setServerUrl(customServerUrl);
+                    core.changeServerUrl(customServerUrl);
+                });
             });
         }
 
         function displayUnlockPage(error) {
-            if (!error) {
-                error = "";
-            }
-
-            const dialog = pageStack.push("UnlockVaultPage.qml", {error: error});
-            dialog.accepted.connect(function() {
-                if (dialog.passwordText) {
-                    cli.unlockVault(dialog.passwordText);
-                } else if (dialog.pinText) {
-                    cli.unlockVault(dialog.pinText);
-                } else if (dialog.systemAuthSucceeded) {
-                    cli.unlockVault();
+            safeCaller(function() {
+                if (!error) {
+                    error = "";
                 }
+
+                const dialog = pageStack.push("UnlockVaultPage.qml", {error: error});
+                dialog.accepted.connect(function() {
+                    if (dialog.passwordText) {
+                        core.unlockVault(dialog.passwordText);
+                    } else if (dialog.pinText) {
+                        core.unlockVault(dialog.pinText);
+                    } else if (dialog.systemAuthSucceeded) {
+                        core.unlockVault();
+                    }
+                });
             });
         }
 
-        onServerUrlSet: {
-            if (clientId.length && clientSecret.length) {
-                cli.loginApiKey(clientId, clientSecret);
-            } else {
-                cli.loginEmailPassword(email, password);
-            }
-        }
-
-        onLoginStatusResolved: {
-            if (loggedIn) {
-                if (!secrets.hasSessionId()) {
-                    displayUnlockPage();
+        onLoginStatusFetched: {
+            if (status === BitSailorCore.SessionStatusNone) {
+                if (checkState === stateLogin) {
+                    displayLoginPage();
                 } else {
-                    cli.checkVaultUnlocked();
+                    displayLoginPage(qsTr("There was an unknown error while logging in."));
+                    console.error("The page was logged in but then session status check was None");
                 }
-            } else {
-                displayLoginPage();
-            }
-        }
-
-        onVaultLockStatusResolved: {
-            if (unlocked) {
+            } else if (status === BitSailorCore.SessionStatusLocked) {
+                displayUnlockPage();
+            } else if (status === BitSailorCore.SessionStatusUnlocked) {
                 pageStack.replace("MainPage.qml");
             } else {
-                runtimeCache.remove(CacheKey.Items);
-                runtimeCache.removePersistent(CacheKey.Items);
-                secrets.removeSessionId();
-
-                displayUnlockPage();
+                displayLoginPage(qsTr("Unknown status: %1").arg(status));
+                console.error("Unknown status: " + status);
             }
         }
 
-        onLogInFinished: {
-            if (success) {
-                cli.checkVaultUnlocked();
+        onServerUrlChanged: {
+            if (!status) {
+                displayLoginPage(qsTr("There was an error while changing the URL, please report that to the developers."));
+                return;
+            }
+
+            if (clientId.length && clientSecret.length) {
+                core.loginApiKey(clientId, clientSecret);
             } else {
-                displayLoginPage(qsTr("The credentials you provided are incorrect. Please try again."));
+                core.loginEmailPassword(email, password);
             }
         }
 
-        onAuthenticatorRequired: {
-            displayLoginPage(qsTr("An authenticator is required, please use API key login."));
+        onTwoFactorNeeded: {
+            displayLoginPage(qsTr("Your account has 2-factor logging in enabled which is currently unsupported. Please login using your api key."));
         }
 
-        onVaultUnlockFinished: {
+        onLoginFinished: {
             if (!success) {
-                displayUnlockPage(qsTr("Wrong password or PIN"));
+                displayLoginPage(qsTr("There was an error while logging in: %1").arg(error));
+                return;
+            }
+
+            checkState = stateUnlock
+            core.getLoginStatus();
+        }
+
+        onUnlockFinished: {
+            if (success) {
+                pageStack.replace("MainPage.qml");
             } else {
-                cli.checkVaultUnlocked();
+                displayUnlockPage(qsTr("Failed unlocking, did you provide the correct password/PIN?"));
             }
         }
 
-        onWrongPinProvided: {
-            displayUnlockPage(qsTr("Invalid PIN."));
+        onCouldNotFetchEmail: {
+            secrets.removeSessionJson();
+            secrets.removeEncryptedVault();
+            core.initialize();
+            displayLoginPage(qsTr("Failed unlocking because the session got in an invalid state. We logged you out."))
         }
 
         onInvalidCertificate: {
-            const handle = function() {
+            safeCaller(function() {
                 pageStack.replace("InvalidCertificatePage.qml");
-            };
-            if (pageStack.busy) {
-                doAfterLoad.push(handle);
-            } else {
-                handle();
-            }
+            });
         }
     }
 
@@ -133,13 +138,7 @@ Page {
     }
 
     Component.onCompleted: {
-        if (settings.fastAuth && secrets.hasSessionId()) {
-            doAfterLoad.push(function() {
-                pageStack.replace("MainPage.qml");
-            });
-        } else {
-            cli.checkLoginStatus();
-        }
+        core.getLoginStatus();
     }
 
     onStatusChanged: {

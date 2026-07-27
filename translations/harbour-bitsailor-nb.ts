@@ -29,14 +29,6 @@
         <translation>Slettet alle hemmeligheter</translation>
     </message>
     <message>
-        <source>Logged out of Bitwarden CLI</source>
-        <translation>Logget ut av Bitwarden CLI</translation>
-    </message>
-    <message>
-        <source>Deleted all permanent files</source>
-        <translation>Slettet alle permanente filer</translation>
-    </message>
-    <message>
         <source>Deleted all config files</source>
         <translation>Slettet alle konfigurasjonsfiler</translation>
     </message>
@@ -45,24 +37,16 @@
         <translation>Inkluderer hemmeligheter som passord, brukernavn eller PIN-kode.</translation>
     </message>
     <message>
-        <source>The Bitwarden CLI could be used on its own even without this app, that&apos;s why it&apos;s safer to log out.</source>
-        <translation>Bitwarden CLI kan brukes uavhengig av denne appen, så det er tryggere å logge ut.</translation>
-    </message>
-    <message>
         <source>Deleted temporary files</source>
         <translation>Slettede midlertidige filer</translation>
     </message>
     <message>
-        <source>Temporary files include your cached vault for faster loading.</source>
-        <translation>Midlertidige filer inkluderer det bufrede hvelvet ditt for raskere lasting.</translation>
-    </message>
-    <message>
-        <source>Permanent files include Bitwarden CLI (if it was installed using this app).</source>
-        <translation>Permanente filer inkluderer Bitwarden CLI (hvis den ble installert med denne appen).</translation>
-    </message>
-    <message>
         <source>Config files include all the settings you have made in this app.</source>
         <translation>Konfigurasjonsfiler inneholder alle innstillingene du har gjort i denne appen.</translation>
+    </message>
+    <message>
+        <source>Temporary files include some of your settings.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -87,82 +71,45 @@
         <source>BitSailor</source>
         <translation>BitSailor</translation>
     </message>
-</context>
-<context>
-    <name>CoverPageCard</name>
     <message>
         <source>Item</source>
         <extracomment>Item name on the cover page for card detail, should be short, use abbreviations if needed</extracomment>
-        <translation>Oppføring</translation>
+        <translation type="unfinished">Oppføring</translation>
     </message>
     <message>
         <source>Card Number</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>Kortnummer</translation>
-    </message>
-    <message>
-        <source>Security Code</source>
-        <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>Sikkerhetskode</translation>
+        <translation type="unfinished">Kortnummer</translation>
     </message>
     <message>
         <source>Expiration</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>Utløpsdato</translation>
+        <translation type="unfinished">Utløpsdato</translation>
     </message>
-</context>
-<context>
-    <name>CoverPageLogin</name>
     <message>
-        <source>Item</source>
-        <extracomment>Item name on the cover page for login detail, should be short, use abbreviations if needed</extracomment>
-        <translation>Oppføring</translation>
+        <source>Security Code</source>
+        <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
+        <translation type="unfinished">Sikkerhetskode</translation>
     </message>
     <message>
         <source>Username</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>Brukernavn</translation>
+        <translation type="unfinished">Brukernavn</translation>
     </message>
     <message>
         <source>Password</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>Passord</translation>
-    </message>
-</context>
-<context>
-    <name>CoverPageLoginTotp</name>
-    <message>
-        <source>Item</source>
-        <extracomment>Item name on the cover page for login detail, should be short, use abbreviations if needed</extracomment>
-        <translation>Oppføring</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>Brukernavn</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>Passord</translation>
+        <translation type="unfinished">Passord</translation>
     </message>
     <message>
         <source>TOTP</source>
         <extracomment>TOTP (two factor auth code) on cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>TOTP</translation>
-    </message>
-</context>
-<context>
-    <name>CoverPageNote</name>
-    <message>
-        <source>Item</source>
-        <extracomment>Item name on the cover page for card detail, should be short, use abbreviations if needed</extracomment>
-        <translation>Oppføring</translation>
+        <translation type="unfinished">TOTP</translation>
     </message>
     <message>
         <source>Note</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>Notat</translation>
+        <translation type="unfinished">Notat</translation>
     </message>
 </context>
 <context>
@@ -186,6 +133,10 @@
     <message>
         <source>URL copied to clipboard</source>
         <translation>Lenken ble kopiert til utklippstavlen</translation>
+    </message>
+    <message>
+        <source>Failed creating Send</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -373,7 +324,7 @@
     </message>
     <message>
         <source>Notes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Notat</translation>
     </message>
     <message>
         <source>Cardholder Name</source>
@@ -548,22 +499,6 @@
     </message>
 </context>
 <context>
-    <name>InstallBitwardenCliPage</name>
-    <message>
-        <source>Installing Bitwarden CLI</source>
-        <extracomment>Page title</extracomment>
-        <translation>Installerer Bitwarden-CLI</translation>
-    </message>
-    <message>
-        <source>Installing... Please don&apos;t close the app.</source>
-        <translation>Installerer… Vennligst ikke lukk appen.</translation>
-    </message>
-    <message>
-        <source>There was an error installing the Bitwarden CLI.</source>
-        <translation>Det oppstod en feil ved installasjon av Bitwarden CLI.</translation>
-    </message>
-</context>
-<context>
     <name>InvalidCertificatePage</name>
     <message>
         <source>Invalid Certificate</source>
@@ -576,14 +511,6 @@
     </message>
     <message>
         <source>Ignore certificate validation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use system CA store</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -720,6 +647,10 @@
         <extracomment>Accept button for updating an item</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>There was an error when updating the item</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LoginCheckPage</name>
@@ -728,20 +659,32 @@
         <translation>Autentiserer...</translation>
     </message>
     <message>
-        <source>Invalid PIN.</source>
-        <translation>Ugyldig PIN-kode.</translation>
+        <source>There was an error while changing the URL, please report that to the developers.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Wrong password or PIN</source>
-        <translation>Feil passord eller PIN-kode</translation>
+        <source>Unknown status: %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The credentials you provided are incorrect. Please try again.</source>
-        <translation>Påloggingsinformasjonen du oppga er feil. Vennligst prøv igjen.</translation>
+        <source>Your account has 2-factor logging in enabled which is currently unsupported. Please login using your api key.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>An authenticator is required, please use API key login.</source>
-        <translation>En autentikator kreves, vennligst bruk API-nøkkel for pålogging.</translation>
+        <source>There was an error while logging in: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There was an unknown error while logging in.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed unlocking because the session got in an invalid state. We logged you out.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed unlocking, did you provide the correct password/PIN?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -804,161 +747,95 @@
         <translation>Fjern data</translation>
     </message>
     <message>
-        <source>This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?</source>
-        <translation>Alt appdata på systemet ditt vil bli slettet — inkludert systemhemmeligheter, Bitwarden CLI (hvis installert via appen), og midlertidige filer. Bitwarden CLI blir logget ut. Ønsker du å fortsette?</translation>
+        <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MainPage</name>
     <message>
-        <source>Logout</source>
-        <translation>Logg av</translation>
-    </message>
-    <message>
-        <source>Lock</source>
-        <translation>Lås</translation>
-    </message>
-    <message>
         <source>Please wait...</source>
-        <translation>Vennligst vent...</translation>
-    </message>
-    <message>
-        <source>Logins</source>
-        <extracomment>Page title</extracomment>
-        <translation>Påloggingsinformasjon</translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation>Søk</translation>
-    </message>
-    <message>
-        <source>Cards</source>
-        <extracomment>Page title</extracomment>
-        <translation>Kort</translation>
-    </message>
-    <message>
-        <source>Notes</source>
-        <extracomment>Page title</extracomment>
-        <translation>Notater</translation>
-    </message>
-    <message>
-        <source>Identities</source>
-        <extracomment>Page title</extracomment>
-        <translation>Identiteter</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Loading vault items</source>
-        <translation>Laster inn oppføringer fra hvelvet…</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logout</source>
+        <translation type="unfinished">Logg ut</translation>
+    </message>
+    <message>
+        <source>Lock</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Sync Vault</source>
-        <translation>Synkroniser hvelvet</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Syncing vault</source>
-        <translation>Synkroniserer hvelvet</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cards (%1)</source>
-        <translation>Kort (%1)</translation>
-    </message>
-    <message>
-        <source>Notes (%1)</source>
-        <translation>Notater (%1)</translation>
-    </message>
-    <message>
-        <source>Identities (%1)</source>
-        <translation>Identiteter (%1)</translation>
+        <source>Search</source>
+        <translation type="unfinished">Søk</translation>
     </message>
     <message>
         <source>BitSailor</source>
         <extracomment>Page title</extracomment>
-        <translation>BitSailor</translation>
-    </message>
-    <message>
-        <source>Add login</source>
-        <translation>Legg til påloggingsinformasjon</translation>
-    </message>
-    <message>
-        <source>Add card</source>
-        <translation>Legg til kort</translation>
-    </message>
-    <message>
-        <source>Add note</source>
-        <translation>Nytt notat</translation>
-    </message>
-    <message>
-        <source>Add identity</source>
-        <translation>Ny identitetsoppføring</translation>
-    </message>
-    <message>
-        <source>The BitWarden server is not running,
-please restart the app</source>
-        <translation>BitWarden‑serveren kjører ikke. Vennligst start appen på nytt.</translation>
-    </message>
-    <message>
-        <source>Patching the server...</source>
-        <translation>Oppdaterer serveren...</translation>
-    </message>
-    <message>
-        <source>There was an error while patching the server, please contact the developer to let him know to fix it.&lt;br&gt;&lt;br&gt;Meanwhile you can disable the server patch (&lt;strong&gt;which is not recommended because it poses a security risk&lt;/strong&gt;) or you can cancel this disalog to disable api and use the CLI again.</source>
-        <translation>Det oppstod en feil under patching av serveren. Kontakt utvikleren og gi beskjed slik at det kan rettes.&lt;br&gt;&lt;br&gt; I mellomtiden kan du deaktivere serverpatchen (&lt;strong&gt;noe som ikke anbefales fordi det utgjør en sikkerhetsrisiko&lt;/strong&gt;), eller avbryte for å bruke CLI igjen.</translation>
-    </message>
-    <message>
-        <source>The BitWarden CLI is not installed locally and thus the server cannot be patched.&lt;br&gt;&lt;br&gt;You can ignore this and continue using the api regardless &lt;strong&gt;but it poses a security risk&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;The recommended approach is to &lt;strong&gt;cancel this dialog which will disable api&lt;/strong&gt; altogether and you will fall back to using the CLI which is slower but safer.</source>
-        <translation>BitWarden CLI er ikke installert lokalt, og derfor kan ikke serveren patches.&lt;br&gt;&lt;br&gt; Du kan ignorere dette og fortsette å bruke API-en, &lt;strong&gt;men det utgjør en sikkerhetsrisiko&lt;/strong&gt;.&lt;br&gt;&lt;br&gt; Anbefalt framgangsmåte er å &lt;strong&gt;avbryte denne dialogen — det vil deaktivere API-en&lt;/strong&gt;, og du vil falle tilbake til å bruke CLI-en, som er tregere men tryggere.</translation>
+        <translation type="unfinished">BitSailor</translation>
     </message>
     <message>
         <source>Logins (%1)</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>MissingBitwardenCliPage</name>
     <message>
-        <source>Continue</source>
-        <extracomment>Dialog accept text</extracomment>
-        <translation>Fortsett</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <extracomment>Dialog reject text</extracomment>
-        <translation>Avslutt</translation>
-    </message>
-    <message>
-        <source>The Bitwarden CLI is not installed, do you wish to install it using &lt;strong&gt;npm&lt;/strong&gt;? The app cannot continue without Bitwarden CLI.</source>
-        <translation>Bitwarden CLI mangler — vil du installere den med &lt;strong&gt;npm&lt;/strong&gt;? Appen krever Bitwarden CLI for å fortsette.</translation>
-    </message>
-</context>
-<context>
-    <name>MissingRequiredBinaryPage</name>
-    <message>
-        <source>Missing Required Dependencies</source>
+        <source>Logins</source>
         <extracomment>Page title</extracomment>
-        <translation>Mangler nødvendige avhengigheter</translation>
+        <translation type="unfinished">Pålogginger</translation>
     </message>
     <message>
-        <source>Required dependency is missing: &lt;strong&gt;%1&lt;/strong&gt;. This dependency should be installed automatically if you installed the app from store using the provided rpm. Please reinstall using the rpm package or install the missing dependency manually and then restart the app.</source>
-        <translation>Påkrevd avhengighet mangler: &lt;strong&gt;%1&lt;/strong&gt;. Denne avhengigheten skal installeres automatisk hvis du installerte appen fra App Store. Installer på nytt ved å bruke RPM-pakken fra App Store, eller installer den manglende avhengigheten manuelt og start deretter appen på nytt.</translation>
-    </message>
-</context>
-<context>
-    <name>PatchServerPage</name>
-    <message>
-        <source>Ignore patching</source>
-        <extracomment>Dialog accept text</extracomment>
-        <translation>Ignorer patch</translation>
+        <source>Add login</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Patch server</source>
-        <translation>Patching av serveren</translation>
+        <source>Cards (%1)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ignore the above warning, don&apos;t patch the server</source>
-        <translation>Ignorer advarselen ovenfor — ikke patch serveren</translation>
+        <source>Cards</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished">Kort</translation>
     </message>
     <message>
-        <source>The built-in BitWarden server is insecure and allows anyone to access it once it&apos;s running. To fix that we can patch the server to force it to require authentication before revealing its secrets.&lt;br&gt;&lt;br&gt;You can also ignore this, but it&apos;s &lt;strong&gt;highly discouraged&lt;/strong&gt; and you should &lt;strong&gt;really&lt;/strong&gt; know what you&apos;re doing.&lt;br&gt;&lt;br&gt;If you cancel, the api will be disabled.</source>
+        <source>Add card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished">Notat</translation>
+    </message>
+    <message>
+        <source>Add note</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Identities (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Identities</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add identity</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1010,11 +887,6 @@ please restart the app</source>
         <translation>Ingen sendinger funnet.</translation>
     </message>
     <message>
-        <source>The BitWarden server is not running,
-please restart the app</source>
-        <translation>BitWarden‑serveren kjører ikke. Vennligst start appen på nytt</translation>
-    </message>
-    <message>
         <source>Create a Send</source>
         <translation>Opprett en sending</translation>
     </message>
@@ -1043,38 +915,8 @@ please restart the app</source>
         <translation>Passordet du oppga er ugyldig.</translation>
     </message>
     <message>
-        <source>Load vault items eagerly in main view</source>
-        <translation>Forhåndslast hvelvoppføringer i hovedvisningen</translation>
-    </message>
-    <message>
         <source></source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Save items in cache for faster load</source>
-        <translation>Lagre oppføringer i cache for raskere lasting</translation>
-    </message>
-    <message>
-        <source>When this option is enabled, all items are loaded right when you enter the main screen. If disabled, the options are only loaded when you actually need to load them, meaning when you enter an item list like &apos;%1&apos;, &apos;%2&apos; etc.</source>
-        <translation>Når dette valget er aktivert, lastes alle oppføringer så snart du går inn på hovedvisningen. Hvis det er deaktivert, lastes oppføringene først når du trenger dem — for eksempel når du åpner en oppføringsliste som «%1», «%2» osv.</translation>
-    </message>
-    <message>
-        <source>Logins</source>
-        <translation>Pålogginger</translation>
-    </message>
-    <message>
-        <source>Cards</source>
-        <translation>Kort</translation>
-    </message>
-    <message>
-        <source>Fast authentication</source>
-        <translation>Rask autentisering</translation>
-    </message>
-    <message>
-        <source>When this option is enabled, authentication is skipped and you are assumed to be logged in regardless of the actual status. What this means in practice is that logged in check is postponed until you&apos;re on the main page and is done in the background, this gives anyone opening this app a few seconds to look around before transfering you to the login/unlock screen. This should be ok because all vault operations fail when you&apos;re not logged in. &lt;strong&gt;Warning&lt;/strong&gt;: if used in combination with the setting &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; some data may be leaked to whoever opens this app. Use at your own risk.</source>
-        <translation>Når dette valget er aktivert, blir autentisering hoppet over og du antas å være innlogget uavhengig av faktisk status. I praksis betyr dette at kontrollen av om du er innlogget utsettes til du er på hovedsiden og kjøres i bakgrunnen — det gir alle som åpner appen noen sekunder til å se rundt før du blir sendt til innloggings-/opplåsningsskjermen. Dette bør være greit siden alle hvelvoperasjoner feiler når du ikke er innlogget.
-
-&lt;strong&gt;Advarsel&lt;/strong&gt;: hvis dette brukes i kombinasjon med innstillingen **«%1»**, kan noen data lekkes til den som åpner appen. Bruk på egen risiko.</translation>
     </message>
     <message>
         <source>OS authorization check failed.</source>
@@ -1093,38 +935,8 @@ please restart the app</source>
         <translation>Slett alt</translation>
     </message>
     <message>
-        <source>This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?</source>
-        <translation>Dette vil slette alt appen lagrer på systemet ditt, inkludert systemets hemmelighetssamling, Bitwarden CLI (hvis den ble installert via denne appen), midlertidige filer osv. Bitwarden CLI blir også logget ut. Vil du fortsette?
-</translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation>Generelt</translation>
-    </message>
-    <message>
         <source>Security</source>
         <translation>Sikkerhet</translation>
-    </message>
-    <message>
-        <source>Performance</source>
-        <translation>Ytelse</translation>
-    </message>
-    <message>
-        <source>By enabling this option you will force the app to authorize you using OS authorization even when the vault is unlocked. If the authorization fails your vault will be locked and you will be redirected to unlock vault screen. This can speed up getting your vault data significantly. &lt;strong&gt;Warning&lt;/strong&gt;: Disables &apos;%1&apos;</source>
-        <translation>DHvis du aktiverer dette valget, vil appen kreve operativsystemets autorisasjon selv når hvelvet er opplåst. Hvis autorisasjonen feiler, låses hvelvet og du blir sendt til opplåsningsskjermen. Dette kan gi raskere tilgang til hvelvdataene dine.
-&lt;strong&gt;Advarsel;/strong&gt;: deaktiverer «%1»</translation>
-    </message>
-    <message>
-        <source>Require OS authorization on unlocked vault</source>
-        <translation>Krev operativsystemets autorisasjon for opplåst hvelv</translation>
-    </message>
-    <message>
-        <source>Enabling this option will fasten load times for items in the vault significantly - your data are &lt;strong&gt;stored on disk encrypted&lt;/strong&gt; without any sensitive data (card numbers, passwords etc.).</source>
-        <translation>EHvis du aktiverer dette alternativet vil lastetiden for oppføringer i hvelvet bli betydelig raskere — &lt;strong&gt;dataene dine blir lagret kryptert på disken&lt;/strong&gt; uten noen sensitive opplysninger (kortnumre, passord osv.).</translation>
-    </message>
-    <message>
-        <source>Update Bitwarden CLI</source>
-        <translation>Oppdater Bitwarden-CLI</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1139,14 +951,6 @@ please restart the app</source>
         <translation>Bitwarden-URL</translation>
     </message>
     <message>
-        <source>Note: Currently this app cannot find out if the URL has been changed and it appears as if the default was set. If you&apos;ve set it before, it should work as expected.</source>
-        <translation>&lt;strong&gt;Merk;/strong&gt;: For øyeblikket kan ikke denne appen oppdage om URL‑en er endret, og det kan se ut som om standardverdien er valgt. Hvis du tidligere har endret URL‑en, skal den likevel fungere som forventet.</translation>
-    </message>
-    <message>
-        <source>If you self-host your Bitwarden server, you may set its URL here. Leave empty to use the global default.</source>
-        <translation>Wenn Sie Ihren Bitwarden-Server selbst hosten, können Sie dessen URL hier festlegen. Leer lassen, um den Standardserver zu verwenden.</translation>
-    </message>
-    <message>
         <source>Setting URL</source>
         <extracomment>As in the action of setting url (present continuous)</extracomment>
         <translation>Setze URL</translation>
@@ -1154,18 +958,6 @@ please restart the app</source>
     <message>
         <source>Note: You will be logged out.</source>
         <translation>Merk: Du vil bli logget ut.</translation>
-    </message>
-    <message>
-        <source>Use api (experimental)</source>
-        <translation>Bruk API (eksperimentelt)</translation>
-    </message>
-    <message>
-        <source>By enabling this option the app will use a local BitWarden server instead of the BitWarden CLI. That can make all BitWarden operations &lt;strong&gt;much&lt;/strong&gt; faster, but the support is experimental and there might be bugs which cause the server to crash, thus rendering the app unusable until you close it and start it again.</source>
-        <translation>Hvis du aktiverer dette valget, vil appen bruke en lokal BitWarden‑server i stedet for BitWarden CLI. Det kan gjøre alle BitWarden‑operasjoner &lt;strong&gt;mye&lt;/strong&gt; raskere, men støtten er eksperimentell og det kan finnes feil som får serveren til å krasje. Dette kan gjøre appen ubrukelig inntil du lukker den og starter den på nytt.</translation>
-    </message>
-    <message>
-        <source>Failed getting the configured server URL</source>
-        <translation>Kunne ikke hente den konfigurerte server‑URLen</translation>
     </message>
     <message>
         <source>Enable certificate validation</source>
@@ -1180,11 +972,11 @@ please restart the app</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use system CA store</source>
+        <source>Could not fetch your email address, the session is in an invalid state. Logout is advised</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
+        <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1241,30 +1033,6 @@ please restart the app</source>
     </message>
 </context>
 <context>
-    <name>SystemCheckerPage</name>
-    <message>
-        <source>System Check</source>
-        <extracomment>Page title</extracomment>
-        <translation>Systemsjekk</translation>
-    </message>
-    <message>
-        <source>Checking if system is ready...</source>
-        <translation>Sjekker om systemet er klart...</translation>
-    </message>
-</context>
-<context>
-    <name>UnknownErrorOccuredPage</name>
-    <message>
-        <source>Unknown Error</source>
-        <extracomment>Page title</extracomment>
-        <translation>Ukjent feil</translation>
-    </message>
-    <message>
-        <source>There was an unknown error and app cannot proceed. Please contact the developer on &lt;a href=&apos;%1&apos;&gt;OpenRepos&lt;/a&gt;.</source>
-        <translation>Det oppstod en ukjent feil, og appen kan ikke fortsette. Kontakt utvikleren på &lt;a href=&apos;%1&apos;&gt;OpenRepos&lt;/a&gt;.</translation>
-    </message>
-</context>
-<context>
     <name>UnlockVaultPage</name>
     <message>
         <source>Unlock Vault</source>
@@ -1317,31 +1085,6 @@ please restart the app</source>
     </message>
 </context>
 <context>
-    <name>UpdateBitwardenCliPage</name>
-    <message>
-        <source>Updating Bitwarden CLI</source>
-        <extracomment>Page title</extracomment>
-        <translation>Oppdaterer Bitwarden CLI</translation>
-    </message>
-    <message>
-        <source>There was an error updating the Bitwarden CLI.</source>
-        <translation>Det oppstod en feil under oppdatering av Bitwarden CLI.</translation>
-    </message>
-    <message>
-        <source>Bitwarden CLI was updated successfully</source>
-        <translation>Bitwarden CLI ble oppdatert</translation>
-    </message>
-    <message>
-        <source>Updating Bitwarden CLI... Please don&apos;t close the app or exit this page.</source>
-        <translation>Oppdaterer Bitwarden CLI… Ikke lukk appen eller forlat siden.</translation>
-    </message>
-    <message>
-        <source>Please restart the app
-for the changes to take effect.</source>
-        <translation>BVennligst start appen på nytt for at endringene skal tre i kraft.</translation>
-    </message>
-</context>
-<context>
     <name>VaultPage</name>
     <message>
         <source>Vault</source>
@@ -1372,35 +1115,22 @@ for the changes to take effect.</source>
         <translation>Legg til oppføring</translation>
     </message>
     <message>
-        <source>There was an error when creating the new item</source>
-        <translation>Det oppstod en feil ved opprettelse av den nye oppføringen.</translation>
-    </message>
-    <message>
         <source>There was an error while synchronizing the vault, please try again.</source>
         <translation>Det oppstod en feil under synkronisering av hvelvet. Vennligst prøv igjen.</translation>
+    </message>
+    <message>
+        <source>There was an error when creating the new item</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>harbour-bitsailor</name>
     <message>
-        <source>Update Bitwarden CLI</source>
-        <extracomment>notification title</extracomment>
-        <translation>Oppdater Bitwarden CLI</translation>
-    </message>
-    <message>
-        <source>Your Bitwarden CLI might be out of date. You should check for new versions of Bitwarden CLI regularly. You can do so in the settings or by clicking this notification.</source>
-        <translation>Bitwarden CLI kan være utdatert. Sjekk jevnlig etter nye versjoner av Bitwarden CLI — enten i innstillingene eller ved å klikke på denne varslingen.</translation>
-    </message>
-    <message>
-        <source>The API is already running</source>
-        <translation>APIet kjører allerede</translation>
-    </message>
-    <message>
-        <source>The API is already running and could not be stopped. It&apos;s possible that the api will not work at all. Please try restarting the app. If you see this error again, try disabling api in the Settings.</source>
-        <translation>APIet kjører allerede og kunne ikke stoppes. Det er mulig at APIet ikke vil fungere i det hele tatt. Prøv å starte appen på nytt. Hvis du får denne feilen igjen, prøv å deaktivere API i Innstillinger.</translation>
-    </message>
-    <message>
         <source>Certificate validation is ignored</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Debug secret storage is used. Uninstall this version immediately unless you are developing BitSailor itself.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

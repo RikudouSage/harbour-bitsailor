@@ -4,11 +4,14 @@ import Sailfish.Silica 1.0
 import cz.chrastecky.bitsailor 1.0
 
 import "../components" as Components
+import "../helpers.js" as Helpers
 
 Page {
+    property var safeCall: Helpers.safeCallerFactory(doAfterLoad, page, function() {
+        return loaded;
+    });
+
     property string loadingMessage
-    property bool loadItemsUsingApiOnceAvailable: false
-    property bool checkUnlockUsingApiOnceAvailable: false
     property bool initialLoadCompleted: false
 
     property string currentCount
@@ -46,14 +49,6 @@ Page {
         displayMessage(qsTr("Loading vault items"));
     }
 
-    function safeCall(callable) {
-        if (page.status == PageStatus.Active && loaded) {
-            callable();
-        } else {
-            doAfterLoad.push(callable);
-        }
-    }
-
     function onVaultSynced() {
         hideMessage();
         loginsCount = null;
@@ -61,11 +56,7 @@ Page {
         notesCount = null;
         identitiesCount = null;
 
-        if (settings.eagerLoading) {
-            // @disable-check M127
-            settings.useApi ? api.getItems() : cli.getItems();
-            displayLoadingVaultItems();
-        }
+        core.fetchItems();
     }
 
     function onVaultSyncFailed() {
@@ -74,46 +65,48 @@ Page {
     }
 
     function onItemsResolved(items) {
-        if (!currentCount) {
+        safeCall(function() {
             hideMessage();
-            doAfterLoad.push(function() { hideMessage(); });
-            currentCount = "logins";
-            // @disable-check M127
-            settings.useApi ? api.getLogins() : cli.getLogins();
-        } else {
-            switch (currentCount) {
-            case "logins":
-                loginsCount = items.length;
-                currentCount = "cards";
-                // @disable-check M127
-                settings.useApi ? api.getCards() : cli.getCards();
-                break;
-            case "cards":
-                cardsCount = items.length;
-                currentCount = "notes";
-                // @disable-check M127
-                settings.useApi ? api.getNotes() : cli.getNotes();
-                break;
-            case "notes":
-                notesCount = items.length;
-                currentCount = "identities";
-                // @disable-check M127
-                settings.useApi ? api.getIdentities() : cli.getIdentities();
-                break;
-            case "identities":
-                identitiesCount = items.length;
-                currentCount = "";
-                initialLoadCompleted = true;
-                break;
+
+            loginsCount = 0;
+            cardsCount = 0;
+            notesCount = 0;
+            identitiesCount = 0;
+
+            console.log(JSON.stringify(items))
+
+            for (var i in items) {
+                if (!items.hasOwnProperty(i)) {
+                    continue;
+                }
+                const item = items[i];
+
+                switch (item.type) {
+                case BitSailorCore.ItemTypeLogin:
+                    ++loginsCount;
+                    break;
+                case BitSailorCore.ItemTypeCard:
+                    ++cardsCount;
+                    break;
+                case BitSailorCore.ItemTypeSecureNote:
+                    ++notesCount;
+                    break;
+                case BitSailorCore.ItemTypeIdentity:
+                    ++identitiesCount;
+                    break;
+                }
             }
-        }
+
+
+            initialLoadCompleted = true;
+        });
     }
 
     function onVaultLockStatusResolved(unlocked) {
         if (!unlocked) {
             runtimeCache.remove(CacheKey.Items);
             runtimeCache.removePersistent(CacheKey.Items);
-            secrets.removeSessionId();
+            secrets.removeSessionJson();
 
             var handle = function() {
                 pageStack.replace("LoginCheckPage.qml");
@@ -127,45 +120,6 @@ Page {
             safeCall(function() {
                 pageStack.push("CreateSendChooseTypePage.qml");
             });
-        }
-    }
-
-    SecretsHandler {
-        id: secrets
-    }
-
-    SystemAuthChecker {
-        id: authChecker
-
-        onAuthResolved: {
-            if (!success) {
-                secrets.removeSessionId();
-                const handler = function() {
-                    pageStack.replace("LoginCheckPage.qml");
-                };
-                loaded ? handler() : doAfterLoad.push(handler);
-                return;
-            }
-        }
-    }
-
-    Connections {
-        target: settings
-
-        onUseApiChanged: {
-            if (settings.useApi) {
-                cli.serve(settings.forceUnsafeApi);
-            } else {
-                cli.stopServer();
-            }
-        }
-
-        onForceUnsafeApiChanged: {
-            if (settings.forceUnsafeApi && settings.useApi) {
-                cli.serve(true);
-            } else if (!settings.forceUnsafeApi) {
-                cli.stopServer();
-            }
         }
     }
 
@@ -190,49 +144,32 @@ Page {
         }
     }
 
-    BitwardenApi {
-        id: api
+    Connections {
+        target: core
 
-        onApiNotRunning: {
-            app.toaster.show(qsTr("The BitWarden server is not running,\nplease restart the app"), 100000);
-        }
+        onLoginStatusFetched: {
+            if (status != BitSailorCore.SessionStatusUnlocked) {
+                redoLogin();
+                return;
+            }
 
-        onVaultSyncFailed: {
-            page.onVaultSyncFailed();
-        }
-
-        onVaultSynced: {
-            page.onVaultSynced();
+            core.fetchItems();
         }
 
         onItemsResolved: {
+            if (page.status !== PageStatus.Active && page.status !== PageStatus.Activating) {
+                return;
+            }
             page.onItemsResolved(items);
         }
 
-        onVaultLockStatusResolved: {
-            page.onVaultLockStatusResolved(unlocked);
+        onItemResolvingFailed: {
+            if (page.status !== PageStatus.Active) {
+                return;
+            }
+            page.onVaultSyncFailed();
         }
 
-        onIsRunningResult: {
-            if (settings.eagerLoading) {
-                if (running) {
-                    api.getItems();
-                } else {
-                    loadItemsUsingApiOnceAvailable = true;
-                }
-            }
-            if (settings.fastAuth) {
-                if (running) {
-                    api.checkVaultUnlocked();
-                } else {
-                    checkUnlockUsingApiOnceAvailable = true;
-                }
-            }
-        }
-    }
-
-    BitwardenCli {
-        id: cli
         onLogoutFinished: {
             redoLogin();
         }
@@ -241,85 +178,13 @@ Page {
             redoLogin();
         }
 
-        onItemsResolved: {
-            page.onItemsResolved(items);
-        }
+        onSyncVaultFinished: {
+            if (success) {
+                page.onVaultSynced();
+                return;
+            }
 
-        onVaultSyncFailed: {
             page.onVaultSyncFailed();
-        }
-
-        onVaultSynced: {
-            page.onVaultSynced();
-        }
-
-        onVaultLockStatusResolved: {
-            page.onVaultLockStatusResolved(unlocked);
-        }
-
-        onServerStarted: {
-            if (loadItemsUsingApiOnceAvailable) {
-                api.getItems();
-                loadItemsUsingApiOnceAvailable = false;
-            }
-            if (checkUnlockUsingApiOnceAvailable) {
-                api.checkVaultUnlocked();
-                checkUnlockUsingApiOnceAvailable = false;
-            }
-        }
-
-        onServerShouldBePatched: {
-            safeCall(function() {
-                const dialog = pageStack.push("PatchServerPage.qml");
-                dialog.accepted.connect(function() {
-                    if (dialog.ignored) {
-                        settings.forceUnsafeApi = true;
-                    } else {
-                        settings.forceUnsafeApi = false;
-                        displayMessage(qsTr("Patching the server..."));
-                        cli.patchServer();
-                    }
-                });
-                dialog.rejected.connect(function() {
-                    console.log('disabling api');
-                    settings.useApi = false;
-                });
-            });
-        }
-
-        onServerPatched: {
-            cli.serve(settings.forceUnsafeApi);
-        }
-
-        onServerPatchError: {
-            safeCall(function() {
-                const dialog = pageStack.push("PatchServerPage.qml", {
-                    canOnlyIgnore: true,
-                    description: qsTr("There was an error while patching the server, please contact the developer to let him know to fix it.<br><br>Meanwhile you can disable the server patch (<strong>which is not recommended because it poses a security risk</strong>) or you can cancel this disalog to disable api and use the CLI again."),
-                });
-                dialog.accepted.connect(function() {
-                    settings.forceUnsafeApi = true;
-                });
-                dialog.rejected.connect(function() {
-                    settings.useApi = false;
-                });
-            });
-        }
-
-        onServerUnpatchable: {
-            safeCall(function() {
-                const dialog = pageStack.push("PatchServerPage.qml", {
-                    canOnlyIgnore: true,
-                    description: qsTr("The BitWarden CLI is not installed locally and thus the server cannot be patched.<br><br>You can ignore this and continue using the api regardless <strong>but it poses a security risk</strong>.<br><br>The recommended approach is to <strong>cancel this dialog which will disable api</strong> altogether and you will fall back to using the CLI which is slower but safer."),
-                });
-                dialog.accepted.connect(function() {
-                    settings.forceUnsafeApi = true;
-                });
-                dialog.rejected.connect(function() {
-                    settings.useApi = false;
-                });
-            });
-            console.log('server unpatchable');
         }
     }
 
@@ -336,7 +201,7 @@ Page {
                 text: qsTr("Logout");
                 onClicked: {
                     displayPleaseWait();
-                    cli.logout();
+                    core.logout();
                 }
             }
 
@@ -344,7 +209,7 @@ Page {
                 text: qsTr("Lock")
                 onClicked: {
                     displayPleaseWait();
-                    cli.lockVault();
+                    core.lockVault();
                 }
             }
 
@@ -352,7 +217,7 @@ Page {
                 text: qsTr("Sync Vault")
                 onClicked: {
                     displayMessage(qsTr("Syncing vault"));
-                    settings.useApi ? api.syncVault() : cli.syncVault();
+                    core.syncVault();
                 }
             }
 
@@ -382,7 +247,7 @@ Page {
                         //: Page title
                         title: qsTr("Logins"),
                         addItemTitle: qsTr('Add login'),
-                        addItemType: BitwardenCli.Login,
+                        addItemType: BitSailorCore.ItemTypeLogin,
                     });
                 }
             }
@@ -395,7 +260,7 @@ Page {
                         //: Page title
                         title: qsTr("Cards"),
                         addItemTitle: qsTr("Add card"),
-                        addItemType: BitwardenCli.Card,
+                        addItemType: BitSailorCore.ItemTypeCard,
                     });
                 }
             }
@@ -408,7 +273,7 @@ Page {
                         //: Page title
                         title: qsTr("Notes"),
                         addItemTitle: qsTr("Add note"),
-                        addItemType: BitwardenCli.SecureNote,
+                        addItemType: BitSailorCore.ItemTypeSecureNote,
                     });
                 }
             }
@@ -421,7 +286,7 @@ Page {
                         //: Page title
                         title: qsTr("Identities"),
                         addItemTitle: qsTr("Add identity"),
-                        addItemType: BitwardenCli.Identity,
+                        addItemType: BitSailorCore.ItemTypeIdentity,
                         addItemEnabled: false,
                     });
                 }
@@ -436,37 +301,13 @@ Page {
     }
 
     Component.onCompleted: {
-        if (settings.useApi) {
-            cli.serve(settings.forceUnsafeApi);
-        }
-
-        if (settings.eagerLoading) {
-            if (settings.useApi) {
-                api.isRunning(); // handled async in onIsRunningResult
-            } else {
-                cli.getItems();
-            }
-
-            displayLoadingVaultItems();
-        }
-
-        if (settings.fastAuth) {
-            if (settings.useApi) {
-                api.isRunning(); // handled async in onIsRunningResult
-            } else {
-                cli.checkVaultUnlocked();
-            }
-        }
-
-        if (settings.useSystemAuth && settings.useAuthorizationOnUnlocked) {
-            authChecker.checkAuth();
-        }
+        core.getLoginStatus();
     }
 
     onStatusChanged: {
         if (status == PageStatus.Active) {
             if (loaded && initialLoadCompleted) {
-                settings.useApi ? api.getItems() : cli.getItems();
+                core.fetchItems();
             }
 
             loaded = true;

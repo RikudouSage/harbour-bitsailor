@@ -10,6 +10,9 @@
 #include <Sailfish/Secrets/deletecollectionrequest.h>
 
 #include <QDebug>
+#include <QJsonDocument>
+#include <QJsonParseError>
+#include <QSettings>
 
 using Sailfish::Secrets::CollectionNamesRequest;
 using Sailfish::Secrets::SecretManager;
@@ -22,19 +25,31 @@ using Sailfish::Secrets::StoredSecretRequest;
 using Sailfish::Secrets::DeleteSecretRequest;
 using Sailfish::Secrets::DeleteCollectionRequest;
 
-const QString SecretsHandler::collectionName(QStringLiteral("bitsailor"));
+const QString SecretsHandler::collectionName(QStringLiteral("bitsailorv2"));
 
-static const QString sessionIdName = "sessionId";
+static const QString encryptedVaultName = "encryptedVault";
+static const QString sessionJsonName = "sessionJson";
 static const QString usernameName = "username";
 static const QString passwordName = "password";
 static const QString clientIdName = "clientId";
 static const QString pinName = "pin";
 static const QString internalPinName = "internalPin";
-static const QString apiKeyName = "apiKey";
 static const QString invalidCertsName = "invalidCertsAllowed";
+
+#ifdef QT_DEBUG
+static QSettings &insecureEmulatorSecrets()
+{
+    static QSettings settings(QStringLiteral("cz.chrastecky"), QStringLiteral("bitsailor-insecure-emulator-secrets"));
+    return settings;
+}
+#endif
 
 SecretsHandler::SecretsHandler(QObject *parent) : QObject(parent)
 {
+#ifdef QT_DEBUG
+    qWarning() << "Using insecure debug secrets storage. Do not enable this in release builds.";
+    hasBitsailorCollection = true;
+#else
     CollectionNamesRequest cnr;
     cnr.setManager(secretManager);
     cnr.setStoragePluginName(SecretManager::DefaultEncryptedStoragePluginName);
@@ -42,11 +57,33 @@ SecretsHandler::SecretsHandler(QObject *parent) : QObject(parent)
     cnr.waitForFinished();
 
     hasBitsailorCollection = isResultValid(cnr) && cnr.collectionNames().contains(collectionName);
+#endif
 }
 
-QString SecretsHandler::getSessionId()
+QJsonObject SecretsHandler::getSessionJson()
 {
-    return getData(sessionIdName);
+    const auto json = getData(sessionJsonName);
+    QJsonParseError err;
+    auto doc = QJsonDocument::fromJson(json.toUtf8(), &err);
+    if (err.error) {
+        qWarning() << "Failed parsing session: " << err.errorString();
+        return QJsonObject();
+    }
+
+    return doc.object();
+}
+
+QJsonObject SecretsHandler::getEncryptedVault()
+{
+    const auto json = getData(encryptedVaultName);
+    QJsonParseError err;
+    auto doc = QJsonDocument::fromJson(json.toUtf8(), &err);
+    if (err.error) {
+        qWarning() << "Failed parsing vault: " << err.errorString();
+        return QJsonObject();
+    }
+
+    return doc.object();
 }
 
 QString SecretsHandler::getUsername()
@@ -74,14 +111,21 @@ QString SecretsHandler::getInternalPin()
     return getData(internalPinName);
 }
 
-QString SecretsHandler::getServerApiKey()
-{
-    return getData(apiKeyName);
-}
-
 bool SecretsHandler::invalidCertificatesAllowed()
 {
     return getData(invalidCertsName) == "true";
+}
+
+bool SecretsHandler::hasEncryptedVault()
+{
+    auto value = getData(encryptedVaultName);
+    return !value.isNull() && !value.isEmpty();
+}
+
+bool SecretsHandler::hasSessionJson()
+{
+    auto sessionJson = getData(sessionJsonName);
+    return !sessionJson.isNull() && !sessionJson.isEmpty();
 }
 
 bool SecretsHandler::hasPin()
@@ -100,19 +144,24 @@ void SecretsHandler::removePassword()
     deleteSecret(passwordName);
 }
 
-bool SecretsHandler::hasSessionId()
+void SecretsHandler::removeSessionJson()
 {
-    auto sessionId = getSessionId();
-    return !sessionId.isNull() && !sessionId.isEmpty();
+    deleteSecret(sessionJsonName);
 }
 
-void SecretsHandler::removeSessionId()
+void SecretsHandler::removeEncryptedVault()
 {
-    deleteSecret(sessionIdName);
+    deleteSecret(encryptedVaultName);
 }
 
 bool SecretsHandler::clearAllSecrets()
 {
+#ifdef QT_DEBUG
+    auto &settings = insecureEmulatorSecrets();
+    settings.clear();
+    settings.sync();
+    return settings.status() == QSettings::NoError;
+#else
     DeleteCollectionRequest dcr;
     dcr.setCollectionName(collectionName);
     dcr.setStoragePluginName(SecretManager::DefaultEncryptedStoragePluginName);
@@ -125,6 +174,7 @@ bool SecretsHandler::clearAllSecrets()
 
     hasBitsailorCollection = !success;
     return success;
+#endif
 }
 
 bool SecretsHandler::hasInternalPin()
@@ -143,9 +193,14 @@ void SecretsHandler::disallowInvalidCertificates()
     deleteSecret(invalidCertsName);
 }
 
-void SecretsHandler::setSessionId(const QString &sessionId)
+void SecretsHandler::setSessionJson(const QJsonObject &sessionJson)
 {
-    storeData(sessionIdName, sessionId);
+    storeData(sessionJsonName, QString::fromUtf8(QJsonDocument(sessionJson).toJson(QJsonDocument::Compact)));
+}
+
+void SecretsHandler::setEncryptedVault(const QJsonObject &json)
+{
+    storeData(encryptedVaultName, QString::fromUtf8(QJsonDocument(json).toJson(QJsonDocument::Compact)));
 }
 
 void SecretsHandler::setUsername(const QString &username)
@@ -173,11 +228,6 @@ void SecretsHandler::setInternalPin(const QString &pin)
     storeData(internalPinName, pin);
 }
 
-void SecretsHandler::setServerApiKey(const QString &apiKey)
-{
-    storeData(apiKeyName, apiKey);
-}
-
 bool SecretsHandler::isResultValid(const Request &request)
 {
     auto result = request.result();
@@ -196,6 +246,12 @@ bool SecretsHandler::isSecretValid(const Secret &secret)
 
 bool SecretsHandler::storeData(const QString &name, const QString &data)
 {
+#ifdef QT_DEBUG
+    auto &settings = insecureEmulatorSecrets();
+    settings.setValue(name, data);
+    settings.sync();
+    return settings.status() == QSettings::NoError;
+#else
     if (!hasBitsailorCollection) {
         createCollection();
         // todo handle case where collection isn't created
@@ -218,6 +274,7 @@ bool SecretsHandler::storeData(const QString &name, const QString &data)
     ssr.waitForFinished();
 
     return isResultValid(ssr);
+#endif
 }
 
 Secret SecretsHandler::getSecret(const QString &name)
@@ -243,6 +300,12 @@ Secret SecretsHandler::getSecret(const QString &name)
 
 bool SecretsHandler::deleteSecret(const QString &name)
 {
+#ifdef QT_DEBUG
+    auto &settings = insecureEmulatorSecrets();
+    settings.remove(name);
+    settings.sync();
+    return settings.status() == QSettings::NoError;
+#else
     DeleteSecretRequest dsr;
     dsr.setManager(secretManager);
     dsr.setIdentifier(toIdentifier(name));
@@ -251,16 +314,21 @@ bool SecretsHandler::deleteSecret(const QString &name)
     dsr.waitForFinished();
 
     return isResultValid(dsr);
+#endif
 }
 
 QString SecretsHandler::getData(const QString &name)
 {
+#ifdef QT_DEBUG
+    return insecureEmulatorSecrets().value(name).toString();
+#else
     auto secret = getSecret(name);
     if (!isSecretValid(secret)) {
         return QString();
     }
 
     return QString::fromUtf8(secret.data());
+#endif
 }
 
 bool SecretsHandler::createCollection()

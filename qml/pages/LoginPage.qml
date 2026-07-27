@@ -20,10 +20,6 @@ Dialog {
     allowedOrientations: Orientation.All
     canAccept: Helpers.xor(emailText.length && passwordText.length, clientIdText.length && clientSecretText.length)
 
-    SecretsHandler {
-        id: secrets
-    }
-
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height
@@ -33,7 +29,7 @@ Dialog {
                 text: qsTr("Clean Up Data")
                 onClicked: {
                     const dialog = pageStack.push("ConfirmSettingPage.qml", {
-                        description: qsTr("This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?")
+                        description: qsTr("This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?")
                     });
                     dialog.accepted.connect(function() {
                         doAfterLoad.push(function() {

@@ -29,14 +29,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Logged out of Bitwarden CLI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Deleted all permanent files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Deleted all config files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -45,23 +37,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The Bitwarden CLI could be used on its own even without this app, that&apos;s why it&apos;s safer to log out.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Deleted temporary files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Temporary files include your cached vault for faster loading.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Permanent files include Bitwarden CLI (if it was installed using this app).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Config files include all the settings you have made in this app.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Temporary files include some of your settings.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -87,9 +71,6 @@
         <source>BitSailor</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>CoverPageCard</name>
     <message>
         <source>Item</source>
         <extracomment>Item name on the cover page for card detail, should be short, use abbreviations if needed</extracomment>
@@ -101,39 +82,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Security Code</source>
-        <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Expiration</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>CoverPageLogin</name>
     <message>
-        <source>Item</source>
-        <extracomment>Item name on the cover page for login detail, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Username</source>
+        <source>Security Code</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CoverPageLoginTotp</name>
-    <message>
-        <source>Item</source>
-        <extracomment>Item name on the cover page for login detail, should be short, use abbreviations if needed</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -149,14 +104,6 @@
     <message>
         <source>TOTP</source>
         <extracomment>TOTP (two factor auth code) on cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CoverPageNote</name>
-    <message>
-        <source>Item</source>
-        <extracomment>Item name on the cover page for card detail, should be short, use abbreviations if needed</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -185,6 +132,10 @@
     </message>
     <message>
         <source>URL copied to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed creating Send</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -548,22 +499,6 @@
     </message>
 </context>
 <context>
-    <name>InstallBitwardenCliPage</name>
-    <message>
-        <source>Installing Bitwarden CLI</source>
-        <extracomment>Page title</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Installing... Please don&apos;t close the app.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>There was an error installing the Bitwarden CLI.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>InvalidCertificatePage</name>
     <message>
         <source>Invalid Certificate</source>
@@ -576,14 +511,6 @@
     </message>
     <message>
         <source>Ignore certificate validation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use system CA store</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -720,6 +647,10 @@
         <extracomment>Accept button for updating an item</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>There was an error when updating the item</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LoginCheckPage</name>
@@ -728,19 +659,31 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Invalid PIN.</source>
+        <source>There was an error while changing the URL, please report that to the developers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Wrong password or PIN</source>
+        <source>Unknown status: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The credentials you provided are incorrect. Please try again.</source>
+        <source>Your account has 2-factor logging in enabled which is currently unsupported. Please login using your api key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>An authenticator is required, please use API key login.</source>
+        <source>There was an error while logging in: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There was an unknown error while logging in.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed unlocking because the session got in an invalid state. We logged you out.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed unlocking, did you provide the correct password/PIN?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -804,50 +747,26 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?</source>
+        <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MainPage</name>
     <message>
+        <source>Please wait...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading vault items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Logout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Lock</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please wait...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Logins</source>
-        <extracomment>Page title</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cards</source>
-        <extracomment>Page title</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Notes</source>
-        <extracomment>Page title</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Identities</source>
-        <extracomment>Page title</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Loading vault items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -859,19 +778,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Logins (%1)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cards (%1)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Notes (%1)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Identities (%1)</source>
+        <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -880,7 +787,25 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Logins (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logins</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Add login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cards (%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cards</source>
+        <extracomment>Page title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -888,77 +813,29 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add note</source>
+        <source>Notes (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add identity</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The BitWarden server is not running,
-please restart the app</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Patching the server...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>There was an error while patching the server, please contact the developer to let him know to fix it.&lt;br&gt;&lt;br&gt;Meanwhile you can disable the server patch (&lt;strong&gt;which is not recommended because it poses a security risk&lt;/strong&gt;) or you can cancel this disalog to disable api and use the CLI again.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The BitWarden CLI is not installed locally and thus the server cannot be patched.&lt;br&gt;&lt;br&gt;You can ignore this and continue using the api regardless &lt;strong&gt;but it poses a security risk&lt;/strong&gt;.&lt;br&gt;&lt;br&gt;The recommended approach is to &lt;strong&gt;cancel this dialog which will disable api&lt;/strong&gt; altogether and you will fall back to using the CLI which is slower but safer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MissingBitwardenCliPage</name>
-    <message>
-        <source>Continue</source>
-        <extracomment>Dialog accept text</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <extracomment>Dialog reject text</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The Bitwarden CLI is not installed, do you wish to install it using &lt;strong&gt;npm&lt;/strong&gt;? The app cannot continue without Bitwarden CLI.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MissingRequiredBinaryPage</name>
-    <message>
-        <source>Missing Required Dependencies</source>
+        <source>Notes</source>
         <extracomment>Page title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Required dependency is missing: &lt;strong&gt;%1&lt;/strong&gt;. This dependency should be installed automatically if you installed the app from store using the provided rpm. Please reinstall using the rpm package or install the missing dependency manually and then restart the app.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>PatchServerPage</name>
-    <message>
-        <source>Ignore patching</source>
-        <extracomment>Dialog accept text</extracomment>
+        <source>Add note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Patch server</source>
+        <source>Identities (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ignore the above warning, don&apos;t patch the server</source>
+        <source>Identities</source>
+        <extracomment>Page title</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The built-in BitWarden server is insecure and allows anyone to access it once it&apos;s running. To fix that we can patch the server to force it to require authentication before revealing its secrets.&lt;br&gt;&lt;br&gt;You can also ignore this, but it&apos;s &lt;strong&gt;highly discouraged&lt;/strong&gt; and you should &lt;strong&gt;really&lt;/strong&gt; know what you&apos;re doing.&lt;br&gt;&lt;br&gt;If you cancel, the api will be disabled.</source>
+        <source>Add identity</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1010,11 +887,6 @@ please restart the app</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The BitWarden server is not running,
-please restart the app</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Create a Send</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1043,36 +915,8 @@ please restart the app</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Load vault items eagerly in main view</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source></source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Save items in cache for faster load</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>When this option is enabled, all items are loaded right when you enter the main screen. If disabled, the options are only loaded when you actually need to load them, meaning when you enter an item list like &apos;%1&apos;, &apos;%2&apos; etc.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Logins</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cards</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fast authentication</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>When this option is enabled, authentication is skipped and you are assumed to be logged in regardless of the actual status. What this means in practice is that logged in check is postponed until you&apos;re on the main page and is done in the background, this gives anyone opening this app a few seconds to look around before transfering you to the login/unlock screen. This should be ok because all vault operations fail when you&apos;re not logged in. &lt;strong&gt;Warning&lt;/strong&gt;: if used in combination with the setting &lt;strong&gt;&apos;%1&apos;&lt;/strong&gt; some data may be leaked to whoever opens this app. Use at your own risk.</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>OS authorization check failed.</source>
@@ -1091,35 +935,7 @@ please restart the app</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>General</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Security</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Performance</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>By enabling this option you will force the app to authorize you using OS authorization even when the vault is unlocked. If the authorization fails your vault will be locked and you will be redirected to unlock vault screen. This can speed up getting your vault data significantly. &lt;strong&gt;Warning&lt;/strong&gt;: Disables &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Require OS authorization on unlocked vault</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enabling this option will fasten load times for items in the vault significantly - your data are &lt;strong&gt;stored on disk encrypted&lt;/strong&gt; without any sensitive data (card numbers, passwords etc.).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Update Bitwarden CLI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1135,32 +951,12 @@ please restart the app</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Note: Currently this app cannot find out if the URL has been changed and it appears as if the default was set. If you&apos;ve set it before, it should work as expected.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>If you self-host your Bitwarden server, you may set its URL here. Leave empty to use the global default.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Setting URL</source>
         <extracomment>As in the action of setting url (present continuous)</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Note: You will be logged out.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use api (experimental)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>By enabling this option the app will use a local BitWarden server instead of the BitWarden CLI. That can make all BitWarden operations &lt;strong&gt;much&lt;/strong&gt; faster, but the support is experimental and there might be bugs which cause the server to crash, thus rendering the app unusable until you close it and start it again.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Failed getting the configured server URL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1176,11 +972,11 @@ please restart the app</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use system CA store</source>
+        <source>Could not fetch your email address, the session is in an invalid state. Logout is advised</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This will use the system CA store instead of the default one. This means all certificates trusted by your system will be also trusted by BitSailor. &lt;strong&gt;Note that you still have to make your self-signed certificate trusted&lt;/strong&gt;.</source>
+        <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1237,30 +1033,6 @@ please restart the app</source>
     </message>
 </context>
 <context>
-    <name>SystemCheckerPage</name>
-    <message>
-        <source>System Check</source>
-        <extracomment>Page title</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Checking if system is ready...</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>UnknownErrorOccuredPage</name>
-    <message>
-        <source>Unknown Error</source>
-        <extracomment>Page title</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>There was an unknown error and app cannot proceed. Please contact the developer on &lt;a href=&apos;%1&apos;&gt;OpenRepos&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>UnlockVaultPage</name>
     <message>
         <source>Unlock Vault</source>
@@ -1313,31 +1085,6 @@ please restart the app</source>
     </message>
 </context>
 <context>
-    <name>UpdateBitwardenCliPage</name>
-    <message>
-        <source>Updating Bitwarden CLI</source>
-        <extracomment>Page title</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>There was an error updating the Bitwarden CLI.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Bitwarden CLI was updated successfully</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Updating Bitwarden CLI... Please don&apos;t close the app or exit this page.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please restart the app
-for the changes to take effect.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>VaultPage</name>
     <message>
         <source>Vault</source>
@@ -1368,35 +1115,22 @@ for the changes to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>There was an error when creating the new item</source>
+        <source>There was an error while synchronizing the vault, please try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>There was an error while synchronizing the vault, please try again.</source>
+        <source>There was an error when creating the new item</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>harbour-bitsailor</name>
     <message>
-        <source>Update Bitwarden CLI</source>
-        <extracomment>notification title</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your Bitwarden CLI might be out of date. You should check for new versions of Bitwarden CLI regularly. You can do so in the settings or by clicking this notification.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The API is already running</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The API is already running and could not be stopped. It&apos;s possible that the api will not work at all. Please try restarting the app. If you see this error again, try disabling api in the Settings.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Certificate validation is ignored</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Debug secret storage is used. Uninstall this version immediately unless you are developing BitSailor itself.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

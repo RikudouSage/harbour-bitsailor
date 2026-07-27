@@ -2,6 +2,7 @@
 #define SECRETSHANDLER_H
 
 #include <QObject>
+#include <QJsonObject>
 
 #include <Sailfish/Secrets/secretmanager.h>
 #include <Sailfish/Secrets/request.h>
@@ -17,32 +18,36 @@ class SecretsHandler : public QObject
 public:
     explicit SecretsHandler(QObject *parent = nullptr);
 
-    QString getSessionId();
+    QJsonObject getSessionJson();
+    QJsonObject getEncryptedVault();
     Q_INVOKABLE QString getUsername();
     QString getPassword();
     Q_INVOKABLE QString getClientId();
     QString getPin();
     QString getInternalPin();
-    QString getServerApiKey();
     Q_INVOKABLE bool invalidCertificatesAllowed();
 
+    bool hasEncryptedVault();
+    Q_INVOKABLE bool hasSessionJson();
     Q_INVOKABLE bool hasPin();
+    Q_INVOKABLE bool hasInternalPin();
+
     Q_INVOKABLE void removePin();
     Q_INVOKABLE void removePassword();
-    Q_INVOKABLE bool hasSessionId();
-    Q_INVOKABLE void removeSessionId();
+    Q_INVOKABLE void removeSessionJson();
+    Q_INVOKABLE void removeEncryptedVault();
     Q_INVOKABLE bool clearAllSecrets();
-    Q_INVOKABLE bool hasInternalPin();
+
     Q_INVOKABLE void allowInvalidCertificates();
     Q_INVOKABLE void disallowInvalidCertificates();
 
-    void setSessionId(const QString &sessionId);
+    void setSessionJson(const QJsonObject &sessionJson);
+    void setEncryptedVault(const QJsonObject &json);
     void setUsername(const QString &username);
     Q_INVOKABLE void setPassword(const QString &password);
     void setClientId(const QString &clientId);
     Q_INVOKABLE void setPin(const QString &pin);
     Q_INVOKABLE void setInternalPin(const QString &pin);
-    void setServerApiKey(const QString &apiKey);
 
 private:
     static const QString collectionName;

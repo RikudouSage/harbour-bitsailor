@@ -1,3 +1,6 @@
 [submodule "otp"]
 	path = otp
 	url = https://github.com/RikudouSage/QtOneTimePassword.git
+[submodule "core"]
+	path = core
+	url = https://github.com/RikudouSage/BitSailorCore.git

@@ -19,16 +19,12 @@ Dialog {
 
     canAccept: Helpers.xor(password.text.length, pin.text.length);
 
-    BitwardenCli {
-        id: cli
+    Connections {
+        target: core
 
         onLogoutFinished: {
             pageStack.replace("LoginCheckPage.qml");
         }
-    }
-
-    SecretsHandler {
-        id: secrets
     }
 
     SystemAuthChecker {
@@ -62,7 +58,7 @@ Dialog {
                     pin.visible = false;
                     errorLabel.visible = false;
 
-                    cli.logout();
+                    core.logout();
                 }
             }
         }
