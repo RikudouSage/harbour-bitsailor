@@ -28,6 +28,7 @@ Page {
         target: core
 
         function displayLoginPage(error) {
+            core.logAuthEvent("LoginCheckPage displayLoginPage errorPresent=" + (!!error));
             safeCaller(function() {
                 if (!error) {
                     error = "";
@@ -35,6 +36,9 @@ Page {
 
                 const dialog = pageStack.push("LoginPage.qml", {error: error, customServerUrl: customServerUrl});
                 dialog.accepted.connect(function() {
+                    core.logAuthEvent("LoginCheckPage login dialog accepted customServerUrlPresent=" + (!!dialog.customServerUrl)
+                                      + " apiKeyLogin=" + (!!dialog.clientIdText && !!dialog.clientSecretText)
+                                      + " emailPasswordLogin=" + (!!dialog.emailText && !!dialog.passwordText));
                     customServerUrl = dialog.customServerUrl || 'https://bitwarden.com';
                     clientId = dialog.clientIdText;
                     clientSecret = dialog.clientSecretText;
@@ -47,6 +51,7 @@ Page {
         }
 
         function displayUnlockPage(error) {
+            core.logAuthEvent("LoginCheckPage displayUnlockPage errorPresent=" + (!!error));
             safeCaller(function() {
                 if (!error) {
                     error = "";
@@ -54,6 +59,9 @@ Page {
 
                 const dialog = pageStack.push("UnlockVaultPage.qml", {error: error});
                 dialog.accepted.connect(function() {
+                    core.logAuthEvent("LoginCheckPage unlock dialog accepted password=" + (!!dialog.passwordText)
+                                      + " pin=" + (!!dialog.pinText)
+                                      + " systemAuth=" + (!!dialog.systemAuthSucceeded));
                     if (dialog.passwordText) {
                         core.unlockVault(dialog.passwordText);
                     } else if (dialog.pinText) {
@@ -66,6 +74,7 @@ Page {
         }
 
         onLoginStatusFetched: {
+            core.logAuthEvent("LoginCheckPage onLoginStatusFetched status=" + status + " checkState=" + checkState);
             if (status === BitSailorCore.SessionStatusNone) {
                 if (checkState === stateLogin) {
                     displayLoginPage();
@@ -84,7 +93,9 @@ Page {
         }
 
         onServerUrlChanged: {
-            if (!status) {
+            core.logAuthEvent("LoginCheckPage onServerUrlChanged success=" + success
+                              + " apiKeyLogin=" + (!!clientId && !!clientSecret));
+            if (!success) {
                 displayLoginPage(qsTr("There was an error while changing the URL, please report that to the developers."));
                 return;
             }
@@ -97,10 +108,12 @@ Page {
         }
 
         onTwoFactorNeeded: {
+            core.logAuthEvent("LoginCheckPage onTwoFactorNeeded");
             displayLoginPage(qsTr("Your account has two-factor authentication enabled, which is currently unsupported. Please log in using your API key."));
         }
 
         onLoginFinished: {
+            core.logAuthEvent("LoginCheckPage onLoginFinished success=" + success + " errorPresent=" + (!!error));
             if (!success) {
                 displayLoginPage(qsTr("There was an error while logging in: %1").arg(error));
                 return;
@@ -111,6 +124,7 @@ Page {
         }
 
         onUnlockFinished: {
+            core.logAuthEvent("LoginCheckPage onUnlockFinished success=" + success + " errorPresent=" + (!!error));
             if (success) {
                 pageStack.replace("MainPage.qml");
             } else {
@@ -119,6 +133,7 @@ Page {
         }
 
         onCouldNotFetchEmail: {
+            core.logAuthEvent("LoginCheckPage onCouldNotFetchEmail");
             secrets.removeSessionJson();
             secrets.removeEncryptedVault();
             core.initialize();
@@ -126,6 +141,7 @@ Page {
         }
 
         onInvalidCertificate: {
+            core.logAuthEvent("LoginCheckPage onInvalidCertificate");
             safeCaller(function() {
                 pageStack.replace("InvalidCertificatePage.qml");
             });
@@ -138,10 +154,12 @@ Page {
     }
 
     Component.onCompleted: {
+        core.logAuthEvent("LoginCheckPage completed, requesting login status");
         core.getLoginStatus();
     }
 
     onStatusChanged: {
+        core.logAuthEvent("LoginCheckPage statusChanged status=" + status + " queuedCallCount=" + doAfterLoad.length);
         if (status === PageStatus.Active) {
             while (doAfterLoad.length) {
                 const callable = doAfterLoad.shift();

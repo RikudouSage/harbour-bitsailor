@@ -23,6 +23,7 @@ Dialog {
         target: core
 
         onLogoutFinished: {
+            core.logAuthEvent("UnlockVaultPage onLogoutFinished");
             pageStack.replace("LoginCheckPage.qml");
         }
     }
@@ -31,6 +32,7 @@ Dialog {
         id: systemAuthChecker
 
         onAuthResolved: {
+            core.logAuthEvent("UnlockVaultPage onAuthResolved success=" + success);
             if (success) {
                 systemAuthSucceeded = true;
                 canAccept = true;
@@ -51,6 +53,7 @@ Dialog {
 
                 onClicked: {
                     loggingOutLabel.visible = true;
+                    core.logAuthEvent("UnlockVaultPage logout requested");
 
                     descriptionLabel.visible = false;
                     page.canAccept = false;
@@ -162,6 +165,7 @@ Dialog {
                             infoText: qsTr("The PIN will be deleted and you can unlock the vault using your password. Once you unlock your vault you can set a PIN code again."),
                         });
                         dialog.accepted.connect(function() {
+                            core.logAuthEvent("UnlockVaultPage reset PIN accepted");
                             secrets.removePin();
                             secrets.removePassword();
                             isPinEnabled = secrets.hasPin();
@@ -177,6 +181,7 @@ Dialog {
                 Button {
                     text: qsTr("Try again")
                     onClicked: {
+                        core.logAuthEvent("UnlockVaultPage system auth retry requested");
                         systemAuthChecker.checkAuth();
                     }
                 }
@@ -188,6 +193,7 @@ Dialog {
                             infoText: qsTr("OS authorization will be disabled and you can unlock the vault using your password. Once you unlock your vault you can enable OS authorization again."),
                         });
                         dialog.accepted.connect(function() {
+                            core.logAuthEvent("UnlockVaultPage reset OS authorization accepted");
                             secrets.removePassword();
                             settings.useSystemAuth = false;
                         });
@@ -198,12 +204,14 @@ Dialog {
     }
 
     Component.onCompleted: {
+        core.logAuthEvent("UnlockVaultPage completed pinEnabled=" + isPinEnabled + " systemAuthEnabled=" + systemAuthEnabled);
         if (settings.useSystemAuth) {
             systemAuthChecker.checkAuth();
         }
     }
 
     onRejected: {
+        core.logAuthEvent("UnlockVaultPage rejected, quitting");
         Qt.quit();
     }
 }

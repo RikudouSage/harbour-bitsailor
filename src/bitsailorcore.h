@@ -74,6 +74,7 @@ public:
     Q_INVOKABLE void validateMasterPassword(const QString &password);
 
     Q_INVOKABLE void getLoginStatus();
+    Q_INVOKABLE void logAuthEvent(const QString &event);
     Q_INVOKABLE void loginApiKey(const QString &clientId, const QString &clientSecret);
     Q_INVOKABLE void loginEmailPassword(const QString &email, const QString &password);
     Q_INVOKABLE void logout();

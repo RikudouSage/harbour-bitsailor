@@ -26,6 +26,7 @@ INSTALLS += libbw
 
 SOURCES += src/harbour-bitsailor.cpp \
     src/appsettings.cpp \
+    src/authlogger.cpp \
     src/bitsailorcore.cpp \
     src/cachekey.cpp \
     src/encryptor.cpp \
@@ -106,6 +107,7 @@ TRANSLATIONS += translations/harbour-bitsailor-*.ts
 
 HEADERS += \
     src/appsettings.h \
+    src/authlogger.h \
     src/bitsailorcore.h \
     src/cache-keys.h \
     src/cachekey.h \

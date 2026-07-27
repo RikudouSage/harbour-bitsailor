@@ -12,6 +12,7 @@
 #include <sailfishapp.h>
 
 #include "secretshandler.h"
+#include "authlogger.h"
 #include "appsettings.h"
 #include "runtimecache.h"
 #include "systemauthchecker.h"
@@ -27,6 +28,11 @@ int main(int argc, char *argv[])
 {
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
     QScopedPointer<QQuickView> v(SailfishApp::createView());
+
+    AuthLogger::log(QStringLiteral("application starting executable=%1 authLog=%2").arg(
+        QCoreApplication::applicationFilePath(),
+        AuthLogger::logFilePath()
+    ));
 
     auto secrets = new SecretsHandler(app.data());
     auto settings = new AppSettings(app.data());

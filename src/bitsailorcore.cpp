@@ -9,6 +9,7 @@
 #include <QtConcurrent>
 #include <QJsonParseError>
 
+#include "authlogger.h"
 #include "consts.h"
 
 namespace {
@@ -187,6 +188,7 @@ private:
 
 BitSailorCore::BitSailorCore(AppSettings *settings, SecretsHandler *secrets, QObject *parent) : QObject(parent)
 {
+    AuthLogger::log(QStringLiteral("BitSailorCore: constructing core bridge"));
     qRegisterMetaType<BitSailorCore::SessionStatus>("SessionStatus");
     qRegisterMetaType<BitSailorCore::ItemType>("ItemType");
     qRegisterMetaType<BitSailorCore::SendType>("SendType");
@@ -210,31 +212,49 @@ BitSailorCore::~BitSailorCore()
 
 void BitSailorCore::getLoginStatus()
 {
+    AuthLogger::log(QStringLiteral("BitSailorCore: getLoginStatus requested sessionPresent=%1").arg(
+        session == 0 ? QStringLiteral("false") : QStringLiteral("true")
+    ));
     if (session == 0) {
+        AuthLogger::log(QStringLiteral("BitSailorCore: getLoginStatus result status=None reason=no-session-handle"));
         emit loginStatusFetched(SessionStatusNone);
         return;
     }
 
     QtConcurrent::run([=] {
+        AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenGetSessionStatus starting sessionPresent=%1").arg(
+            session == 0 ? QStringLiteral("false") : QStringLiteral("true")
+        ));
         BitwardenSessionStatus result;
         if (BitwardenGetSessionStatus(session, &result) != BitwardenSuccess) {
-            qWarning() << "Failed getting session status: " << getLastError();
+            const auto error = getLastError();
+            qWarning() << "Failed getting session status: " << error;
+            AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenGetSessionStatus failed error=%1").arg(error));
             emit loginStatusFetched(SessionStatusNone);
             return;
         }
 
+        AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenGetSessionStatus result status=%1").arg(QString::number(result)));
         emit loginStatusFetched(static_cast<SessionStatus>(result));
     });
 }
 
+void BitSailorCore::logAuthEvent(const QString &event)
+{
+    AuthLogger::log(QStringLiteral("QML auth: %1").arg(event));
+}
+
 void BitSailorCore::changeServerUrl(const QString &url)
 {
+    AuthLogger::log(QStringLiteral("BitSailorCore: changeServerUrl requested url=%1").arg(url));
     QtConcurrent::run([=] {
         settings->setBaseUrl(url);
         initialize();
         if (!valid) {
+            AuthLogger::log(QStringLiteral("BitSailorCore: changeServerUrl result success=false"));
             emit serverUrlChanged(false);
         } else {
+            AuthLogger::log(QStringLiteral("BitSailorCore: changeServerUrl result success=true"));
             emit serverUrlChanged(true);
         }
     });
@@ -242,21 +262,30 @@ void BitSailorCore::changeServerUrl(const QString &url)
 
 void BitSailorCore::lockVault(bool sync)
 {
+    AuthLogger::log(QStringLiteral("BitSailorCore: lockVault requested sync=%1 sessionPresent=%2").arg(
+        sync ? QStringLiteral("true") : QStringLiteral("false"),
+        session == 0 ? QStringLiteral("false") : QStringLiteral("true")
+    ));
     auto handler = [=] {
         if (BitwardenLockSession(session) != BitwardenSuccess) {
-            qWarning() << "Failed locking session: " << getLastError();
+            const auto error = getLastError();
+            qWarning() << "Failed locking session: " << error;
+            AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenLockSession failed error=%1").arg(error));
             emit vaultLocked(false);
             return;
         }
+        AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenLockSession succeeded"));
 
         QString error;
         exportSession(&error);
         if (!error.isNull()) {
             qWarning() << "Failed exporting locked session: " << error;
+            AuthLogger::log(QStringLiteral("BitSailorCore: lockVault exportSession failed error=%1").arg(error));
             emit vaultLocked(false);
             return;
         }
 
+        AuthLogger::log(QStringLiteral("BitSailorCore: lockVault result success=true"));
         emit vaultLocked(true);
     };
 
@@ -269,6 +298,10 @@ void BitSailorCore::lockVault(bool sync)
 
 void BitSailorCore::loginApiKey(const QString &clientId, const QString &clientSecret)
 {
+    AuthLogger::log(QStringLiteral("BitSailorCore: loginApiKey requested clientIdPresent=%1 clientSecretPresent=%2").arg(
+        clientId.isEmpty() ? QStringLiteral("false") : QStringLiteral("true"),
+        clientSecret.isEmpty() ? QStringLiteral("false") : QStringLiteral("true")
+    ));
     login([=] {
         return BitwardenLoginApiKey(client, ctx, clientId.toUtf8().data(), clientSecret.toUtf8().data(), &session);
     });
@@ -276,6 +309,11 @@ void BitSailorCore::loginApiKey(const QString &clientId, const QString &clientSe
 
 void BitSailorCore::loginEmailPassword(const QString &email, const QString &password)
 {
+    AuthLogger::log(QStringLiteral("BitSailorCore: loginEmailPassword requested emailPresent=%1 passwordPresent=%2 emailLength=%3").arg(
+        email.isEmpty() ? QStringLiteral("false") : QStringLiteral("true"),
+        password.isEmpty() ? QStringLiteral("false") : QStringLiteral("true"),
+        QString::number(email.size())
+    ));
     login([=] {
         return BitwardenLoginPassword(client, ctx, email.toUtf8().data(), password.toUtf8().data(), &session);
     });
@@ -283,55 +321,78 @@ void BitSailorCore::loginEmailPassword(const QString &email, const QString &pass
 
 void BitSailorCore::logout()
 {
+    AuthLogger::log(QStringLiteral("BitSailorCore: logout requested sessionPresent=%1").arg(
+        session == 0 ? QStringLiteral("false") : QStringLiteral("true")
+    ));
     QtConcurrent::run([=] {
         if (BitwardenCloseHandle(session) != BitwardenSuccess) {
-            qWarning() << "Failed closing session: " << getLastError();
+            const auto error = getLastError();
+            qWarning() << "Failed closing session: " << error;
+            AuthLogger::log(QStringLiteral("BitSailorCore: logout close session failed error=%1").arg(error));
         }
 
         session = 0;
         secrets->clearAllSecrets();
         initialize();
 
+        AuthLogger::log(QStringLiteral("BitSailorCore: logout finished"));
         emit logoutFinished();
     });
 }
 
 void BitSailorCore::unlockVault(const QString &password)
 {
+    AuthLogger::log(QStringLiteral("BitSailorCore: unlockVault(password) requested passwordPresent=%1 sessionPresent=%2").arg(
+        password.isEmpty() ? QStringLiteral("false") : QStringLiteral("true"),
+        session == 0 ? QStringLiteral("false") : QStringLiteral("true")
+    ));
     QtConcurrent::run([=] {
         const auto email = getEmail();
         if (email.isNull() || email.isEmpty()) {
+            AuthLogger::log(QStringLiteral("BitSailorCore: unlockVault failed reason=email-missing"));
             emit couldNotFetchEmail();
             return;
         }
 
+        AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenUnlockSession starting emailPresent=true passwordPresent=%1").arg(
+            password.isEmpty() ? QStringLiteral("false") : QStringLiteral("true")
+        ));
         if (BitwardenUnlockSession(client, ctx, session, email.toUtf8().data(), password.toUtf8().data()) != BitwardenSuccess) {
             auto error = getLastError();
             qWarning() << "Failed unlocking session: " << error;
+            AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenUnlockSession failed error=%1").arg(error));
             emit unlockFinished(false, error);
             return;
         }
+        AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenUnlockSession succeeded"));
 
         QString exportError;
         exportSession(&exportError);
         if (!exportError.isNull()) {
             qWarning() << "Failed exporting session: " << exportError;
+            AuthLogger::log(QStringLiteral("BitSailorCore: unlockVault exportSession failed error=%1").arg(exportError));
         }
 
+        AuthLogger::log(QStringLiteral("BitSailorCore: unlockVault result success=true"));
         emit unlockFinished(true, "");
     });
 }
 
 void BitSailorCore::unlockVault(int pin)
 {
+    AuthLogger::log(QStringLiteral("BitSailorCore: unlockVault(pin) requested"));
     QtConcurrent::run([=] {
         auto providedPin = QString::number(pin);
         auto storedPin = secrets->getPin();
 
         if (providedPin != storedPin) {
+            AuthLogger::log(QStringLiteral("BitSailorCore: unlockVault(pin) failed reason=pin-mismatch storedPinPresent=%1").arg(
+                storedPin.isEmpty() ? QStringLiteral("false") : QStringLiteral("true")
+            ));
             emit wrongPinProvided();
             return;
         }
+        AuthLogger::log(QStringLiteral("BitSailorCore: unlockVault(pin) matched stored pin, unlocking with stored password"));
 
         auto password = secrets->getPassword();
 
@@ -341,28 +402,39 @@ void BitSailorCore::unlockVault(int pin)
 
 void BitSailorCore::unlockVault()
 {
+    AuthLogger::log(QStringLiteral("BitSailorCore: unlockVault(system-auth) requested"));
     QtConcurrent::run([=] {
         auto password = secrets->getPassword();
+        AuthLogger::log(QStringLiteral("BitSailorCore: unlockVault(system-auth) fetched stored password present=%1").arg(
+            password.isEmpty() ? QStringLiteral("false") : QStringLiteral("true")
+        ));
         unlockVault(password);
     });
 }
 
 void BitSailorCore::validateMasterPassword(const QString &password)
 {
+    AuthLogger::log(QStringLiteral("BitSailorCore: validateMasterPassword requested passwordPresent=%1").arg(
+        password.isEmpty() ? QStringLiteral("false") : QStringLiteral("true")
+    ));
     QtConcurrent::run([=] {
         auto email = getEmail();
         if (email.isNull()) {
             qWarning() << "Failed fetching email";
+            AuthLogger::log(QStringLiteral("BitSailorCore: validateMasterPassword failed reason=email-missing"));
             emit couldNotFetchEmail();
             return;
         }
 
         if (BitwardenValidatePassword(client, ctx, email.toUtf8().data(), password.toUtf8().data(), session) != BitwardenSuccess) {
-            qWarning () << "Validation of password did not succeed: " << getLastError();
+            const auto error = getLastError();
+            qWarning () << "Validation of password did not succeed: " << error;
+            AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenValidatePassword failed error=%1").arg(error));
             emit masterPasswordValidationFinished(false);
             return;
         }
 
+        AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenValidatePassword succeeded"));
         emit masterPasswordValidationFinished(true);
     });
 }
@@ -681,12 +753,15 @@ void BitSailorCore::generatePassphrase(uint wordsCount, bool capitalize, bool in
 
 void BitSailorCore::syncVault()
 {
+    AuthLogger::log(QStringLiteral("BitSailorCore: syncVault requested"));
     QtConcurrent::run([=] {
         if (!syncRaw()) {
+            AuthLogger::log(QStringLiteral("BitSailorCore: syncVault result success=false"));
             emit syncVaultFinished(false);
             return;
         }
 
+        AuthLogger::log(QStringLiteral("BitSailorCore: syncVault result success=true"));
         emit syncVaultFinished(true);
     });
 }
@@ -707,11 +782,13 @@ const QString BitSailorCore::getLastError() const
 
 void BitSailorCore::initialize()
 {
+    AuthLogger::log(QStringLiteral("BitSailorCore: initialize starting"));
     valid = true;
     cleanup();
 
     if (settings->deviceUuid() == "") {
         settings->setDeviceUuid(uuidToString(generateUuid()));
+        AuthLogger::log(QStringLiteral("BitSailorCore: initialize generated new device UUID"));
 #ifdef QT_DEBUG
         qDebug() << "Device ID: " << settings->deviceUuid();
 #endif
@@ -719,62 +796,115 @@ void BitSailorCore::initialize()
 
     if (BitwardenNewContext(&ctx) != BitwardenSuccess) {
         valid = false;
-        qWarning() << "Failed initializing context: " << getLastError();
+        const auto error = getLastError();
+        qWarning() << "Failed initializing context: " << error;
+        AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenNewContext failed error=%1").arg(error));
+    } else {
+        AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenNewContext succeeded"));
     }
 
     auto baseUrl = settings->baseUrl().toUtf8();
+    const auto configuredBaseUrl = settings->baseUrl();
     if (baseUrl == defaultVaultUrl) {
         baseUrl.clear();
     }
 
     bool ignoreCerts = secrets->invalidCertificatesAllowed();
     auto uuid = uuidFromString(settings->deviceUuid());
+    AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenNewClient starting baseUrl=%1 defaultBaseUrl=%2 ignoreCerts=%3 deviceUuidPresent=%4").arg(
+        configuredBaseUrl,
+        configuredBaseUrl == defaultVaultUrl ? QStringLiteral("true") : QStringLiteral("false"),
+        ignoreCerts ? QStringLiteral("true") : QStringLiteral("false"),
+        settings->deviceUuid().isEmpty() ? QStringLiteral("false") : QStringLiteral("true")
+    ));
     if (BitwardenNewClient(&client, NewClientOptions {
         .baseUrl = baseUrl.constData(),
         .deviceId = &uuid,
         .ignoreCerts = &ignoreCerts,
     }) != BitwardenSuccess) {
         valid = false;
-        qWarning() << "Failed initializing client: " << getLastError();
+        const auto error = getLastError();
+        qWarning() << "Failed initializing client: " << error;
+        AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenNewClient failed error=%1").arg(error));
+    } else {
+        AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenNewClient succeeded"));
     }
 
     if (BitwardenGetVault(client, &vault) != BitwardenSuccess) {
         valid = false;
-        qWarning() << "Failded getting a vault: " << getLastError();
+        const auto error = getLastError();
+        qWarning() << "Failded getting a vault: " << error;
+        AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenGetVault failed error=%1").arg(error));
+    } else {
+        AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenGetVault succeeded"));
     }
 
-    if (secrets->hasSessionJson()) {
+    const auto hasSessionJson = secrets->hasSessionJson();
+    AuthLogger::log(QStringLiteral("BitSailorCore: initialize stored session present=%1").arg(
+        hasSessionJson ? QStringLiteral("true") : QStringLiteral("false")
+    ));
+    if (hasSessionJson) {
         auto json = secrets->getSessionJson();
 #ifdef QT_DEBUG
         qDebug() << "Session JSON: " << json;
 #endif
         if (json.isEmpty()) {
             qWarning() << "The session json is empty";
+            AuthLogger::log(QStringLiteral("BitSailorCore: stored session JSON is empty"));
         }
         auto jsonStr = QJsonDocument(json).toJson();
+        AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenImportSession starting jsonKeys=%1 jsonBytes=%2").arg(
+            QString::number(json.size()),
+            QString::number(jsonStr.size())
+        ));
         if (BitwardenImportSession(nullptr, jsonStr.data(), &session) != BitwardenSuccess) {
             valid = false;
-            qWarning() << "Failed importing session: " << getLastError();
+            const auto error = getLastError();
+            qWarning() << "Failed importing session: " << error;
+            AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenImportSession failed error=%1").arg(error));
+        } else {
+            AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenImportSession succeeded"));
         }
     }
 
-    if (secrets->hasEncryptedVault()) {
+    const auto hasEncryptedVault = secrets->hasEncryptedVault();
+    AuthLogger::log(QStringLiteral("BitSailorCore: initialize encrypted vault present=%1").arg(
+        hasEncryptedVault ? QStringLiteral("true") : QStringLiteral("false")
+    ));
+    if (hasEncryptedVault) {
         auto json = secrets->getEncryptedVault();
         if (json.isEmpty()) {
             qWarning() << "The session json is empty";
+            AuthLogger::log(QStringLiteral("BitSailorCore: stored encrypted vault JSON is empty"));
         }
         auto jsonStr = QJsonDocument(json).toJson();
         VaultHandle newVault;
+        AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenImportVault starting jsonKeys=%1 jsonBytes=%2").arg(
+            QString::number(json.size()),
+            QString::number(jsonStr.size())
+        ));
         if (BitwardenImportVault(vault, jsonStr.data(), &newVault) != BitwardenSuccess) {
             valid = false;
-            qWarning() << "Failed importing session: " << getLastError();
+            const auto error = getLastError();
+            qWarning() << "Failed importing session: " << error;
+            AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenImportVault failed error=%1").arg(error));
         } else {
             if (BitwardenCloseHandle(vault) != BitwardenSuccess) {
-                qWarning() << "Failed closing vault handle: " << getLastError();
+                const auto error = getLastError();
+                qWarning() << "Failed closing vault handle: " << error;
+                AuthLogger::log(QStringLiteral("BitSailorCore: closing old vault after import failed error=%1").arg(error));
             }
             vault = newVault;
+            AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenImportVault succeeded"));
         }
     }
+    AuthLogger::log(QStringLiteral("BitSailorCore: initialize finished valid=%1 ctx=%2 client=%3 session=%4 vault=%5").arg(
+        valid ? QStringLiteral("true") : QStringLiteral("false"),
+        ctx == 0 ? QStringLiteral("false") : QStringLiteral("true"),
+        client == 0 ? QStringLiteral("false") : QStringLiteral("true"),
+        session == 0 ? QStringLiteral("false") : QStringLiteral("true"),
+        vault == 0 ? QStringLiteral("false") : QStringLiteral("true")
+    ));
 }
 
 void BitSailorCore::getServerUrl()
@@ -786,17 +916,31 @@ void BitSailorCore::getServerUrl()
 
 void BitSailorCore::cleanup()
 {
+    AuthLogger::log(QStringLiteral("BitSailorCore: cleanup starting ctx=%1 client=%2 session=%3 vault=%4").arg(
+        ctx == 0 ? QStringLiteral("false") : QStringLiteral("true"),
+        client == 0 ? QStringLiteral("false") : QStringLiteral("true"),
+        session == 0 ? QStringLiteral("false") : QStringLiteral("true"),
+        vault == 0 ? QStringLiteral("false") : QStringLiteral("true")
+    ));
     if (ctx != 0 && BitwardenCloseHandle(ctx) != BitwardenSuccess) {
-        qWarning() << "Failed closing context: " << getLastError();
+        const auto error = getLastError();
+        qWarning() << "Failed closing context: " << error;
+        AuthLogger::log(QStringLiteral("BitSailorCore: cleanup close context failed error=%1").arg(error));
     }
     if (client != 0 && BitwardenCloseHandle(client) != BitwardenSuccess) {
-        qWarning() << "Failed closing client: " << getLastError();
+        const auto error = getLastError();
+        qWarning() << "Failed closing client: " << error;
+        AuthLogger::log(QStringLiteral("BitSailorCore: cleanup close client failed error=%1").arg(error));
     }
     if (session != 0 && BitwardenCloseHandle(session) != BitwardenSuccess) {
-        qWarning() << "Failed closing session: " << getLastError();
+        const auto error = getLastError();
+        qWarning() << "Failed closing session: " << error;
+        AuthLogger::log(QStringLiteral("BitSailorCore: cleanup close session failed error=%1").arg(error));
     }
     if (vault != 0 && BitwardenCloseHandle(vault) != BitwardenSuccess) {
-        qWarning() << "Failed closing vault: " << getLastError();
+        const auto error = getLastError();
+        qWarning() << "Failed closing vault: " << error;
+        AuthLogger::log(QStringLiteral("BitSailorCore: cleanup close vault failed error=%1").arg(error));
     }
 
     ctx = 0;
@@ -804,6 +948,7 @@ void BitSailorCore::cleanup()
     session = 0;
     vault = 0;
     email = "";
+    AuthLogger::log(QStringLiteral("BitSailorCore: cleanup finished"));
 }
 
 QUuid BitSailorCore::generateUuid() const
@@ -867,17 +1012,24 @@ QDateTime BitSailorCore::cTimeToQDate(int64_t time) const
 QString BitSailorCore::getEmail()
 {
     if (!email.isNull() && !email.isEmpty()) {
+        AuthLogger::log(QStringLiteral("BitSailorCore: getEmail returning cached email"));
         return email;
     }
 
+    AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenGetEmail starting vaultPresent=%1").arg(
+        vault == 0 ? QStringLiteral("false") : QStringLiteral("true")
+    ));
     char *out = nullptr;
     if (BitwardenGetEmail(vault, &out) != BitwardenSuccess) {
+        AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenGetEmail failed, attempting sync error=%1").arg(getLastError()));
         if (!syncRaw()) {
             qWarning() << "Failed syncing";
+            AuthLogger::log(QStringLiteral("BitSailorCore: getEmail sync failed"));
             return QString();
         }
         if (BitwardenGetEmail(vault, &out) != BitwardenSuccess) {
             qWarning() << "Failed getting email even after sync";
+            AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenGetEmail failed after sync error=%1").arg(getLastError()));
             return QString();
         }
     }
@@ -885,99 +1037,160 @@ QString BitSailorCore::getEmail()
     const auto result = QString::fromUtf8(out);
     free(out);
 
+    AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenGetEmail succeeded emailPresent=%1 emailLength=%2").arg(
+        result.isEmpty() ? QStringLiteral("false") : QStringLiteral("true"),
+        QString::number(result.size())
+    ));
     return result;
 }
 
 void BitSailorCore::login(const std::function<BitwardenResult ()> &loginCallable)
 {
     QtConcurrent::run([=] {
+        AuthLogger::log(QStringLiteral("BitSailorCore: login callable starting ctx=%1 client=%2 currentSession=%3").arg(
+            ctx == 0 ? QStringLiteral("false") : QStringLiteral("true"),
+            client == 0 ? QStringLiteral("false") : QStringLiteral("true"),
+            session == 0 ? QStringLiteral("false") : QStringLiteral("true")
+        ));
         auto result = loginCallable();
         if (result != BitwardenSuccess) {
             auto error = getLastError();
             if (error == twoFactorNeededError) {
+                AuthLogger::log(QStringLiteral("BitSailorCore: login failed reason=two-factor-needed"));
                 emit twoFactorNeeded();
                 return;
             }
             qWarning() << "Login failed: " << error;
+            AuthLogger::log(QStringLiteral("BitSailorCore: login failed error=%1").arg(error));
             emit loginFinished(false, error);
             return;
         }
+        AuthLogger::log(QStringLiteral("BitSailorCore: login callable succeeded sessionPresent=%1").arg(
+            session == 0 ? QStringLiteral("false") : QStringLiteral("true")
+        ));
 
         QString exportError;
         exportSession(&exportError);
         if (!exportError.isNull()) {
             qWarning() << "Login failed: " << exportError;
+            AuthLogger::log(QStringLiteral("BitSailorCore: login exportSession failed error=%1").arg(exportError));
             emit loginFinished(false, exportError);
+            return;
         }
 
+        AuthLogger::log(QStringLiteral("BitSailorCore: login result success=true"));
         emit loginFinished(true, "");
     });
 }
 
 bool BitSailorCore::syncRaw()
 {
+    AuthLogger::log(QStringLiteral("BitSailorCore: syncRaw starting client=%1 ctx=%2 session=%3 vault=%4").arg(
+        client == 0 ? QStringLiteral("false") : QStringLiteral("true"),
+        ctx == 0 ? QStringLiteral("false") : QStringLiteral("true"),
+        session == 0 ? QStringLiteral("false") : QStringLiteral("true"),
+        vault == 0 ? QStringLiteral("false") : QStringLiteral("true")
+    ));
     if (vault != 0) {
         if (BitwardenCloseHandle(vault) != BitwardenSuccess) {
-            qWarning() << "Failed closing vault: " << getLastError();
+            const auto error = getLastError();
+            qWarning() << "Failed closing vault: " << error;
+            AuthLogger::log(QStringLiteral("BitSailorCore: syncRaw close existing vault failed error=%1").arg(error));
         }
     }
 
     if (BitwardenSyncVault(client, ctx, session, &vault) != BitwardenSuccess) {
-        qWarning() << "Failed syncing: " << getLastError();
+        const auto error = getLastError();
+        qWarning() << "Failed syncing: " << error;
+        AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenSyncVault failed error=%1").arg(error));
         return false;
     }
+    AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenSyncVault succeeded vaultPresent=%1").arg(
+        vault == 0 ? QStringLiteral("false") : QStringLiteral("true")
+    ));
 
     QString exportError;
     exportVault(&exportError);
     if (!exportError.isNull()) {
         qWarning() << "Failed exporting vault after sync: " << exportError;
+        AuthLogger::log(QStringLiteral("BitSailorCore: syncRaw exportVault failed error=%1").arg(exportError));
         return false;
     }
 
+    AuthLogger::log(QStringLiteral("BitSailorCore: syncRaw result success=true"));
     return true;
 }
 
 void BitSailorCore::exportSession(QString *error)
 {
+    AuthLogger::log(QStringLiteral("BitSailorCore: exportSession starting sessionPresent=%1").arg(
+        session == 0 ? QStringLiteral("false") : QStringLiteral("true")
+    ));
     char* rawExport = nullptr;
     if (BitwardenExportSession(session, &rawExport) != BitwardenSuccess) {
         *error = getLastError();
         qWarning() << "Exporting session failed: " << *error;
+        AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenExportSession failed error=%1").arg(*error));
         return;
     }
     QJsonParseError err;
+    const auto rawBytes = QByteArray(rawExport).size();
     auto sessionJson = QJsonDocument::fromJson(QByteArray(rawExport), &err);
     free(rawExport);
 
     if (err.error) {
         *error = err.errorString();
         qWarning() << "Failed parsing exported session JSON: " << *error;
+        AuthLogger::log(QStringLiteral("BitSailorCore: exportSession JSON parse failed error=%1 rawBytes=%2").arg(
+            *error,
+            QString::number(rawBytes)
+        ));
         return;
     }
 
+    AuthLogger::log(QStringLiteral("BitSailorCore: exportSession parsed keys=%1 rawBytes=%2").arg(
+        QString::number(sessionJson.object().size()),
+        QString::number(rawBytes)
+    ));
     secrets->setSessionJson(sessionJson.object());
+    AuthLogger::log(QStringLiteral("BitSailorCore: exportSession stored"));
 }
 
 void BitSailorCore::exportVault(QString *error)
 {
+    AuthLogger::log(QStringLiteral("BitSailorCore: exportVault starting vaultPresent=%1").arg(
+        vault == 0 ? QStringLiteral("false") : QStringLiteral("true")
+    ));
     char *rawExport = nullptr;
     if (BitwardenExportEncryptedVault(vault, &rawExport) != BitwardenSuccess) {
         *error = getLastError();
         qWarning() << "Exporting vault failed: " << *error;
+        AuthLogger::log(QStringLiteral("BitSailorCore: BitwardenExportEncryptedVault failed error=%1").arg(*error));
         return;
     }
 
     QJsonParseError err;
+    const auto rawBytes = QByteArray(rawExport).size();
     const auto vaultJson = QJsonDocument::fromJson(QByteArray(rawExport), &err);
     free(rawExport);
 
     if (err.error || !vaultJson.isObject()) {
         *error = err.error ? err.errorString() : QString("Exported vault JSON is not an object");
         qWarning() << "Failed parsing exported vault JSON: " << *error;
+        AuthLogger::log(QStringLiteral("BitSailorCore: exportVault JSON parse failed error=%1 rawBytes=%2 isObject=%3").arg(
+            *error,
+            QString::number(rawBytes),
+            vaultJson.isObject() ? QStringLiteral("true") : QStringLiteral("false")
+        ));
         return;
     }
 
+    AuthLogger::log(QStringLiteral("BitSailorCore: exportVault parsed keys=%1 rawBytes=%2").arg(
+        QString::number(vaultJson.object().size()),
+        QString::number(rawBytes)
+    ));
     secrets->setEncryptedVault(vaultJson.object());
+    AuthLogger::log(QStringLiteral("BitSailorCore: exportVault stored"));
 }
 
 QJsonObject BitSailorCore::mapItem(const BitwardenItem &item) const

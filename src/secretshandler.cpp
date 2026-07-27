@@ -14,6 +14,8 @@
 #include <QJsonParseError>
 #include <QSettings>
 
+#include "authlogger.h"
+
 using Sailfish::Secrets::CollectionNamesRequest;
 using Sailfish::Secrets::SecretManager;
 using Sailfish::Secrets::Request;
@@ -46,8 +48,10 @@ static QSettings &insecureEmulatorSecrets()
 
 SecretsHandler::SecretsHandler(QObject *parent) : QObject(parent)
 {
+    AuthLogger::log(QStringLiteral("SecretsHandler: initializing secrets collection name=%1").arg(collectionName));
 #ifdef QT_DEBUG
     qWarning() << "Using insecure debug secrets storage. Do not enable this in release builds.";
+    AuthLogger::log(QStringLiteral("SecretsHandler: using insecure debug secrets storage"));
     hasBitsailorCollection = true;
 #else
     CollectionNamesRequest cnr;
@@ -57,32 +61,55 @@ SecretsHandler::SecretsHandler(QObject *parent) : QObject(parent)
     cnr.waitForFinished();
 
     hasBitsailorCollection = isResultValid(cnr) && cnr.collectionNames().contains(collectionName);
+    AuthLogger::log(QStringLiteral("SecretsHandler: collection names fetched success=%1 collectionPresent=%2 collectionCount=%3").arg(
+        isResultValid(cnr) ? QStringLiteral("true") : QStringLiteral("false"),
+        hasBitsailorCollection ? QStringLiteral("true") : QStringLiteral("false"),
+        QString::number(cnr.collectionNames().size())
+    ));
 #endif
 }
 
 QJsonObject SecretsHandler::getSessionJson()
 {
+    AuthLogger::log(QStringLiteral("SecretsHandler: getSessionJson requested"));
     const auto json = getData(sessionJsonName);
     QJsonParseError err;
     auto doc = QJsonDocument::fromJson(json.toUtf8(), &err);
     if (err.error) {
         qWarning() << "Failed parsing session: " << err.errorString();
+        AuthLogger::log(QStringLiteral("SecretsHandler: getSessionJson parse failed error=%1 rawPresent=%2").arg(
+            err.errorString(),
+            json.isEmpty() ? QStringLiteral("false") : QStringLiteral("true")
+        ));
         return QJsonObject();
     }
 
+    AuthLogger::log(QStringLiteral("SecretsHandler: getSessionJson parsed keys=%1 rawBytes=%2").arg(
+        QString::number(doc.object().size()),
+        QString::number(json.toUtf8().size())
+    ));
     return doc.object();
 }
 
 QJsonObject SecretsHandler::getEncryptedVault()
 {
+    AuthLogger::log(QStringLiteral("SecretsHandler: getEncryptedVault requested"));
     const auto json = getData(encryptedVaultName);
     QJsonParseError err;
     auto doc = QJsonDocument::fromJson(json.toUtf8(), &err);
     if (err.error) {
         qWarning() << "Failed parsing vault: " << err.errorString();
+        AuthLogger::log(QStringLiteral("SecretsHandler: getEncryptedVault parse failed error=%1 rawPresent=%2").arg(
+            err.errorString(),
+            json.isEmpty() ? QStringLiteral("false") : QStringLiteral("true")
+        ));
         return QJsonObject();
     }
 
+    AuthLogger::log(QStringLiteral("SecretsHandler: getEncryptedVault parsed keys=%1 rawBytes=%2").arg(
+        QString::number(doc.object().size()),
+        QString::number(json.toUtf8().size())
+    ));
     return doc.object();
 }
 
@@ -156,11 +183,14 @@ void SecretsHandler::removeEncryptedVault()
 
 bool SecretsHandler::clearAllSecrets()
 {
+    AuthLogger::log(QStringLiteral("SecretsHandler: clearAllSecrets requested"));
 #ifdef QT_DEBUG
     auto &settings = insecureEmulatorSecrets();
     settings.clear();
     settings.sync();
-    return settings.status() == QSettings::NoError;
+    const auto success = settings.status() == QSettings::NoError;
+    AuthLogger::log(QStringLiteral("SecretsHandler: clearAllSecrets debug result success=%1").arg(success ? QStringLiteral("true") : QStringLiteral("false")));
+    return success;
 #else
     DeleteCollectionRequest dcr;
     dcr.setCollectionName(collectionName);
@@ -173,6 +203,10 @@ bool SecretsHandler::clearAllSecrets()
     auto success = isResultValid(dcr);
 
     hasBitsailorCollection = !success;
+    AuthLogger::log(QStringLiteral("SecretsHandler: clearAllSecrets result success=%1 collectionPresent=%2").arg(
+        success ? QStringLiteral("true") : QStringLiteral("false"),
+        hasBitsailorCollection ? QStringLiteral("true") : QStringLiteral("false")
+    ));
     return success;
 #endif
 }
@@ -195,11 +229,13 @@ void SecretsHandler::disallowInvalidCertificates()
 
 void SecretsHandler::setSessionJson(const QJsonObject &sessionJson)
 {
+    AuthLogger::log(QStringLiteral("SecretsHandler: setSessionJson keys=%1").arg(QString::number(sessionJson.size())));
     storeData(sessionJsonName, QString::fromUtf8(QJsonDocument(sessionJson).toJson(QJsonDocument::Compact)));
 }
 
 void SecretsHandler::setEncryptedVault(const QJsonObject &json)
 {
+    AuthLogger::log(QStringLiteral("SecretsHandler: setEncryptedVault keys=%1").arg(QString::number(json.size())));
     storeData(encryptedVaultName, QString::fromUtf8(QJsonDocument(json).toJson(QJsonDocument::Compact)));
 }
 
@@ -234,6 +270,10 @@ bool SecretsHandler::isResultValid(const Request &request)
     auto isSuccess = result.errorCode() == Result::NoError;
     if (!isSuccess) {
         qWarning() << result.errorMessage();
+        AuthLogger::log(QStringLiteral("SecretsHandler: Sailfish Secrets request failed code=%1 message=%2").arg(
+            QString::number(result.errorCode()),
+            result.errorMessage()
+        ));
     }
 
     return isSuccess;
@@ -246,19 +286,31 @@ bool SecretsHandler::isSecretValid(const Secret &secret)
 
 bool SecretsHandler::storeData(const QString &name, const QString &data)
 {
+    AuthLogger::log(QStringLiteral("SecretsHandler: storeData requested name=%1 dataPresent=%2 dataBytes=%3").arg(
+        name,
+        data.isEmpty() ? QStringLiteral("false") : QStringLiteral("true"),
+        QString::number(data.toUtf8().size())
+    ));
 #ifdef QT_DEBUG
     auto &settings = insecureEmulatorSecrets();
     settings.setValue(name, data);
     settings.sync();
-    return settings.status() == QSettings::NoError;
+    const auto success = settings.status() == QSettings::NoError;
+    AuthLogger::log(QStringLiteral("SecretsHandler: storeData debug result name=%1 success=%2").arg(
+        name,
+        success ? QStringLiteral("true") : QStringLiteral("false")
+    ));
+    return success;
 #else
     if (!hasBitsailorCollection) {
+        AuthLogger::log(QStringLiteral("SecretsHandler: storeData collection missing, creating before storing name=%1").arg(name));
         createCollection();
         // todo handle case where collection isn't created
     }
 
     auto existingSecret = getSecret(name);
     if (isSecretValid(existingSecret)) {
+        AuthLogger::log(QStringLiteral("SecretsHandler: storeData replacing existing secret name=%1").arg(name));
         deleteSecret(name);
     }
 
@@ -273,13 +325,23 @@ bool SecretsHandler::storeData(const QString &name, const QString &data)
     ssr.startRequest();
     ssr.waitForFinished();
 
-    return isResultValid(ssr);
+    const auto success = isResultValid(ssr);
+    AuthLogger::log(QStringLiteral("SecretsHandler: storeData result name=%1 success=%2").arg(
+        name,
+        success ? QStringLiteral("true") : QStringLiteral("false")
+    ));
+    return success;
 #endif
 }
 
 Secret SecretsHandler::getSecret(const QString &name)
 {
+    AuthLogger::log(QStringLiteral("SecretsHandler: getSecret requested name=%1 collectionPresent=%2").arg(
+        name,
+        hasBitsailorCollection ? QStringLiteral("true") : QStringLiteral("false")
+    ));
     if (!hasBitsailorCollection) {
+        AuthLogger::log(QStringLiteral("SecretsHandler: getSecret skipped because collection is missing name=%1").arg(name));
         return Secret();
     }
 
@@ -292,19 +354,32 @@ Secret SecretsHandler::getSecret(const QString &name)
 
     auto success = isResultValid(ssr);
     if (!success) {
+        AuthLogger::log(QStringLiteral("SecretsHandler: getSecret failed name=%1").arg(name));
         return Secret();
     }
 
+    AuthLogger::log(QStringLiteral("SecretsHandler: getSecret result name=%1 valid=%2 dataPresent=%3 dataBytes=%4").arg(
+        name,
+        isSecretValid(ssr.secret()) ? QStringLiteral("true") : QStringLiteral("false"),
+        ssr.secret().data().isEmpty() ? QStringLiteral("false") : QStringLiteral("true"),
+        QString::number(ssr.secret().data().size())
+    ));
     return ssr.secret();
 }
 
 bool SecretsHandler::deleteSecret(const QString &name)
 {
+    AuthLogger::log(QStringLiteral("SecretsHandler: deleteSecret requested name=%1").arg(name));
 #ifdef QT_DEBUG
     auto &settings = insecureEmulatorSecrets();
     settings.remove(name);
     settings.sync();
-    return settings.status() == QSettings::NoError;
+    const auto success = settings.status() == QSettings::NoError;
+    AuthLogger::log(QStringLiteral("SecretsHandler: deleteSecret debug result name=%1 success=%2").arg(
+        name,
+        success ? QStringLiteral("true") : QStringLiteral("false")
+    ));
+    return success;
 #else
     DeleteSecretRequest dsr;
     dsr.setManager(secretManager);
@@ -313,26 +388,46 @@ bool SecretsHandler::deleteSecret(const QString &name)
     dsr.startRequest();
     dsr.waitForFinished();
 
-    return isResultValid(dsr);
+    const auto success = isResultValid(dsr);
+    AuthLogger::log(QStringLiteral("SecretsHandler: deleteSecret result name=%1 success=%2").arg(
+        name,
+        success ? QStringLiteral("true") : QStringLiteral("false")
+    ));
+    return success;
 #endif
 }
 
 QString SecretsHandler::getData(const QString &name)
 {
+    AuthLogger::log(QStringLiteral("SecretsHandler: getData requested name=%1").arg(name));
 #ifdef QT_DEBUG
-    return insecureEmulatorSecrets().value(name).toString();
+    const auto data = insecureEmulatorSecrets().value(name).toString();
+    AuthLogger::log(QStringLiteral("SecretsHandler: getData debug result name=%1 present=%2 bytes=%3").arg(
+        name,
+        data.isEmpty() ? QStringLiteral("false") : QStringLiteral("true"),
+        QString::number(data.toUtf8().size())
+    ));
+    return data;
 #else
     auto secret = getSecret(name);
     if (!isSecretValid(secret)) {
+        AuthLogger::log(QStringLiteral("SecretsHandler: getData result name=%1 valid=false").arg(name));
         return QString();
     }
 
-    return QString::fromUtf8(secret.data());
+    const auto data = QString::fromUtf8(secret.data());
+    AuthLogger::log(QStringLiteral("SecretsHandler: getData result name=%1 valid=true present=%2 bytes=%3").arg(
+        name,
+        data.isEmpty() ? QStringLiteral("false") : QStringLiteral("true"),
+        QString::number(secret.data().size())
+    ));
+    return data;
 #endif
 }
 
 bool SecretsHandler::createCollection()
 {
+    AuthLogger::log(QStringLiteral("SecretsHandler: createCollection requested name=%1").arg(collectionName));
     CreateCollectionRequest ccr;
     ccr.setManager(secretManager);
     ccr.setCollectionName(collectionName);
@@ -347,6 +442,10 @@ bool SecretsHandler::createCollection()
     auto success = isResultValid(ccr);
     hasBitsailorCollection = success;
 
+    AuthLogger::log(QStringLiteral("SecretsHandler: createCollection result success=%1 collectionPresent=%2").arg(
+        success ? QStringLiteral("true") : QStringLiteral("false"),
+        hasBitsailorCollection ? QStringLiteral("true") : QStringLiteral("false")
+    ));
     return success;
 }
 
