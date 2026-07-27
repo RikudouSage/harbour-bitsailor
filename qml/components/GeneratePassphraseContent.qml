@@ -19,11 +19,7 @@ SilicaFlickable {
     contentHeight: innerContent.height
 
     function generatePassphrase() {
-        if (settings.useApi) {
-            api.generatePassphrase(wordsCount, capitalize, includeNumber, separator);
-        } else {
-            cli.generatePassphrase(wordsCount, capitalize, includeNumber, separator);
-        }
+        core.generatePassphrase(wordsCount, capitalize, includeNumber, separator);
         loadingDelayTimer.restart();
     }
 
@@ -48,18 +44,15 @@ SilicaFlickable {
         running: root.loading
     }
 
-    BitwardenApi {
-        id: api
+    Connections {
+        target: core
 
-        onPassphraseGenerated: {
-            root.onPassphraseGenerated(passphrase);
-        }
-    }
+        onPassphraseGeneratingFinished: {
+            if (!success) {
+                console.error("failed generating passphrase"); // todo
+                return;
+            }
 
-    BitwardenCli {
-        id: cli
-
-        onPassphraseGenerated: {
             root.onPassphraseGenerated(passphrase);
         }
     }

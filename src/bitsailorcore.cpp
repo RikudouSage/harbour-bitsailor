@@ -1,6 +1,7 @@
 #include "bitsailorcore.h"
 
 #include <cstring>
+#include <cstdlib>
 #include <QDebug>
 #include <QJsonDocument>
 #include <QtConcurrent>
@@ -267,6 +268,82 @@ void BitSailorCore::fetchItem(const QString &id)
         BitwardenFreeItem(&item);
 
         emit itemFetchFinished(true, result);
+    });
+}
+
+void BitSailorCore::generatePassword(
+        bool lowercase,
+        bool uppercase,
+        bool numbers,
+        bool special,
+        bool avoidAmbiguous,
+        int minimumNumbers,
+        int minimumSpecial,
+        int length
+) {
+    QtConcurrent::run([=] {
+        bool lowercaseCopy = lowercase;
+        bool uppercaseCopy = uppercase;
+        bool numbersCopy = numbers;
+        bool specialCopy = special;
+        bool avoidAmbiguousCopy = avoidAmbiguous;
+        int minimumNumbersCopy = minimumNumbers;
+        int minimumSpecialCopy = minimumSpecial;
+        int lengthCopy = length;
+
+        BitwardenPasswordGeneratorRequest req = {
+            .lowercase = &lowercaseCopy,
+            .uppercase = &uppercaseCopy,
+            .numbers = &numbersCopy,
+            .special = &specialCopy,
+
+            .length = &lengthCopy,
+
+            .avoidAmbiguous = &avoidAmbiguousCopy,
+            .minNumber = &minimumNumbersCopy,
+            .minSpecial = &minimumSpecialCopy,
+        };
+
+        char* out = nullptr;
+        if (BitwardenGeneratePassword(client, req, &out) != BitwardenSuccess) {
+            qWarning() << "Failed generating password: " << getLastError();
+            emit passwordGeneratingFinished(false, "");
+            return;
+        }
+
+        auto outStr = QString::fromUtf8(out);
+        std::free(out);
+
+        emit passwordGeneratingFinished(true, outStr);
+    });
+}
+
+void BitSailorCore::generatePassphrase(uint wordsCount, bool capitalize, bool includeNumber, const QString &separator)
+{
+    QtConcurrent::run([=] {
+        int wordsCountCopy = wordsCount;
+        bool capitalizeCopy = capitalize;
+        bool includeNumberCopy = includeNumber;
+        QByteArray separatorCopy = separator.toUtf8();
+
+        BitwardenPassphraseGeneratorRequest req = {
+            .numWords = &wordsCountCopy,
+            .wordSeparator = separatorCopy.data(),
+            .capitalize = &capitalizeCopy,
+            .includeNumber = &includeNumberCopy,
+        };
+
+        char *out = nullptr;
+        if (BitwardenGeneratePassphrase(client, req, &out) != BitwardenSuccess) {
+            qWarning() << "Failed generating passphrase: " << getLastError();
+            emit passphraseGeneratingFinished(false, "");
+            return;
+        }
+
+        auto outStr = QString::fromUtf8(out);
+        std::free(out);
+
+        emit passphraseGeneratingFinished(true, outStr);
     });
 }
 

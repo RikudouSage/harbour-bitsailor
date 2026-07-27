@@ -65,6 +65,9 @@ public:
     Q_INVOKABLE void deleteItem(const QString &id, bool emitEvents = true);
     Q_INVOKABLE void fetchItem(const QString &id);
 
+    Q_INVOKABLE void generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, bool avoidAmbiguous, int minimumNumbers, int minimumSpecial, int length);
+    Q_INVOKABLE void generatePassphrase(uint wordsCount, bool capitalize, bool includeNumber, const QString &separator);
+
 signals:
     void serverUrlChanged(bool success);
     void serverUrlResolved(const QString &url);
@@ -86,6 +89,9 @@ signals:
     void sendsResolved(bool success, const QJsonArray &items);
     void deletingFinished(bool success);
     void itemFetchFinished(bool success, const QJsonObject &item);
+
+    void passwordGeneratingFinished(bool success, const QString &password);
+    void passphraseGeneratingFinished(bool success, const QString &passphrase);
 
 private:
     const QString getLastError() const;

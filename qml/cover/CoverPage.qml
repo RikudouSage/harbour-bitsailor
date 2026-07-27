@@ -59,7 +59,7 @@ CoverBackground {
             visible: item.type === BitSailorCore.ItemTypeLogin && item && item.login
             source: "file:///usr/share/harbour-bitsailor/icons/logo-black-white.png"
             anchors.horizontalCenter: parent.horizontalCenter
-            sourceSize: item.login.username && item.login.password && item.login.username && item.login.totp ? '80x80' : '40x40'
+            sourceSize: item && item.login && item.login.username && item.login.password && item.login.username && item.login.totp ? '80x80' : '40x40'
         }
         Icon {
             visible: item.type === BitSailorCore.ItemTypeSecureNote
