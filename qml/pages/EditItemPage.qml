@@ -5,7 +5,7 @@ import cz.chrastecky.bitsailor 1.0
 import "../components" as Components
 
 Dialog {
-    property int type: BitwardenCli.NoType
+    property int type: BitSailorCore.ItemTypeNone
     property bool typeEditable: true
     //: Page title
     property string acceptText: qsTr("Add item")
@@ -75,7 +75,7 @@ Dialog {
     id: page
     allowedOrientations: Orientation.All
 
-    canAccept: name.text && type !== BitwardenCli.NoType
+    canAccept: name.text && type !== BitSailorCore.ItemTypeNone
 
     SilicaFlickable {
         anchors.fill: parent
@@ -97,15 +97,15 @@ Dialog {
 
                 property var itemData: [
                     //: Item type
-                    {text: qsTr("-- choose type --"), value: BitwardenCli.NoType},
+                    {text: qsTr("-- choose type --"), value: BitSailorCore.ItemTypeNone},
                     //: Item type
-                    {text: qsTr("Login"), value: BitwardenCli.Login},
+                    {text: qsTr("Login"), value: BitSailorCore.ItemTypeLogin},
                     //: Item type
-                    {text: qsTr("Card"), value: BitwardenCli.Card},
+                    {text: qsTr("Card"), value: BitSailorCore.ItemTypeCard},
                     //: Item type
-                    {text: qsTr("Note"), value: BitwardenCli.SecureNote},
+                    {text: qsTr("Note"), value: BitSailorCore.ItemTypeSecureNote},
                     //: Item type
-                    //{text: qsTr("Identity"), value: BitwardenCli.Identity},
+                    //{text: qsTr("Identity"), value: BitSailorCore.ItemTypeIdentity},
                 ]
 
                 label: qsTr("Type")
@@ -133,7 +133,7 @@ Dialog {
             Column {
                 id: mainColumn
                 width: parent.width
-                visible: type !== BitwardenCli.NoType
+                visible: type !== BitSailorCore.ItemTypeNone
 
                 SectionHeader {
                     text: qsTr("Item information")
@@ -148,7 +148,7 @@ Dialog {
                 TextField {
                     id: loginUsername
                     label: qsTr("Username")
-                    visible: type === BitwardenCli.Login
+                    visible: type === BitSailorCore.ItemTypeLogin
                 }
 
                 TextField {
@@ -156,7 +156,7 @@ Dialog {
 
                     id: loginPassword
                     label: qsTr("Password")
-                    visible: type === BitwardenCli.Login
+                    visible: type === BitSailorCore.ItemTypeLogin
                     echoMode: passwordVisible ? TextInput.Normal : TextInput.Password
 
                     rightItem: Row {
@@ -187,12 +187,12 @@ Dialog {
                 TextField {
                     id: loginTotp
                     label: qsTr("Authenticator key (TOTP)")
-                    visible: type === BitwardenCli.Login
+                    visible: type === BitSailorCore.ItemTypeLogin
                 }
 
                 SectionHeader {
                     text: qsTr("URIs")
-                    visible: type === BitwardenCli.Login
+                    visible: type === BitSailorCore.ItemTypeLogin
                 }
 
                 ListModel {
@@ -200,7 +200,7 @@ Dialog {
 
                     ListElement {
                         value: ''
-                        matchType: BitwardenCli.NoType
+                        matchType: BitSailorCore.UriMatchTypeNone
                     }
                 }
 
@@ -217,7 +217,7 @@ Dialog {
                             id: uriField
                             text: typeof uri !== 'undefined' ? uri.value : ''
                             label: qsTr("URI %1").arg(index + 1)
-                            visible: page.type === BitwardenCli.Login
+                            visible: page.type === BitSailorCore.ItemTypeLogin
 
                             onTextChanged: {
                                 uri.value = text;
@@ -251,19 +251,19 @@ Dialog {
 
                             property var itemData: [
                                 //: URI match type
-                                {text: qsTr("Default match detection"), value: BitwardenCli.NoType},
+                                {text: qsTr("Default match detection"), value: BitSailorCore.UriMatchTypeNone},
                                 //: URI match type
-                                {text: qsTr("Base domain"), value: BitwardenCli.Domain},
+                                {text: qsTr("Base domain"), value: BitSailorCore.UriMatchTypeDomain},
                                 //: URI match type
-                                {text: qsTr("Host"), value: BitwardenCli.Host},
+                                {text: qsTr("Host"), value: BitSailorCore.UriMatchTypeHost},
                                 //: URI match type
-                                {text: qsTr("Starts with"), value: BitwardenCli.StartsWith},
+                                {text: qsTr("Starts with"), value: BitSailorCore.UriMatchTypeStartsWith},
                                 //: URI match type
-                                {text: qsTr("Exact"), value: BitwardenCli.Exact},
+                                {text: qsTr("Exact"), value: BitSailorCore.UriMatchTypeExact},
                                 //: URI match type
-                                {text: qsTr("Regular expression"), value: BitwardenCli.RegularExpression},
+                                {text: qsTr("Regular expression"), value: BitSailorCore.UriMatchTypeRegularExpression},
                                 //: URI match type
-                                {text: qsTr("Never"), value: BitwardenCli.Never},
+                                {text: qsTr("Never"), value: BitSailorCore.UriMatchTypeNever},
                             ]
 
                             menu: ContextMenu {
@@ -293,26 +293,26 @@ Dialog {
                 Button {
                     text: qsTr("New URI")
                     x: Theme.horizontalPageMargin
-                    visible: type === BitwardenCli.Login
+                    visible: type === BitSailorCore.ItemTypeLogin
                     width: parent.width - Theme.horizontalPageMargin * 2
                     onClicked: {
-                        urisModel.append({value: '', matchType: BitwardenCli.NoType});
+                        urisModel.append({value: '', matchType: BitSailorCore.UriMatchTypeNone});
                     }
                 }
 
                 SectionHeader {
-                    visible: type === BitwardenCli.Login
+                    visible: type === BitSailorCore.ItemTypeLogin
                     text: qsTr("Notes")
                 }
 
                 TextArea {
                     id: loginNotes
-                    visible: type === BitwardenCli.Login
+                    visible: type === BitSailorCore.ItemTypeLogin
                     label: qsTr("Note")
                 }
 
                 /*SectionHeader {
-                    visible: type === BitwardenCli.Login
+                    visible: type === BitSailorCore.ItemTypeLogin
                     text: qsTr("Custom fields")
                 }
 
@@ -328,15 +328,15 @@ Dialog {
                 ComboBox {
                     id: newFieldTypeSelect
                     label: qsTr("New field type")
-                    visible: type === BitwardenCli.Login
+                    visible: type === BitSailorCore.ItemTypeLogin
 
                     property var itemData: [
                         //: Custom field type
-                        {text: qsTr("Text"), value: BitwardenCli.FieldTypeText},
+                        {text: qsTr("Text"), value: BitSailorCore.FieldTypeText},
                         //: Custom field type
-                        {text: qsTr("Hidden"), value: BitwardenCli.FieldTypeHidden},
+                        {text: qsTr("Hidden"), value: BitSailorCore.FieldTypeHidden},
                         //: Custom field type
-                        {text: qsTr("Boolean"), value: BitwardenCli.FieldTypeBoolean},
+                        {text: qsTr("Boolean"), value: BitSailorCore.FieldTypeCheckbox},
                     ]
 
                     menu: ContextMenu {
@@ -349,7 +349,7 @@ Dialog {
                     text: qsTr("Add new field")
                     x: Theme.horizontalPageMargin
                     width: parent.width - Theme.horizontalPageMargin * 2
-                    visible: type === BitwardenCli.Login
+                    visible: type === BitSailorCore.ItemTypeLogin
 
                     onClicked: {
                         customFieldsModel.append({fieldType: newFieldTypeSelect.currentItem.value, value: ''});
@@ -359,13 +359,13 @@ Dialog {
                 TextField {
                     id: cardCardholderName
                     label: qsTr("Cardholder Name")
-                    visible: type === BitwardenCli.Card
+                    visible: type === BitSailorCore.ItemTypeCard
                 }
 
                 ComboBox {
                     id: cardBrand
                     label: qsTr("Brand")
-                    visible: type === BitwardenCli.Card
+                    visible: type === BitSailorCore.ItemTypeCard
                     menu: ContextMenu {
                         //: Choose a card brand from a ComboBox
                         Components.StringValueMenuItem {text: qsTr("-- choose --"); value: ''}
@@ -387,7 +387,7 @@ Dialog {
 
                     id: cardNumber
                     label: qsTr("Card Number")
-                    visible: type === BitwardenCli.Card
+                    visible: type === BitSailorCore.ItemTypeCard
                     echoMode: passwordVisible ? TextInput.Normal : TextInput.Password
 
                     rightItem: Row {
@@ -403,7 +403,7 @@ Dialog {
                 ComboBox {
                     id: cardExpirationMonth
                     label: qsTr("Expiration month")
-                    visible: type === BitwardenCli.Card
+                    visible: type === BitSailorCore.ItemTypeCard
 
                     menu: ContextMenu {
                         Components.StringValueMenuItem {text: '01'}
@@ -424,7 +424,7 @@ Dialog {
                 TextField {
                     id: cardExpirationYear
                     label: qsTr("Expiration year")
-                    visible: type === BitwardenCli.Card
+                    visible: type === BitSailorCore.ItemTypeCard
                     inputMethodHints: Qt.ImhDigitsOnly
                     validator: IntValidator {
                         bottom: 2000
@@ -437,7 +437,7 @@ Dialog {
 
                     id: cardCvv
                     label: qsTr("Security Code")
-                    visible: type === BitwardenCli.Card
+                    visible: type === BitSailorCore.ItemTypeCard
                     echoMode: passwordVisible ? TextInput.Normal : TextInput.Password
                     inputMethodHints: Qt.ImhDigitsOnly
                     validator: RegExpValidator {
@@ -456,7 +456,7 @@ Dialog {
 
                 TextArea {
                     id: secureNoteNote
-                    visible: type === BitwardenCli.SecureNote
+                    visible: type === BitSailorCore.ItemTypeSecureNote
                     label: qsTr("Note")
                 }
             }

@@ -6,6 +6,7 @@
 #include <QObject>
 #include <QUuid>
 #include <QJsonArray>
+#include <QJsonObject>
 
 #include "appsettings.h"
 #include "secretshandler.h"
@@ -41,11 +42,21 @@ public:
         FieldTypeCheckbox = ::BitwardenFieldTypeCheckbox,
         FieldTypeLinkedId = ::BitwardenFieldTypeLinkedId,
     };
+    enum UriMatchType {
+        UriMatchTypeNone = -1,
+        UriMatchTypeDomain = ::BitwardenUriMatchTypeDomain,
+        UriMatchTypeHost = ::BitwardenUriMatchTypeHost,
+        UriMatchTypeStartsWith = ::BitwardenUriMatchTypeStartsWith,
+        UriMatchTypeExact = ::BitwardenUriMatchTypeExact,
+        UriMatchTypeRegularExpression = ::BitwardenUriMatchTypeRegularExpression,
+        UriMatchTypeNever = ::BitwardenUriMatchTypeNever,
+    };
 
     Q_ENUM(SessionStatus)
     Q_ENUM(ItemType)
     Q_ENUM(SendType)
     Q_ENUM(FieldType)
+    Q_ENUM(UriMatchType)
 
     explicit BitSailorCore(AppSettings *settings, SecretsHandler *secrets, QObject *parent = nullptr);
     explicit BitSailorCore(QObject *parent = nullptr);
@@ -71,6 +82,7 @@ public:
     Q_INVOKABLE void fetchSends();
     Q_INVOKABLE void deleteItem(const QString &id, bool emitEvents = true);
     Q_INVOKABLE void fetchItem(const QString &id);
+    Q_INVOKABLE void updateItem(const QString &id, const QJsonObject &item);
 
     Q_INVOKABLE void generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, bool avoidAmbiguous, int minimumNumbers, int minimumSpecial, int length);
     Q_INVOKABLE void generatePassphrase(uint wordsCount, bool capitalize, bool includeNumber, const QString &separator);
@@ -96,6 +108,7 @@ signals:
     void sendsResolved(bool success, const QJsonArray &items);
     void deletingFinished(bool success);
     void itemFetchFinished(bool success, const QJsonObject &item);
+    void itemUpdated(bool success);
 
     void passwordGeneratingFinished(bool success, const QString &password);
     void passphraseGeneratingFinished(bool success, const QString &passphrase);
@@ -120,6 +133,7 @@ private:
     void login(const std::function<BitwardenResult()> &loginCallable);
     bool syncRaw();
     void exportSession(QString *error);
+    void exportVault(QString *error);
     QJsonObject mapItem(const BitwardenItem &item) const;
 
 private:
@@ -141,5 +155,6 @@ Q_DECLARE_METATYPE(BitSailorCore::SessionStatus)
 Q_DECLARE_METATYPE(BitSailorCore::ItemType)
 Q_DECLARE_METATYPE(BitSailorCore::SendType)
 Q_DECLARE_METATYPE(BitSailorCore::FieldType)
+Q_DECLARE_METATYPE(BitSailorCore::UriMatchType)
 
 #endif // BITSAILORCORE_H

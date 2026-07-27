@@ -651,6 +651,10 @@
         <extracomment>Accept button for updating an item</extracomment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>There was an error when updating the item</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LoginCheckPage</name>

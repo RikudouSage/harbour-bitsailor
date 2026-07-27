@@ -74,9 +74,18 @@ Page {
             page.onItemFetched(item);
         }
 
-        /*onItemUpdated: {
-            reloadPage();
-        }*/
+        onItemUpdated: {
+            if (page.status !== PageStatus.Active) {
+                return;
+            }
+
+            if (success) {
+                reloadPage();
+            } else {
+                loaded = true;
+                errorText = qsTr("There was an error when updating the item");
+            }
+        }
     }
 
     BusyLabel {
@@ -154,7 +163,8 @@ Page {
                         object.notes = dialog.loginNotesValue || dialog.secureNoteNoteValue || null;
 
                         loaded = false;
-                        //cli.updateItem(page.itemId, Qt.btoa(JSON.stringify(object)));
+                        errorText = "";
+                        core.updateItem(page.itemId, object);
                     });
                 }
             }

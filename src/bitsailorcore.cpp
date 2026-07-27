@@ -2,6 +2,7 @@
 
 #include <cstring>
 #include <cstdlib>
+#include <vector>
 #include <QDebug>
 #include <QJsonDocument>
 #include <QtConcurrent>
@@ -9,12 +10,122 @@
 
 #include "consts.h"
 
+namespace {
+
+char *jsonStringOrNull(const QJsonObject &object, const QString &key, QByteArray *storage)
+{
+    const auto value = object.value(key);
+    if (value.isUndefined() || value.isNull()) {
+        return nullptr;
+    }
+
+    *storage = value.toString().toUtf8();
+    return storage->data();
+}
+
+struct BitwardenItemInput
+{
+    QByteArray name;
+    QByteArray notes;
+    QByteArray loginUsername;
+    QByteArray loginPassword;
+    QByteArray loginTotp;
+    std::vector<QByteArray> loginUriValues;
+    std::vector<BitwardenItemLoginUri> loginUris;
+    QByteArray cardCardholderName;
+    QByteArray cardBrand;
+    QByteArray cardNumber;
+    QByteArray cardExpirationMonth;
+    QByteArray cardExpirationYear;
+    QByteArray cardCode;
+    BitwardenItemLogin login = {};
+    BitwardenItemCard card = {};
+    BitwardenItemSecureNote secureNote = {};
+    BitwardenItem item = {};
+
+    BitwardenItemInput(const UUID &id, const QJsonObject &object)
+    {
+        item.id = id;
+        item.type = static_cast<BitwardenItemType>(object.value("type").toInt());
+        item.favorite = object.value("favorite").toBool(false);
+        item.reprompt = object.value("reprompt").toBool(false);
+
+        name = object.value("name").toString().toUtf8();
+        item.name = name.data();
+        item.notes = jsonStringOrNull(object, "notes", &notes);
+
+        switch (item.type) {
+        case BitwardenItemTypeLogin:
+            fillLogin(object.value("login").toObject());
+            item.login = &login;
+            break;
+        case BitwardenItemTypeSecureNote:
+            fillSecureNote(object.value("secureNote").toObject());
+            item.secureNote = &secureNote;
+            break;
+        case BitwardenItemTypeCard:
+            fillCard(object.value("card").toObject());
+            item.card = &card;
+            break;
+        default:
+            break;
+        }
+    }
+
+    void fillLogin(const QJsonObject &object)
+    {
+        login.username = jsonStringOrNull(object, "username", &loginUsername);
+        login.password = jsonStringOrNull(object, "password", &loginPassword);
+        login.totp = jsonStringOrNull(object, "totp", &loginTotp);
+
+        const auto uris = object.value("uris").toArray();
+        loginUriValues.reserve(static_cast<size_t>(uris.size()));
+        loginUris.reserve(static_cast<size_t>(uris.size()));
+        for (const auto &uriValue : uris) {
+            const auto uriObject = uriValue.toObject();
+            const auto uri = uriObject.value("uri").toString();
+            if (uri.isEmpty()) {
+                continue;
+            }
+
+            loginUriValues.push_back(uri.toUtf8());
+            BitwardenItemLoginUri outUri = {};
+            outUri.uri = loginUriValues.back().data();
+            outUri.match = static_cast<BitwardenUriMatchType>(uriObject.value("match").toInt());
+            loginUris.push_back(outUri);
+        }
+
+        if (!loginUris.empty()) {
+            login.uris.items = loginUris.data();
+            login.uris.len = loginUris.size();
+        }
+    }
+
+    void fillSecureNote(const QJsonObject &object)
+    {
+        secureNote.type = object.value("type").toInt(0);
+    }
+
+    void fillCard(const QJsonObject &object)
+    {
+        card.cardholderName = jsonStringOrNull(object, "cardholderName", &cardCardholderName);
+        card.brand = jsonStringOrNull(object, "brand", &cardBrand);
+        card.number = jsonStringOrNull(object, "number", &cardNumber);
+        card.expirationMonth = jsonStringOrNull(object, "expMonth", &cardExpirationMonth);
+        card.expirationYear = jsonStringOrNull(object, "expYear", &cardExpirationYear);
+        card.code = jsonStringOrNull(object, "code", &cardCode);
+    }
+};
+
+}
+
 BitSailorCore::BitSailorCore(AppSettings *settings, SecretsHandler *secrets, QObject *parent) : QObject(parent)
 {
     qRegisterMetaType<BitSailorCore::SessionStatus>("SessionStatus");
     qRegisterMetaType<BitSailorCore::ItemType>("ItemType");
     qRegisterMetaType<BitSailorCore::SendType>("SendType");
     qRegisterMetaType<BitSailorCore::FieldType>("FieldType");
+    qRegisterMetaType<BitSailorCore::UriMatchType>("UriMatchType");
 
     this->settings = settings;
     this->secrets = secrets;
@@ -269,6 +380,28 @@ void BitSailorCore::fetchItem(const QString &id)
         BitwardenFreeItem(&item);
 
         emit itemFetchFinished(true, result);
+    });
+}
+
+void BitSailorCore::updateItem(const QString &id, const QJsonObject &item)
+{
+    QtConcurrent::run([=] {
+        auto input = BitwardenItemInput(uuidToCoreUuid(qUuidFromString(id)), item);
+        if (BitwardenUpdateItem(vault, ctx, session, &input.item, nullptr) != BitwardenSuccess) {
+            qWarning() << "Failed updating item: " << getLastError();
+            emit itemUpdated(false);
+            return;
+        }
+
+        QString exportError;
+        exportVault(&exportError);
+        if (!exportError.isNull()) {
+            qWarning() << "Failed exporting vault after item update: " << exportError;
+            emit itemUpdated(false);
+            return;
+        }
+
+        emit itemUpdated(true);
     });
 }
 
@@ -545,11 +678,12 @@ QString BitSailorCore::getEmail()
             qWarning() << "Failed syncing";
             return QString();
         }
+        if (BitwardenGetEmail(vault, &out) != BitwardenSuccess) {
+            qWarning() << "Failed getting email even after sync";
+            return QString();
+        }
     }
-    if (BitwardenGetEmail(vault, &out) != BitwardenSuccess) {
-        qWarning() << "Failed getting email even after sync";
-        return QString();
-    }
+
     const auto result = QString::fromUtf8(out);
     free(out);
 
@@ -595,21 +729,13 @@ bool BitSailorCore::syncRaw()
         return false;
     }
 
-    char *out = nullptr;
-    if (BitwardenExportEncryptedVault(vault, &out) != BitwardenSuccess) {
-        qWarning() << "Failed exporting: " << getLastError();
-        return false;
-    }
-    QJsonParseError err;
-    auto json = QJsonDocument::fromJson(QByteArray(out), &err);
-    free(out);
-
-    if (err.error) {
-        qWarning() << "Failed parsing exported vault JSON: " << err.errorString();
+    QString exportError;
+    exportVault(&exportError);
+    if (!exportError.isNull()) {
+        qWarning() << "Failed exporting vault after sync: " << exportError;
         return false;
     }
 
-    secrets->setEncryptedVault(json.object());
     return true;
 }
 
@@ -618,7 +744,7 @@ void BitSailorCore::exportSession(QString *error)
     char* rawExport = nullptr;
     if (BitwardenExportSession(session, &rawExport) != BitwardenSuccess) {
         *error = getLastError();
-        qWarning() << "Exporting session failed: " << error;
+        qWarning() << "Exporting session failed: " << *error;
         return;
     }
     QJsonParseError err;
@@ -627,11 +753,33 @@ void BitSailorCore::exportSession(QString *error)
 
     if (err.error) {
         *error = err.errorString();
-        qWarning() << "Failed parsing exported session JSON: " << error;
+        qWarning() << "Failed parsing exported session JSON: " << *error;
         return;
     }
 
     secrets->setSessionJson(sessionJson.object());
+}
+
+void BitSailorCore::exportVault(QString *error)
+{
+    char *rawExport = nullptr;
+    if (BitwardenExportEncryptedVault(vault, &rawExport) != BitwardenSuccess) {
+        *error = getLastError();
+        qWarning() << "Exporting vault failed: " << *error;
+        return;
+    }
+
+    QJsonParseError err;
+    const auto vaultJson = QJsonDocument::fromJson(QByteArray(rawExport), &err);
+    free(rawExport);
+
+    if (err.error || !vaultJson.isObject()) {
+        *error = err.error ? err.errorString() : QString("Exported vault JSON is not an object");
+        qWarning() << "Failed parsing exported vault JSON: " << *error;
+        return;
+    }
+
+    secrets->setEncryptedVault(vaultJson.object());
 }
 
 QJsonObject BitSailorCore::mapItem(const BitwardenItem &item) const
@@ -653,6 +801,8 @@ QJsonObject BitSailorCore::mapItem(const BitwardenItem &item) const
                 auto uri = item.login->uris.items[j];
                 QJsonObject outUri;
                 outUri.insert("uri", uri.uri);
+                outUri.insert("match", uri.match);
+                uris.append(outUri);
             }
             login.insert("uris", uris);
         }
