@@ -49,7 +49,7 @@ Page {
         target: core
 
         onServerUrlResolved: {
-            page.onServerUrlChanged(url);
+            page.onServerUrlResolved(url);
         }
 
         onServerUrlChanged: {

@@ -63,6 +63,7 @@ public:
     Q_INVOKABLE void fetchItems();
     Q_INVOKABLE void fetchSends();
     Q_INVOKABLE void deleteItem(const QString &id, bool emitEvents = true);
+    Q_INVOKABLE void fetchItem(const QString &id);
 
 signals:
     void serverUrlChanged(bool success);
@@ -84,6 +85,7 @@ signals:
     void itemResolvingFailed();
     void sendsResolved(bool success, const QJsonArray &items);
     void deletingFinished(bool success);
+    void itemFetchFinished(bool success, const QJsonObject &item);
 
 private:
     const QString getLastError() const;
@@ -103,6 +105,7 @@ private:
     void login(const std::function<BitwardenResult()> &loginCallable);
     bool syncRaw();
     void exportSession(QString *error);
+    QJsonObject mapItem(const BitwardenItem &item) const;
 
 private:
     bool valid = true;

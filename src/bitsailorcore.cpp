@@ -201,38 +201,7 @@ void BitSailorCore::fetchItems()
         QJsonArray result;
         for (size_t i = 0; i < items.len; ++i) {
             auto item = items.items[i];
-            QJsonObject outItem;
-            outItem.insert("type", item.type);
-            outItem.insert("name", item.name);
-            outItem.insert("notes", item.notes);
-
-            if (item.type == BitwardenItemTypeLogin) {
-                QJsonObject login;
-                login.insert("username", item.login->username);
-                login.insert("password", item.login->password);
-                login.insert("totp", item.login->totp);
-                if (item.login->uris.len > 0) {
-                    QJsonArray uris;
-                    for (size_t j = 0; j < item.login->uris.len; ++j) {
-                        auto uri = item.login->uris.items[j];
-                        QJsonObject outUri;
-                        outUri.insert("uri", uri.uri);
-                    }
-                    login.insert("uris", uris);
-                }
-
-                outItem.insert("login", login);
-            } else if (item.type == BitwardenItemTypeCard) {
-                QJsonObject card;
-                card.insert("cardholderName", item.card->cardholderName);
-                card.insert("brand", item.card->brand);
-                card.insert("number", item.card->number);
-                card.insert("expMonth", item.card->expirationMonth);
-                card.insert("expYear", item.card->expirationYear);
-                card.insert("code", item.card->code);
-                outItem.insert("card", card);
-            }
-            result.append(outItem);
+            result.append(mapItem(item));
         }
         BitwardenFreeItems(&items);
         emit itemsResolved(result);
@@ -280,6 +249,24 @@ void BitSailorCore::deleteItem(const QString &id, bool emitEvents)
         if (emitEvents) {
             emit deletingFinished(true);
         }
+    });
+}
+
+void BitSailorCore::fetchItem(const QString &id)
+{
+    QtConcurrent::run([=] {
+        auto uuid = uuidToCoreUuid(qUuidFromString(id));
+        BitwardenItem item;
+        if (BitwardenGetItem(vault, ctx, session, uuid, &item) != BitwardenSuccess) {
+            qWarning() << "Failed fetching item: " << getLastError();
+            emit itemFetchFinished(false, {});
+            return;
+        }
+
+        auto result = mapItem(item);
+        BitwardenFreeItem(&item);
+
+        emit itemFetchFinished(true, result);
     });
 }
 
@@ -565,4 +552,64 @@ void BitSailorCore::exportSession(QString *error)
     }
 
     secrets->setSessionJson(sessionJson.object());
+}
+
+QJsonObject BitSailorCore::mapItem(const BitwardenItem &item) const
+{
+    QJsonObject outItem;
+    outItem.insert("id", uuidToString(item.id));
+    outItem.insert("type", item.type);
+    outItem.insert("name", item.name);
+    outItem.insert("notes", item.notes);
+
+    if (item.type == BitwardenItemTypeLogin) {
+        QJsonObject login;
+        login.insert("username", item.login->username);
+        login.insert("password", item.login->password);
+        login.insert("totp", item.login->totp);
+        if (item.login->uris.len > 0) {
+            QJsonArray uris;
+            for (size_t j = 0; j < item.login->uris.len; ++j) {
+                auto uri = item.login->uris.items[j];
+                QJsonObject outUri;
+                outUri.insert("uri", uri.uri);
+            }
+            login.insert("uris", uris);
+        }
+
+        outItem.insert("login", login);
+    } else if (item.type == BitwardenItemTypeCard) {
+        QJsonObject card;
+        card.insert("cardholderName", item.card->cardholderName);
+        card.insert("brand", item.card->brand);
+        card.insert("number", item.card->number);
+        card.insert("expMonth", item.card->expirationMonth);
+        card.insert("expYear", item.card->expirationYear);
+        card.insert("code", item.card->code);
+        outItem.insert("card", card);
+    } else if(item.type == BitwardenItemTypeIdentity) {
+        QJsonObject identity;
+        identity.insert("title", item.identity->title);
+        identity.insert("firstName", item.identity->firstName);
+        identity.insert("middleName", item.identity->middleName);
+        identity.insert("lastName", item.identity->lastName);
+        identity.insert("username", item.identity->username);
+        identity.insert("company", item.identity->company);
+        identity.insert("ssn", item.identity->ssn);
+        identity.insert("passportNumber", item.identity->passportNumber);
+        identity.insert("licenseNumber", ""); // todo license number?
+        identity.insert("email", item.identity->email);
+        identity.insert("phone", item.identity->phone);
+        identity.insert("address1", item.identity->addressLine1);
+        identity.insert("address2", item.identity->addressLine2);
+        identity.insert("address3", item.identity->addressLine3);
+        identity.insert("city", item.identity->city);
+        identity.insert("state", item.identity->state);
+        identity.insert("city", item.identity->city);
+        identity.insert("postalCode", item.identity->postalCode);
+        identity.insert("country", item.identity->country);
+        outItem.insert("identity", identity);
+    }
+
+    return outItem;
 }

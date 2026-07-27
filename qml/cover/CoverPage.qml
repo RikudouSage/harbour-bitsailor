@@ -8,6 +8,8 @@ CoverBackground {
     property var item: ({type: BitSailorCore.ItemTypeNone})
     property var lockActions: [lockAction1, lockAction2, lockAction3, lockAction4]
 
+    property string expiration: item.card !== undefined && item.card.expMonth && item.card.expYear ? String("0" + item.card.expMonth).slice(-2) + "/" + item.card.expYear : ''
+
     function lockActionFinalIcon() {
         lockActions.forEach(function(action) {
             action.iconSource = action.finalIcon;
@@ -33,7 +35,7 @@ CoverBackground {
     Column {
         anchors.centerIn: parent
         width: parent.width
-        spacing: Theme.paddingLarge
+        spacing: item.type === BitSailorCore.ItemTypeNone ? Theme.paddingLarge : Theme.paddingSmall
 
         Label {
             visible: item.type === BitSailorCore.ItemTypeNone
@@ -47,6 +49,25 @@ CoverBackground {
             anchors.horizontalCenter: parent.horizontalCenter
             sourceSize: "100x100"
         }
+        Icon {
+            visible: item.type === BitSailorCore.ItemTypeCard
+            source: "file:///usr/share/harbour-bitsailor/icons/logo-black-white.png"
+            anchors.horizontalCenter: parent.horizontalCenter
+            sourceSize: "40x40"
+        }
+        Icon {
+            visible: item.type === BitSailorCore.ItemTypeLogin && item && item.login
+            source: "file:///usr/share/harbour-bitsailor/icons/logo-black-white.png"
+            anchors.horizontalCenter: parent.horizontalCenter
+            sourceSize: item.login.username && item.login.password && item.login.username && item.login.totp ? '80x80' : '40x40'
+        }
+        Icon {
+            visible: item.type === BitSailorCore.ItemTypeSecureNote
+            source: "file:///usr/share/harbour-bitsailor/icons/logo-black-white.png"
+            anchors.horizontalCenter: parent.horizontalCenter
+            sourceSize: "80x80"
+        }
+
 
         Label {
             visible: [BitSailorCore.ItemTypeCard, BitSailorCore.ItemTypeLogin].indexOf(item.type) > -1
@@ -64,7 +85,7 @@ CoverBackground {
         }
 
         Label {
-            visible: item.type === BitSailorCore.ItemTypeCard && item.cardNumber
+            visible: item.type === BitSailorCore.ItemTypeCard && item.card.number
             //: On cover page, should be short, use abbreviations if needed
             text: qsTr("Card Number") + ":"
             font.pixelSize: Theme.fontSizeExtraSmall
@@ -72,14 +93,14 @@ CoverBackground {
             font.bold: true
         }
         Label {
-            visible: item.type === BitSailorCore.ItemTypeCard && item.cardNumber
-            text: item.cardNumber ? '•••• •••• •••• ' + item.cardNumber.slice(-4) : ''
+            visible: item.type === BitSailorCore.ItemTypeCard && item.card.number
+            text: item && item.card && item.card.number ? '•••• •••• •••• ' + item.card.number.slice(-4) : ''
             font.pixelSize: Theme.fontSizeExtraSmall
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
         Label {
-            visible: item.type === BitSailorCore.ItemTypeCard && item.expiration
+            visible: item.type === BitSailorCore.ItemTypeCard && expiration
             //: On cover page, should be short, use abbreviations if needed
             text: qsTr("Expiration") + ":"
             font.pixelSize: Theme.fontSizeExtraSmall
@@ -87,14 +108,14 @@ CoverBackground {
             font.bold: true
         }
         Label {
-            visible: item.type === BitSailorCore.ItemTypeCard && item.expiration
-            text: item.expiration ? item.expiration : ''
+            visible: item.type === BitSailorCore.ItemTypeCard && expiration
+            text: expiration
             font.pixelSize: Theme.fontSizeExtraSmall
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
         Label {
-            visible: item.type === BitSailorCore.ItemTypeCard && item.securityCode
+            visible: item.type === BitSailorCore.ItemTypeCard && item.card.code
             //: On cover page, should be short, use abbreviations if needed
             text: qsTr("Security Code") + ":"
             font.pixelSize: Theme.fontSizeExtraSmall
@@ -102,14 +123,14 @@ CoverBackground {
             font.bold: true
         }
         Label {
-            visible: item.type === BitSailorCore.ItemTypeCard && item.securityCode
+            visible: item.type === BitSailorCore.ItemTypeCard && item.card.code
             text: "•••"
             font.pixelSize: Theme.fontSizeExtraSmall
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
         Label {
-            visible: item.type === BitSailorCore.ItemTypeLogin && item.username
+            visible: item.type === BitSailorCore.ItemTypeLogin && item.login !== undefined && item.login.username !== undefined
             //: On cover page, should be short, use abbreviations if needed
             text: qsTr("Username") + ":"
             font.pixelSize: Theme.fontSizeExtraSmall
@@ -117,14 +138,14 @@ CoverBackground {
             font.bold: true
         }
         Label {
-            visible: item.type === BitSailorCore.ItemTypeLogin && item.username
-            text: item.username ? item.username : ''
+            visible: item.type === BitSailorCore.ItemTypeLogin && item.login !== undefined && item.login.username !== undefined
+            text: item && item.login && item.login.username ? item.login.username : ''
             font.pixelSize: Theme.fontSizeExtraSmall
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
         Label {
-            visible: item.type === BitSailorCore.ItemTypeLogin && item.password
+            visible: item.type === BitSailorCore.ItemTypeLogin && item.login !== undefined && item.login.password !== undefined
             //: On cover page, should be short, use abbreviations if needed
             text: qsTr("Password") + ":"
             font.pixelSize: Theme.fontSizeExtraSmall
@@ -132,7 +153,7 @@ CoverBackground {
             font.bold: true
         }
         Label {
-            visible: item.type === BitSailorCore.ItemTypeLogin && item.password
+            visible: item.type === BitSailorCore.ItemTypeLogin && item.login !== undefined && item.login.password !== undefined
             text: "••••••"
             font.pixelSize: Theme.fontSizeExtraSmall
             anchors.horizontalCenter: parent.horizontalCenter
@@ -140,7 +161,7 @@ CoverBackground {
 
         Label {
             id: totpField
-            visible: item.type === BitSailorCore.ItemTypeLogin && item.totp
+            visible: item.type === BitSailorCore.ItemTypeLogin && item.login !== undefined && item.login.totp !== undefined
             //: TOTP (two factor auth code) on cover page, should be short, use abbreviations if needed
             text: qsTr("TOTP") + ":"
             font.pixelSize: Theme.fontSizeExtraSmall
@@ -148,14 +169,14 @@ CoverBackground {
             font.bold: true
         }
         Label {
-            visible: item.type === BitSailorCore.ItemTypeLogin && item.totp
-            text: item.totp ? item.totp.match(/.{1,3}/g).join(' ') : ''
+            visible: item.type === BitSailorCore.ItemTypeLogin && item.login !== undefined && item.login.totp !== undefined
+            text: item && item.metadata && item.metadata.totp ? item.metadata.totp.match(/.{1,3}/g).join(' ') : ''
             font.pixelSize: Theme.fontSizeExtraSmall
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
         Label {
-            visible: item.type === BitSailorCore.ItemTypeSecureNote && item.note
+            visible: item.type === BitSailorCore.ItemTypeSecureNote && item.notes
             //: On cover page, should be short, use abbreviations if needed
             text: qsTr("Note") + ":"
             font.pixelSize: Theme.fontSizeExtraSmall
@@ -163,7 +184,7 @@ CoverBackground {
             font.bold: true
         }
         Label {
-            visible: item.type === BitSailorCore.ItemTypeSecureNote && item.note
+            visible: item.type === BitSailorCore.ItemTypeSecureNote && item.notes
             text: "••••••"
             font.pixelSize: Theme.fontSizeExtraSmall
             anchors.horizontalCenter: parent.horizontalCenter
@@ -194,27 +215,27 @@ CoverBackground {
         CoverAction {
             iconSource: "file:///usr/share/harbour-bitsailor/icons/hashtag-solid.svg"
             onTriggered: {
-                Clipboard.text = item.cardNumber || ''
+                Clipboard.text = item.card.number || ''
             }
         }
 
         CoverAction {
             iconSource: "image://theme/icon-s-date"
             onTriggered: {
-                Clipboard.text = item.expiration || ''
+                Clipboard.text = expiration;
             }
         }
 
         CoverAction {
             iconSource: "file:///usr/share/harbour-bitsailor/icons/key-solid.svg"
             onTriggered: {
-                Clipboard.text = item.securityCode || ''
+                Clipboard.text = item.card.code || ''
             }
         }
     }
 
     CoverActionList {
-        enabled: item.type === BitSailorCore.ItemTypeLogin && !item.totp
+        enabled: item.type === BitSailorCore.ItemTypeLogin && item.login !== undefined && !item.login.totp
         CoverAction {
             property string icon: isLocked ? "lock-solid.svg" : "lock-open-solid.svg"
             property string finalIcon: "file:///usr/share/harbour-bitsailor/icons/" + icon // todo find out if some standard path exists for this
@@ -233,19 +254,19 @@ CoverBackground {
         CoverAction {
             iconSource: "image://theme/icon-cover-people" // icon-m-contact
             onTriggered: {
-                Clipboard.text = item.username || ''
+                Clipboard.text = item.login.username || ''
             }
         }
         CoverAction {
             iconSource: "image://theme/icon-m-keys"
             onTriggered: {
-                Clipboard.text = item.password || ''
+                Clipboard.text = item.login.password || ''
             }
         }
     }
 
     CoverActionList {
-        enabled: item.type === BitSailorCore.ItemTypeLogin && item.totp
+        enabled: item.type === BitSailorCore.ItemTypeLogin && item.login !== undefined && item.login.totp !== undefined
 
         CoverAction {
             property string icon: isLocked ? "lock-solid.svg" : "lock-open-solid.svg"
@@ -265,19 +286,19 @@ CoverBackground {
         CoverAction {
             iconSource: "image://theme/icon-cover-people" // icon-m-contact
             onTriggered: {
-                Clipboard.text = item.username || ''
+                Clipboard.text = item.login.username || ''
             }
         }
         CoverAction {
             iconSource: "image://theme/icon-m-keys"
             onTriggered: {
-                Clipboard.text = item.password || ''
+                Clipboard.text = item.login.password || ''
             }
         }
 
         CoverAction {
             iconSource: "image://theme/icon-s-time"
-            onTriggered: Clipboard.text = item.totp || ""
+            onTriggered: Clipboard.text = item.metadata.totp || ""
         }
     }
 
@@ -302,7 +323,7 @@ CoverBackground {
         CoverAction {
             iconSource: "image://theme/icon-m-note"
             onTriggered: {
-                Clipboard.text = item.note || ''
+                Clipboard.text = item.notes || ''
             }
         }
     }

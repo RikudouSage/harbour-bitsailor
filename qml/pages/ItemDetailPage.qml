@@ -17,14 +17,14 @@ Page {
     allowedOrientations: Orientation.All
 
     function reloadPage() {
-        if (settings.useApi) {
-            api.getItem(itemId);
-        } else {
-            cli.getItem(itemId);
-        }
+        core.fetchItem(itemId)
     }
 
     function createCover() {
+        item.metadata = {};
+        if (item.type === BitSailorCore.ItemTypeLogin && item.login.totp) {
+            item.metadata.totp = otpGenerator.generateTotpSafe(item.login.totp);
+        }
         app.cover.item = item;
     }
 
@@ -62,31 +62,24 @@ Page {
         }
     }
 
-    BitwardenCli {
-        id: cli
+    Connections {
+        target: core
 
-        onItemFetched: {
+        onItemFetchFinished: {
+            if (!success) {
+                page.onItemFetchingFailed();
+                return;
+            }
+
             page.onItemFetched(item);
-        }
-
-        onItemFetchingFailed: {
-            page.onItemFetchingFailed();
-        }
-
-        onItemUpdated: {
-            reloadPage();
         }
     }
 
-    BitwardenApi {
-        id: api
+    BitwardenCli {
+        id: cli
 
-        onItemFetched: {
-            page.onItemFetched(item);
-        }
-
-        onItemFetchingFailed: {
-            page.onItemFetchingFailed();
+        onItemUpdated: {
+            reloadPage();
         }
     }
 
@@ -114,14 +107,14 @@ Page {
                         acceptText: qsTr("Update"),
                     };
 
-                    if (item.type === BitwardenCli.Login) {
+                    if (item.type === BitSailorCore.ItemTypeLogin) {
                         values.loginUsernameValue = item.login.username;
                         values.loginPasswordValue = item.login.password;
                         values.loginTotpValue = item.login.totp;
                         values.loginNotesValue = item.notes;
                         values.initialUris = item.login.uris;
                     }
-                    if (item.type === BitwardenCli.Card) {
+                    if (item.type === BitSailorCore.ItemTypeCard) {
                         values.cardCardholderNameValue = item.card.cardholderName;
                         values.cardBrandValue = item.card.brand;
                         values.cardNumberValue = item.card.number;
@@ -129,7 +122,7 @@ Page {
                         values.cardExpirationYearValue = item.card.expYear;
                         values.cardCvvValue = item.card.code;
                     }
-                    if (item.type === BitwardenCli.SecureNote) {
+                    if (item.type === BitSailorCore.ItemTypeSecureNote) {
                         values.secureNoteNoteValue = item.notes;
                     }
 
@@ -139,17 +132,17 @@ Page {
                         const object = page.item;
                         const type = dialog.type;
                         switch (type) {
-                        case BitwardenCli.Login:
+                        case BitSailorCore.ItemTypeLogin:
                             object.login = JSON.parse(JSON.stringify(dialog.loginItemTemplate));
                             object.login.password = dialog.loginPasswordValue || null;
                             object.login.totp = dialog.loginTotpValue || null;
                             object.login.username = dialog.loginUsernameValue || null;
                             object.login.uris = dialog.getUris() || null;
                             break;
-                        case BitwardenCli.SecureNote:
+                        case BitSailorCore.ItemTypeSecureNote:
                             object.secureNote = JSON.parse(JSON.stringify(dialog.secureNoteItemTemplate));
                             break;
-                        case BitwardenCli.Card:
+                        case BitSailorCore.ItemTypeCard:
                             object.card = JSON.parse(JSON.stringify(dialog.cardItemTemplate));
                             object.card.cardholderName = dialog.cardCardholderNameValue || null;
                             object.card.brand = dialog.cardBrandValue || null;
@@ -200,14 +193,14 @@ Page {
                 text: visible ? item.name : ''
                 label: qsTr("Name")
                 readOnly: true
-                visible: item.type !== BitwardenCli.NoType
+                visible: item.type !== BitSailorCore.ItemTypeNone
             }
 
             TextField {
                 id: usernameField
                 text: visible ? item.login.username : ''
                 label: qsTr("Username")
-                visible: item.type === BitwardenCli.Login && typeof item.login !== 'undefined' && item.login.username
+                visible: item.type === BitSailorCore.ItemTypeLogin && typeof item.login !== 'undefined' && item.login.username
                 readOnly: true
                 rightItem: IconButton {
                     icon.source: "image://theme/icon-m-clipboard"
@@ -244,7 +237,7 @@ Page {
                 }
                 //: Name as in "person's name", this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future
                 label: qsTr("Identity Name")
-                visible: item.type === BitwardenCli.Identity && (item.identity.title || item.identity.firstName || item.identity.middleName || item.identity.lastName)
+                visible: item.type === BitSailorCore.ItemTypeIdentity && (item.identity.title || item.identity.firstName || item.identity.middleName || item.identity.lastName)
                 readOnly: true
                 rightItem: IconButton {
                     icon.source: "image://theme/icon-m-clipboard"
@@ -259,7 +252,7 @@ Page {
                 id: usernameFieldIdentity
                 text: visible ? item.identity.username : '';
                 label: qsTr("Username")
-                visible: item.type === BitwardenCli.Identity && item.identity.username
+                visible: item.type === BitSailorCore.ItemTypeIdentity && item.identity.username
                 readOnly: true
                 rightItem: IconButton {
                     icon.source: "image://theme/icon-m-clipboard"
@@ -274,7 +267,7 @@ Page {
                 id: companyField
                 text: visible ? item.identity.company : '';
                 label: qsTr("Company")
-                visible: item.type === BitwardenCli.Identity && item.identity.company
+                visible: item.type === BitSailorCore.ItemTypeIdentity && item.identity.company
                 readOnly: true
                 rightItem: IconButton {
                     icon.source: "image://theme/icon-m-clipboard"
@@ -290,7 +283,7 @@ Page {
                 text: visible ? item.identity.ssn : '';
                 //: Translate as local equivalent, see https://en.wikipedia.org/wiki/National_identification_number
                 label: qsTr("Social Security Number")
-                visible: item.type === BitwardenCli.Identity && item.identity.ssn
+                visible: item.type === BitSailorCore.ItemTypeIdentity && item.identity.ssn
                 readOnly: true
                 rightItem: IconButton {
                     icon.source: "image://theme/icon-m-clipboard"
@@ -305,7 +298,7 @@ Page {
                 id: passportNumberField
                 text: visible ? item.identity.passportNumber : '';
                 label: qsTr("Passport Number")
-                visible: item.type === BitwardenCli.Identity && item.identity.passportNumber
+                visible: item.type === BitSailorCore.ItemTypeIdentity && item.identity.passportNumber
                 readOnly: true
                 rightItem: IconButton {
                     icon.source: "image://theme/icon-m-clipboard"
@@ -321,7 +314,7 @@ Page {
                 text: visible ? item.identity.licenseNumber : '';
                 //: Translate as local equivalent, for example "ID card number"
                 label: qsTr("License Number")
-                visible: item.type === BitwardenCli.Identity && item.identity.licenseNumber
+                visible: item.type === BitSailorCore.ItemTypeIdentity && item.identity.licenseNumber
                 readOnly: true
                 rightItem: IconButton {
                     icon.source: "image://theme/icon-m-clipboard"
@@ -336,7 +329,7 @@ Page {
                 id: emailField
                 text: visible ? item.identity.email : '';
                 label: qsTr("Email")
-                visible: item.type === BitwardenCli.Identity && item.identity.email
+                visible: item.type === BitSailorCore.ItemTypeIdentity && item.identity.email
                 readOnly: true
                 rightItem: IconButton {
                     icon.source: "image://theme/icon-m-clipboard"
@@ -352,7 +345,7 @@ Page {
                 text: visible ? item.identity.phone : '';
                 //: Phone number
                 label: qsTr("Phone")
-                visible: item.type === BitwardenCli.Identity && item.identity.phone
+                visible: item.type === BitSailorCore.ItemTypeIdentity && item.identity.phone
                 readOnly: true
                 rightItem: IconButton {
                     icon.source: "image://theme/icon-m-clipboard"
@@ -407,7 +400,7 @@ Page {
                 }
 
                 label: qsTr("Address")
-                visible: item.type === BitwardenCli.Identity && (item.identity.address1 || item.identity.address2 || item.identity.address3 || item.identity.city || item.identity.country || item.identity.postalCode || item.identity.state)
+                visible: item.type === BitSailorCore.ItemTypeIdentity && (item.identity.address1 || item.identity.address2 || item.identity.address3 || item.identity.city || item.identity.country || item.identity.postalCode || item.identity.state)
                 readOnly: true
                 rightItem: IconButton {
                     icon.source: "image://theme/icon-m-clipboard"
@@ -424,7 +417,7 @@ Page {
                 id: passwordField
                 text: passwordVisible ? item.login.password : 'aaaa aaaa aaaa'
                 label: qsTr("Password")
-                visible: item.type === BitwardenCli.Login && typeof item.login !== 'undefined'
+                visible: item.type === BitSailorCore.ItemTypeLogin && typeof item.login !== 'undefined'
                 echoMode: passwordVisible ? TextInput.Normal : TextInput.Password
                 readOnly: true
 
@@ -491,7 +484,7 @@ Page {
             TextField {
                 text: visible ? item.card.cardholderName : ''
                 label: qsTr("Cardholder Name")
-                visible: item.type === BitwardenCli.Card && typeof item.card !== 'undefined' && item.card.cardholderName
+                visible: item.type === BitSailorCore.ItemTypeCard && typeof item.card !== 'undefined' && item.card.cardholderName
                 readOnly: true
                 rightItem: IconButton {
                     icon.source: "image://theme/icon-m-clipboard"
@@ -505,7 +498,7 @@ Page {
             TextField {
                 text: visible ? item.card.brand : ''
                 label: qsTr("Brand")
-                visible: item.type === BitwardenCli.Card && typeof item.card !== 'undefined' && item.card.brand
+                visible: item.type === BitSailorCore.ItemTypeCard && typeof item.card !== 'undefined' && item.card.brand
                 readOnly: true
                 rightItem: IconButton {
                     icon.source: "image://theme/icon-m-clipboard"
@@ -522,7 +515,7 @@ Page {
                 id: cardNumberField
                 text: passwordVisible ? item.card.number : 'aaaabbbbccccdddd'
                 label: qsTr("Card Number")
-                visible: item.type === BitwardenCli.Card && typeof item.card !== 'undefined' && item.card.number
+                visible: item.type === BitSailorCore.ItemTypeCard && typeof item.card !== 'undefined' && item.card.number
                 echoMode: passwordVisible ? TextInput.Normal : TextInput.Password
                 readOnly: true
 
@@ -546,7 +539,7 @@ Page {
             TextField {
                 text: visible ? String("0" + item.card.expMonth).slice(-2) + " / " + item.card.expYear : ''
                 label: qsTr("Expiration")
-                visible: item.type === BitwardenCli.Card && typeof item.card !== 'undefined' && item.card.expMonth && item.card.expYear
+                visible: item.type === BitSailorCore.ItemTypeCard && typeof item.card !== 'undefined' && item.card.expMonth && item.card.expYear
                 readOnly: true
                 rightItem: IconButton {
                     icon.source: "image://theme/icon-m-clipboard"
@@ -563,7 +556,7 @@ Page {
                 id: cvvField
                 text: passwordVisible ? item.card.code : 'aaa'
                 label: qsTr("Security Code (CVV)")
-                visible: item.type === BitwardenCli.Card && typeof item.card !== 'undefined' && item.card.code
+                visible: item.type === BitSailorCore.ItemTypeCard && typeof item.card !== 'undefined' && item.card.code
                 echoMode: passwordVisible ? TextInput.Normal : TextInput.Password
                 readOnly: true
 
@@ -592,7 +585,7 @@ Page {
             Repeater {
                 id: urisRepeater
 
-                visible: item.type === BitwardenCli.Login && typeof item.login !== 'undefined' && typeof item.login.uris !== 'undefined' && item.login.uris.length
+                visible: item.type === BitSailorCore.ItemTypeLogin && typeof item.login !== 'undefined' && typeof item.login.uris !== 'undefined' && item.login.uris.length
                 model: visible ? item.login.uris : []
 
                 delegate: TextField {
@@ -626,8 +619,8 @@ Page {
             }
 
             TextArea {
-                property bool passwordEnabled: item.type === BitwardenCli.SecureNote
-                property bool passwordVisible: item.type !== BitwardenCli.SecureNote
+                property bool passwordEnabled: item.type === BitSailorCore.ItemTypeSecureNote
+                property bool passwordVisible: item.type !== BitSailorCore.ItemTypeSecureNote
 
                 id: notesTextarea
                 text: visible ? (passwordVisible ? item.notes : '••••••••••••••••') : ''

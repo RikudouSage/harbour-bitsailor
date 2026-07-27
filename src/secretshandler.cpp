@@ -12,6 +12,7 @@
 #include <QDebug>
 #include <QJsonDocument>
 #include <QJsonParseError>
+#include <QSettings>
 
 using Sailfish::Secrets::CollectionNamesRequest;
 using Sailfish::Secrets::SecretManager;
@@ -36,8 +37,20 @@ static const QString internalPinName = "internalPin";
 static const QString apiKeyName = "apiKey";
 static const QString invalidCertsName = "invalidCertsAllowed";
 
+#ifdef QT_DEBUG
+static QSettings &insecureEmulatorSecrets()
+{
+    static QSettings settings(QStringLiteral("cz.chrastecky"), QStringLiteral("bitsailor-insecure-emulator-secrets"));
+    return settings;
+}
+#endif
+
 SecretsHandler::SecretsHandler(QObject *parent) : QObject(parent)
 {
+#ifdef QT_DEBUG
+    qWarning() << "Using insecure debug secrets storage. Do not enable this in release builds.";
+    hasBitsailorCollection = true;
+#else
     CollectionNamesRequest cnr;
     cnr.setManager(secretManager);
     cnr.setStoragePluginName(SecretManager::DefaultEncryptedStoragePluginName);
@@ -45,6 +58,7 @@ SecretsHandler::SecretsHandler(QObject *parent) : QObject(parent)
     cnr.waitForFinished();
 
     hasBitsailorCollection = isResultValid(cnr) && cnr.collectionNames().contains(collectionName);
+#endif
 }
 
 QJsonObject SecretsHandler::getSessionJson()
@@ -148,6 +162,12 @@ void SecretsHandler::removeEncryptedVault()
 
 bool SecretsHandler::clearAllSecrets()
 {
+#ifdef QT_DEBUG
+    auto &settings = insecureEmulatorSecrets();
+    settings.clear();
+    settings.sync();
+    return settings.status() == QSettings::NoError;
+#else
     DeleteCollectionRequest dcr;
     dcr.setCollectionName(collectionName);
     dcr.setStoragePluginName(SecretManager::DefaultEncryptedStoragePluginName);
@@ -160,6 +180,7 @@ bool SecretsHandler::clearAllSecrets()
 
     hasBitsailorCollection = !success;
     return success;
+#endif
 }
 
 bool SecretsHandler::hasInternalPin()
@@ -236,6 +257,12 @@ bool SecretsHandler::isSecretValid(const Secret &secret)
 
 bool SecretsHandler::storeData(const QString &name, const QString &data)
 {
+#ifdef QT_DEBUG
+    auto &settings = insecureEmulatorSecrets();
+    settings.setValue(name, data);
+    settings.sync();
+    return settings.status() == QSettings::NoError;
+#else
     if (!hasBitsailorCollection) {
         createCollection();
         // todo handle case where collection isn't created
@@ -258,6 +285,7 @@ bool SecretsHandler::storeData(const QString &name, const QString &data)
     ssr.waitForFinished();
 
     return isResultValid(ssr);
+#endif
 }
 
 Secret SecretsHandler::getSecret(const QString &name)
@@ -283,6 +311,12 @@ Secret SecretsHandler::getSecret(const QString &name)
 
 bool SecretsHandler::deleteSecret(const QString &name)
 {
+#ifdef QT_DEBUG
+    auto &settings = insecureEmulatorSecrets();
+    settings.remove(name);
+    settings.sync();
+    return settings.status() == QSettings::NoError;
+#else
     DeleteSecretRequest dsr;
     dsr.setManager(secretManager);
     dsr.setIdentifier(toIdentifier(name));
@@ -291,16 +325,21 @@ bool SecretsHandler::deleteSecret(const QString &name)
     dsr.waitForFinished();
 
     return isResultValid(dsr);
+#endif
 }
 
 QString SecretsHandler::getData(const QString &name)
 {
+#ifdef QT_DEBUG
+    return insecureEmulatorSecrets().value(name).toString();
+#else
     auto secret = getSecret(name);
     if (!isSecretValid(secret)) {
         return QString();
     }
 
     return QString::fromUtf8(secret.data());
+#endif
 }
 
 bool SecretsHandler::createCollection()
