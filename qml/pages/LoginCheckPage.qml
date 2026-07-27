@@ -76,7 +76,9 @@ Page {
             } else if (status === BitSailorCore.SessionStatusLocked) {
                 displayUnlockPage();
             } else if (status === BitSailorCore.SessionStatusUnlocked) {
-                pageStack.replace("MainPage.qml");
+                safeCaller(function() {
+                    pageStack.replace("MainPage.qml");
+                });
             } else {
                 displayLoginPage(qsTr("Unknown status: %1").arg(status));
                 console.error("Unknown status: " + status);
@@ -112,7 +114,9 @@ Page {
 
         onUnlockFinished: {
             if (success) {
-                pageStack.replace("MainPage.qml");
+                safeCaller(function() {
+                    pageStack.replace("MainPage.qml");
+                });
             } else {
                 displayUnlockPage(qsTr("Failed unlocking, did you provide the correct password/PIN?"));
             }
