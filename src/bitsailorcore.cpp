@@ -348,6 +348,28 @@ void BitSailorCore::fetchSends()
     });
 }
 
+void BitSailorCore::createItem(const QJsonObject &item)
+{
+    QtConcurrent::run([=] {
+        auto input = BitwardenItemInput({}, item);
+        if (BitwardenCreateItem(vault, ctx, session, &input.item, nullptr) != BitwardenSuccess) {
+            qWarning() << "Failed creating item: " << getLastError();
+            emit itemCreationFinished(false);
+            return;
+        }
+
+        QString exportError;
+        exportVault(&exportError);
+        if (!exportError.isNull()) {
+            qWarning() << "Failed exporting vault after item creation: " << exportError;
+            emit itemCreationFinished(false);
+            return;
+        }
+
+        emit itemCreationFinished(true);
+    });
+}
+
 void BitSailorCore::deleteItem(const QString &id, bool emitEvents)
 {
     QtConcurrent::run([=] {

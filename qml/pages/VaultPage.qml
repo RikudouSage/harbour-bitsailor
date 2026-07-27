@@ -31,7 +31,7 @@ Page {
         target: core
 
         onItemsResolved: {
-            if (page.status !== PageStatus.Active) {
+            if (page.status !== PageStatus.Active && page.status !== PageStatus.Activating) {
                 return;
             }
 
@@ -64,7 +64,7 @@ Page {
         }
 
         onItemResolvingFailed: {
-            if (page.status !== PageStatus.Active) {
+            if (page.status !== PageStatus.Active && page.status !== PageStatus.Activating) {
                 return;
             }
             errorText = qsTr("An error occured while loading items. Please try again.")
@@ -79,14 +79,19 @@ Page {
             core.fetchItems();
         }
 
-        /*onItemCreationFinished: {
+        onItemCreationFinished: {
+            if (page.status !== PageStatus.Active && page.status !== PageStatus.Activating) {
+                return;
+            }
+
             if (success) {
                 loaded = false;
-                cli.syncVault();
+                core.fetchItems();
             } else {
+                loaded = true;
                 errorText = qsTr("There was an error when creating the new item");
             }
-        }*/
+        }
     }
 
     SilicaFlickable {
@@ -131,7 +136,9 @@ Page {
                         object.name = dialog.nameValue;
                         object.notes = dialog.loginNotesValue || dialog.secureNoteNoteValue || null;
 
-                        //cli.createItem(Qt.btoa(JSON.stringify(object)));
+                        loaded = false;
+                        errorText = "";
+                        core.createItem(object);
                     });
                 }
             }

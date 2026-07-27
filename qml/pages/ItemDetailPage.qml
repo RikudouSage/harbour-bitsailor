@@ -75,7 +75,7 @@ Page {
         }
 
         onItemUpdated: {
-            if (page.status !== PageStatus.Active) {
+            if (page.status !== PageStatus.Active && page.status !== PageStatus.Activating) {
                 return;
             }
 

@@ -80,6 +80,7 @@ public:
     Q_INVOKABLE void syncVault();
     Q_INVOKABLE void fetchItems();
     Q_INVOKABLE void fetchSends();
+    Q_INVOKABLE void createItem(const QJsonObject &item);
     Q_INVOKABLE void deleteItem(const QString &id, bool emitEvents = true);
     Q_INVOKABLE void fetchItem(const QString &id);
     Q_INVOKABLE void updateItem(const QString &id, const QJsonObject &item);
@@ -106,6 +107,7 @@ signals:
     void itemsResolved(const QJsonArray &items);
     void itemResolvingFailed();
     void sendsResolved(bool success, const QJsonArray &items);
+    void itemCreationFinished(bool success);
     void deletingFinished(bool success);
     void itemFetchFinished(bool success, const QJsonObject &item);
     void itemUpdated(bool success);
