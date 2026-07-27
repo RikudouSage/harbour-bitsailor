@@ -1129,5 +1129,9 @@
         <source>Certificate validation is ignored</source>
         <translation>Die Zertifikatsprüfung wird ignoriert</translation>
     </message>
+    <message>
+        <source>Debug secret storage is used. Uninstall this version immediately unless you are developing BitSailor itself.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

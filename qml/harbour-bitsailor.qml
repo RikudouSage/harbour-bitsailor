@@ -108,31 +108,54 @@ ApplicationWindow {
         running: false
     }
 
-    Rectangle {
-        id: invalidCertsBanner
-        color: Theme.errorColor
-        visible: app.invalidCertsAllowed
+    Column {
+        id: warningBanners
+        visible: invalidCertsBanner.visible || debugSecretsBanner.visible
         z: 1000
         width: parent.width
-        height: Theme.itemSizeLarge
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
 
-        Label {
-            id: warningLabel
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: Theme.paddingSmall
-            anchors.horizontalCenter: parent.horizontalCenter
-            horizontalAlignment: Text.AlignHCenter
-            color: Theme.lightPrimaryColor
-            text: qsTr("Certificate validation is ignored")
+        Rectangle {
+            id: debugSecretsBanner
+            color: Theme.errorColor
+            visible: isDebug
+            width: parent.width
+            height: debugSecretsLabel.height + Theme.paddingMedium
+
+            Label {
+                id: debugSecretsLabel
+                anchors.centerIn: parent
+                width: parent.width - Theme.horizontalPageMargin * 2
+                horizontalAlignment: Text.AlignHCenter
+                wrapMode: Text.WordWrap
+                color: Theme.lightPrimaryColor
+                text: qsTr("Debug secret storage is used. Uninstall this version immediately unless you are developing BitSailor itself.")
+            }
+        }
+
+        Rectangle {
+            id: invalidCertsBanner
+            color: Theme.errorColor
+            visible: app.invalidCertsAllowed
+            width: parent.width
+            height: Theme.itemSizeLarge
+
+            Label {
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: Theme.paddingSmall
+                anchors.horizontalCenter: parent.horizontalCenter
+                horizontalAlignment: Text.AlignHCenter
+                color: Theme.lightPrimaryColor
+                text: qsTr("Certificate validation is ignored")
+            }
         }
     }
 
     Binding {
         target: pageStack
         property: "anchors.topMargin"
-        value: invalidCertsBanner.visible ? invalidCertsBanner.height : 0
+        value: warningBanners.visible ? warningBanners.height : 0
     }
 
     Component.onDestruction: {
