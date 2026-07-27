@@ -667,7 +667,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Your account has 2-factor logging in enabled which is currently unsupported. Please login using your api key.</source>
+        <source>Your account has two-factor authentication enabled, which is currently unsupported. Please log in using your API key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

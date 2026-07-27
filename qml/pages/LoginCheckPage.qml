@@ -97,7 +97,7 @@ Page {
         }
 
         onTwoFactorNeeded: {
-            displayLoginPage(qsTr("Your account has 2-factor logging in enabled which is currently unsupported. Please login using your api key."));
+            displayLoginPage(qsTr("Your account has two-factor authentication enabled, which is currently unsupported. Please log in using your API key."));
         }
 
         onLoginFinished: {
