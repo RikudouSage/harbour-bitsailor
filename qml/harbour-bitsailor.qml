@@ -6,6 +6,7 @@ import Sailfish.Share 1.0
 import "pages"
 import "components" as Components
 import "helpers.js" as Helpers
+import "cover" as Covers
 
 import cz.chrastecky.bitsailor 1.0
 
@@ -19,7 +20,7 @@ ApplicationWindow {
     id: app
 
     initialPage: Component { LoginCheckPage { } }
-    cover: Qt.resolvedUrl("cover/CoverPage.qml")
+    cover: Covers.CoverPage {}
     allowedOrientations: defaultAllowedOrientations
 
     BitwardenApi {

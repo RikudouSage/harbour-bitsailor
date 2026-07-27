@@ -25,33 +25,7 @@ Page {
     }
 
     function createCover() {
-        var pageName = 'CoverPage.qml';
-
-        if (item.type === BitwardenCli.Login) {
-            pageName = 'CoverPageLogin.qml';
-            if (item.login !== 'undefined' && item.login.totp) {
-                pageName = 'CoverPageLoginTotp.qml';
-            }
-        } else if(item.type === BitwardenCli.SecureNote) {
-            pageName = 'CoverPageNote.qml';
-        } else if(item.type === BitwardenCli.Card) {
-            pageName = 'CoverPageCard.qml';
-        }
-
-        const cover = Qt.createComponent("../cover/" + pageName).createObject(app, {
-            item: {
-                type: item.type,
-                name: item.name,
-                username: typeof item.login !== 'undefined' && typeof item.login.username !== 'undefined' ? item.login.username : null,
-                password: typeof item.login !== 'undefined' && typeof item.login.username !== 'undefined' ? item.login.password : null,
-                totp: typeof item.login !== 'undefined' && item.login.totp ? otpGenerator.generateTotpSafe(item.login.totp) : null,
-                note: typeof item.notes !== 'undefined' ? item.notes : null,
-                cardNumber: typeof item.card !== 'undefined' && typeof item.card.number !== 'undefined' ? item.card.number : null,
-                securityCode: typeof item.card !== 'undefined' && typeof item.card.code !== 'undefined' ? item.card.code : null,
-                expiration: typeof item.card !== 'undefined' && item.card.expMonth && item.card.expYear ? String("0" + item.card.expMonth).slice(-2) + "/" + item.card.expYear : null,
-            }
-        });
-        app.cover = cover;
+        app.cover.item = item;
     }
 
     function onItemFetched(item) {
@@ -795,7 +769,7 @@ Page {
 
             pageLoaded = true;
         } else {
-            app.cover = Qt.resolvedUrl("../cover/CoverPage.qml");
+            app.cover.item = {type: BitSailorCore.ItemTypeNone};
         }
     }
 }

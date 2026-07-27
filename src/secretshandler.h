@@ -29,7 +29,7 @@ public:
     Q_INVOKABLE bool invalidCertificatesAllowed();
 
     bool hasEncryptedVault();
-    bool hasSessionJson();
+    Q_INVOKABLE bool hasSessionJson();
     Q_INVOKABLE bool hasPin();
     Q_INVOKABLE bool hasInternalPin();
 

@@ -74,10 +74,6 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/components/StringValueMenuItem.qml \
     qml/components/Toaster.qml \
     qml/cover/CoverPage.qml \
-    qml/cover/CoverPageCard.qml \
-    qml/cover/CoverPageLogin.qml \
-    qml/cover/CoverPageLoginTotp.qml \
-    qml/cover/CoverPageNote.qml \
     qml/helpers.js \
     qml/pages/CleanupPage.qml \
     qml/pages/ConfirmSettingPage.qml \
