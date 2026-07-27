@@ -1033,18 +1033,6 @@
     </message>
 </context>
 <context>
-    <name>UnknownErrorOccuredPage</name>
-    <message>
-        <source>Unknown Error</source>
-        <extracomment>Page title</extracomment>
-        <translation>Neznámá chyba</translation>
-    </message>
-    <message>
-        <source>There was an unknown error and app cannot proceed. Please contact the developer on &lt;a href=&apos;%1&apos;&gt;OpenRepos&lt;/a&gt;.</source>
-        <translation>Nastala neznámá chyba a aplikace nemůže pokračovat. Prosím kontaktujte vývojáře na &lt;a href=&apos;%1&apos;&gt;OpenRepos&lt;/a&gt;.</translation>
-    </message>
-</context>
-<context>
     <name>UnlockVaultPage</name>
     <message>
         <source>Unlock Vault</source>

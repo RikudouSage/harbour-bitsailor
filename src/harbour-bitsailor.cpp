@@ -17,7 +17,6 @@
 #include "systemauthchecker.h"
 #include "fileaccessor.h"
 #include "randompingenerator.h"
-#include "pathhelper.h"
 #include "cachekey.h"
 #include "otp/onetimepasswordgenerator.h"
 #include "parsedurl.h"
@@ -55,7 +54,6 @@ int main(int argc, char *argv[])
     v->rootContext()->setContextProperty("secrets", secrets);
     v->rootContext()->setContextProperty("core", core);
     v->rootContext()->setContextProperty("runtimeCache", RuntimeCache::getInstance(app.data()));
-    v->rootContext()->setContextProperty("privateBinPath", getPrivateBinDirPath());
     v->rootContext()->setContextProperty("urlParser", new UrlParser(app.data()));
 
 #ifdef QT_DEBUG

@@ -15,16 +15,7 @@ Page {
     property var doAfterLoad: []
     property var safeCaller: Helpers.safeCallerFactory(doAfterLoad, page)
 
-    property bool hasAnyPin: secrets.hasInternalPin() || secrets.hasPin()
-
     property var currentServerUrl: null
-
-    function refreshHasAnyPin() {
-        hasAnyPin = secrets.hasInternalPin() || secrets.hasPin();
-        if (!hasAnyPin) {
-            settings.persistentItemCache = false;
-        }
-    }
 
     function onServerUrlResolved(serverUrl) {
         currentServerUrl = serverUrl;
@@ -43,7 +34,7 @@ Page {
 
         onServerUrlChanged: {
             if (success) {
-                pageStack.replace("LoginCheck.qml");
+                pageStack.replace("LoginCheckPage.qml");
             }
         }
 
@@ -146,9 +137,6 @@ Page {
 
                 onCheckedChanged: {
                     settings.lockOnClose = checked;
-                    if (checked) {
-                        settings.useAuthorizationOnUnlocked = false;
-                    }
                 }
             }
 
@@ -161,7 +149,6 @@ Page {
                     if (!systemAuthSetting.checked) {
                         secrets.removePassword();
                     }
-                    refreshHasAnyPin();
                 }
 
                 checked: secrets.hasPin()
@@ -181,8 +168,6 @@ Page {
                             pinToStore = Number(dialog.pinText);
                             passwordToStore = dialog.passwordText;
                             core.validateMasterPassword(passwordToStore);
-
-                            refreshHasAnyPin();
                         });
                     } else {
                         disable();
@@ -195,11 +180,9 @@ Page {
 
                 function disable() {
                     settings.useSystemAuth = false;
-                    settings.useAuthorizationOnUnlocked = false;
                     if (!pinSetting.checked) {
                         secrets.removePassword();
                     }
-                    refreshHasAnyPin();
                 }
 
                 checked: settings.useSystemAuth
@@ -218,7 +201,6 @@ Page {
                             busyIndicatorPassword.running = true;
                             passwordToStore = dialog.passwordText;
                             core.validateMasterPassword(passwordToStore);
-                            refreshHasAnyPin();
                         });
                         dialog.rejected.connect(function() {
                             if (dialog.failedSystemAuth) {
@@ -227,7 +209,6 @@ Page {
                                     errorText += " " + qsTr("Note that this is normal when running inside emulator.");
                                 }
                             }
-                            refreshHasAnyPin();
                         });
                     } else {
                         disable();

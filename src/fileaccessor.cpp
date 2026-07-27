@@ -1,7 +1,5 @@
 #include "fileaccessor.h"
 
-#include "pathhelper.h"
-
 #include <QDir>
 #include <QStandardPaths>
 
@@ -18,11 +16,6 @@ bool FileAccessor::deleteConfigDirectory()
 bool FileAccessor::deleteTemporaryFilesDirectory()
 {
     return deleteDirectory(QStandardPaths::writableLocation(QStandardPaths::CacheLocation));
-}
-
-bool FileAccessor::deletePermanentFilesDirectory()
-{
-    return deleteDirectory(getDataPath());
 }
 
 bool FileAccessor::deleteDirectory(QString path)

@@ -34,7 +34,6 @@ static const QString passwordName = "password";
 static const QString clientIdName = "clientId";
 static const QString pinName = "pin";
 static const QString internalPinName = "internalPin";
-static const QString apiKeyName = "apiKey";
 static const QString invalidCertsName = "invalidCertsAllowed";
 
 #ifdef QT_DEBUG
@@ -110,11 +109,6 @@ QString SecretsHandler::getPin()
 QString SecretsHandler::getInternalPin()
 {
     return getData(internalPinName);
-}
-
-QString SecretsHandler::getServerApiKey()
-{
-    return getData(apiKeyName);
 }
 
 bool SecretsHandler::invalidCertificatesAllowed()
@@ -232,11 +226,6 @@ void SecretsHandler::setPin(const QString &pin)
 void SecretsHandler::setInternalPin(const QString &pin)
 {
     storeData(internalPinName, pin);
-}
-
-void SecretsHandler::setServerApiKey(const QString &apiKey)
-{
-    storeData(apiKeyName, apiKey);
 }
 
 bool SecretsHandler::isResultValid(const Request &request)

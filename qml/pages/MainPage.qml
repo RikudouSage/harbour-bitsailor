@@ -106,7 +106,7 @@ Page {
         if (!unlocked) {
             runtimeCache.remove(CacheKey.Items);
             runtimeCache.removePersistent(CacheKey.Items);
-            secrets.removeSessionId();
+            secrets.removeSessionJson();
 
             var handle = function() {
                 pageStack.replace("LoginCheckPage.qml");
@@ -120,21 +120,6 @@ Page {
             safeCall(function() {
                 pageStack.push("CreateSendChooseTypePage.qml");
             });
-        }
-    }
-
-    SystemAuthChecker {
-        id: authChecker
-
-        onAuthResolved: {
-            if (!success) {
-                secrets.removeSessionId();
-                const handler = function() {
-                    pageStack.replace("LoginCheckPage.qml");
-                };
-                loaded ? handler() : doAfterLoad.push(handler);
-                return;
-            }
         }
     }
 
@@ -316,10 +301,6 @@ Page {
     }
 
     Component.onCompleted: {
-        if (settings.useSystemAuth && settings.useAuthorizationOnUnlocked) {
-            authChecker.checkAuth();
-        }
-
         core.getLoginStatus();
     }
 

@@ -31,7 +31,6 @@ SOURCES += src/harbour-bitsailor.cpp \
     src/encryptor.cpp \
     src/fileaccessor.cpp \
     src/parsedurl.cpp \
-    src/pathhelper.cpp \
     src/random-helper.cpp \
     src/randompingenerator.cpp \
     src/secretshandler.cpp \
@@ -46,18 +45,14 @@ polkit.files = polkit/cz.chrastecky.bitsailor.policy
 bw-logo.path = /usr/share/harbour-bitsailor/icons
 bw-logo.files = icons/bw/*
 
-patches.path = /usr/share/harbour-bitsailor/patches
-patches.files = patch/*
-
 dbus.path = /usr/share/dbus-1/services
 dbus.files = dbus/*
 
-INSTALLS += polkit bw-logo patches dbus
+INSTALLS += polkit bw-logo dbus
 
 DISTFILES += qml/harbour-bitsailor.qml \
     icons/bw/* \
     polkit/cz.chrastecky.bitsailor.policy \
-    patch/* \
     dbus/* \
     qml/components/BottomMenu.qml \
     qml/components/BottomMenuItem.qml \
@@ -90,7 +85,6 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/pages/SettingsPage.qml \
     qml/pages/SetupPinPage.qml \
     qml/pages/SetupSystemAuthPage.qml \
-    qml/pages/UnknownErrorOccuredPage.qml \
     qml/pages/UnlockVaultPage.qml \
     qml/pages/VaultPage.qml \
     rpm/harbour-bitsailor.spec \
@@ -119,7 +113,6 @@ HEADERS += \
     src/encryptor.h \
     src/fileaccessor.h \
     src/parsedurl.h \
-    src/pathhelper.h \
     src/random-helper.h \
     src/randompingenerator.h \
     src/secretshandler.h \
