@@ -33,7 +33,7 @@ jobs:
         working-directory: core
         run: nix develop --command make build-lib-${{ matrix.arch }}
       - name: Prepare
-        run: docker pull coderus/sailfishos-platform-sdk:$OS_VERSION && mkdir output
+        run: docker pull coderus/sailfishos-platform-sdk:$OS_VERSION && mkdir -p output && chmod 777 output
 
       - name: Build ${{ matrix.arch }}
         run: docker run --rm --privileged -v $PWD:/share coderus/sailfishos-platform-sdk:$OS_VERSION /bin/bash -c "
@@ -41,7 +41,7 @@ jobs:
           cd build ;
           cp -r /share/* . ;
           mb2 -t SailfishOS-$OS_VERSION-${{ matrix.arch }} build ;
-          sudo cp -r RPMS/*.rpm /share/output"
+          cp -r RPMS/*.rpm /share/output"
 
       - name: Upload RPM (${{ matrix.arch }})
         uses: actions/upload-artifact@v4
