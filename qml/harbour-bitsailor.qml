@@ -23,20 +23,6 @@ ApplicationWindow {
     cover: Covers.CoverPage {}
     allowedOrientations: defaultAllowedOrientations
 
-    BitwardenApi {
-        id: api
-
-        onIsRunningResult: {
-            if (running) {
-                api.killApi();
-            }
-        }
-
-        onKillingApiFailed: {
-            apiAlreadyRunning.publish();
-        }
-    }
-
     ShareProvider {
         method: "anything"
         capabilities: ["*"]
@@ -120,10 +106,6 @@ ApplicationWindow {
         running: false
     }
 
-    BitwardenCli {
-        id: cli
-    }
-
     Rectangle {
         id: invalidCertsBanner
         color: Theme.errorColor
@@ -149,66 +131,6 @@ ApplicationWindow {
         target: pageStack
         property: "anchors.topMargin"
         value: invalidCertsBanner.visible ? invalidCertsBanner.height : 0
-    }
-
-    Notification {
-        id: apiAlreadyRunning
-        summary: qsTr("The API is already running")
-        body: qsTr("The API is already running and could not be stopped. It's possible that the api will not work at all. Please try restarting the app. If you see this error again, try disabling api in the Settings.");
-    }
-
-    Notification {
-        id: outdatedCliNotification
-        //: notification title
-        summary: qsTr("Update Bitwarden CLI")
-        body: qsTr("Your Bitwarden CLI might be out of date. You should check for new versions of Bitwarden CLI regularly. You can do so in the settings or by clicking this notification.")
-        remoteActions: [
-            {
-                "name": "default",
-            }
-        ]
-        onActionInvoked: {
-            if (name === "default") {
-                app.activate();
-                const callable = function() {
-                    pageStack.push("pages/UpdateBitwardenCliPage.qml");
-                };
-
-                pageStack.busy ? actionsWhenNotBusy.push(callable) : callable();
-            }
-        }
-    }
-
-    Component.onCompleted: {
-        if (settings.persistentItemCache) {
-            runtimeCache.set(CacheKey.Items, runtimeCache.getPersistent(CacheKey.Items));
-        }
-
-        if (!runtimeCache.hasPersistent(CacheKey.HasLocalInstallation)) {
-            runtimeCache.setPersistent(CacheKey.HasLocalInstallation, cli.binaryPath.indexOf(privateBinPath) === 0 ? "y" : "n");
-        }
-
-        if (runtimeCache.getPersistent(CacheKey.HasLocalInstallation) === "y") {
-            if (!runtimeCache.hasPersistent(CacheKey.LastUpdated)) {
-                // date of first release, could be anything, so why not?
-                runtimeCache.setPersistent(CacheKey.LastUpdated, new Date("2022-09-27 00:26:00").toISOString());
-            }
-
-            const week = 7 * 24 * 60 * 60 * 1000; // 1 week in milliseconds
-
-            const date = new Date(runtimeCache.getPersistent(CacheKey.LastUpdated));
-            const now = new Date();
-
-            const diff = now.getTime() - date.getTime();
-
-            if (diff > week) {
-                outdatedCliNotification.publish();
-            }
-        }
-
-        if (settings.useApi) {
-            api.isRunning();
-        }
     }
 
     Component.onDestruction: {

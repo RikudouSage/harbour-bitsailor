@@ -395,10 +395,12 @@ void BitSailorCore::initialize()
         baseUrl.clear();
     }
 
+    bool ignoreCerts = secrets->invalidCertificatesAllowed();
     auto uuid = uuidFromString(settings->deviceUuid());
     if (BitwardenNewClient(&client, NewClientOptions {
         .baseUrl = baseUrl.constData(),
         .deviceId = &uuid,
+        .ignoreCerts = &ignoreCerts,
     }) != BitwardenSuccess) {
         valid = false;
         qWarning() << "Failed initializing client: " << getLastError();

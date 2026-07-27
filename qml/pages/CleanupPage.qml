@@ -5,7 +5,6 @@ import cz.chrastecky.bitsailor 1.0
 
 Page {
     property var secretsCleared: null
-    property var loggedOut: null
     property var temporaryFilesDeleted: null
     property var permanentFilesDeleted: null
     property var configFilesDeleted: null
@@ -50,16 +49,6 @@ Page {
                 automaticCheck: false
                 checked: propertyToCheck
                 description: qsTr("Includes secrets like your password, username or PIN code.")
-            }
-            IconTextSwitch {
-                property alias propertyToCheck: page.loggedOut
-                property string iconName: propertyToCheck === null ? "icon-m-clock" : propertyToCheck ? "icon-m-certificates" : "icon-m-cancel"
-                icon.source: "image://theme/" + iconName
-                icon.color: propertyToCheck === null ? Theme.primaryColor : propertyToCheck ? Theme.secondaryHighlightColor : Theme.errorColor
-                text: qsTr("Logged out of Bitwarden CLI")
-                automaticCheck: false
-                checked: propertyToCheck
-                description: qsTr("The Bitwarden CLI could be used on its own even without this app, that's why it's safer to log out.")
             }
             IconTextSwitch {
                 property alias propertyToCheck: page.temporaryFilesDeleted
