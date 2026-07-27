@@ -73,7 +73,9 @@ Page {
             notesCount = 0;
             identitiesCount = 0;
 
-            console.log(JSON.stringify(items))
+            if (isDebug) {
+                console.log(JSON.stringify(items))
+            }
 
             for (var i in items) {
                 if (!items.hasOwnProperty(i)) {
