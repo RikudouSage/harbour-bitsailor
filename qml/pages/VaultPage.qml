@@ -182,7 +182,7 @@ Page {
 
                 onTextChanged: {
                     if (!text) {
-                        cli[itemLoader]();
+                        core.fetchItems();
                     } else {
                         logins = allLogins.filter(function(item) {
                             if (typeof item.login === 'undefined') {

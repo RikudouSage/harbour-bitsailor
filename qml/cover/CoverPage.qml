@@ -246,7 +246,7 @@ CoverBackground {
                     app.activate();
                 } else {
                     iconSource = "file:///usr/share/harbour-bitsailor/icons/loader.gif"
-                    cli.lockVault();
+                    core.lockVault();
                 }
             }
         }
@@ -278,7 +278,7 @@ CoverBackground {
                     app.activate();
                 } else {
                     iconSource = "file:///usr/share/harbour-bitsailor/icons/loader.gif"
-                    cli.lockVault();
+                    core.lockVault();
                 }
             }
         }
@@ -315,7 +315,7 @@ CoverBackground {
                     app.activate();
                 } else {
                     iconSource = "file:///usr/share/harbour-bitsailor/icons/loader.gif"
-                    cli.lockVault();
+                    core.lockVault();
                 }
             }
         }

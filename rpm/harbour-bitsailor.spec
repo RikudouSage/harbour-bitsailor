@@ -30,7 +30,7 @@ BuildRequires:  pkgconfig(sailfishcrypto)
 BuildRequires:  desktop-file-utils
 
 %description
-A Sailfish OS Bitwarden client using the official Bitwarden CLI
+A Sailfish OS Bitwarden client
 
 
 %prep

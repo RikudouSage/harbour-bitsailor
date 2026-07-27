@@ -6,7 +6,6 @@ import cz.chrastecky.bitsailor 1.0
 Page {
     property var secretsCleared: null
     property var temporaryFilesDeleted: null
-    property var permanentFilesDeleted: null
     property var configFilesDeleted: null
 
     id: page
@@ -18,7 +17,6 @@ Page {
         onLogoutFinished: {
             loggedOut = true;
             secretsCleared = true;
-            permanentFilesDeleted = fileAccessor.deletePermanentFilesDirectory();
         }
     }
 
@@ -58,17 +56,7 @@ Page {
                 text: qsTr("Deleted temporary files")
                 automaticCheck: false
                 checked: propertyToCheck
-                description: qsTr("Temporary files include your cached vault for faster loading.")
-            }
-            IconTextSwitch {
-                property alias propertyToCheck: page.permanentFilesDeleted
-                property string iconName: propertyToCheck === null ? "icon-m-clock" : propertyToCheck ? "icon-m-certificates" : "icon-m-cancel"
-                icon.source: "image://theme/" + iconName
-                icon.color: propertyToCheck === null ? Theme.primaryColor : propertyToCheck ? Theme.secondaryHighlightColor : Theme.errorColor
-                text: qsTr("Deleted all permanent files")
-                automaticCheck: false
-                checked: propertyToCheck
-                description: qsTr("Permanent files include Bitwarden CLI (if it was installed using this app).")
+                description: qsTr("Temporary files include some of your settings.")
             }
             IconTextSwitch {
                 property alias propertyToCheck: page.configFilesDeleted

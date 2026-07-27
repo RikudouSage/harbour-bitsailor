@@ -1,6 +1,6 @@
 # BitSailor
 
-Bitwarden GUI client for Sailfish OS using the official Bitwarden CLI.
+Bitwarden GUI client for Sailfish OS.
 
 Localizations are here: https://explore.transifex.com/rikudou-sage/bitsailor/
 
