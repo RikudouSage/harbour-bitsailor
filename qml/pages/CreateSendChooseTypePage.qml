@@ -14,7 +14,7 @@ Page {
     allowedOrientations: Orientation.All
 
     function safeCall(callable) {
-        if (page.status == PageStatus.Active) {
+        if (page.status === PageStatus.Active || page.status === PageStatus.Activating) {
             callable();
         } else {
             doAfterLoad.push(callable);
@@ -33,33 +33,23 @@ Page {
         dialog.accepted.connect(function() {
             loading = true;
             if (dialog.sendType === "text") {
-                if (settings.useApi) {
-                    api.createTextSend(dialog.name, dialog.text, dialog.hideText, dialog.deletionDate, dialog.maximumAccessCount, dialog.password, dialog.hideEmail, dialog.privateNotes);
-                } else {
-                    cli.createTextSend(dialog.name, dialog.text, dialog.hideText, dialog.deletionDate, dialog.maximumAccessCount, dialog.password, dialog.hideEmail, dialog.privateNotes);
-                }
+                core.createTextSend(dialog.name, dialog.text, dialog.hideText, dialog.deletionDate, dialog.maximumAccessCount, dialog.password, dialog.hideEmail, dialog.privateNotes);
             } else {
-                // api does not support creating file Sends
-                cli.createFileSend(dialog.name, dialog.file, dialog.deletionDate, dialog.maximumAccessCount, dialog.password, dialog.hideEmail, dialog.privateNotes);
+                core.createFileSend(dialog.name, dialog.file, dialog.deletionDate, dialog.maximumAccessCount, dialog.password, dialog.hideEmail, dialog.privateNotes);
             }
         });
     }
 
-    BitwardenCli {
-        id: cli
+    Connections {
+        target: core
 
         onSendCreated: {
-            if (settings.useApi && item.type === BitwardenCli.SendTypeFile) {
-                api.addTempSend(item);
+            if (!success) {
+                loading = false;
+                app.toaster.show(qsTr("Failed creating Send"));
+                return;
             }
-            page.onSendCreated(item);
-        }
-    }
 
-    BitwardenApi {
-        id: api
-
-        onSendCreated: {
             page.onSendCreated(item);
         }
     }

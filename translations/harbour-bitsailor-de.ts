@@ -29,10 +29,6 @@
         <translation>Alle Geheimnisse wurden gelöscht</translation>
     </message>
     <message>
-        <source>Deleted all permanent files</source>
-        <translation>Alle dauerhaften Dateien gelöscht</translation>
-    </message>
-    <message>
         <source>Deleted all config files</source>
         <translation>Alle Konfigurationsdateien gelöscht</translation>
     </message>
@@ -45,16 +41,12 @@
         <translation>Temporäre Dateien wurden gelöscht</translation>
     </message>
     <message>
-        <source>Temporary files include your cached vault for faster loading.</source>
-        <translation>Temporäre Dateien enthalten Ihren zwischengespeicherten Tresor für schnelleres Laden.</translation>
-    </message>
-    <message>
-        <source>Permanent files include Bitwarden CLI (if it was installed using this app).</source>
-        <translation>Dauerhafte Dateien enthalten die Bitwarden-CLI (wenn sie mithilfe dieser App installiert wurde).</translation>
-    </message>
-    <message>
         <source>Config files include all the settings you have made in this app.</source>
         <translation>Konfigurationsdateien enthalten alle Einstellungen, die sie in dieser App getätigt haben.</translation>
+    </message>
+    <message>
+        <source>Temporary files include some of your settings.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -141,6 +133,10 @@
     <message>
         <source>URL copied to clipboard</source>
         <translation>URL wurde in die Zwischenablage kopiert</translation>
+    </message>
+    <message>
+        <source>Failed creating Send</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -751,8 +747,8 @@
         <translation>Daten bereinigen</translation>
     </message>
     <message>
-        <source>This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?</source>
-        <translation>Dies wird alle von der Anwendung auf deinem System gespeicherten Daten löschen, inklusive die Geheimnis-Sammlung, die Bitwarden-CLI (wenn sie über diese App installiert wurde), temporäre Dateien usw. Die Bitwarden-CLI wird außerdem abgemeldet. Möchtest du fortfahren?</translation>
+        <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -939,11 +935,6 @@
         <translation>Alles aufräumen</translation>
     </message>
     <message>
-        <source>This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?</source>
-        <translation>Dies wird alles was die App auf Ihrem System speichert löschen, einschließlich die System-Geheimnisverwaltung, Bitwarden-CLI (falls diese über diese App installiert wurde), temporäre Dateien etc.
-Die Bitwarden-CLI wird außerdem abgemeldet. Möchten Sie fortfahren?</translation>
-    </message>
-    <message>
         <source>Security</source>
         <translation>Sicherheit</translation>
     </message>
@@ -982,6 +973,10 @@ Die Bitwarden-CLI wird außerdem abgemeldet. Möchten Sie fortfahren?</translati
     </message>
     <message>
         <source>Could not fetch your email address, the session is in an invalid state. Logout is advised</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1134,6 +1129,10 @@ Die Bitwarden-CLI wird außerdem abgemeldet. Möchten Sie fortfahren?</translati
     <message>
         <source>There was an error while synchronizing the vault, please try again.</source>
         <translation>Es gab einen Fehler bei der Synchronisation des Tresors, bitte versuche es erneut.</translation>
+    </message>
+    <message>
+        <source>There was an error when creating the new item</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -29,10 +29,6 @@
         <translation>Secrets supprimés</translation>
     </message>
     <message>
-        <source>Deleted all permanent files</source>
-        <translation>Fichiers permanents supprimés</translation>
-    </message>
-    <message>
         <source>Deleted all config files</source>
         <translation>Fichiers de configuration supprimés</translation>
     </message>
@@ -45,16 +41,12 @@
         <translation>Fichiers temporaires supprimés</translation>
     </message>
     <message>
-        <source>Temporary files include your cached vault for faster loading.</source>
-        <translation>Les fichiers temporaires contiennent le cache du coffre pour un chargement plus rapide.</translation>
-    </message>
-    <message>
-        <source>Permanent files include Bitwarden CLI (if it was installed using this app).</source>
-        <translation>Les fichiers permanents contiennent Bitwarden CLI (si celui-ci a été installé en utilisant cette application).</translation>
-    </message>
-    <message>
         <source>Config files include all the settings you have made in this app.</source>
         <translation>Les fichiers de configuration contiennent tout le paramétrage de cette application.</translation>
+    </message>
+    <message>
+        <source>Temporary files include some of your settings.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -141,6 +133,10 @@
     <message>
         <source>URL copied to clipboard</source>
         <translation type="unfinished">URL copiée dans le presse-papiers</translation>
+    </message>
+    <message>
+        <source>Failed creating Send</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -751,8 +747,8 @@
         <translation>Nettoyer les données</translation>
     </message>
     <message>
-        <source>This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?</source>
-        <translation>Cela supprimera tout ce que cette application stocke sur le système, y compris la collection de secrets du système, Bitwarden CLI (s&apos;il a été installé via cette application), les fichiers temporaires, etc. Bitwarden CLI sera également déconnecté. Souhaitez-vous continuer ?</translation>
+        <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -939,10 +935,6 @@
         <translation>Tout nettoyer</translation>
     </message>
     <message>
-        <source>This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?</source>
-        <translation>Cela va supprimer tout ce que stocke cette application sur votre système, y compris les collections de secrets système, Bitwarden CLI (si installé via cette app), les fichiers temporaires etc. Bitwarden CLI sera également déconnecté. Souhaitez-vous continuer ?</translation>
-    </message>
-    <message>
         <source>Security</source>
         <translation>Sécurité</translation>
     </message>
@@ -981,6 +973,10 @@
     </message>
     <message>
         <source>Could not fetch your email address, the session is in an invalid state. Logout is advised</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1133,6 +1129,10 @@
     <message>
         <source>There was an error while synchronizing the vault, please try again.</source>
         <translation>Une erreur s&apos;est produite lors de la synchronisation du coffre-fort, veuillez réessayer.</translation>
+    </message>
+    <message>
+        <source>There was an error when creating the new item</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

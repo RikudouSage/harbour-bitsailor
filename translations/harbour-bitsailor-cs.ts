@@ -29,10 +29,6 @@
         <translation>Smazány všechny citlivé údaje</translation>
     </message>
     <message>
-        <source>Deleted all permanent files</source>
-        <translation>Smazány všechny trvalé soubory</translation>
-    </message>
-    <message>
         <source>Deleted all config files</source>
         <translation>Smazány všechny konfigurační soubory</translation>
     </message>
@@ -45,16 +41,12 @@
         <translation>Smazány dočasné soubory</translation>
     </message>
     <message>
-        <source>Temporary files include your cached vault for faster loading.</source>
-        <translation>Dočasné soubory zahrnují váš trezor v cache pro rychlejší načítání.</translation>
-    </message>
-    <message>
-        <source>Permanent files include Bitwarden CLI (if it was installed using this app).</source>
-        <translation>Trvalé soubory zahrnují Bitwarden CLI (pokud bylo nainstalováno přes tuto aplikaci).</translation>
-    </message>
-    <message>
         <source>Config files include all the settings you have made in this app.</source>
         <translation>Konfigurační soubory zahrnují všechna nastavení této aplikace.</translation>
+    </message>
+    <message>
+        <source>Temporary files include some of your settings.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -141,6 +133,10 @@
     <message>
         <source>URL copied to clipboard</source>
         <translation>URL zkopírována do schránky</translation>
+    </message>
+    <message>
+        <source>Failed creating Send</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -751,8 +747,8 @@
         <translation>Vyčistit data</translation>
     </message>
     <message>
-        <source>This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?</source>
-        <translation>Tato možnost smaže všechna data, která má tato aplikace uložena ve vašem zařízení, včetně uložiště citlivých údajů, Bitwarden CLI (pokud bylo nainstalováno touto aplikací), dočasné soubory atd. Budete také odhlášeni z Bitwarden CLI. Přejete si pokračovat?</translation>
+        <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -939,10 +935,6 @@
         <translation>Vyčistit data</translation>
     </message>
     <message>
-        <source>This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?</source>
-        <translation>Tato možnost smaže všechna data, která má tato aplikace uložena ve vašem zařízení, včetně uložiště citlivých údajů, Bitwarden CLI (pokud bylo nainstalováno touto aplikací), dočasné soubory atd. Budete také odhlášeni z Bitwarden CLI. Přejete si pokračovat?</translation>
-    </message>
-    <message>
         <source>Security</source>
         <translation>Zabezpečení</translation>
     </message>
@@ -981,6 +973,10 @@
     </message>
     <message>
         <source>Could not fetch your email address, the session is in an invalid state. Logout is advised</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1133,6 +1129,10 @@
     <message>
         <source>There was an error while synchronizing the vault, please try again.</source>
         <translation>Nastala chyba při synchronizaci trezoru, prosím zkuste to znovu.</translation>
+    </message>
+    <message>
+        <source>There was an error when creating the new item</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

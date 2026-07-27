@@ -5,6 +5,7 @@
 
 #include <QObject>
 #include <QUuid>
+#include <QDateTime>
 #include <QJsonArray>
 #include <QJsonObject>
 
@@ -81,7 +82,10 @@ public:
     Q_INVOKABLE void fetchItems();
     Q_INVOKABLE void fetchSends();
     Q_INVOKABLE void createItem(const QJsonObject &item);
+    Q_INVOKABLE void createTextSend(const QString &name, const QString &text, bool hideText, int deletionDate, int maximumAccessCount, const QString &password, bool hideEmail, const QString &notes);
+    Q_INVOKABLE void createFileSend(const QString &name, const QString &filePath, int deletionDate, int maximumAccessCount, const QString &password, bool hideEmail, const QString &notes);
     Q_INVOKABLE void deleteItem(const QString &id, bool emitEvents = true);
+    Q_INVOKABLE void deleteSend(const QString &id, bool emitEvents = true);
     Q_INVOKABLE void fetchItem(const QString &id);
     Q_INVOKABLE void updateItem(const QString &id, const QJsonObject &item);
 
@@ -108,7 +112,9 @@ signals:
     void itemResolvingFailed();
     void sendsResolved(bool success, const QJsonArray &items);
     void itemCreationFinished(bool success);
+    void sendCreated(bool success, const QJsonObject &item);
     void deletingFinished(bool success);
+    void sendDeletingFinished(bool success);
     void itemFetchFinished(bool success, const QJsonObject &item);
     void itemUpdated(bool success);
 
@@ -137,6 +143,7 @@ private:
     void exportSession(QString *error);
     void exportVault(QString *error);
     QJsonObject mapItem(const BitwardenItem &item) const;
+    QJsonObject mapSend(const BitwardenSend &send) const;
 
 private:
     bool valid = true;

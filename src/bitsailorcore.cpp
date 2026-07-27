@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <vector>
 #include <QDebug>
+#include <QFileInfo>
 #include <QJsonDocument>
 #include <QtConcurrent>
 #include <QJsonParseError>
@@ -114,6 +115,71 @@ struct BitwardenItemInput
         card.expirationMonth = jsonStringOrNull(object, "expMonth", &cardExpirationMonth);
         card.expirationYear = jsonStringOrNull(object, "expYear", &cardExpirationYear);
         card.code = jsonStringOrNull(object, "code", &cardCode);
+    }
+};
+
+struct BitwardenSendInput
+{
+    QByteArray name;
+    QByteArray notes;
+    QByteArray password;
+    QByteArray textValue;
+    QByteArray filePath;
+    QByteArray fileName;
+    uint maximumAccessCountValue = 0;
+    BitwardenSendText text = {};
+    BitwardenSendFile file = {};
+    BitwardenSend send = {};
+
+    BitwardenSendInput(
+            BitwardenSendType type,
+            const QString &name,
+            int deletionDate,
+            int maximumAccessCount,
+            const QString &password,
+            bool hideEmail,
+            const QString &notes
+    ) {
+        this->name = name.toUtf8();
+        send.name = this->name.data();
+        send.type = type;
+        send.authType = password.isEmpty() ? BitwardenSendAuthTypeNoAuth : BitwardenSendAuthTypePassword;
+        send.deletionDate = QDateTime::currentDateTimeUtc().addSecs(deletionDate).toMSecsSinceEpoch();
+        send.hideEmail = hideEmail;
+        send.notes = stringOrNull(notes, &this->notes);
+        send.password = stringOrNull(password, &this->password);
+        if (maximumAccessCount > 0) {
+            maximumAccessCountValue = static_cast<uint>(maximumAccessCount);
+            send.maxAccessCount = &maximumAccessCountValue;
+        }
+    }
+
+    void setText(const QString &text, bool hidden)
+    {
+        textValue = text.toUtf8();
+        this->text.text = textValue.data();
+        this->text.hidden = hidden;
+        send.text = &this->text;
+    }
+
+    void setFile(const QString &path)
+    {
+        filePath = path.toUtf8();
+        fileName = QFileInfo(path).fileName().toUtf8();
+        file.fileName = fileName.data();
+        send.file = &file;
+        send.inputFilePath = filePath.data();
+    }
+
+private:
+    static char *stringOrNull(const QString &value, QByteArray *storage)
+    {
+        if (value.isEmpty()) {
+            return nullptr;
+        }
+
+        *storage = value.toUtf8();
+        return storage->data();
     }
 };
 
@@ -334,13 +400,7 @@ void BitSailorCore::fetchSends()
         QJsonArray result;
         for (size_t i = 0; i < items.len; ++i) {
             auto item = items.items[i];
-            QJsonObject outItem;
-            outItem.insert("name", item.name);
-            outItem.insert("type", item.type);
-            outItem.insert("deletionDate", cTimeToQDate(item.deletionDate).toUTC().toString(Qt::ISODate));
-            outItem.insert("accessUrl", item.accessUrl);
-
-            result.append(outItem);
+            result.append(mapSend(item));
         }
         BitwardenFreeSends(&items);
 
@@ -370,6 +430,95 @@ void BitSailorCore::createItem(const QJsonObject &item)
     });
 }
 
+void BitSailorCore::createTextSend(
+        const QString &name,
+        const QString &text,
+        bool hideText,
+        int deletionDate,
+        int maximumAccessCount,
+        const QString &password,
+        bool hideEmail,
+        const QString &notes
+) {
+    QtConcurrent::run([=] {
+        BitwardenSendInput input(BitwardenSendTypeText, name, deletionDate, maximumAccessCount, password, hideEmail, notes);
+        input.setText(text, hideText);
+
+        BitwardenSend out = {};
+        if (BitwardenCreateSend(vault, ctx, session, &input.send, &out) != BitwardenSuccess) {
+            qWarning() << "Failed creating text send: " << getLastError();
+            emit sendCreated(false, {});
+            return;
+        }
+
+        BitwardenSend created = {};
+        if (BitwardenGetSend(vault, ctx, session, out.id, &created) != BitwardenSuccess) {
+            qWarning() << "Failed fetching created text send: " << getLastError();
+            BitwardenFreeSend(&out);
+            emit sendCreated(false, {});
+            return;
+        }
+
+        auto result = mapSend(created);
+        BitwardenFreeSend(&out);
+        BitwardenFreeSend(&created);
+
+        QString exportError;
+        exportVault(&exportError);
+        if (!exportError.isNull()) {
+            qWarning() << "Failed exporting vault after send creation: " << exportError;
+            emit sendCreated(false, {});
+            return;
+        }
+
+        emit sendCreated(true, result);
+    });
+}
+
+void BitSailorCore::createFileSend(
+        const QString &name,
+        const QString &filePath,
+        int deletionDate,
+        int maximumAccessCount,
+        const QString &password,
+        bool hideEmail,
+        const QString &notes
+) {
+    QtConcurrent::run([=] {
+        BitwardenSendInput input(BitwardenSendTypeFile, name, deletionDate, maximumAccessCount, password, hideEmail, notes);
+        input.setFile(filePath);
+
+        BitwardenSend out = {};
+        if (BitwardenCreateSend(vault, ctx, session, &input.send, &out) != BitwardenSuccess) {
+            qWarning() << "Failed creating file send: " << getLastError();
+            emit sendCreated(false, {});
+            return;
+        }
+
+        BitwardenSend created = {};
+        if (BitwardenGetSend(vault, ctx, session, out.id, &created) != BitwardenSuccess) {
+            qWarning() << "Failed fetching created file send: " << getLastError();
+            BitwardenFreeSend(&out);
+            emit sendCreated(false, {});
+            return;
+        }
+
+        auto result = mapSend(created);
+        BitwardenFreeSend(&out);
+        BitwardenFreeSend(&created);
+
+        QString exportError;
+        exportVault(&exportError);
+        if (!exportError.isNull()) {
+            qWarning() << "Failed exporting vault after send creation: " << exportError;
+            emit sendCreated(false, {});
+            return;
+        }
+
+        emit sendCreated(true, result);
+    });
+}
+
 void BitSailorCore::deleteItem(const QString &id, bool emitEvents)
 {
     QtConcurrent::run([=] {
@@ -383,6 +532,33 @@ void BitSailorCore::deleteItem(const QString &id, bool emitEvents)
 
         if (emitEvents) {
             emit deletingFinished(true);
+        }
+    });
+}
+
+void BitSailorCore::deleteSend(const QString &id, bool emitEvents)
+{
+    QtConcurrent::run([=] {
+        if (BitwardenDeleteSend(vault, ctx, session, uuidToCoreUuid(qUuidFromString(id))) != BitwardenSuccess) {
+            qWarning() << "Failed deleting send: " << getLastError();
+            if (emitEvents) {
+                emit sendDeletingFinished(false);
+            }
+            return;
+        }
+
+        QString exportError;
+        exportVault(&exportError);
+        if (!exportError.isNull()) {
+            qWarning() << "Failed exporting vault after send deletion: " << exportError;
+            if (emitEvents) {
+                emit sendDeletingFinished(false);
+            }
+            return;
+        }
+
+        if (emitEvents) {
+            emit sendDeletingFinished(true);
         }
     });
 }
@@ -864,4 +1040,16 @@ QJsonObject BitSailorCore::mapItem(const BitwardenItem &item) const
     }
 
     return outItem;
+}
+
+QJsonObject BitSailorCore::mapSend(const BitwardenSend &send) const
+{
+    QJsonObject outSend;
+    outSend.insert("id", uuidToString(send.id));
+    outSend.insert("name", send.name);
+    outSend.insert("type", send.type);
+    outSend.insert("deletionDate", cTimeToQDate(send.deletionDate).toUTC().toString(Qt::ISODate));
+    outSend.insert("accessUrl", send.accessUrl);
+
+    return outSend;
 }

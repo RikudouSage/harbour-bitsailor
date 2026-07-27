@@ -29,10 +29,6 @@
         <translation>Slettet alle hemmeligheter</translation>
     </message>
     <message>
-        <source>Deleted all permanent files</source>
-        <translation>Slettet alle permanente filer</translation>
-    </message>
-    <message>
         <source>Deleted all config files</source>
         <translation>Slettet alle konfigurasjonsfiler</translation>
     </message>
@@ -45,16 +41,12 @@
         <translation>Slettede midlertidige filer</translation>
     </message>
     <message>
-        <source>Temporary files include your cached vault for faster loading.</source>
-        <translation>Midlertidige filer inkluderer det bufrede hvelvet ditt for raskere lasting.</translation>
-    </message>
-    <message>
-        <source>Permanent files include Bitwarden CLI (if it was installed using this app).</source>
-        <translation>Permanente filer inkluderer Bitwarden CLI (hvis den ble installert med denne appen).</translation>
-    </message>
-    <message>
         <source>Config files include all the settings you have made in this app.</source>
         <translation>Konfigurasjonsfiler inneholder alle innstillingene du har gjort i denne appen.</translation>
+    </message>
+    <message>
+        <source>Temporary files include some of your settings.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -141,6 +133,10 @@
     <message>
         <source>URL copied to clipboard</source>
         <translation>Lenken ble kopiert til utklippstavlen</translation>
+    </message>
+    <message>
+        <source>Failed creating Send</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -751,8 +747,8 @@
         <translation>Fjern data</translation>
     </message>
     <message>
-        <source>This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?</source>
-        <translation>Alt appdata på systemet ditt vil bli slettet — inkludert systemhemmeligheter, Bitwarden CLI (hvis installert via appen), og midlertidige filer. Bitwarden CLI blir logget ut. Ønsker du å fortsette?</translation>
+        <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -939,11 +935,6 @@
         <translation>Slett alt</translation>
     </message>
     <message>
-        <source>This will delete everything that this app stores on your system, including system secrets collection, Bitwarden CLI (if it was installed via this app), temporary files etc. Bitwarden CLI will also be logged out. Do you wish to continue?</source>
-        <translation>Dette vil slette alt appen lagrer på systemet ditt, inkludert systemets hemmelighetssamling, Bitwarden CLI (hvis den ble installert via denne appen), midlertidige filer osv. Bitwarden CLI blir også logget ut. Vil du fortsette?
-</translation>
-    </message>
-    <message>
         <source>Security</source>
         <translation>Sikkerhet</translation>
     </message>
@@ -982,6 +973,10 @@
     </message>
     <message>
         <source>Could not fetch your email address, the session is in an invalid state. Logout is advised</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1134,6 +1129,10 @@
     <message>
         <source>There was an error while synchronizing the vault, please try again.</source>
         <translation>Det oppstod en feil under synkronisering av hvelvet. Vennligst prøv igjen.</translation>
+    </message>
+    <message>
+        <source>There was an error when creating the new item</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
