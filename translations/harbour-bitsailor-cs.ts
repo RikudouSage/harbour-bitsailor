@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>BottomMenu</name>
     <message>
@@ -9,7 +7,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -46,7 +44,7 @@
     </message>
     <message>
         <source>Temporary files include some of your settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dočasné soubory zahrnují některá z vašich nastavení.</translation>
     </message>
 </context>
 <context>
@@ -74,42 +72,42 @@
     <message>
         <source>Item</source>
         <extracomment>Item name on the cover page for card detail, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Název</translation>
+        <translation>Název</translation>
     </message>
     <message>
         <source>Card Number</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Číslo karty</translation>
+        <translation>Číslo karty</translation>
     </message>
     <message>
         <source>Expiration</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Expirace</translation>
+        <translation>Expirace</translation>
     </message>
     <message>
         <source>Security Code</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Bezpečnostní kód</translation>
+        <translation>Bezp. kód</translation>
     </message>
     <message>
         <source>Username</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Uživatelské jméno</translation>
+        <translation>Uživ. jm.</translation>
     </message>
     <message>
         <source>Password</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Heslo</translation>
+        <translation>Heslo</translation>
     </message>
     <message>
         <source>TOTP</source>
         <extracomment>TOTP (two factor auth code) on cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">TOTP</translation>
+        <translation>TOTP</translation>
     </message>
     <message>
         <source>Note</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Poznámka</translation>
+        <translation>Pozn.</translation>
     </message>
 </context>
 <context>
@@ -136,7 +134,7 @@
     </message>
     <message>
         <source>Failed creating Send</source>
-        <translation type="unfinished"></translation>
+        <translation>Nezdařilo se vytvoření Sendu</translation>
     </message>
 </context>
 <context>
@@ -547,7 +545,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -649,7 +647,7 @@
     </message>
     <message>
         <source>There was an error when updating the item</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastala chyba při úpravě položky</translation>
     </message>
 </context>
 <context>
@@ -660,31 +658,31 @@
     </message>
     <message>
         <source>There was an error while changing the URL, please report that to the developers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastala chyba při měnění adresy, prosím nahlašte to vývojářům.</translation>
     </message>
     <message>
         <source>Unknown status: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznámý status: %1</translation>
     </message>
     <message>
         <source>Your account has two-factor authentication enabled, which is currently unsupported. Please log in using your API key.</source>
-        <translation type="unfinished"></translation>
+        <translation>Váš účet má povoleno dvoufázové ověření, které momentálně nepodporujeme. Prosím přihlašte se pomocí vašeho API klíče.</translation>
     </message>
     <message>
         <source>There was an error while logging in: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastala chyba při přihlašování: %1</translation>
     </message>
     <message>
         <source>There was an unknown error while logging in.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastala neznámá chyba při přihlašování.</translation>
     </message>
     <message>
         <source>Failed unlocking because the session got in an invalid state. We logged you out.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastala chyba při odemykání, protože vaše relace se dostala do nevalidního stavu. Odhlásili jsme vás.</translation>
     </message>
     <message>
         <source>Failed unlocking, did you provide the correct password/PIN?</source>
-        <translation type="unfinished"></translation>
+        <translation>Odemykání selhalo, zadali jste správné heslo/PIN?</translation>
     </message>
 </context>
 <context>
@@ -748,95 +746,95 @@
     </message>
     <message>
         <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tato možnost smaže všechna data, která má tato aplikace uložena ve vašem zařízení, včetně uložiště citlivých údajů, dočasné soubory atd. Přejete si pokračovat?</translation>
     </message>
 </context>
 <context>
     <name>MainPage</name>
     <message>
         <source>Please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím čekejte...</translation>
     </message>
     <message>
         <source>Loading vault items</source>
-        <translation type="unfinished"></translation>
+        <translation>Načítání položek v trezoru</translation>
     </message>
     <message>
         <source>Logout</source>
-        <translation type="unfinished">Odhlásit se</translation>
+        <translation>Odhlásit se</translation>
     </message>
     <message>
         <source>Lock</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknout</translation>
     </message>
     <message>
         <source>Sync Vault</source>
-        <translation type="unfinished"></translation>
+        <translation>Synchronizovat trezor</translation>
     </message>
     <message>
         <source>Syncing vault</source>
-        <translation type="unfinished"></translation>
+        <translation>Synchronizace trezoru</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Hledat</translation>
+        <translation>Hledat</translation>
     </message>
     <message>
         <source>BitSailor</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished">BitSailor</translation>
+        <translation>BitSailor</translation>
     </message>
     <message>
         <source>Logins (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Přihlášení (%1)</translation>
     </message>
     <message>
         <source>Logins</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished">Přihlášení</translation>
+        <translation>Přihlášení</translation>
     </message>
     <message>
         <source>Add login</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat přihlášení</translation>
     </message>
     <message>
         <source>Cards (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Karty (%1)</translation>
     </message>
     <message>
         <source>Cards</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished">Karty</translation>
+        <translation>Karty</translation>
     </message>
     <message>
         <source>Add card</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat kartu</translation>
     </message>
     <message>
         <source>Notes (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Poznámky (%1)</translation>
     </message>
     <message>
         <source>Notes</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished">Poznámky</translation>
+        <translation>Poznámky</translation>
     </message>
     <message>
         <source>Add note</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat poznámku</translation>
     </message>
     <message>
         <source>Identities (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Identity (%1)</translation>
     </message>
     <message>
         <source>Identities</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Identity</translation>
     </message>
     <message>
         <source>Add identity</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat identitu</translation>
     </message>
 </context>
 <context>
@@ -851,7 +849,7 @@
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -915,8 +913,8 @@
         <translation>Zadali jste neplatné heslo.</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>OS authorization check failed.</source>
@@ -973,11 +971,11 @@
     </message>
     <message>
         <source>Could not fetch your email address, the session is in an invalid state. Logout is advised</source>
-        <translation type="unfinished"></translation>
+        <translation>Nezdařilo se získat vaši emailovou adresu, relace je v nevalidním stavu. Doporučujeme se odhlásit</translation>
     </message>
     <message>
         <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tato možnost smaže všechna data, která má tato aplikace uložena ve vašem zařízení, včetně uložiště citlivých údajů, dočasné soubory atd. Přejete si pokračovat?</translation>
     </message>
 </context>
 <context>
@@ -1120,7 +1118,7 @@
     </message>
     <message>
         <source>There was an error when creating the new item</source>
-        <translation type="unfinished"></translation>
+        <translation>Nastala chyba při vytváření položky</translation>
     </message>
 </context>
 <context>
@@ -1131,7 +1129,7 @@
     </message>
     <message>
         <source>Debug secret storage is used. Uninstall this version immediately unless you are developing BitSailor itself.</source>
-        <translation type="unfinished"></translation>
+        <translation>Je používáno debugovací úložiště. Okamžitě tuto verzi odinstalujte, pokud právě nevyvíjíte BitSailor.</translation>
     </message>
 </context>
 </TS>
