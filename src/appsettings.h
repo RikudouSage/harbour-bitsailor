@@ -35,7 +35,7 @@ private:
     void saveConfig(const QString &name, const QVariant &value);
 
     QSettings* settings = new QSettings(
-        QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation) + "/settings.ini",
+        QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation) + "/settings_v2.ini",
         QSettings::IniFormat,
         this
     );
