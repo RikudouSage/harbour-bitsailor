@@ -84,7 +84,7 @@ Page {
         }
 
         onServerUrlChanged: {
-            if (!status) {
+            if (!success) {
                 displayLoginPage(qsTr("There was an error while changing the URL, please report that to the developers."));
                 return;
             }
