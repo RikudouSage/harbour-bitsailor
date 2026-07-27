@@ -8,7 +8,7 @@ import "../components" as Components
 
 Page {
     property string itemId
-    property var item: {type: BitwardenCli.NoType}
+    property var item: {type: BitSailorCore.ItemTypeNone;}
     property bool loaded: false
     property bool pageLoaded: false
     property string errorText
@@ -73,14 +73,10 @@ Page {
 
             page.onItemFetched(item);
         }
-    }
 
-    BitwardenCli {
-        id: cli
-
-        onItemUpdated: {
+        /*onItemUpdated: {
             reloadPage();
-        }
+        }*/
     }
 
     BusyLabel {
@@ -158,7 +154,7 @@ Page {
                         object.notes = dialog.loginNotesValue || dialog.secureNoteNoteValue || null;
 
                         loaded = false;
-                        cli.updateItem(page.itemId, Qt.btoa(JSON.stringify(object)));
+                        //cli.updateItem(page.itemId, Qt.btoa(JSON.stringify(object)));
                     });
                 }
             }
@@ -663,7 +659,7 @@ Page {
 
                     TextField {
                         id: fieldText
-                        visible: field.type === BitwardenCli.FieldTypeText
+                        visible: field.type === BitSailorCore.FieldTypeText
                         label: field.name
                         text: visible ? field.value : ''
                         readOnly: true
@@ -679,7 +675,7 @@ Page {
 
                     TextField {
                         id: fieldLinked
-                        visible: field.type === BitwardenCli.FieldTypeLinked
+                        visible: field.type === BitSailorCore.FieldTypeLinkedId
                         label: field.name
                         text: visible ? field.linkedId : ''
                         readOnly: true
@@ -692,7 +688,7 @@ Page {
                         id: fieldHidden
                         text: passwordVisible ? field.value : 'aaaa aaaa aaaa'
                         label: field.name
-                        visible: field.type === BitwardenCli.FieldTypeHidden
+                        visible: field.type === BitSailorCore.FieldTypeHidden
                         echoMode: passwordVisible ? TextInput.Normal : TextInput.Password
                         readOnly: true
 
@@ -715,7 +711,7 @@ Page {
 
                     Item {
                         width: parent.width
-                        visible: field.type === BitwardenCli.FieldTypeBoolean
+                        visible: field.type === BitSailorCore.FieldTypeCheckbox
                         x: Theme.horizontalPageMargin
                         height: Math.max(fieldBooleanField.height, fieldBooleanIcon.height)
 

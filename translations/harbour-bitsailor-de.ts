@@ -659,22 +659,6 @@
         <translation>Authentifiziere...</translation>
     </message>
     <message>
-        <source>Invalid PIN.</source>
-        <translation>Ungültige PIN.</translation>
-    </message>
-    <message>
-        <source>Wrong password or PIN</source>
-        <translation>Falsches Passwort oder PIN</translation>
-    </message>
-    <message>
-        <source>The credentials you provided are incorrect. Please try again.</source>
-        <translation>Die eingegebenen Anmeldedaten sind falsch. Bitte versuche es erneut.</translation>
-    </message>
-    <message>
-        <source>An authenticator is required, please use API key login.</source>
-        <translation>Ein Authentifikator wird benötigt, bitte nutze die Anmeldung über einen API-Schlüssel.</translation>
-    </message>
-    <message>
         <source>There was an error while changing the URL, please report that to the developers.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -695,11 +679,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Failed unlocking, did you provide the correct password?</source>
+        <source>Failed unlocking because the session got in an invalid state. We logged you out.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Failed unlocking because the session got in an invalid state. We logged you out.</source>
+        <source>Failed unlocking, did you provide the correct password/PIN?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1142,10 +1126,6 @@ Die Bitwarden-CLI wird außerdem abgemeldet. Möchten Sie fortfahren?</translati
     <message>
         <source>Add item</source>
         <translation>Eintrag hinzufügen</translation>
-    </message>
-    <message>
-        <source>There was an error when creating the new item</source>
-        <translation>Ein Fehler trat auf bei der Erstellung dieses Eintrags.</translation>
     </message>
     <message>
         <source>There was an error while synchronizing the vault, please try again.</source>

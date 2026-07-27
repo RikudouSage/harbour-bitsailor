@@ -14,6 +14,7 @@ BitSailorCore::BitSailorCore(AppSettings *settings, SecretsHandler *secrets, QOb
     qRegisterMetaType<BitSailorCore::SessionStatus>("SessionStatus");
     qRegisterMetaType<BitSailorCore::ItemType>("ItemType");
     qRegisterMetaType<BitSailorCore::SendType>("SendType");
+    qRegisterMetaType<BitSailorCore::FieldType>("FieldType");
 
     this->settings = settings;
     this->secrets = secrets;

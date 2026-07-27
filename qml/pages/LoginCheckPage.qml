@@ -114,7 +114,7 @@ Page {
             if (success) {
                 pageStack.replace("MainPage.qml");
             } else {
-                displayUnlockPage(qsTr("Failed unlocking, did you provide the correct password?"));
+                displayUnlockPage(qsTr("Failed unlocking, did you provide the correct password/PIN?"));
             }
         }
 
@@ -124,76 +124,11 @@ Page {
             core.initialize();
             displayLoginPage(qsTr("Failed unlocking because the session got in an invalid state. We logged you out."))
         }
-    }
-
-    BitwardenCli {
-        id: cli
-
-        onServerUrlSet: {
-            if (clientId.length && clientSecret.length) {
-                cli.loginApiKey(clientId, clientSecret);
-            } else {
-                cli.loginEmailPassword(email, password);
-            }
-        }
-
-        onLoginStatusResolved: {
-            if (loggedIn) {
-                if (!secrets.hasSessionId()) {
-                    displayUnlockPage();
-                } else {
-                    cli.checkVaultUnlocked();
-                }
-            } else {
-                displayLoginPage();
-            }
-        }
-
-        onVaultLockStatusResolved: {
-            if (unlocked) {
-                pageStack.replace("MainPage.qml");
-            } else {
-                runtimeCache.remove(CacheKey.Items);
-                runtimeCache.removePersistent(CacheKey.Items);
-                secrets.removeSessionId();
-
-                displayUnlockPage();
-            }
-        }
-
-        onLogInFinished: {
-            if (success) {
-                cli.checkVaultUnlocked();
-            } else {
-                displayLoginPage(qsTr("The credentials you provided are incorrect. Please try again."));
-            }
-        }
-
-        onAuthenticatorRequired: {
-            displayLoginPage(qsTr("An authenticator is required, please use API key login."));
-        }
-
-        onVaultUnlockFinished: {
-            if (!success) {
-                displayUnlockPage(qsTr("Wrong password or PIN"));
-            } else {
-                cli.checkVaultUnlocked();
-            }
-        }
-
-        onWrongPinProvided: {
-            displayUnlockPage(qsTr("Invalid PIN."));
-        }
 
         onInvalidCertificate: {
-            const handle = function() {
+            safeCaller(function() {
                 pageStack.replace("InvalidCertificatePage.qml");
-            };
-            if (pageStack.busy) {
-                doAfterLoad.push(handle);
-            } else {
-                handle();
-            }
+            });
         }
     }
 

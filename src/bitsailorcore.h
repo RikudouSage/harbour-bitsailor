@@ -35,10 +35,17 @@ public:
         SendTypeText = ::BitwardenSendTypeText,
         SendTypeFile = ::BitwardenSendTypeFile,
     };
+    enum FieldType {
+        FieldTypeText = ::BitwardenFieldTypeText,
+        FieldTypeHidden = ::BitwardenFieldTypeHidden,
+        FieldTypeCheckbox = ::BitwardenFieldTypeCheckbox,
+        FieldTypeLinkedId = ::BitwardenFieldTypeLinkedId,
+    };
 
     Q_ENUM(SessionStatus)
     Q_ENUM(ItemType)
     Q_ENUM(SendType)
+    Q_ENUM(FieldType)
 
     explicit BitSailorCore(AppSettings *settings, SecretsHandler *secrets, QObject *parent = nullptr);
     explicit BitSailorCore(QObject *parent = nullptr);
@@ -93,6 +100,8 @@ signals:
     void passwordGeneratingFinished(bool success, const QString &password);
     void passphraseGeneratingFinished(bool success, const QString &passphrase);
 
+    void invalidCertificate(); // todo implement on core side and then here
+
 private:
     const QString getLastError() const;
 
@@ -131,5 +140,6 @@ private: // dependencies
 Q_DECLARE_METATYPE(BitSailorCore::SessionStatus)
 Q_DECLARE_METATYPE(BitSailorCore::ItemType)
 Q_DECLARE_METATYPE(BitSailorCore::SendType)
+Q_DECLARE_METATYPE(BitSailorCore::FieldType)
 
 #endif // BITSAILORCORE_H

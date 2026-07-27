@@ -11,8 +11,6 @@
 
 #include <sailfishapp.h>
 
-#include "bitwardencliinstaller.h"
-#include "bitwardencli.h"
 #include "secretshandler.h"
 #include "appsettings.h"
 #include "runtimecache.h"
@@ -24,7 +22,6 @@
 #include "otp/onetimepasswordgenerator.h"
 #include "parsedurl.h"
 #include "urlparser.h"
-#include "bitwardenapi.h"
 #include "bitsailorcore.h"
 
 int main(int argc, char *argv[])
@@ -36,14 +33,11 @@ int main(int argc, char *argv[])
     auto settings = new AppSettings(app.data());
     auto core = new BitSailorCore(settings, secrets, app.data());
 
-    qmlRegisterType<BitwardenCliInstaller>("cz.chrastecky.bitsailor", 1, 0, "BitwardenInstaller");
-    qmlRegisterType<BitwardenCli>("cz.chrastecky.bitsailor", 1, 0, "BitwardenCli");
     qmlRegisterType<SystemAuthChecker>("cz.chrastecky.bitsailor", 1, 0, "SystemAuthChecker");
     qmlRegisterType<FileAccessor>("cz.chrastecky.bitsailor", 1, 0, "FileAccessor");
     qmlRegisterType<RandomPinGenerator>("cz.chrastecky.bitsailor", 1, 0, "RandomPinGenerator");
     qmlRegisterType<OneTimePasswordGenerator>("cz.chrastecky.bitsailor", 1, 0, "OneTimePasswordGenerator");
     qmlRegisterType<ParsedUrl>("cz.chrastecky.bitasilor", 1, 0, "ParsedUrl");
-    qmlRegisterType<BitwardenApi>("cz.chrastecky.bitsailor", 1, 0, "BitwardenApi");
     qmlRegisterSingletonType<CacheKey>("cz.chrastecky.bitsailor", 1, 0, "CacheKey", [](QQmlEngine* engine, QJSEngine* scriptEngine) -> QObject* {
         Q_UNUSED(engine);
         Q_UNUSED(scriptEngine);

@@ -659,22 +659,6 @@
         <translation>Autentiserer...</translation>
     </message>
     <message>
-        <source>Invalid PIN.</source>
-        <translation>Ugyldig PIN-kode.</translation>
-    </message>
-    <message>
-        <source>Wrong password or PIN</source>
-        <translation>Feil passord eller PIN-kode</translation>
-    </message>
-    <message>
-        <source>The credentials you provided are incorrect. Please try again.</source>
-        <translation>Påloggingsinformasjonen du oppga er feil. Vennligst prøv igjen.</translation>
-    </message>
-    <message>
-        <source>An authenticator is required, please use API key login.</source>
-        <translation>En autentikator kreves, vennligst bruk API-nøkkel for pålogging.</translation>
-    </message>
-    <message>
         <source>There was an error while changing the URL, please report that to the developers.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -695,11 +679,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Failed unlocking, did you provide the correct password?</source>
+        <source>Failed unlocking because the session got in an invalid state. We logged you out.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Failed unlocking because the session got in an invalid state. We logged you out.</source>
+        <source>Failed unlocking, did you provide the correct password/PIN?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1142,10 +1126,6 @@
     <message>
         <source>Add item</source>
         <translation>Legg til oppføring</translation>
-    </message>
-    <message>
-        <source>There was an error when creating the new item</source>
-        <translation>Det oppstod en feil ved opprettelse av den nye oppføringen.</translation>
     </message>
     <message>
         <source>There was an error while synchronizing the vault, please try again.</source>

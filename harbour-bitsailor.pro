@@ -27,22 +27,18 @@ INSTALLS += libbw
 SOURCES += src/harbour-bitsailor.cpp \
     src/appsettings.cpp \
     src/bitsailorcore.cpp \
-    src/bitwardenapi.cpp \
-    src/bitwardencli.cpp \
-    src/bitwardencliinstaller.cpp \
     src/cachekey.cpp \
-    src/cli-api-common-parts.cpp \
     src/encryptor.cpp \
     src/fileaccessor.cpp \
     src/parsedurl.cpp \
     src/pathhelper.cpp \
     src/random-helper.cpp \
     src/randompingenerator.cpp \
-    src/runtimecache.cpp \
     src/secretshandler.cpp \
     src/systemauthchecker.cpp \
     otp/onetimepasswordgenerator.cpp \
-    src/urlparser.cpp
+    src/urlparser.cpp \
+    src/runtimecache.cpp
 
 polkit.path = /usr/share/polkit-1/actions
 polkit.files = polkit/cz.chrastecky.bitsailor.policy
@@ -117,12 +113,8 @@ TRANSLATIONS += translations/harbour-bitsailor-*.ts
 HEADERS += \
     src/appsettings.h \
     src/bitsailorcore.h \
-    src/bitwardenapi.h \
-    src/bitwardencli.h \
-    src/bitwardencliinstaller.h \
     src/cache-keys.h \
     src/cachekey.h \
-    src/cli-api-common-parts.h \
     src/consts.h \
     src/encryptor.h \
     src/fileaccessor.h \
@@ -130,7 +122,6 @@ HEADERS += \
     src/pathhelper.h \
     src/random-helper.h \
     src/randompingenerator.h \
-    src/runtimecache.h \
     src/secretshandler.h \
     src/systemauthchecker.h \
     otp/onetimepasswordgenerator.h \
@@ -140,4 +131,5 @@ HEADERS += \
     core/bw_errors.h \
     core/bw_generator.h \
     core/bw_item.h \
-    core/bw_send.h
+    core/bw_send.h \
+    src/runtimecache.h

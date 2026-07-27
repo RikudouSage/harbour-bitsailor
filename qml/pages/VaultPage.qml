@@ -78,19 +78,15 @@ Page {
 
             core.fetchItems();
         }
-    }
 
-    BitwardenCli {
-        id: cli
-
-        onItemCreationFinished: {
+        /*onItemCreationFinished: {
             if (success) {
                 loaded = false;
                 cli.syncVault();
             } else {
                 errorText = qsTr("There was an error when creating the new item");
             }
-        }
+        }*/
     }
 
     SilicaFlickable {
@@ -135,7 +131,7 @@ Page {
                         object.name = dialog.nameValue;
                         object.notes = dialog.loginNotesValue || dialog.secureNoteNoteValue || null;
 
-                        cli.createItem(Qt.btoa(JSON.stringify(object)));
+                        //cli.createItem(Qt.btoa(JSON.stringify(object)));
                     });
                 }
             }
