@@ -23,7 +23,7 @@ jobs:
         arch: [ 'armv7hl', 'aarch64', 'i486' ]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         name: Checkout
         with:
           submodules: recursive
@@ -44,7 +44,7 @@ jobs:
           cp -r RPMS/*.rpm /share/output"
 
       - name: Upload RPM (${{ matrix.arch }})
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: rpm-${{ matrix.arch }}
           path: output
@@ -56,29 +56,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download armv7hl
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: rpm-armv7hl
         continue-on-error: true
       - name: Download aarch64
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: rpm-aarch64
         continue-on-error: true
       - name: Download i486
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: rpm-i486
         continue-on-error: true
       - name: Extract Version Name
         id: extract_name
-        uses: actions/github-script@v4
+        uses: actions/github-script@v9
         with:
           result-encoding: string
           script: |
             return context.payload.ref.replace(/refs\/tags\//, '');
       - name: Create a Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
