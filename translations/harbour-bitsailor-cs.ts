@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="cs">
 <context>
     <name>BottomMenu</name>
     <message>
@@ -7,7 +9,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -545,7 +547,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -665,10 +667,6 @@
         <translation>Neznámý status: %1</translation>
     </message>
     <message>
-        <source>Your account has two-factor authentication enabled, which is currently unsupported. Please log in using your API key.</source>
-        <translation>Váš účet má povoleno dvoufázové ověření, které momentálně nepodporujeme. Prosím přihlašte se pomocí vašeho API klíče.</translation>
-    </message>
-    <message>
         <source>There was an error while logging in: %1</source>
         <translation>Nastala chyba při přihlašování: %1</translation>
     </message>
@@ -683,6 +681,10 @@
     <message>
         <source>Failed unlocking, did you provide the correct password/PIN?</source>
         <translation>Odemykání selhalo, zadali jste správné heslo/PIN?</translation>
+    </message>
+    <message>
+        <source>Your account uses a two-factor method which is currently not supported by this app. Please log in using your API key.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -717,10 +719,6 @@
         <translation>E-mail</translation>
     </message>
     <message>
-        <source>Logging in using API key is preferred, using email and password may fail in many unexpected ways. If this app hangs on &apos;Authenticating...&apos; screen indefinitely you must use API key login. If you have 2FA activated you must login using API key. See &lt;a href=&apos;%1&apos;&gt;Bitwarden help&lt;/a&gt; for more information.</source>
-        <translation>Přihlášení pomocí API klíče je preferováno, použití e-mailu a hesla může selhat mnoha nečekanými způsoby. Pokud se aplikace zasekne na dlouhou dobu na obrazovce &apos;Autentizace...&apos;, musíte se přihlásit pomoci API klíče. Pokud máte aktivováno dvoufázové ověření, musíte se přihlásit pomoci API klíče. Podívejte se na &lt;a href=&apos;%1&apos;&gt;nápovědu Bitwardenu&lt;/a&gt; pro více informací.</translation>
-    </message>
-    <message>
         <source>You must log in before continuing.</source>
         <translation>Před pokračováním se musíte přihlásit.</translation>
     </message>
@@ -747,6 +745,14 @@
     <message>
         <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
         <translation>Tato možnost smaže všechna data, která má tato aplikace uložena ve vašem zařízení, včetně uložiště citlivých údajů, dočasné soubory atd. Přejete si pokračovat?</translation>
+    </message>
+    <message>
+        <source>Authenticator code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide the code from your authenticator app below.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -849,7 +855,7 @@
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -913,8 +919,8 @@
         <translation>Zadali jste neplatné heslo.</translation>
     </message>
     <message>
-        <source/>
-        <translation type="unfinished"/>
+        <source></source>
+        <translation></translation>
     </message>
     <message>
         <source>OS authorization check failed.</source>

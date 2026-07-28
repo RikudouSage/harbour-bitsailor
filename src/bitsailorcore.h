@@ -75,7 +75,7 @@ public:
 
     Q_INVOKABLE void getLoginStatus();
     Q_INVOKABLE void loginApiKey(const QString &clientId, const QString &clientSecret);
-    Q_INVOKABLE void loginEmailPassword(const QString &email, const QString &password);
+    Q_INVOKABLE void loginEmailPassword(const QString &email, const QString &password, const QString &twoFaCode = "");
     Q_INVOKABLE void logout();
 
     Q_INVOKABLE void syncVault();
@@ -103,6 +103,7 @@ signals:
     void loginStatusFetched(SessionStatus status);
     void loginFinished(bool success, const QString &error);
     void twoFactorNeeded();
+    void unsupportedTwoFactorNeeded();
     void logoutFinished();
     void couldNotFetchEmail();
     void wrongPinProvided();

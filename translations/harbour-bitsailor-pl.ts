@@ -667,10 +667,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Your account has two-factor authentication enabled, which is currently unsupported. Please log in using your API key.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>There was an error while logging in: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -684,6 +680,10 @@
     </message>
     <message>
         <source>Failed unlocking, did you provide the correct password/PIN?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Your account uses a two-factor method which is currently not supported by this app. Please log in using your API key.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -719,10 +719,6 @@
         <translation>E-mail</translation>
     </message>
     <message>
-        <source>Logging in using API key is preferred, using email and password may fail in many unexpected ways. If this app hangs on &apos;Authenticating...&apos; screen indefinitely you must use API key login. If you have 2FA activated you must login using API key. See &lt;a href=&apos;%1&apos;&gt;Bitwarden help&lt;/a&gt; for more information.</source>
-        <translation>Logowanie przy użyciu klucza API jest zalecane, użycie adresu e-mail i hasła może się nie udać w wielu przypadkach. Jeśli aplikacja zatrzyma się z komunikatem &quot;Autentykacja...&quot; musisz użyć logowania kluczem API. Jeśli masz włączoną dwustopniową metodę autentykacji 2FA musisz użyć logowania kluczem API.  Sprawdź &lt;a href=&apos;%1&apos;&gt;sekcję pomocy Bitwarden &lt;/a&gt; aby dowiedzieć się więcej.</translation>
-    </message>
-    <message>
         <source>You must log in before continuing.</source>
         <translation>Musisz się zalogować aby kontynuować.</translation>
     </message>
@@ -748,6 +744,14 @@
     </message>
     <message>
         <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authenticator code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide the code from your authenticator app below.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

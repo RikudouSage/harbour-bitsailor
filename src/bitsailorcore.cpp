@@ -274,10 +274,17 @@ void BitSailorCore::loginApiKey(const QString &clientId, const QString &clientSe
     });
 }
 
-void BitSailorCore::loginEmailPassword(const QString &email, const QString &password)
+void BitSailorCore::loginEmailPassword(const QString &email, const QString &password, const QString &twoFaCode)
 {
     login([=] {
-        return BitwardenLoginPassword(client, ctx, email.toUtf8().data(), password.toUtf8().data(), &session);
+        return BitwardenLoginPassword(
+            client,
+            ctx,
+            email.toUtf8().data(),
+            password.toUtf8().data(),
+            twoFaCode.toUtf8().data(),
+            &session
+        );
     });
 }
 
@@ -896,6 +903,10 @@ void BitSailorCore::login(const std::function<BitwardenResult ()> &loginCallable
             auto error = getLastError();
             if (error == twoFactorNeededError) {
                 emit twoFactorNeeded();
+                return;
+            }
+            if (error == unsupportedTwoFactorNeededError) {
+                emit unsupportedTwoFactorNeeded();
                 return;
             }
             qWarning() << "Login failed: " << error;

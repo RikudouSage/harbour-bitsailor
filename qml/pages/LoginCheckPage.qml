@@ -15,10 +15,11 @@ Page {
     // these are only set if changing server url
     property string clientId
     property string clientSecret
-    property string email
-    property string password
 
     // this is set always
+    property string email
+    property string password
+    property string twoFaCode
     property string customServerUrl
 
     id: page
@@ -27,19 +28,30 @@ Page {
     Connections {
         target: core
 
-        function displayLoginPage(error) {
+        function displayLoginPage(error, twoFa) {
             safeCaller(function() {
                 if (!error) {
                     error = "";
                 }
 
-                const dialog = pageStack.push("LoginPage.qml", {error: error, customServerUrl: customServerUrl});
+                const data = {error: error, customServerUrl: customServerUrl};
+
+                if (twoFa) {
+                    data.twoFaFlow = true;
+                    data.passwordText = password;
+                    data.emailText = email;
+                    data.currentTab = 1;
+                }
+
+                const dialog = pageStack.push("LoginPage.qml", data);
                 dialog.accepted.connect(function() {
                     customServerUrl = dialog.customServerUrl || 'https://bitwarden.com';
                     clientId = dialog.clientIdText;
                     clientSecret = dialog.clientSecretText;
                     email = dialog.emailText;
                     password = dialog.passwordText;
+                    email = dialog.emailText;
+                    twoFaCode = dialog.twoFaCode;
 
                     core.changeServerUrl(customServerUrl);
                 });
@@ -94,12 +106,16 @@ Page {
             if (clientId.length && clientSecret.length) {
                 core.loginApiKey(clientId, clientSecret);
             } else {
-                core.loginEmailPassword(email, password);
+                core.loginEmailPassword(email, password, twoFaCode);
             }
         }
 
         onTwoFactorNeeded: {
-            displayLoginPage(qsTr("Your account has two-factor authentication enabled, which is currently unsupported. Please log in using your API key."));
+            displayLoginPage(null, true);
+        }
+
+        onUnsupportedTwoFactorNeeded: {
+            displayLoginPage(qsTr("Your account uses a two-factor method which is currently not supported by this app. Please log in using your API key."));
         }
 
         onLoginFinished: {

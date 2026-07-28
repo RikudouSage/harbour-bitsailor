@@ -6,11 +6,15 @@ import cz.chrastecky.bitsailor 1.0;
 import "../helpers.js" as Helpers
 
 Dialog {
+    property alias currentTab: sectionWrapper.currentIndex
+
     property string emailText
     property string passwordText
     property string clientIdText
     property string clientSecretText
     property string customServerUrl
+    property string twoFaCode
+    property bool twoFaFlow: false
 
     property string error
 
@@ -70,6 +74,7 @@ Dialog {
             }
 
             ExpandingSectionGroup {
+                id: sectionWrapper
                 currentIndex: -1
 
                 ExpandingSection {
@@ -135,7 +140,8 @@ Dialog {
 
                     content.sourceComponent: Column {
                         Label {
-                            text: qsTr("Logging in using API key is preferred, using email and password may fail in many unexpected ways. If this app hangs on 'Authenticating...' screen indefinitely you must use API key login. If you have 2FA activated you must login using API key. See <a href='%1'>Bitwarden help</a> for more information.").arg("https://bitwarden.com/help/personal-api-key/");
+                            visible: twoFaFlow
+                            text: qsTr("Please provide the code from your authenticator app below.")
                             color: Theme.highlightColor
                             width: parent.width - Theme.horizontalPageMargin * 2
                             wrapMode: Label.WordWrap
@@ -150,16 +156,22 @@ Dialog {
                             id: email
                             label: qsTr("Email")
 
+                            onTextChanged: {
+                                emailText = text;
+                            }
+
                             EnterKey.iconSource: "image://theme/icon-m-enter-next"
                             EnterKey.onClicked: {
                                 password.focus = true;
                             }
 
-                            onTextChanged: {
-                                emailText = text;
+                            Component.onCompleted: {
+                                if (emailText) {
+                                    text = emailText;
+                                } else if(secrets.getUsername()) {
+                                    text = secrets.getUsername();
+                                }
                             }
-
-                            text: secrets.getUsername()
                         }
 
                         TextField {
@@ -181,9 +193,34 @@ Dialog {
                                 passwordText = text;
                             }
 
+                            EnterKey.iconSource: twoFa.visible ? "image://theme/icon-m-enter-next" : "image://theme/icon-m-enter-accept"
+                            EnterKey.onClicked: {
+                                if (twoFa.visible) {
+                                    twoFa.focus = true;
+                                } else {
+                                    page.accept();
+                                }
+                            }
+
+                            Component.onCompleted: {
+                                if (passwordText) {
+                                    text = passwordText;
+                                }
+                            }
+                        }
+
+                        TextField {
+                            id: twoFa
+                            label: qsTr("Authenticator code")
+                            visible: twoFaFlow
+
                             EnterKey.iconSource: "image://theme/icon-m-enter-accept"
                             EnterKey.onClicked: {
                                 page.accept();
+                            }
+
+                            onTextChanged: {
+                                twoFaCode = text;
                             }
                         }
                     }
