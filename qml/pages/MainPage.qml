@@ -13,7 +13,6 @@ Page {
 
     property string loadingMessage
     property bool initialLoadCompleted: false
-    property bool syncingAfterItemFailure: false
 
     property string currentCount
 
@@ -68,7 +67,6 @@ Page {
     function onItemsResolved(items) {
         safeCall(function() {
             hideMessage();
-            syncingAfterItemFailure = false;
 
             loginsCount = 0;
             cardsCount = 0;
@@ -157,7 +155,8 @@ Page {
                 return;
             }
 
-            core.fetchItems();
+            displayMessage(qsTr("Syncing vault"));
+            core.syncVault();
         }
 
         onItemsResolved: {
@@ -171,13 +170,6 @@ Page {
             if (page.status !== PageStatus.Active && page.status !== PageStatus.Activating) {
                 return;
             }
-            if (!syncingAfterItemFailure) {
-                syncingAfterItemFailure = true;
-                displayMessage(qsTr("Syncing vault"));
-                core.syncVault();
-                return;
-            }
-            syncingAfterItemFailure = false;
             page.onVaultSyncFailed();
         }
 
@@ -195,7 +187,6 @@ Page {
                 return;
             }
 
-            syncingAfterItemFailure = false;
             page.onVaultSyncFailed();
         }
     }
