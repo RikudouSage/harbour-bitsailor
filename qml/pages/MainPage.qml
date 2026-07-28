@@ -13,6 +13,10 @@ Page {
 
     property string loadingMessage
     property bool initialLoadCompleted: false
+    property bool backgroundSyncInProgress: false
+    property bool visibleSyncInProgress: false
+    property bool backgroundSyncStarted: false
+    property bool syncStartedAfterItemFailure: false
 
     property string currentCount
 
@@ -49,13 +53,21 @@ Page {
         displayMessage(qsTr("Loading vault items"));
     }
 
+    function startBackgroundSync() {
+        backgroundSyncInProgress = true;
+        visibleSyncInProgress = false;
+        core.syncVault();
+    }
+
+    function startVisibleSync() {
+        backgroundSyncInProgress = false;
+        visibleSyncInProgress = true;
+        displayMessage(qsTr("Syncing vault"));
+        core.syncVault();
+    }
+
     function onVaultSynced() {
         hideMessage();
-        loginsCount = null;
-        cardsCount = null;
-        notesCount = null;
-        identitiesCount = null;
-
         core.fetchItems();
     }
 
@@ -67,6 +79,7 @@ Page {
     function onItemsResolved(items) {
         safeCall(function() {
             hideMessage();
+            syncStartedAfterItemFailure = false;
 
             loginsCount = 0;
             cardsCount = 0;
@@ -101,6 +114,10 @@ Page {
 
 
             initialLoadCompleted = true;
+            if (!backgroundSyncStarted && !backgroundSyncInProgress && !visibleSyncInProgress) {
+                backgroundSyncStarted = true;
+                startBackgroundSync();
+            }
         });
     }
 
@@ -155,8 +172,7 @@ Page {
                 return;
             }
 
-            displayMessage(qsTr("Syncing vault"));
-            core.syncVault();
+            core.fetchItems();
         }
 
         onItemsResolved: {
@@ -170,7 +186,13 @@ Page {
             if (page.status !== PageStatus.Active && page.status !== PageStatus.Activating) {
                 return;
             }
-            page.onVaultSyncFailed();
+            if (syncStartedAfterItemFailure) {
+                syncStartedAfterItemFailure = false;
+                page.onVaultSyncFailed();
+                return;
+            }
+            syncStartedAfterItemFailure = true;
+            startVisibleSync();
         }
 
         onLogoutFinished: {
@@ -182,6 +204,24 @@ Page {
         }
 
         onSyncVaultFinished: {
+            if (backgroundSyncInProgress) {
+                backgroundSyncInProgress = false;
+                if (visibleSyncInProgress) {
+                    visibleSyncInProgress = false;
+                    if (success) {
+                        page.onVaultSynced();
+                    } else {
+                        page.onVaultSyncFailed();
+                    }
+                    return;
+                }
+                if (success) {
+                    page.onVaultSynced();
+                }
+                return;
+            }
+
+            visibleSyncInProgress = false;
             if (success) {
                 page.onVaultSynced();
                 return;
@@ -219,8 +259,12 @@ Page {
             MenuItem {
                 text: qsTr("Sync Vault")
                 onClicked: {
-                    displayMessage(qsTr("Syncing vault"));
-                    core.syncVault();
+                    if (backgroundSyncInProgress) {
+                        visibleSyncInProgress = true;
+                        displayMessage(qsTr("Syncing vault"));
+                    } else {
+                        startVisibleSync();
+                    }
                 }
             }
 
