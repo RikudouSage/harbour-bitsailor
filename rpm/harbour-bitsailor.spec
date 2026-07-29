@@ -17,9 +17,14 @@ License:    MIT
 URL:        http://example.org/
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-bitsailor.yaml
+
+%{!?harbour_store:%define harbour_store %(if [ -n "$HARBOUR_STORE" ]; then echo 1; elif echo "$PWD" | grep -q -- '-Store'; then echo 1; else echo 0; fi)}
+
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   sailfishsecretsdaemon-secretsplugins-default
+%if 0%{?harbour_store} == 0
 Requires:   sailfish-polkit-agent
+%endif
 Requires:   python3-base
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
@@ -43,7 +48,11 @@ A Sailfish OS Bitwarden client
 # >> build pre
 # << build pre
 
-%qmake5 
+%if 0%{?harbour_store}
+%qmake5 CONFIG+=harbour_store
+%else
+%qmake5
+%endif
 
 make %{?_smp_mflags}
 
@@ -57,6 +66,13 @@ rm -rf %{buildroot}
 %qmake5_install
 
 # >> install post
+%if 0%{?harbour_store}
+sed -i \
+  -e '/^Sandboxing=Disabled$/d' \
+  -e 's|^Permissions=.*|Permissions=Internet;Secrets;UserDirs|' \
+  %{buildroot}%{_datadir}/applications/%{name}.desktop
+%endif
+
 # << install post
 
 desktop-file-install --delete-original       \
@@ -69,7 +85,9 @@ desktop-file-install --delete-original       \
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
+%if 0%{?harbour_store} == 0
 %{_datadir}/polkit-1/actions/cz.chrastecky.bitsailor.policy
 %{_datadir}/dbus-1/services/cz.chrastecky.bitsailor.service
+%endif
 # >> files
 # << files
