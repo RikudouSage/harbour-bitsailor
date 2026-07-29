@@ -20,6 +20,12 @@ Source100:  harbour-bitsailor.yaml
 
 %{!?harbour_store:%define harbour_store %(if [ -n "$HARBOUR_STORE" ]; then echo 1; elif echo "$PWD" | grep -q -- '-Store'; then echo 1; else echo 0; fi)}
 
+%if 0%{?harbour_store}
+%global __provides_exclude_from ^%{_datadir}/%{name}/lib/.*$
+%global __requires_exclude_from ^%{_datadir}/%{name}/lib/.*$
+%global __requires_exclude ^libbw\\.so$|^libbw\\.so\\(\\)\\(64bit\\)$
+%endif
+
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   sailfishsecretsdaemon-secretsplugins-default
 %if 0%{?harbour_store} == 0
@@ -72,6 +78,8 @@ sed -i \
   -e 's|^Permissions=.*|Permissions=Internet;Secrets;UserDirs|' \
   %{buildroot}%{_datadir}/applications/%{name}.desktop
 %endif
+
+strip --strip-unneeded %{buildroot}%{_datadir}/%{name}/lib/libbw.so
 
 # << install post
 

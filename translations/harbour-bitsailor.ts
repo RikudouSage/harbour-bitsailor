@@ -995,6 +995,10 @@
         <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The Jolla Store does not allow this setting, if you want to be able to unlock your vault using a fingerprint, please install the version from OpenRepos/Storeman</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SetupPinPage</name>

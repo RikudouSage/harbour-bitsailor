@@ -35,7 +35,11 @@ void AppSettings::setLockOnClose(bool lock)
 
 bool AppSettings::useSystemAuth() const
 {
+#ifdef HARBOUR_STORE
+    return false;
+#else
     return prop_UseSystemAuth;
+#endif
 }
 
 void AppSettings::setUseSystemAuth(bool enabled)

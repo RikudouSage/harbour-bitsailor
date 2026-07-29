@@ -995,6 +995,10 @@
         <source>Change server</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The Jolla Store does not allow this setting, if you want to be able to unlock your vault using a fingerprint, please install the version from OpenRepos/Storeman</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SetupPinPage</name>
