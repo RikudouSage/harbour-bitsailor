@@ -15,7 +15,6 @@ Page {
         target: core
 
         onLogoutFinished: {
-            loggedOut = true;
             secretsCleared = true;
         }
     }
