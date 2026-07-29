@@ -727,10 +727,6 @@
         <translation>Voir &lt;a href=&apos;%1&apos;&gt;l&apos;aide Bitwarden&lt;/a&gt; pour des informations sur comment créer une clé API.</translation>
     </message>
     <message>
-        <source>Advanced</source>
-        <translation>Avancé</translation>
-    </message>
-    <message>
         <source>Custom server URL</source>
         <translation>URL de serveur personnalisée</translation>
     </message>
@@ -752,6 +748,14 @@
     </message>
     <message>
         <source>Please provide the code from your authenticator app below.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -947,14 +951,6 @@
         <translation>Avancé</translation>
     </message>
     <message>
-        <source>Custom Bitwarden URL</source>
-        <translation>URL Bitwarden personnalisée</translation>
-    </message>
-    <message>
-        <source>Bitwarden URL</source>
-        <translation>URL Bitwarden</translation>
-    </message>
-    <message>
         <source>Setting URL</source>
         <extracomment>As in the action of setting url (present continuous)</extracomment>
         <translation>Définition de l&apos;URL</translation>
@@ -981,6 +977,22 @@
     </message>
     <message>
         <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom server URL</source>
+        <translation type="unfinished">URL de serveur personnalisée</translation>
+    </message>
+    <message>
+        <source>Change server</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

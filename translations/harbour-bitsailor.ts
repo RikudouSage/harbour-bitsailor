@@ -727,7 +727,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Advanced</source>
+        <source>Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -947,11 +951,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Custom Bitwarden URL</source>
+        <source>Server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Bitwarden URL</source>
+        <source>Custom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom server URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -6,12 +6,17 @@ import cz.chrastecky.bitsailor 1.0;
 import "../helpers.js" as Helpers
 
 Dialog {
+    readonly property string defaultServerUrl: "https://bitwarden.com"
+    readonly property string europeanServerUrl: "https://bitwarden.eu"
+    readonly property string customServerValue: "custom"
+
     property alias currentTab: sectionWrapper.currentIndex
 
     property string emailText
     property string passwordText
     property string clientIdText
     property string clientSecretText
+    property string serverUrl: defaultServerUrl
     property string customServerUrl
     property string twoFaCode
     property bool twoFaFlow: false
@@ -20,9 +25,133 @@ Dialog {
 
     property var doAfterLoad: []
 
+    function selectedServerUrl() {
+        return serverUrl === customServerValue ? customServerUrl : serverUrl;
+    }
+
+    function applyInitialServerUrl(url) {
+        if (!url || url === defaultServerUrl || url === europeanServerUrl) {
+            serverUrl = url || defaultServerUrl;
+            return;
+        }
+
+        serverUrl = customServerValue;
+        customServerUrl = url;
+    }
+
+    function indexForServerUrl(url) {
+        if (url === europeanServerUrl) {
+            return 1;
+        }
+
+        if (url && url !== defaultServerUrl) {
+            return 2;
+        }
+
+        return 0;
+    }
+
     id: page
     allowedOrientations: Orientation.All
-    canAccept: Helpers.xor(emailText.length && passwordText.length, clientIdText.length && clientSecretText.length)
+    canAccept: Helpers.xor(emailText.length && passwordText.length, clientIdText.length && clientSecretText.length) && (serverUrl !== customServerValue || customServerUrl.length)
+
+    Component {
+        id: serverUrlFields
+
+        Column {
+            id: serverUrlFieldsRoot
+            width: parent ? parent.width : page.width
+
+            function syncServerUrl() {
+                serverSelect.currentIndex = page.indexForServerUrl(page.serverUrl);
+            }
+
+            function syncCustomServerUrl() {
+                if (customUrl.text !== page.customServerUrl) {
+                    customUrl.text = page.customServerUrl;
+                }
+            }
+
+            ComboBox {
+                id: serverSelect
+                label: qsTr("Server")
+
+                property var itemData: [
+                    {text: "bitwarden.com", value: page.defaultServerUrl},
+                    {text: "bitwarden.eu", value: page.europeanServerUrl},
+                    {text: qsTr("Custom"), value: page.customServerValue}
+                ]
+
+                menu: ContextMenu {
+                    MenuItem {
+                        property string value: serverSelect.itemData[0].value
+                        text: serverSelect.itemData[0].text
+                    }
+
+                    MenuItem {
+                        property string value: serverSelect.itemData[1].value
+                        text: serverSelect.itemData[1].text
+                    }
+
+                    MenuItem {
+                        property string value: serverSelect.itemData[2].value
+                        text: serverSelect.itemData[2].text
+                    }
+                }
+
+                onCurrentItemChanged: {
+                    if (currentItem) {
+                        page.serverUrl = currentItem.value;
+                    }
+                }
+            }
+
+            TextField {
+                id: customUrl
+                label: qsTr("Custom server URL")
+                visible: page.serverUrl === page.customServerValue
+
+                EnterKey.iconSource: "image://theme/icon-m-enter-accept"
+                EnterKey.onClicked: {
+                    page.accept();
+                }
+
+                onTextChanged: {
+                    page.customServerUrl = text;
+                }
+
+                text: page.customServerUrl
+            }
+
+            Connections {
+                target: page
+
+                onServerUrlChanged: {
+                    serverUrlFieldsRoot.syncServerUrl();
+                }
+
+                onCustomServerUrlChanged: {
+                    serverUrlFieldsRoot.syncCustomServerUrl();
+                }
+            }
+
+            Label {
+                visible: customUrl.visible
+                text: qsTr("If you use your own server for Bitwarden, set its URL here.");
+                color: Theme.highlightColor
+                width: parent.width - Theme.horizontalPageMargin * 2
+                wrapMode: Label.WordWrap
+                x: Theme.horizontalPageMargin
+                font.pixelSize: Theme.fontSizeSmall
+                linkColor: Theme.lightPrimaryColor
+            }
+
+            Component.onCompleted: {
+                syncServerUrl();
+                syncCustomServerUrl();
+            }
+        }
+    }
 
     SilicaFlickable {
         anchors.fill: parent
@@ -133,6 +262,15 @@ Dialog {
                                 page.accept();
                             }
                         }
+
+                        SectionHeader {
+                            text: qsTr("Server")
+                        }
+
+                        Loader {
+                            width: parent.width
+                            sourceComponent: serverUrlFields
+                        }
                     }
                 }
                 ExpandingSection {
@@ -223,36 +361,14 @@ Dialog {
                                 twoFaCode = text;
                             }
                         }
-                    }
-                }
-                ExpandingSection {
-                    title: qsTr("Advanced")
 
-                    content.sourceComponent: Column {
-                        TextField {
-                            id: customUrl
-                            label: qsTr("Custom server URL")
-
-                            EnterKey.iconSource: "image://theme/icon-m-enter-accept"
-                            EnterKey.onClicked: {
-                                page.accept();
-                            }
-
-                            onTextChanged: {
-                                customServerUrl = text;
-                            }
-
-                            text: customServerUrl
+                        SectionHeader {
+                            text: qsTr("Server")
                         }
 
-                        Label {
-                            text: qsTr("If you use your own server for Bitwarden, set its URL here.");
-                            color: Theme.highlightColor
-                            width: parent.width - Theme.horizontalPageMargin * 2
-                            wrapMode: Label.WordWrap
-                            x: Theme.horizontalPageMargin
-                            font.pixelSize: Theme.fontSizeSmall
-                            linkColor: Theme.lightPrimaryColor
+                        Loader {
+                            width: parent.width
+                            sourceComponent: serverUrlFields
                         }
                     }
                 }
@@ -271,5 +387,9 @@ Dialog {
                 callable();
             }
         }
+    }
+
+    Component.onCompleted: {
+        applyInitialServerUrl(customServerUrl);
     }
 }
