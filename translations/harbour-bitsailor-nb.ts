@@ -727,10 +727,6 @@
         <translation>Se &lt;a href=&apos;%1&apos;&gt;Bitwarden hjelp&lt;/a&gt; for informasjon om hvordan du oppretter en API-nøkkel.</translation>
     </message>
     <message>
-        <source>Advanced</source>
-        <translation>Avansert</translation>
-    </message>
-    <message>
         <source>Custom server URL</source>
         <translation>Egendefinert server‑URL</translation>
     </message>
@@ -752,6 +748,14 @@
     </message>
     <message>
         <source>Please provide the code from your authenticator app below.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -947,14 +951,6 @@
         <translation>Avansert</translation>
     </message>
     <message>
-        <source>Custom Bitwarden URL</source>
-        <translation>Egendefinert Bitwarden-URL</translation>
-    </message>
-    <message>
-        <source>Bitwarden URL</source>
-        <translation>Bitwarden-URL</translation>
-    </message>
-    <message>
         <source>Setting URL</source>
         <extracomment>As in the action of setting url (present continuous)</extracomment>
         <translation>Setze URL</translation>
@@ -981,6 +977,22 @@
     </message>
     <message>
         <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom server URL</source>
+        <translation type="unfinished">Egendefinert server‑URL</translation>
+    </message>
+    <message>
+        <source>Change server</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

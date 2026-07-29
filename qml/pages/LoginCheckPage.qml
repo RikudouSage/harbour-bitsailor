@@ -45,7 +45,7 @@ Page {
 
                 const dialog = pageStack.push("LoginPage.qml", data);
                 dialog.accepted.connect(function() {
-                    customServerUrl = dialog.customServerUrl || 'https://bitwarden.com';
+                    customServerUrl = dialog.selectedServerUrl();
                     clientId = dialog.clientIdText;
                     clientSecret = dialog.clientSecretText;
                     email = dialog.emailText;
