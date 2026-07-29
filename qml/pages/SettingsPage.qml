@@ -6,6 +6,10 @@ import cz.chrastecky.bitsailor 1.0
 import "../helpers.js" as Helpers
 
 Page {
+    readonly property string defaultServerUrl: "https://bitwarden.com"
+    readonly property string europeanServerUrl: "https://bitwarden.eu"
+    readonly property string customServerValue: "custom"
+
     property int pinToStore
     property string passwordToStore
 
@@ -19,7 +23,27 @@ Page {
 
     function onServerUrlResolved(serverUrl) {
         currentServerUrl = serverUrl;
+        customServerUrl.text = isPresetServerUrl(serverUrl) ? "" : serverUrl;
+        serverUrlSelect.currentIndex = serverUrlSelect.indexForServerUrl(serverUrl);
         busyIndicatorServerUrl.running = false;
+    }
+
+    function isPresetServerUrl(serverUrl) {
+        return serverUrl === defaultServerUrl || serverUrl === europeanServerUrl;
+    }
+
+    function selectedServerUrl() {
+        if (!serverUrlSelect.currentItem) {
+            return "";
+        }
+
+        return serverUrlSelect.currentItem.value === customServerValue
+            ? customServerUrl.text
+            : serverUrlSelect.currentItem.value;
+    }
+
+    function hasServerUrlChange() {
+        return currentServerUrl !== null && serverUrlSelect.currentItem && selectedServerUrl() !== currentServerUrl;
     }
 
     id: page
@@ -220,30 +244,79 @@ Page {
                 text: qsTr("Advanced")
             }
 
-            TextSwitch {
+            ComboBox {
+                id: serverUrlSelect
                 enabled: currentServerUrl !== null
-                checked: currentServerUrl !== null && currentServerUrl !== 'https://bitwarden.com'
-                automaticCheck: false
-                text: qsTr("Custom Bitwarden URL")
+                label: qsTr("Server")
 
-                onClicked: {
-                    if (checked) {
-                        core.changeServerUrl('https://bitwarden.com');
-                    } else {
-                        const dialog = pageStack.push("ConfirmStringSettingPage.qml", {
-                            description: qsTr("Note: You will be logged out."),
-                            inputLabel: qsTr("Bitwarden URL"),
-                            value: currentServerUrl,
-                        });
-                        dialog.accepted.connect(function() {
-                            busyIndicatorServerUrl.running = true;
-                            core.changeServerUrl(dialog.value);
-                        });
+                property var itemData: [
+                    {text: "bitwarden.com", value: page.defaultServerUrl},
+                    {text: "bitwarden.eu", value: page.europeanServerUrl},
+                    {text: qsTr("Custom"), value: page.customServerValue}
+                ]
+
+                function indexForServerUrl(serverUrl) {
+                    if (serverUrl === page.europeanServerUrl) {
+                        return 1;
+                    }
+
+                    if (serverUrl && serverUrl !== page.defaultServerUrl) {
+                        return 2;
+                    }
+
+                    return 0;
+                }
+
+                menu: ContextMenu {
+                    MenuItem {
+                        property string value: serverUrlSelect.itemData[0].value
+                        text: serverUrlSelect.itemData[0].text
+                    }
+
+                    MenuItem {
+                        property string value: serverUrlSelect.itemData[1].value
+                        text: serverUrlSelect.itemData[1].text
+                    }
+
+                    MenuItem {
+                        property string value: serverUrlSelect.itemData[2].value
+                        text: serverUrlSelect.itemData[2].text
                     }
                 }
 
                 Component.onCompleted: {
                     core.getServerUrl();
+                }
+            }
+
+            TextField {
+                id: customServerUrl
+                label: qsTr("Custom server URL")
+                visible: serverUrlSelect.currentItem && serverUrlSelect.currentItem.value === customServerValue
+                text: currentServerUrl !== null && !isPresetServerUrl(currentServerUrl) ? currentServerUrl : ""
+
+                EnterKey.iconSource: "image://theme/icon-m-enter-accept"
+                EnterKey.onClicked: {
+                    if (changeServerUrlButton.enabled) {
+                        changeServerUrlButton.clicked();
+                    }
+                }
+            }
+
+            Button {
+                id: changeServerUrlButton
+                anchors.horizontalCenter: parent.horizontalCenter
+                enabled: hasServerUrlChange() && serverUrlSelect.currentItem && (serverUrlSelect.currentItem.value !== customServerValue || customServerUrl.text.length)
+                text: qsTr("Change server")
+
+                onClicked: {
+                    const dialog = pageStack.push("ConfirmSettingPage.qml", {
+                        description: qsTr("Note: You will be logged out.")
+                    });
+                    dialog.accepted.connect(function() {
+                        busyIndicatorServerUrl.running = true;
+                        core.changeServerUrl(selectedServerUrl());
+                    });
                 }
             }
 

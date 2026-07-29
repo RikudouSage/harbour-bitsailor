@@ -727,10 +727,6 @@
         <translation>Podívejte se na &lt;a href=&apos;%1&apos;&gt;nápovědu Bitwardenu&lt;/a&gt; pro informaci o tom, jak vytvořit API klíč.</translation>
     </message>
     <message>
-        <source>Advanced</source>
-        <translation>Pokročilé</translation>
-    </message>
-    <message>
         <source>Custom server URL</source>
         <translation>Vlastní URL serveru</translation>
     </message>
@@ -753,6 +749,14 @@
     <message>
         <source>Please provide the code from your authenticator app below.</source>
         <translation>Prosím zadejte kód z vašeho autentikátoru níže.</translation>
+    </message>
+    <message>
+        <source>Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -947,14 +951,6 @@
         <translation>Pokročilé</translation>
     </message>
     <message>
-        <source>Custom Bitwarden URL</source>
-        <translation>Vlastní URL Bitwardenu</translation>
-    </message>
-    <message>
-        <source>Bitwarden URL</source>
-        <translation>URL Bitwardenu</translation>
-    </message>
-    <message>
         <source>Setting URL</source>
         <extracomment>As in the action of setting url (present continuous)</extracomment>
         <translation>Nastavování URL</translation>
@@ -982,6 +978,22 @@
     <message>
         <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
         <translation>Tato možnost smaže všechna data, která má tato aplikace uložena ve vašem zařízení, včetně uložiště citlivých údajů, dočasné soubory atd. Přejete si pokračovat?</translation>
+    </message>
+    <message>
+        <source>Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom server URL</source>
+        <translation type="unfinished">Vlastní URL serveru</translation>
+    </message>
+    <message>
+        <source>Change server</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
