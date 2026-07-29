@@ -62,6 +62,12 @@ int main(int argc, char *argv[])
     v->rootContext()->setContextProperty("isDebug", false);
 #endif
 
+#ifdef HARBOUR_STORE
+    v->rootContext()->setContextProperty("isStoreBuild", true);
+#else
+    v->rootContext()->setContextProperty("isStoreBuild", false);
+#endif
+
     v->setSource(SailfishApp::pathToMainQml());
     QDBusConnection::sessionBus().registerService("cz.chrastecky.bitsailor");
     v->show();

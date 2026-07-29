@@ -6,6 +6,7 @@ import cz.chrastecky.bitsailor 1.0
 SilicaFlickable {
     property alias title: componentLoader.sourceComponent
 
+    property bool embedded: false
     property bool loading: true
 
     property int wordsCount: Number(runtimeCache.getOrSetPersistent(CacheKey.GenerateWordCount, "3"))
@@ -14,9 +15,10 @@ SilicaFlickable {
     property string separator: runtimeCache.getOrSetPersistent(CacheKey.GeneratePassphraseSeparator, '-')
 
     id: root
-    height: parent.height
+    height: embedded ? innerContent.height : parent.height
     width: parent.width
     contentHeight: innerContent.height
+    interactive: !embedded
 
     function generatePassphrase() {
         core.generatePassphrase(wordsCount, capitalize, includeNumber, separator);
@@ -30,6 +32,8 @@ SilicaFlickable {
     }
 
     PullDownMenu {
+        visible: !root.embedded
+
         MenuItem {
             text: qsTr("Generate new passphrase")
             onClicked: {
@@ -81,6 +85,15 @@ SilicaFlickable {
                         app.toaster.show(qsTr("Copied to clipboard"));
                     }
                 }
+            }
+        }
+
+        Button {
+            text: qsTr("Generate new passphrase")
+            visible: root.embedded
+            anchors.horizontalCenter: parent.horizontalCenter
+            onClicked: {
+                root.generatePassphrase();
             }
         }
 

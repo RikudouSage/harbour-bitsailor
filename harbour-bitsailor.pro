@@ -11,7 +11,6 @@
 
 # The name of your application
 TARGET = harbour-bitsailor
-
 CONFIG += sailfishapp c++20
 PKGCONFIG += sailfishsecrets sailfishcrypto
 QT += dbus concurrent
@@ -23,6 +22,24 @@ QMAKE_RPATHDIR += $$GO_LIBDIR
 libbw.path = $$GO_LIBDIR
 libbw.files = $$PWD/core/libbw.so
 INSTALLS += libbw
+
+harbour_store {
+    DEFINES += HARBOUR_STORE
+    DEFINES += BITSAILOR_STORE_BUILD=1
+} else {
+    polkit.path = /usr/share/polkit-1/actions
+    polkit.files = polkit/cz.chrastecky.bitsailor.policy
+
+    dbus.path = /usr/share/dbus-1/services
+    dbus.files = dbus/*
+
+    INSTALLS += polkit dbus
+}
+
+bw-logo.path = /usr/share/harbour-bitsailor/icons
+bw-logo.files = icons/bw/*
+
+INSTALLS += bw-logo
 
 SOURCES += src/harbour-bitsailor.cpp \
     src/appsettings.cpp \
@@ -39,17 +56,6 @@ SOURCES += src/harbour-bitsailor.cpp \
     src/urlparser.cpp \
     src/runtimecache.cpp
 
-polkit.path = /usr/share/polkit-1/actions
-polkit.files = polkit/cz.chrastecky.bitsailor.policy
-
-bw-logo.path = /usr/share/harbour-bitsailor/icons
-bw-logo.files = icons/bw/*
-
-dbus.path = /usr/share/dbus-1/services
-dbus.files = dbus/*
-
-INSTALLS += polkit bw-logo dbus
-
 DISTFILES += qml/harbour-bitsailor.qml \
     icons/bw/* \
     polkit/cz.chrastecky.bitsailor.policy \
@@ -58,6 +64,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/components/BottomMenuItem.qml \
     qml/components/GeneratePassphraseContent.qml \
     qml/components/GeneratePasswordContent.qml \
+    qml/components/GeneratePasswordSections.qml \
     qml/components/GeneratePasswordTabs.qml \
     qml/components/IntValueMenuItem.qml \
     qml/components/MainPageItem.qml \
@@ -88,7 +95,6 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/pages/UnlockVaultPage.qml \
     qml/pages/VaultPage.qml \
     rpm/harbour-bitsailor.spec \
-    rpm/harbour-bitsailor.yaml \
     translations/*.ts \
     harbour-bitsailor.desktop
 

@@ -21,6 +21,15 @@ jobs:
     strategy:
       matrix:
         arch: [ 'armv7hl', 'aarch64', 'i486' ]
+        variant:
+          - name: regular
+            artifact_prefix: rpm
+            harbour_store: ''
+            mb2_qmake_args: ''
+          - name: store
+            artifact_prefix: rpm-store
+            harbour_store: '1'
+            mb2_qmake_args: CONFIG+=harbour_store
 
     steps:
       - uses: actions/checkout@v7
@@ -35,18 +44,18 @@ jobs:
       - name: Prepare
         run: docker pull coderus/sailfishos-platform-sdk:$OS_VERSION && mkdir -p output && chmod 777 output
 
-      - name: Build ${{ matrix.arch }}
+      - name: Build ${{ matrix.arch }} (${{ matrix.variant.name }})
         run: docker run --rm --privileged -v $PWD:/share coderus/sailfishos-platform-sdk:$OS_VERSION /bin/bash -c "
           mkdir -p build ;
           cd build ;
           cp -r /share/* . ;
-          mb2 -t SailfishOS-$OS_VERSION-${{ matrix.arch }} build ;
+          HARBOUR_STORE='${{ matrix.variant.harbour_store }}' MB2_QMAKE_ARGS='${{ matrix.variant.mb2_qmake_args }}' mb2 -t SailfishOS-$OS_VERSION-${{ matrix.arch }} build ;
           cp -r RPMS/*.rpm /share/output"
 
-      - name: Upload RPM (${{ matrix.arch }})
+      - name: Upload RPM (${{ matrix.arch }}, ${{ matrix.variant.name }})
         uses: actions/upload-artifact@v7
         with:
-          name: rpm-${{ matrix.arch }}
+          name: ${{ matrix.variant.artifact_prefix }}-${{ matrix.arch }}
           path: output
   release:
     name: Release
@@ -59,17 +68,48 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: rpm-armv7hl
+          path: release-rpms/regular/armv7hl
+        continue-on-error: true
+      - name: Download Store armv7hl
+        uses: actions/download-artifact@v8
+        with:
+          name: rpm-store-armv7hl
+          path: release-rpms/store/armv7hl
         continue-on-error: true
       - name: Download aarch64
         uses: actions/download-artifact@v8
         with:
           name: rpm-aarch64
+          path: release-rpms/regular/aarch64
+        continue-on-error: true
+      - name: Download Store aarch64
+        uses: actions/download-artifact@v8
+        with:
+          name: rpm-store-aarch64
+          path: release-rpms/store/aarch64
         continue-on-error: true
       - name: Download i486
         uses: actions/download-artifact@v8
         with:
           name: rpm-i486
+          path: release-rpms/regular/i486
         continue-on-error: true
+      - name: Download Store i486
+        uses: actions/download-artifact@v8
+        with:
+          name: rpm-store-i486
+          path: release-rpms/store/i486
+        continue-on-error: true
+      - name: Rename release RPMs
+        run: |
+          for rpm in release-rpms/regular/*/*.rpm; do
+            [ -e "$rpm" ] || continue
+            mv "$rpm" "${rpm%.rpm}-openrepos.rpm"
+          done
+          for rpm in release-rpms/store/*/*.rpm; do
+            [ -e "$rpm" ] || continue
+            mv "$rpm" "${rpm%.rpm}-store.rpm"
+          done
       - name: Extract Version Name
         id: extract_name
         uses: actions/github-script@v9
@@ -86,4 +126,4 @@ jobs:
           draft: false
           prerelease: false
           generate_release_notes: true
-          files: '*.rpm'
+          files: 'release-rpms/**/*.rpm'

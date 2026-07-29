@@ -212,7 +212,12 @@ Page {
                 checked: settings.useSystemAuth
                 automaticCheck: false
                 text: qsTr("Use OS authorization to unlock vault")
+                description: isStoreBuild ? qsTr("The Jolla Store does not allow this setting, if you want to be able to unlock your vault using a fingerprint, please install the version from OpenRepos/Storeman") : ''
                 onClicked: {
+                    if (isStoreBuild) {
+                        return;
+                    }
+
                     errorText = "";
 
                     if (!checked) {
