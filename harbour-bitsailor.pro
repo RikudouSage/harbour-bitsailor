@@ -64,6 +64,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/components/BottomMenuItem.qml \
     qml/components/GeneratePassphraseContent.qml \
     qml/components/GeneratePasswordContent.qml \
+    qml/components/GeneratePasswordSections.qml \
     qml/components/GeneratePasswordTabs.qml \
     qml/components/IntValueMenuItem.qml \
     qml/components/MainPageItem.qml \
@@ -94,7 +95,6 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/pages/UnlockVaultPage.qml \
     qml/pages/VaultPage.qml \
     rpm/harbour-bitsailor.spec \
-    rpm/harbour-bitsailor.yaml \
     translations/*.ts \
     harbour-bitsailor.desktop
 

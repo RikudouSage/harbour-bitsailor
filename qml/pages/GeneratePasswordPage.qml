@@ -1,16 +1,24 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import "../components" as Components
-
 Page {
-    property bool loaded: !generator.loading
+    property bool loaded: generator.item ? !generator.item.loading : false
 
     id: page
     allowedOrientations: Orientation.All
 
-    Components.GeneratePasswordTabs {
+    Loader {
         id: generator
-        height: parent.height - app.bottomMenuRef.height
+        clip: true
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+            bottomMargin: app.bottomMenuRef.visible ? app.bottomMenuRef.height : 0
+        }
+        source: isStoreBuild
+                ? "../components/GeneratePasswordSections.qml"
+                : "../components/GeneratePasswordTabs.qml"
     }
 }

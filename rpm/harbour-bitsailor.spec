@@ -16,7 +16,6 @@ Group:      Applications/Productivity
 License:    MIT
 URL:        http://example.org/
 Source0:    %{name}-%{version}.tar.bz2
-Source100:  harbour-bitsailor.yaml
 
 %{!?harbour_store:%define harbour_store %(if [ -n "$HARBOUR_STORE" ]; then echo 1; elif echo "$PWD" | grep -q -- '-Store'; then echo 1; else echo 0; fi)}
 
@@ -31,7 +30,6 @@ Requires:   sailfishsecretsdaemon-secretsplugins-default
 %if 0%{?harbour_store} == 0
 Requires:   sailfish-polkit-agent
 %endif
-Requires:   python3-base
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
@@ -77,6 +75,7 @@ sed -i \
   -e '/^Sandboxing=Disabled$/d' \
   -e 's|^Permissions=.*|Permissions=Internet;Secrets;UserDirs|' \
   %{buildroot}%{_datadir}/applications/%{name}.desktop
+rm -f %{buildroot}%{_datadir}/%{name}/qml/components/GeneratePasswordTabs.qml
 %endif
 
 strip --strip-unneeded %{buildroot}%{_datadir}/%{name}/lib/libbw.so

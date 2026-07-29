@@ -466,6 +466,21 @@
     </message>
 </context>
 <context>
+    <name>GeneratePasswordSections</name>
+    <message>
+        <source>Generate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation type="unfinished">Mot de passe</translation>
+    </message>
+    <message>
+        <source>Passphrase</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>GeneratePasswordTabs</name>
     <message>
         <source>Password</source>
