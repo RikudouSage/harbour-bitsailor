@@ -17,6 +17,7 @@ SilicaFlickable {
         width: parent.width
 
         PageHeader {
+            //: Page title for the password/passphrase generator screen
             title: qsTr("Generate")
         }
 
@@ -25,6 +26,7 @@ SilicaFlickable {
             currentIndex: 0
 
             ExpandingSection {
+                //: Section title for generated passwords
                 title: qsTr("Password")
 
                 content.sourceComponent: GeneratePasswordContent {
@@ -42,6 +44,7 @@ SilicaFlickable {
             }
 
             ExpandingSection {
+                //: Section title for generated passphrases
                 title: qsTr("Passphrase")
 
                 content.sourceComponent: GeneratePassphraseContent {

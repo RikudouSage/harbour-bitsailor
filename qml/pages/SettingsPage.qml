@@ -252,11 +252,13 @@ Page {
             ComboBox {
                 id: serverUrlSelect
                 enabled: currentServerUrl !== null
+                //: Label for choosing the Bitwarden server instance
                 label: qsTr("Server")
 
                 property var itemData: [
                     {text: "bitwarden.com", value: page.defaultServerUrl},
                     {text: "bitwarden.eu", value: page.europeanServerUrl},
+                    //: Server option for entering a custom Bitwarden server URL
                     {text: qsTr("Custom"), value: page.customServerValue}
                 ]
 
@@ -296,6 +298,7 @@ Page {
 
             TextField {
                 id: customServerUrl
+                //: Label for the input containing a custom Bitwarden server URL
                 label: qsTr("Custom server URL")
                 visible: serverUrlSelect.currentItem && serverUrlSelect.currentItem.value === customServerValue
                 text: currentServerUrl !== null && !isPresetServerUrl(currentServerUrl) ? currentServerUrl : ""
@@ -312,6 +315,7 @@ Page {
                 id: changeServerUrlButton
                 anchors.horizontalCenter: parent.horizontalCenter
                 enabled: hasServerUrlChange() && serverUrlSelect.currentItem && (serverUrlSelect.currentItem.value !== customServerValue || customServerUrl.text.length)
+                //: Button that applies the selected Bitwarden server
                 text: qsTr("Change server")
 
                 onClicked: {

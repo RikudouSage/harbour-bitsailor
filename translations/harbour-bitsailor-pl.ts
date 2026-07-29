@@ -469,14 +469,17 @@
     <name>GeneratePasswordSections</name>
     <message>
         <source>Generate</source>
+        <extracomment>Page title for the password/passphrase generator screen</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Password</source>
+        <extracomment>Section title for generated passwords</extracomment>
         <translation>Hasło</translation>
     </message>
     <message>
         <source>Passphrase</source>
+        <extracomment>Section title for generated passphrases</extracomment>
         <translation>Hasło</translation>
     </message>
 </context>
@@ -743,6 +746,7 @@
     </message>
     <message>
         <source>Custom server URL</source>
+        <extracomment>Label for the input containing a custom Bitwarden server URL</extracomment>
         <translation>Nietypowy adres URL serwera</translation>
     </message>
     <message>
@@ -767,10 +771,14 @@
     </message>
     <message>
         <source>Server</source>
+        <extracomment>Label for choosing the Bitwarden server instance
+----------
+Section title for Bitwarden server settings</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Custom</source>
+        <extracomment>Server option for entering a custom Bitwarden server URL</extracomment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -996,18 +1004,22 @@
     </message>
     <message>
         <source>Server</source>
+        <extracomment>Label for choosing the Bitwarden server instance</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Custom</source>
+        <extracomment>Server option for entering a custom Bitwarden server URL</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Custom server URL</source>
+        <extracomment>Label for the input containing a custom Bitwarden server URL</extracomment>
         <translation>Nietypowy adres URL serwera</translation>
     </message>
     <message>
         <source>Change server</source>
+        <extracomment>Button that applies the selected Bitwarden server</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>

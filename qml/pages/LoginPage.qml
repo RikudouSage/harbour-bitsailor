@@ -74,11 +74,13 @@ Dialog {
 
             ComboBox {
                 id: serverSelect
+                //: Label for choosing the Bitwarden server instance
                 label: qsTr("Server")
 
                 property var itemData: [
                     {text: "bitwarden.com", value: page.defaultServerUrl},
                     {text: "bitwarden.eu", value: page.europeanServerUrl},
+                    //: Server option for entering a custom Bitwarden server URL
                     {text: qsTr("Custom"), value: page.customServerValue}
                 ]
 
@@ -108,6 +110,7 @@ Dialog {
 
             TextField {
                 id: customUrl
+                //: Label for the input containing a custom Bitwarden server URL
                 label: qsTr("Custom server URL")
                 visible: page.serverUrl === page.customServerValue
 
@@ -264,6 +267,7 @@ Dialog {
                         }
 
                         SectionHeader {
+                            //: Section title for Bitwarden server settings
                             text: qsTr("Server")
                         }
 
@@ -363,6 +367,7 @@ Dialog {
                         }
 
                         SectionHeader {
+                            //: Section title for Bitwarden server settings
                             text: qsTr("Server")
                         }
 
