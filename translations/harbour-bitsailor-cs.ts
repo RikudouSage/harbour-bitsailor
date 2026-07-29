@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>BottomMenu</name>
     <message>
@@ -9,7 +7,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -469,7 +467,7 @@
     <name>GeneratePasswordSections</name>
     <message>
         <source>Generate</source>
-        <translation type="unfinished"></translation>
+        <translation>Vygenerovat</translation>
     </message>
     <message>
         <source>Password</source>
@@ -562,7 +560,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -742,6 +740,14 @@
         <translation>Podívejte se na &lt;a href=&apos;%1&apos;&gt;nápovědu Bitwardenu&lt;/a&gt; pro informaci o tom, jak vytvořit API klíč.</translation>
     </message>
     <message>
+        <source>Server</source>
+        <translation>Server</translation>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation>Vlastní</translation>
+    </message>
+    <message>
         <source>Custom server URL</source>
         <translation>Vlastní URL serveru</translation>
     </message>
@@ -764,14 +770,6 @@
     <message>
         <source>Please provide the code from your authenticator app below.</source>
         <translation>Prosím zadejte kód z vašeho autentikátoru níže.</translation>
-    </message>
-    <message>
-        <source>Server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Custom</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -874,7 +872,7 @@
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -938,8 +936,8 @@
         <translation>Zadali jste neplatné heslo.</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>OS authorization check failed.</source>
@@ -964,6 +962,22 @@
     <message>
         <source>Advanced</source>
         <translation>Pokročilé</translation>
+    </message>
+    <message>
+        <source>Server</source>
+        <translation>Server</translation>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation>Vlastní</translation>
+    </message>
+    <message>
+        <source>Custom server URL</source>
+        <translation>Vlastní URL serveru</translation>
+    </message>
+    <message>
+        <source>Change server</source>
+        <translation>Změnit server</translation>
     </message>
     <message>
         <source>Setting URL</source>
@@ -995,24 +1009,8 @@
         <translation>Tato možnost smaže všechna data, která má tato aplikace uložena ve vašem zařízení, včetně uložiště citlivých údajů, dočasné soubory atd. Přejete si pokračovat?</translation>
     </message>
     <message>
-        <source>Server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Custom</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Custom server URL</source>
-        <translation>Vlastní URL serveru</translation>
-    </message>
-    <message>
-        <source>Change server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The Jolla Store does not allow this setting, if you want to be able to unlock your vault using a fingerprint, please install the version from OpenRepos/Storeman</source>
-        <translation type="unfinished"></translation>
+        <translation>Jolla Store toto nastavení nepovoluje. Pokud chcete odemykat trezor pomocí otisku prstu, nainstalujte si prosím verzie z OpenRepos/Storemana.</translation>
     </message>
 </context>
 <context>
