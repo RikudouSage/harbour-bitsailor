@@ -79,27 +79,27 @@
     <message>
         <source>Card Number</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Kartennummer</translation>
+        <translation>Kartennummer</translation>
     </message>
     <message>
         <source>Expiration</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Ablaufdatum</translation>
+        <translation>Ablaufdatum</translation>
     </message>
     <message>
         <source>Security Code</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Sicherheitscode</translation>
+        <translation>Sicherheitscode</translation>
     </message>
     <message>
         <source>Username</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Benutzername</translation>
+        <translation>Benutzername</translation>
     </message>
     <message>
         <source>Password</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Passwort</translation>
+        <translation>Passwort</translation>
     </message>
     <message>
         <source>TOTP</source>
@@ -109,7 +109,7 @@
     <message>
         <source>Note</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Notiz</translation>
+        <translation>Notiz</translation>
     </message>
 </context>
 <context>
@@ -473,11 +473,11 @@
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Passwort</translation>
+        <translation>Passwort</translation>
     </message>
     <message>
         <source>Passphrase</source>
-        <translation type="unfinished">Passphrase</translation>
+        <translation>Passphrase</translation>
     </message>
 </context>
 <context>
@@ -786,7 +786,7 @@
     </message>
     <message>
         <source>Logout</source>
-        <translation type="unfinished">Abmelden</translation>
+        <translation>Abmelden</translation>
     </message>
     <message>
         <source>Lock</source>
@@ -802,12 +802,12 @@
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Suche</translation>
+        <translation>Suche</translation>
     </message>
     <message>
         <source>BitSailor</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished">BitSailor</translation>
+        <translation>BitSailor</translation>
     </message>
     <message>
         <source>Logins (%1)</source>
@@ -842,7 +842,7 @@
     <message>
         <source>Notes</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished">Notizen</translation>
+        <translation>Notizen</translation>
     </message>
     <message>
         <source>Add note</source>
@@ -1004,7 +1004,7 @@
     </message>
     <message>
         <source>Custom server URL</source>
-        <translation type="unfinished">Eigene Server-URL</translation>
+        <translation>Eigene Server-URL</translation>
     </message>
     <message>
         <source>Change server</source>

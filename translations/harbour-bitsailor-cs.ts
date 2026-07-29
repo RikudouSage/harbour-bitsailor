@@ -473,11 +473,11 @@
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Heslo</translation>
+        <translation>Heslo</translation>
     </message>
     <message>
         <source>Passphrase</source>
-        <translation type="unfinished">Heslová fráze</translation>
+        <translation>Heslová fráze</translation>
     </message>
 </context>
 <context>
@@ -1004,7 +1004,7 @@
     </message>
     <message>
         <source>Custom server URL</source>
-        <translation type="unfinished">Vlastní URL serveru</translation>
+        <translation>Vlastní URL serveru</translation>
     </message>
     <message>
         <source>Change server</source>

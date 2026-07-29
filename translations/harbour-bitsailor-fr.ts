@@ -79,12 +79,12 @@
     <message>
         <source>Card Number</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Numéro de carte</translation>
+        <translation>Numéro de carte</translation>
     </message>
     <message>
         <source>Expiration</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Expiration</translation>
+        <translation>Expiration</translation>
     </message>
     <message>
         <source>Security Code</source>
@@ -94,12 +94,12 @@
     <message>
         <source>Username</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Nom d&apos;utilisateur</translation>
+        <translation>Nom d&apos;utilisateur</translation>
     </message>
     <message>
         <source>Password</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Mot de passe</translation>
+        <translation>Mot de passe</translation>
     </message>
     <message>
         <source>TOTP</source>
@@ -124,15 +124,15 @@
     </message>
     <message>
         <source>File</source>
-        <translation type="unfinished">Fichier</translation>
+        <translation>Fichier</translation>
     </message>
     <message>
         <source>Text</source>
-        <translation type="unfinished">Texte</translation>
+        <translation>Texte</translation>
     </message>
     <message>
         <source>URL copied to clipboard</source>
-        <translation type="unfinished">URL copiée dans le presse-papiers</translation>
+        <translation>URL copiée dans le presse-papiers</translation>
     </message>
     <message>
         <source>Failed creating Send</source>
@@ -148,7 +148,7 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Annuler</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <source>Text to share</source>
@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Mot de passe</translation>
+        <translation>Mot de passe</translation>
     </message>
     <message>
         <source>Require this password to view the Send.</source>
@@ -224,7 +224,7 @@
     <message>
         <source>Add item</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished">Ajouter un élément</translation>
+        <translation>Ajouter un élément</translation>
     </message>
     <message>
         <source>-- choose type --</source>
@@ -234,7 +234,7 @@
     <message>
         <source>Login</source>
         <extracomment>Item type</extracomment>
-        <translation type="unfinished">Connexion</translation>
+        <translation>Connexion</translation>
     </message>
     <message>
         <source>Card</source>
@@ -257,15 +257,15 @@
     <message>
         <source>Name</source>
         <extracomment>Name of the item</extracomment>
-        <translation type="unfinished">Nom</translation>
+        <translation>Nom</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished">Nom d&apos;utilisateur</translation>
+        <translation>Nom d&apos;utilisateur</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Mot de passe</translation>
+        <translation>Mot de passe</translation>
     </message>
     <message>
         <source>Authenticator key (TOTP)</source>
@@ -273,7 +273,7 @@
     </message>
     <message>
         <source>URIs</source>
-        <translation type="unfinished">URIs</translation>
+        <translation>URIs</translation>
     </message>
     <message>
         <source>URI %1</source>
@@ -324,15 +324,15 @@
     </message>
     <message>
         <source>Notes</source>
-        <translation type="unfinished">Notes</translation>
+        <translation>Notes</translation>
     </message>
     <message>
         <source>Cardholder Name</source>
-        <translation type="unfinished">Nom du titulaire de la carte</translation>
+        <translation>Nom du titulaire de la carte</translation>
     </message>
     <message>
         <source>Brand</source>
-        <translation type="unfinished">Réseau de paiement</translation>
+        <translation>Réseau de paiement</translation>
     </message>
     <message>
         <source>-- choose --</source>
@@ -346,7 +346,7 @@
     </message>
     <message>
         <source>Card Number</source>
-        <translation type="unfinished">Numéro de carte</translation>
+        <translation>Numéro de carte</translation>
     </message>
     <message>
         <source>Expiration month</source>
@@ -377,7 +377,7 @@
     </message>
     <message>
         <source>Copied to clipboard</source>
-        <translation type="unfinished">Copié dans le presse-papiers</translation>
+        <translation>Copié dans le presse-papiers</translation>
     </message>
     <message>
         <source>Words count</source>
@@ -473,7 +473,7 @@
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Mot de passe</translation>
+        <translation>Mot de passe</translation>
     </message>
     <message>
         <source>Passphrase</source>
@@ -484,7 +484,7 @@
     <name>GeneratePasswordTabs</name>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Mot de passe</translation>
+        <translation>Mot de passe</translation>
     </message>
     <message>
         <source>Passphrase</source>
@@ -502,7 +502,7 @@
     <message>
         <source>Cancel</source>
         <extracomment>Dialog reject</extracomment>
-        <translation type="unfinished">Annuler</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <source>If you ignore certificate errors you make yourself vulnerable to man-in-the-middle attacks which is exactly what issuer verification is meant to prevent. If you disable verification, anyone can use any certificate to impersonate any page. A malicious actor could impersonate your Bitwarden server using any https certificate, log any passwords that come through and then simply forward the response to you, thus stealing your passwords without you ever knowing.</source>
@@ -786,7 +786,7 @@
     </message>
     <message>
         <source>Logout</source>
-        <translation type="unfinished">Se déconnecter</translation>
+        <translation>Se déconnecter</translation>
     </message>
     <message>
         <source>Lock</source>
@@ -802,12 +802,12 @@
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Rechercher</translation>
+        <translation>Rechercher</translation>
     </message>
     <message>
         <source>BitSailor</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished">BitSailor</translation>
+        <translation>BitSailor</translation>
     </message>
     <message>
         <source>Logins (%1)</source>
@@ -842,7 +842,7 @@
     <message>
         <source>Notes</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished">Notes</translation>
+        <translation>Notes</translation>
     </message>
     <message>
         <source>Add note</source>
@@ -1004,7 +1004,7 @@
     </message>
     <message>
         <source>Custom server URL</source>
-        <translation type="unfinished">URL de serveur personnalisée</translation>
+        <translation>URL de serveur personnalisée</translation>
     </message>
     <message>
         <source>Change server</source>

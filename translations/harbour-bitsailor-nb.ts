@@ -79,12 +79,12 @@
     <message>
         <source>Card Number</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Kortnummer</translation>
+        <translation>Kortnummer</translation>
     </message>
     <message>
         <source>Expiration</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Utløpsdato</translation>
+        <translation>Utløpsdato</translation>
     </message>
     <message>
         <source>Security Code</source>
@@ -94,12 +94,12 @@
     <message>
         <source>Username</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Brukernavn</translation>
+        <translation>Brukernavn</translation>
     </message>
     <message>
         <source>Password</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Passord</translation>
+        <translation>Passord</translation>
     </message>
     <message>
         <source>TOTP</source>
@@ -224,7 +224,7 @@
     <message>
         <source>Add item</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished">Legg til oppføring</translation>
+        <translation>Legg til oppføring</translation>
     </message>
     <message>
         <source>-- choose type --</source>
@@ -234,7 +234,7 @@
     <message>
         <source>Login</source>
         <extracomment>Item type</extracomment>
-        <translation type="unfinished">Pålogging</translation>
+        <translation>Pålogging</translation>
     </message>
     <message>
         <source>Card</source>
@@ -257,15 +257,15 @@
     <message>
         <source>Name</source>
         <extracomment>Name of the item</extracomment>
-        <translation type="unfinished">Navn</translation>
+        <translation>Navn</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished">Brukernavn</translation>
+        <translation>Brukernavn</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Passord</translation>
+        <translation>Passord</translation>
     </message>
     <message>
         <source>Authenticator key (TOTP)</source>
@@ -273,7 +273,7 @@
     </message>
     <message>
         <source>URIs</source>
-        <translation type="unfinished">URIer</translation>
+        <translation>URIer</translation>
     </message>
     <message>
         <source>URI %1</source>
@@ -324,15 +324,15 @@
     </message>
     <message>
         <source>Notes</source>
-        <translation type="unfinished">Notat</translation>
+        <translation>Notat</translation>
     </message>
     <message>
         <source>Cardholder Name</source>
-        <translation type="unfinished">Navn på kortholder</translation>
+        <translation>Navn på kortholder</translation>
     </message>
     <message>
         <source>Brand</source>
-        <translation type="unfinished">Merke</translation>
+        <translation>Merke</translation>
     </message>
     <message>
         <source>-- choose --</source>
@@ -346,7 +346,7 @@
     </message>
     <message>
         <source>Card Number</source>
-        <translation type="unfinished">Kortnummer</translation>
+        <translation>Kortnummer</translation>
     </message>
     <message>
         <source>Expiration month</source>
@@ -473,11 +473,11 @@
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished">Passord</translation>
+        <translation>Passord</translation>
     </message>
     <message>
         <source>Passphrase</source>
-        <translation type="unfinished">Passordfrase</translation>
+        <translation>Passordfrase</translation>
     </message>
 </context>
 <context>
@@ -502,7 +502,7 @@
     <message>
         <source>Cancel</source>
         <extracomment>Dialog reject</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Avbryt</translation>
     </message>
     <message>
         <source>If you ignore certificate errors you make yourself vulnerable to man-in-the-middle attacks which is exactly what issuer verification is meant to prevent. If you disable verification, anyone can use any certificate to impersonate any page. A malicious actor could impersonate your Bitwarden server using any https certificate, log any passwords that come through and then simply forward the response to you, thus stealing your passwords without you ever knowing.</source>
@@ -786,7 +786,7 @@
     </message>
     <message>
         <source>Logout</source>
-        <translation type="unfinished">Logg ut</translation>
+        <translation>Logg ut</translation>
     </message>
     <message>
         <source>Lock</source>
@@ -802,12 +802,12 @@
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished">Søk</translation>
+        <translation>Søk</translation>
     </message>
     <message>
         <source>BitSailor</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished">BitSailor</translation>
+        <translation>BitSailor</translation>
     </message>
     <message>
         <source>Logins (%1)</source>
@@ -842,7 +842,7 @@
     <message>
         <source>Notes</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished">Notat</translation>
+        <translation>Notat</translation>
     </message>
     <message>
         <source>Add note</source>
@@ -1004,7 +1004,7 @@
     </message>
     <message>
         <source>Custom server URL</source>
-        <translation type="unfinished">Egendefinert server‑URL</translation>
+        <translation>Egendefinert server‑URL</translation>
     </message>
     <message>
         <source>Change server</source>
