@@ -9,7 +9,7 @@
     <message>
         <source>Share via Send</source>
         <extracomment>Displayed as a description when someone shares a file/text, should be short</extracomment>
-        <translation>Jaa Send</translation>
+        <translation>Jaa Send:llä</translation>
     </message>
 </context>
 <context>
