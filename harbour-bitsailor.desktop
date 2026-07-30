@@ -23,7 +23,7 @@ Permissions=
 
 [X-Share Method anything]
 Description=Share via Send
-Description[fi]=Jaa Send
+Description[fi]=Jaa Send:llä
 Description[de]=Mit Send teilen
 Description[pl]=Udostępnij przy użyciu Wyślij
 Description[cs]=Sdílet přes Send
