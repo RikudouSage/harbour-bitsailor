@@ -1026,6 +1026,40 @@ Section title for Bitwarden server settings</extracomment>
         <source>The Jolla Store does not allow this setting, if you want to be able to unlock your vault using a fingerprint, please install the version from OpenRepos/Storeman</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1s</source>
+        <extracomment>Amount of seconds</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1m</source>
+        <extracomment>Amount of minutes</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically clear clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Note that this only works when the app is running - if you close the app, the timer will not execute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear clipboard on closing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Note that this only works when the app is closed cleanly - if it closes because of a crash, the clipboard won&apos;t be cleared</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select interval</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SetupPinPage</name>

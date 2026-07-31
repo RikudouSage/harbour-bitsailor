@@ -438,6 +438,7 @@ Page {
                         icon.source: "image://theme/icon-m-clipboard"
                         onClicked: {
                             Clipboard.text = item.login.password;
+                            app.clearAfterTimeout(Clipboard.text);
                             app.toaster.show(qsTr("Copied to clipboard"));
                         }
                     }
@@ -479,7 +480,9 @@ Page {
                     IconButton {
                         icon.source: "image://theme/icon-m-clipboard"
                         onClicked: {
-                            Clipboard.text = otpGenerator.generateTotpSafe(item.login.totp);
+                            const totp = otpGenerator.generateTotpSafe(item.login.totp);
+                            Clipboard.text = totp;
+                            app.clearAfterTimeout(totp);
                             app.toaster.show(qsTr("Copied to clipboard"));
                         }
                     }
@@ -536,6 +539,7 @@ Page {
                         icon.source: "image://theme/icon-m-clipboard"
                         onClicked: {
                             Clipboard.text = item.card.number;
+                            app.clearAfterTimeout(item.card.number);
                             app.toaster.show(qsTr("Copied to clipboard"));
                         }
                     }
@@ -577,6 +581,7 @@ Page {
                         icon.source: "image://theme/icon-m-clipboard"
                         onClicked: {
                             Clipboard.text = item.card.code;
+                            app.clearAfterTimeout(item.card.code);
                             app.toaster.show(qsTr("Copied to clipboard"));
                         }
                     }
@@ -646,6 +651,7 @@ Page {
                         icon.source: "image://theme/icon-m-clipboard"
                         onClicked: {
                             Clipboard.text = item.notes;
+                            app.clearAfterTimeout(item.notes);
                             app.toaster.show(qsTr("Copied to clipboard"));
                         }
                     }

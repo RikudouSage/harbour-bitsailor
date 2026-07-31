@@ -25,6 +25,28 @@ ApplicationWindow {
 
     onInvalidCertsAllowedChanged: core.initialize();
 
+    function clearAfterTimeout(text) {
+        clearClipboardTimer.triggered();
+        clearClipboardTimer.stop();
+        clipboardHandler.textToClear = text;
+
+        if (settings.clearClipboardTimeout <= 0) {
+            return;
+        }
+
+        clearClipboardTimer.interval = settings.clearClipboardTimeout * 1000;
+        clearClipboardTimer.start();
+    }
+
+    Timer {
+        id: clearClipboardTimer
+        repeat: false
+
+        onTriggered: {
+            clipboardHandler.clearIfMatches(clipboardHandler.textToClear);
+        }
+    }
+
     ShareProvider {
         method: "anything"
         capabilities: ["*"]

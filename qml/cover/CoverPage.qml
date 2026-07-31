@@ -215,7 +215,11 @@ CoverBackground {
         CoverAction {
             iconSource: "file:///usr/share/harbour-bitsailor/icons/hashtag-solid.svg"
             onTriggered: {
-                Clipboard.text = item.card.number || ''
+                const value = item.card.number || '';
+                Clipboard.text = value;
+                if (value) {
+                    app.clearAfterTimeout(value);
+                }
             }
         }
 
@@ -229,7 +233,11 @@ CoverBackground {
         CoverAction {
             iconSource: "file:///usr/share/harbour-bitsailor/icons/key-solid.svg"
             onTriggered: {
-                Clipboard.text = item.card.code || ''
+                const value = item.card.code || '';
+                Clipboard.text = value;
+                if (value) {
+                    app.clearAfterTimeout(value);
+                }
             }
         }
     }
@@ -260,7 +268,11 @@ CoverBackground {
         CoverAction {
             iconSource: "image://theme/icon-m-keys"
             onTriggered: {
-                Clipboard.text = item.login.password || ''
+                const value = item.login.password || '';
+                Clipboard.text = value;
+                if (value) {
+                    app.clearAfterTimeout(value);
+                }
             }
         }
     }
@@ -292,13 +304,23 @@ CoverBackground {
         CoverAction {
             iconSource: "image://theme/icon-m-keys"
             onTriggered: {
-                Clipboard.text = item.login.password || ''
+                const value = item.login.password || '';
+                Clipboard.text = value;
+                if (value) {
+                    app.clearAfterTimeout(value);
+                }
             }
         }
 
         CoverAction {
             iconSource: "image://theme/icon-s-time"
-            onTriggered: Clipboard.text = item.metadata.totp || ""
+            onTriggered: {
+                const value = item.metadata.totp || "";
+                Clipboard.text = value;
+                if (value) {
+                    app.clearAfterTimeout(value);
+                }
+            }
         }
     }
 
@@ -323,7 +345,11 @@ CoverBackground {
         CoverAction {
             iconSource: "image://theme/icon-m-note"
             onTriggered: {
-                Clipboard.text = item.notes || ''
+                const value = item.notes || '';
+                Clipboard.text = value;
+                if (value) {
+                    app.clearAfterTimeout(value);
+                }
             }
         }
     }
