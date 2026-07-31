@@ -927,15 +927,19 @@ void BitSailorCore::login(const std::function<BitwardenResult ()> &loginCallable
 
 bool BitSailorCore::syncRaw()
 {
-    if (vault != 0) {
-        if (BitwardenCloseHandle(vault) != BitwardenSuccess) {
-            qWarning() << "Failed closing vault: " << getLastError();
-        }
-    }
-
-    if (BitwardenSyncVault(client, ctx, session, &vault) != BitwardenSuccess) {
+    VaultHandle syncedVault = 0;
+    if (BitwardenSyncVault(client, ctx, session, &syncedVault) != BitwardenSuccess) {
         qWarning() << "Failed syncing: " << getLastError();
         return false;
+    }
+
+    auto previousVault = vault;
+    vault = syncedVault;
+
+    if (previousVault != 0) {
+        if (BitwardenCloseHandle(previousVault) != BitwardenSuccess) {
+            qWarning() << "Failed closing vault: " << getLastError();
+        }
     }
 
     QString exportError;

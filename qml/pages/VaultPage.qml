@@ -68,6 +68,7 @@ Page {
                 return;
             }
             errorText = qsTr("An error occured while loading items. Please try again.")
+            loaded = true;
         }
 
         onSyncVaultFinished: {
