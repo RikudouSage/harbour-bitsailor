@@ -22,6 +22,7 @@
 #include "parsedurl.h"
 #include "urlparser.h"
 #include "bitsailorcore.h"
+#include "clipboardhandler.h"
 
 int main(int argc, char *argv[])
 {
@@ -50,6 +51,9 @@ int main(int argc, char *argv[])
         return new BitSailorCore(QCoreApplication::instance());
     });
 
+    auto clipboardHandler = new ClipboardHandler(QGuiApplication::clipboard(), settings, app.data());
+
+    v->rootContext()->setContextProperty("clipboardHandler", clipboardHandler);
     v->rootContext()->setContextProperty("settings", settings);
     v->rootContext()->setContextProperty("secrets", secrets);
     v->rootContext()->setContextProperty("core", core);
@@ -67,6 +71,8 @@ int main(int argc, char *argv[])
 #else
     v->rootContext()->setContextProperty("isStoreBuild", false);
 #endif
+
+    QObject::connect(app.data(), &QCoreApplication::aboutToQuit, clipboardHandler, &ClipboardHandler::clearOnClose);
 
     v->setSource(SailfishApp::pathToMainQml());
     QDBusConnection::sessionBus().registerService("cz.chrastecky.bitsailor");

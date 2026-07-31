@@ -245,6 +245,63 @@ Page {
                 }
             }
 
+            TextSwitch {
+                property var model: [
+                    {id: 0, name: qsTr("Off")},
+                    //: Amount of seconds
+                    {id: 15, name: qsTr("%1s").arg(15)},
+                    //: Amount of seconds
+                    {id: 30, name: qsTr("%1s").arg(30)},
+                    //: Amount of seconds
+                    {id: 45, name: qsTr("%1s").arg(45)},
+                    //: Amount of minutes
+                    {id: 60, name: qsTr("%1m").arg(1)},
+                    //: Amount of minutes
+                    {id: 120, name: qsTr("%1m").arg(2)},
+                ];
+
+                function findByAmount(amount) {
+                    for (var i in model) {
+                        if (!model.hasOwnProperty(i)) {
+                            continue;
+                        }
+                        const item = model[i];
+
+                        if (item.id === amount) {
+                            return item;
+                        }
+                    }
+
+                    return model[0];
+                }
+
+                checked: settings.clearClipboardTimeout > 0
+                automaticCheck: false
+                text: qsTr("Automatically clear clipboard") + (" (" + findByAmount(settings.clearClipboardTimeout).name + ")")
+                description: qsTr("Note that this only works when the app is running - if you close the app, the timer will not execute")
+
+                onClicked: {
+                    const dialog = pageStack.push("ConfirmOptionsSettingPage.qml", {
+                        items: model,
+                        title: qsTr("Select interval")
+                    });
+                    dialog.itemSelected.connect(function(seconds) {
+                        settings.clearClipboardTimeout = seconds;
+                    });
+                }
+            }
+
+            TextSwitch {
+                checked: settings.clearClipboardOnClosing
+                automaticCheck: false
+                text: qsTr("Clear clipboard on closing")
+                description: qsTr("Note that this only works when the app is closed cleanly - if it closes because of a crash, the clipboard won't be cleared")
+
+                onClicked: {
+                    settings.clearClipboardOnClosing = !settings.clearClipboardOnClosing;
+                }
+            }
+
             SectionHeader {
                 text: qsTr("Advanced")
             }

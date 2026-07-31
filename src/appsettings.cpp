@@ -10,6 +10,8 @@ AppSettings::AppSettings(QObject *parent) : QObject(parent)
     prop_UseSystemAuth = settings->value("useSystemAuth", false).toBool();
     prop_DeviceUuid = settings->value("deviceUuid", "").toString();
     prop_BaseUrl = settings->value("baseUrl", defaultVaultUrl).toString();
+    prop_ClearClipboardTimeout = settings->value("clearClipboardTimeout", 60).toInt();
+    prop_ClearClipboardOnClosing = settings->value("clearClipboardOnClosing", true).toBool();
 }
 
 AppSettings::~AppSettings()
@@ -83,6 +85,38 @@ void AppSettings::setBaseUrl(const QString &value)
     saveConfig("baseUrl", value);
     prop_BaseUrl = value;
     emit baseUrlChanged();
+}
+
+int AppSettings::clearClipboardTimeout()
+{
+    return prop_ClearClipboardTimeout;
+}
+
+void AppSettings::setClearClipboardTimeout(int value)
+{
+    if (value == prop_ClearClipboardTimeout) {
+        return;
+    }
+
+    saveConfig("clearClipboardTimeout", value);
+    prop_ClearClipboardTimeout = value;
+    emit clearClipboardTimeoutChanged();
+}
+
+bool AppSettings::clearClipboardOnClosing()
+{
+    return prop_ClearClipboardOnClosing;
+}
+
+void AppSettings::setClearClipboardOnClosing(bool value)
+{
+    if (value == prop_ClearClipboardOnClosing) {
+        return;
+    }
+
+    saveConfig("clearClipboardOnClosing", value);
+    prop_ClearClipboardOnClosing = value;
+    emit clearClipboardOnClosingChanged();
 }
 
 void AppSettings::saveConfig(const QString &name, const QVariant &value)

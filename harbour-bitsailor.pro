@@ -45,6 +45,7 @@ SOURCES += src/harbour-bitsailor.cpp \
     src/appsettings.cpp \
     src/bitsailorcore.cpp \
     src/cachekey.cpp \
+    src/clipboardhandler.cpp \
     src/encryptor.cpp \
     src/fileaccessor.cpp \
     src/parsedurl.cpp \
@@ -74,6 +75,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/cover/CoverPage.qml \
     qml/helpers.js \
     qml/pages/CleanupPage.qml \
+    qml/pages/ConfirmOptionsSettingPage.qml \
     qml/pages/ConfirmSettingPage.qml \
     qml/pages/ConfirmStringSettingPage.qml \
     qml/pages/CreateSendChooseTypePage.qml \
@@ -115,6 +117,7 @@ HEADERS += \
     src/bitsailorcore.h \
     src/cache-keys.h \
     src/cachekey.h \
+    src/clipboardhandler.h \
     src/consts.h \
     src/encryptor.h \
     src/fileaccessor.h \
