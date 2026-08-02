@@ -8,6 +8,14 @@
 #include <QtQml>
 #include <QQmlEngine>
 #include <QDBusConnection>
+#include <QDateTime>
+#include <QDir>
+#include <QFile>
+#include <QMutex>
+#include <QStandardPaths>
+#include <QTextStream>
+
+#include <cstdio>
 
 #include <sailfishapp.h>
 
@@ -24,9 +32,70 @@
 #include "bitsailorcore.h"
 #include "clipboardhandler.h"
 
+namespace {
+
+QMutex messageHandlerMutex;
+QtMessageHandler defaultMessageHandler = nullptr;
+
+QString messageTypeName(QtMsgType type)
+{
+    switch (type) {
+    case QtDebugMsg:
+        return QStringLiteral("debug");
+    case QtInfoMsg:
+        return QStringLiteral("info");
+    case QtWarningMsg:
+        return QStringLiteral("warning");
+    case QtCriticalMsg:
+        return QStringLiteral("critical");
+    case QtFatalMsg:
+        return QStringLiteral("fatal");
+    }
+
+    return QStringLiteral("unknown");
+}
+
+void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &message)
+{
+    if (defaultMessageHandler != nullptr) {
+        defaultMessageHandler(type, context, message);
+    } else {
+        fprintf(stderr, "%s\n", qPrintable(message));
+        fflush(stderr);
+    }
+
+    if (type != QtWarningMsg) {
+        return;
+    }
+
+    const QMutexLocker lock(&messageHandlerMutex);
+    const auto logDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    if (logDir.isEmpty() || !QDir().mkpath(logDir)) {
+        return;
+    }
+
+    QFile file(QDir(logDir).filePath(QStringLiteral("warnings.log")));
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)) {
+        return;
+    }
+
+    QTextStream stream(&file);
+    stream << QDateTime::currentDateTimeUtc().toString(Qt::ISODate)
+           << " [" << messageTypeName(type) << "] " << message;
+
+    if (context.file != nullptr) {
+        stream << " (" << context.file << ':' << context.line << ')';
+    }
+
+    stream << '\n';
+}
+
+}
+
 int main(int argc, char *argv[])
 {
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
+    defaultMessageHandler = qInstallMessageHandler(messageHandler);
     QScopedPointer<QQuickView> v(SailfishApp::createView());
 
     auto secrets = new SecretsHandler(app.data());
