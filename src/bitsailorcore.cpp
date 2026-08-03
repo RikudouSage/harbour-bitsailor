@@ -889,6 +889,24 @@ void BitSailorCore::registerListeners()
     } else {
         notificationSubscriptions.append(logoutHandle);
     }
+
+    NotificationSubscriptionHandle authRequestHandle;
+    auto authRequestHandler = [](void *userData, const BitwardenNotification *notification) -> BitwardenResult {
+        auto self = static_cast<BitSailorCore*>(userData);
+        auto payload = QString::fromUtf8(
+            reinterpret_cast<const char *>(notification->payload),
+            notification->payloadLen
+        );
+
+        qDebug () << payload;
+
+        return BitwardenSuccess;
+    };
+    if (BitwardenAddNotificationHandler(client, BitwardenNotificationAuthRequest, authRequestHandler, this, &authRequestHandle) != BitwardenSuccess) {
+        qWarning() << "Failed registering an auth request handler: " << getLastError();
+    } else {
+        notificationSubscriptions.append(authRequestHandle);
+    }
 }
 
 QUuid BitSailorCore::generateUuid() const
