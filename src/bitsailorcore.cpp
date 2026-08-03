@@ -790,11 +790,13 @@ void BitSailorCore::initialize(bool withNotifications)
 
 void BitSailorCore::initializeNotifications()
 {
-    if (BitwardenStartNotifications(client, ctx, session) != BitwardenSuccess) {
-        qWarning() << "Failed starting notification service: " << getLastError();
-    } else {
-        registerListeners();
-    }
+    QtConcurrent::run([=] {
+        if (BitwardenStartNotifications(client, ctx, session) != BitwardenSuccess) {
+            qWarning() << "Failed starting notification service: " << getLastError();
+        } else {
+            registerListeners();
+        }
+    });
 }
 
 void BitSailorCore::getServerUrl()
@@ -811,6 +813,7 @@ void BitSailorCore::cleanup()
             qWarning() << "Failed removing notification handler: " << getLastError();
         }
     }
+    notificationSubscriptions.clear();
     if (client != 0 && BitwardenStopNotifications(client, ctx) != BitwardenSuccess) {
         qWarning() << "Failed stopping notifications: " << getLastError();
     }
