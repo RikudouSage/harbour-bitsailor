@@ -134,4 +134,5 @@ HEADERS += \
     core/bw_generator.h \
     core/bw_item.h \
     core/bw_send.h \
+    core/bw_notifications.h \
     src/runtimecache.h

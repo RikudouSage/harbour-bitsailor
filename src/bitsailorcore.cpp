@@ -782,6 +782,12 @@ void BitSailorCore::initialize()
             vault = newVault;
         }
     }
+
+    if (BitwardenStartNotifications(client, ctx, session) != BitwardenSuccess) {
+        qWarning() << "Failed starting notification service: " << getLastError();
+    } else {
+        registerListeners();
+    }
 }
 
 void BitSailorCore::getServerUrl()
@@ -793,6 +799,15 @@ void BitSailorCore::getServerUrl()
 
 void BitSailorCore::cleanup()
 {
+    for (const auto subscription : notificationSubscriptions) {
+        if (BitwardenRemoveNotificationHandler(subscription) != BitwardenSuccess) {
+            qWarning() << "Failed removing notification handler: " << getLastError();
+        }
+    }
+    if (client != 0 && BitwardenStopNotifications(client, ctx) != BitwardenSuccess) {
+        qWarning() << "Failed stopping notifications: " << getLastError();
+    }
+
     if (ctx != 0 && BitwardenCloseHandle(ctx) != BitwardenSuccess) {
         qWarning() << "Failed closing context: " << getLastError();
     }
@@ -811,6 +826,55 @@ void BitSailorCore::cleanup()
     session = 0;
     vault = 0;
     email = "";
+}
+
+void BitSailorCore::registerListeners()
+{
+    auto syncCallback = [](void *userData, const BitwardenNotification* notification) -> BitwardenResult {
+        auto self = static_cast<BitSailorCore*>(userData);
+
+        qDebug() << "Got sync notification, syncing";
+        self->syncVault();
+
+        return BitwardenSuccess;
+    };
+
+    const auto wantedSyncListeners = QList<BitwardenNotificationType>({
+        BitwardenNotificationSyncCipherUpdate,
+        BitwardenNotificationSyncCipherCreate,
+        BitwardenNotificationSyncLoginDelete,
+        BitwardenNotificationSyncCiphers,
+        BitwardenNotificationSyncVault,
+        BitwardenNotificationSyncOrgKeys,
+        BitwardenNotificationSyncCipherDelete,
+        BitwardenNotificationSyncSettings,
+        BitwardenNotificationSyncSendCreate,
+        BitwardenNotificationSyncSendUpdate,
+        BitwardenNotificationSyncSendDelete,
+        BitwardenNotificationSyncOrganizations,
+        BitwardenNotificationSyncOrganizationStatusChanged,
+        BitwardenNotificationSyncOrganizationCollectionSettingChanged,
+        BitwardenNotificationSyncPolicy,
+    });
+
+    for (const auto listenerType : wantedSyncListeners) {
+        NotificationSubscriptionHandle handle;
+        if (BitwardenAddNotificationHandler(client, listenerType, syncCallback, this, &handle) != BitwardenSuccess) {
+            qWarning() << "Failed attaching a handler for type " << listenerType << ": " << getLastError();
+        } else {
+            notificationSubscriptions.append(handle);
+        }
+    }
+
+    NotificationSubscriptionHandle logoutHandle;
+    if (BitwardenAddNotificationHandler(client, BitwardenNotificationLogOut, [](void *userData, const BitwardenNotification* notification) -> BitwardenResult {
+        Q_UNUSED(notification)
+
+        auto self = static_cast<BitSailorCore*>(userData);
+        self->logout();
+    }, this, &logoutHandle) != BitwardenSuccess) {
+        qWarning() << "Failed attaching logout handler: " << getLastError();
+    }
 }
 
 QUuid BitSailorCore::generateUuid() const
