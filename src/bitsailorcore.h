@@ -63,7 +63,9 @@ public:
     explicit BitSailorCore(QObject *parent = nullptr);
     ~BitSailorCore();
 
-    Q_INVOKABLE void initialize();
+    Q_INVOKABLE void initialize(bool withNotifications = false);
+    Q_INVOKABLE void initializeNotifications();
+
     Q_INVOKABLE void getServerUrl();
     Q_INVOKABLE void changeServerUrl(const QString &url);
 
