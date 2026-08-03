@@ -884,6 +884,8 @@ void BitSailorCore::registerListeners()
         self->logout();
     }, this, &logoutHandle) != BitwardenSuccess) {
         qWarning() << "Failed attaching logout handler: " << getLastError();
+    } else {
+        notificationSubscriptions.append(logoutHandle);
     }
 }
 
