@@ -128,6 +128,7 @@ private:
     const QString getLastError() const;
 
     void cleanup();
+    void registerListeners();
 
     QUuid generateUuid() const;
     QString uuidToString(const QUuid &uuid) const;
@@ -153,6 +154,7 @@ private:
     ClientHandle client = 0;
     SessionHandle session = 0;
     VaultHandle vault = 0;
+    QList<NotificationSubscriptionHandle> notificationSubscriptions;
 
     QString email;
 
