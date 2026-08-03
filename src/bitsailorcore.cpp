@@ -712,7 +712,7 @@ const QString BitSailorCore::getLastError() const
     return QString::fromUtf8(buf.constData());
 }
 
-void BitSailorCore::initialize()
+void BitSailorCore::initialize(bool withNotifications)
 {
     valid = true;
     cleanup();
@@ -783,6 +783,13 @@ void BitSailorCore::initialize()
         }
     }
 
+    if (withNotifications) {
+        initializeNotifications();
+    }
+}
+
+void BitSailorCore::initializeNotifications()
+{
     if (BitwardenStartNotifications(client, ctx, session) != BitwardenSuccess) {
         qWarning() << "Failed starting notification service: " << getLastError();
     } else {

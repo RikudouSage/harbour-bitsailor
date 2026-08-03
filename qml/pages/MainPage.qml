@@ -349,6 +349,7 @@ Page {
 
     Component.onCompleted: {
         core.getLoginStatus();
+        core.initializeNotifications();
     }
 
     onStatusChanged: {
