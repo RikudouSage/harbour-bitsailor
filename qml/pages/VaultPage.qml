@@ -21,6 +21,57 @@ Page {
     id: page
     allowedOrientations: Orientation.All
 
+    function itemMatchesSearch(item, text) {
+        if (typeof item.login === 'undefined') {
+            item.login = {};
+        }
+        if (typeof item.card === 'undefined') {
+            item.card = {number: ''};
+        }
+
+        const searchable = [
+            item.name,
+            item.login.username,
+            item.card.number.slice(-4),
+            item.card.brand,
+        ];
+        var index;
+        for (index in item.fields || []) {
+            if (!item.fields.hasOwnProperty(index)) {
+                continue;
+            }
+            searchable.push(item.fields[index].name, item.fields[index].value)
+        }
+        for (index in item.login.uris || []) {
+            if (!item.login.uris.hasOwnProperty(index)) {
+                continue;
+            }
+            searchable.push(item.login.uris[index].uri);
+        }
+
+        for (index in searchable) {
+            if (!searchable.hasOwnProperty(index)) {
+                continue;
+            }
+            if (String(searchable[index]).toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) > -1) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    function applySearchFilter() {
+        if (!search.text) {
+            logins = allLogins;
+            return;
+        }
+
+        logins = allLogins.filter(function(item) {
+            return itemMatchesSearch(item, search.text);
+        });
+    }
+
     BusyLabel {
         id: loader
         text: qsTr("Loading")
@@ -59,7 +110,7 @@ Page {
             }
 
             allLogins = items;
-            logins = items;
+            applySearchFilter();
             loaded = true;
         }
 
@@ -182,49 +233,7 @@ Page {
                 focus: active
 
                 onTextChanged: {
-                    if (!text) {
-                        core.fetchItems();
-                    } else {
-                        logins = allLogins.filter(function(item) {
-                            if (typeof item.login === 'undefined') {
-                                item.login = {};
-                            }
-                            if (typeof item.card === 'undefined') {
-                                item.card = {number: ''};
-                            }
-
-                            const searchable = [
-                                item.name,
-                                item.login.username,
-                                item.card.number.slice(-4),
-                                item.card.brand,
-                            ];
-                            var index;
-                            for (index in item.fields || []) {
-                                if (!item.fields.hasOwnProperty(index)) {
-                                    continue;
-                                }
-                                searchable.push(item.fields[index].name, item.fields[index].value)
-                            }
-                            for (index in item.login.uris || []) {
-                                if (!item.login.uris.hasOwnProperty(index)) {
-                                    continue;
-                                }
-                                searchable.push(item.login.uris[index].uri);
-                            }
-
-                            for (index in searchable) {
-                                if (!searchable.hasOwnProperty(index)) {
-                                    continue;
-                                }
-                                if (String(searchable[index]).toLocaleLowerCase().indexOf(text.toLocaleLowerCase()) > -1) {
-                                    return true;
-                                }
-                            }
-
-                            return false;
-                        });
-                    }
+                    applySearchFilter();
                 }
             }
 
