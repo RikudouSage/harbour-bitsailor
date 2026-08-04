@@ -74,6 +74,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/components/Toaster.qml \
     qml/cover/CoverPage.qml \
     qml/helpers.js \
+    qml/pages/ApproveAuthRequestPage.qml \
     qml/pages/CleanupPage.qml \
     qml/pages/ConfirmOptionsSettingPage.qml \
     qml/pages/ConfirmSettingPage.qml \

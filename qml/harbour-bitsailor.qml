@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import Nemo.Notifications 1.0
+import Nemo.DBus 2.0
 import Sailfish.Share 1.0
 
 import "pages"
@@ -17,6 +18,7 @@ ApplicationWindow {
     property string fileToShare
     property string textToShare
     property bool invalidCertsAllowed: secrets.invalidCertificatesAllowed()
+
     id: app
 
     initialPage: Component { LoginCheckPage { } }
@@ -62,6 +64,57 @@ ApplicationWindow {
                 app.textToShare = resources[0].data
             } else {
                 app.fileToShare = resources[0].filePath;
+            }
+        }
+    }
+
+    Notification {
+        property string requestId
+
+        id: authRequestNotification
+
+        summary: qsTr("Account access requested")
+        body: qsTr("Someone is trying to access your vault, please confirm whether it's you.")
+        replacesId: 345
+        remoteActions: [
+            {
+                "name": "default",
+            }
+        ]
+
+        onActionInvoked: {
+            if (name !== "default") {
+                return;
+            }
+
+            app.activate()
+            const callable = function() {
+                const dialog = pageStack.push("pages/ApproveAuthRequestPage.qml", {
+                    requestId: requestId,
+                });
+                dialog.accepted.connect(function() {
+                    core.answerToFetchRequest(dialog.handle, true);
+                });
+                dialog.rejected.connect(function() {
+                    core.answerToFetchRequest(dialog.handle, false);
+                });
+            };
+            pageStack.busy ? actionsWhenNotBusy.push(callable) : callable();
+        }
+    }
+
+    Connections {
+        target: core
+
+        onAuthRequestApprovalRequested: {
+            authRequestNotification.requestId = requestId;
+            authRequestNotification.publish();
+        }
+
+        onAuthRequestApprovalSendFinished: {
+            if (!success) {
+                toaster.show(qsTr("Failed answering to the authentication request"), 5000);
+                return;
             }
         }
     }
