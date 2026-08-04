@@ -1,6 +1,5 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import Nemo.Notifications 1.0
 
 import cz.chrastecky.bitsailor 1.0
 
