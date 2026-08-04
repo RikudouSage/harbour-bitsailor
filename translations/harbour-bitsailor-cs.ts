@@ -1,29 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>ApproveAuthRequestPage</name>
     <message>
         <source>The authentication request could not be fetched. Please try again later.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nezdařillo se načíst požadavek na přihlášení. Zkuste to prosím znovu později.</translation>
     </message>
     <message>
         <source>Loading</source>
-        <translation type="unfinished">Načítání</translation>
+        <translation>Načítání</translation>
     </message>
     <message>
         <source>Approve</source>
-        <extracomment>Dialog accept text - approve other device&apos;s login</extracomment>
-        <translation type="unfinished"></translation>
+        <extracomment>Dialog accept text - approve other device's login</extracomment>
+        <translation>Schválit</translation>
     </message>
     <message>
         <source>Reject</source>
-        <extracomment>Dialog cancel text - reject other device&apos;s login</extracomment>
-        <translation type="unfinished"></translation>
+        <extracomment>Dialog cancel text - reject other device's login</extracomment>
+        <translation>Zamítnout</translation>
     </message>
     <message>
         <source>A new device is asking you to approve login.&lt;br&gt;&lt;strong&gt;Please make sure that the fingerprint phrase below matches the one on the device&lt;/strong&gt;:&lt;br&gt;&lt;br&gt;&lt;code&gt;%1&lt;/code&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Nové zařízení žádá, abyste schválili přihlášení.&lt;br&gt;&lt;strong&gt;Prosím, ujistěte se, že otisková fráze níže odpovídá tomu, co vidíte na zařízení&lt;/strong&gt;:&lt;br&gt;&lt;br&gt;&lt;code&gt;%1&lt;/code&gt;</translation>
     </message>
 </context>
 <context>
@@ -34,7 +32,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -590,7 +588,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -907,7 +905,7 @@ Section title for Bitwarden server settings</extracomment>
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -971,8 +969,8 @@ Section title for Bitwarden server settings</extracomment>
         <translation>Zadali jste neplatné heslo.</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>OS authorization check failed.</source>
@@ -1053,37 +1051,37 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Vypnuto</translation>
     </message>
     <message>
         <source>%1s</source>
         <extracomment>Amount of seconds</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>%1s</translation>
     </message>
     <message>
         <source>%1m</source>
         <extracomment>Amount of minutes</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>%1m</translation>
     </message>
     <message>
         <source>Automatically clear clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Automaticky vymazat schránku</translation>
     </message>
     <message>
         <source>Note that this only works when the app is running - if you close the app, the timer will not execute</source>
-        <translation type="unfinished"></translation>
+        <translation>Mějte na paměti, že tato možnost funguje pouze, dokud aplikace běží - pokud ji zavřete, časovač se nespustí</translation>
     </message>
     <message>
         <source>Clear clipboard on closing</source>
-        <translation type="unfinished"></translation>
+        <translation>Vymazat schránku při zavření</translation>
     </message>
     <message>
         <source>Note that this only works when the app is closed cleanly - if it closes because of a crash, the clipboard won&apos;t be cleared</source>
-        <translation type="unfinished"></translation>
+        <translation>Mějte na pměti, že tato možnost funguje pouze, pokud bude aplikace uzavřena čistě - pokud se zavře kvůli pádu aplikace, schránka vymazána nebude</translation>
     </message>
     <message>
         <source>Select interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvolte interval</translation>
     </message>
 </context>
 <context>
@@ -1241,15 +1239,15 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>Account access requested</source>
-        <translation type="unfinished"></translation>
+        <translation>Potvrďte přístup k účtu</translation>
     </message>
     <message>
         <source>Someone is trying to access your vault, please confirm whether it&apos;s you.</source>
-        <translation type="unfinished"></translation>
+        <translation>Někdo se snaží přihlásit k vašemu trezoru, prosím potvrďte, zda jste to vy.</translation>
     </message>
     <message>
         <source>Failed answering to the authentication request</source>
-        <translation type="unfinished"></translation>
+        <translation>Nezdařilo se odpovědět na požadavek na přihlášení</translation>
     </message>
 </context>
 </TS>
