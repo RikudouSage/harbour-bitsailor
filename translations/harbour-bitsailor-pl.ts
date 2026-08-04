@@ -2,6 +2,31 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="pl">
 <context>
+    <name>ApproveAuthRequestPage</name>
+    <message>
+        <source>The authentication request could not be fetched. Please try again later.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Loading</source>
+        <translation type="unfinished">Ładowanie</translation>
+    </message>
+    <message>
+        <source>Approve</source>
+        <extracomment>Dialog accept text - approve other device&apos;s login</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reject</source>
+        <extracomment>Dialog cancel text - reject other device&apos;s login</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A new device is asking you to approve login.&lt;br&gt;&lt;strong&gt;Please make sure that the fingerprint phrase below matches the one on the device&lt;/strong&gt;:&lt;br&gt;&lt;br&gt;&lt;code&gt;%1&lt;/code&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>BottomMenu</name>
     <message>
         <source>Vaults</source>
@@ -1212,6 +1237,18 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>Debug secret storage is used. Uninstall this version immediately unless you are developing BitSailor itself.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Account access requested</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Someone is trying to access your vault, please confirm whether it&apos;s you.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed answering to the authentication request</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -91,6 +91,9 @@ public:
     Q_INVOKABLE void fetchItem(const QString &id);
     Q_INVOKABLE void updateItem(const QString &id, const QJsonObject &item);
 
+    Q_INVOKABLE void fetchAuthRequest(const QString &id);
+    Q_INVOKABLE void answerToFetchRequest(int handle, bool approve);
+
     Q_INVOKABLE void generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, bool avoidAmbiguous, int minimumNumbers, int minimumSpecial, int length);
     Q_INVOKABLE void generatePassphrase(uint wordsCount, bool capitalize, bool includeNumber, const QString &separator);
 
@@ -121,8 +124,14 @@ signals:
     void itemFetchFinished(bool success, const QJsonObject &item);
     void itemUpdated(bool success);
 
+    void authRequestFetchFinished(bool success);
+    void authRequestFetchFinished(bool success, int handle, const QString &fingerprint);
+    void authRequestApprovalSendFinished(bool success);
+
     void passwordGeneratingFinished(bool success, const QString &password);
     void passphraseGeneratingFinished(bool success, const QString &passphrase);
+
+    void authRequestApprovalRequested(const QString &requestId);
 
     void invalidCertificate(); // todo implement on core side and then here
 

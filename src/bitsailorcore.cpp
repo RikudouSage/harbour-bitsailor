@@ -610,6 +610,43 @@ void BitSailorCore::updateItem(const QString &id, const QJsonObject &item)
     });
 }
 
+void BitSailorCore::fetchAuthRequest(const QString &id)
+{
+    QtConcurrent::run([=] {
+        auto uuid = uuidFromString(id);
+        Handle request = 0;
+        char *fingerPrintPhrase = nullptr;
+        if (BitwardenFetchAuthRequest(client, vault, ctx, session, uuid, &request, &fingerPrintPhrase) != BitwardenSuccess) {
+            emit authRequestFetchFinished(false);
+            qWarning() << "Failed fetching auth request: " << getLastError();
+
+            return;
+        }
+
+        auto fingerPrintPhraseStr = QString::fromUtf8(fingerPrintPhrase);
+        std::free(fingerPrintPhrase);
+
+        emit authRequestFetchFinished(true, request, fingerPrintPhraseStr);
+    });
+}
+
+void BitSailorCore::answerToFetchRequest(int handle, bool approve)
+{
+    QtConcurrent::run([=] {
+        if (BitwardenRespondToAuthRequest(client, ctx, session, handle, approve) != BitwardenSuccess) {
+            qWarning() << "Failed responding to auth request: " << getLastError();
+            emit authRequestApprovalSendFinished(false);
+            return;
+        }
+
+        if (BitwardenCloseHandle(handle) != BitwardenSuccess) {
+            qWarning() << "Failed closing the request handle: " << getLastError();
+        }
+
+        emit authRequestApprovalSendFinished(true);
+    });
+}
+
 void BitSailorCore::generatePassword(
         bool lowercase,
         bool uppercase,
@@ -893,12 +930,13 @@ void BitSailorCore::registerListeners()
     NotificationSubscriptionHandle authRequestHandle;
     auto authRequestHandler = [](void *userData, const BitwardenNotification *notification) -> BitwardenResult {
         auto self = static_cast<BitSailorCore*>(userData);
-        auto payload = QString::fromUtf8(
+        auto payload = QJsonDocument::fromJson(QString::fromUtf8(
             reinterpret_cast<const char *>(notification->payload),
             notification->payloadLen
-        );
+        ).toUtf8());
 
-        qDebug () << payload;
+        auto requestId = payload.object()["Id"].toString();
+        emit self->authRequestApprovalRequested(requestId);
 
         return BitwardenSuccess;
     };
