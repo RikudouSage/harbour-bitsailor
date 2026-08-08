@@ -27,6 +27,13 @@
     </message>
 </context>
 <context>
+    <name>BitSailorCore</name>
+    <message>
+        <source>Stored unlock key is missing.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>BottomMenu</name>
     <message>
         <source>Vaults</source>
@@ -1085,6 +1092,10 @@ Section title for Bitwarden server settings</extracomment>
         <source>Select interval</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Could not store the unlock key.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SetupPinPage</name>
@@ -1092,10 +1103,6 @@ Section title for Bitwarden server settings</extracomment>
         <source>Continue</source>
         <extracomment>Dialog accept text</extracomment>
         <translation>Kontynuuj</translation>
-    </message>
-    <message>
-        <source>To continue please provide your password and set your desired PIN code. Your password will be stored securely using Sailfish OS secrets storage and used automatically whenever you use your PIN.</source>
-        <translation>Aby kontynuować podaj hasło i ustaw kod PIN. Twoje hasło zostanie bezpiecznie zapisane przy użyciu magazynu systemu Sailfish OS i użyte automatycznie, gdy użyjesz kodu PIN.</translation>
     </message>
     <message>
         <source>Password</source>
@@ -1113,6 +1120,10 @@ Section title for Bitwarden server settings</extracomment>
         <source>Warning: Enabling this option will disable &lt;i&gt;%1&lt;/i&gt;.</source>
         <translation>Uwaga: włączenie tej opcji wyłączy &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
+    <message>
+        <source>To continue please provide your password and set your desired PIN code. An unlock key will be stored securely using Sailfish OS secrets storage and used automatically whenever you use your PIN.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SetupSystemAuthPage</name>
@@ -1120,10 +1131,6 @@ Section title for Bitwarden server settings</extracomment>
         <source>Continue</source>
         <extracomment>Dialog accept text</extracomment>
         <translation>Kontynuuj</translation>
-    </message>
-    <message>
-        <source>To continue please provide your password. Your password will be stored securely using Sailfish OS secrets storage and used automatically whenever you authorize using Sailfish OS.</source>
-        <translation>Aby kontynuować wprowadź hasło. Twoje hasło będzie bezpiecznie przechowywane przy użyciu magazynu systemu Sailfish OS i użyte automatycznie zawsze gdy użyjesz autoryzacji Sailfish OS.</translation>
     </message>
     <message>
         <source>Password</source>
@@ -1136,6 +1143,10 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>Note: This option enables unlocking vault using fingerprint if your device supports it.</source>
         <translation>Informacja: Ta opcja włączy możliwość odblokowania sejfu, jeśli Twoje urządzenie to umożliwia.</translation>
+    </message>
+    <message>
+        <source>To continue please provide your password. An unlock key will be stored securely using Sailfish OS secrets storage and used automatically whenever you authorize using Sailfish OS.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

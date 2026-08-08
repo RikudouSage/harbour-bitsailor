@@ -11,7 +11,7 @@ Page {
     readonly property string customServerValue: "custom"
 
     property int pinToStore
-    property string passwordToStore
+    property string passwordToValidate
 
     property string errorText
     property string authCheckType
@@ -70,7 +70,12 @@ Page {
         onMasterPasswordValidationFinished: {
             busyIndicatorPassword.running = false;
             if (success) {
-                secrets.setPassword(passwordToStore);
+                if (!secrets.storeUserKeyFromSessionJson()) {
+                    errorText = qsTr("Could not store the unlock key.");
+                    pinToStore = 0;
+                    passwordToValidate = "";
+                    return;
+                }
 
                 if (authCheckType === "pin") {
                     secrets.setPin(pinToStore);
@@ -79,11 +84,12 @@ Page {
                 } else if (authCheckType === "system") {
                     secrets.setInternalPin(pinGenerator.generate());
                     settings.useSystemAuth = true;
+                    systemAuthSetting.checked = true;
                     pinSetting.disable();
                 }
 
                 pinToStore = 0;
-                passwordToStore = "";
+                passwordToValidate = "";
             } else {
                 errorText = qsTr("The password you provided is invalid.");
             }
@@ -190,8 +196,8 @@ Page {
                             authCheckType = "pin";
                             busyIndicatorPassword.running = true;
                             pinToStore = Number(dialog.pinText);
-                            passwordToStore = dialog.passwordText;
-                            core.validateMasterPassword(passwordToStore);
+                            passwordToValidate = dialog.passwordText;
+                            core.validateMasterPassword(passwordToValidate);
                         });
                     } else {
                         disable();
@@ -228,8 +234,8 @@ Page {
                         dialog.accepted.connect(function() {
                             authCheckType = "system";
                             busyIndicatorPassword.running = true;
-                            passwordToStore = dialog.passwordText;
-                            core.validateMasterPassword(passwordToStore);
+                            passwordToValidate = dialog.passwordText;
+                            core.validateMasterPassword(passwordToValidate);
                         });
                         dialog.rejected.connect(function() {
                             if (dialog.failedSystemAuth) {

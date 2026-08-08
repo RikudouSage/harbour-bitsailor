@@ -152,6 +152,9 @@ private:
     QString getEmail();
 
     void login(const std::function<BitwardenResult()> &loginCallable);
+    bool unlockWithPassword(const QString &password, QString *error);
+    bool unlockWithStoredUserKey(QString *error);
+    bool migrateLegacyPasswordToUserKey();
     bool syncRaw();
     void exportSession(QString *error);
     void exportVault(QString *error);

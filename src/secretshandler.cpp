@@ -31,6 +31,7 @@ static const QString encryptedVaultName = "encryptedVault";
 static const QString sessionJsonName = "sessionJson";
 static const QString usernameName = "username";
 static const QString passwordName = "password";
+static const QString userKeyName = "userKey";
 static const QString clientIdName = "clientId";
 static const QString pinName = "pin";
 static const QString internalPinName = "internalPin";
@@ -96,6 +97,11 @@ QString SecretsHandler::getPassword()
     return getData(passwordName);
 }
 
+QString SecretsHandler::getUserKey()
+{
+    return getData(userKeyName);
+}
+
 QString SecretsHandler::getClientId()
 {
     return getData(clientIdName);
@@ -128,6 +134,12 @@ bool SecretsHandler::hasSessionJson()
     return !sessionJson.isNull() && !sessionJson.isEmpty();
 }
 
+bool SecretsHandler::hasUserKey()
+{
+    auto userKey = getUserKey();
+    return !userKey.isNull() && !userKey.isEmpty();
+}
+
 bool SecretsHandler::hasPin()
 {
     auto pin = getPin();
@@ -142,6 +154,17 @@ void SecretsHandler::removePin()
 void SecretsHandler::removePassword()
 {
     deleteSecret(passwordName);
+    deleteSecret(userKeyName);
+}
+
+void SecretsHandler::removeLegacyPassword()
+{
+    deleteSecret(passwordName);
+}
+
+void SecretsHandler::removeUserKey()
+{
+    deleteSecret(userKeyName);
 }
 
 void SecretsHandler::removeSessionJson()
@@ -211,6 +234,25 @@ void SecretsHandler::setUsername(const QString &username)
 void SecretsHandler::setPassword(const QString &password)
 {
     storeData(passwordName, password);
+}
+
+void SecretsHandler::setUserKey(const QString &userKey)
+{
+    storeData(userKeyName, userKey);
+}
+
+bool SecretsHandler::storeUserKeyFromSessionJson()
+{
+    const auto encryption = getSessionJson().value("encryption").toObject();
+    const auto userKey = encryption.value("userKey").toString();
+    if (userKey.isNull() || userKey.isEmpty()) {
+        qWarning() << "Current session JSON does not contain an unlocked user key.";
+        return false;
+    }
+
+    setUserKey(userKey);
+    removeLegacyPassword();
+    return true;
 }
 
 void SecretsHandler::setClientId(const QString &clientId)
