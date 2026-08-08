@@ -1239,6 +1239,22 @@ Section title for Bitwarden server settings</extracomment>
         <source>There was an error when creating the new item</source>
         <translation>Nastala chyba při vytváření položky</translation>
     </message>
+    <message>
+        <source>error fetching %1: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>invalid item (decryption failed): %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copied to clipboard</source>
+        <translation type="unfinished">Zkopírováno do schránky</translation>
+    </message>
 </context>
 <context>
     <name>harbour-bitsailor</name>
