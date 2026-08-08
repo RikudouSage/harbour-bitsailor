@@ -316,9 +316,8 @@ void BitSailorCore::unlockVault(const QString &password)
         }
 
         if (migrateLegacyPassword) {
-            QString migrationError;
-            if (!migrateLegacyPasswordToUserKey(&migrationError)) {
-                qWarning() << "Failed migrating stored password to user key: " << migrationError;
+            if (!migrateLegacyPasswordToUserKey()) {
+                qWarning() << "Failed migrating stored password to user key.";
             }
         }
 
@@ -359,9 +358,8 @@ void BitSailorCore::unlockVault(int pin)
             return;
         }
 
-        QString migrationError;
-        if (!migrateLegacyPasswordToUserKey(&migrationError)) {
-            qWarning() << "Failed migrating stored password to user key: " << migrationError;
+        if (!migrateLegacyPasswordToUserKey()) {
+            qWarning() << "Failed migrating stored password to user key.";
         }
 
         emit unlockFinished(true, "");
@@ -393,9 +391,8 @@ void BitSailorCore::unlockVault()
             return;
         }
 
-        QString migrationError;
-        if (!migrateLegacyPasswordToUserKey(&migrationError)) {
-            qWarning() << "Failed migrating stored password to user key: " << migrationError;
+        if (!migrateLegacyPasswordToUserKey()) {
+            qWarning() << "Failed migrating stored password to user key.";
         }
 
         emit unlockFinished(true, "");
@@ -420,17 +417,6 @@ void BitSailorCore::validateMasterPassword(const QString &password)
 
         emit masterPasswordValidationFinished(true);
     });
-}
-
-QString BitSailorCore::currentUserKey()
-{
-    QString error;
-    const auto userKey = currentUserKey(&error);
-    if (userKey.isNull() || userKey.isEmpty()) {
-        qWarning() << "Failed reading current user key: " << error;
-    }
-
-    return userKey;
 }
 
 bool BitSailorCore::unlockWithPassword(const QString &password, QString *error)
@@ -481,43 +467,9 @@ bool BitSailorCore::unlockWithStoredUserKey(QString *error)
     return true;
 }
 
-bool BitSailorCore::migrateLegacyPasswordToUserKey(QString *error)
+bool BitSailorCore::migrateLegacyPasswordToUserKey()
 {
-    const auto userKey = currentUserKey(error);
-    if (userKey.isNull() || userKey.isEmpty()) {
-        return false;
-    }
-
-    secrets->setUserKey(userKey);
-    secrets->removeLegacyPassword();
-    return true;
-}
-
-QString BitSailorCore::currentUserKey(QString *error)
-{
-    char* rawExport = nullptr;
-    if (BitwardenExportSession(session, &rawExport) != BitwardenSuccess) {
-        *error = getLastError();
-        return QString();
-    }
-
-    QJsonParseError parseError;
-    auto sessionJson = QJsonDocument::fromJson(QByteArray(rawExport), &parseError);
-    free(rawExport);
-
-    if (parseError.error) {
-        *error = parseError.errorString();
-        return QString();
-    }
-
-    const auto encryption = sessionJson.object().value("encryption").toObject();
-    const auto userKey = encryption.value("userKey").toString();
-    if (userKey.isNull() || userKey.isEmpty()) {
-        *error = tr("Current session does not contain an unlocked user key.");
-        return QString();
-    }
-
-    return userKey;
+    return secrets->storeUserKeyFromSessionJson();
 }
 
 void BitSailorCore::fetchItems()

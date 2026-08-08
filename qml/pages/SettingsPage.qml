@@ -70,15 +70,12 @@ Page {
         onMasterPasswordValidationFinished: {
             busyIndicatorPassword.running = false;
             if (success) {
-                const userKey = core.currentUserKey();
-                if (!userKey) {
+                if (!secrets.storeUserKeyFromSessionJson()) {
                     errorText = qsTr("Could not store the unlock key.");
                     pinToStore = 0;
                     passwordToValidate = "";
                     return;
                 }
-                secrets.setUserKey(userKey);
-                secrets.removeLegacyPassword();
 
                 if (authCheckType === "pin") {
                     secrets.setPin(pinToStore);

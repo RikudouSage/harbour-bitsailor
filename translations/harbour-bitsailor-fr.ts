@@ -32,10 +32,6 @@
         <source>Stored unlock key is missing.</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Current session does not contain an unlocked user key.</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>BottomMenu</name>

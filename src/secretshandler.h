@@ -36,7 +36,7 @@ public:
 
     Q_INVOKABLE void removePin();
     Q_INVOKABLE void removePassword();
-    Q_INVOKABLE void removeLegacyPassword();
+    void removeLegacyPassword();
     void removeUserKey();
     Q_INVOKABLE void removeSessionJson();
     Q_INVOKABLE void removeEncryptedVault();
@@ -49,7 +49,8 @@ public:
     void setEncryptedVault(const QJsonObject &json);
     void setUsername(const QString &username);
     Q_INVOKABLE void setPassword(const QString &password);
-    Q_INVOKABLE void setUserKey(const QString &userKey);
+    void setUserKey(const QString &userKey);
+    Q_INVOKABLE bool storeUserKeyFromSessionJson();
     void setClientId(const QString &clientId);
     Q_INVOKABLE void setPin(const QString &pin);
     Q_INVOKABLE void setInternalPin(const QString &pin);

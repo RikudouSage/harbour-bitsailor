@@ -241,6 +241,20 @@ void SecretsHandler::setUserKey(const QString &userKey)
     storeData(userKeyName, userKey);
 }
 
+bool SecretsHandler::storeUserKeyFromSessionJson()
+{
+    const auto encryption = getSessionJson().value("encryption").toObject();
+    const auto userKey = encryption.value("userKey").toString();
+    if (userKey.isNull() || userKey.isEmpty()) {
+        qWarning() << "Current session JSON does not contain an unlocked user key.";
+        return false;
+    }
+
+    setUserKey(userKey);
+    removeLegacyPassword();
+    return true;
+}
+
 void SecretsHandler::setClientId(const QString &clientId)
 {
     storeData(clientIdName, clientId);
