@@ -74,6 +74,7 @@ public:
     Q_INVOKABLE void unlockVault(int pin);
     Q_INVOKABLE void unlockVault();
     Q_INVOKABLE void validateMasterPassword(const QString &password);
+    Q_INVOKABLE QString currentUserKey();
 
     Q_INVOKABLE void getLoginStatus();
     Q_INVOKABLE void loginApiKey(const QString &clientId, const QString &clientSecret);
@@ -152,6 +153,10 @@ private:
     QString getEmail();
 
     void login(const std::function<BitwardenResult()> &loginCallable);
+    bool unlockWithPassword(const QString &password, QString *error);
+    bool unlockWithStoredUserKey(QString *error);
+    bool migrateLegacyPasswordToUserKey(QString *error);
+    QString currentUserKey(QString *error);
     bool syncRaw();
     void exportSession(QString *error);
     void exportVault(QString *error);

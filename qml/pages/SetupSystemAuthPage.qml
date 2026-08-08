@@ -45,7 +45,7 @@ Dialog {
                 color: Theme.secondaryHighlightColor
                 wrapMode: Label.WordWrap
 
-                text: qsTr("To continue please provide your password. Your password will be stored securely using Sailfish OS secrets storage and used automatically whenever you authorize using Sailfish OS.")
+                text: qsTr("To continue please provide your password. An unlock key will be stored securely using Sailfish OS secrets storage and used automatically whenever you authorize using Sailfish OS.")
             }
 
             Label {

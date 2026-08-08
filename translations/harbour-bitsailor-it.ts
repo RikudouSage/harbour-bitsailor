@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="it">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="it">
 <context>
     <name>ApproveAuthRequestPage</name>
     <message>
@@ -11,17 +13,28 @@
     </message>
     <message>
         <source>Approve</source>
-        <extracomment>Dialog accept text - approve other device's login</extracomment>
+        <extracomment>Dialog accept text - approve other device&apos;s login</extracomment>
         <translation>Approva</translation>
     </message>
     <message>
         <source>Reject</source>
-        <extracomment>Dialog cancel text - reject other device's login</extracomment>
+        <extracomment>Dialog cancel text - reject other device&apos;s login</extracomment>
         <translation>Rifiuta</translation>
     </message>
     <message>
         <source>A new device is asking you to approve login.&lt;br&gt;&lt;strong&gt;Please make sure that the fingerprint phrase below matches the one on the device&lt;/strong&gt;:&lt;br&gt;&lt;br&gt;&lt;code&gt;%1&lt;/code&gt;</source>
         <translation>Un nuovo dispositivo richiede l&apos;approvazione dell&apos;accesso.&lt;br&gt;&lt;strong&gt;Assicurati che la frase di verifica qui sotto corrisponda a quella sul dispositivo&lt;/strong&gt;:&lt;br&gt;&lt;br&gt;&lt;code&gt;%1&lt;/code&gt;</translation>
+    </message>
+</context>
+<context>
+    <name>BitSailorCore</name>
+    <message>
+        <source>Stored unlock key is missing.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current session does not contain an unlocked user key.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -32,7 +45,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -588,7 +601,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Nome identità</translation>
     </message>
     <message>
@@ -905,7 +918,7 @@ Section title for Bitwarden server settings</extracomment>
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -969,8 +982,8 @@ Section title for Bitwarden server settings</extracomment>
         <translation>La password inserita non è valida.</translation>
     </message>
     <message>
-        <source/>
-        <translation type="unfinished"/>
+        <source></source>
+        <translation></translation>
     </message>
     <message>
         <source>OS authorization check failed.</source>
@@ -1083,6 +1096,10 @@ Section title for Bitwarden server settings</extracomment>
         <source>Select interval</source>
         <translation>Seleziona intervallo</translation>
     </message>
+    <message>
+        <source>Could not store the unlock key.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SetupPinPage</name>
@@ -1090,10 +1107,6 @@ Section title for Bitwarden server settings</extracomment>
         <source>Continue</source>
         <extracomment>Dialog accept text</extracomment>
         <translation>Continua</translation>
-    </message>
-    <message>
-        <source>To continue please provide your password and set your desired PIN code. Your password will be stored securely using Sailfish OS secrets storage and used automatically whenever you use your PIN.</source>
-        <translation>Per continuare, inserisci la password e imposta il codice PIN desiderato. La password verrà memorizzata in modo sicuro tramite l&apos;archivio segreti di Sailfish OS e usata automaticamente ogni volta che usi il PIN.</translation>
     </message>
     <message>
         <source>Password</source>
@@ -1111,6 +1124,10 @@ Section title for Bitwarden server settings</extracomment>
         <source>Warning: Enabling this option will disable &lt;i&gt;%1&lt;/i&gt;.</source>
         <translation>Avviso: abilitando questa opzione verrà disattivato &lt;i&gt;%1&lt;/i&gt;.</translation>
     </message>
+    <message>
+        <source>To continue please provide your password and set your desired PIN code. An unlock key will be stored securely using Sailfish OS secrets storage and used automatically whenever you use your PIN.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SetupSystemAuthPage</name>
@@ -1118,10 +1135,6 @@ Section title for Bitwarden server settings</extracomment>
         <source>Continue</source>
         <extracomment>Dialog accept text</extracomment>
         <translation>Continua</translation>
-    </message>
-    <message>
-        <source>To continue please provide your password. Your password will be stored securely using Sailfish OS secrets storage and used automatically whenever you authorize using Sailfish OS.</source>
-        <translation>Per continuare, inserisci la password. Verrà memorizzata in modo sicuro tramite l&apos;archivio segreti di Sailfish OS e usata automaticamente ogni volta che autorizzi tramite Sailfish OS.</translation>
     </message>
     <message>
         <source>Password</source>
@@ -1134,6 +1147,10 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>Note: This option enables unlocking vault using fingerprint if your device supports it.</source>
         <translation>Nota: questa opzione consente di sbloccare la cassaforte con l&apos;impronta digitale, se il dispositivo la supporta.</translation>
+    </message>
+    <message>
+        <source>To continue please provide your password. An unlock key will be stored securely using Sailfish OS secrets storage and used automatically whenever you authorize using Sailfish OS.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -306,23 +306,20 @@ void BitSailorCore::logout()
 void BitSailorCore::unlockVault(const QString &password)
 {
     QtConcurrent::run([=] {
-        const auto email = getEmail();
-        if (email.isNull() || email.isEmpty()) {
-            emit couldNotFetchEmail();
-            return;
-        }
+        const auto legacyPassword = secrets->getPassword();
+        const auto migrateLegacyPassword = !legacyPassword.isNull() && !legacyPassword.isEmpty() && legacyPassword == password;
 
-        if (BitwardenUnlockSession(client, ctx, session, email.toUtf8().data(), password.toUtf8().data()) != BitwardenSuccess) {
-            auto error = getLastError();
-            qWarning() << "Failed unlocking session: " << error;
+        QString error;
+        if (!unlockWithPassword(password, &error)) {
             emit unlockFinished(false, error);
             return;
         }
 
-        QString exportError;
-        exportSession(&exportError);
-        if (!exportError.isNull()) {
-            qWarning() << "Failed exporting session: " << exportError;
+        if (migrateLegacyPassword) {
+            QString migrationError;
+            if (!migrateLegacyPasswordToUserKey(&migrationError)) {
+                qWarning() << "Failed migrating stored password to user key: " << migrationError;
+            }
         }
 
         emit unlockFinished(true, "");
@@ -340,17 +337,68 @@ void BitSailorCore::unlockVault(int pin)
             return;
         }
 
-        auto password = secrets->getPassword();
+        QString error;
+        if (secrets->hasUserKey()) {
+            if (!unlockWithStoredUserKey(&error)) {
+                qWarning() << "Failed unlocking session using stored user key: " << error;
+                emit unlockFinished(false, error);
+            } else {
+                emit unlockFinished(true, "");
+            }
+            return;
+        }
 
-        unlockVault(password);
+        auto password = secrets->getPassword();
+        if (password.isNull() || password.isEmpty()) {
+            emit unlockFinished(false, tr("Stored unlock key is missing."));
+            return;
+        }
+
+        if (!unlockWithPassword(password, &error)) {
+            emit unlockFinished(false, error);
+            return;
+        }
+
+        QString migrationError;
+        if (!migrateLegacyPasswordToUserKey(&migrationError)) {
+            qWarning() << "Failed migrating stored password to user key: " << migrationError;
+        }
+
+        emit unlockFinished(true, "");
     });
 }
 
 void BitSailorCore::unlockVault()
 {
     QtConcurrent::run([=] {
+        QString error;
+        if (secrets->hasUserKey()) {
+            if (!unlockWithStoredUserKey(&error)) {
+                qWarning() << "Failed unlocking session using stored user key: " << error;
+                emit unlockFinished(false, error);
+            } else {
+                emit unlockFinished(true, "");
+            }
+            return;
+        }
+
         auto password = secrets->getPassword();
-        unlockVault(password);
+        if (password.isNull() || password.isEmpty()) {
+            emit unlockFinished(false, tr("Stored unlock key is missing."));
+            return;
+        }
+
+        if (!unlockWithPassword(password, &error)) {
+            emit unlockFinished(false, error);
+            return;
+        }
+
+        QString migrationError;
+        if (!migrateLegacyPasswordToUserKey(&migrationError)) {
+            qWarning() << "Failed migrating stored password to user key: " << migrationError;
+        }
+
+        emit unlockFinished(true, "");
     });
 }
 
@@ -372,6 +420,104 @@ void BitSailorCore::validateMasterPassword(const QString &password)
 
         emit masterPasswordValidationFinished(true);
     });
+}
+
+QString BitSailorCore::currentUserKey()
+{
+    QString error;
+    const auto userKey = currentUserKey(&error);
+    if (userKey.isNull() || userKey.isEmpty()) {
+        qWarning() << "Failed reading current user key: " << error;
+    }
+
+    return userKey;
+}
+
+bool BitSailorCore::unlockWithPassword(const QString &password, QString *error)
+{
+    const auto email = getEmail();
+    if (email.isNull() || email.isEmpty()) {
+        emit couldNotFetchEmail();
+        return false;
+    }
+
+    auto emailBytes = email.toUtf8();
+    auto passwordBytes = password.toUtf8();
+    if (BitwardenUnlockSession(client, ctx, session, emailBytes.data(), passwordBytes.data()) != BitwardenSuccess) {
+        *error = getLastError();
+        qWarning() << "Failed unlocking session: " << *error;
+        return false;
+    }
+
+    QString exportError;
+    exportSession(&exportError);
+    if (!exportError.isNull()) {
+        qWarning() << "Failed exporting session: " << exportError;
+    }
+
+    return true;
+}
+
+bool BitSailorCore::unlockWithStoredUserKey(QString *error)
+{
+    const auto userKey = secrets->getUserKey();
+    if (userKey.isNull() || userKey.isEmpty()) {
+        *error = tr("Stored unlock key is missing.");
+        return false;
+    }
+
+    auto userKeyBytes = userKey.toUtf8();
+    if (BitwardenUnlockSessionWithUserKey(session, userKeyBytes.data()) != BitwardenSuccess) {
+        *error = getLastError();
+        return false;
+    }
+
+    QString exportError;
+    exportSession(&exportError);
+    if (!exportError.isNull()) {
+        qWarning() << "Failed exporting session: " << exportError;
+    }
+
+    return true;
+}
+
+bool BitSailorCore::migrateLegacyPasswordToUserKey(QString *error)
+{
+    const auto userKey = currentUserKey(error);
+    if (userKey.isNull() || userKey.isEmpty()) {
+        return false;
+    }
+
+    secrets->setUserKey(userKey);
+    secrets->removeLegacyPassword();
+    return true;
+}
+
+QString BitSailorCore::currentUserKey(QString *error)
+{
+    char* rawExport = nullptr;
+    if (BitwardenExportSession(session, &rawExport) != BitwardenSuccess) {
+        *error = getLastError();
+        return QString();
+    }
+
+    QJsonParseError parseError;
+    auto sessionJson = QJsonDocument::fromJson(QByteArray(rawExport), &parseError);
+    free(rawExport);
+
+    if (parseError.error) {
+        *error = parseError.errorString();
+        return QString();
+    }
+
+    const auto encryption = sessionJson.object().value("encryption").toObject();
+    const auto userKey = encryption.value("userKey").toString();
+    if (userKey.isNull() || userKey.isEmpty()) {
+        *error = tr("Current session does not contain an unlocked user key.");
+        return QString();
+    }
+
+    return userKey;
 }
 
 void BitSailorCore::fetchItems()

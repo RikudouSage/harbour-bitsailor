@@ -32,7 +32,7 @@ Dialog {
                 color: Theme.secondaryHighlightColor
                 wrapMode: Label.WordWrap
 
-                text: qsTr("To continue please provide your password and set your desired PIN code. Your password will be stored securely using Sailfish OS secrets storage and used automatically whenever you use your PIN.")
+                text: qsTr("To continue please provide your password and set your desired PIN code. An unlock key will be stored securely using Sailfish OS secrets storage and used automatically whenever you use your PIN.")
             }
 
             Label {
