@@ -243,12 +243,17 @@ Page {
 
                 delegate: ListItem {
                     property var item: logins[index];
+                    property bool failed: item.decryptionError !== null && typeof item.decryptionError !== 'undefined'
 
                     function remove() {
                         remorseDelete(function() {
                             core.deleteItem(item.id, false);
                             visible = false;
                         });
+                    }
+
+                    function errorText() {
+                        return qsTr("error fetching %1: %2").arg(item.id).arg(item.decryptionError);
                     }
 
                     id: listItem
@@ -259,12 +264,15 @@ Page {
                     contentHeight: Theme.itemSizeMedium
 
                     onClicked: {
-                        pageStack.push("ItemDetailPage.qml", {itemId: item.id});
+                        if (!failed) {
+                            pageStack.push("ItemDetailPage.qml", {itemId: item.id});
+                        }
                     }
 
                     Label {
                         id: itemTitle
-                        text: item.name
+                        text: failed ? qsTr("invalid item (decryption failed): %1").arg(item.id) : item.name
+                        color: failed ? Theme.errorColor : Theme.primaryColor
                     }
 
                     Label {
@@ -272,7 +280,7 @@ Page {
                         text: typeof item.login !== 'undefined' ? item.login.username || '' : ''
                         font.pixelSize: Theme.fontSizeSmall
                         color: Theme.secondaryHighlightColor
-                        visible: item.type === BitSailorCore.ItemTypeLogin
+                        visible: !failed && item.type === BitSailorCore.ItemTypeLogin
                     }
 
                     Label {
@@ -293,7 +301,7 @@ Page {
 
                         font.pixelSize: Theme.fontSizeSmall
                         color: Theme.secondaryHighlightColor
-                        visible: item.type === BitSailorCore.ItemTypeCard
+                        visible: !failed && item.type === BitSailorCore.ItemTypeCard
                     }
 
                     Label {
@@ -303,12 +311,23 @@ Page {
                         }).join(' ') : ''
                         font.pixelSize: Theme.fontSizeSmall
                         color: Theme.secondaryHighlightColor
-                        visible: item.type === BitSailorCore.ItemTypeCard
+                        visible: !failed && item.type === BitSailorCore.ItemTypeIdentity
                     }
 
                     Component {
                          id: contextMenu
                          ContextMenu {
+                             IconMenuItem {
+                                 text: qsTr("Copy error")
+                                 icon.source: "image://theme/icon-m-clipboard"
+                                 visible: failed
+
+                                 onClicked: {
+                                     Clipboard.text = errorText();
+                                     app.toaster.show(qsTr("Copied to clipboard"));
+                                 }
+                             }
+
                              IconMenuItem {
                                  text: qsTr("Remove")
                                  icon.source: "image://theme/icon-m-remove"

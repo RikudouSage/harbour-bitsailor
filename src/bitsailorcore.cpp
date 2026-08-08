@@ -8,6 +8,7 @@
 #include <QJsonDocument>
 #include <QtConcurrent>
 #include <QJsonParseError>
+#include <QJsonValue>
 
 #include "consts.h"
 
@@ -1234,8 +1235,13 @@ QJsonObject BitSailorCore::mapItem(const BitwardenItem &item) const
     outItem.insert("type", item.type);
     outItem.insert("name", item.name);
     outItem.insert("notes", item.notes);
+    if (item.decryptionError != nullptr) {
+        outItem.insert("decryptionError", item.decryptionError);
+    } else {
+        outItem.insert("decryptionError", QJsonValue::Null);
+    }
 
-    if (item.type == BitwardenItemTypeLogin) {
+    if (item.type == BitwardenItemTypeLogin && item.login != nullptr) {
         QJsonObject login;
         login.insert("username", item.login->username);
         login.insert("password", item.login->password);
@@ -1253,7 +1259,7 @@ QJsonObject BitSailorCore::mapItem(const BitwardenItem &item) const
         }
 
         outItem.insert("login", login);
-    } else if (item.type == BitwardenItemTypeCard) {
+    } else if (item.type == BitwardenItemTypeCard && item.card != nullptr) {
         QJsonObject card;
         card.insert("cardholderName", item.card->cardholderName);
         card.insert("brand", item.card->brand);
@@ -1262,7 +1268,7 @@ QJsonObject BitSailorCore::mapItem(const BitwardenItem &item) const
         card.insert("expYear", item.card->expirationYear);
         card.insert("code", item.card->code);
         outItem.insert("card", card);
-    } else if(item.type == BitwardenItemTypeIdentity) {
+    } else if(item.type == BitwardenItemTypeIdentity && item.identity != nullptr) {
         QJsonObject identity;
         identity.insert("title", item.identity->title);
         identity.insert("firstName", item.identity->firstName);
