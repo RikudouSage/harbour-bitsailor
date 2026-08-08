@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>ApproveAuthRequestPage</name>
     <message>
@@ -13,12 +11,12 @@
     </message>
     <message>
         <source>Approve</source>
-        <extracomment>Dialog accept text - approve other device&apos;s login</extracomment>
+        <extracomment>Dialog accept text - approve other device's login</extracomment>
         <translation>Schválit</translation>
     </message>
     <message>
         <source>Reject</source>
-        <extracomment>Dialog cancel text - reject other device&apos;s login</extracomment>
+        <extracomment>Dialog cancel text - reject other device's login</extracomment>
         <translation>Zamítnout</translation>
     </message>
     <message>
@@ -30,7 +28,7 @@
     <name>BitSailorCore</name>
     <message>
         <source>Stored unlock key is missing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Uložený klíč pro odemknutí chybí.</translation>
     </message>
 </context>
 <context>
@@ -41,7 +39,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -597,7 +595,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -914,7 +912,7 @@ Section title for Bitwarden server settings</extracomment>
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -978,8 +976,8 @@ Section title for Bitwarden server settings</extracomment>
         <translation>Zadali jste neplatné heslo.</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>OS authorization check failed.</source>
@@ -1094,7 +1092,7 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>Could not store the unlock key.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nezdařilo se uložit klíč pro odemknutí.</translation>
     </message>
 </context>
 <context>
@@ -1122,7 +1120,7 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>To continue please provide your password and set your desired PIN code. An unlock key will be stored securely using Sailfish OS secrets storage and used automatically whenever you use your PIN.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro pokračování prosím zadejte své heslo a nastavte vámi zvolený PIN kód. Klíč pro odemknutí bude bezpečně uložen pomocí uložiště citlivých údajů Sailfish OS a bude automaticky použit kdykoliv použijete svůj PIN.</translation>
     </message>
 </context>
 <context>
@@ -1146,7 +1144,7 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>To continue please provide your password. An unlock key will be stored securely using Sailfish OS secrets storage and used automatically whenever you authorize using Sailfish OS.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pro pokračování prosím zadejte své heslo. Klíč pro odemknuí bude bezpečně uložen do uložiště citlivých údajů Sailfish OS a bude automaticky použit kdykoliv se autorizujete vůči Sailfish OS.</translation>
     </message>
 </context>
 <context>
