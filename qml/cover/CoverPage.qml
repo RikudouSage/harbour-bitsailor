@@ -7,6 +7,7 @@ CoverBackground {
     property bool isLocked: !secrets.hasSessionJson();
     property var item: ({type: BitSailorCore.ItemTypeNone})
     property var lockActions: [lockAction1, lockAction2, lockAction3, lockAction4]
+    property bool hasLoginTotp: item.type === BitSailorCore.ItemTypeLogin && item.login !== undefined && !!item.login.totp
 
     property string expiration: item.card !== undefined && item.card.expMonth && item.card.expYear ? String("0" + item.card.expMonth).slice(-2) + "/" + item.card.expYear : ''
 
@@ -59,7 +60,7 @@ CoverBackground {
             visible: item.type === BitSailorCore.ItemTypeLogin && item && item.login
             source: "file:///usr/share/harbour-bitsailor/icons/logo-black-white.png"
             anchors.horizontalCenter: parent.horizontalCenter
-            sourceSize: item && item.login && item.login.username && item.login.password && item.login.username && item.login.totp ? '80x80' : '40x40'
+            sourceSize: item && item.login && item.login.username && item.login.password && hasLoginTotp ? '80x80' : '40x40'
         }
         Icon {
             visible: item.type === BitSailorCore.ItemTypeSecureNote
@@ -161,7 +162,7 @@ CoverBackground {
 
         Label {
             id: totpField
-            visible: item.type === BitSailorCore.ItemTypeLogin && item.login !== undefined && item.login.totp !== undefined
+            visible: hasLoginTotp
             //: TOTP (two factor auth code) on cover page, should be short, use abbreviations if needed
             text: qsTr("TOTP") + ":"
             font.pixelSize: Theme.fontSizeExtraSmall
@@ -169,7 +170,7 @@ CoverBackground {
             font.bold: true
         }
         Label {
-            visible: item.type === BitSailorCore.ItemTypeLogin && item.login !== undefined && item.login.totp !== undefined
+            visible: hasLoginTotp
             text: item && item.metadata && item.metadata.totp ? item.metadata.totp.match(/.{1,3}/g).join(' ') : ''
             font.pixelSize: Theme.fontSizeExtraSmall
             anchors.horizontalCenter: parent.horizontalCenter
@@ -243,7 +244,7 @@ CoverBackground {
     }
 
     CoverActionList {
-        enabled: item.type === BitSailorCore.ItemTypeLogin && item.login !== undefined && !item.login.totp
+        enabled: item.type === BitSailorCore.ItemTypeLogin && item.login !== undefined && !hasLoginTotp
         CoverAction {
             property string icon: isLocked ? "lock-solid.svg" : "lock-open-solid.svg"
             property string finalIcon: "file:///usr/share/harbour-bitsailor/icons/" + icon // todo find out if some standard path exists for this
@@ -278,7 +279,7 @@ CoverBackground {
     }
 
     CoverActionList {
-        enabled: item.type === BitSailorCore.ItemTypeLogin && item.login !== undefined && item.login.totp !== undefined
+        enabled: hasLoginTotp
 
         CoverAction {
             property string icon: isLocked ? "lock-solid.svg" : "lock-open-solid.svg"
