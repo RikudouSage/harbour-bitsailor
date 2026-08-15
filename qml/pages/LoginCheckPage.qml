@@ -171,6 +171,7 @@ Page {
     Component.onCompleted: {
         if (!settings.migratedToMultiAccounts) {
             const accountId = accountManager.generateAccountId();
+
             if (!secrets.migrateUnprefixed(accountId)) {
                 errorText.text = qsTr("Failed migrating your data to the new multi-account structure, your account data were deleted. Please close the app and log in again.");
                 return;

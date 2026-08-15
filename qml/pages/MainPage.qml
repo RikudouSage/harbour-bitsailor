@@ -229,6 +229,16 @@ Page {
 
             page.onVaultSyncFailed();
         }
+
+        onAccountMetadataFetched: {
+            const account = {
+                id: accountManager.currentAccount.id,
+                name: accountManager.currentAccount.name,
+                email: data.email,
+                server: data.server,
+            };
+            accountManager.currentAccount = account;
+        }
     }
 
     SilicaFlickable {
@@ -350,6 +360,10 @@ Page {
     Component.onCompleted: {
         core.getLoginStatus();
         core.initializeNotifications();
+
+        if (!accountManager.currentAccount.server || !accountManager.currentAccount.email) {
+            core.fetchAccountMetadata();
+        }
     }
 
     onStatusChanged: {

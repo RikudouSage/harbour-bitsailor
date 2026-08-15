@@ -5,31 +5,6 @@ Page {
     id: page
     allowedOrientations: Orientation.All
 
-    ListModel {
-        id: accounts
-
-        ListElement {
-            name: "Dominik Personal"
-            email: "dominik@example.com"
-            server: "bitwarden.com"
-            isCurrent: true
-        }
-
-        ListElement {
-            name: "Work Vault"
-            email: "dominik@company.example"
-            server: "bitwarden.eu"
-            isCurrent: false
-        }
-
-        ListElement {
-            name: ""
-            email: "family@example.net"
-            server: "vault.example.net"
-            isCurrent: false
-        }
-    }
-
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height
@@ -70,9 +45,10 @@ Page {
             }
 
             Repeater {
-                model: accounts
+                model: accountManager.accounts
 
                 delegate: ListItem {
+                    property bool isCurrent: modelData.id === accountManager.currentAccount.id
                     id: accountItem
 
                     menu: accountContextMenu
@@ -126,23 +102,23 @@ Page {
 
                         Label {
                             width: parent.width
-                            text: name || email
+                            text: modelData.name || modelData.email
                             color: accountItem.highlighted ? Theme.highlightColor : Theme.primaryColor
                             truncationMode: TruncationMode.Fade
                         }
 
                         Label {
                             width: parent.width
-                            text: email
+                            text: modelData.email
                             color: Theme.secondaryHighlightColor
                             font.pixelSize: Theme.fontSizeSmall
                             truncationMode: TruncationMode.Fade
-                            visible: name.length
+                            visible: modelData.name.length
                         }
 
                         Label {
                             width: parent.width
-                            text: server
+                            text: modelData.server
                             color: Theme.secondaryColor
                             font.pixelSize: Theme.fontSizeExtraSmall
                             truncationMode: TruncationMode.Fade
@@ -162,6 +138,7 @@ Page {
                         Label {
                             width: parent.width
                             horizontalAlignment: Text.AlignRight
+                            //: Currently selected account
                             text: isCurrent ? qsTr("Current") : ""
                             color: Theme.highlightColor
                             font.pixelSize: Theme.fontSizeExtraSmall

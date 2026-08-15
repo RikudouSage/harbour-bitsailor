@@ -823,6 +823,17 @@ void BitSailorCore::generatePassphrase(uint wordsCount, bool capitalize, bool in
     });
 }
 
+void BitSailorCore::fetchAccountMetadata()
+{
+    QtConcurrent::run([=] {
+        QJsonObject result;
+        result.insert("email", getEmail());
+        result.insert("server", getServerUrlString());
+
+        emit accountMetadataFetched(result);
+    });
+}
+
 void BitSailorCore::syncVault()
 {
     QtConcurrent::run([=] {
@@ -1099,6 +1110,11 @@ QString BitSailorCore::getEmail()
     free(out);
 
     return result;
+}
+
+QString BitSailorCore::getServerUrlString()
+{
+    return settings->baseUrl();
 }
 
 void BitSailorCore::login(const std::function<BitwardenResult ()> &loginCallable)

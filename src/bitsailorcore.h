@@ -97,6 +97,9 @@ public:
     Q_INVOKABLE void generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, bool avoidAmbiguous, int minimumNumbers, int minimumSpecial, int length);
     Q_INVOKABLE void generatePassphrase(uint wordsCount, bool capitalize, bool includeNumber, const QString &separator);
 
+    Q_INVOKABLE void fetchAccountMetadata();
+    Q_INVOKABLE QString getEmail(); // todo move to private once the multi account thing is old enough
+    Q_INVOKABLE QString getServerUrlString(); // todo remove once multi accounts are old enough
 signals:
     void serverUrlChanged(bool success);
     void serverUrlResolved(const QString &url);
@@ -133,6 +136,8 @@ signals:
 
     void authRequestApprovalRequested(const QString &requestId);
 
+    void accountMetadataFetched(const QJsonObject &data);
+
     void invalidCertificate(); // todo implement on core side and then here
 
 private:
@@ -146,7 +151,6 @@ private:
     UUID uuidToCoreUuid(const QUuid &uuid) const;
     QUuid uuidToQUuid(const UUID &uuid) const;
     QDateTime cTimeToQDate(int64_t time) const;
-    QString getEmail();
 
     void login(const std::function<BitwardenResult()> &loginCallable);
     bool unlockWithPassword(const QString &password, QString *error);

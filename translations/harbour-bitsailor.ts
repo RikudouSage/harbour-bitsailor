@@ -30,6 +30,7 @@
     </message>
     <message>
         <source>Current</source>
+        <extracomment>Currently selected account</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>

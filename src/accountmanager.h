@@ -4,12 +4,17 @@
 #include <QObject>
 #include <QSettings>
 #include <QStandardPaths>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QList>
 
 #include "appsettings.h"
 
 class AccountManager : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QJsonObject currentAccount READ currentAccount WRITE setCurrentAccount NOTIFY currentAccountChanged)
+    Q_PROPERTY(QJsonArray accounts READ accounts WRITE setAccounts NOTIFY accountsChanged)
 private:
     struct Account {
         const QString id;
@@ -29,6 +34,16 @@ public:
 
     Account getCurrentAccount();
 
+    QJsonObject currentAccount();
+    void setCurrentAccount(const QJsonObject &value);
+
+    QJsonArray accounts();
+    void setAccounts(const QJsonArray &value);
+
+signals:
+    void currentAccountChanged();
+    void accountsChanged();
+
 private:
     QSettings* settings = new QSettings(
         QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation) + "/accounts.ini",
@@ -39,8 +54,13 @@ private:
 
 private:
     Account getAccount(const QString &accountId);
+    bool storeAccount(const Account &account);
     const QString getCurrentAccountId();
     void setCurrentAccountId(const QString &accountId);
+
+    QJsonObject convertAccountToJson(const Account &account) const;
+    Account convertAccountToStruct(const QJsonObject &value) const;
+    QList<Account> getAccounts();
 };
 
 #endif // ACCOUNTMANAGER_H
