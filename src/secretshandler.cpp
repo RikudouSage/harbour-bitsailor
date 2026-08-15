@@ -151,33 +151,33 @@ bool SecretsHandler::hasPin()
 
 void SecretsHandler::removePin()
 {
-    deleteSecret(pinName);
+    deleteSecret(prefixed(pinName));
 }
 
 void SecretsHandler::removePassword()
 {
-    deleteSecret(passwordName);
-    deleteSecret(userKeyName);
+    deleteSecret(prefixed(passwordName));
+    deleteSecret(prefixed(userKeyName));
 }
 
 void SecretsHandler::removeLegacyPassword()
 {
-    deleteSecret(passwordName);
+    deleteSecret(prefixed(passwordName));
 }
 
 void SecretsHandler::removeUserKey()
 {
-    deleteSecret(userKeyName);
+    deleteSecret(prefixed(userKeyName));
 }
 
 void SecretsHandler::removeSessionJson()
 {
-    deleteSecret(sessionJsonName);
+    deleteSecret(prefixed(sessionJsonName));
 }
 
 void SecretsHandler::removeEncryptedVault()
 {
-    deleteSecret(encryptedVaultName);
+    deleteSecret(prefixed(encryptedVaultName));
 }
 
 bool SecretsHandler::clearAllSecrets()
@@ -216,7 +216,7 @@ void SecretsHandler::allowInvalidCertificates()
 
 void SecretsHandler::disallowInvalidCertificates()
 {
-    deleteSecret(invalidCertsName);
+    deleteSecret(prefixed(invalidCertsName));
 }
 
 void SecretsHandler::setSessionJson(const QJsonObject &sessionJson)
@@ -280,9 +280,13 @@ bool SecretsHandler::migrateUnprefixed(const QString &id)
         pinName, internalPinName, invalidCertsName,
     };
 
+    bool failed = false;
     defer({
         for (const auto &key : keys) {
             deleteSecret(key);
+            if (failed) {
+                deleteSecret(prefixed(key, id));
+            }
         }
     });
 
@@ -293,6 +297,7 @@ bool SecretsHandler::migrateUnprefixed(const QString &id)
         }
 
         if (!storeData(prefixed(key, id), value)) {
+            failed = true;
             return false;
         }
     }

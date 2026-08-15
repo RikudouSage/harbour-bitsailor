@@ -132,6 +132,7 @@ void AppSettings::setMigratedToMultiAccounts(bool value)
     }
 
     saveConfig("migratedToMultiAccounts", value);
+    prop_migratedToMultiAccounts = value;
     emit migratedToMultiAccountsChanged();
 }
 
