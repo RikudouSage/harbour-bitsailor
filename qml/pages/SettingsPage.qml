@@ -420,6 +420,8 @@ Page {
 
     onStatusChanged: {
         if (status == PageStatus.Active) {
+            pageStack.pushAttached("AccountSwitcherPage.qml");
+
             while (doAfterLoad.length) {
                 const callable = doAfterLoad.shift();
                 callable();

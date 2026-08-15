@@ -8,6 +8,8 @@
 #include <Sailfish/Secrets/request.h>
 #include <Sailfish/Secrets/secret.h>
 
+#include "accountmanager.h"
+
 using Sailfish::Secrets::SecretManager;
 using Sailfish::Secrets::Request;
 using Sailfish::Secrets::Secret;
@@ -16,7 +18,7 @@ class SecretsHandler : public QObject
 {
     Q_OBJECT
 public:
-    explicit SecretsHandler(QObject *parent = nullptr);
+    explicit SecretsHandler(AccountManager *manager, QObject *parent = nullptr);
 
     QJsonObject getSessionJson();
     QJsonObject getEncryptedVault();
@@ -54,6 +56,12 @@ public:
     void setClientId(const QString &clientId);
     Q_INVOKABLE void setPin(const QString &pin);
     Q_INVOKABLE void setInternalPin(const QString &pin);
+
+    Q_INVOKABLE bool migrateUnprefixed(const QString &id);
+private:
+    AccountManager *accountManager;
+    const QString prefixed(const QString &name);
+    const QString prefixed(const QString &name, const QString &prefix);
 
 private:
     static const QString collectionName;

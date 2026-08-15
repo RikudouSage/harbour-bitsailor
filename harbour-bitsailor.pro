@@ -42,6 +42,7 @@ bw-logo.files = icons/bw/*
 INSTALLS += bw-logo
 
 SOURCES += src/harbour-bitsailor.cpp \
+    src/accountmanager.cpp \
     src/appsettings.cpp \
     src/bitsailorcore.cpp \
     src/cachekey.cpp \
@@ -55,7 +56,8 @@ SOURCES += src/harbour-bitsailor.cpp \
     src/systemauthchecker.cpp \
     otp/onetimepasswordgenerator.cpp \
     src/urlparser.cpp \
-    src/runtimecache.cpp
+    src/runtimecache.cpp \
+    src/uuid.cpp
 
 DISTFILES += qml/harbour-bitsailor.qml \
     icons/bw/* \
@@ -75,6 +77,7 @@ DISTFILES += qml/harbour-bitsailor.qml \
     qml/cover/CoverPage.qml \
     qml/helpers.js \
     qml/pages/ApproveAuthRequestPage.qml \
+    qml/pages/AccountSwitcherPage.qml \
     qml/pages/CleanupPage.qml \
     qml/pages/ConfirmOptionsSettingPage.qml \
     qml/pages/ConfirmSettingPage.qml \
@@ -114,12 +117,14 @@ CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/harbour-bitsailor-*.ts
 
 HEADERS += \
+    src/accountmanager.h \
     src/appsettings.h \
     src/bitsailorcore.h \
     src/cache-keys.h \
     src/cachekey.h \
     src/clipboardhandler.h \
     src/consts.h \
+    src/defer.h \
     src/encryptor.h \
     src/fileaccessor.h \
     src/parsedurl.h \
@@ -136,4 +141,5 @@ HEADERS += \
     core/bw_item.h \
     core/bw_send.h \
     core/bw_notifications.h \
-    src/runtimecache.h
+    src/runtimecache.h \
+    src/uuid.h

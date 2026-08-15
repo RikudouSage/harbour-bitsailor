@@ -6,7 +6,7 @@
 
 RuntimeCache* RuntimeCache::instance = nullptr;
 
-RuntimeCache::RuntimeCache(QObject *parent) : QObject(parent)
+RuntimeCache::RuntimeCache(SecretsHandler *secrets, QObject *parent) : QObject(parent), secrets(secrets)
 {
 }
 
@@ -71,14 +71,5 @@ QString RuntimeCache::getOrSetPersistent(const QString &key, const QString &defa
     setPersistent(key, defaultValue);
 
     return defaultValue;
-}
-
-RuntimeCache *RuntimeCache::getInstance(QObject *parent)
-{
-    if (instance == nullptr) {
-        instance = new RuntimeCache(parent);
-    }
-
-    return instance;
 }
 

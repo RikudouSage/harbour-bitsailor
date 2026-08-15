@@ -2,6 +2,46 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="de">
 <context>
+    <name>AccountSwitcherPage</name>
+    <message>
+        <source>Add Account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Account management is not connected yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accounts</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose which Bitwarden account should be active on this device.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Signed in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Account switching is not connected yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">Entfernen</translation>
+    </message>
+    <message>
+        <source>Account removal is not connected yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ApproveAuthRequestPage</name>
     <message>
         <source>The authentication request could not be fetched. Please try again later.</source>
@@ -734,6 +774,14 @@
     </message>
     <message>
         <source>Your account uses a two-factor method which is currently not supported by this app. Please log in using your API key.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed migrating your data to the new multi-account structure, your account data were deleted. Please close the app and log in again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed setting current account ID after migrating to the multi-account structure. Please close the app and log in again.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

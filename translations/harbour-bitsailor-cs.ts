@@ -1,4 +1,46 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="cs">
+<context>
+    <name>AccountSwitcherPage</name>
+    <message>
+        <source>Add Account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Account management is not connected yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accounts</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose which Bitwarden account should be active on this device.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Signed in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Account switching is not connected yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">Odstranit</translation>
+    </message>
+    <message>
+        <source>Account removal is not connected yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 <context>
     <name>ApproveAuthRequestPage</name>
     <message>
@@ -11,12 +53,12 @@
     </message>
     <message>
         <source>Approve</source>
-        <extracomment>Dialog accept text - approve other device's login</extracomment>
+        <extracomment>Dialog accept text - approve other device&apos;s login</extracomment>
         <translation>Schválit</translation>
     </message>
     <message>
         <source>Reject</source>
-        <extracomment>Dialog cancel text - reject other device's login</extracomment>
+        <extracomment>Dialog cancel text - reject other device&apos;s login</extracomment>
         <translation>Zamítnout</translation>
     </message>
     <message>
@@ -39,7 +81,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -595,7 +637,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -733,6 +775,14 @@
     <message>
         <source>Your account uses a two-factor method which is currently not supported by this app. Please log in using your API key.</source>
         <translation>Váš účet využívá dvoufázové ověření, které momentálně nepodporujeme. Prosím přihlašte se pomocí vašeho API klíče.</translation>
+    </message>
+    <message>
+        <source>Failed migrating your data to the new multi-account structure, your account data were deleted. Please close the app and log in again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed setting current account ID after migrating to the multi-account structure. Please close the app and log in again.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -912,7 +962,7 @@ Section title for Bitwarden server settings</extracomment>
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -976,8 +1026,8 @@ Section title for Bitwarden server settings</extracomment>
         <translation>Zadali jste neplatné heslo.</translation>
     </message>
     <message>
-        <source/>
-        <translation type="unfinished"/>
+        <source></source>
+        <translation></translation>
     </message>
     <message>
         <source>OS authorization check failed.</source>

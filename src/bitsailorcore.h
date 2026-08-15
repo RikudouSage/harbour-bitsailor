@@ -141,10 +141,7 @@ private:
     void cleanup();
     void registerListeners();
 
-    QUuid generateUuid() const;
-    QString uuidToString(const QUuid &uuid) const;
     QString uuidToString(const UUID &uuid) const;
-    QUuid qUuidFromString(const QString &uuid) const;
     UUID uuidFromString(const QString &uuid) const;
     UUID uuidToCoreUuid(const QUuid &uuid) const;
     QUuid uuidToQUuid(const UUID &uuid) const;

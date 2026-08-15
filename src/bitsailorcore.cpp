@@ -11,6 +11,7 @@
 #include <QJsonValue>
 
 #include "consts.h"
+#include "uuid.h"
 
 namespace {
 
@@ -854,7 +855,7 @@ void BitSailorCore::initialize(bool withNotifications)
     cleanup();
 
     if (settings->deviceUuid() == "") {
-        settings->setDeviceUuid(uuidToString(generateUuid()));
+        settings->setDeviceUuid(::uuidToString(generateUuid()));
 #ifdef QT_DEBUG
         qDebug() << "Device ID: " << settings->deviceUuid();
 #endif
@@ -1046,37 +1047,9 @@ void BitSailorCore::registerListeners()
     }
 }
 
-QUuid BitSailorCore::generateUuid() const
-{
-    return QUuid::createUuid();
-}
-
-QString BitSailorCore::uuidToString(const QUuid &uuid) const
-{
-    auto uuidStr = uuid.toString();
-    uuidStr = uuidStr.mid(1, uuidStr.size() - 2);
-
-    return uuidStr;
-}
-
 QString BitSailorCore::uuidToString(const UUID &uuid) const
 {
-    return uuidToString(uuidToQUuid(uuid));
-}
-
-QUuid BitSailorCore::qUuidFromString(const QString &uuid) const
-{
-    QString copy = uuid;
-
-    if (!copy.startsWith('{')) {
-        copy.prepend('{');
-    }
-
-    if (!copy.endsWith('}')) {
-        copy.append('}');
-    }
-
-    return copy;
+    return ::uuidToString(uuidToQUuid(uuid));
 }
 
 UUID BitSailorCore::uuidFromString(const QString &uuid) const

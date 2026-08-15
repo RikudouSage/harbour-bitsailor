@@ -7,13 +7,14 @@
 #include <QStandardPaths>
 
 #include "secretshandler.h"
+#include "accountmanager.h"
 #include "encryptor.h"
 
 class RuntimeCache : public QObject
 {
     Q_OBJECT
 public:
-    explicit RuntimeCache(QObject *parent = nullptr);
+    explicit RuntimeCache(SecretsHandler *secrets, QObject *parent = nullptr);
     Q_INVOKABLE void set(const QString &key, const QString &value);
     Q_INVOKABLE QString get(const QString &key);
     Q_INVOKABLE bool has(const QString &key);
@@ -25,8 +26,6 @@ public:
     Q_INVOKABLE void removePersistent(const QString &key);
     Q_INVOKABLE QString getOrSetPersistent(const QString &key, const QString &defaultValue);
 
-    static RuntimeCache* getInstance(QObject *parent = nullptr);
-
 signals:
     void encryptionKeyNotFound();
 
@@ -37,7 +36,7 @@ private:
         QSettings::IniFormat,
         this
     );
-    SecretsHandler* secrets = new SecretsHandler(this);
+    SecretsHandler* secrets;
     Encryptor* encryptor = new Encryptor(this);
 
     static RuntimeCache* instance;

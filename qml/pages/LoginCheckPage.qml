@@ -126,6 +126,7 @@ Page {
 
             checkState = stateUnlock
             core.getLoginStatus();
+            settings.migratedToMultiAccounts = true;
         }
 
         onUnlockFinished: {
@@ -153,11 +154,37 @@ Page {
     }
 
     BusyLabel {
-        running: true
+        running: !errorText.visible
         text: qsTr("Authenticating...")
     }
 
+    Label {
+        id: errorText
+        y: Theme.paddingLarge
+        x: Theme.horizontalPageMargin
+        color: Theme.errorColor
+        wrapMode: Label.WordWrap
+        width: parent.width - Theme.horizontalPageMargin * 2
+        visible: text.length
+    }
+
     Component.onCompleted: {
+        if (!settings.migratedToMultiAccounts) {
+            const accountId = accountManager.generateAccountId();
+            if (!secrets.migrateUnprefixed(accountId)) {
+                errorText.text = qsTr("Failed migrating your data to the new multi-account structure, your account data were deleted. Please close the app and log in again.");
+                return;
+            }
+
+            if (!accountManager.setAccountIdAfterMigration(accountId)) {
+                errorText.text = qsTr("Failed setting current account ID after migrating to the multi-account structure. Please close the app and log in again.");
+                return;
+            }
+
+            settings.migratedToMultiAccounts = true;
+            core.initialize();
+        }
+
         core.getLoginStatus();
     }
 

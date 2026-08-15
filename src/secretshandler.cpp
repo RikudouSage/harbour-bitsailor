@@ -14,6 +14,8 @@
 #include <QJsonParseError>
 #include <QSettings>
 
+#include "defer.h"
+
 using Sailfish::Secrets::CollectionNamesRequest;
 using Sailfish::Secrets::SecretManager;
 using Sailfish::Secrets::Request;
@@ -45,7 +47,8 @@ static QSettings &insecureEmulatorSecrets()
 }
 #endif
 
-SecretsHandler::SecretsHandler(QObject *parent) : QObject(parent)
+SecretsHandler::SecretsHandler(AccountManager *manager, QObject *parent)
+    : QObject(parent), accountManager(manager)
 {
 #ifdef QT_DEBUG
     qWarning() << "Using insecure debug secrets storage. Do not enable this in release builds.";
@@ -63,7 +66,7 @@ SecretsHandler::SecretsHandler(QObject *parent) : QObject(parent)
 
 QJsonObject SecretsHandler::getSessionJson()
 {
-    const auto json = getData(sessionJsonName);
+    const auto json = getData(prefixed(sessionJsonName));
     QJsonParseError err;
     auto doc = QJsonDocument::fromJson(json.toUtf8(), &err);
     if (err.error) {
@@ -76,7 +79,7 @@ QJsonObject SecretsHandler::getSessionJson()
 
 QJsonObject SecretsHandler::getEncryptedVault()
 {
-    const auto json = getData(encryptedVaultName);
+    const auto json = getData(prefixed(encryptedVaultName));
     QJsonParseError err;
     auto doc = QJsonDocument::fromJson(json.toUtf8(), &err);
     if (err.error) {
@@ -89,48 +92,48 @@ QJsonObject SecretsHandler::getEncryptedVault()
 
 QString SecretsHandler::getUsername()
 {
-    return getData(usernameName);
+    return getData(prefixed(usernameName));
 }
 
 QString SecretsHandler::getPassword()
 {
-    return getData(passwordName);
+    return getData(prefixed(passwordName));
 }
 
 QString SecretsHandler::getUserKey()
 {
-    return getData(userKeyName);
+    return getData(prefixed(userKeyName));
 }
 
 QString SecretsHandler::getClientId()
 {
-    return getData(clientIdName);
+    return getData(prefixed(clientIdName));
 }
 
 QString SecretsHandler::getPin()
 {
-    return getData(pinName);
+    return getData(prefixed(pinName));
 }
 
 QString SecretsHandler::getInternalPin()
 {
-    return getData(internalPinName);
+    return getData(prefixed(internalPinName));
 }
 
 bool SecretsHandler::invalidCertificatesAllowed()
 {
-    return getData(invalidCertsName) == "true";
+    return getData(prefixed(invalidCertsName)) == "true";
 }
 
 bool SecretsHandler::hasEncryptedVault()
 {
-    auto value = getData(encryptedVaultName);
+    auto value = getData(prefixed(encryptedVaultName));
     return !value.isNull() && !value.isEmpty();
 }
 
 bool SecretsHandler::hasSessionJson()
 {
-    auto sessionJson = getData(sessionJsonName);
+    auto sessionJson = getData(prefixed(sessionJsonName));
     return !sessionJson.isNull() && !sessionJson.isEmpty();
 }
 
@@ -208,7 +211,7 @@ bool SecretsHandler::hasInternalPin()
 
 void SecretsHandler::allowInvalidCertificates()
 {
-    storeData(invalidCertsName, "true");
+    storeData(prefixed(invalidCertsName), "true");
 }
 
 void SecretsHandler::disallowInvalidCertificates()
@@ -218,27 +221,27 @@ void SecretsHandler::disallowInvalidCertificates()
 
 void SecretsHandler::setSessionJson(const QJsonObject &sessionJson)
 {
-    storeData(sessionJsonName, QString::fromUtf8(QJsonDocument(sessionJson).toJson(QJsonDocument::Compact)));
+    storeData(prefixed(sessionJsonName), QString::fromUtf8(QJsonDocument(sessionJson).toJson(QJsonDocument::Compact)));
 }
 
 void SecretsHandler::setEncryptedVault(const QJsonObject &json)
 {
-    storeData(encryptedVaultName, QString::fromUtf8(QJsonDocument(json).toJson(QJsonDocument::Compact)));
+    storeData(prefixed(encryptedVaultName), QString::fromUtf8(QJsonDocument(json).toJson(QJsonDocument::Compact)));
 }
 
 void SecretsHandler::setUsername(const QString &username)
 {
-    storeData(usernameName, username);
+    storeData(prefixed(usernameName), username);
 }
 
 void SecretsHandler::setPassword(const QString &password)
 {
-    storeData(passwordName, password);
+    storeData(prefixed(passwordName), password);
 }
 
 void SecretsHandler::setUserKey(const QString &userKey)
 {
-    storeData(userKeyName, userKey);
+    storeData(prefixed(userKeyName), userKey);
 }
 
 bool SecretsHandler::storeUserKeyFromSessionJson()
@@ -257,17 +260,54 @@ bool SecretsHandler::storeUserKeyFromSessionJson()
 
 void SecretsHandler::setClientId(const QString &clientId)
 {
-    storeData(clientIdName, clientId);
+    storeData(prefixed(clientIdName), clientId);
 }
 
 void SecretsHandler::setPin(const QString &pin)
 {
-    storeData(pinName, pin);
+    storeData(prefixed(pinName), pin);
 }
 
 void SecretsHandler::setInternalPin(const QString &pin)
 {
-    storeData(internalPinName, pin);
+    storeData(prefixed(internalPinName), pin);
+}
+
+bool SecretsHandler::migrateUnprefixed(const QString &id)
+{
+    const auto keys = {
+        encryptedVaultName, sessionJsonName, usernameName, passwordName, userKeyName, clientIdName,
+        pinName, internalPinName, invalidCertsName,
+    };
+
+    defer({
+        for (const auto &key : keys) {
+            deleteSecret(key);
+        }
+    });
+
+    for (const auto &key : keys) {
+        const auto value = getData(key);
+        if (value.isEmpty()) {
+            continue;
+        }
+
+        if (!storeData(prefixed(key, id), value)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+const QString SecretsHandler::prefixed(const QString &name)
+{
+    return prefixed(name, accountManager->getCurrentAccount().id);
+}
+
+const QString SecretsHandler::prefixed(const QString &name, const QString &prefix)
+{
+    return prefix + ":" + name;
 }
 
 bool SecretsHandler::isResultValid(const Request &request)
