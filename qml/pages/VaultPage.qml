@@ -196,15 +196,6 @@ Page {
                 }
             }
 
-            MenuItem {
-                text: searchActive ? qsTr("Hide search") : qsTr("Search")
-                onClicked: {
-                    searchActive = !searchActive;
-                    if (searchActive) {
-                        search.focus = true;
-                    }
-                }
-            }
         }
 
         Column {
@@ -230,8 +221,8 @@ Page {
 
                 width: parent.width - Theme.horizontalPageMargin * 2
                 placeholderText: qsTr("Search")
-                active: searchActive
-                focus: active
+                active: true
+                focus: searchActive
 
                 onTextChanged: {
                     applySearchFilter();

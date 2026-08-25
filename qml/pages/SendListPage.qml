@@ -48,15 +48,6 @@ Page {
 
         PullDownMenu {
             MenuItem {
-                text: searchActive ? qsTr("Hide search") : qsTr("Search")
-                onClicked: {
-                    searchActive = !searchActive;
-                    if (searchActive) {
-                        search.focus = true;
-                    }
-                }
-            }
-            MenuItem {
                 text: qsTr("Create a Send")
                 onClicked: {
                     pageStack.push("CreateSendChooseTypePage.qml")
@@ -87,8 +78,8 @@ Page {
 
                 width: parent.width - Theme.horizontalPageMargin * 2
                 placeholderText: qsTr("Search")
-                active: searchActive
-                focus: active
+                active: true
+                focus: searchActive
 
                 onTextChanged: {
 
