@@ -187,6 +187,7 @@ Page {
                         object.type = dialog.type;
                         object.name = dialog.nameValue;
                         object.notes = dialog.loginNotesValue || dialog.secureNoteNoteValue || null;
+                        object.fields = dialog.getFields();
 
                         loaded = false;
                         errorText = "";

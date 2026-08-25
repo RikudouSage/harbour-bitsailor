@@ -392,6 +392,42 @@
         <source>Security Code</source>
         <translation>Sicherheitscode</translation>
     </message>
+    <message>
+        <source>Custom fields</source>
+        <translation type="unfinished">Benutzerdefinierte Felder</translation>
+    </message>
+    <message>
+        <source>Field name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text</source>
+        <translation type="unfinished">Text</translation>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Boolean</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add field</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked field</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GeneratePassphraseContent</name>
@@ -678,10 +714,6 @@
     <message>
         <source>Custom fields</source>
         <translation>Benutzerdefinierte Felder</translation>
-    </message>
-    <message>
-        <source>Linked fields are not supported properly because the official documentation is missing. Will be updated in the future.</source>
-        <translation>Verbundene Felder sind nicht vollständig unterstützt, weil die offizielle Dokumentation fehlt. Wird in Zukunft aktualisiert werden.</translation>
     </message>
     <message>
         <source>Last update: %1</source>

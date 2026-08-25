@@ -392,6 +392,42 @@
         <source>Security Code</source>
         <translation type="unfinished">Code de sécurité</translation>
     </message>
+    <message>
+        <source>Custom fields</source>
+        <translation type="unfinished">Champs personnalisés</translation>
+    </message>
+    <message>
+        <source>Field name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text</source>
+        <translation type="unfinished">Texte</translation>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Boolean</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add field</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked field</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GeneratePassphraseContent</name>
@@ -678,10 +714,6 @@
     <message>
         <source>Custom fields</source>
         <translation>Champs personnalisés</translation>
-    </message>
-    <message>
-        <source>Linked fields are not supported properly because the official documentation is missing. Will be updated in the future.</source>
-        <translation>Les champs liés ne sont pas supportés correctement à cause de leur absence dans la documentation officielle. Cela sera implémenté à l&apos;avenir.</translation>
     </message>
     <message>
         <source>Last update: %1</source>

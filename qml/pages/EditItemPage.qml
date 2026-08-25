@@ -44,6 +44,7 @@ Dialog {
     }
 
     property var initialUris: []
+    property var initialFields: []
     property alias nameValue: name.text
     property alias loginUsernameValue: loginUsername.text
     property alias loginPasswordValue: loginPassword.text
@@ -70,6 +71,34 @@ Dialog {
             });
         }
         return result;
+    }
+    function getFields() {
+        const result = [];
+        for (var i = 0; i < customFieldsModel.count; ++i) {
+            const field = customFieldsModel.get(i);
+            if (!field.fieldName && !field.fieldValue && field.fieldLinkedId == null) {
+                continue;
+            }
+
+            result.push({
+                type: field.fieldType,
+                name: field.fieldName,
+                value: field.fieldType === BitSailorCore.FieldTypeCheckbox
+                    ? (field.fieldChecked ? "true" : "false")
+                    : (field.fieldValue || null),
+                linkedId: field.fieldLinkedId == null ? null : field.fieldLinkedId
+            });
+        }
+        return result;
+    }
+    function addField(fieldType) {
+        customFieldsModel.append({
+            fieldType: fieldType,
+            fieldName: '',
+            fieldValue: '',
+            fieldChecked: false,
+            fieldLinkedId: fieldType === BitSailorCore.FieldTypeLinkedId ? 100 : null
+        });
     }
 
     id: page
@@ -311,8 +340,8 @@ Dialog {
                     label: qsTr("Note")
                 }
 
-                /*SectionHeader {
-                    visible: type === BitSailorCore.ItemTypeLogin
+                SectionHeader {
+                    visible: type !== BitSailorCore.ItemTypeNone
                     text: qsTr("Custom fields")
                 }
 
@@ -321,40 +350,183 @@ Dialog {
                 }
 
                 Repeater {
+                    id: customFieldsRepeater
                     model: customFieldsModel
-                    // todo
+
+                    Column {
+                        width: mainColumn.width
+                        visible: page.type !== BitSailorCore.ItemTypeNone
+                        spacing: Theme.paddingSmall
+
+                        Item {
+                            visible: index > 0
+                            width: parent.width
+                            height: Theme.paddingLarge
+                        }
+
+                        Separator {
+                            visible: index > 0
+                            x: Theme.horizontalPageMargin
+                            width: parent.width - 2 * Theme.horizontalPageMargin
+                            height: 1
+                            color: Theme.secondaryHighlightColor
+                            opacity: Theme.opacityLow
+                        }
+
+                        TextField {
+                            id: customFieldName
+                            text: fieldName || ''
+                            label: qsTr("Field name")
+
+                            onTextChanged: {
+                                if (index >= 0) {
+                                    customFieldsModel.setProperty(index, "fieldName", text);
+                                }
+                            }
+
+                            rightItem: IconButton {
+                                icon.source: "image://theme/icon-splus-remove"
+                                icon.color: "red"
+                                onClicked: {
+                                    customFieldsModel.remove(index);
+                                }
+                            }
+                        }
+
+                        TextField {
+                            id: customFieldText
+                            visible: fieldType === BitSailorCore.FieldTypeText
+                            text: fieldValue || ''
+                            label: qsTr("Text")
+
+                            onTextChanged: {
+                                if (index >= 0) {
+                                    customFieldsModel.setProperty(index, "fieldValue", text);
+                                }
+                            }
+                        }
+
+                        TextField {
+                            property bool passwordVisible: false
+
+                            id: customFieldHidden
+                            visible: fieldType === BitSailorCore.FieldTypeHidden
+                            text: fieldValue || ''
+                            label: qsTr("Hidden")
+                            echoMode: passwordVisible ? TextInput.Normal : TextInput.Password
+
+                            onTextChanged: {
+                                if (index >= 0) {
+                                    customFieldsModel.setProperty(index, "fieldValue", text);
+                                }
+                            }
+
+                            rightItem: IconButton {
+                                icon.source: customFieldHidden.passwordVisible ? "image://theme/icon-splus-hide-password" : "image://theme/icon-splus-show-password"
+                                onClicked: {
+                                    customFieldHidden.passwordVisible = !customFieldHidden.passwordVisible;
+                                }
+                            }
+                        }
+
+                        TextSwitch {
+                            visible: fieldType === BitSailorCore.FieldTypeCheckbox
+                            text: qsTr("Value")
+                            checked: fieldChecked || false
+
+                            onCheckedChanged: {
+                                if (index >= 0) {
+                                    customFieldsModel.setProperty(index, "fieldChecked", checked);
+                                }
+                            }
+                        }
+
+                        ComboBox {
+                            id: customFieldLinkedId
+
+                            visible: fieldType === BitSailorCore.FieldTypeLinkedId
+                            label: qsTr("Linked field")
+
+                            property var itemData: [
+                                {text: qsTr("Username"), value: 100},
+                                {text: qsTr("Password"), value: 101},
+                            ]
+
+                            menu: ContextMenu {
+                                Components.IntValueMenuItem {text: customFieldLinkedId.itemData[0].text; value: customFieldLinkedId.itemData[0].value}
+                                Components.IntValueMenuItem {text: customFieldLinkedId.itemData[1].text; value: customFieldLinkedId.itemData[1].value}
+                            }
+
+                            onCurrentItemChanged: {
+                                if (index >= 0 && currentItem) {
+                                    customFieldsModel.setProperty(index, "fieldLinkedId", currentItem.value);
+                                }
+                            }
+
+                            Component.onCompleted: {
+                                const selectedIndex = itemData.map(function(item) {
+                                    return item.value;
+                                }).indexOf(fieldLinkedId);
+                                currentIndex = selectedIndex >= 0 ? selectedIndex : 0;
+                            }
+                        }
+                    }
                 }
 
-                ComboBox {
-                    id: newFieldTypeSelect
-                    label: qsTr("New field type")
-                    visible: type === BitSailorCore.ItemTypeLogin
+                ListItem {
+                    id: addCustomFieldMenuHost
 
-                    property var itemData: [
-                        //: Custom field type
-                        {text: qsTr("Text"), value: BitSailorCore.FieldTypeText},
-                        //: Custom field type
-                        {text: qsTr("Hidden"), value: BitSailorCore.FieldTypeHidden},
-                        //: Custom field type
-                        {text: qsTr("Boolean"), value: BitSailorCore.FieldTypeCheckbox},
-                    ]
+                    width: parent.width
+                    visible: type !== BitSailorCore.ItemTypeNone
+                    contentHeight: addCustomFieldButton.height
+
+                    Button {
+                        id: addCustomFieldButton
+
+                        text: qsTr("Add field")
+                        x: Theme.horizontalPageMargin
+                        width: parent.width - Theme.horizontalPageMargin * 2
+
+                        onClicked: {
+                            addCustomFieldMenuHost.openMenu();
+                        }
+                    }
 
                     menu: ContextMenu {
-                        Components.IntValueMenuItem {text: newFieldTypeSelect.itemData[0].text; value: newFieldTypeSelect.itemData[0].value}
-                        Components.IntValueMenuItem {text: newFieldTypeSelect.itemData[1].text; value: newFieldTypeSelect.itemData[1].value}
-                        Components.IntValueMenuItem {text: newFieldTypeSelect.itemData[2].text; value: newFieldTypeSelect.itemData[2].value}
+                        MenuItem {
+                            text: qsTr("Text")
+
+                            onClicked: {
+                                page.addField(BitSailorCore.FieldTypeText);
+                            }
+                        }
+
+                        MenuItem {
+                            text: qsTr("Hidden")
+
+                            onClicked: {
+                                page.addField(BitSailorCore.FieldTypeHidden);
+                            }
+                        }
+
+                        MenuItem {
+                            text: qsTr("Boolean")
+
+                            onClicked: {
+                                page.addField(BitSailorCore.FieldTypeCheckbox);
+                            }
+                        }
+
+                        MenuItem {
+                            text: qsTr("Linked")
+                            visible: page.type === BitSailorCore.ItemTypeLogin
+
+                            onClicked: {
+                                page.addField(BitSailorCore.FieldTypeLinkedId);
+                            }
+                        }
                     }
                 }
-                Button {
-                    text: qsTr("Add new field")
-                    x: Theme.horizontalPageMargin
-                    width: parent.width - Theme.horizontalPageMargin * 2
-                    visible: type === BitSailorCore.ItemTypeLogin
-
-                    onClicked: {
-                        customFieldsModel.append({fieldType: newFieldTypeSelect.currentItem.value, value: ''});
-                    }
-                }*/
 
                 TextField {
                     id: cardCardholderName
@@ -476,6 +648,24 @@ Dialog {
             }
 
             initialUris = [];
+        }
+        if (initialFields.length) {
+            for (var j in initialFields) {
+                if (!initialFields.hasOwnProperty(j)) {
+                    continue;
+                }
+
+                const field = initialFields[j];
+                customFieldsModel.append({
+                    fieldType: field.type,
+                    fieldName: field.name || '',
+                    fieldValue: field.value || '',
+                    fieldChecked: field.value === "true",
+                    fieldLinkedId: typeof field.linkedId === 'undefined' ? null : field.linkedId
+                });
+            }
+
+            initialFields = [];
         }
     }
 }
