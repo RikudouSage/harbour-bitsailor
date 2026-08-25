@@ -958,10 +958,6 @@ Section title for Bitwarden server settings</extracomment>
         <translation>Échec du chargement de la liste des sends</translation>
     </message>
     <message>
-        <source>Hide search</source>
-        <translation>Masquer la recherche</translation>
-    </message>
-    <message>
         <source>Search</source>
         <translation>Rechercher</translation>
     </message>
@@ -1246,10 +1242,6 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>An error occured while loading items. Please try again.</source>
         <translation>Une erreur est survenue lors du chargement des éléments. Veuillez réessayer.</translation>
-    </message>
-    <message>
-        <source>Hide search</source>
-        <translation>Masquer la recherche</translation>
     </message>
     <message>
         <source>Search</source>

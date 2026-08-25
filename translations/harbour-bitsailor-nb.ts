@@ -958,10 +958,6 @@ Section title for Bitwarden server settings</extracomment>
         <translation>Kunne ikke laste inn listen over hemmeligheter</translation>
     </message>
     <message>
-        <source>Hide search</source>
-        <translation>Skjul søk</translation>
-    </message>
-    <message>
         <source>Search</source>
         <translation>Søk</translation>
     </message>
@@ -1246,10 +1242,6 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>An error occured while loading items. Please try again.</source>
         <translation>Det oppstod en feil under lasting av oppføringer. Vennligst prøv igjen.</translation>
-    </message>
-    <message>
-        <source>Hide search</source>
-        <translation>Skjul søk</translation>
     </message>
     <message>
         <source>Search</source>

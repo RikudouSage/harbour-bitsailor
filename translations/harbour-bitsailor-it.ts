@@ -958,10 +958,6 @@ Section title for Bitwarden server settings</extracomment>
         <translation>Caricamento elenco Send non riuscito</translation>
     </message>
     <message>
-        <source>Hide search</source>
-        <translation>Nascondi ricerca</translation>
-    </message>
-    <message>
         <source>Search</source>
         <translation>Cerca</translation>
     </message>
@@ -1246,10 +1242,6 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>An error occured while loading items. Please try again.</source>
         <translation>Si è verificato un errore durante il caricamento degli elementi. Riprova.</translation>
-    </message>
-    <message>
-        <source>Hide search</source>
-        <translation>Nascondi ricerca</translation>
     </message>
     <message>
         <source>Search</source>

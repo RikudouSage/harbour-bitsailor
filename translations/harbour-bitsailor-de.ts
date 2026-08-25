@@ -958,10 +958,6 @@ Section title for Bitwarden server settings</extracomment>
         <translation>Laden der Liste von Geheimnissen fehlgeschlagen</translation>
     </message>
     <message>
-        <source>Hide search</source>
-        <translation>Suche verbergen</translation>
-    </message>
-    <message>
         <source>Search</source>
         <translation>Suche</translation>
     </message>
@@ -1246,10 +1242,6 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>An error occured while loading items. Please try again.</source>
         <translation>Ein Fehler trat beim Laden der Einträge auf. Bitte versuche es erneut.</translation>
-    </message>
-    <message>
-        <source>Hide search</source>
-        <translation>Suche verbergen</translation>
     </message>
     <message>
         <source>Search</source>

@@ -958,10 +958,6 @@ Section title for Bitwarden server settings</extracomment>
         <translation>Nezdařilo se načtení položek send</translation>
     </message>
     <message>
-        <source>Hide search</source>
-        <translation>Skrýt vyhledávání</translation>
-    </message>
-    <message>
         <source>Search</source>
         <translation>Hledat</translation>
     </message>
@@ -1246,10 +1242,6 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>An error occured while loading items. Please try again.</source>
         <translation>Nastala chyba při načítání položek. Zkuste to prosím později.</translation>
-    </message>
-    <message>
-        <source>Hide search</source>
-        <translation>Skrýt vyhledávání</translation>
     </message>
     <message>
         <source>Search</source>
