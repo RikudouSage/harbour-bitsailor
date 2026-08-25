@@ -958,10 +958,6 @@ Section title for Bitwarden server settings</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Hide search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1245,10 +1241,6 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>An error occured while loading items. Please try again.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hide search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

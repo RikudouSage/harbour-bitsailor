@@ -10,6 +10,7 @@ Page {
     property string errorText
 
     property bool searchActive: false
+    property string searchText: ""
 
     property string itemLoader: "getItems"
     property string title: qsTr("Vault")
@@ -62,13 +63,13 @@ Page {
     }
 
     function applySearchFilter() {
-        if (!search.text) {
+        if (!searchText) {
             logins = allLogins;
             return;
         }
 
         logins = allLogins.filter(function(item) {
-            return itemMatchesSearch(item, search.text);
+            return itemMatchesSearch(item, searchText);
         });
     }
 
@@ -146,10 +147,11 @@ Page {
         }
     }
 
-    SilicaFlickable {
+    SilicaListView {
+        id: listView
         anchors.fill: parent
-        contentHeight: column.height
         visible: !loader.running
+        model: logins
 
         VerticalScrollDecorator {}
 
@@ -198,11 +200,10 @@ Page {
 
         }
 
-        Column {
-            id: column
-
-            width: page.width
+        header: Column {
+            width: listView.width
             spacing: Theme.paddingLarge
+
             PageHeader {
                 title: page.title
             }
@@ -219,118 +220,153 @@ Page {
             SearchField {
                 id: search
 
+                function focusIfRequested() {
+                    if (searchActive && listView.visible) {
+                        forceActiveFocus();
+                    }
+                }
+
                 width: parent.width - Theme.horizontalPageMargin * 2
                 placeholderText: qsTr("Search")
                 active: true
                 focus: searchActive
+                text: searchText
 
                 onTextChanged: {
+                    searchText = text;
                     applySearchFilter();
+                }
+
+                onVisibleChanged: {
+                    focusTimer.restart();
+                }
+
+                Component.onCompleted: {
+                    focusTimer.restart();
+                }
+
+                Connections {
+                    target: page
+
+                    onSearchActiveChanged: {
+                        focusTimer.restart();
+                    }
+                }
+
+                Timer {
+                    id: focusTimer
+                    interval: 1
+                    repeat: false
+                    onTriggered: search.focusIfRequested()
                 }
             }
 
-            Repeater {
-                model: logins
+            Item {
                 width: parent.width
+                height: Theme.paddingLarge
+            }
+        }
 
-                delegate: ListItem {
-                    property var item: logins[index];
-                    property bool failed: item.decryptionError !== null && typeof item.decryptionError !== 'undefined'
+        delegate: ListItem {
+            property var item: modelData
+            property bool failed: item.decryptionError !== null && typeof item.decryptionError !== 'undefined'
 
-                    function remove() {
-                        remorseDelete(function() {
-                            core.deleteItem(item.id, false);
-                            visible = false;
-                        });
+            function remove() {
+                var removedId = item.id;
+                remorseDelete(function() {
+                    core.deleteItem(removedId, false);
+                    allLogins = allLogins.filter(function(item) {
+                        return item.id !== removedId;
+                    });
+                    applySearchFilter();
+                });
+            }
+
+            function errorText() {
+                return qsTr("error fetching %1: %2").arg(item.id).arg(item.decryptionError);
+            }
+
+            id: listItem
+            menu: contextMenu
+            width: listView.width - Theme.horizontalPageMargin * 2
+            x: Theme.horizontalPageMargin
+
+            contentHeight: Theme.itemSizeMedium
+
+            onClicked: {
+                if (!failed) {
+                    pageStack.push("ItemDetailPage.qml", {itemId: item.id});
+                }
+            }
+
+            Label {
+                id: itemTitle
+                text: failed ? qsTr("invalid item (decryption failed): %1").arg(item.id) : item.name
+                color: failed ? Theme.errorColor : Theme.primaryColor
+            }
+
+            Label {
+                anchors.top: itemTitle.bottom
+                text: typeof item.login !== 'undefined' ? item.login.username || '' : ''
+                font.pixelSize: Theme.fontSizeSmall
+                color: Theme.secondaryHighlightColor
+                visible: !failed && item.type === BitSailorCore.ItemTypeLogin
+            }
+
+            Label {
+                anchors.top: itemTitle.bottom
+                text: {
+                    if (typeof item.card === 'undefined') {
+                        return '';
                     }
 
-                    function errorText() {
-                        return qsTr("error fetching %1: %2").arg(item.id).arg(item.decryptionError);
+                    var result = item.card.brand || '';
+                    if (result && item.card.number) {
+                        result += ', ';
                     }
+                    result += item.card.number ? '*' + item.card.number.slice(-4) : '';
 
-                    id: listItem
-                    menu: contextMenu
-                    width: parent.width - Theme.horizontalPageMargin * 2
-                    x: Theme.horizontalPageMargin
+                    return result;
+                }
 
-                    contentHeight: Theme.itemSizeMedium
+                font.pixelSize: Theme.fontSizeSmall
+                color: Theme.secondaryHighlightColor
+                visible: !failed && item.type === BitSailorCore.ItemTypeCard
+            }
 
-                    onClicked: {
-                        if (!failed) {
-                            pageStack.push("ItemDetailPage.qml", {itemId: item.id});
-                        }
-                    }
+            Label {
+                anchors.top: itemTitle.bottom
+                text: typeof item.identity !== 'undefined' ? [item.identity.firstName || '', item.identity.lastName || ''].filter(function(item) {
+                    return item !== '';
+                }).join(' ') : ''
+                font.pixelSize: Theme.fontSizeSmall
+                color: Theme.secondaryHighlightColor
+                visible: !failed && item.type === BitSailorCore.ItemTypeIdentity
+            }
 
-                    Label {
-                        id: itemTitle
-                        text: failed ? qsTr("invalid item (decryption failed): %1").arg(item.id) : item.name
-                        color: failed ? Theme.errorColor : Theme.primaryColor
-                    }
+            Component {
+                 id: contextMenu
+                 ContextMenu {
+                     IconMenuItem {
+                         text: qsTr("Copy error")
+                         icon.source: "image://theme/icon-m-clipboard"
+                         visible: failed
 
-                    Label {
-                        anchors.top: itemTitle.bottom
-                        text: typeof item.login !== 'undefined' ? item.login.username || '' : ''
-                        font.pixelSize: Theme.fontSizeSmall
-                        color: Theme.secondaryHighlightColor
-                        visible: !failed && item.type === BitSailorCore.ItemTypeLogin
-                    }
-
-                    Label {
-                        anchors.top: itemTitle.bottom
-                        text: {
-                            if (typeof item.card === 'undefined') {
-                                return '';
-                            }
-
-                            var result = item.card.brand || '';
-                            if (result && item.card.number) {
-                                result += ', ';
-                            }
-                            result += item.card.number ? '*' + item.card.number.slice(-4) : '';
-
-                            return result;
-                        }
-
-                        font.pixelSize: Theme.fontSizeSmall
-                        color: Theme.secondaryHighlightColor
-                        visible: !failed && item.type === BitSailorCore.ItemTypeCard
-                    }
-
-                    Label {
-                        anchors.top: itemTitle.bottom
-                        text: typeof item.identity !== 'undefined' ? [item.identity.firstName || '', item.identity.lastName || ''].filter(function(item) {
-                            return item !== '';
-                        }).join(' ') : ''
-                        font.pixelSize: Theme.fontSizeSmall
-                        color: Theme.secondaryHighlightColor
-                        visible: !failed && item.type === BitSailorCore.ItemTypeIdentity
-                    }
-
-                    Component {
-                         id: contextMenu
-                         ContextMenu {
-                             IconMenuItem {
-                                 text: qsTr("Copy error")
-                                 icon.source: "image://theme/icon-m-clipboard"
-                                 visible: failed
-
-                                 onClicked: {
-                                     Clipboard.text = errorText();
-                                     app.toaster.show(qsTr("Copied to clipboard"));
-                                 }
-                             }
-
-                             IconMenuItem {
-                                 text: qsTr("Remove")
-                                 icon.source: "image://theme/icon-m-remove"
-
-                                 onClicked: {
-                                     remove();
-                                 }
-                             }
+                         onClicked: {
+                             Clipboard.text = errorText();
+                             app.toaster.show(qsTr("Copied to clipboard"));
                          }
                      }
-                }
+
+                     IconMenuItem {
+                         text: qsTr("Remove")
+                         icon.source: "image://theme/icon-m-remove"
+
+                         onClicked: {
+                             remove();
+                         }
+                     }
+                 }
             }
         }
     }
