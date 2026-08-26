@@ -25,7 +25,7 @@ Permissions=
 
 [X-Share Method anything]
 Description=Share via Send
-Description[fr]=Partager
+Description[fr]=Partager via Send
 Description[nl]=Delen met Send
 Description[it]=Condividi via Send
 Description[fi]=Jaa Send:llä
