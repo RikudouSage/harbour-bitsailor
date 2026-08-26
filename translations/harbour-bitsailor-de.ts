@@ -388,7 +388,7 @@
     </message>
     <message>
         <source>Security Code</source>
-        <translation>Prüfziffer (CVV)</translation>
+        <translation>Prüfziffer</translation>
     </message>
     <message>
         <source>Custom fields</source>
