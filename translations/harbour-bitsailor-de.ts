@@ -1,36 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="de">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="de">
 <context>
     <name>ApproveAuthRequestPage</name>
     <message>
         <source>The authentication request could not be fetched. Please try again later.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die Authentifizierungsanfrage konnte nicht abgerufen werden. Bitte versuche es später erneut.</translation>
     </message>
     <message>
         <source>Loading</source>
-        <translation type="unfinished">Lade</translation>
+        <translation>Lade</translation>
     </message>
     <message>
         <source>Approve</source>
-        <extracomment>Dialog accept text - approve other device&apos;s login</extracomment>
-        <translation type="unfinished"></translation>
+        <extracomment>Dialog accept text - approve other device's login</extracomment>
+        <translation>Genehmigen</translation>
     </message>
     <message>
         <source>Reject</source>
-        <extracomment>Dialog cancel text - reject other device&apos;s login</extracomment>
-        <translation type="unfinished"></translation>
+        <extracomment>Dialog cancel text - reject other device's login</extracomment>
+        <translation>Ablehnen</translation>
     </message>
     <message>
         <source>A new device is asking you to approve login.&lt;br&gt;&lt;strong&gt;Please make sure that the fingerprint phrase below matches the one on the device&lt;/strong&gt;:&lt;br&gt;&lt;br&gt;&lt;code&gt;%1&lt;/code&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein neues Gerät fordert dich auf, die Anmeldung zu genemigen.&lt;br&gt;&lt;strong&gt;Bitte stelle sicher, dass die folgende Fingerprint-Phrase mit der auf dem Gerät übereinstimmt&lt;/strong&gt;:&lt;br&gt;&lt;br&gt;&lt;code&gt;%1&lt;/code&gt;</translation>
     </message>
 </context>
 <context>
     <name>BitSailorCore</name>
     <message>
         <source>Stored unlock key is missing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gespeicherter Entsperrschlüssel fehlt.</translation>
     </message>
 </context>
 <context>
@@ -41,7 +39,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -78,7 +76,7 @@
     </message>
     <message>
         <source>Temporary files include some of your settings.</source>
-        <translation type="unfinished"></translation>
+        <translation>Temporäre Dateien enthalten einige deiner Einstellungen.</translation>
     </message>
 </context>
 <context>
@@ -106,7 +104,7 @@
     <message>
         <source>Item</source>
         <extracomment>Item name on the cover page for card detail, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">Eintrag</translation>
+        <translation>Eintrag</translation>
     </message>
     <message>
         <source>Card Number</source>
@@ -116,7 +114,7 @@
     <message>
         <source>Expiration</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>Ablaufdatum</translation>
+        <translation>Gültig bis</translation>
     </message>
     <message>
         <source>Security Code</source>
@@ -136,7 +134,7 @@
     <message>
         <source>TOTP</source>
         <extracomment>TOTP (two factor auth code) on cover page, should be short, use abbreviations if needed</extracomment>
-        <translation type="unfinished">TOTP</translation>
+        <translation>TOTP</translation>
     </message>
     <message>
         <source>Note</source>
@@ -168,7 +166,7 @@
     </message>
     <message>
         <source>Failed creating Send</source>
-        <translation type="unfinished"></translation>
+        <translation>Send konnte nicht erstellt werden</translation>
     </message>
 </context>
 <context>
@@ -394,39 +392,39 @@
     </message>
     <message>
         <source>Custom fields</source>
-        <translation type="unfinished">Benutzerdefinierte Felder</translation>
+        <translation>Benutzerdefinierte Felder</translation>
     </message>
     <message>
         <source>Field name</source>
-        <translation type="unfinished"></translation>
+        <translation>Feld-Name</translation>
     </message>
     <message>
         <source>Text</source>
-        <translation type="unfinished">Text</translation>
+        <translation>Text</translation>
     </message>
     <message>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>Versteckt</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation>Wert</translation>
     </message>
     <message>
         <source>Boolean</source>
-        <translation type="unfinished"></translation>
+        <translation>Wahrheitswert</translation>
     </message>
     <message>
         <source>Add field</source>
-        <translation type="unfinished"></translation>
+        <translation>Feld hinzufügen</translation>
     </message>
     <message>
         <source>Linked</source>
-        <translation type="unfinished"></translation>
+        <translation>Verknüpft</translation>
     </message>
     <message>
         <source>Linked field</source>
-        <translation type="unfinished"></translation>
+        <translation>Verknüpftes Feld</translation>
     </message>
 </context>
 <context>
@@ -538,7 +536,7 @@
     <message>
         <source>Generate</source>
         <extracomment>Page title for the password/passphrase generator screen</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Generieren</translation>
     </message>
     <message>
         <source>Password</source>
@@ -633,7 +631,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Name der Identität</translation>
     </message>
     <message>
@@ -731,7 +729,7 @@
     </message>
     <message>
         <source>There was an error when updating the item</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein Fehler trat bei der Aktualisierung des Eintrags auf.</translation>
     </message>
 </context>
 <context>
@@ -742,31 +740,31 @@
     </message>
     <message>
         <source>There was an error while changing the URL, please report that to the developers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein Fehler trat beim Ändern der URL auf, bitte melde das den Entwicklern.</translation>
     </message>
     <message>
         <source>Unknown status: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Unbekannter Status: %1</translation>
     </message>
     <message>
         <source>There was an error while logging in: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein Fehler trat beim Anmelden auf: %1</translation>
     </message>
     <message>
         <source>There was an unknown error while logging in.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein Fehler trat beim Anmelden auf.</translation>
     </message>
     <message>
         <source>Failed unlocking because the session got in an invalid state. We logged you out.</source>
-        <translation type="unfinished"></translation>
+        <translation>Entsperren aufgrund eines ungültigen Zustands der Sitzung fehlgeschlagen. Du wurdest abgemeldet.</translation>
     </message>
     <message>
         <source>Failed unlocking, did you provide the correct password/PIN?</source>
-        <translation type="unfinished"></translation>
+        <translation>Entsperren fehlgeschlagen, ist das Passwort/PIN korrekt?</translation>
     </message>
     <message>
         <source>Your account uses a two-factor method which is currently not supported by this app. Please log in using your API key.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dein Konto verwendet eine Zwei-Faktor-Methode, die im Moment von dieser App nicht unterstützt wird. Bitte melde dich mit deinem API-Schlüssel an.</translation>
     </message>
 </context>
 <context>
@@ -809,6 +807,18 @@
         <translation>Siehe &lt;a href=&apos;%1&apos;&gt;Bitwarden-Hilfe&lt;/a&gt; für eine Anleitung, wie ein API-Schlüssel erstellt werden kann.</translation>
     </message>
     <message>
+        <source>Server</source>
+        <extracomment>Label for choosing the Bitwarden server instance
+----------
+Section title for Bitwarden server settings</extracomment>
+        <translation>Server</translation>
+    </message>
+    <message>
+        <source>Custom</source>
+        <extracomment>Server option for entering a custom Bitwarden server URL</extracomment>
+        <translation>selbst gehostet</translation>
+    </message>
+    <message>
         <source>Custom server URL</source>
         <extracomment>Label for the input containing a custom Bitwarden server URL</extracomment>
         <translation>Eigene Server-URL</translation>
@@ -823,38 +833,26 @@
     </message>
     <message>
         <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Dies wird alles löschen, was diese App auf deinem System speichert, inklusive Secrets-Sammlung des Systems, temporäre Dateien usw. Möchtest du fortfahren?</translation>
     </message>
     <message>
         <source>Authenticator code</source>
-        <translation type="unfinished"></translation>
+        <translation>Authentifizierungscode</translation>
     </message>
     <message>
         <source>Please provide the code from your authenticator app below.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Server</source>
-        <extracomment>Label for choosing the Bitwarden server instance
-----------
-Section title for Bitwarden server settings</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Custom</source>
-        <extracomment>Server option for entering a custom Bitwarden server URL</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Bitte gib unten den Code aus deiner Authentifizierungsapp ein.</translation>
     </message>
 </context>
 <context>
     <name>MainPage</name>
     <message>
         <source>Please wait...</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte warten...</translation>
     </message>
     <message>
         <source>Loading vault items</source>
-        <translation type="unfinished"></translation>
+        <translation>Lade Tresor-Einträge</translation>
     </message>
     <message>
         <source>Logout</source>
@@ -862,15 +860,15 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>Lock</source>
-        <translation type="unfinished"></translation>
+        <translation>Sperren</translation>
     </message>
     <message>
         <source>Sync Vault</source>
-        <translation type="unfinished"></translation>
+        <translation>Tresor synchronisieren</translation>
     </message>
     <message>
         <source>Syncing vault</source>
-        <translation type="unfinished"></translation>
+        <translation>Tresor wird synchronisiert</translation>
     </message>
     <message>
         <source>Search</source>
@@ -883,33 +881,33 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>Logins (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Zugangsdaten (%1)</translation>
     </message>
     <message>
         <source>Logins</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished">Zugangsdaten</translation>
+        <translation>Zugangsdaten</translation>
     </message>
     <message>
         <source>Add login</source>
-        <translation type="unfinished"></translation>
+        <translation>Zugangsdaten hinzufügen</translation>
     </message>
     <message>
         <source>Cards (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Karten (%1)</translation>
     </message>
     <message>
         <source>Cards</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished">Karten</translation>
+        <translation>Karten</translation>
     </message>
     <message>
         <source>Add card</source>
-        <translation type="unfinished"></translation>
+        <translation>Karte hinzufügen</translation>
     </message>
     <message>
         <source>Notes (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Notizen (%1)</translation>
     </message>
     <message>
         <source>Notes</source>
@@ -918,20 +916,20 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>Add note</source>
-        <translation type="unfinished"></translation>
+        <translation>Notiz hinzufügen</translation>
     </message>
     <message>
         <source>Identities (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Identitäten (%1)</translation>
     </message>
     <message>
         <source>Identities</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Identitäten</translation>
     </message>
     <message>
         <source>Add identity</source>
-        <translation type="unfinished"></translation>
+        <translation>Identität hinzufügen</translation>
     </message>
 </context>
 <context>
@@ -946,7 +944,7 @@ Section title for Bitwarden server settings</extracomment>
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -1006,8 +1004,8 @@ Section title for Bitwarden server settings</extracomment>
         <translation>Das eingegebene Passwort ist ungültig.</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>OS authorization check failed.</source>
@@ -1015,7 +1013,7 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>Note that this is normal when running inside emulator.</source>
-        <translation>Merke, dass dies bei Ausfühung innerhalb eines Emulators normal ist.</translation>
+        <translation>Beachte, dass dies bei Ausfühung innerhalb eines Emulators normal ist.</translation>
     </message>
     <message>
         <source>Use OS authorization to unlock vault</source>
@@ -1032,6 +1030,26 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>Advanced</source>
         <translation>Fortgeschritten</translation>
+    </message>
+    <message>
+        <source>Server</source>
+        <extracomment>Label for choosing the Bitwarden server instance</extracomment>
+        <translation>Server</translation>
+    </message>
+    <message>
+        <source>Custom</source>
+        <extracomment>Server option for entering a custom Bitwarden server URL</extracomment>
+        <translation>selbst gehostet</translation>
+    </message>
+    <message>
+        <source>Custom server URL</source>
+        <extracomment>Label for the input containing a custom Bitwarden server URL</extracomment>
+        <translation>Eigene Server-URL</translation>
+    </message>
+    <message>
+        <source>Change server</source>
+        <extracomment>Button that applies the selected Bitwarden server</extracomment>
+        <translation>Server ändern</translation>
     </message>
     <message>
         <source>Setting URL</source>
@@ -1056,73 +1074,53 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>Could not fetch your email address, the session is in an invalid state. Logout is advised</source>
-        <translation type="unfinished"></translation>
+        <translation>Konnte E-Mail-Adresse nicht abrufen, der Zustand der Sitzung ist ungültig. Abmeldung wird empfohlen</translation>
     </message>
     <message>
         <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Server</source>
-        <extracomment>Label for choosing the Bitwarden server instance</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Custom</source>
-        <extracomment>Server option for entering a custom Bitwarden server URL</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Custom server URL</source>
-        <extracomment>Label for the input containing a custom Bitwarden server URL</extracomment>
-        <translation>Eigene Server-URL</translation>
-    </message>
-    <message>
-        <source>Change server</source>
-        <extracomment>Button that applies the selected Bitwarden server</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Dies wird alles löschen, was diese App auf deinem System speichert, inklusive Secrets-Sammlung des Systems, temporäre Dateien usw. Möchtest du fortfahren?</translation>
     </message>
     <message>
         <source>The Jolla Store does not allow this setting, if you want to be able to unlock your vault using a fingerprint, please install the version from OpenRepos/Storeman</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Jolla-Store erlaubt diese Einstellung nicht: wenn du deinen Tresor mit einem Fingerabdruck entsperren möchtest, installiere bitte die Version von OpenRepos/Storeman</translation>
     </message>
     <message>
         <source>Off</source>
-        <translation type="unfinished"></translation>
+        <translation>Aus</translation>
     </message>
     <message>
         <source>%1s</source>
         <extracomment>Amount of seconds</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>%1s</translation>
     </message>
     <message>
         <source>%1m</source>
         <extracomment>Amount of minutes</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>%1m</translation>
     </message>
     <message>
         <source>Automatically clear clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Zwischenablage automatisch leeren</translation>
     </message>
     <message>
         <source>Note that this only works when the app is running - if you close the app, the timer will not execute</source>
-        <translation type="unfinished"></translation>
+        <translation>Beachte, dass dies nur funktioniert, wenn die App läuft - wenn du die App schließt, wird der Timer nicht ausgeführt</translation>
     </message>
     <message>
         <source>Clear clipboard on closing</source>
-        <translation type="unfinished"></translation>
+        <translation>Zwischenablage beim Schließen leeren</translation>
     </message>
     <message>
         <source>Note that this only works when the app is closed cleanly - if it closes because of a crash, the clipboard won&apos;t be cleared</source>
-        <translation type="unfinished"></translation>
+        <translation>Beachte, dass dies nur funktioniert, wenn die App läuft - wenn du die App schließt, wird der Timer nicht ausgeführt</translation>
     </message>
     <message>
         <source>Select interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervall auswählen</translation>
     </message>
     <message>
         <source>Could not store the unlock key.</source>
-        <translation type="unfinished"></translation>
+        <translation>Entsperrschlüssel konnte nicht gespeichert werden.</translation>
     </message>
 </context>
 <context>
@@ -1150,7 +1148,7 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>To continue please provide your password and set your desired PIN code. An unlock key will be stored securely using Sailfish OS secrets storage and used automatically whenever you use your PIN.</source>
-        <translation type="unfinished"></translation>
+        <translation>Um fortzufahren, gib bitte dein Passwort ein. Ein Entsperrschlüssel wird sicher in der Secrets-Sammlung von Sailfish OS gespeichert und automatisch verwendet, wenn du die Verwendung über Sailfish OS autorisierst.</translation>
     </message>
 </context>
 <context>
@@ -1174,7 +1172,7 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>To continue please provide your password. An unlock key will be stored securely using Sailfish OS secrets storage and used automatically whenever you authorize using Sailfish OS.</source>
-        <translation type="unfinished"></translation>
+        <translation>Um fortzufahren, gib bitte dein Passwort ein. Ein Entsperrschlüssel wird sicher in der Secrets-Sammlung von Sailfish OS gespeichert und automatisch verwendet, wenn du die Verwendung über Sailfish OS autorisierst.</translation>
     </message>
 </context>
 <context>
@@ -1261,23 +1259,23 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>There was an error when creating the new item</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein Fehler trat auf bei der Erstellung dieses Eintrags.</translation>
     </message>
     <message>
         <source>error fetching %1: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Abrufen von %1: %2</translation>
     </message>
     <message>
         <source>invalid item (decryption failed): %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültiger Eintrag (Entschlüsselung fehlgeschlagen): %1</translation>
     </message>
     <message>
         <source>Copy error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler kopieren</translation>
     </message>
     <message>
         <source>Copied to clipboard</source>
-        <translation type="unfinished">In Zwischenablage kopiert</translation>
+        <translation>In Zwischenablage kopiert</translation>
     </message>
 </context>
 <context>
@@ -1288,19 +1286,19 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>Debug secret storage is used. Uninstall this version immediately unless you are developing BitSailor itself.</source>
-        <translation type="unfinished"></translation>
+        <translation>Debug-Secrets-Sammlung in Verwendung. Deinstalliere diese Version umgehend, es sei denn du entwickelst BitSailor selbst.</translation>
     </message>
     <message>
         <source>Account access requested</source>
-        <translation type="unfinished"></translation>
+        <translation>Konto-Zugriff angefordert</translation>
     </message>
     <message>
         <source>Someone is trying to access your vault, please confirm whether it&apos;s you.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jemand versucht auf deinen Tresor zuzugreifen, bestätige bitte ob es sich um dich handelt.</translation>
     </message>
     <message>
         <source>Failed answering to the authentication request</source>
-        <translation type="unfinished"></translation>
+        <translation>Beantworten der Authentifizierungsanfrage fehlgeschlagen</translation>
     </message>
 </context>
 </TS>
