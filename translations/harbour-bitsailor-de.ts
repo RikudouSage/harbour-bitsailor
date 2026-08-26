@@ -1172,7 +1172,7 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>To continue please provide your password. An unlock key will be stored securely using Sailfish OS secrets storage and used automatically whenever you authorize using Sailfish OS.</source>
-        <translation>Um fortzufahren, gib bitte dein Passwort ein. Ein Entsperrschlüssel wird sicher im Secrets-Speicher von Sailfish OS gespeichert und automatisch verwendet, wenn du die Verwendung über Sailfish OS autorisierst.</translation>
+        <translation>Um fortzufahren, gib bitte dein Passwort ein. Ein Entsperrschlüssel wird sicher in der Secrets-Sammlung von Sailfish OS gespeichert und automatisch verwendet, wenn du die Verwendung über Sailfish OS autorisierst.</translation>
     </message>
 </context>
 <context>
