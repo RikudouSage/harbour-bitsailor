@@ -1096,7 +1096,7 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>%1m</source>
         <extracomment>Amount of minutes</extracomment>
-        <translation>%1m</translation>
+        <translation>%1min</translation>
     </message>
     <message>
         <source>Automatically clear clipboard</source>
