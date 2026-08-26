@@ -14,10 +14,21 @@ Page {
     allowedOrientations: Orientation.All
 
     function safeCall(callable) {
-        if (page.status === PageStatus.Active || page.status === PageStatus.Activating) {
-            callable();
-        } else {
+        if (page.status !== PageStatus.Active || pageStack.busy) {
             doAfterLoad.push(callable);
+        } else {
+            callable();
+        }
+    }
+
+    function runDeferredCalls() {
+        if (page.status !== PageStatus.Active || pageStack.busy) {
+            return;
+        }
+
+        while (doAfterLoad.length && !pageStack.busy) {
+            const callable = doAfterLoad.shift();
+            callable();
         }
     }
 
@@ -51,6 +62,14 @@ Page {
             }
 
             page.onSendCreated(item);
+        }
+    }
+
+    Connections {
+        target: pageStack
+
+        onBusyChanged: {
+            page.runDeferredCalls();
         }
     }
 
@@ -109,11 +128,6 @@ Page {
     }
 
     onStatusChanged: {
-        if (status == PageStatus.Active) {
-            while (doAfterLoad.length) {
-                const callable = doAfterLoad.shift();
-                callable();
-            }
-        }
+        page.runDeferredCalls();
     }
 }
