@@ -119,7 +119,7 @@
     <message>
         <source>Security Code</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>Sicherheitscode</translation>
+        <translation>Prüfziffer</translation>
     </message>
     <message>
         <source>Username</source>
