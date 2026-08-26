@@ -63,14 +63,7 @@ Page {
     }
 
     function applySearchFilter() {
-        if (!searchText) {
-            logins = allLogins;
-            return;
-        }
-
-        logins = allLogins.filter(function(item) {
-            return itemMatchesSearch(item, searchText);
-        });
+        logins = allLogins;
     }
 
     BusyLabel {
@@ -234,7 +227,6 @@ Page {
 
                 onTextChanged: {
                     searchText = text;
-                    applySearchFilter();
                 }
 
                 onVisibleChanged: {
@@ -270,6 +262,7 @@ Page {
         delegate: ListItem {
             property var item: modelData
             property bool failed: item.decryptionError !== null && typeof item.decryptionError !== 'undefined'
+            property bool matchesSearch: !searchText || itemMatchesSearch(item, searchText)
 
             function remove() {
                 var removedId = item.id;
@@ -290,8 +283,9 @@ Page {
             menu: contextMenu
             width: listView.width - Theme.horizontalPageMargin * 2
             x: Theme.horizontalPageMargin
+            visible: matchesSearch
 
-            contentHeight: Theme.itemSizeMedium
+            contentHeight: matchesSearch ? Theme.itemSizeMedium : 0
 
             onClicked: {
                 if (!failed) {
