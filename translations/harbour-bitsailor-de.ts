@@ -1013,7 +1013,7 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>Note that this is normal when running inside emulator.</source>
-        <translation>Merke, dass dies bei Ausfühung innerhalb eines Emulators normal ist.</translation>
+        <translation>Beachte, dass dies bei Ausfühung innerhalb eines Emulators normal ist.</translation>
     </message>
     <message>
         <source>Use OS authorization to unlock vault</source>
@@ -1104,7 +1104,7 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>Note that this only works when the app is running - if you close the app, the timer will not execute</source>
-        <translation>Beachte dass dies nur funktioniert, wenn die App läuft - wenn du die App schließt, wird der Timer nicht ausgeführt</translation>
+        <translation>Beachte, dass dies nur funktioniert, wenn die App läuft - wenn du die App schließt, wird der Timer nicht ausgeführt</translation>
     </message>
     <message>
         <source>Clear clipboard on closing</source>
