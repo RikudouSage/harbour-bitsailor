@@ -12,6 +12,7 @@ AppSettings::AppSettings(QObject *parent) : QObject(parent)
     prop_BaseUrl = settings->value("baseUrl", defaultVaultUrl).toString();
     prop_ClearClipboardTimeout = settings->value("clearClipboardTimeout", 60).toInt();
     prop_ClearClipboardOnClosing = settings->value("clearClipboardOnClosing", true).toBool();
+    prop_ShowFavicons = settings->value("showFavicons", false).toBool();
     prop_migratedToMultiAccounts = settings->value("migratedToMultiAccounts", false).toBool();
 }
 
@@ -118,6 +119,22 @@ void AppSettings::setClearClipboardOnClosing(bool value)
     saveConfig("clearClipboardOnClosing", value);
     prop_ClearClipboardOnClosing = value;
     emit clearClipboardOnClosingChanged();
+}
+
+bool AppSettings::showFavicons()
+{
+    return prop_ShowFavicons;
+}
+
+void AppSettings::setShowFavicons(bool value)
+{
+    if (value == prop_ShowFavicons) {
+        return;
+    }
+
+    saveConfig("showFavicons", value);
+    prop_ShowFavicons = value;
+    emit showFaviconsChanged();
 }
 
 bool AppSettings::migratedToMultiAccounts()

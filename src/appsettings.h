@@ -14,6 +14,7 @@ class AppSettings : public QObject
     Q_PROPERTY(QString baseUrl READ baseUrl WRITE setBaseUrl NOTIFY baseUrlChanged)
     Q_PROPERTY(int clearClipboardTimeout READ clearClipboardTimeout WRITE setClearClipboardTimeout NOTIFY clearClipboardTimeoutChanged)
     Q_PROPERTY(bool clearClipboardOnClosing READ clearClipboardOnClosing WRITE setClearClipboardOnClosing NOTIFY clearClipboardOnClosingChanged)
+    Q_PROPERTY(bool showFavicons READ showFavicons WRITE setShowFavicons NOTIFY showFaviconsChanged)
     Q_PROPERTY(bool migratedToMultiAccounts READ migratedToMultiAccounts WRITE setMigratedToMultiAccounts NOTIFY migratedToMultiAccountsChanged)
 public:
     explicit AppSettings(QObject *parent = nullptr);
@@ -31,6 +32,8 @@ public:
     void setClearClipboardTimeout(int value);
     bool clearClipboardOnClosing();
     void setClearClipboardOnClosing(bool value);
+    bool showFavicons();
+    void setShowFavicons(bool value);
     bool migratedToMultiAccounts();
     void setMigratedToMultiAccounts(bool value);
 
@@ -41,6 +44,7 @@ signals:
     void baseUrlChanged();
     void clearClipboardTimeoutChanged();
     void clearClipboardOnClosingChanged();
+    void showFaviconsChanged();
     void migratedToMultiAccountsChanged();
 
 private:
@@ -58,6 +62,7 @@ private:
     QString prop_BaseUrl;
     int prop_ClearClipboardTimeout;
     bool prop_ClearClipboardOnClosing;
+    bool prop_ShowFavicons;
     bool prop_migratedToMultiAccounts;
 };
 

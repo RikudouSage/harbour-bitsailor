@@ -145,7 +145,6 @@ int main(int argc, char *argv[])
 #endif
 
     QObject::connect(app.data(), &QCoreApplication::aboutToQuit, clipboardHandler, &ClipboardHandler::clearOnClose);
-
     v->setSource(SailfishApp::pathToMainQml());
     QDBusConnection::sessionBus().registerService("cz.chrastecky.bitsailor");
     v->show();
