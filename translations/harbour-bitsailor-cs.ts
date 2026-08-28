@@ -1,45 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>AccountSwitcherPage</name>
     <message>
         <source>Add Account</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidat účet</translation>
     </message>
     <message>
         <source>Accounts</source>
         <extracomment>Page title</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Účty</translation>
     </message>
     <message>
         <source>Choose which Bitwarden account should be active on this device.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvolte, který Bitwarden účet by měl být na zařízení aktivní.</translation>
     </message>
     <message>
         <source>Signed in</source>
-        <translation type="unfinished"></translation>
+        <translation>Přihlášeno</translation>
     </message>
     <message>
         <source>Current</source>
         <extracomment>Currently selected account</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Současný</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished">Odstranit</translation>
+        <translation>Odstranit</translation>
     </message>
     <message>
         <source>Removing account</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstraňování účtu</translation>
     </message>
     <message>
         <source>Adding a new account</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidávání nového účtu</translation>
     </message>
     <message>
         <source>Switching account</source>
-        <translation type="unfinished"></translation>
+        <translation>Přepínání účtu</translation>
     </message>
 </context>
 <context>
@@ -54,12 +52,12 @@
     </message>
     <message>
         <source>Approve</source>
-        <extracomment>Dialog accept text - approve other device&apos;s login</extracomment>
+        <extracomment>Dialog accept text - approve other device's login</extracomment>
         <translation>Schválit</translation>
     </message>
     <message>
         <source>Reject</source>
-        <extracomment>Dialog cancel text - reject other device&apos;s login</extracomment>
+        <extracomment>Dialog cancel text - reject other device's login</extracomment>
         <translation>Zamítnout</translation>
     </message>
     <message>
@@ -82,7 +80,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -674,7 +672,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -811,11 +809,11 @@
     </message>
     <message>
         <source>Failed migrating your data to the new multi-account structure, your account data were deleted. Please close the app and log in again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nezdařilo se zmigrovat vaše data na novou víceúčtovou strukturu. Prosím zavřete aplikaci a přihlašte se znovu.</translation>
     </message>
     <message>
         <source>Failed setting current account ID after migrating to the multi-account structure. Please close the app and log in again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nezdařilo se nastavit současné ID účtu po migraci na víceúčtovou strukturu. Prosím zavřete aplikaci a přihlašte se znovu.</translation>
     </message>
 </context>
 <context>
@@ -995,7 +993,7 @@ Section title for Bitwarden server settings</extracomment>
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -1055,8 +1053,8 @@ Section title for Bitwarden server settings</extracomment>
         <translation>Zadali jste neplatné heslo.</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>OS authorization check failed.</source>
@@ -1146,11 +1144,11 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>Show website icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Zobrazit ikonky</translation>
     </message>
     <message>
         <source>Downloads favicons for visible login items and stores them in the app cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Stáhne favikony pro viditelné položky a uloží je do cache</translation>
     </message>
 </context>
 <context>
