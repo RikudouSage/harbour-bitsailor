@@ -119,7 +119,7 @@
     <message>
         <source>Security Code</source>
         <extracomment>On cover page, should be short, use abbreviations if needed</extracomment>
-        <translation>Sicherheitscode</translation>
+        <translation>Prüfziffer</translation>
     </message>
     <message>
         <source>Username</source>
@@ -388,7 +388,7 @@
     </message>
     <message>
         <source>Security Code</source>
-        <translation>Sicherheitscode</translation>
+        <translation>Prüfziffer</translation>
     </message>
     <message>
         <source>Custom fields</source>
@@ -1096,7 +1096,7 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>%1m</source>
         <extracomment>Amount of minutes</extracomment>
-        <translation>%1m</translation>
+        <translation>%1min</translation>
     </message>
     <message>
         <source>Automatically clear clipboard</source>
