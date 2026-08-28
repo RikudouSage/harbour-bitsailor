@@ -1,6 +1,7 @@
 #ifndef BITSAILORCORE_H
 #define BITSAILORCORE_H
 
+#include <atomic>
 #include <functional>
 
 #include <QObject>
@@ -170,6 +171,8 @@ private:
     SessionHandle session = 0;
     VaultHandle vault = 0;
     QList<NotificationSubscriptionHandle> notificationSubscriptions;
+    std::atomic_bool notificationServiceStarting{false};
+    std::atomic_bool notificationServiceStarted{false};
 
     QString email;
 

@@ -1,8 +1,10 @@
 #include "accountmanager.h"
 
 #include <QDebug>
+#include <QSet>
 
 #include "defer.h"
+#include "consts.h"
 #include "uuid.h"
 
 constexpr auto GlobalGroupName = "global";
@@ -24,7 +26,13 @@ bool AccountManager::setAccountIdAfterMigration(const QString &accountId)
         return false;
     }
 
-    setCurrentAccountId(accountId);
+    settings->beginGroup(GlobalGroupName);
+    defer({
+        settings->endGroup();
+    });
+
+    settings->setValue("currentAccountId", accountId);
+    emit currentAccountChanged();
     return true;
 }
 
@@ -51,7 +59,6 @@ void AccountManager::setCurrentAccount(const QJsonObject &value)
 
     storeAccount(account);
     setCurrentAccountId(account.id);
-    emit currentAccountChanged();
 }
 
 QJsonArray AccountManager::accounts()
@@ -66,12 +73,64 @@ QJsonArray AccountManager::accounts()
 
 void AccountManager::setAccounts(const QJsonArray &value)
 {
+    QSet<QString> wantedAccountIds;
+    QList<Account> wantedAccounts;
+
     for (const auto &item : value) {
         auto account = convertAccountToStruct(item.toObject());
+        if (!account.valid) {
+            qWarning() << "Ignoring invalid account while setting accounts";
+            continue;
+        }
+
+        wantedAccountIds.insert(account.id);
+        wantedAccounts.append(account);
+    }
+
+    for (const auto &account : getAccounts()) {
+        if (!wantedAccountIds.contains(account.id)) {
+            settings->remove(account.id);
+        }
+    }
+
+    for (const auto &account : wantedAccounts) {
         storeAccount(account);
     }
 
+    settings->sync();
+    if (settings->status() != QSettings::NoError) {
+        qWarning() << "Failed setting accounts";
+        return;
+    }
+
+    const auto currentAccountId = getCurrentAccountId();
+    if (!currentAccountId.isEmpty() && !wantedAccountIds.contains(currentAccountId)) {
+        setCurrentAccountId("");
+    }
+
     emit accountsChanged();
+}
+
+bool AccountManager::removeAccount(const QString &accountId)
+{
+    if (accountId.isEmpty() || accountId == GlobalGroupName) {
+        qWarning() << "Cannot remove account with invalid account ID";
+        return false;
+    }
+
+    settings->remove(accountId);
+    settings->sync();
+    if (settings->status() != QSettings::NoError) {
+        qWarning() << "Failed removing account";
+        return false;
+    }
+
+    if (getCurrentAccountId() == accountId) {
+        setCurrentAccountId("");
+    }
+
+    emit accountsChanged();
+    return true;
 }
 
 AccountManager::Account AccountManager::getAccount(const QString &accountId)
@@ -125,12 +184,23 @@ const QString AccountManager::getCurrentAccountId()
 
 void AccountManager::setCurrentAccountId(const QString &accountId)
 {
-    settings->beginGroup(GlobalGroupName);
-    defer({
-        settings->endGroup();
-    });
+    {
+        settings->beginGroup(GlobalGroupName);
+        defer({
+            settings->endGroup();
+        });
 
-    settings->setValue("currentAccountId", accountId);
+        settings->setValue("currentAccountId", accountId);
+    }
+
+    const auto account = getAccount(accountId);
+    if (account.valid) {
+        appSettings->setBaseUrl(account.server);
+    } else {
+        appSettings->setBaseUrl(defaultVaultUrl);
+    }
+
+    emit currentAccountChanged();
 }
 
 QJsonObject AccountManager::convertAccountToJson(const Account &account) const
@@ -150,7 +220,7 @@ AccountManager::Account AccountManager::convertAccountToStruct(const QJsonObject
     auto account = Account{
         .id = value.value("id").toString(""),
         .name = value.value("name").toString(""),
-        .email = value.value("email").toString(""),
+        .email = value.value("email").toString(),
         .server = value.value("server").toString(),
     };
     account.valid = account.server != "" && account.email != "" && account.id != "";

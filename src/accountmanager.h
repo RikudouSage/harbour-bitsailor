@@ -41,6 +41,7 @@ public:
     void setAccounts(const QJsonArray &value);
 
     Q_INVOKABLE void setCurrentAccountId(const QString &accountId);
+    Q_INVOKABLE bool removeAccount(const QString &accountId);
 
 signals:
     void currentAccountChanged();

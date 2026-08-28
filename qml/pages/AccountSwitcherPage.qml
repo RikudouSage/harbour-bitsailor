@@ -2,19 +2,27 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Page {
-    property string accountIdToRestore
-
     id: page
     allowedOrientations: Orientation.All
 
-    BusyLabel {
-        id: loader
+    function removeAccount(accountId) {
+        loader.text = qsTr("Removing account");
+        loader.running = true;
+
+        if (!secrets.clearAccountSecrets(accountId)) {
+            console.warn("Failed clearing account secrets for removed account");
+            loader.running = false;
+            return;
+        }
+        if (!accountManager.removeAccount(accountId)) {
+            console.warn("Failed removing account");
+        }
+
+        loader.running = false;
     }
 
-    Connections {
-        target: core
-
-
+    BusyLabel {
+        id: loader
     }
 
     SilicaFlickable {
@@ -33,7 +41,7 @@ Page {
 
                     const accountId = accountManager.generateAccountId();
                     accountManager.setCurrentAccountId(accountId);
-                    core.initialize(true);
+                    core.initialize();
                     pageStack.replace("LoginCheckPage.qml");
                 }
             }
@@ -75,7 +83,15 @@ Page {
                     contentHeight: Math.max(Theme.itemSizeLarge, accountDetails.height + Theme.paddingMedium * 2)
 
                     onClicked: {
-                        app.toaster.show(qsTr("Account switching is not connected yet."));
+                        if (isCurrent) {
+                            return;
+                        }
+
+                        loader.text = qsTr("Switching account")
+                        loader.running = true;
+                        accountManager.setCurrentAccountId(modelData.id);
+                        core.initialize();
+                        pageStack.replace("LoginCheckPage.qml");
                     }
 
                     Rectangle {
@@ -175,8 +191,7 @@ Page {
                                 icon.source: "image://theme/icon-m-remove"
 
                                 onClicked: {
-                                    loader.text = qsTr("Removing account");
-                                    loader.running = true;
+                                    page.removeAccount(modelData.id);
                                 }
                             }
                         }

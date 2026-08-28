@@ -42,6 +42,8 @@ public:
     void removeUserKey();
     Q_INVOKABLE void removeSessionJson();
     Q_INVOKABLE void removeEncryptedVault();
+    Q_INVOKABLE bool clearAccountSecrets(const QString &accountId);
+    Q_INVOKABLE bool clearCurrentAccountSecrets();
     Q_INVOKABLE bool clearAllSecrets();
 
     Q_INVOKABLE void allowInvalidCertificates();

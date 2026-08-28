@@ -21,10 +21,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Account switching is not connected yet.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Current</source>
         <extracomment>Currently selected account</extracomment>
         <translation type="unfinished"></translation>
@@ -39,6 +35,10 @@
     </message>
     <message>
         <source>Adding a new account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Switching account</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1083,15 +1083,6 @@ Section title for Bitwarden server settings</extracomment>
         <translation>Zaawansowane</translation>
     </message>
     <message>
-        <source>Setting URL</source>
-        <extracomment>As in the action of setting url (present continuous)</extracomment>
-        <translation>Adres URL nastawy</translation>
-    </message>
-    <message>
-        <source>Note: You will be logged out.</source>
-        <translation>Uwaga: zostaniesz wylogowany</translation>
-    </message>
-    <message>
         <source>Enable certificate validation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1109,26 +1100,6 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Server</source>
-        <extracomment>Label for choosing the Bitwarden server instance</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Custom</source>
-        <extracomment>Server option for entering a custom Bitwarden server URL</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Custom server URL</source>
-        <extracomment>Label for the input containing a custom Bitwarden server URL</extracomment>
-        <translation>Nietypowy adres URL serwera</translation>
-    </message>
-    <message>
-        <source>Change server</source>
-        <extracomment>Button that applies the selected Bitwarden server</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>

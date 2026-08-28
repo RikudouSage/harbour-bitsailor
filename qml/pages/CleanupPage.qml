@@ -11,14 +11,6 @@ Page {
     id: page
     allowedOrientations: Orientation.All
 
-    Connections {
-        target: core
-
-        onLogoutFinished: {
-            secretsCleared = true;
-        }
-    }
-
     FileAccessor {
         id: fileAccessor
     }
@@ -72,7 +64,8 @@ Page {
 
     onStatusChanged: {
         if (status === PageStatus.Active) {
-            core.logout();
+            secretsCleared = secrets.clearAllSecrets();
+            core.initialize();
             temporaryFilesDeleted = fileAccessor.deleteTemporaryFilesDirectory();
             configFilesDeleted = fileAccessor.deleteConfigDirectory();
         }

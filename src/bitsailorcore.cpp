@@ -340,7 +340,9 @@ void BitSailorCore::logout()
         }
 
         session = 0;
-        secrets->clearAllSecrets();
+        if (!secrets->clearCurrentAccountSecrets()) {
+            qWarning() << "Failed clearing current account secrets during logout";
+        }
         initialize();
 
         emit logoutFinished();
@@ -943,7 +945,7 @@ void BitSailorCore::initialize(bool withNotifications)
     if (secrets->hasSessionJson()) {
         auto json = secrets->getSessionJson();
 #ifdef QT_DEBUG
-        qDebug() << "Session JSON: " << json;
+        //qDebug() << "Session JSON: " << json;
 #endif
         if (json.isEmpty()) {
             qWarning() << "The session json is empty";
@@ -980,11 +982,28 @@ void BitSailorCore::initialize(bool withNotifications)
 
 void BitSailorCore::initializeNotifications()
 {
+    if (session == 0 || notificationServiceStarted.load()) {
+        return;
+    }
+
+    bool expected = false;
+    if (!notificationServiceStarting.compare_exchange_strong(expected, true)) {
+        return;
+    }
+
     QtConcurrent::run([=] {
         if (BitwardenStartNotifications(client, ctx, session) != BitwardenSuccess) {
+            notificationServiceStarting = false;
             qWarning() << "Failed starting notification service: " << getLastError();
         } else {
+            QString exportError;
+            exportSession(&exportError);
+            if (!exportError.isNull()) {
+                qWarning() << "Failed exporting session after starting notifications: " << exportError;
+            }
             registerListeners();
+            notificationServiceStarted = true;
+            notificationServiceStarting = false;
         }
     });
 }
@@ -1004,9 +1023,11 @@ void BitSailorCore::cleanup()
         }
     }
     notificationSubscriptions.clear();
-    if (client != 0 && BitwardenStopNotifications(client, ctx) != BitwardenSuccess) {
+    if (notificationServiceStarted.load() && client != 0 && BitwardenStopNotifications(client, ctx) != BitwardenSuccess) {
         qWarning() << "Failed stopping notifications: " << getLastError();
     }
+    notificationServiceStarted = false;
+    notificationServiceStarting = false;
 
     if (ctx != 0 && BitwardenCloseHandle(ctx) != BitwardenSuccess) {
         qWarning() << "Failed closing context: " << getLastError();
@@ -1207,6 +1228,12 @@ bool BitSailorCore::syncRaw()
     }
 
     QString exportError;
+    exportSession(&exportError);
+    if (!exportError.isNull()) {
+        qWarning() << "Failed exporting session after sync: " << exportError;
+        return false;
+    }
+
     exportVault(&exportError);
     if (!exportError.isNull()) {
         qWarning() << "Failed exporting vault after sync: " << exportError;

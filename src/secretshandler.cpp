@@ -180,6 +180,32 @@ void SecretsHandler::removeEncryptedVault()
     deleteSecret(prefixed(encryptedVaultName));
 }
 
+bool SecretsHandler::clearCurrentAccountSecrets()
+{
+    const auto currentAccountId = accountManager->getCurrentAccount().id;
+    return clearAccountSecrets(currentAccountId);
+}
+
+bool SecretsHandler::clearAccountSecrets(const QString &accountId)
+{
+    if (accountId.isEmpty()) {
+        qWarning() << "Cannot clear account secrets without an account ID";
+        return false;
+    }
+
+    const auto keys = {
+        encryptedVaultName, sessionJsonName, usernameName, passwordName, userKeyName, clientIdName,
+        pinName, internalPinName, invalidCertsName,
+    };
+
+    bool success = true;
+    for (const auto &key : keys) {
+        success = deleteSecret(prefixed(key, accountId)) && success;
+    }
+
+    return success;
+}
+
 bool SecretsHandler::clearAllSecrets()
 {
 #ifdef QT_DEBUG

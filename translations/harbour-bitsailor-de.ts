@@ -21,10 +21,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Account switching is not connected yet.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Current</source>
         <extracomment>Currently selected account</extracomment>
         <translation type="unfinished"></translation>
@@ -39,6 +35,10 @@
     </message>
     <message>
         <source>Adding a new account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Switching account</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1081,35 +1081,6 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>Advanced</source>
         <translation>Fortgeschritten</translation>
-    </message>
-    <message>
-        <source>Server</source>
-        <extracomment>Label for choosing the Bitwarden server instance</extracomment>
-        <translation>Server</translation>
-    </message>
-    <message>
-        <source>Custom</source>
-        <extracomment>Server option for entering a custom Bitwarden server URL</extracomment>
-        <translation>selbst gehostet</translation>
-    </message>
-    <message>
-        <source>Custom server URL</source>
-        <extracomment>Label for the input containing a custom Bitwarden server URL</extracomment>
-        <translation>Eigene Server-URL</translation>
-    </message>
-    <message>
-        <source>Change server</source>
-        <extracomment>Button that applies the selected Bitwarden server</extracomment>
-        <translation>Server ändern</translation>
-    </message>
-    <message>
-        <source>Setting URL</source>
-        <extracomment>As in the action of setting url (present continuous)</extracomment>
-        <translation>Setze URL</translation>
-    </message>
-    <message>
-        <source>Note: You will be logged out.</source>
-        <translation>Hinweis: Du wirst abgemeldet werden.</translation>
     </message>
     <message>
         <source>Enable certificate validation</source>

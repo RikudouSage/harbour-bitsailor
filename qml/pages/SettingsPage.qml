@@ -6,10 +6,6 @@ import cz.chrastecky.bitsailor 1.0
 import "../helpers.js" as Helpers
 
 Page {
-    readonly property string defaultServerUrl: "https://bitwarden.com"
-    readonly property string europeanServerUrl: "https://bitwarden.eu"
-    readonly property string customServerValue: "custom"
-
     property int pinToStore
     property string passwordToValidate
 
@@ -19,48 +15,11 @@ Page {
     property var doAfterLoad: []
     property var safeCaller: Helpers.safeCallerFactory(doAfterLoad, page)
 
-    property var currentServerUrl: null
-
-    function onServerUrlResolved(serverUrl) {
-        currentServerUrl = serverUrl;
-        customServerUrl.text = isPresetServerUrl(serverUrl) ? "" : serverUrl;
-        serverUrlSelect.currentIndex = serverUrlSelect.indexForServerUrl(serverUrl);
-        busyIndicatorServerUrl.running = false;
-    }
-
-    function isPresetServerUrl(serverUrl) {
-        return serverUrl === defaultServerUrl || serverUrl === europeanServerUrl;
-    }
-
-    function selectedServerUrl() {
-        if (!serverUrlSelect.currentItem) {
-            return "";
-        }
-
-        return serverUrlSelect.currentItem.value === customServerValue
-            ? customServerUrl.text
-            : serverUrlSelect.currentItem.value;
-    }
-
-    function hasServerUrlChange() {
-        return currentServerUrl !== null && serverUrlSelect.currentItem && selectedServerUrl() !== currentServerUrl;
-    }
-
     id: page
     allowedOrientations: Orientation.All
 
     Connections {
         target: core
-
-        onServerUrlResolved: {
-            page.onServerUrlResolved(url);
-        }
-
-        onServerUrlChanged: {
-            if (success) {
-                pageStack.replace("LoginCheckPage.qml");
-            }
-        }
 
         onCouldNotFetchEmail: {
             busyIndicatorPassword.running = false;
@@ -106,17 +65,10 @@ Page {
         running: false
     }
 
-    BusyLabel {
-        id: busyIndicatorServerUrl
-        //: As in the action of setting url (present continuous)
-        text: qsTr("Setting URL")
-        running: false
-    }
-
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height
-        visible: !busyIndicatorPassword.running && !busyIndicatorServerUrl.running
+        visible: !busyIndicatorPassword.running
 
         VerticalScrollDecorator {}
 
@@ -310,86 +262,6 @@ Page {
 
             SectionHeader {
                 text: qsTr("Advanced")
-            }
-
-            ComboBox {
-                id: serverUrlSelect
-                enabled: currentServerUrl !== null
-                //: Label for choosing the Bitwarden server instance
-                label: qsTr("Server")
-
-                property var itemData: [
-                    {text: "bitwarden.com", value: page.defaultServerUrl},
-                    {text: "bitwarden.eu", value: page.europeanServerUrl},
-                    //: Server option for entering a custom Bitwarden server URL
-                    {text: qsTr("Custom"), value: page.customServerValue}
-                ]
-
-                function indexForServerUrl(serverUrl) {
-                    if (serverUrl === page.europeanServerUrl) {
-                        return 1;
-                    }
-
-                    if (serverUrl && serverUrl !== page.defaultServerUrl) {
-                        return 2;
-                    }
-
-                    return 0;
-                }
-
-                menu: ContextMenu {
-                    MenuItem {
-                        property string value: serverUrlSelect.itemData[0].value
-                        text: serverUrlSelect.itemData[0].text
-                    }
-
-                    MenuItem {
-                        property string value: serverUrlSelect.itemData[1].value
-                        text: serverUrlSelect.itemData[1].text
-                    }
-
-                    MenuItem {
-                        property string value: serverUrlSelect.itemData[2].value
-                        text: serverUrlSelect.itemData[2].text
-                    }
-                }
-
-                Component.onCompleted: {
-                    core.getServerUrl();
-                }
-            }
-
-            TextField {
-                id: customServerUrl
-                //: Label for the input containing a custom Bitwarden server URL
-                label: qsTr("Custom server URL")
-                visible: serverUrlSelect.currentItem && serverUrlSelect.currentItem.value === customServerValue
-                text: currentServerUrl !== null && !isPresetServerUrl(currentServerUrl) ? currentServerUrl : ""
-
-                EnterKey.iconSource: "image://theme/icon-m-enter-accept"
-                EnterKey.onClicked: {
-                    if (changeServerUrlButton.enabled) {
-                        changeServerUrlButton.clicked();
-                    }
-                }
-            }
-
-            Button {
-                id: changeServerUrlButton
-                anchors.horizontalCenter: parent.horizontalCenter
-                enabled: hasServerUrlChange() && serverUrlSelect.currentItem && (serverUrlSelect.currentItem.value !== customServerValue || customServerUrl.text.length)
-                //: Button that applies the selected Bitwarden server
-                text: qsTr("Change server")
-
-                onClicked: {
-                    const dialog = pageStack.push("ConfirmSettingPage.qml", {
-                        description: qsTr("Note: You will be logged out.")
-                    });
-                    dialog.accepted.connect(function() {
-                        busyIndicatorServerUrl.running = true;
-                        core.changeServerUrl(selectedServerUrl());
-                    });
-                }
             }
 
             TextSwitch {
