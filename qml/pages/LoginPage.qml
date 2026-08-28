@@ -112,6 +112,7 @@ Dialog {
                 id: customUrl
                 //: Label for the input containing a custom Bitwarden server URL
                 label: qsTr("Custom server URL")
+                inputMethodHints: Qt.ImhUrlCharactersOnly | Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
                 visible: page.serverUrl === page.customServerValue
 
                 EnterKey.iconSource: "image://theme/icon-m-enter-accept"
@@ -228,6 +229,7 @@ Dialog {
                         TextField {
                             id: clientId
                             label: qsTr("Client ID")
+                            inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
 
                             onTextChanged: {
                                 clientIdText = text;
@@ -247,6 +249,7 @@ Dialog {
                             id: clientSecret
                             label: qsTr("Client Secret")
                             echoMode: passwordVisible ? TextInput.Normal : TextInput.Password
+                            inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText | Qt.ImhSensitiveData
                             rightItem: IconButton {
                                 icon.source: !clientSecret.passwordVisible
                                              ? "image://theme/icon-splus-hide-password"
@@ -297,6 +300,7 @@ Dialog {
                         TextField {
                             id: email
                             label: qsTr("Email")
+                            inputMethodHints: Qt.ImhEmailCharactersOnly | Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
 
                             onTextChanged: {
                                 emailText = text;
@@ -322,6 +326,7 @@ Dialog {
                             id: password
                             label: qsTr("Password")
                             echoMode: passwordVisible ? TextInput.Normal : TextInput.Password
+                            inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText | Qt.ImhSensitiveData
                             rightItem: IconButton {
                                 icon.source: !password.passwordVisible
                                              ? "image://theme/icon-splus-hide-password"
@@ -354,6 +359,7 @@ Dialog {
                         TextField {
                             id: twoFa
                             label: qsTr("Authenticator code")
+                            inputMethodHints: Qt.ImhDigitsOnly | Qt.ImhSensitiveData
                             visible: twoFaFlow
 
                             EnterKey.iconSource: "image://theme/icon-m-enter-accept"
