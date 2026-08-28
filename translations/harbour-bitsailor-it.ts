@@ -433,6 +433,42 @@
         <source>Security Code</source>
         <translation>Codice di sicurezza</translation>
     </message>
+    <message>
+        <source>Custom fields</source>
+        <translation type="unfinished">Campi personalizzati</translation>
+    </message>
+    <message>
+        <source>Field name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text</source>
+        <translation type="unfinished">Testo</translation>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Boolean</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add field</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked field</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GeneratePassphraseContent</name>
@@ -721,10 +757,6 @@
         <translation>Campi personalizzati</translation>
     </message>
     <message>
-        <source>Linked fields are not supported properly because the official documentation is missing. Will be updated in the future.</source>
-        <translation>I campi collegati non sono supportati correttamente perché manca la documentazione ufficiale. Saranno aggiornati in futuro.</translation>
-    </message>
-    <message>
         <source>Last update: %1</source>
         <translation>Ultimo aggiornamento: %1</translation>
     </message>
@@ -973,10 +1005,6 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>Failed loading list of sends</source>
         <translation>Caricamento elenco Send non riuscito</translation>
-    </message>
-    <message>
-        <source>Hide search</source>
-        <translation>Nascondi ricerca</translation>
     </message>
     <message>
         <source>Search</source>
@@ -1263,10 +1291,6 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>An error occured while loading items. Please try again.</source>
         <translation>Si è verificato un errore durante il caricamento degli elementi. Riprova.</translation>
-    </message>
-    <message>
-        <source>Hide search</source>
-        <translation>Nascondi ricerca</translation>
     </message>
     <message>
         <source>Search</source>

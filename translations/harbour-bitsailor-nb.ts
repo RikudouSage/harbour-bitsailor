@@ -433,6 +433,42 @@
         <source>Security Code</source>
         <translation type="unfinished">Sikkerhetskode</translation>
     </message>
+    <message>
+        <source>Custom fields</source>
+        <translation type="unfinished">Egendefinerte felt</translation>
+    </message>
+    <message>
+        <source>Field name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text</source>
+        <translation type="unfinished">Tekst</translation>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Boolean</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add field</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked field</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GeneratePassphraseContent</name>
@@ -721,10 +757,6 @@
         <translation>Egendefinerte felt</translation>
     </message>
     <message>
-        <source>Linked fields are not supported properly because the official documentation is missing. Will be updated in the future.</source>
-        <translation>Lenkede felt støttes ikke riktig fordi den offisielle dokumentasjonen mangler. Dette vil bli oppdatert i fremtiden.</translation>
-    </message>
-    <message>
         <source>Last update: %1</source>
         <translation>Siste oppdatering: %1</translation>
     </message>
@@ -973,10 +1005,6 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>Failed loading list of sends</source>
         <translation>Kunne ikke laste inn listen over hemmeligheter</translation>
-    </message>
-    <message>
-        <source>Hide search</source>
-        <translation>Skjul søk</translation>
     </message>
     <message>
         <source>Search</source>
@@ -1263,10 +1291,6 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>An error occured while loading items. Please try again.</source>
         <translation>Det oppstod en feil under lasting av oppføringer. Vennligst prøv igjen.</translation>
-    </message>
-    <message>
-        <source>Hide search</source>
-        <translation>Skjul søk</translation>
     </message>
     <message>
         <source>Search</source>

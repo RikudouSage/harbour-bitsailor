@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="nl">
 <context>
     <name>DesktopFile</name>
     <message>
@@ -9,7 +9,7 @@
     <message>
         <source>Share via Send</source>
         <extracomment>Displayed as a description when someone shares a file/text, should be short</extracomment>
-        <translation>Partager via Send</translation>
+        <translation>Delen met Send</translation>
     </message>
 </context>
 <context>
@@ -17,7 +17,7 @@
     <message>
         <source>Authorization is needed to unlock the vault.</source>
 		<extracomment>Displayed in system dialog when system auth (fingerprint auth) is enabled</extracomment>
-        <translation>L&quot;authentification est nécessaire pour dévérouiller le coffre.</translation>
+        <translation>Toestemming is nodig om de kluis te ontgrendelen.</translation>
     </message>
 </context>
 </TS>

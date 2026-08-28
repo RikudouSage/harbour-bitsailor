@@ -20,6 +20,17 @@ Page {
         core.fetchItem(itemId)
     }
 
+    function linkedFieldName(linkedId) {
+        switch (linkedId) {
+        case 100:
+            return qsTr("Username");
+        case 101:
+            return qsTr("Password");
+        default:
+            return linkedId === null || typeof linkedId === 'undefined' ? '' : String(linkedId);
+        }
+    }
+
     function createCover() {
         item.metadata = {};
         if (item.type === BitSailorCore.ItemTypeLogin && item.login.totp) {
@@ -108,6 +119,7 @@ Page {
                         type: item.type,
                         nameValue: item.name,
                         typeEditable: false,
+                        initialFields: item.fields || [],
                         //: Accept button for updating an item
                         acceptText: qsTr("Update"),
                     };
@@ -161,6 +173,7 @@ Page {
                         object.type = dialog.type;
                         object.name = dialog.nameValue;
                         object.notes = dialog.loginNotesValue || dialog.secureNoteNoteValue || null;
+                        object.fields = dialog.getFields();
 
                         loaded = false;
                         errorText = "";
@@ -693,9 +706,8 @@ Page {
                         id: fieldLinked
                         visible: field.type === BitSailorCore.FieldTypeLinkedId
                         label: field.name
-                        text: visible ? field.linkedId : ''
+                        text: visible ? linkedFieldName(field.linkedId) : ''
                         readOnly: true
-                        description: qsTr("Linked fields are not supported properly because the official documentation is missing. Will be updated in the future.")
                     }
 
                     TextField {

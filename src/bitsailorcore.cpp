@@ -9,6 +9,7 @@
 #include <QtConcurrent>
 #include <QJsonParseError>
 #include <QJsonValue>
+#include <QString>
 
 #include "consts.h"
 #include "uuid.h"
@@ -30,6 +31,10 @@ struct BitwardenItemInput
 {
     QByteArray name;
     QByteArray notes;
+    std::vector<QByteArray> fieldNames;
+    std::vector<QByteArray> fieldValues;
+    std::vector<int> fieldLinkedIds;
+    std::vector<BitwardenItemField> fields;
     QByteArray loginUsername;
     QByteArray loginPassword;
     QByteArray loginTotp;
@@ -56,6 +61,7 @@ struct BitwardenItemInput
         name = object.value("name").toString().toUtf8();
         item.name = name.data();
         item.notes = jsonStringOrNull(object, "notes", &notes);
+        fillFields(object.value("fields").toArray());
 
         switch (item.type) {
         case BitwardenItemTypeLogin:
@@ -72,6 +78,42 @@ struct BitwardenItemInput
             break;
         default:
             break;
+        }
+    }
+
+    void fillFields(const QJsonArray &array)
+    {
+        fieldNames.reserve(static_cast<size_t>(array.size()));
+        fieldValues.reserve(static_cast<size_t>(array.size()));
+        fieldLinkedIds.reserve(static_cast<size_t>(array.size()));
+        fields.reserve(static_cast<size_t>(array.size()));
+
+        for (const auto &fieldValue : array) {
+            const auto fieldObject = fieldValue.toObject();
+            BitwardenItemField field = {};
+            field.type = static_cast<BitwardenFieldType>(fieldObject.value("type").toInt());
+
+            fieldNames.push_back(fieldObject.value("name").toString().toUtf8());
+            field.name = fieldNames.back().data();
+
+            const auto value = fieldObject.value("value");
+            if (!value.isUndefined() && !value.isNull()) {
+                fieldValues.push_back(value.toString().toUtf8());
+                field.value = fieldValues.back().data();
+            }
+
+            const auto linkedId = fieldObject.value("linkedId");
+            if (!linkedId.isUndefined() && !linkedId.isNull()) {
+                fieldLinkedIds.push_back(linkedId.toInt());
+                field.linkedId = &fieldLinkedIds.back();
+            }
+
+            fields.push_back(field);
+        }
+
+        if (!fields.empty()) {
+            item.fields.items = fields.data();
+            item.fields.len = fields.size();
         }
     }
 
@@ -1219,11 +1261,71 @@ void BitSailorCore::exportVault(QString *error)
 
 QJsonObject BitSailorCore::mapItem(const BitwardenItem &item) const
 {
+    auto jsonStringValue = [](const char *value) -> QJsonValue {
+        return value == nullptr ? QJsonValue::Null : QJsonValue(QString::fromUtf8(value));
+    };
+    auto jsonBoolValue = [](const bool *value) -> QJsonValue {
+        return value == nullptr ? QJsonValue::Null : QJsonValue(*value);
+    };
+    auto jsonIntValue = [](const int *value) -> QJsonValue {
+        return value == nullptr ? QJsonValue::Null : QJsonValue(*value);
+    };
+    auto jsonDateValue = [this](int64_t value) -> QJsonValue {
+        return QJsonValue(cTimeToQDate(value).toUTC().toString(Qt::ISODate));
+    };
+    auto jsonDatePtrValue = [this](const int64_t *value) -> QJsonValue {
+        return value == nullptr ? QJsonValue::Null : QJsonValue(cTimeToQDate(*value).toUTC().toString(Qt::ISODate));
+    };
+
     QJsonObject outItem;
     outItem.insert("id", uuidToString(item.id));
     outItem.insert("type", item.type);
-    outItem.insert("name", item.name);
-    outItem.insert("notes", item.notes);
+    outItem.insert("notes", jsonStringValue(item.notes));
+    outItem.insert("organizationUseTotp", jsonBoolValue(item.organizationUseTotp));
+    outItem.insert("revisionDate", jsonDateValue(item.revisionDate));
+    outItem.insert("deletedDate", jsonDatePtrValue(item.deletedDate));
+    outItem.insert("favorite", item.favorite);
+    outItem.insert("organizationId", uuidToString(item.organizationId));
+    outItem.insert("key", jsonStringValue(item.key));
+    outItem.insert("edit", item.edit);
+    if (item.permissions != nullptr) {
+        QJsonObject permissions;
+        permissions.insert("delete", item.permissions->canDelete);
+        permissions.insert("restore", item.permissions->canRestore);
+        outItem.insert("permissions", permissions);
+    } else {
+        outItem.insert("permissions", QJsonValue::Null);
+    }
+    if (item.collectionIds.len > 0) {
+        QJsonArray collectionIds;
+        for (size_t j = 0; j < item.collectionIds.len; ++j) {
+            collectionIds.append(uuidToString(item.collectionIds.items[j]));
+        }
+        outItem.insert("collectionIds", collectionIds);
+    } else {
+        outItem.insert("collectionIds", QJsonArray());
+    }
+    outItem.insert("archivedDate", jsonDatePtrValue(item.archivedDate));
+    outItem.insert("folderId", uuidToString(item.folderId));
+    outItem.insert("viewPassword", item.viewPassword);
+    outItem.insert("name", jsonStringValue(item.name));
+    outItem.insert("creationDate", jsonDateValue(item.creationDate));
+    outItem.insert("reprompt", item.reprompt);
+    if (item.fields.len > 0) {
+        QJsonArray fields;
+        for (size_t j = 0; j < item.fields.len; ++j) {
+            auto field = item.fields.items[j];
+            QJsonObject outField;
+            outField.insert("type", field.type);
+            outField.insert("name", jsonStringValue(field.name));
+            outField.insert("value", jsonStringValue(field.value));
+            outField.insert("linkedId", jsonIntValue(field.linkedId));
+            fields.append(outField);
+        }
+        outItem.insert("fields", fields);
+    } else {
+        outItem.insert("fields", QJsonArray());
+    }
     if (item.decryptionError != nullptr) {
         outItem.insert("decryptionError", item.decryptionError);
     } else {
@@ -1232,53 +1334,70 @@ QJsonObject BitSailorCore::mapItem(const BitwardenItem &item) const
 
     if (item.type == BitwardenItemTypeLogin && item.login != nullptr) {
         QJsonObject login;
-        login.insert("username", item.login->username);
-        login.insert("password", item.login->password);
-        login.insert("totp", item.login->totp);
+        login.insert("uri", jsonStringValue(item.login->uri));
+        login.insert("username", jsonStringValue(item.login->username));
+        login.insert("password", jsonStringValue(item.login->password));
+        login.insert("passwordRevisionDate", jsonDatePtrValue(item.login->passwordRevisionDate));
+        login.insert("totp", jsonStringValue(item.login->totp));
         if (item.login->uris.len > 0) {
             QJsonArray uris;
             for (size_t j = 0; j < item.login->uris.len; ++j) {
                 auto uri = item.login->uris.items[j];
                 QJsonObject outUri;
-                outUri.insert("uri", uri.uri);
+                outUri.insert("uri", jsonStringValue(uri.uri));
+                outUri.insert("uriChecksum", jsonStringValue(uri.uriChecksum));
                 outUri.insert("match", uri.match);
                 uris.append(outUri);
             }
             login.insert("uris", uris);
+        } else {
+            login.insert("uris", QJsonArray());
         }
 
         outItem.insert("login", login);
     } else if (item.type == BitwardenItemTypeCard && item.card != nullptr) {
         QJsonObject card;
-        card.insert("cardholderName", item.card->cardholderName);
-        card.insert("brand", item.card->brand);
-        card.insert("number", item.card->number);
-        card.insert("expMonth", item.card->expirationMonth);
-        card.insert("expYear", item.card->expirationYear);
-        card.insert("code", item.card->code);
+        card.insert("cardholderName", jsonStringValue(item.card->cardholderName));
+        card.insert("brand", jsonStringValue(item.card->brand));
+        card.insert("number", jsonStringValue(item.card->number));
+        card.insert("expMonth", jsonStringValue(item.card->expirationMonth));
+        card.insert("expYear", jsonStringValue(item.card->expirationYear));
+        card.insert("code", jsonStringValue(item.card->code));
         outItem.insert("card", card);
-    } else if(item.type == BitwardenItemTypeIdentity && item.identity != nullptr) {
+    } else if (item.type == BitwardenItemTypeSecureNote && item.secureNote != nullptr) {
+        QJsonObject secureNote;
+        secureNote.insert("type", item.secureNote->type);
+        outItem.insert("secureNote", secureNote);
+    } else if (item.type == BitwardenItemTypeIdentity && item.identity != nullptr) {
         QJsonObject identity;
-        identity.insert("title", item.identity->title);
-        identity.insert("firstName", item.identity->firstName);
-        identity.insert("middleName", item.identity->middleName);
-        identity.insert("lastName", item.identity->lastName);
-        identity.insert("username", item.identity->username);
-        identity.insert("company", item.identity->company);
-        identity.insert("ssn", item.identity->ssn);
-        identity.insert("passportNumber", item.identity->passportNumber);
+        identity.insert("title", jsonStringValue(item.identity->title));
+        identity.insert("firstName", jsonStringValue(item.identity->firstName));
+        identity.insert("middleName", jsonStringValue(item.identity->middleName));
+        identity.insert("lastName", jsonStringValue(item.identity->lastName));
+        identity.insert("username", jsonStringValue(item.identity->username));
+        identity.insert("company", jsonStringValue(item.identity->company));
+        identity.insert("ssn", jsonStringValue(item.identity->ssn));
+        identity.insert("passportNumber", jsonStringValue(item.identity->passportNumber));
         identity.insert("licenseNumber", ""); // todo license number?
-        identity.insert("email", item.identity->email);
-        identity.insert("phone", item.identity->phone);
-        identity.insert("address1", item.identity->addressLine1);
-        identity.insert("address2", item.identity->addressLine2);
-        identity.insert("address3", item.identity->addressLine3);
-        identity.insert("city", item.identity->city);
-        identity.insert("state", item.identity->state);
-        identity.insert("city", item.identity->city);
-        identity.insert("postalCode", item.identity->postalCode);
-        identity.insert("country", item.identity->country);
+        identity.insert("email", jsonStringValue(item.identity->email));
+        identity.insert("phone", jsonStringValue(item.identity->phone));
+        identity.insert("addressLine1", jsonStringValue(item.identity->addressLine1));
+        identity.insert("addressLine2", jsonStringValue(item.identity->addressLine2));
+        identity.insert("addressLine3", jsonStringValue(item.identity->addressLine3));
+        identity.insert("address1", jsonStringValue(item.identity->addressLine1));
+        identity.insert("address2", jsonStringValue(item.identity->addressLine2));
+        identity.insert("address3", jsonStringValue(item.identity->addressLine3));
+        identity.insert("city", jsonStringValue(item.identity->city));
+        identity.insert("state", jsonStringValue(item.identity->state));
+        identity.insert("postalCode", jsonStringValue(item.identity->postalCode));
+        identity.insert("country", jsonStringValue(item.identity->country));
         outItem.insert("identity", identity);
+    } else if (item.type == BitwardenItemTypeSshKey && item.sshKey != nullptr) {
+        QJsonObject sshKey;
+        sshKey.insert("privateKey", jsonStringValue(item.sshKey->privateKey));
+        sshKey.insert("publicKey", jsonStringValue(item.sshKey->publicKey));
+        sshKey.insert("keyFingerprint", jsonStringValue(item.sshKey->keyFingerprint));
+        outItem.insert("sshKey", sshKey);
     }
 
     return outItem;

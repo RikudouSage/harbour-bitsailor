@@ -433,6 +433,42 @@
         <source>Security Code</source>
         <translation>Bezpečnostní kód</translation>
     </message>
+    <message>
+        <source>Custom fields</source>
+        <translation>Vlastní pole</translation>
+    </message>
+    <message>
+        <source>Field name</source>
+        <translation>Název pole</translation>
+    </message>
+    <message>
+        <source>Text</source>
+        <translation>Text</translation>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation>Skryté</translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation>Hodnota</translation>
+    </message>
+    <message>
+        <source>Boolean</source>
+        <translation>Ano/Ne</translation>
+    </message>
+    <message>
+        <source>Add field</source>
+        <translation>Přidat pole</translation>
+    </message>
+    <message>
+        <source>Linked</source>
+        <translation>Propojené</translation>
+    </message>
+    <message>
+        <source>Linked field</source>
+        <translation>Propojené pole</translation>
+    </message>
 </context>
 <context>
     <name>GeneratePassphraseContent</name>
@@ -721,10 +757,6 @@
         <translation>Vlastní pole</translation>
     </message>
     <message>
-        <source>Linked fields are not supported properly because the official documentation is missing. Will be updated in the future.</source>
-        <translation>Propojená pole nejsou správně podporována, protože k nim chybí oficiální dokumentace. Do budoucna bude upraveno.</translation>
-    </message>
-    <message>
         <source>Last update: %1</source>
         <translation>Naposled upraveno: %1</translation>
     </message>
@@ -973,10 +1005,6 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>Failed loading list of sends</source>
         <translation>Nezdařilo se načtení položek send</translation>
-    </message>
-    <message>
-        <source>Hide search</source>
-        <translation>Skrýt vyhledávání</translation>
     </message>
     <message>
         <source>Search</source>
@@ -1263,10 +1291,6 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>An error occured while loading items. Please try again.</source>
         <translation>Nastala chyba při načítání položek. Zkuste to prosím později.</translation>
-    </message>
-    <message>
-        <source>Hide search</source>
-        <translation>Skrýt vyhledávání</translation>
     </message>
     <message>
         <source>Search</source>

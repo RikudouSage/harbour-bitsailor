@@ -433,6 +433,42 @@
         <source>Security Code</source>
         <translation type="unfinished">Kod zabezpieczeń</translation>
     </message>
+    <message>
+        <source>Custom fields</source>
+        <translation type="unfinished">Pola niestandardowe</translation>
+    </message>
+    <message>
+        <source>Field name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Text</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Boolean</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add field</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Linked field</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>GeneratePassphraseContent</name>
@@ -721,10 +757,6 @@
         <translation>Pola niestandardowe</translation>
     </message>
     <message>
-        <source>Linked fields are not supported properly because the official documentation is missing. Will be updated in the future.</source>
-        <translation>Połączone pola nie są wspierane prawidłowo, ponieważ brakuje oficjalnej dokumentacji. Będzie uaktualniona w przyszłości.</translation>
-    </message>
-    <message>
         <source>Last update: %1</source>
         <translation>Ostatnia aktualizacja: %1</translation>
     </message>
@@ -973,10 +1005,6 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>Failed loading list of sends</source>
         <translation>Ładowanie wysyłek nie powiodło się</translation>
-    </message>
-    <message>
-        <source>Hide search</source>
-        <translation>Ukryj wyszukiwanie</translation>
     </message>
     <message>
         <source>Search</source>
@@ -1263,10 +1291,6 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>An error occured while loading items. Please try again.</source>
         <translation>Wystąpił błąd ładowania elementu. Proszę spróbować ponownie.</translation>
-    </message>
-    <message>
-        <source>Hide search</source>
-        <translation>Ukryj wyszukiwanie</translation>
     </message>
     <message>
         <source>Search</source>
