@@ -2,6 +2,47 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="fr">
 <context>
+    <name>AccountSwitcherPage</name>
+    <message>
+        <source>Add Account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accounts</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose which Bitwarden account should be active on this device.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Signed in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current</source>
+        <extracomment>Currently selected account</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">Supprimer</translation>
+    </message>
+    <message>
+        <source>Removing account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adding a new account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Switching account</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ApproveAuthRequestPage</name>
     <message>
         <source>The authentication request could not be fetched. Please try again later.</source>
@@ -768,6 +809,14 @@
         <source>Your account uses a two-factor method which is currently not supported by this app. Please log in using your API key.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Failed migrating your data to the new multi-account structure, your account data were deleted. Please close the app and log in again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed setting current account ID after migrating to the multi-account structure. Please close the app and log in again.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LoginPage</name>
@@ -1034,15 +1083,6 @@ Section title for Bitwarden server settings</extracomment>
         <translation>Avancé</translation>
     </message>
     <message>
-        <source>Setting URL</source>
-        <extracomment>As in the action of setting url (present continuous)</extracomment>
-        <translation>Définition de l&apos;URL</translation>
-    </message>
-    <message>
-        <source>Note: You will be logged out.</source>
-        <translation>Note: Vous allez être déconnecté.</translation>
-    </message>
-    <message>
         <source>Enable certificate validation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1060,26 +1100,6 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>This will delete everything that this app stores on your system, including system secrets collection, temporary files etc. Do you wish to continue?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Server</source>
-        <extracomment>Label for choosing the Bitwarden server instance</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Custom</source>
-        <extracomment>Server option for entering a custom Bitwarden server URL</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Custom server URL</source>
-        <extracomment>Label for the input containing a custom Bitwarden server URL</extracomment>
-        <translation>URL de serveur personnalisée</translation>
-    </message>
-    <message>
-        <source>Change server</source>
-        <extracomment>Button that applies the selected Bitwarden server</extracomment>
         <translation type="unfinished"></translation>
     </message>
     <message>

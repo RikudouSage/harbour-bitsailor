@@ -31,6 +31,7 @@
 #include "urlparser.h"
 #include "bitsailorcore.h"
 #include "clipboardhandler.h"
+#include "accountmanager.h"
 
 namespace {
 
@@ -98,8 +99,9 @@ int main(int argc, char *argv[])
     defaultMessageHandler = qInstallMessageHandler(messageHandler);
     QScopedPointer<QQuickView> v(SailfishApp::createView());
 
-    auto secrets = new SecretsHandler(app.data());
     auto settings = new AppSettings(app.data());
+    auto accountManager = new AccountManager(settings, app.data());
+    auto secrets = new SecretsHandler(accountManager, app.data());
     auto core = new BitSailorCore(settings, secrets, app.data());
 
     qmlRegisterType<SystemAuthChecker>("cz.chrastecky.bitsailor", 1, 0, "SystemAuthChecker");
@@ -122,11 +124,12 @@ int main(int argc, char *argv[])
 
     auto clipboardHandler = new ClipboardHandler(QGuiApplication::clipboard(), settings, app.data());
 
+    v->rootContext()->setContextProperty("accountManager", accountManager);
     v->rootContext()->setContextProperty("clipboardHandler", clipboardHandler);
     v->rootContext()->setContextProperty("settings", settings);
     v->rootContext()->setContextProperty("secrets", secrets);
     v->rootContext()->setContextProperty("core", core);
-    v->rootContext()->setContextProperty("runtimeCache", RuntimeCache::getInstance(app.data()));
+    v->rootContext()->setContextProperty("runtimeCache", new RuntimeCache(secrets, app.data()));
     v->rootContext()->setContextProperty("urlParser", new UrlParser(app.data()));
 
 #ifdef QT_DEBUG

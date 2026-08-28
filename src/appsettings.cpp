@@ -12,6 +12,7 @@ AppSettings::AppSettings(QObject *parent) : QObject(parent)
     prop_BaseUrl = settings->value("baseUrl", defaultVaultUrl).toString();
     prop_ClearClipboardTimeout = settings->value("clearClipboardTimeout", 60).toInt();
     prop_ClearClipboardOnClosing = settings->value("clearClipboardOnClosing", true).toBool();
+    prop_migratedToMultiAccounts = settings->value("migratedToMultiAccounts", false).toBool();
 }
 
 AppSettings::~AppSettings()
@@ -117,6 +118,22 @@ void AppSettings::setClearClipboardOnClosing(bool value)
     saveConfig("clearClipboardOnClosing", value);
     prop_ClearClipboardOnClosing = value;
     emit clearClipboardOnClosingChanged();
+}
+
+bool AppSettings::migratedToMultiAccounts()
+{
+    return prop_migratedToMultiAccounts;
+}
+
+void AppSettings::setMigratedToMultiAccounts(bool value)
+{
+    if (value == prop_migratedToMultiAccounts) {
+        return;
+    }
+
+    saveConfig("migratedToMultiAccounts", value);
+    prop_migratedToMultiAccounts = value;
+    emit migratedToMultiAccountsChanged();
 }
 
 void AppSettings::saveConfig(const QString &name, const QVariant &value)

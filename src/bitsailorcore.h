@@ -1,6 +1,7 @@
 #ifndef BITSAILORCORE_H
 #define BITSAILORCORE_H
 
+#include <atomic>
 #include <functional>
 
 #include <QObject>
@@ -97,6 +98,9 @@ public:
     Q_INVOKABLE void generatePassword(bool lowercase, bool uppercase, bool numbers, bool special, bool avoidAmbiguous, int minimumNumbers, int minimumSpecial, int length);
     Q_INVOKABLE void generatePassphrase(uint wordsCount, bool capitalize, bool includeNumber, const QString &separator);
 
+    Q_INVOKABLE void fetchAccountMetadata();
+    Q_INVOKABLE QString getEmail(); // todo move to private once the multi account thing is old enough
+    Q_INVOKABLE QString getServerUrlString(); // todo remove once multi accounts are old enough
 signals:
     void serverUrlChanged(bool success);
     void serverUrlResolved(const QString &url);
@@ -133,6 +137,8 @@ signals:
 
     void authRequestApprovalRequested(const QString &requestId);
 
+    void accountMetadataFetched(const QJsonObject &data);
+
     void invalidCertificate(); // todo implement on core side and then here
 
 private:
@@ -141,15 +147,11 @@ private:
     void cleanup();
     void registerListeners();
 
-    QUuid generateUuid() const;
-    QString uuidToString(const QUuid &uuid) const;
     QString uuidToString(const UUID &uuid) const;
-    QUuid qUuidFromString(const QString &uuid) const;
     UUID uuidFromString(const QString &uuid) const;
     UUID uuidToCoreUuid(const QUuid &uuid) const;
     QUuid uuidToQUuid(const UUID &uuid) const;
     QDateTime cTimeToQDate(int64_t time) const;
-    QString getEmail();
 
     void login(const std::function<BitwardenResult()> &loginCallable);
     bool unlockWithPassword(const QString &password, QString *error);
@@ -169,6 +171,8 @@ private:
     SessionHandle session = 0;
     VaultHandle vault = 0;
     QList<NotificationSubscriptionHandle> notificationSubscriptions;
+    std::atomic_bool notificationServiceStarting{false};
+    std::atomic_bool notificationServiceStarted{false};
 
     QString email;
 

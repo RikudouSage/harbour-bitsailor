@@ -1,4 +1,47 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="cs">
+<context>
+    <name>AccountSwitcherPage</name>
+    <message>
+        <source>Add Account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accounts</source>
+        <extracomment>Page title</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose which Bitwarden account should be active on this device.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Signed in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Current</source>
+        <extracomment>Currently selected account</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished">Odstranit</translation>
+    </message>
+    <message>
+        <source>Removing account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adding a new account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Switching account</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
 <context>
     <name>ApproveAuthRequestPage</name>
     <message>
@@ -11,12 +54,12 @@
     </message>
     <message>
         <source>Approve</source>
-        <extracomment>Dialog accept text - approve other device's login</extracomment>
+        <extracomment>Dialog accept text - approve other device&apos;s login</extracomment>
         <translation>Schválit</translation>
     </message>
     <message>
         <source>Reject</source>
-        <extracomment>Dialog cancel text - reject other device's login</extracomment>
+        <extracomment>Dialog cancel text - reject other device&apos;s login</extracomment>
         <translation>Zamítnout</translation>
     </message>
     <message>
@@ -39,7 +82,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -631,7 +674,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -765,6 +808,14 @@
     <message>
         <source>Your account uses a two-factor method which is currently not supported by this app. Please log in using your API key.</source>
         <translation>Váš účet využívá dvoufázové ověření, které momentálně nepodporujeme. Prosím přihlašte se pomocí vašeho API klíče.</translation>
+    </message>
+    <message>
+        <source>Failed migrating your data to the new multi-account structure, your account data were deleted. Please close the app and log in again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed setting current account ID after migrating to the multi-account structure. Please close the app and log in again.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -944,7 +995,7 @@ Section title for Bitwarden server settings</extracomment>
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -1004,8 +1055,8 @@ Section title for Bitwarden server settings</extracomment>
         <translation>Zadali jste neplatné heslo.</translation>
     </message>
     <message>
-        <source/>
-        <translation type="unfinished"/>
+        <source></source>
+        <translation></translation>
     </message>
     <message>
         <source>OS authorization check failed.</source>
@@ -1030,35 +1081,6 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>Advanced</source>
         <translation>Pokročilé</translation>
-    </message>
-    <message>
-        <source>Server</source>
-        <extracomment>Label for choosing the Bitwarden server instance</extracomment>
-        <translation>Server</translation>
-    </message>
-    <message>
-        <source>Custom</source>
-        <extracomment>Server option for entering a custom Bitwarden server URL</extracomment>
-        <translation>Vlastní</translation>
-    </message>
-    <message>
-        <source>Custom server URL</source>
-        <extracomment>Label for the input containing a custom Bitwarden server URL</extracomment>
-        <translation>Vlastní URL serveru</translation>
-    </message>
-    <message>
-        <source>Change server</source>
-        <extracomment>Button that applies the selected Bitwarden server</extracomment>
-        <translation>Změnit server</translation>
-    </message>
-    <message>
-        <source>Setting URL</source>
-        <extracomment>As in the action of setting url (present continuous)</extracomment>
-        <translation>Nastavování URL</translation>
-    </message>
-    <message>
-        <source>Note: You will be logged out.</source>
-        <translation>Poznámka: Budete odhlášeni.</translation>
     </message>
     <message>
         <source>Enable certificate validation</source>

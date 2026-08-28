@@ -87,7 +87,7 @@ Page {
             identitiesCount = 0;
 
             if (isDebug) {
-                console.log(JSON.stringify(items))
+                //console.log(JSON.stringify(items))
             }
 
             for (var i in items) {
@@ -172,6 +172,7 @@ Page {
                 return;
             }
 
+            core.initializeNotifications();
             core.fetchItems();
         }
 
@@ -228,6 +229,16 @@ Page {
             }
 
             page.onVaultSyncFailed();
+        }
+
+        onAccountMetadataFetched: {
+            const account = {
+                id: accountManager.currentAccount.id,
+                name: accountManager.currentAccount.name,
+                email: data.email,
+                server: data.server,
+            };
+            accountManager.currentAccount = account;
         }
     }
 
@@ -349,7 +360,10 @@ Page {
 
     Component.onCompleted: {
         core.getLoginStatus();
-        core.initializeNotifications();
+
+        if (!accountManager.currentAccount.server || !accountManager.currentAccount.email) {
+            core.fetchAccountMetadata();
+        }
     }
 
     onStatusChanged: {
