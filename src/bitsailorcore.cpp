@@ -3,13 +3,23 @@
 #include <cstring>
 #include <cstdlib>
 #include <vector>
+#include <QBuffer>
+#include <QCryptographicHash>
 #include <QDebug>
+#include <QDir>
+#include <QFile>
 #include <QFileInfo>
+#include <QImage>
+#include <QImageReader>
 #include <QJsonDocument>
 #include <QtConcurrent>
 #include <QJsonParseError>
 #include <QJsonValue>
+#include <QIODevice>
+#include <QSaveFile>
+#include <QStandardPaths>
 #include <QString>
+#include <QUrl>
 
 #include "consts.h"
 #include "uuid.h"
@@ -25,6 +35,23 @@ char *jsonStringOrNull(const QJsonObject &object, const QString &key, QByteArray
 
     *storage = value.toString().toUtf8();
     return storage->data();
+}
+
+bool canReadImageFile(const QString &path)
+{
+    QImageReader reader(path);
+    return reader.canRead();
+}
+
+QImage readImageBytes(const QByteArray &bytes, QByteArray *format)
+{
+    QBuffer buffer;
+    buffer.setData(bytes);
+    buffer.open(QIODevice::ReadOnly);
+
+    QImageReader reader(&buffer);
+    *format = reader.format();
+    return reader.read();
 }
 
 struct BitwardenItemInput
@@ -536,6 +563,100 @@ void BitSailorCore::fetchItems()
         BitwardenFreeItems(&items);
         emit itemsResolved(result);
     });
+}
+
+void BitSailorCore::fetchIcon(const QString &hostname)
+{
+    const auto normalizedHostname = hostname.trimmed().toLower();
+    if (normalizedHostname.isEmpty()) {
+        emit iconFetched(false, hostname, {});
+        return;
+    }
+
+    QtConcurrent::run([=] {
+        const auto cacheRoot = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
+        if (cacheRoot.isEmpty()) {
+            qWarning() << "Failed resolving cache directory for favicon";
+            emit iconFetched(false, normalizedHostname, {});
+            return;
+        }
+
+        QDir cacheDir(cacheRoot);
+        if (!cacheDir.mkpath(QStringLiteral("favicons"))) {
+            qWarning() << "Failed creating favicon cache directory";
+            emit iconFetched(false, normalizedHostname, {});
+            return;
+        }
+
+        const auto cacheName = QString::fromLatin1(QCryptographicHash::hash(
+            normalizedHostname.toUtf8(),
+            QCryptographicHash::Sha256
+        ).toHex()) + QStringLiteral(".png");
+        const auto cachePath = cacheDir.filePath(QStringLiteral("favicons/") + cacheName);
+        const auto source = QUrl::fromLocalFile(cachePath).toString();
+
+        if (QFileInfo::exists(cachePath)) {
+            if (canReadImageFile(cachePath)) {
+                emit iconFetched(true, normalizedHostname, source);
+                return;
+            }
+
+#ifdef QT_DEBUG
+            qWarning() << "Removing invalid cached favicon for" << normalizedHostname << ":" << cachePath;
+#endif
+            QFile::remove(cachePath);
+        }
+
+        BitwardenByteSlice icon = {};
+        auto hostnameBytes = normalizedHostname.toUtf8();
+        if (BitwardenGetIcon(client, ctx, hostnameBytes.data(), &icon) != BitwardenSuccess) {
+            qWarning() << "Failed fetching icon for" << normalizedHostname << ":" << getLastError();
+            emit iconFetched(false, normalizedHostname, {});
+            return;
+        }
+
+        const QByteArray iconBytes(reinterpret_cast<const char *>(icon.items), static_cast<int>(icon.len));
+        BitwardenFreeByteSlice(&icon);
+
+        QByteArray imageFormat;
+        const auto iconImage = readImageBytes(iconBytes, &imageFormat);
+        if (iconImage.isNull()) {
+#ifdef QT_DEBUG
+            qWarning() << "Fetched favicon for" << normalizedHostname << "is not a supported image";
+#endif
+            emit iconFetched(false, normalizedHostname, {});
+            return;
+        }
+
+        QSaveFile file(cachePath);
+        if (!file.open(QIODevice::WriteOnly) || !iconImage.save(&file, "PNG") || !file.commit()) {
+            qWarning() << "Failed writing favicon cache file:" << cachePath;
+            emit iconFetched(false, normalizedHostname, {});
+            return;
+        }
+
+#ifdef QT_DEBUG
+        qWarning() << "Cached favicon for" << normalizedHostname << "as PNG from" << imageFormat << ":" << cachePath;
+#endif
+        emit iconFetched(true, normalizedHostname, source);
+    });
+}
+
+void BitSailorCore::clearIconCache()
+{
+    const auto cacheRoot = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
+    if (cacheRoot.isEmpty()) {
+        return;
+    }
+
+    QDir cacheDir(QDir(cacheRoot).filePath(QStringLiteral("favicons")));
+    if (!cacheDir.exists()) {
+        return;
+    }
+
+    if (!cacheDir.removeRecursively()) {
+        qWarning() << "Failed removing favicon cache directory:" << cacheDir.path();
+    }
 }
 
 void BitSailorCore::fetchSends()

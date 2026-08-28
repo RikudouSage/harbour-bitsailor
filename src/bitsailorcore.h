@@ -83,6 +83,8 @@ public:
 
     Q_INVOKABLE void syncVault();
     Q_INVOKABLE void fetchItems();
+    Q_INVOKABLE void fetchIcon(const QString &hostname);
+    Q_INVOKABLE void clearIconCache();
     Q_INVOKABLE void fetchSends();
     Q_INVOKABLE void createItem(const QJsonObject &item);
     Q_INVOKABLE void createTextSend(const QString &name, const QString &text, bool hideText, int deletionDate, int maximumAccessCount, const QString &password, bool hideEmail, const QString &notes);
@@ -120,6 +122,7 @@ signals:
     void syncVaultFinished(bool success);
     void itemsResolved(const QJsonArray &items);
     void itemResolvingFailed();
+    void iconFetched(bool success, const QString &hostname, const QString &source);
     void sendsResolved(bool success, const QJsonArray &items);
     void itemCreationFinished(bool success);
     void sendCreated(bool success, const QJsonObject &item);

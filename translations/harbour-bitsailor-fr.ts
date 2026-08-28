@@ -1144,6 +1144,14 @@ Section title for Bitwarden server settings</extracomment>
         <source>Could not store the unlock key.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Show website icons</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Downloads favicons for visible login items and stores them in the app cache</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SetupPinPage</name>

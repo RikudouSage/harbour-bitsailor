@@ -19,8 +19,57 @@ Page {
     property int addItemType: BitSailorCore.ItemTypeNone
     property bool addItemEnabled: true
 
+    property var faviconSources: ({})
+    property var requestedFavicons: ({})
+
     id: page
     allowedOrientations: Orientation.All
+
+    function firstLoginHostname(item) {
+        if (typeof item.login === 'undefined' || typeof item.login.uris === 'undefined') {
+            return "";
+        }
+
+        for (var i in item.login.uris) {
+            if (!item.login.uris.hasOwnProperty(i) || !item.login.uris[i].uri) {
+                continue;
+            }
+
+            var uri = item.login.uris[i].uri;
+            var parsed = urlParser.parse(uri);
+            if (!parsed.host && uri.indexOf("://") === -1) {
+                parsed = urlParser.parse("https://" + uri);
+            }
+
+            if (parsed.host) {
+                return parsed.host.toLocaleLowerCase();
+            }
+        }
+
+        return "";
+    }
+
+    function faviconSourceForItem(item) {
+        if (!settings.showFavicons) {
+            return "";
+        }
+
+        return faviconSources[firstLoginHostname(item)] || "";
+    }
+
+    function maybeFetchFavicon(item) {
+        if (!settings.showFavicons || item.type !== BitSailorCore.ItemTypeLogin) {
+            return;
+        }
+
+        var hostname = firstLoginHostname(item);
+        if (!hostname || requestedFavicons[hostname]) {
+            return;
+        }
+
+        requestedFavicons[hostname] = true;
+        core.fetchIcon(hostname);
+    }
 
     function itemMatchesSearch(item, text) {
         if (typeof item.login === 'undefined') {
@@ -108,6 +157,21 @@ Page {
             loaded = true;
         }
 
+        onIconFetched: {
+            if (!success) {
+                return;
+            }
+
+            var sources = {};
+            for (var key in faviconSources) {
+                if (faviconSources.hasOwnProperty(key)) {
+                    sources[key] = faviconSources[key];
+                }
+            }
+            sources[hostname] = source;
+            faviconSources = sources;
+        }
+
         onItemResolvingFailed: {
             if (page.status !== PageStatus.Active && page.status !== PageStatus.Activating) {
                 return;
@@ -136,6 +200,17 @@ Page {
             } else {
                 loaded = true;
                 errorText = qsTr("There was an error when creating the new item");
+            }
+        }
+    }
+
+    Connections {
+        target: settings
+
+        onShowFaviconsChanged: {
+            if (!settings.showFavicons) {
+                faviconSources = {};
+                requestedFavicons = {};
             }
         }
     }
@@ -293,13 +368,36 @@ Page {
                 }
             }
 
+            Image {
+                id: favicon
+                property string hostname: firstLoginHostname(item)
+                property string faviconSource: failed ? "" : page.faviconSourceForItem(item)
+                anchors.verticalCenter: parent.verticalCenter
+                width: Theme.iconSizeMedium
+                height: Theme.iconSizeMedium
+                fillMode: Image.PreserveAspectFit
+                cache: false
+                source: faviconSource
+                visible: faviconSource.length > 0
+
+                onStatusChanged: {
+                    if (isDebug && status === Image.Error) {
+                        console.warn("Failed decoding favicon for " + hostname + ": " + faviconSource);
+                    }
+                }
+            }
+
             Label {
                 id: itemTitle
+                x: favicon.visible ? favicon.width + Theme.paddingMedium : 0
+                width: parent.width - x
                 text: failed ? qsTr("invalid item (decryption failed): %1").arg(item.id) : item.name
                 color: failed ? Theme.errorColor : Theme.primaryColor
             }
 
             Label {
+                x: itemTitle.x
+                width: itemTitle.width
                 anchors.top: itemTitle.bottom
                 text: typeof item.login !== 'undefined' ? item.login.username || '' : ''
                 font.pixelSize: Theme.fontSizeSmall
@@ -308,6 +406,8 @@ Page {
             }
 
             Label {
+                x: itemTitle.x
+                width: itemTitle.width
                 anchors.top: itemTitle.bottom
                 text: {
                     if (typeof item.card === 'undefined') {
@@ -329,6 +429,8 @@ Page {
             }
 
             Label {
+                x: itemTitle.x
+                width: itemTitle.width
                 anchors.top: itemTitle.bottom
                 text: typeof item.identity !== 'undefined' ? [item.identity.firstName || '', item.identity.lastName || ''].filter(function(item) {
                     return item !== '';
@@ -361,6 +463,24 @@ Page {
                          }
                      }
                  }
+            }
+
+            onVisibleChanged: {
+                if (visible) {
+                    page.maybeFetchFavicon(item);
+                }
+            }
+
+            Component.onCompleted: {
+                page.maybeFetchFavicon(item);
+            }
+
+            Connections {
+                target: settings
+
+                onShowFaviconsChanged: {
+                    page.maybeFetchFavicon(item);
+                }
             }
         }
     }

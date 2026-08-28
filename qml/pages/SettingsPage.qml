@@ -260,6 +260,21 @@ Page {
                 }
             }
 
+            TextSwitch {
+                checked: settings.showFavicons
+                automaticCheck: false
+                text: qsTr("Show website icons")
+                description: qsTr("Downloads favicons for visible login items and stores them in the app cache")
+
+                onClicked: {
+                    var enabled = !settings.showFavicons;
+                    settings.showFavicons = enabled;
+                    if (!enabled) {
+                        core.clearIconCache();
+                    }
+                }
+            }
+
             SectionHeader {
                 text: qsTr("Advanced")
             }
