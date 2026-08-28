@@ -8,10 +8,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Account management is not connected yet.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Accounts</source>
         <extracomment>Page title</extracomment>
         <translation type="unfinished"></translation>
@@ -38,7 +34,11 @@
         <translation type="unfinished">Rimuovi</translation>
     </message>
     <message>
-        <source>Account removal is not connected yet.</source>
+        <source>Removing account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Adding a new account</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

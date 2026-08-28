@@ -40,6 +40,8 @@ public:
     QJsonArray accounts();
     void setAccounts(const QJsonArray &value);
 
+    Q_INVOKABLE void setCurrentAccountId(const QString &accountId);
+
 signals:
     void currentAccountChanged();
     void accountsChanged();
@@ -56,7 +58,6 @@ private:
     Account getAccount(const QString &accountId);
     bool storeAccount(const Account &account);
     const QString getCurrentAccountId();
-    void setCurrentAccountId(const QString &accountId);
 
     QJsonObject convertAccountToJson(const Account &account) const;
     Account convertAccountToStruct(const QJsonObject &value) const;

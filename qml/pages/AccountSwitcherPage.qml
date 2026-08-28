@@ -2,12 +2,25 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 Page {
+    property string accountIdToRestore
+
     id: page
     allowedOrientations: Orientation.All
+
+    BusyLabel {
+        id: loader
+    }
+
+    Connections {
+        target: core
+
+
+    }
 
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: column.height
+        visible: !loader.running
 
         VerticalScrollDecorator {}
 
@@ -15,7 +28,13 @@ Page {
             MenuItem {
                 text: qsTr("Add Account")
                 onClicked: {
-                    app.toaster.show(qsTr("Account management is not connected yet."));
+                    loader.text = qsTr("Adding a new account")
+                    loader.running = true;
+
+                    const accountId = accountManager.generateAccountId();
+                    accountManager.setCurrentAccountId(accountId);
+                    core.initialize(true);
+                    pageStack.replace("LoginCheckPage.qml");
                 }
             }
         }
@@ -51,7 +70,7 @@ Page {
                     property bool isCurrent: modelData.id === accountManager.currentAccount.id
                     id: accountItem
 
-                    menu: accountContextMenu
+                    menu: !isCurrent ? accountContextMenu : undefined
                     width: parent.width
                     contentHeight: Math.max(Theme.itemSizeLarge, accountDetails.height + Theme.paddingMedium * 2)
 
@@ -156,7 +175,8 @@ Page {
                                 icon.source: "image://theme/icon-m-remove"
 
                                 onClicked: {
-                                    app.toaster.show(qsTr("Account removal is not connected yet."));
+                                    loader.text = qsTr("Removing account");
+                                    loader.running = true;
                                 }
                             }
                         }
