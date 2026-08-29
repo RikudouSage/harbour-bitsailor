@@ -5,6 +5,7 @@ Icon=harbour-bitsailor
 Exec=harbour-bitsailor
 X-Share-Methods=anything;
 Name=BitSailor
+Name[no]=BitSailor
 Name[nl]=BitSailor
 Name[it]=BitSailor
 Name[fi]=BitSailor
@@ -25,6 +26,7 @@ Permissions=
 
 [X-Share Method anything]
 Description=Share via Send
+Description[no]=Del via Send
 Description[fr]=Partager via Send
 Description[nl]=Delen met Send
 Description[it]=Condividi via Send
