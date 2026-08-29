@@ -8,7 +8,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 
-#include "core/libbw.h"
+#include "core/bw_item.h"
 
 struct BitwardenItemInput
 {
