@@ -2,7 +2,6 @@
 
 #include <cstring>
 #include <cstdlib>
-#include <vector>
 #include <QBuffer>
 #include <QCryptographicHash>
 #include <QDebug>
@@ -21,21 +20,11 @@
 #include <QString>
 #include <QUrl>
 
+#include "bitwardeniteminput.h"
 #include "consts.h"
 #include "uuid.h"
 
 namespace {
-
-char *jsonStringOrNull(const QJsonObject &object, const QString &key, QByteArray *storage)
-{
-    const auto value = object.value(key);
-    if (value.isUndefined() || value.isNull()) {
-        return nullptr;
-    }
-
-    *storage = value.toString().toUtf8();
-    return storage->data();
-}
 
 bool canReadImageFile(const QString &path)
 {
@@ -53,141 +42,6 @@ QImage readImageBytes(const QByteArray &bytes, QByteArray *format)
     *format = reader.format();
     return reader.read();
 }
-
-struct BitwardenItemInput
-{
-    QByteArray name;
-    QByteArray notes;
-    std::vector<QByteArray> fieldNames;
-    std::vector<QByteArray> fieldValues;
-    std::vector<int> fieldLinkedIds;
-    std::vector<BitwardenItemField> fields;
-    QByteArray loginUsername;
-    QByteArray loginPassword;
-    QByteArray loginTotp;
-    std::vector<QByteArray> loginUriValues;
-    std::vector<BitwardenItemLoginUri> loginUris;
-    QByteArray cardCardholderName;
-    QByteArray cardBrand;
-    QByteArray cardNumber;
-    QByteArray cardExpirationMonth;
-    QByteArray cardExpirationYear;
-    QByteArray cardCode;
-    BitwardenItemLogin login = {};
-    BitwardenItemCard card = {};
-    BitwardenItemSecureNote secureNote = {};
-    BitwardenItem item = {};
-
-    BitwardenItemInput(const UUID &id, const QJsonObject &object)
-    {
-        item.id = id;
-        item.type = static_cast<BitwardenItemType>(object.value("type").toInt());
-        item.favorite = object.value("favorite").toBool(false);
-        item.reprompt = object.value("reprompt").toBool(false);
-
-        name = object.value("name").toString().toUtf8();
-        item.name = name.data();
-        item.notes = jsonStringOrNull(object, "notes", &notes);
-        fillFields(object.value("fields").toArray());
-
-        switch (item.type) {
-        case BitwardenItemTypeLogin:
-            fillLogin(object.value("login").toObject());
-            item.login = &login;
-            break;
-        case BitwardenItemTypeSecureNote:
-            fillSecureNote(object.value("secureNote").toObject());
-            item.secureNote = &secureNote;
-            break;
-        case BitwardenItemTypeCard:
-            fillCard(object.value("card").toObject());
-            item.card = &card;
-            break;
-        default:
-            break;
-        }
-    }
-
-    void fillFields(const QJsonArray &array)
-    {
-        fieldNames.reserve(static_cast<size_t>(array.size()));
-        fieldValues.reserve(static_cast<size_t>(array.size()));
-        fieldLinkedIds.reserve(static_cast<size_t>(array.size()));
-        fields.reserve(static_cast<size_t>(array.size()));
-
-        for (const auto &fieldValue : array) {
-            const auto fieldObject = fieldValue.toObject();
-            BitwardenItemField field = {};
-            field.type = static_cast<BitwardenFieldType>(fieldObject.value("type").toInt());
-
-            fieldNames.push_back(fieldObject.value("name").toString().toUtf8());
-            field.name = fieldNames.back().data();
-
-            const auto value = fieldObject.value("value");
-            if (!value.isUndefined() && !value.isNull()) {
-                fieldValues.push_back(value.toString().toUtf8());
-                field.value = fieldValues.back().data();
-            }
-
-            const auto linkedId = fieldObject.value("linkedId");
-            if (!linkedId.isUndefined() && !linkedId.isNull()) {
-                fieldLinkedIds.push_back(linkedId.toInt());
-                field.linkedId = &fieldLinkedIds.back();
-            }
-
-            fields.push_back(field);
-        }
-
-        if (!fields.empty()) {
-            item.fields.items = fields.data();
-            item.fields.len = fields.size();
-        }
-    }
-
-    void fillLogin(const QJsonObject &object)
-    {
-        login.username = jsonStringOrNull(object, "username", &loginUsername);
-        login.password = jsonStringOrNull(object, "password", &loginPassword);
-        login.totp = jsonStringOrNull(object, "totp", &loginTotp);
-
-        const auto uris = object.value("uris").toArray();
-        loginUriValues.reserve(static_cast<size_t>(uris.size()));
-        loginUris.reserve(static_cast<size_t>(uris.size()));
-        for (const auto &uriValue : uris) {
-            const auto uriObject = uriValue.toObject();
-            const auto uri = uriObject.value("uri").toString();
-            if (uri.isEmpty()) {
-                continue;
-            }
-
-            loginUriValues.push_back(uri.toUtf8());
-            BitwardenItemLoginUri outUri = {};
-            outUri.uri = loginUriValues.back().data();
-            outUri.match = static_cast<BitwardenUriMatchType>(uriObject.value("match").toInt());
-            loginUris.push_back(outUri);
-        }
-
-        if (!loginUris.empty()) {
-            login.uris.items = loginUris.data();
-            login.uris.len = loginUris.size();
-        }
-    }
-
-    void fillSecureNote(const QJsonObject &object)
-    {
-        secureNote.type = object.value("type").toInt(0);
-    }
-
-    void fillCard(const QJsonObject &object)
-    {
-        card.cardholderName = jsonStringOrNull(object, "cardholderName", &cardCardholderName);
-        card.brand = jsonStringOrNull(object, "brand", &cardBrand);
-        card.number = jsonStringOrNull(object, "number", &cardNumber);
-        card.expirationMonth = jsonStringOrNull(object, "expMonth", &cardExpirationMonth);
-        card.expirationYear = jsonStringOrNull(object, "expYear", &cardExpirationYear);
-        card.code = jsonStringOrNull(object, "code", &cardCode);
-    }
-};
 
 struct BitwardenSendInput
 {

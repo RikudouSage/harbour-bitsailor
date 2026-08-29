@@ -44,6 +44,7 @@ INSTALLS += bw-logo
 SOURCES += src/harbour-bitsailor.cpp \
     src/accountmanager.cpp \
     src/appsettings.cpp \
+    src/bitwardeniteminput.cpp \
     src/bitsailorcore.cpp \
     src/cachekey.cpp \
     src/clipboardhandler.cpp \
@@ -119,6 +120,7 @@ TRANSLATIONS += translations/harbour-bitsailor-*.ts
 HEADERS += \
     src/accountmanager.h \
     src/appsettings.h \
+    src/bitwardeniteminput.h \
     src/bitsailorcore.h \
     src/cache-keys.h \
     src/cachekey.h \
