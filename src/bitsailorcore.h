@@ -9,6 +9,7 @@
 #include <QDateTime>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QThreadPool>
 
 #include "appsettings.h"
 #include "secretshandler.h"
@@ -168,6 +169,8 @@ private:
 
 private:
     bool valid = true;
+
+    QThreadPool faviconThreadPool;
 
     ContextHandle ctx = 0;
     ClientHandle client = 0;

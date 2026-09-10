@@ -118,6 +118,8 @@ BitSailorCore::BitSailorCore(AppSettings *settings, SecretsHandler *secrets, QOb
     qRegisterMetaType<BitSailorCore::FieldType>("FieldType");
     qRegisterMetaType<BitSailorCore::UriMatchType>("UriMatchType");
 
+    faviconThreadPool.setMaxThreadCount(2);
+
     this->settings = settings;
     this->secrets = secrets;
     initialize();
@@ -130,6 +132,8 @@ BitSailorCore::BitSailorCore(QObject *parent) : QObject(parent)
 
 BitSailorCore::~BitSailorCore()
 {
+    faviconThreadPool.clear();
+    faviconThreadPool.waitForDone();
     cleanup();
 }
 
@@ -427,7 +431,7 @@ void BitSailorCore::fetchIcon(const QString &hostname)
         return;
     }
 
-    QtConcurrent::run([=] {
+    QtConcurrent::run(&faviconThreadPool, [=] {
         const auto cacheRoot = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
         if (cacheRoot.isEmpty()) {
             qWarning() << "Failed resolving cache directory for favicon";
@@ -693,7 +697,7 @@ void BitSailorCore::fetchItem(const QString &id)
 {
     QtConcurrent::run([=] {
         auto uuid = uuidToCoreUuid(qUuidFromString(id));
-        BitwardenItem item;
+        BitwardenItem item = {};
         if (BitwardenGetItem(vault, ctx, session, uuid, &item) != BitwardenSuccess) {
             qWarning() << "Failed fetching item: " << getLastError();
             emit itemFetchFinished(false, {});
