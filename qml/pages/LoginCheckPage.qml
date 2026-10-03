@@ -30,7 +30,7 @@ Page {
     Connections {
         target: core
 
-        function displayLoginPage(error, supportedTfaMethods, tfaProviderInitialized, initializeTfa) {
+        function displayLoginPage(error, supportedTfaMethods, tfaProviderInitialized, initializeDefaultTfa) {
             safeCaller(function() {
                 if (!error) {
                     error = "";
@@ -46,7 +46,7 @@ Page {
                     data.supportedTfaMethods = supportedTfaMethods;
                     data.tfaKind = tfaKind;
                     data.tfaProviderInitialized = tfaProviderInitialized === true;
-                    data.tfaProviderInitializing = initializeTfa === true;
+                    data.tfaProviderInitializing = initializeDefaultTfa === true;
                 }
 
                 const dialog = pageStack.push("LoginPage.qml", data);
@@ -58,7 +58,7 @@ Page {
                         core.initializeTfa(email, password, tfaKind);
                     });
                 }
-                if (initializeTfa) {
+                if (initializeDefaultTfa) {
                     core.initializeTfa(email, password, tfaKind);
                 }
                 dialog.accepted.connect(function() {
