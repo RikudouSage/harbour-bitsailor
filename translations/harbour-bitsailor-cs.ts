@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="cs">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>AccountSwitcherPage</name>
     <message>
@@ -54,12 +52,12 @@
     </message>
     <message>
         <source>Approve</source>
-        <extracomment>Dialog accept text - approve other device&apos;s login</extracomment>
+        <extracomment>Dialog accept text - approve other device's login</extracomment>
         <translation>Schválit</translation>
     </message>
     <message>
         <source>Reject</source>
-        <extracomment>Dialog cancel text - reject other device&apos;s login</extracomment>
+        <extracomment>Dialog cancel text - reject other device's login</extracomment>
         <translation>Zamítnout</translation>
     </message>
     <message>
@@ -82,7 +80,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -674,7 +672,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Jméno identity</translation>
     </message>
     <message>
@@ -819,11 +817,11 @@
     </message>
     <message>
         <source>Failed to initialize the selected two-factor authentication method. Please choose a method and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nezdařilo se inicializovat zvolenou metodu pro dvoufázové ověření. Prosím zkuste to znovu.</translation>
     </message>
     <message>
         <source>Failed to initialize the two-factor authentication method. Please try logging in again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nezdařilo se inicializovat metodu pro dvoufázové ověření. Prosím zkuste se přihlásit znovu.</translation>
     </message>
 </context>
 <context>
@@ -896,24 +894,24 @@ Section title for Bitwarden server settings</extracomment>
     </message>
     <message>
         <source>Authenticator app</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplikace Autentikátoru</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished"></translation>
+        <translation>Neznámé</translation>
     </message>
     <message>
         <source>Please provide the code from your selected two-factor authentication method below.</source>
-        <translation type="unfinished"></translation>
+        <translation>Prosím zadejte kód vašeho dvoufázového ověření do pole níže.</translation>
     </message>
     <message>
         <source>Two-factor authentication method</source>
         <extracomment>Label for selecting the two-factor authentication method to use</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Metoda dvoufázového ověření</translation>
     </message>
     <message>
         <source>Verification code</source>
-        <translation type="unfinished"></translation>
+        <translation>Ověřovací kód</translation>
     </message>
 </context>
 <context>
@@ -1016,7 +1014,7 @@ Section title for Bitwarden server settings</extracomment>
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -1076,8 +1074,8 @@ Section title for Bitwarden server settings</extracomment>
         <translation>Zadali jste neplatné heslo.</translation>
     </message>
     <message>
-        <source></source>
-        <translation></translation>
+        <source/>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>OS authorization check failed.</source>
