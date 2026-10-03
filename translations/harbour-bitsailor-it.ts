@@ -817,6 +817,14 @@
         <source>Failed setting current account ID after migrating to the multi-account structure. Please close the app and log in again.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Failed to initialize the selected two-factor authentication method. Please choose a method and try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to initialize the two-factor authentication method. Please try logging in again.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LoginPage</name>
@@ -887,12 +895,25 @@ Section title for Bitwarden server settings</extracomment>
         <translation>Verrà eliminato tutto ciò che quest&apos;app memorizza sul sistema, inclusa la raccolta di segreti di sistema, i file temporanei ecc. Vuoi continuare?</translation>
     </message>
     <message>
-        <source>Authenticator code</source>
-        <translation>Codice autenticatore</translation>
+        <source>Authenticator app</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please provide the code from your authenticator app below.</source>
-        <translation>Inserisci qui sotto il codice dalla tua app autenticatore.</translation>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide the code from your selected two-factor authentication method below.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Two-factor authentication method</source>
+        <extracomment>Label for selecting the two-factor authentication method to use</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Verification code</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

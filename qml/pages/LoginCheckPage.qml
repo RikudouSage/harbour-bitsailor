@@ -21,6 +21,8 @@ Page {
     property string password
     property string twoFaCode
     property string customServerUrl
+    property int tfaKind: BitSailorCore.KindAuthenticator
+    property var tfaDialog: null
 
     id: page
     allowedOrientations: Orientation.All
@@ -28,7 +30,7 @@ Page {
     Connections {
         target: core
 
-        function displayLoginPage(error, twoFa) {
+        function displayLoginPage(error, supportedTfaMethods, tfaProviderInitialized, initializeDefaultTfa) {
             safeCaller(function() {
                 if (!error) {
                     error = "";
@@ -36,15 +38,31 @@ Page {
 
                 const data = {error: error, customServerUrl: customServerUrl};
 
-                if (twoFa) {
+                if (supportedTfaMethods !== undefined) {
                     data.twoFaFlow = true;
                     data.passwordText = password;
                     data.emailText = email;
                     data.currentTab = 1;
+                    data.supportedTfaMethods = supportedTfaMethods;
+                    data.tfaKind = tfaKind;
+                    data.tfaProviderInitialized = tfaProviderInitialized === true;
+                    data.tfaProviderInitializing = initializeDefaultTfa === true;
                 }
 
                 const dialog = pageStack.push("LoginPage.qml", data);
+                if (supportedTfaMethods !== undefined) {
+                    tfaDialog = dialog;
+                    dialog.tfaProviderChanged.connect(function(kind) {
+                        tfaKind = kind;
+                        dialog.tfaProviderInitializing = true;
+                        core.initializeTfa(email, password, tfaKind);
+                    });
+                }
+                if (initializeDefaultTfa) {
+                    core.initializeTfa(email, password, tfaKind);
+                }
                 dialog.accepted.connect(function() {
+                    tfaDialog = null;
                     customServerUrl = dialog.selectedServerUrl();
                     clientId = dialog.clientIdText;
                     clientSecret = dialog.clientSecretText;
@@ -52,6 +70,7 @@ Page {
                     password = dialog.passwordText;
                     email = dialog.emailText;
                     twoFaCode = dialog.twoFaCode;
+                    tfaKind = dialog.tfaKind;
 
                     core.changeServerUrl(customServerUrl);
                 });
@@ -105,17 +124,41 @@ Page {
 
             if (clientId.length && clientSecret.length) {
                 core.loginApiKey(clientId, clientSecret);
+            } else if (twoFaCode.length) {
+                core.loginEmailPassword(email, password, tfaKind, twoFaCode);
             } else {
-                core.loginEmailPassword(email, password, twoFaCode);
+                core.loginEmailPassword(email, password);
             }
         }
 
         onTwoFactorNeeded: {
-            displayLoginPage(null, true);
+            if (!supportedMethods || supportedMethods.length === 0) {
+                displayLoginPage(qsTr("Your account uses a two-factor method which is currently not supported by this app. Please log in using your API key."));
+            } else {
+                tfaKind = supportedMethods[0];
+                displayLoginPage(null, supportedMethods, false, true);
+            }
         }
 
         onUnsupportedTwoFactorNeeded: {
             displayLoginPage(qsTr("Your account uses a two-factor method which is currently not supported by this app. Please log in using your API key."));
+        }
+
+        onInitializeTfaFinished: {
+            if (!success) {
+                if (tfaDialog) {
+                    tfaDialog.tfaProviderInitializing = false;
+                    tfaDialog.error = qsTr("Failed to initialize the selected two-factor authentication method. Please choose a method and try again.");
+                } else {
+                    displayLoginPage(qsTr("Failed to initialize the two-factor authentication method. Please try logging in again."));
+                }
+                return;
+            }
+
+            if (tfaDialog) {
+                tfaDialog.tfaProviderInitializing = false;
+                tfaDialog.tfaProviderInitialized = true;
+            }
         }
 
         onLoginFinished: {

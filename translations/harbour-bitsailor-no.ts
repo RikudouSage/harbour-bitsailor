@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="no">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="no">
 <context>
     <name>AccountSwitcherPage</name>
     <message>
@@ -52,12 +54,12 @@
     </message>
     <message>
         <source>Approve</source>
-        <extracomment>Dialog accept text - approve other device's login</extracomment>
+        <extracomment>Dialog accept text - approve other device&apos;s login</extracomment>
         <translation>Godkjenn</translation>
     </message>
     <message>
         <source>Reject</source>
-        <extracomment>Dialog cancel text - reject other device's login</extracomment>
+        <extracomment>Dialog cancel text - reject other device&apos;s login</extracomment>
         <translation>Avvis</translation>
     </message>
     <message>
@@ -80,7 +82,7 @@
     </message>
     <message>
         <source>Send</source>
-        <extracomment>Probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -672,7 +674,7 @@
     </message>
     <message>
         <source>Identity Name</source>
-        <extracomment>Name as in &quot;person's name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
+        <extracomment>Name as in &quot;person&apos;s name&quot;, this text is taken from Android Bitwarden app and seems wrong, will probably be reworded in future</extracomment>
         <translation>Identitetsnavn </translation>
     </message>
     <message>
@@ -815,6 +817,14 @@
         <source>Failed setting current account ID after migrating to the multi-account structure. Please close the app and log in again.</source>
         <translation>Feil ved valg av aktiv konto etter migrering. Lukk appen og logg inn på nytt.</translation>
     </message>
+    <message>
+        <source>Failed to initialize the selected two-factor authentication method. Please choose a method and try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to initialize the two-factor authentication method. Please try logging in again.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LoginPage</name>
@@ -885,12 +895,25 @@ Section title for Bitwarden server settings</extracomment>
         <translation>Dette vil slette alt appen lagrer på systemet ditt, inkludert lagrede systemnøkler, midlertidige filer osv. Vil du fortsette?</translation>
     </message>
     <message>
-        <source>Authenticator code</source>
-        <translation>Autentiseringskode</translation>
+        <source>Authenticator app</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please provide the code from your authenticator app below.</source>
-        <translation>Vennligst oppgi koden fra autentiseringsappen din nedenfor.</translation>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide the code from your selected two-factor authentication method below.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Two-factor authentication method</source>
+        <extracomment>Label for selecting the two-factor authentication method to use</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Verification code</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -993,7 +1016,7 @@ Section title for Bitwarden server settings</extracomment>
     <name>SendListPage</name>
     <message>
         <source>Send</source>
-        <extracomment>Page title, probably shouldn't be translated as it's the official name of the service, Bitwarden Send</extracomment>
+        <extracomment>Page title, probably shouldn&apos;t be translated as it&apos;s the official name of the service, Bitwarden Send</extracomment>
         <translation>Send</translation>
     </message>
     <message>
@@ -1053,8 +1076,8 @@ Section title for Bitwarden server settings</extracomment>
         <translation>Passordet du har oppgitt er feil.</translation>
     </message>
     <message>
-        <source/>
-        <translation type="unfinished"/>
+        <source></source>
+        <translation></translation>
     </message>
     <message>
         <source>OS authorization check failed.</source>

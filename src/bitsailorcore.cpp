@@ -23,6 +23,7 @@
 #include "bitwardeniteminput.h"
 #include "consts.h"
 #include "uuid.h"
+#include "defer.h"
 
 namespace {
 
@@ -117,6 +118,7 @@ BitSailorCore::BitSailorCore(AppSettings *settings, SecretsHandler *secrets, QOb
     qRegisterMetaType<BitSailorCore::SendType>("SendType");
     qRegisterMetaType<BitSailorCore::FieldType>("FieldType");
     qRegisterMetaType<BitSailorCore::UriMatchType>("UriMatchType");
+    qRegisterMetaType<BitSailorCore::TfaKind>("TfaKind");
 
     faviconThreadPool.setMaxThreadCount(2);
 
@@ -203,17 +205,55 @@ void BitSailorCore::loginApiKey(const QString &clientId, const QString &clientSe
     });
 }
 
-void BitSailorCore::loginEmailPassword(const QString &email, const QString &password, const QString &twoFaCode)
+void BitSailorCore::loginEmailPassword(const QString &email, const QString &password)
+{
+    loginEmailPassword(email, password, TfaKind::KindAuthenticator, "");
+}
+
+void BitSailorCore::loginEmailPassword(const QString &email, const QString &password, TfaKind totpKind, const QString &twoFaCode)
 {
     login([=] {
+        BitwardenTfaConfig *config = nullptr;
+        defer({
+            delete config;
+        });
+        auto tfaCodeBytes = twoFaCode.toUtf8();
+        if (!tfaCodeBytes.isEmpty()) {
+            config = new BitwardenTfaConfig {
+                .kind = static_cast<BitwardenTfaKind>(totpKind),
+                .code = tfaCodeBytes.constData(),
+            };
+        }
+
         return BitwardenLoginPassword(
             client,
             ctx,
             email.toUtf8().data(),
             password.toUtf8().data(),
-            twoFaCode.toUtf8().data(),
+            config,
             &session
         );
+    });
+}
+
+void BitSailorCore::initializeTfa(const QString &email, const QString &password, TfaKind totpKind)
+{
+    QtConcurrent::run([=] {
+        auto emailBytes = email.toUtf8();
+        auto passwordBytes = password.toUtf8();
+
+        auto result = BitwardenInitializeTOTPProvider(
+            client,
+            ctx,
+            emailBytes.data(),
+            passwordBytes.data(),
+            static_cast<BitwardenTfaKind>(totpKind)
+        );
+        if (result != BitwardenSuccess) {
+            qWarning() << "Failed initializing tfa: " << getLastError();
+        }
+
+        emit initializeTfaFinished(result == BitwardenSuccess);
     });
 }
 
@@ -1165,12 +1205,17 @@ void BitSailorCore::login(const std::function<BitwardenResult ()> &loginCallable
         auto result = loginCallable();
         if (result != BitwardenSuccess) {
             auto error = getLastError();
-            if (error == twoFactorNeededError) {
-                emit twoFactorNeeded();
+            if (error.contains(unsupportedTwoFactorNeededError)) {
+                emit unsupportedTwoFactorNeeded();
                 return;
             }
-            if (error == unsupportedTwoFactorNeededError) {
-                emit unsupportedTwoFactorNeeded();
+            if (error.contains(twoFactorNeededError)) {
+                QVariantList kinds;
+                for (const auto &kind : parseSupportedKinds(error)) {
+                    kinds.append(static_cast<int>(kind));
+                }
+
+                emit twoFactorNeeded(kinds);
                 return;
             }
             qWarning() << "Login failed: " << error;
@@ -1187,6 +1232,44 @@ void BitSailorCore::login(const std::function<BitwardenResult ()> &loginCallable
 
         emit loginFinished(true, "");
     });
+}
+
+QList<BitSailorCore::TfaKind> BitSailorCore::parseSupportedKinds(const QString &error) const
+{
+    QList<TfaKind> result;
+
+    const auto startDelimiter = QStringLiteral("supported kinds: ");
+    constexpr auto endDelimiter = "|";
+
+    auto startIndex = error.indexOf(startDelimiter);
+    if (startIndex < 0) {
+        qWarning() << "Invalid error string provided: " << error;
+        return result;
+    }
+
+    startIndex += startDelimiter.length();
+    const auto endIndex = error.indexOf(endDelimiter, startIndex);
+    if (endIndex < 0) {
+        qWarning() << "Invalid error string provided: " << error;
+        return result;
+    }
+    const auto len = endIndex - startIndex;
+
+    const auto partsRaw = error.mid(startIndex, len);
+    const auto parts = partsRaw.split(',', QString::SplitBehavior::SkipEmptyParts);
+
+    for (const auto &part : parts) {
+        bool ok = false;
+        const auto partInt = part.toInt(&ok);
+        if (!ok) {
+            qWarning() << "Got invalid supported kind, cannot be converted to int: " << part;
+            continue;
+        }
+
+        result.append(static_cast<TfaKind>(partInt));
+    }
+
+    return result;
 }
 
 bool BitSailorCore::syncRaw()

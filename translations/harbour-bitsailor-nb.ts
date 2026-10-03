@@ -817,6 +817,14 @@
         <source>Failed setting current account ID after migrating to the multi-account structure. Please close the app and log in again.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Failed to initialize the selected two-factor authentication method. Please choose a method and try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to initialize the two-factor authentication method. Please try logging in again.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LoginPage</name>
@@ -875,14 +883,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Authenticator code</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please provide the code from your authenticator app below.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Server</source>
         <extracomment>Label for choosing the Bitwarden server instance
 ----------
@@ -892,6 +892,27 @@ Section title for Bitwarden server settings</extracomment>
     <message>
         <source>Custom</source>
         <extracomment>Server option for entering a custom Bitwarden server URL</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authenticator app</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please provide the code from your selected two-factor authentication method below.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Two-factor authentication method</source>
+        <extracomment>Label for selecting the two-factor authentication method to use</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Verification code</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

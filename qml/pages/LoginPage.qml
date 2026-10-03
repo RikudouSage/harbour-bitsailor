@@ -20,10 +20,26 @@ Dialog {
     property string customServerUrl
     property string twoFaCode
     property bool twoFaFlow: false
+    property var supportedTfaMethods: []
+    property int tfaKind: BitSailorCore.KindAuthenticator
+    property bool tfaProviderInitialized: false
+    property bool tfaProviderInitializing: false
 
     property string error
 
     property var doAfterLoad: []
+
+    signal tfaProviderChanged(int kind)
+
+    function tfaProviderName(kind) {
+        if (kind === BitSailorCore.KindAuthenticator) {
+            return qsTr("Authenticator app");
+        }
+        if (kind === BitSailorCore.KindEmail) {
+            return qsTr("Email");
+        }
+        return qsTr("Unknown");
+    }
 
     function selectedServerUrl() {
         return serverUrl === customServerValue ? customServerUrl : serverUrl;
@@ -53,7 +69,9 @@ Dialog {
 
     id: page
     allowedOrientations: Orientation.All
-    canAccept: Helpers.xor(emailText.length && passwordText.length, clientIdText.length && clientSecretText.length) && (serverUrl !== customServerValue || customServerUrl.length)
+    canAccept: Helpers.xor(emailText.length && passwordText.length, clientIdText.length && clientSecretText.length)
+               && (serverUrl !== customServerValue || customServerUrl.length)
+               && (!twoFaFlow || (tfaProviderInitialized && twoFaCode.length))
 
     Component {
         id: serverUrlFields
@@ -286,7 +304,7 @@ Dialog {
                     content.sourceComponent: Column {
                         Label {
                             visible: twoFaFlow
-                            text: qsTr("Please provide the code from your authenticator app below.")
+                            text: qsTr("Please provide the code from your selected two-factor authentication method below.")
                             color: Theme.highlightColor
                             width: parent.width - Theme.horizontalPageMargin * 2
                             wrapMode: Label.WordWrap
@@ -356,9 +374,41 @@ Dialog {
                             }
                         }
 
+                        ComboBox {
+                            id: tfaProviderSelect
+                            //: Label for selecting the two-factor authentication method to use
+                            label: qsTr("Two-factor authentication method")
+                            visible: twoFaFlow && itemData.length > 1
+                            currentIndex: page.supportedTfaMethods.indexOf(page.tfaKind)
+                            enabled: !page.tfaProviderInitializing
+
+                            property var itemData: page.supportedTfaMethods.map(function(kind) {
+                                return {text: page.tfaProviderName(kind), value: kind};
+                            })
+
+                            menu: ContextMenu {
+                                Repeater {
+                                    model: tfaProviderSelect.itemData
+
+                                    MenuItem {
+                                        property int value: modelData.value
+                                        text: modelData.text
+                                    }
+                                }
+                            }
+
+                            onCurrentItemChanged: {
+                                if (currentItem && currentItem.value !== page.tfaKind) {
+                                    page.tfaKind = currentItem.value;
+                                    page.tfaProviderInitialized = false;
+                                    page.tfaProviderChanged(page.tfaKind);
+                                }
+                            }
+                        }
+
                         TextField {
                             id: twoFa
-                            label: qsTr("Authenticator code")
+                            label: qsTr("Verification code")
                             inputMethodHints: Qt.ImhDigitsOnly | Qt.ImhSensitiveData
                             visible: twoFaFlow
 
