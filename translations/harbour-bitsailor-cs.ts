@@ -806,16 +806,16 @@
         <translation>Odemykání selhalo, zadali jste správné heslo/PIN?</translation>
     </message>
     <message>
+        <source>Your account uses a two-factor method which is currently not supported by this app. Please log in using your API key.</source>
+        <translation>Váš účet využívá dvoufázové ověření, které momentálně nepodporujeme. Prosím přihlašte se pomocí vašeho API klíče.</translation>
+    </message>
+    <message>
         <source>Failed migrating your data to the new multi-account structure, your account data were deleted. Please close the app and log in again.</source>
         <translation>Nezdařilo se zmigrovat vaše data na novou víceúčtovou strukturu. Prosím zavřete aplikaci a přihlašte se znovu.</translation>
     </message>
     <message>
         <source>Failed setting current account ID after migrating to the multi-account structure. Please close the app and log in again.</source>
         <translation>Nezdařilo se nastavit současné ID účtu po migraci na víceúčtovou strukturu. Prosím zavřete aplikaci a přihlašte se znovu.</translation>
-    </message>
-    <message>
-        <source>No supported two-factor authentication method is available. Please log in using your API key.</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to initialize the selected two-factor authentication method. Please choose a method and try again.</source>

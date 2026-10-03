@@ -133,7 +133,7 @@ Page {
 
         onTwoFactorNeeded: {
             if (!supportedMethods || supportedMethods.length === 0) {
-                displayLoginPage(qsTr("No supported two-factor authentication method is available. Please log in using your API key."));
+                displayLoginPage(qsTr("Your account uses a two-factor method which is currently not supported by this app. Please log in using your API key."));
             } else {
                 tfaKind = supportedMethods[0];
                 displayLoginPage(null, supportedMethods, false, true);
@@ -141,7 +141,7 @@ Page {
         }
 
         onUnsupportedTwoFactorNeeded: {
-            displayLoginPage(qsTr("No supported two-factor authentication method is available. Please log in using your API key."));
+            displayLoginPage(qsTr("Your account uses a two-factor method which is currently not supported by this app. Please log in using your API key."));
         }
 
         onInitializeTfaFinished: {

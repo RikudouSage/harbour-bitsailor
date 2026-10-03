@@ -806,15 +806,15 @@
         <translation>Sblocco non riuscito: hai inserito la password/il PIN corretti?</translation>
     </message>
     <message>
+        <source>Your account uses a two-factor method which is currently not supported by this app. Please log in using your API key.</source>
+        <translation>Il tuo account usa un metodo a due fattori attualmente non supportato da quest&apos;app. Accedi usando la tua chiave API.</translation>
+    </message>
+    <message>
         <source>Failed migrating your data to the new multi-account structure, your account data were deleted. Please close the app and log in again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed setting current account ID after migrating to the multi-account structure. Please close the app and log in again.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No supported two-factor authentication method is available. Please log in using your API key.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

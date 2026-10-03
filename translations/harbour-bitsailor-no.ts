@@ -806,16 +806,16 @@
         <translation>Feil ved opplåsing. Oppga du riktig passord/PIN?</translation>
     </message>
     <message>
+        <source>Your account uses a two-factor method which is currently not supported by this app. Please log in using your API key.</source>
+        <translation>Kontoen din har tofaktorautentisering som denne appen ikke støtter ennå. Logg inn med API-nøkkel i stedet.</translation>
+    </message>
+    <message>
         <source>Failed migrating your data to the new multi-account structure, your account data were deleted. Please close the app and log in again.</source>
         <translation>Migrering til ny fler-konto-struktur mislyktes. Kontodata er slettet. Lukk appen og logg inn på nytt.</translation>
     </message>
     <message>
         <source>Failed setting current account ID after migrating to the multi-account structure. Please close the app and log in again.</source>
         <translation>Feil ved valg av aktiv konto etter migrering. Lukk appen og logg inn på nytt.</translation>
-    </message>
-    <message>
-        <source>No supported two-factor authentication method is available. Please log in using your API key.</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to initialize the selected two-factor authentication method. Please choose a method and try again.</source>
