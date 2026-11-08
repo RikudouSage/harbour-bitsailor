@@ -7,15 +7,9 @@ on:
         description: Version to set in rpm/harbour-bitsailor.spec
         required: true
         type: string
-      create_tag:
-        description: Create and push the v<version> tag after updating the spec
-        required: true
-        default: false
-        type: boolean
-
 permissions:
-  actions: write
   contents: write
+  pull-requests: write
 
 concurrency:
   group: bump-spec-version-master
@@ -43,21 +37,31 @@ jobs:
 
           sed -i -E "s/^Version:[[:space:]]*.*/Version:    $VERSION/" rpm/harbour-bitsailor.spec
 
-      - name: Commit and push version bump
-        uses: actions-x/commit@v6
-        with:
-          branch: master
-          files: rpm/harbour-bitsailor.spec
-          message: 'Bump spec version to ${{ inputs.version }}'
-
-      - name: Create and push version tag
-        if: inputs.create_tag
+      - name: Create version-bump pull request
         env:
           VERSION: ${{ inputs.version }}
           GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git tag --annotate "v$VERSION" --message "Release v$VERSION"
-          git push origin "v$VERSION"
-          gh workflow run build.yaml --ref "v$VERSION"
+          branch="chore/bump-spec-version-$VERSION"
+
+          if existing_pr="$(gh pr list --head "$branch" --state open --json url --jq '.[0].url')" && [ -n "$existing_pr" ]; then
+            echo "Version-bump pull request already exists: $existing_pr"
+            exit 0
+          fi
+
+          git switch --create "$branch"
+          git add rpm/harbour-bitsailor.spec
+          if git diff --cached --quiet; then
+            echo "rpm/harbour-bitsailor.spec is already version $VERSION; no pull request created."
+            exit 0
+          fi
+
+          git commit --message "Bump spec version to $VERSION"
+          git push origin "HEAD:$branch"
+          gh pr create \
+            --base master \
+            --head "$branch" \
+            --title "Bump spec version to $VERSION" \
+            --body "Automated version bump for the release workflow."
