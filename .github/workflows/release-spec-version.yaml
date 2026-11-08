@@ -1,0 +1,54 @@
+name: Release spec version
+
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: write
+
+concurrency:
+  group: release-spec-version-master
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out master
+        uses: actions/checkout@v7
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - name: Read and validate spec version
+        id: version
+        run: |
+          version="$(awk '/^Version:/ { print $2; exit }' rpm/harbour-bitsailor.spec)"
+          if [[ ! "$version" =~ ^[0-9]+(\.[0-9]+){1,3}([._+-][0-9A-Za-z._+-]+)?$ ]]; then
+            echo "Could not read a valid version from rpm/harbour-bitsailor.spec." >&2
+            exit 1
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Create and push version tag
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          tag="v$VERSION"
+          if git rev-parse --verify --quiet "refs/tags/$tag"; then
+            echo "Tag $tag already exists." >&2
+            exit 1
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag --annotate "$tag" --message "Release $tag"
+          git push origin "$tag"
+
+      - name: Run build and release workflow
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run build.yaml --ref "v$VERSION"
