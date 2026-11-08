@@ -18,6 +18,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     name: Build App
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
     strategy:
       matrix:
         arch: [ 'armv7hl', 'aarch64', 'i486' ]
@@ -51,6 +55,12 @@ jobs:
           cp -r /share/* . ;
           HARBOUR_STORE='${{ matrix.variant.harbour_store }}' MB2_QMAKE_ARGS='${{ matrix.variant.mb2_qmake_args }}' mb2 -t SailfishOS-$OS_VERSION-${{ matrix.arch }} build ;
           cp -r RPMS/*.rpm /share/output"
+
+      - name: Attest RPM provenance
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: actions/attest@v4
+        with:
+          subject-path: output/*.rpm
 
       - name: Upload RPM (${{ matrix.arch }}, ${{ matrix.variant.name }})
         uses: actions/upload-artifact@v7
